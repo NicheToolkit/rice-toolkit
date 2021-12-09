@@ -1,0 +1,49 @@
+{
+  "groups": [
+    {
+      "name": "nichetoolkit.rice.bean.name",
+      "sourceType": "io.github.nichetoolkit.rice.configure.RiceBeanNameProperties",
+      "type": "io.github.nichetoolkit.rice.configure.RiceBeanNameProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "nichetoolkit.rice.bean.name.unique-enabled",
+      "type": "java.lang.Boolean",
+      "description": "name unique enabled."
+    },
+    {
+      "name": "nichetoolkit.rice.bean.name.nonull-enabled",
+      "type": "java.lang.Boolean",
+      "description": "name nonnull enabled."
+    }
+  ],
+  "hints": [
+    {
+      "name": "nichetoolkit.rice.bean.name.unique-enabled",
+      "values": [
+        {
+          "value": false,
+          "description": "name unique enabled close."
+        },
+        {
+          "value": true,
+          "description": "name unique enabled open."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.rice.bean.name.nonull-enabled",
+      "values": [
+        {
+          "value": false,
+          "description": "name nonnull enabled close."
+        },
+        {
+          "value": true,
+          "description": "name nonnull enabled open."
+        }
+      ]
+    }
+  ]
+}
