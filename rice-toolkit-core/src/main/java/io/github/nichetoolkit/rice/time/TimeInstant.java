@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.rice.time;
 
+import io.github.nichetoolkit.rice.RestSort;
+
 import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
@@ -61,7 +63,7 @@ public class TimeInstant implements TimeValue<TimeInstant> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof TimeInstant)) return false;
         TimeInstant that = (TimeInstant) o;
         return Objects.equals(instant, that.instant);
     }

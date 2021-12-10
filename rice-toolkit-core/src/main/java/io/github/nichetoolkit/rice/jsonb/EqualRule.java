@@ -91,6 +91,7 @@ public class EqualRule extends JsonbRule<EqualRule> {
         public Builder() {
         }
 
+        @Override
         public EqualRule.Builder name(String name) {
             this.name = name;
             return this;

@@ -53,7 +53,7 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof RestSort)) return false;
         RestSort sort = (RestSort) o;
         return Objects.equals(name, sort.name);
     }

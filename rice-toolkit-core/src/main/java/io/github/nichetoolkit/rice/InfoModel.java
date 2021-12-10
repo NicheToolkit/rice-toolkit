@@ -27,18 +27,22 @@ public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
         this.description = builder.description;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
 
+    @Override
     public void setDescription(String description) {
         this.description = description;
     }
@@ -55,6 +59,7 @@ public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
         public Builder() {
         }
 
+        @Override
         public InfoModel.Builder<I> id(I id) {
             this.id = id;
             return this;
@@ -70,6 +75,7 @@ public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
             return this;
         }
 
+        @Override
         public InfoModel<I> build() {
             return new InfoModel<>(this);
         }

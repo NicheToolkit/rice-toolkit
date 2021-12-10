@@ -9,6 +9,7 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
  * @author Cyan (snow22314 @ outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("RedundantThrows")
 public interface ServiceAdvice<I, F extends IdFilter<I>> {
 
     default void doServiceHandle() throws RestException {}

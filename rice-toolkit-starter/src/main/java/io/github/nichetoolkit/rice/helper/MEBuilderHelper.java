@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("MixedMutabilityReturnType")
 public class MEBuilderHelper {
 
     public static <I,M extends IdModel<I>, E extends IdEntity<I>> List<E> entityList(Collection<M> modelList, ConsumerActuator<M> consumer, FunctionActuator<M,E> function) throws RestException {

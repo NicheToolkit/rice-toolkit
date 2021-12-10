@@ -38,6 +38,7 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("RedundantThrows")
 @Slf4j
 public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<I>, F extends IdFilter<I>>
         implements InitializingBean, ApplicationContextAware, OptionalService<I, M>, ServiceAdvice<I, F> {

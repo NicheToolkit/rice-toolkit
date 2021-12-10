@@ -40,14 +40,17 @@ public enum RangeOperation implements RestField {
     }
 
     @JsonValue
+    @Override
     public Integer getKey() {
         return this.key;
     }
 
+    @Override
     public String getValue() {
         return this.value;
     }
 
+    @Override
     public String getField() {
         return this.field;
     }

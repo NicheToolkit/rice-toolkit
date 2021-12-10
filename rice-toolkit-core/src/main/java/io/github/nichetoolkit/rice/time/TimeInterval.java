@@ -70,7 +70,7 @@ public class TimeInterval implements TimeValue<TimeInterval> {
         Instant end = null;
         Duration duration = null;
         if (value.contains(INTERVAL_REGEX)) {
-            String[] split = value.split(INTERVAL_REGEX);
+            String[] split = value.split(INTERVAL_REGEX,-1);
             if (split.length > 0) {
                 start = Instant.parse(split[0]);
             }

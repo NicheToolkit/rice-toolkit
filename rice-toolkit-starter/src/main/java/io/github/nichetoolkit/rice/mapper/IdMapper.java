@@ -11,6 +11,7 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("UnusedReturnValue")
 public interface IdMapper<E extends IdEntity<I>,I> {
 
     /*

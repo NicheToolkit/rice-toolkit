@@ -15,7 +15,7 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess","MixedMutabilityReturnType"})
 public class IdFilter<I> extends SortFilter{
     @JsonIgnore
     protected final SqlBuilder SQL_BUILDER = new SqlBuilder();
@@ -177,26 +177,31 @@ public class IdFilter<I> extends SortFilter{
             return this;
         }
 
+        @Override
         public IdFilter.Builder<I> sorts(@NonNull Collection<RestSort> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
         }
 
+        @Override
         public IdFilter.Builder<I> sorts(@NonNull RestSort... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
             return this;
         }
 
+        @Override
         public IdFilter.Builder<I> pageNum(Integer pageNum) {
             this.pageNum = pageNum;
             return this;
         }
 
+        @Override
         public IdFilter.Builder<I> pageSize(Integer pageSize) {
             this.pageSize = pageSize;
             return this;
         }
 
+        @Override
         public IdFilter<I> build() {
             return new IdFilter<>(this);
         }

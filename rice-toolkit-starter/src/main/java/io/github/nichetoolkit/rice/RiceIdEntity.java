@@ -24,11 +24,13 @@ public abstract class RiceIdEntity<E extends RiceIdEntity<E,M>,M extends RiceIdM
         public Builder() {
         }
 
+        @Override
         public RiceIdEntity.Builder id(String id) {
             this.id = id;
             return this;
         }
 
+        @Override
         public abstract RiceIdEntity<?,?> build();
     }
 }
