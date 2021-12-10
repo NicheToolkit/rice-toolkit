@@ -12,9 +12,7 @@ import java.util.stream.Collectors;
 /**
  * <p>PropertyHelper</p>
  * @author Cyan (snow22314@outlook.com)
- * @version V.0.0.1
- * @group cyan.tool.kit
- * @date 13:39 2021/7/8
+ * @version v1.0.0
  */
 @Slf4j
 public class PropertyHelper {
