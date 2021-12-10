@@ -15,7 +15,7 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess","MixedMutabilityReturnType"})
 public class IdFilter<I> extends SortFilter{
     @JsonIgnore
     protected final SqlBuilder SQL_BUILDER = new SqlBuilder();

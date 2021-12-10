@@ -42,6 +42,7 @@ public enum ContrastOperation implements RestField {
     }
 
     @JsonValue
+    @Override
     public Integer getKey() {
         return this.key;
     }

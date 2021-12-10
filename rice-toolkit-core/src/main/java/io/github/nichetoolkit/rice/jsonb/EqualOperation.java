@@ -41,6 +41,7 @@ public enum EqualOperation implements RestField {
     }
 
     @JsonValue
+    @Override
     public Integer getKey() {
         return this.key;
     }

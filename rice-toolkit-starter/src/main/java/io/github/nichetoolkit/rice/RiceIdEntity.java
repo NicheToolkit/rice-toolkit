@@ -30,6 +30,7 @@ public abstract class RiceIdEntity<E extends RiceIdEntity<E,M>,M extends RiceIdM
             return this;
         }
 
+        @Override
         public abstract RiceIdEntity<?,?> build();
     }
 }

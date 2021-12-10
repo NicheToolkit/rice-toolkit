@@ -29,6 +29,7 @@ public abstract class RiceIdModel<M extends RiceIdModel<M,E>,E extends RiceIdEnt
             return this;
         }
 
+        @Override
         public abstract RiceIdModel<?,?> build();
     }
 }
