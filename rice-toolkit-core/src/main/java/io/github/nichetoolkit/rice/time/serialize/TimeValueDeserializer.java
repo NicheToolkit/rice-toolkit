@@ -1,7 +1,6 @@
 package io.github.nichetoolkit.rice.time.serialize;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import io.github.nichetoolkit.rice.time.TimeValue;
@@ -17,7 +16,7 @@ import java.io.IOException;
 @Component
 public class TimeValueDeserializer extends JsonDeserializer<TimeValue> {
     @Override
-    public TimeValue deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    public TimeValue deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         return TimeValue.parse(jsonParser.getText());
     }
 }

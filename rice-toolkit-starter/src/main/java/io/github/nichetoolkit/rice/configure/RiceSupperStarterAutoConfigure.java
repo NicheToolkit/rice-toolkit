@@ -7,9 +7,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * <p>RiceStarterAutoConfigure</p>
  * @author Cyan (snow22314@outlook.com)
- * @version V.0.0.1
- * @group cyan.tool.kit
- * @date 15:18 2020/1/13
+ * @version v1.0.0
  */
 @Slf4j
 @Configuration

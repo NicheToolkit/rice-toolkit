@@ -12,6 +12,7 @@ import java.util.List;
  * @author Cyan (snow22314 @ outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("RedundantThrows")
 public interface BuilderAdvice <I,M extends IdModel<I>, E extends IdEntity<I>> {
 
     @SuppressWarnings(value = "unchecked")

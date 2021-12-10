@@ -12,6 +12,7 @@ import java.util.Optional;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
 public class RangeRule extends JsonbRule<RangeRule> {
 
     /** 属性值类型 */

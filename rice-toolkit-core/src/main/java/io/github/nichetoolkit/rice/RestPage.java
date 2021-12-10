@@ -15,6 +15,7 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
 public class RestPage<T> implements Serializable {
     /** 总数据量 */
     protected Long totals;
@@ -161,6 +162,7 @@ public class RestPage<T> implements Serializable {
         this.items = new ArrayList<>(items);
     }
 
+    @SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
     public static class Builder<T> {
         protected Long totals;
         protected Long pages;

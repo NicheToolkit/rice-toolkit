@@ -124,7 +124,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
             } catch (NoSuchMethodException ignored) {
             }
             Method buildEntityListMethod = findMethod;
-            /** 当buildEntity和buildEntityList都被复写的时候 优先调用buildEntityList */
+            /* 当buildEntity和buildEntityList都被复写的时候 优先调用buildEntityList */
             entityList = MEBuilderHelper.entityList(modelList, actuator, (M model) -> {
                 E entity = createEntity(model);
                 if (buildEntityListMethod == null || buildEntityListMethod.isDefault()) {
@@ -162,7 +162,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
             } catch (NoSuchMethodException ignored) {
             }
             Method buildModelListMethod = findMethod;
-            /** 当buildModel和buildModelList都被复写的时候 优先调用buildModelList */
+            /* 当buildModel和buildModelList都被复写的时候 优先调用buildModelList */
             modelList = MEBuilderHelper.modelList(entityList, (E entity) -> {
                 M model = this.createModel(entity);
                 if (buildModelListMethod == null || buildModelListMethod.isDefault()) {
@@ -287,7 +287,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
             } catch (NoSuchMethodException ignored) {
             }
             Method queryByIdMethod = findMethod;
-            /** 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
+            /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
             if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
                 entity = loadMapper.findById(id, isLoadArray);
             } else {

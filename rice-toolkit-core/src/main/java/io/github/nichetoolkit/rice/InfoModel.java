@@ -7,6 +7,7 @@ import io.github.nichetoolkit.rest.util.common.JsonUtils;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
 public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
     /** 名称 */
     protected String name;

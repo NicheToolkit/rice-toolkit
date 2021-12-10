@@ -15,6 +15,7 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
 public class JsonbFilter<D,I> extends TimeFilter<D,I> {
     /**
      * 数值型对比运算集合

@@ -18,6 +18,7 @@ import java.util.stream.Stream;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
 public enum ValueType implements RestField {
     /** 短整型 */
     SHORT(1, "短整型","int2"),

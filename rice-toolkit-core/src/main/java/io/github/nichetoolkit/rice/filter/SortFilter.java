@@ -13,6 +13,7 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings({"WeakerAccess","UnusedReturnValue"})
 public class SortFilter extends PageFilter {
     @JsonIgnore
     public static final String SORT_REGEX = ",";

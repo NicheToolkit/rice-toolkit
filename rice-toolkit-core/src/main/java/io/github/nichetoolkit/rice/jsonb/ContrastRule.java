@@ -12,6 +12,7 @@ import java.util.Optional;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
 public class ContrastRule extends JsonbRule<ContrastRule> {
 
     /** 属性值类型 */
@@ -68,6 +69,7 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
     }
 
     @Override
+    @SuppressWarnings("Duplicates")
     public String toSql(@NonNull String alias, @NonNull String variable) {
         if (GeneralUtils.isEmpty(this.value) || GeneralUtils.isEmpty(this.type) || GeneralUtils.isEmpty(this.operation)) {
             return SqlBuilder.EMPTY;

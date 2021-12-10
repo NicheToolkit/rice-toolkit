@@ -16,6 +16,7 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
 public class PageFilter implements Serializable {
     @JsonIgnore
     public static final String PAGE_REGEX = "_";

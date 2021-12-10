@@ -18,8 +18,10 @@ import java.util.stream.Stream;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("unused")
 public class ClazzHelper {
 
+    @SuppressWarnings("WeakerAccess")
     public static Type[] types(Object object) throws ClassUnknownException {
         Type genericSuperclass;
         if (object instanceof Collection) {
@@ -46,7 +48,7 @@ public class ClazzHelper {
                 throw new ClassUnknownException();
             }
         } else if (object.getClass().isArray()) {
-            Object first = Stream.of(object).findFirst().orElseThrow(ClassUnknownException::new);
+            Object first = Optional.of(object).orElseThrow(ClassUnknownException::new);
             genericSuperclass = first.getClass().getGenericSuperclass();
         } else  {
             genericSuperclass =  object.getClass().getGenericSuperclass();

@@ -13,6 +13,7 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
 public class ContainRule extends JsonbRule<ContainRule> {
     /** 属性值类型 */
     protected ValueType type = ValueType.LONG;
@@ -130,7 +131,7 @@ public class ContainRule extends JsonbRule<ContainRule> {
         }
 
         public ContainRule.Builder values(@NonNull Object... values) {
-            this.values = Optional.ofNullable(values).map(valueList -> new HashSet<>(Arrays.asList(valueList))).orElse(null);
+            this.values = Optional.of(values).map(valueList -> new HashSet<>(Arrays.asList(valueList))).orElse(null);
             return this;
         }
 

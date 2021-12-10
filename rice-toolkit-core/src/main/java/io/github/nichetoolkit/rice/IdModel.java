@@ -10,6 +10,7 @@ import java.util.Objects;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
 public class IdModel<I> implements RestId<I>, Serializable {
     protected I id;
 

@@ -13,6 +13,7 @@ import java.util.Optional;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
 public enum EqualOperation implements RestField {
     /** 相等 */
     EQUAL_OPERATION(1, "相等","target = 'values'"),

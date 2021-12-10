@@ -12,6 +12,7 @@ import java.util.Date;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings({"WeakerAccess","UnusedReturnValue"})
 public final class SqlBuilder implements Serializable, CharSequence {
     public static final String EMPTY = "";
 
@@ -358,6 +359,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
         return this;
     }
 
+    @SuppressWarnings("Duplicates")
     public SqlBuilder reo(String target,  Object beginValue, Object endValue, Boolean andOfOr) {
         this.andOfOr(andOfOr);
         this.append("( ");
@@ -367,6 +369,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
         return this;
     }
 
+    @SuppressWarnings("Duplicates")
     public SqlBuilder seo(String minTarget, String maxTarget, Object value, Boolean andOfOr) {
         this.andOfOr(andOfOr);
         this.append("( ");
@@ -376,6 +379,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
         return this;
     }
 
+    @SuppressWarnings("Duplicates")
     public SqlBuilder ro(String target,  Object beginValue, Object endValue, Boolean andOfOr) {
         this.andOfOr(andOfOr);
         this.append("( ");
@@ -385,6 +389,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
         return this;
     }
 
+    @SuppressWarnings("Duplicates")
     public SqlBuilder so(String minTarget, String maxTarget, Object value, Boolean andOfOr) {
         this.andOfOr(andOfOr);
         this.append("( ");
@@ -394,6 +399,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
         return this;
     }
 
+    @SuppressWarnings("Duplicates")
     public SqlBuilder ra(String target,  Object beginValue, Object endValue, Boolean andOfOr) {
         this.andOfOr(andOfOr);
         this.append("( ");
@@ -403,6 +409,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
         return this;
     }
 
+    @SuppressWarnings("Duplicates")
     public SqlBuilder sa(String minTarget, String maxTarget, Object value, Boolean andOfOr) {
         this.andOfOr(andOfOr);
         this.append("( ");
@@ -412,6 +419,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
         return this;
     }
 
+    @SuppressWarnings("Duplicates")
     public SqlBuilder rea(String target, Object beginValue, Object endValue, Boolean andOfOr) {
         this.andOfOr(andOfOr);
         this.append("( ");
@@ -421,6 +429,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
         return this;
     }
 
+    @SuppressWarnings("Duplicates")
     public SqlBuilder sea(String minTarget, String maxTarget, Object value, Boolean andOfOr) {
         this.andOfOr(andOfOr);
         this.append("( ");
@@ -454,6 +463,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
         return this;
     }
 
+    @SuppressWarnings("Duplicates")
     public SqlBuilder rs(String target,  Object beginValue, Object endValue, Boolean andOfOr, Boolean beginOfEnd) {
         if (beginOfEnd) {
             this.gte(target, beginValue, andOfOr);
@@ -465,6 +475,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
         return this;
     }
 
+    @SuppressWarnings("Duplicates")
     public SqlBuilder ss(String minTarget, String maxTarget, Object value, Boolean andOfOr, Boolean beginOfEnd) {
         if (beginOfEnd) {
             this.gte(maxTarget, value, andOfOr);

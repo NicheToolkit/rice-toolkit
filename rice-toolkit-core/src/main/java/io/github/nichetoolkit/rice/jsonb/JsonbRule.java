@@ -14,16 +14,16 @@ import java.io.Serializable;
  */
 public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable {
     /** 属性名 */
-    protected String name;
+    String name;
 
-    public JsonbRule() {
+    JsonbRule() {
     }
 
-    public JsonbRule(String name) {
+    JsonbRule(String name) {
         this.name = name;
     }
 
-    public JsonbRule(JsonbRule.Builder builder) {
+    JsonbRule(JsonbRule.Builder builder) {
         this.name = builder.name;
     }
 
@@ -31,11 +31,11 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
 
     abstract public String toSql(@NonNull String alias, @NonNull String variable);
 
-    public String target(String target, String name, String value, ValueType type) {
+    String target(String target, String name, String value, ValueType type) {
         return target(target,name,value,type.getValue());
     }
 
-    public String target(String target, String name, String value, String type) {
+    private String target(String target, String name, String value, String type) {
         SqlBuilder targetBuilder = SqlBuilders.newSqlBuilder();
         if (GeneralUtils.isNotEmpty(name) && GeneralUtils.isNotEmpty(value)) {
             targetBuilder.append("((").append(target);
@@ -55,7 +55,7 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
     }
 
     public abstract static class Builder<R extends JsonbRule<R>> {
-        protected String name;
+        String name;
 
         public Builder() {
         }

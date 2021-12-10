@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
 public class RestSort<S extends RestSort<S>> implements Serializable {
     protected String name;
     protected SortType type = SortType.DESC;

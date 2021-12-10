@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface IdMapper<E extends IdEntity<I>,I> {
 
-    /**
+    /*
      * Mapper的实现，关联实体映射泛型，必须放在第一个，在xxxMapper进行了多级继承的情况下，
      * 通用Mapper自动生成的方法，构建sql查询语句时，无法找到最终继承的Mapper<E>类，
      * 无法正确的获取E的类型，因此E，必须要放在第一位，参考 MapperTemplate 99行

@@ -9,9 +9,10 @@ import java.util.Objects;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
 public class TimeInstant implements TimeValue<TimeInstant> {
     
-    private Instant instant;
+    private final Instant instant;
 
     public TimeInstant() {
         this.instant = Instant.now();

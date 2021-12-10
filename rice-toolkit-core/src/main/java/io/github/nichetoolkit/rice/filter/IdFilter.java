@@ -15,6 +15,7 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
 public class IdFilter<I> extends SortFilter{
     @JsonIgnore
     protected final SqlBuilder SQL_BUILDER = new SqlBuilder();
@@ -33,7 +34,7 @@ public class IdFilter<I> extends SortFilter{
     /**
      * the generic paradigm of T is not Like List<T>、Set<T>
      * It should be String、Long、Integer ...
-     * @param ids
+     * @param ids id list
      */
     @SuppressWarnings(value = "unchecked")
     public IdFilter(@NonNull I... ids) {

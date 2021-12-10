@@ -11,6 +11,7 @@ import java.util.Date;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
 public class TimeInterval implements TimeValue<TimeInterval> {
     private Instant start;
     private Instant end;

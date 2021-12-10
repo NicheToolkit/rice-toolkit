@@ -9,6 +9,7 @@ import java.util.Date;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
 public class TimeEntity implements Serializable {
     /** 数据创建时间 */
     @Column(name = "create_time")
@@ -41,6 +42,7 @@ public class TimeEntity implements Serializable {
         this.updateTime = updateTime;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static class Builder {
         protected Date createTime;
         protected Date updateTime;
