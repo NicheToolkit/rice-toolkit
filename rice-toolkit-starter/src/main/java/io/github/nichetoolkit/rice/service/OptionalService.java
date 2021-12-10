@@ -11,6 +11,7 @@ import java.util.Optional;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("RedundantThrows")
 public interface OptionalService<I,M extends IdModel<I>> extends QueryService<I,M> {
 
     default void optional(@NonNull IdModel<I> model) throws RestException {}

@@ -10,6 +10,7 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("RedundantThrows")
 public interface FilterService<I,M extends IdModel<I>, F extends IdFilter<I>> extends SaveService<I,M> {
     /**
      * 通过过滤器查询

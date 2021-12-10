@@ -16,6 +16,7 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("RedundantThrows")
 public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity<I>, F extends IdFilter<I>> extends SupperService<I,M,E,F> {
 
     protected InfoMapper<E,I> consumerMapper;

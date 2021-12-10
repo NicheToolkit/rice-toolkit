@@ -28,10 +28,12 @@ public enum ServiceErrorStatus implements RestStatus {
         return this.name().toLowerCase().replace("_", " ");
     }
 
+    @Override
     public Integer getStatus() {
         return this.status;
     }
 
+    @Override
     public String getMessage() {
         return this.message;
     }

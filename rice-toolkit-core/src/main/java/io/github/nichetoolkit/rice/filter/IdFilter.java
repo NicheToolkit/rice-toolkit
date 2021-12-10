@@ -177,26 +177,31 @@ public class IdFilter<I> extends SortFilter{
             return this;
         }
 
+        @Override
         public IdFilter.Builder<I> sorts(@NonNull Collection<RestSort> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
         }
 
+        @Override
         public IdFilter.Builder<I> sorts(@NonNull RestSort... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
             return this;
         }
 
+        @Override
         public IdFilter.Builder<I> pageNum(Integer pageNum) {
             this.pageNum = pageNum;
             return this;
         }
 
+        @Override
         public IdFilter.Builder<I> pageSize(Integer pageSize) {
             this.pageSize = pageSize;
             return this;
         }
 
+        @Override
         public IdFilter<I> build() {
             return new IdFilter<>(this);
         }

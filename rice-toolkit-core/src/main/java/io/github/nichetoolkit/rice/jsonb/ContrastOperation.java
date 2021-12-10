@@ -46,10 +46,12 @@ public enum ContrastOperation implements RestField {
         return this.key;
     }
 
+    @Override
     public String getValue() {
         return this.value;
     }
 
+    @Override
     public String getField() {
         return this.field;
     }

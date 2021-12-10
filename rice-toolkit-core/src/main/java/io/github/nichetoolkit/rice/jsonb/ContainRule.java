@@ -110,6 +110,7 @@ public class ContainRule extends JsonbRule<ContainRule> {
         public Builder() {
         }
 
+        @Override
         public ContainRule.Builder name(String name) {
             this.name = name;
             return this;

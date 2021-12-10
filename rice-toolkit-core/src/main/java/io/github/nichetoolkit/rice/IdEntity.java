@@ -27,10 +27,12 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
         this.id = builder.id;
     }
 
+    @Override
     public I getId() {
         return id;
     }
 
+    @Override
     public void setId(I id) {
         this.id = id;
     }
@@ -39,7 +41,7 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof IdEntity)) return false;
         IdEntity<?> idEntity = (IdEntity<?>) o;
         return Objects.equals(id, idEntity.id);
     }
@@ -65,16 +67,19 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
             return this;
         }
 
+        @Override
         public IdEntity.Builder<I> createTime(Date createTime) {
             this.createTime = createTime;
             return this;
         }
 
+        @Override
         public IdEntity.Builder<I> updateTime(Date updateTime) {
             this.updateTime = updateTime;
             return this;
         }
 
+        @Override
         public IdEntity<I> build() {
             return new IdEntity<>(this);
         }

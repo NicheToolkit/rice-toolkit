@@ -27,21 +27,25 @@ public abstract class RiceInfoEntity<E extends RiceInfoEntity<E,M>,M extends Ric
         public Builder() {
         }
 
+        @Override
         public RiceInfoEntity.Builder id(String id) {
             this.id = id;
             return this;
         }
 
+        @Override
         public RiceInfoEntity.Builder name(String name) {
             this.name = name;
             return this;
         }
 
+        @Override
         public RiceInfoEntity.Builder description(String description) {
             this.description = description;
             return this;
         }
 
+        @Override
         public abstract RiceInfoEntity<?,?> build();
     }
 }

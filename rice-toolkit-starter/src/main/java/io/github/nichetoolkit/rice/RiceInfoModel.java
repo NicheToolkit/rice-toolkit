@@ -23,21 +23,25 @@ public abstract class RiceInfoModel<M extends RiceInfoModel<M,E>,E extends RiceI
         public Builder() {
         }
 
+        @Override
         public RiceInfoModel.Builder id(String id) {
             this.id = id;
             return this;
         }
 
+        @Override
         public RiceInfoModel.Builder name(String name) {
             this.name = name;
             return this;
         }
 
+        @Override
         public RiceInfoModel.Builder description(String description) {
             this.description = description;
             return this;
         }
 
+        @Override
         public abstract RiceInfoModel<?,?> build();
     }
 }

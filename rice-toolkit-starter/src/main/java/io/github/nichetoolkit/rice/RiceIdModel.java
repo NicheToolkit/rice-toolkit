@@ -23,6 +23,7 @@ public abstract class RiceIdModel<M extends RiceIdModel<M,E>,E extends RiceIdEnt
         public Builder() {
         }
 
+        @Override
         public RiceIdModel.Builder id(String id) {
             this.id = id;
             return this;

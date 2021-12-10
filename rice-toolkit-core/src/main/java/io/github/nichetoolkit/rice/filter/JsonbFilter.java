@@ -15,7 +15,7 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess","MixedMutabilityReturnType"})
 public class JsonbFilter<D,I> extends TimeFilter<D,I> {
     /**
      * 数值型对比运算集合
@@ -203,6 +203,8 @@ public class JsonbFilter<D,I> extends TimeFilter<D,I> {
         }
     }
 
+
+    @Override
     public JsonbFilter<D,I> toTimeSql(@NonNull String alias) {
         super.toTimeSql(alias);
         return this;

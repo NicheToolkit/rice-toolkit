@@ -91,6 +91,7 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
         public Builder() {
         }
 
+        @Override
         public ContrastRule.Builder name(String name) {
             this.name = name;
             return this;

@@ -105,6 +105,7 @@ public class RangeRule extends JsonbRule<RangeRule> {
         public Builder() {
         }
 
+        @Override
         public RangeRule.Builder name(String name) {
             this.name = name;
             return this;

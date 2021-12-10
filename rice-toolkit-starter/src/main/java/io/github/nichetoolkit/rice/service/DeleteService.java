@@ -11,6 +11,7 @@ import java.util.Collection;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("RedundantThrows")
 public interface DeleteService<I> {
     /**
      * 通过id集合批量删除

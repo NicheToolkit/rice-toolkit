@@ -25,10 +25,12 @@ public class IdModel<I> implements RestId<I>, Serializable {
         this.id = builder.id;
     }
 
+    @Override
     public I getId() {
         return id;
     }
 
+    @Override
     public void setId(I id) {
         this.id = id;
     }
@@ -36,7 +38,7 @@ public class IdModel<I> implements RestId<I>, Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof IdModel)) return false;
         IdModel<?> idModel = (IdModel<?>) o;
         return Objects.equals(id, idModel.id);
     }
