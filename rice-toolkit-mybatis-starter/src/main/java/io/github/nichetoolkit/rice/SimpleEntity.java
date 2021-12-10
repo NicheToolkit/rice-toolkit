@@ -7,7 +7,7 @@ import javax.persistence.Table;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@Table(name = "cy_tk_cf_simple")
+@Table(name = "ntr_simple")
 public class SimpleEntity extends RiceInfoEntity<SimpleEntity,SimpleModel> {
 
     private Long time;

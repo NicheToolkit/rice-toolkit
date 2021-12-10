@@ -32,4 +32,5 @@ public class RiceBeanNameProperties {
     public void setNonnullEnabled(Boolean nonnullEnabled) {
         this.nonnullEnabled = nonnullEnabled;
     }
+
 }
