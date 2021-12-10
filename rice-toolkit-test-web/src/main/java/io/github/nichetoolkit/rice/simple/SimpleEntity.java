@@ -1,4 +1,6 @@
-package io.github.nichetoolkit.rice;
+package io.github.nichetoolkit.rice.simple;
+
+import io.github.nichetoolkit.rice.RiceInfoEntity;
 
 import javax.persistence.Table;
 

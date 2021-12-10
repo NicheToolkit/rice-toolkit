@@ -2,9 +2,9 @@ package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.RiceInfoService;
-import io.github.nichetoolkit.rice.SimpleEntity;
-import io.github.nichetoolkit.rice.SimpleFilter;
-import io.github.nichetoolkit.rice.SimpleModel;
+import io.github.nichetoolkit.rice.simple.SimpleEntity;
+import io.github.nichetoolkit.rice.simple.SimpleFilter;
+import io.github.nichetoolkit.rice.simple.SimpleModel;
 import org.springframework.stereotype.Service;
 
 /**

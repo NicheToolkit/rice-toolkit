@@ -15,9 +15,9 @@ import tk.mybatis.spring.annotation.MapperScan;
 @Configuration
 @MapperScan(basePackages = {"io.github.nichetoolkit.rice.mapper"})
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rice"})
-@ImportAutoConfiguration(value = {RiceMybatisDatasourceAutoConfigure.class})
-public class RiceMybatisStarterAutoConfigure {
-    public RiceMybatisStarterAutoConfigure() {
-        log.debug("================= rice-mybatis-toolkit-starter-auto-configure initiated ！ ===================");
+@ImportAutoConfiguration(value = {DatasourceAutoConfigure.class})
+public class RiceTestWebAutoConfigure {
+    public RiceTestWebAutoConfigure() {
+        log.debug("================= rice-toolkit-test-web initiated ！ ===================");
     }
 }

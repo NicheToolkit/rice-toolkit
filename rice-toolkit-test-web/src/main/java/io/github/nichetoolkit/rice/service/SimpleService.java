@@ -1,7 +1,7 @@
 package io.github.nichetoolkit.rice.service;
 
-import io.github.nichetoolkit.rice.SimpleFilter;
-import io.github.nichetoolkit.rice.SimpleModel;
+import io.github.nichetoolkit.rice.simple.SimpleFilter;
+import io.github.nichetoolkit.rice.simple.SimpleModel;
 
 /**
  * <p>SimpleService</p>

@@ -1,5 +1,7 @@
-package io.github.nichetoolkit.rice;
+package io.github.nichetoolkit.rice.simple;
 
+
+import io.github.nichetoolkit.rice.RiceFilter;
 
 /**
  * <p>SimpleFilter</p>

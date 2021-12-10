@@ -1,4 +1,6 @@
-package io.github.nichetoolkit.rice;
+package io.github.nichetoolkit.rice.simple;
+
+import io.github.nichetoolkit.rice.RiceInfoModel;
 
 import java.util.Date;
 import java.util.Optional;
@@ -18,7 +20,7 @@ public class SimpleModel extends RiceInfoModel<SimpleModel,SimpleEntity> {
         super(id);
     }
 
-    public SimpleModel(SimpleModel.Builder builder) {
+    public SimpleModel(Builder builder) {
         super(builder);
         this.time = builder.time;
     }
@@ -47,30 +49,30 @@ public class SimpleModel extends RiceInfoModel<SimpleModel,SimpleEntity> {
         public Builder() {
         }
 
-        public SimpleModel.Builder time(Long time) {
+        public Builder time(Long time) {
             this.time = new Date(time);
             return this;
         }
 
-        public SimpleModel.Builder time(Date time) {
+        public Builder time(Date time) {
             this.time = time;
             return this;
         }
 
         @Override
-        public SimpleModel.Builder id(String id) {
+        public Builder id(String id) {
             this.id = id;
             return this;
         }
 
         @Override
-        public SimpleModel.Builder name(String name) {
+        public Builder name(String name) {
             this.name = name;
             return this;
         }
 
         @Override
-        public SimpleModel.Builder description(String description) {
+        public Builder description(String description) {
             this.description = description;
             return this;
         }

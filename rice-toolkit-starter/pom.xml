@@ -8,12 +8,12 @@
         <version>1.0.2</version>
     </parent>
 
-    <artifactId>rice-toolkit-jpa-starter</artifactId>
+    <artifactId>rice-toolkit-starter</artifactId>
     <version>1.0.2</version>
-    <name>rice-toolkit-jpa-starter</name>
+    <name>rice-toolkit-starter</name>
     <packaging>jar</packaging>
-    <description>Rice toolkit jpa starter project for Spring Boot</description>
-    <url>https://github.com/NicheToolkit/rice-toolkit/rice-toolkit-jpa-starter</url>
+    <description>Rice toolkit starter project for Spring Boot</description>
+    <url>https://github.com/NicheToolkit/rice-toolkit/rice-toolkit-starter</url>
 
     <properties>
         <java.version>1.8</java.version>
@@ -52,17 +52,21 @@
         </repository>
     </distributionManagement>
 
+
     <dependencies>
-        <dependency>
-            <groupId>io.github.nichetoolkit</groupId>
-            <artifactId>rice-toolkit-supper-starter</artifactId>
-            <version>${toolkit.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
+
+        <dependency>
+            <groupId>io.github.nichetoolkit</groupId>
+            <artifactId>rice-toolkit-core</artifactId>
+            <version>${toolkit.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -26,8 +26,8 @@ import javax.sql.DataSource;
 @Slf4j
 @Configuration
 @EnableTransactionManagement
-public class RiceMybatisDatasourceAutoConfigure {
-    public RiceMybatisDatasourceAutoConfigure() {
+public class DatasourceAutoConfigure {
+    public DatasourceAutoConfigure() {
         log.debug("================= rice-mybatis-datasource-auto-configure initiated ！ ===================");
     }
 
