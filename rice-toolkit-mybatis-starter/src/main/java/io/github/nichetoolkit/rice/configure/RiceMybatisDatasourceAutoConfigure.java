@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.configure;
 
 import com.zaxxer.hikari.HikariDataSource;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -22,9 +23,14 @@ import javax.sql.DataSource;
  * @author Cyan (snow22314 @ outlook.com)
  * @version v1.0.0
  */
+@Slf4j
 @Configuration
 @EnableTransactionManagement
 public class RiceMybatisDatasourceAutoConfigure {
+    public RiceMybatisDatasourceAutoConfigure() {
+        log.debug("================= rice-mybatis-datasource-auto-configure initiated ！ ===================");
+    }
+
     @Primary
     @Bean(name = "hikariDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.hikari")

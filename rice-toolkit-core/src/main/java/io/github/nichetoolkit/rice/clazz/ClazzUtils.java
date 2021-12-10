@@ -2,7 +2,6 @@ package io.github.nichetoolkit.rice.clazz;
 
 import io.github.nichetoolkit.rest.error.ClassUnknownException;
 import io.github.nichetoolkit.rest.error.ClassUnsupportedException;
-import io.github.nichetoolkit.rest.identity.error.IdentityException;
 import io.github.nichetoolkit.rice.IdModel;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,17 +22,12 @@ public class ClazzUtils {
             return null;
         }
     }
-
-    @SuppressWarnings(value = "unchecked")
     public static <I> I generate(IdModel<I> model)  {
         try {
             return ClazzHelper.generate(model);
         } catch (ClassUnknownException exception) {
             exception.printStackTrace();
             log.error("the class type of <I> is unknown",exception);
-        } catch (IdentityException exception) {
-            exception.printStackTrace();
-            log.error("IdentityWorker configure error",exception);
         } catch (ClassUnsupportedException exception) {
             exception.printStackTrace();
             log.error("the class type of <I> is unsupported",exception);

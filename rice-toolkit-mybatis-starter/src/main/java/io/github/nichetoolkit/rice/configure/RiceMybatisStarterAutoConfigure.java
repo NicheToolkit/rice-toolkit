@@ -18,6 +18,6 @@ import tk.mybatis.spring.annotation.MapperScan;
 @ImportAutoConfiguration(value = {RiceMybatisDatasourceAutoConfigure.class})
 public class RiceMybatisStarterAutoConfigure {
     public RiceMybatisStarterAutoConfigure() {
-        log.debug("================= rice-mybatis-toolkit-starter initiated ！ ===================");
+        log.debug("================= rice-mybatis-toolkit-starter-auto-configure initiated ！ ===================");
     }
 }

@@ -94,6 +94,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
                     String lowerMapperName = lowerBeanName.concat("Mapper");
                     this.supperMapper = applicationContext.getBean(lowerMapperName, IdMapper.class);
                 } catch (BeansException exception1) {
+                    exception1.printStackTrace();
                     String message = "the service and mapper name must be like 'xxxService'/'xxxServiceImpl' and 'xxxMapper'";
                     log.error(message);
                     throw new ServiceUnknownException(IdMapper.class.getName(), this.getClass().getName(),message,exception1);

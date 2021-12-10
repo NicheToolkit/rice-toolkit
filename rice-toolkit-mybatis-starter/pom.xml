@@ -78,20 +78,6 @@
             <version>${HikariCP.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${postgresql.version}</version>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>LATEST</version>
-            <optional>true</optional>
-        </dependency>
-
     </dependencies>
 
     <build>
