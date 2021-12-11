@@ -13,7 +13,7 @@
     <name>rice-toolkit-starter</name>
     <packaging>jar</packaging>
     <description>Rice toolkit starter project for Spring Boot</description>
-    <url>https://github.com/NicheToolkit/rice-toolkit/rice-toolkit-starter</url>
+    <url>https://github.com/NicheToolkit/rice-toolkit/tree/master/rice-toolkit-starter</url>
 
     <properties>
         <java.version>1.8</java.version>
