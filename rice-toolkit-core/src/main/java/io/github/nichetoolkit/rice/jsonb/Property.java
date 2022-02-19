@@ -9,9 +9,7 @@ import java.util.Objects;
 /**
  * <p>Property</p>
  * @author Cyan (snow22314@outlook.com)
- * @version V.0.0.1
- * @group cyan.tool.kit
- * @date 8:45 2021/5/8
+ * @version v1.0.0
  */
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
