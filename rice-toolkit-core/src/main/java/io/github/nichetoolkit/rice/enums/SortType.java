@@ -37,13 +37,13 @@ public enum SortType implements RestValue<String,String> {
     }
 
     @JsonCreator
-    public static SortType parserKey(@NonNull String key) {
-        SortType sortTypeEnum = RestValue.parserKey(SortType.class, key);
+    public static SortType parseKey(String key) {
+        SortType sortTypeEnum = RestValue.parseKey(SortType.class, key);
         return Optional.ofNullable(sortTypeEnum).orElse(SortType.DESC);
     }
 
-    public static SortType parserValue(@NonNull String value) {
-        SortType sortTypeEnum = RestValue.parserValue(SortType.class, value);
+    public static SortType parseValue(String value) {
+        SortType sortTypeEnum = RestValue.parseValue(SortType.class, value);
         return Optional.ofNullable(sortTypeEnum).orElse(SortType.DESC);
     }
 

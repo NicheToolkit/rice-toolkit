@@ -1,7 +1,7 @@
 package io.github.nichetoolkit.rice.builder;
 
-import io.github.nichetoolkit.rest.util.common.DateUtils;
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
+import io.github.nichetoolkit.rest.util.DateUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 
 import java.io.Serializable;
 import java.util.Collection;

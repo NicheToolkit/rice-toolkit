@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.nichetoolkit.rest.RestField;
 import io.github.nichetoolkit.rest.RestValue;
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import org.springframework.lang.NonNull;
 
 import java.util.Map;
@@ -66,18 +66,18 @@ public enum ValueType implements RestField {
     }
 
     @JsonCreator
-    public static ValueType parserKey(@NonNull Integer key) {
-        ValueType typeEnum = RestValue.parserKey(ValueType.class, key);
+    public static ValueType parseKey(@NonNull Integer key) {
+        ValueType typeEnum = RestValue.parseKey(ValueType.class, key);
         return Optional.ofNullable(typeEnum).orElse(ValueType.STRING);
     }
 
-    public static ValueType parserValue(@NonNull String value) {
-        ValueType typeEnum = RestValue.parserValue(ValueType.class, value);
+    public static ValueType parseValue(@NonNull String value) {
+        ValueType typeEnum = RestValue.parseValue(ValueType.class, value);
         return Optional.ofNullable(typeEnum).orElse(ValueType.STRING);
     }
 
-    public static ValueType parserField(@NonNull String field) {
-        ValueType typeEnum = RestField.parserField(ValueType.class, field);
+    public static ValueType parseField(@NonNull String field) {
+        ValueType typeEnum = RestField.parseField(ValueType.class, field);
         return Optional.ofNullable(typeEnum).orElse(ValueType.STRING);
     }
 
@@ -91,7 +91,7 @@ public enum ValueType implements RestField {
 
     public static boolean isContrast(Integer key) {
         if (isPresent(key)) {
-            ValueType valueType = parserKey(key);
+            ValueType valueType = parseKey(key);
             switch (valueType) {
                 case INTEGER:
                 case LONG:
@@ -112,7 +112,7 @@ public enum ValueType implements RestField {
 
     public static boolean isEqual(Integer key) {
         if (isPresent(key)) {
-            ValueType valueType = parserKey(key);
+            ValueType valueType = parseKey(key);
             switch (valueType) {
                 case STRING:
                 case TEXT:
@@ -126,7 +126,7 @@ public enum ValueType implements RestField {
 
     public static boolean isContain(Integer key) {
         if (isPresent(key)) {
-            ValueType valueType = parserKey(key);
+            ValueType valueType = parseKey(key);
             switch (valueType) {
                 case INTEGER:
                 case LONG:

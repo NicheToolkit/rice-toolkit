@@ -36,6 +36,7 @@ public class Property implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+        if (o == null ) return false;
         if (!(o instanceof Property)) return false;
         Property property = (Property) o;
         return Objects.equals(name, property.name);

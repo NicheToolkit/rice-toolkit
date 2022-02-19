@@ -2,10 +2,13 @@ package io.github.nichetoolkit.rice.filter;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.OperateModel;
+import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
 import io.github.nichetoolkit.rice.builder.SqlBuilder;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
+import io.github.nichetoolkit.rice.enums.OperateType;
 import org.springframework.lang.NonNull;
 
 import java.util.*;
@@ -15,8 +18,8 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@SuppressWarnings({"WeakerAccess","MixedMutabilityReturnType"})
-public class IdFilter<I> extends SortFilter{
+@SuppressWarnings({"WeakerAccess", "MixedMutabilityReturnType"})
+public class IdFilter<I> extends OperateFilter {
     @JsonIgnore
     protected final SqlBuilder SQL_BUILDER = new SqlBuilder();
 
@@ -140,6 +143,22 @@ public class IdFilter<I> extends SortFilter{
         return this;
     }
 
+    public IdFilter<I> toOperateSql() {
+        toOperateSql("operate");
+        return this;
+    }
+
+    public IdFilter<I> toOperateSql(@NonNull String alias) {
+        if (this.isRemove) {
+            SqlBuilders.equal(SQL_BUILDER, alias, OperateType.DELETE);
+        } else if (GeneralUtils.isNotEmpty(this.operate)) {
+            SqlBuilders.equal(SQL_BUILDER, alias, this.id);
+        } else if (GeneralUtils.isNotEmpty(this.operates)) {
+            SqlBuilders.in(SQL_BUILDER, alias, this.ids);
+        }
+        return this;
+    }
+
     @Override
     public String toKey() {
         String pageKey = super.toKey();
@@ -154,7 +173,7 @@ public class IdFilter<I> extends SortFilter{
         return keyBuilder.toString();
     }
 
-    public static class Builder<I> extends SortFilter.Builder {
+    public static class Builder<I> extends OperateFilter.Builder {
         protected I id;
         protected Set<I> ids;
 
@@ -178,6 +197,42 @@ public class IdFilter<I> extends SortFilter{
         }
 
         @Override
+        public IdFilter.Builder<I> isRemove(boolean isRemove) {
+            this.isRemove = isRemove;
+            return this;
+        }
+
+        @Override
+        public IdFilter.Builder<I> operate(OperateType operate) {
+            this.operate = operate;
+            return this;
+        }
+
+        @Override
+        public IdFilter.Builder<I> operate(Integer operate) {
+            this.operate = OperateType.parseKey(operate);
+            return this;
+        }
+
+        @Override
+        public IdFilter.Builder<I> operates(@NonNull Collection<OperateType> operates) {
+            this.operates = new HashSet<>(operates);
+            return this;
+        }
+
+        @Override
+        public IdFilter.Builder<I> operates(@NonNull OperateType... operates) {
+            this.operates = new HashSet<>(Arrays.asList(operates));
+            return this;
+        }
+
+        @Override
+        public IdFilter.Builder<I> operates(@NonNull Integer... operates) {
+            this.operates = new HashSet<>(RestOperate.build(operates));
+            return this;
+        }
+
+        @Override
         public IdFilter.Builder<I> sorts(@NonNull Collection<RestSort> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
@@ -186,6 +241,12 @@ public class IdFilter<I> extends SortFilter{
         @Override
         public IdFilter.Builder<I> sorts(@NonNull RestSort... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
+            return this;
+        }
+
+        @Override
+        public IdFilter.Builder sorts(@NonNull String... sorts) {
+            this.sorts = new HashSet<>(RestSort.build(sorts));
             return this;
         }
 

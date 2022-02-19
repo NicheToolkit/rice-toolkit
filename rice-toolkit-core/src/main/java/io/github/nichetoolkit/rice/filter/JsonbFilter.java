@@ -1,10 +1,12 @@
 package io.github.nichetoolkit.rice.filter;
 
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
 import io.github.nichetoolkit.rice.builder.SqlBuilder;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
+import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.jsonb.*;
 import org.springframework.lang.NonNull;
 
@@ -216,6 +218,12 @@ public class JsonbFilter<D,I> extends TimeFilter<D,I> {
         return this;
     }
 
+    @Override
+    public JsonbFilter<D,I> toOperateSql(@NonNull String alias) {
+        super.toOperateSql(alias);
+        return this;
+    }
+
     public static class Builder<D,I> extends TimeFilter.Builder<D,I> {
         protected Set<ContrastRule> contrasts;
         protected Set<RangeRule> ranges;
@@ -291,6 +299,42 @@ public class JsonbFilter<D,I> extends TimeFilter<D,I> {
         }
 
         @Override
+        public JsonbFilter.Builder<D,I> isRemove(boolean isRemove) {
+            this.isRemove = isRemove;
+            return this;
+        }
+
+        @Override
+        public JsonbFilter.Builder<D,I> operate(OperateType operate) {
+            this.operate = operate;
+            return this;
+        }
+
+        @Override
+        public JsonbFilter.Builder<D,I> operate(Integer operate) {
+            this.operate = OperateType.parseKey(operate);
+            return this;
+        }
+
+        @Override
+        public JsonbFilter.Builder<D,I> operates(@NonNull Collection<OperateType> operates) {
+            this.operates = new HashSet<>(operates);
+            return this;
+        }
+
+        @Override
+        public JsonbFilter.Builder<D,I> operates(@NonNull OperateType... operates) {
+            this.operates = new HashSet<>(Arrays.asList(operates));
+            return this;
+        }
+
+        @Override
+        public JsonbFilter.Builder<D,I> operates(@NonNull Integer... operates) {
+            this.operates = new HashSet<>(RestOperate.build(operates));
+            return this;
+        }
+
+        @Override
         public JsonbFilter.Builder<D,I> sorts(@NonNull Collection<RestSort> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
@@ -299,6 +343,12 @@ public class JsonbFilter<D,I> extends TimeFilter<D,I> {
         @Override
         public JsonbFilter.Builder<D,I> sorts(@NonNull RestSort... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
+            return this;
+        }
+
+        @Override
+        public JsonbFilter.Builder sorts(@NonNull String... sorts) {
+            this.sorts = new HashSet<>(RestSort.build(sorts));
             return this;
         }
 

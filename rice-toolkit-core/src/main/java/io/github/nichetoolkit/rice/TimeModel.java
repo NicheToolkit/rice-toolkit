@@ -1,30 +1,31 @@
 package io.github.nichetoolkit.rice;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
-import javax.persistence.Column;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
- * <p>TimeEntity</p>
+ * <p>TimeModel</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@SuppressWarnings("WeakerAccess")
-public class TimeEntity extends OperateEntity {
+public class TimeModel extends OperateModel {
     /** 数据创建时间 */
-    @Column(name = "create_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     protected Date createTime;
     /** 数据更新时间 */
-    @Column(name = "update_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     protected Date updateTime;
 
-    public TimeEntity() {
+    public TimeModel() {
     }
 
-    public TimeEntity(TimeEntity.Builder builder) {
+    public TimeModel(TimeModel.Builder builder) {
         super(builder);
         this.createTime = builder.createTime;
         this.updateTime = builder.updateTime;
@@ -46,39 +47,48 @@ public class TimeEntity extends OperateEntity {
         this.updateTime = updateTime;
     }
 
-    @SuppressWarnings("WeakerAccess")
-    public static class Builder extends OperateEntity.Builder {
+    public static class Builder extends OperateModel.Builder{
         protected Date createTime;
         protected Date updateTime;
 
         public Builder() {
         }
 
-        public TimeEntity.Builder createTime(Date createTime) {
+        public TimeModel.Builder createTime(Date createTime) {
             this.createTime = createTime;
             return this;
         }
 
-        public TimeEntity.Builder updateTime(Date updateTime) {
+        public TimeModel.Builder createTime(@NonNull Long createTime) {
+            this.createTime = new Date(createTime);
+            return this;
+        }
+
+        public TimeModel.Builder updateTime(Date updateTime) {
             this.updateTime = updateTime;
             return this;
         }
 
+        public TimeModel.Builder updateTime(@NonNull Long updateTime) {
+            this.updateTime = new Date(updateTime);
+            return this;
+        }
+
         @Override
-        public TimeEntity.Builder operate(Integer operate) {
+        public TimeModel.Builder operate(OperateType operate) {
             this.operate = operate;
             return this;
         }
 
         @Override
-        public TimeEntity.Builder operate(@NonNull OperateType operate) {
-            this.operate = operate.getKey();
+        public TimeModel.Builder operate(Integer operate) {
+            this.operate = OperateType.parseKey(operate);
             return this;
         }
 
         @Override
-        public TimeEntity build() {
-            return new TimeEntity(this);
+        public TimeModel build() {
+            return new TimeModel(this);
         }
     }
 }

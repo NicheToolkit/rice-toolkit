@@ -1,7 +1,7 @@
 package io.github.nichetoolkit.rice.jsonb;
 
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilder;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import org.springframework.lang.NonNull;
@@ -122,7 +122,7 @@ public class ContainRule extends JsonbRule<ContainRule> {
         }
 
         public ContainRule.Builder type(Integer type) {
-            this.type = Optional.ofNullable(type).map(ValueType::parserKey).orElse(ValueType.LONG);
+            this.type = Optional.ofNullable(type).map(ValueType::parseKey).orElse(ValueType.LONG);
             return this;
         }
 

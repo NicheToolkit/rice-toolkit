@@ -1,6 +1,6 @@
 package io.github.nichetoolkit.rice.jsonb;
 
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilder;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import org.springframework.lang.NonNull;

@@ -1,7 +1,7 @@
 package io.github.nichetoolkit.rice;
 
 import com.github.pagehelper.PageInfo;
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import org.springframework.lang.NonNull;
 
 import java.io.Serializable;

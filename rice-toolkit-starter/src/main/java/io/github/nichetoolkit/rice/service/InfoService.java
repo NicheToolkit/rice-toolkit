@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.helper.OptionalHelper;
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.InfoEntity;
 import io.github.nichetoolkit.rice.InfoModel;
 import io.github.nichetoolkit.rice.filter.IdFilter;

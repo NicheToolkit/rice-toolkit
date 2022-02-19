@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice.clazz;
 import io.github.nichetoolkit.rest.error.ClassUnknownException;
 import io.github.nichetoolkit.rest.error.ClassUnsupportedException;
 import io.github.nichetoolkit.rest.identity.IdentityUtils;
-import io.github.nichetoolkit.rest.util.often.RandomUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.IdModel;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -84,8 +84,7 @@ public class ClazzHelper {
         Class<?> clazz = clazz(model);
         Long id = IdentityUtils.generateLong();
         if (String.class.equals(clazz)) {
-            String uuid = RandomUtils.uuid();
-            return (I) uuid;
+            return (I) String.valueOf(id);
         } else if (Long.class.equals(clazz)) {
             return (I) id;
         } else if (Integer.class.equals(clazz)) {

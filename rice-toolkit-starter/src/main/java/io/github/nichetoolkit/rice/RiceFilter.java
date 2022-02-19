@@ -1,6 +1,8 @@
 package io.github.nichetoolkit.rice;
 
+import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.filter.JsonbFilter;
+import io.github.nichetoolkit.rice.filter.TimeFilter;
 import io.github.nichetoolkit.rice.jsonb.ContainRule;
 import io.github.nichetoolkit.rice.jsonb.ContrastRule;
 import io.github.nichetoolkit.rice.jsonb.EqualRule;
@@ -47,6 +49,12 @@ public abstract class RiceFilter extends JsonbFilter<Date,String> {
     @Override
     public RiceFilter toIdSql(@NonNull String alias) {
         super.toIdSql(alias);
+        return this;
+    }
+
+    @Override
+    public RiceFilter toOperateSql(@NonNull String alias) {
+        super.toOperateSql(alias);
         return this;
     }
 
@@ -128,6 +136,42 @@ public abstract class RiceFilter extends JsonbFilter<Date,String> {
         }
 
         @Override
+        public RiceFilter.Builder isRemove(boolean isRemove) {
+            this.isRemove = isRemove;
+            return this;
+        }
+
+        @Override
+        public RiceFilter.Builder operate(OperateType operate) {
+            this.operate = operate;
+            return this;
+        }
+
+        @Override
+        public RiceFilter.Builder operate(Integer operate) {
+            this.operate = OperateType.parseKey(operate);
+            return this;
+        }
+
+        @Override
+        public RiceFilter.Builder operates(@NonNull Collection<OperateType> operates) {
+            this.operates = new HashSet<>(operates);
+            return this;
+        }
+
+        @Override
+        public RiceFilter.Builder operates(@NonNull OperateType... operates) {
+            this.operates = new HashSet<>(Arrays.asList(operates));
+            return this;
+        }
+
+        @Override
+        public RiceFilter.Builder operates(@NonNull Integer... operates) {
+            this.operates = new HashSet<>(RestOperate.build(operates));
+            return this;
+        }
+
+        @Override
         public RiceFilter.Builder sorts(@NonNull Collection<RestSort> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
@@ -136,6 +180,12 @@ public abstract class RiceFilter extends JsonbFilter<Date,String> {
         @Override
         public RiceFilter.Builder sorts(@NonNull RestSort... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
+            return this;
+        }
+
+        @Override
+        public RiceFilter.Builder sorts(@NonNull String... sorts) {
+            this.sorts = new HashSet<>(RestSort.build(sorts));
             return this;
         }
 

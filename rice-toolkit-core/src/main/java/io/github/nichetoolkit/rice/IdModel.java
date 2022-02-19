@@ -1,8 +1,10 @@
 package io.github.nichetoolkit.rice;
 
-import io.github.nichetoolkit.rest.util.common.JsonUtils;
+import io.github.nichetoolkit.rest.util.JsonUtils;
+import io.github.nichetoolkit.rice.enums.OperateType;
+import org.springframework.lang.NonNull;
 
-import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -11,7 +13,7 @@ import java.util.Objects;
  * @version v1.0.0
  */
 @SuppressWarnings("WeakerAccess")
-public class IdModel<I> implements RestId<I>, Serializable {
+public class IdModel<I> extends TimeModel implements RestId<I>{
     protected I id;
 
     public IdModel() {
@@ -38,6 +40,7 @@ public class IdModel<I> implements RestId<I>, Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+        if (o == null) return false;
         if (!(o instanceof IdModel)) return false;
         IdModel<?> idModel = (IdModel<?>) o;
         return Objects.equals(id, idModel.id);
@@ -53,7 +56,7 @@ public class IdModel<I> implements RestId<I>, Serializable {
         return JsonUtils.parseJson(this);
     }
 
-    public static class Builder<I> {
+    public static class Builder<I> extends TimeModel.Builder {
         protected I id;
 
         public Builder() {
@@ -64,6 +67,43 @@ public class IdModel<I> implements RestId<I>, Serializable {
             return this;
         }
 
+        @Override
+        public IdModel.Builder<I> createTime(Date createTime) {
+            this.createTime = createTime;
+            return this;
+        }
+
+        @Override
+        public IdModel.Builder<I> createTime(@NonNull Long createTime) {
+            this.createTime = new Date(createTime);
+            return this;
+        }
+
+        @Override
+        public IdModel.Builder<I> updateTime(Date updateTime) {
+            this.updateTime = updateTime;
+            return this;
+        }
+
+        @Override
+        public IdModel.Builder<I> updateTime(@NonNull Long updateTime) {
+            this.updateTime = new Date(updateTime);
+            return this;
+        }
+
+        @Override
+        public IdModel.Builder<I> operate(OperateType operate) {
+            this.operate = operate;
+            return this;
+        }
+
+        @Override
+        public IdModel.Builder<I> operate(Integer operate) {
+            this.operate = OperateType.parseKey(operate);
+            return this;
+        }
+
+        @Override
         public IdModel<I> build() {
             return new IdModel<>(this);
         }

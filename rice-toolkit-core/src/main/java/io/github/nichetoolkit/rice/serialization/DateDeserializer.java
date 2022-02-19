@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.github.nichetoolkit.rest.error.natives.ParseErrorException;
 import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
-import io.github.nichetoolkit.rest.util.common.DateUtils;
+import io.github.nichetoolkit.rest.util.DateUtils;
 import io.github.nichetoolkit.rice.clazz.ClazzUtils;
 
 import java.io.IOException;

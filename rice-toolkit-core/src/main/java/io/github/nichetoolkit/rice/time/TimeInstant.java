@@ -1,7 +1,5 @@
 package io.github.nichetoolkit.rice.time;
 
-import io.github.nichetoolkit.rice.RestSort;
-
 import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;

@@ -6,11 +6,11 @@
     <parent>
         <groupId>io.github.nichetoolkit</groupId>
         <artifactId>rice-toolkit-parent</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.4-SNAPSHOT</version>
     </parent>
 
     <artifactId>rice-toolkit-test-web</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.4-SNAPSHOT</version>
     <name>rice-toolkit-test-web</name>
     <packaging>jar</packaging>
     <description>Rice toolkit test web project for Spring Boot</description>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>io.github.nichetoolkit</groupId>
             <artifactId>rice-toolkit-starter</artifactId>
-            <version>${toolkit.version}</version>
+            <version>${rice-toolkit.version}</version>
         </dependency>
 
         <dependency>

@@ -1,6 +1,10 @@
 package io.github.nichetoolkit.rice;
 
-import io.github.nichetoolkit.rest.util.common.JsonUtils;
+import io.github.nichetoolkit.rest.util.JsonUtils;
+import io.github.nichetoolkit.rice.enums.OperateType;
+import org.springframework.lang.NonNull;
+
+import java.util.Date;
 
 /**
  * <p>InfoModel</p>
@@ -72,6 +76,42 @@ public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
 
         public InfoModel.Builder<I> description(String description) {
             this.description = description;
+            return this;
+        }
+
+        @Override
+        public InfoModel.Builder<I> createTime(Date createTime) {
+            this.createTime = createTime;
+            return this;
+        }
+
+        @Override
+        public InfoModel.Builder<I> createTime(@NonNull Long createTime) {
+            this.createTime = new Date(createTime);
+            return this;
+        }
+
+        @Override
+        public InfoModel.Builder<I> updateTime(Date updateTime) {
+            this.updateTime = updateTime;
+            return this;
+        }
+
+        @Override
+        public InfoModel.Builder<I> updateTime(@NonNull Long updateTime) {
+            this.updateTime = new Date(updateTime);
+            return this;
+        }
+
+        @Override
+        public InfoModel.Builder<I> operate(OperateType operate) {
+            this.operate = operate;
+            return this;
+        }
+
+        @Override
+        public InfoModel.Builder<I> operate(Integer operate) {
+            this.operate = OperateType.parseKey(operate);
             return this;
         }
 

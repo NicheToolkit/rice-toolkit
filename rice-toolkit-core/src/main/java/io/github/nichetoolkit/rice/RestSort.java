@@ -1,6 +1,6 @@
 package io.github.nichetoolkit.rice;
 
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.enums.SortType;
 
 import java.io.Serializable;
@@ -99,7 +99,7 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
         }
 
         public RestSort.Builder<S> type(String type) {
-            this.type = SortType.parserKey(type);
+            this.type = SortType.parseKey(type);
             return this;
         }
         

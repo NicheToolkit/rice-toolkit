@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.filter;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestSort;
 import org.springframework.lang.NonNull;
 
@@ -112,6 +112,11 @@ public class SortFilter extends PageFilter {
 
         public SortFilter.Builder sorts(@NonNull RestSort... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
+            return this;
+        }
+
+        public SortFilter.Builder sorts(@NonNull String... sorts) {
+            this.sorts = new HashSet<>(RestSort.build(sorts));
             return this;
         }
 

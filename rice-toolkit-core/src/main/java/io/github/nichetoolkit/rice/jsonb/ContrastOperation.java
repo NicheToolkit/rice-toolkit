@@ -62,18 +62,18 @@ public enum ContrastOperation implements RestField {
     }
 
     @JsonCreator
-    public static ContrastOperation parserKey(@NonNull Integer key) {
-        ContrastOperation typeEnum = RestValue.parserKey(ContrastOperation.class, key);
+    public static ContrastOperation parseKey(Integer key) {
+        ContrastOperation typeEnum = RestValue.parseKey(ContrastOperation.class, key);
         return Optional.ofNullable(typeEnum).orElse(ContrastOperation.EQUAL_OPERATION);
     }
 
-    public static ContrastOperation parserValue(@NonNull String value) {
-        ContrastOperation typeEnum = RestValue.parserValue(ContrastOperation.class, value);
+    public static ContrastOperation parseValue(String value) {
+        ContrastOperation typeEnum = RestValue.parseValue(ContrastOperation.class, value);
         return Optional.ofNullable(typeEnum).orElse(ContrastOperation.EQUAL_OPERATION);
     }
 
-    public static ContrastOperation parserField(@NonNull String field) {
-        ContrastOperation typeEnum = RestField.parserField(ContrastOperation.class, field);
+    public static ContrastOperation parseField(String field) {
+        ContrastOperation typeEnum = RestField.parseField(ContrastOperation.class, field);
         return Optional.ofNullable(typeEnum).orElse(ContrastOperation.EQUAL_OPERATION);
     }
 }

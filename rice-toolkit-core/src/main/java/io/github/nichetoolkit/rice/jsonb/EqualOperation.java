@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.nichetoolkit.rest.RestField;
 import io.github.nichetoolkit.rest.RestValue;
-import org.springframework.lang.NonNull;
 
 import java.util.Optional;
 
@@ -61,18 +60,18 @@ public enum EqualOperation implements RestField {
     }
 
     @JsonCreator
-    public static EqualOperation parserKey(@NonNull Integer key) {
-        EqualOperation typeEnum = RestValue.parserKey(EqualOperation.class, key);
+    public static EqualOperation parseKey(Integer key) {
+        EqualOperation typeEnum = RestValue.parseKey(EqualOperation.class, key);
         return Optional.ofNullable(typeEnum).orElse(EqualOperation.EQUAL_OPERATION);
     }
 
-    public static EqualOperation parserValue(@NonNull String value) {
-        EqualOperation typeEnum = RestValue.parserValue(EqualOperation.class, value);
+    public static EqualOperation parseValue(String value) {
+        EqualOperation typeEnum = RestValue.parseValue(EqualOperation.class, value);
         return Optional.ofNullable(typeEnum).orElse(EqualOperation.EQUAL_OPERATION);
     }
 
-    public static EqualOperation parserField(@NonNull String field) {
-        EqualOperation typeEnum = RestField.parserField(EqualOperation.class, field);
+    public static EqualOperation parseField(String field) {
+        EqualOperation typeEnum = RestField.parseField(EqualOperation.class, field);
         return Optional.ofNullable(typeEnum).orElse(EqualOperation.EQUAL_OPERATION);
     }
 }

@@ -62,18 +62,18 @@ public enum RangeOperation implements RestField {
     }
 
     @JsonCreator
-    public static RangeOperation parserKey(@NonNull Integer key) {
-        RangeOperation typeEnum = RestValue.parserKey(RangeOperation.class, key);
+    public static RangeOperation parseKey(@NonNull Integer key) {
+        RangeOperation typeEnum = RestValue.parseKey(RangeOperation.class, key);
         return Optional.ofNullable(typeEnum).orElse(RangeOperation.GREATER_EQUAL_LESS_EQUAL_OPERATION);
     }
 
-    public static RangeOperation parserValue(@NonNull String value) {
-        RangeOperation typeEnum = RestValue.parserValue(RangeOperation.class, value);
+    public static RangeOperation parseValue(@NonNull String value) {
+        RangeOperation typeEnum = RestValue.parseValue(RangeOperation.class, value);
         return Optional.ofNullable(typeEnum).orElse(RangeOperation.GREATER_EQUAL_LESS_EQUAL_OPERATION);
     }
 
-    public static RangeOperation parserField(@NonNull String field) {
-        RangeOperation typeEnum = RestField.parserField(RangeOperation.class, field);
+    public static RangeOperation parseField(@NonNull String field) {
+        RangeOperation typeEnum = RestField.parseField(RangeOperation.class, field);
         return Optional.ofNullable(typeEnum).orElse(RangeOperation.GREATER_EQUAL_LESS_EQUAL_OPERATION);
     }
 }

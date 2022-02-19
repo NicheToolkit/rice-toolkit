@@ -1,5 +1,8 @@
 package io.github.nichetoolkit.rice;
 
+import io.github.nichetoolkit.rice.enums.OperateType;
+import org.springframework.lang.NonNull;
+
 import java.util.Date;
 
 /**
@@ -64,6 +67,16 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
             return this;
         }
 
+        public InfoEntity.Builder<I> name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public InfoEntity.Builder<I> description(String description) {
+            this.description = description;
+            return this;
+        }
+
         @Override
         public InfoEntity.Builder<I> createTime(Date createTime) {
             this.createTime = createTime;
@@ -76,13 +89,15 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
             return this;
         }
 
-        public InfoEntity.Builder<I> name(String name) {
-            this.name = name;
+        @Override
+        public InfoEntity.Builder<I> operate(Integer operate) {
+            this.operate = operate;
             return this;
         }
 
-        public InfoEntity.Builder<I> description(String description) {
-            this.description = description;
+        @Override
+        public InfoEntity.Builder<I> operate(@NonNull OperateType operate) {
+            this.operate = operate.getKey();
             return this;
         }
 

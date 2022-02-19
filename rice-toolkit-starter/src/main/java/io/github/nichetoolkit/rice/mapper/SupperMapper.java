@@ -12,7 +12,7 @@ import java.util.List;
  * @version v1.0.0
  */
 @SuppressWarnings("UnusedReturnValue")
-public interface IdMapper<E extends IdEntity<I>,I> {
+public interface SupperMapper<E extends IdEntity<I>,I> {
 
     /*
      * Mapper的实现，关联实体映射泛型，必须放在第一个，在xxxMapper进行了多级继承的情况下，
@@ -33,6 +33,36 @@ public interface IdMapper<E extends IdEntity<I>,I> {
      * @return Integer SQL影响行数
      */
     Integer saveAll(@Param("entityList") Collection<E> entityList);
+
+    /**
+     * 实体单个删除
+     * @param id 实体id集合
+     * @param operate 实体操作类型
+     * @return Integer SQL影响行数（成功为1）
+     */
+    Integer operateById(@Param("id") I id, @Param("operate") Integer operate);
+
+    /**
+     * 实体批量删除
+     * @param idList 实体id集合
+     * @param operate 实体操作类型
+     * @return Integer SQL影响行数
+     */
+    Integer operateAll(@Param("idList") Collection<I> idList, @Param("operate") Integer operate);
+
+    /**
+     * 实体单个删除
+     * @param id 实体id集合
+     * @return Integer SQL影响行数（成功为1）
+     */
+    Integer removeById(@Param("id") I id);
+
+    /**
+     * 实体批量删除
+     * @param idList 实体id集合
+     * @return Integer SQL影响行数
+     */
+    Integer removeAll(@Param("idList") Collection<I> idList);
 
     /**
      * 实体单个删除

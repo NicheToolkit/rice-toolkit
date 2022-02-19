@@ -1,8 +1,8 @@
 package io.github.nichetoolkit.rice.helper;
 
-import io.github.nichetoolkit.rest.util.common.DateUtils;
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
-import io.github.nichetoolkit.rest.util.common.JsonUtils;
+import io.github.nichetoolkit.rest.util.DateUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.jsonb.Property;
 import lombok.extern.slf4j.Slf4j;
 

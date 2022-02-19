@@ -1,6 +1,6 @@
 package io.github.nichetoolkit.rice.service.stereotype;
 
-import io.github.nichetoolkit.rice.mapper.IdMapper;
+import io.github.nichetoolkit.rice.mapper.SupperMapper;
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +22,5 @@ public @interface RestService {
     )
     String name() default "";
 
-    Class<? extends IdMapper> mapper() default IdMapper.class;
+    Class<? extends SupperMapper> mapper() default SupperMapper.class;
 }

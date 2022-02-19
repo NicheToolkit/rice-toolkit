@@ -5,17 +5,18 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
 import io.github.nichetoolkit.rest.error.data.DataQueryException;
 import io.github.nichetoolkit.rest.helper.OptionalHelper;
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
-import io.github.nichetoolkit.rest.util.common.JsonUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.IdEntity;
 import io.github.nichetoolkit.rice.IdModel;
 import io.github.nichetoolkit.rice.RestPage;
 import io.github.nichetoolkit.rice.clazz.ClazzHelper;
 import io.github.nichetoolkit.rice.configure.RiceBeanNameProperties;
+import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.error.ServiceUnknownException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
-import io.github.nichetoolkit.rice.mapper.IdMapper;
+import io.github.nichetoolkit.rice.mapper.SupperMapper;
 import io.github.nichetoolkit.rice.mapper.LoadMapper;
 import io.github.nichetoolkit.rice.service.stereotype.RestService;
 import lombok.extern.slf4j.Slf4j;
@@ -49,7 +50,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
 
     protected ConsumerActuator<M> updateActuator;
 
-    protected IdMapper<E, I> supperMapper;
+    protected SupperMapper<E, I> supperMapper;
 
     private String simpleName;
 
@@ -81,24 +82,24 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         String lowerBeanName = commonBeanName.toLowerCase();
         RestService service = this.getClass().getAnnotation(RestService.class);
         if (GeneralUtils.isNotEmpty(service)) {
-            Class<? extends IdMapper> mapper = service.mapper();
-            if (IdMapper.class.isAssignableFrom(mapper)) {
+            Class<? extends SupperMapper> mapper = service.mapper();
+            if (SupperMapper.class.isAssignableFrom(mapper)) {
                 this.supperMapper = applicationContext.getBean(mapper);
             }
         } else {
             try {
                 String mapperName = commonBeanName.concat("Mapper");
-                this.supperMapper = applicationContext.getBean(mapperName, IdMapper.class);
+                this.supperMapper = applicationContext.getBean(mapperName, SupperMapper.class);
             } catch (BeansException exception) {
                 log.warn(exception.getMessage());
                 try {
                     String lowerMapperName = lowerBeanName.concat("Mapper");
-                    this.supperMapper = applicationContext.getBean(lowerMapperName, IdMapper.class);
+                    this.supperMapper = applicationContext.getBean(lowerMapperName, SupperMapper.class);
                 } catch (BeansException exception1) {
                     exception1.printStackTrace();
                     String message = "the service and mapper name must be like 'xxxService'/'xxxServiceImpl' and 'xxxMapper'";
                     log.error(message);
-                    throw new ServiceUnknownException(IdMapper.class.getName(), this.getClass().getName(),message,exception1);
+                    throw new ServiceUnknownException(SupperMapper.class.getName(), this.getClass().getName(),message,exception1);
                 }
             }
         }
@@ -257,6 +258,42 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
 
     @Override
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void operateById(I id, OperateType operate) throws RestException {
+        if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(operate)) {
+            return;
+        }
+        supperMapper.operateById(id, operate.getKey());
+    }
+
+    @Override
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void operateAll(Collection<I> idList, OperateType operate) throws RestException {
+        if (GeneralUtils.isEmpty(idList)) {
+            return;
+        }
+        supperMapper.operateAll(idList,operate.getKey());
+    }
+
+    @Override
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void removeById(I id) throws RestException {
+        if (GeneralUtils.isEmpty(id)) {
+            return;
+        }
+        supperMapper.removeById(id);
+    }
+
+    @Override
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void removeAll(Collection<I> idList) throws RestException {
+        if (GeneralUtils.isEmpty(idList)) {
+            return;
+        }
+        supperMapper.removeAll(idList);
+    }
+
+    @Override
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void deleteById(I id) throws RestException {
         if (GeneralUtils.isEmpty(id)) {
             return;
@@ -360,7 +397,9 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void deleteAllWithFilter(F filter) throws RestException {
         String whereSql = deleteWhereSql(filter);
-        supperMapper.deleteAllByWhere(whereSql);
+        if (GeneralUtils.isNotEmpty(whereSql)) {
+            supperMapper.deleteAllByWhere(whereSql);
+        }
     }
 
     private final ConsumerActuator<M> DEFAULT_CREATE_ACTUATOR = (@NonNull M model) -> {

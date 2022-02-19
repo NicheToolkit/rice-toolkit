@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice.filter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import io.github.nichetoolkit.rest.util.common.JsonUtils;
+import io.github.nichetoolkit.rest.util.JsonUtils;
 import org.springframework.lang.NonNull;
 
 import java.io.Serializable;

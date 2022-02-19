@@ -1,6 +1,6 @@
 package io.github.nichetoolkit.rice.jsonb;
 
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilder;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import org.springframework.lang.NonNull;
@@ -103,7 +103,7 @@ public class EqualRule extends JsonbRule<EqualRule> {
         }
 
         public EqualRule.Builder type(Integer type) {
-            this.type = Optional.ofNullable(type).map(ValueType::parserKey).orElse(ValueType.LONG);
+            this.type = Optional.ofNullable(type).map(ValueType::parseKey).orElse(ValueType.LONG);
             return this;
         }
 
@@ -118,7 +118,7 @@ public class EqualRule extends JsonbRule<EqualRule> {
         }
 
         public EqualRule.Builder operation(Integer operation) {
-            this.operation = Optional.ofNullable(operation).map(EqualOperation::parserKey).orElse(EqualOperation.EQUAL_OPERATION);
+            this.operation = Optional.ofNullable(operation).map(EqualOperation::parseKey).orElse(EqualOperation.EQUAL_OPERATION);
             return this;
         }
 

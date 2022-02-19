@@ -1,6 +1,8 @@
 package io.github.nichetoolkit.rice;
 
-import io.github.nichetoolkit.rest.util.common.JsonUtils;
+import io.github.nichetoolkit.rest.util.JsonUtils;
+import io.github.nichetoolkit.rice.enums.OperateType;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.Id;
 import java.util.Date;
@@ -41,6 +43,7 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+        if (o == null) return false;
         if (!(o instanceof IdEntity)) return false;
         IdEntity<?> idEntity = (IdEntity<?>) o;
         return Objects.equals(id, idEntity.id);
@@ -76,6 +79,18 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
         @Override
         public IdEntity.Builder<I> updateTime(Date updateTime) {
             this.updateTime = updateTime;
+            return this;
+        }
+
+        @Override
+        public IdEntity.Builder operate(Integer operate) {
+            this.operate = operate;
+            return this;
+        }
+
+        @Override
+        public IdEntity.Builder operate(@NonNull OperateType operate) {
+            this.operate = operate.getKey();
             return this;
         }
 

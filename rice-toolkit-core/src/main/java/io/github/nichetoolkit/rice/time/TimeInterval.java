@@ -1,6 +1,6 @@
 package io.github.nichetoolkit.rice.time;
 
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 
 import java.time.Duration;
 import java.time.Instant;
