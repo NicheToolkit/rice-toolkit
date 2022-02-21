@@ -49,6 +49,18 @@ public class MEBuilderHelper {
     }
 
     public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>, S extends SupperService<I, T, E, ?>> void buildSubject(
+            E entity, M model, S supperService,
+            FunctionActuator<E, I> getSourceIdActuator,
+            BiConsumerActuator<M, T> setSourceTargetActuator
+    ) throws RestException {
+        I sourceId = getSourceIdActuator.actuate(entity);
+        T queryById = supperService.queryById(sourceId);
+        if (GeneralUtils.isNotEmpty(queryById)) {
+            setSourceTargetActuator.actuate(model,queryById);
+        }
+    }
+
+    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>, S extends SupperService<I, T, E, ?>> void buildSubject(
             List<E> entityList, Collection<M> modelList, S supperService,
             FunctionActuator<T, I> getSourceIdActuator,
             BiConsumerActuator<M, T> setSourceTargetActuator
