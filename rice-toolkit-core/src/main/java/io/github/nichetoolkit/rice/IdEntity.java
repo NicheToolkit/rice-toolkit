@@ -1,5 +1,6 @@
 package io.github.nichetoolkit.rice;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import org.springframework.lang.NonNull;
@@ -15,6 +16,7 @@ import java.util.Objects;
  */
 public class IdEntity<I> extends TimeEntity implements RestId<I> {
     @Id
+    @TableId
     protected I id;
 
     public IdEntity() {

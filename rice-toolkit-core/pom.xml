@@ -71,6 +71,15 @@
             <artifactId>persistence-api</artifactId>
             <version>${persistence.version}</version>
             <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-annotation</artifactId>
+            <version>${mybatis-plus-annotation.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
 
     </dependencies>

@@ -15,7 +15,6 @@ import java.io.Serializable;
 public class OperateEntity implements Serializable {
 
     /** 数据操作 */
-    @Column(name = "operate")
     protected Integer operate;
 
     public OperateEntity() {

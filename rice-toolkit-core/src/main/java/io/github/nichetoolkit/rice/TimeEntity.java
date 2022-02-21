@@ -4,7 +4,6 @@ import io.github.nichetoolkit.rice.enums.OperateType;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.Column;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
