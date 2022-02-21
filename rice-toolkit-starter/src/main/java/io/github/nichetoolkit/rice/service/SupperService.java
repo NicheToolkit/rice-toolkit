@@ -106,7 +106,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         this.doServiceHandle();
     }
     @SuppressWarnings(value = "unchecked")
-    private E entityActuator(M model, I... idArray) throws RestException {
+    protected E entityActuator(M model, I... idArray) throws RestException {
         E entity = this.createEntity(model);
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
@@ -116,7 +116,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
     }
 
     @SuppressWarnings(value = "unchecked")
-    private List<E> entityActuator(Collection<M> modelList, ConsumerActuator<M> actuator, I... idArray) throws RestException {
+    protected List<E> entityActuator(Collection<M> modelList, ConsumerActuator<M> actuator, I... idArray) throws RestException {
         List<E> entityList;
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
@@ -144,7 +144,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
     }
 
     @SuppressWarnings(value = "unchecked")
-    private M modelActuator(E entity, Boolean... isLoadArray) throws RestException {
+    protected M modelActuator(E entity, Boolean... isLoadArray) throws RestException {
         M model = this.createModel(entity);
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
@@ -154,7 +154,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
     }
 
     @SuppressWarnings(value = "unchecked")
-    private List<M> modelActuator(Collection<E> entityList, Boolean... isLoadArray) throws RestException {
+    protected List<M> modelActuator(Collection<E> entityList, Boolean... isLoadArray) throws RestException {
         List<M> modelList;
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
