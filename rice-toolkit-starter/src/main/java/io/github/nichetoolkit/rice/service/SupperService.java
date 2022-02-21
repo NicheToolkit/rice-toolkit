@@ -79,7 +79,9 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         } else {
             commonBeanName = simpleName;
         }
-        String lowerBeanName = commonBeanName.toLowerCase();
+        String firstCase = commonBeanName.substring(0, 1);
+        String otherCase = commonBeanName.substring(1);
+        String lowerBeanName = firstCase.toLowerCase().concat(otherCase);
         RestService service = this.getClass().getAnnotation(RestService.class);
         if (GeneralUtils.isNotEmpty(service)) {
             Class<? extends SupperMapper> mapper = service.mapper();
