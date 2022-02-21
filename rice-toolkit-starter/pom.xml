@@ -62,11 +62,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>io.github.nichetoolkit</groupId>
             <artifactId>rice-toolkit-core</artifactId>
             <version>${rice-toolkit.version}</version>

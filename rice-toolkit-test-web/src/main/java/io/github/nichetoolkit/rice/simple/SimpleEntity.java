@@ -4,6 +4,7 @@ import io.github.nichetoolkit.rice.RiceInfoEntity;
 
 import javax.persistence.Table;
 
+
 /**
  * <p>SimpleEntity</p>
  * @author Cyan (snow22314@outlook.com)
