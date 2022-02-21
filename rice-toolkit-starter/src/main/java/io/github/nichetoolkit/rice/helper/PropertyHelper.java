@@ -43,6 +43,8 @@ public class PropertyHelper {
         }
     }
 
+
+
     public static Map<String,String> toPropertiesMap(Collection<Property> properties) {
         if (GeneralUtils.isNotEmpty(properties)) {
             return properties.stream().filter(Objects::nonNull)
@@ -73,6 +75,16 @@ public class PropertyHelper {
             }));
         } else {
             return Collections.emptyMap();
+        }
+    }
+
+    public static List<Property> toPropertiesList(Map<String,String> propertiesMap) {
+        if (GeneralUtils.isNotEmpty(propertiesMap)) {
+            return propertiesMap.entrySet().stream().map(entry -> Property.builder().name(entry.getKey())
+                    .value(entry.getValue())
+                    .build()).collect(Collectors.toList());
+        } else {
+            return Collections.emptyList();
         }
     }
 
