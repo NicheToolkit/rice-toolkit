@@ -97,9 +97,7 @@ public class IdFilter<I> extends OperateFilter {
         }
     }
 
-    public String toIdSort() {
-        return toIdSort("id");
-    }
+
 
     public String toIdSort(@NonNull String alias) {
         addSorts(alias);
@@ -110,10 +108,6 @@ public class IdFilter<I> extends OperateFilter {
         String sort = super.toSort();
         String sql = this.SQL_BUILDER.append(sort).toString();
         return sql.length() > 0 ? sql : null;
-    }
-
-    public String toIdSql() {
-        return toIdSql("id").toSql();
     }
 
     @Override
@@ -132,6 +126,10 @@ public class IdFilter<I> extends OperateFilter {
     public IdFilter<I> addSorts(@NonNull Collection<RestSort> sorts) {
         super.addSorts(sorts);
         return this;
+    }
+
+    public IdFilter<I> toIdSql() {
+        return toIdSql("id");
     }
 
     public IdFilter<I> toIdSql(@NonNull String alias) {
