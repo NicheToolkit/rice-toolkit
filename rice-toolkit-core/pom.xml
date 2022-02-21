@@ -83,7 +83,6 @@
             <artifactId>persistence-api</artifactId>
             <version>${persistence.version}</version>
             <scope>compile</scope>
-            <optional>true</optional>
         </dependency>
 
         <dependency>
@@ -91,7 +90,6 @@
             <artifactId>mybatis-plus-annotation</artifactId>
             <version>${mybatis-plus.version}</version>
             <scope>compile</scope>
-            <optional>true</optional>
         </dependency>
 
     </dependencies>
