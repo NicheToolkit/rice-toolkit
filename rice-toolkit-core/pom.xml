@@ -5,11 +5,11 @@
     <parent>
         <groupId>io.github.nichetoolkit</groupId>
         <artifactId>rice-toolkit-parent</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.3-SNAPSHOT</version>
     </parent>
 
     <artifactId>rice-toolkit-core</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.3-SNAPSHOT</version>
     <name>rice-toolkit-core</name>
     <packaging>jar</packaging>
     <description>Rice toolkit core project for Spring Boot</description>
