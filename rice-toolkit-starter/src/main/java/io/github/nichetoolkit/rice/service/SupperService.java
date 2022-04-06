@@ -404,7 +404,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         }
     }
 
-    protected final ConsumerActuator<M> DEFAULT_CREATE_ACTUATOR = (@NonNull M model) -> {
+    private final ConsumerActuator<M> DEFAULT_CREATE_ACTUATOR = (@NonNull M model) -> {
         model.setId(ClazzHelper.generate(model));
         if (createActuator != null) {
             createActuator.actuate(model);
@@ -412,7 +412,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         optional(model);
     };
 
-    protected final ConsumerActuator<M> DEFAULT_UPDATE_ACTUATOR = (@NonNull M model) -> {
+    private final ConsumerActuator<M> DEFAULT_UPDATE_ACTUATOR = (@NonNull M model) -> {
         boolean exist = existById(model.getId());
         String message = "the data no found，id: " + model.getId();
         OptionalHelper.falseable(exist, message, "id", DataQueryException::new);
@@ -422,22 +422,30 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         optional(model);
     };
 
+    protected ConsumerActuator<M> createActuator() {
+        return DEFAULT_CREATE_ACTUATOR;
+    }
+
+    protected ConsumerActuator<M> updateActuator() {
+        return DEFAULT_UPDATE_ACTUATOR;
+    }
+
     protected void OptionalCreate(@NonNull M model) throws RestException {
         if (GeneralUtils.isEmpty(model.getId())) {
-            DEFAULT_CREATE_ACTUATOR.actuate(model);
+            createActuator().actuate(model);
         }
     }
 
     protected void OptionalUpdate(@NonNull M model) throws RestException {
         OptionalHelper.idable(model.getId());
-        DEFAULT_UPDATE_ACTUATOR.actuate(model);
+        updateActuator().actuate(model);
     }
 
     protected void OptionalSave(@NonNull M model) throws RestException {
         if (GeneralUtils.isEmpty(model.getId())) {
-            DEFAULT_CREATE_ACTUATOR.actuate(model);
+            createActuator().actuate(model);
         } else {
-            DEFAULT_UPDATE_ACTUATOR.actuate(model);
+            updateActuator().actuate(model);
         }
     }
 }
