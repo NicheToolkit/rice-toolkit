@@ -404,7 +404,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         }
     }
 
-    private final ConsumerActuator<M> DEFAULT_CREATE_ACTUATOR = (@NonNull M model) -> {
+    protected final ConsumerActuator<M> DEFAULT_CREATE_ACTUATOR = (@NonNull M model) -> {
         model.setId(ClazzHelper.generate(model));
         if (createActuator != null) {
             createActuator.actuate(model);
@@ -412,7 +412,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         optional(model);
     };
 
-    private final ConsumerActuator<M> DEFAULT_UPDATE_ACTUATOR = (@NonNull M model) -> {
+    protected final ConsumerActuator<M> DEFAULT_UPDATE_ACTUATOR = (@NonNull M model) -> {
         boolean exist = existById(model.getId());
         String message = "the data no found，id: " + model.getId();
         OptionalHelper.falseable(exist, message, "id", DataQueryException::new);
