@@ -10,7 +10,7 @@
     <modules>
         <module>rice-toolkit-core</module>
         <module>rice-toolkit-starter</module>
-        <!--<module>rice-toolkit-test-web</module>-->
+        <module>rice-toolkit-test-web</module>
     </modules>
 
     <name>rice-toolkit-parent</name>
