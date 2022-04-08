@@ -65,7 +65,7 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
 
     @Override
     public String toString() {
-        return name.concat(" ").concat(type.getValue());
+        return name.concat(" ").concat(type.getKey());
     }
 
     public static List<RestSort> build(String... sorts) {
