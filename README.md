@@ -4,21 +4,31 @@
 
 &emsp;&emsp; 依赖[rest-toolkit](https://github.com/NicheToolkit/rest-toolkit/rest-toolkit-starter)组件下的基于[postgresql](https://www.postgresql.org/)数据库环境下的简单业务通用服务开发组件.
 
--  [Maven Central Repository](https://search.maven.org/search?q=nichetoolkit)
+-  [Maven Central Repository](https://search.maven.org/search?q=g:io.github.nichetoolkit)
 
 ## 依赖环境
- > [Spring Boot](https://spring.io/projects/spring-boot) 2.6.0.RELEASE\
+ > [Spring Boot](https://spring.io/projects/spring-boot) 2.6.6.RELEASE\
  > [Maven](https://maven.apache.org/) 3.6.0+\
  > [JDK](https://www.oracle.com/java/technologies/downloads/#java8) 1.8\
  > [PostgreSQL](https://www.postgresql.org/) 10.0+
+ 
+## rice-toolkit-core
+ * Maven (`pom.xml`)
+```xml
+  <dependency>
+    <groupId>io.github.nichetoolkit</groupId>
+    <artifactId>rice-toolkit-core</artifactId>
+    <version>1.0.4</version>
+  </dependency>
+``` 
 
-## jts-toolkit-utils
+## rice-toolkit-starter
  * Maven (`pom.xml`)
 ```xml
   <dependency>
     <groupId>io.github.nichetoolkit</groupId>
     <artifactId>rice-toolkit-starter</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.4</version>
   </dependency>
 ```
 

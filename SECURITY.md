@@ -7,13 +7,13 @@ currently being supported with security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| Spring boot 2.6.0+   | :white_check_mark: |
-| < 2.6.0   | :x:                |
+| Spring boot 2.6.6+   | :white_check_mark: |
+| < 2.6.6   | :x:                |
 | Maven 3.6.0+   | :white_check_mark: |
 | < 3.6.0   | :x:                |
 | JDK 1.8  | :white_check_mark: |               |
-| Rest-Toolkit 1.0.2+   | :white_check_mark: |
-| < 1.0.2  | :x: 
+| Rest-Toolkit 1.0.4+   | :white_check_mark: |
+| < 1.0.4  | :x: 
 ## Reporting a Vulnerability
 
 Use this section to tell people how to report a vulnerability.
