@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,4 +31,22 @@ public interface OperateService<I> {
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     void operateById(I id, OperateType operateType) throws RestException;
+
+    /**
+     * 通过id集合批量逻辑删除
+     * @param idList 对象的id集合
+     * @param keyType 对象的操作
+     * @throws RestException 模块异常
+     */
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    void alertAll(Collection<I> idList, RestKey<Integer> keyType) throws RestException;
+
+    /**
+     * 通过id单个逻辑删除
+     * @param id 对象的id
+     * @param keyType 对象的操作
+     * @throws RestException 模块异常
+     */
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    void alertById(I id, RestKey<Integer> keyType) throws RestException;
 }

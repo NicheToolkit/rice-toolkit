@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.service;
 
 import com.github.pagehelper.Page;
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
 import io.github.nichetoolkit.rest.error.data.DataQueryException;
 import io.github.nichetoolkit.rest.helper.OptionalHelper;
@@ -274,6 +275,24 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
             return;
         }
         supperMapper.operateAll(idList,operate.getKey());
+    }
+
+    @Override
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void alertById(I id, RestKey<Integer> keyType) throws RestException {
+        if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(keyType)) {
+            return;
+        }
+        supperMapper.alertById(id, keyType.getKey());
+    }
+
+    @Override
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void alertAll(Collection<I> idList, RestKey<Integer> keyType) throws RestException {
+        if (GeneralUtils.isEmpty(idList)) {
+            return;
+        }
+        supperMapper.alertAll(idList, keyType.getKey());
     }
 
     @Override
