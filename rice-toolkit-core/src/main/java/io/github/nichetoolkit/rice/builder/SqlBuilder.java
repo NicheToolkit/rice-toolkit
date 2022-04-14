@@ -1,5 +1,6 @@
 package io.github.nichetoolkit.rice.builder;
 
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.util.DateUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 
@@ -535,6 +536,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
         } else if (value instanceof Date) {
             // the value is like '2020-09-11 00:00:00'
             this.append("'").append(DateUtils.formatTime((Date) value)).append("'");
+        } else if (value instanceof RestKey) {
+            this.append(((RestKey) value).getKey());
         } else {
             this.append(value);
         }
@@ -552,7 +555,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
         } else if (value instanceof Date) {
             // the value is like '2020-09-11 00:00:00'
             this.append("'").append(DateUtils.formatTime((Date) value)).append("'").append(symbol).append(" ");
-        }else {
+        } else if (value instanceof RestKey) {
+            this.append("'").append(((RestKey) value).getKey()).append("'").append(symbol).append(" ");
+        } else {
             this.append(value).append(symbol).append(" ");
         }
         return this;
