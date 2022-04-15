@@ -57,6 +57,37 @@ public class MEBuilderHelper {
      * @param targetQueryByTargetId 通过目标对象id查询单个目标对象
      * @param entityGetTargetId 源对象实体获取目标对象id
      * @param sourceSetTarget 源对象设置单个目标对象
+     * @param index isLoad序列
+     * @param isLoadArray LoadArray参数
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @param <E> 源对象实体类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleTargetId(
+            E entity, M model, FunctionActuator<I,T> targetQueryByTargetId,
+            FunctionActuator<E, I> entityGetTargetId,
+            BiConsumerActuator<M, T> sourceSetTarget,
+            Integer index, Boolean... isLoadArray
+    ) throws RestException {
+        I targetId = entityGetTargetId.actuate(entity);
+        if (GeneralUtils.isNotEmpty(targetId) && isLoadArray.length > index && isLoadArray[index]) {
+            T target = targetQueryByTargetId.actuate(targetId);
+            if (GeneralUtils.isNotEmpty(target)) {
+                sourceSetTarget.actuate(model,target);
+            }
+        }
+
+    }
+
+    /**
+     * 通过目标id查询设置单个目标对象
+     * @param entity 源对象实体
+     * @param model 源对象模型
+     * @param targetQueryByTargetId 通过目标对象id查询单个目标对象
+     * @param entityGetTargetId 源对象实体获取目标对象id
+     * @param sourceSetTarget 源对象设置单个目标对象
      * @param <I> 对象Id类型声明
      * @param <M> 源对象模型类型声明
      * @param <T> 目标对象模型类型声明
@@ -81,6 +112,35 @@ public class MEBuilderHelper {
      * @param model 源对象模型
      * @param targetQueryBySourceId 通过源对象id查询单个目标对象
      * @param sourceSetTarget 源对象设置单个目标对象
+     * @param index isLoad序列
+     * @param isLoadArray LoadArray参数
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @param <E> 源对象实体类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleSourceId(
+            E entity, M model, FunctionActuator<I,T> targetQueryBySourceId,
+            BiConsumerActuator<M, T> sourceSetTarget,
+            Integer index, Boolean... isLoadArray
+    ) throws RestException {
+        I sourceId = entity.getId();
+        if (GeneralUtils.isNotEmpty(sourceId) && isLoadArray.length > index && isLoadArray[index]) {
+            T target = targetQueryBySourceId.actuate(sourceId);
+            if (GeneralUtils.isNotEmpty(target)) {
+                sourceSetTarget.actuate(model,target);
+            }
+        }
+
+    }
+
+    /**
+     * 通过源对象id查询设置单个目标对象
+     * @param entity 源对象实体
+     * @param model 源对象模型
+     * @param targetQueryBySourceId 通过源对象id查询单个目标对象
+     * @param sourceSetTarget 源对象设置单个目标对象
      * @param <I> 对象Id类型声明
      * @param <M> 源对象模型类型声明
      * @param <T> 目标对象模型类型声明
@@ -95,6 +155,36 @@ public class MEBuilderHelper {
         T target = targetQueryBySourceId.actuate(sourceId);
         if (GeneralUtils.isNotEmpty(target)) {
             sourceSetTarget.actuate(model,target);
+        }
+    }
+
+    /**
+     * 通过源对象id查询设置单个目标对象
+     * @param entity 源对象实体
+     * @param model 源对象模型
+     * @param targetQueryBySourceId 通过源对象id查询单个目标对象
+     * @param entityGetSourceId 源对象实体获取源对象id
+     * @param sourceSetTarget 源对象设置单个目标对象
+     * @param index isLoad序列
+     * @param isLoadArray LoadArray参数
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @param <E> 源对象实体类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleSourceId(
+            E entity, M model, FunctionActuator<I,T> targetQueryBySourceId,
+            FunctionActuator<E, I> entityGetSourceId,
+            BiConsumerActuator<M, T> sourceSetTarget,
+            Integer index, Boolean... isLoadArray
+    ) throws RestException {
+        I sourceId = entityGetSourceId.actuate(entity);
+        if (GeneralUtils.isNotEmpty(sourceId) && isLoadArray.length > index && isLoadArray[index]) {
+            T target = targetQueryBySourceId.actuate(sourceId);
+            if (GeneralUtils.isNotEmpty(target)) {
+                sourceSetTarget.actuate(model,target);
+            }
         }
     }
 
@@ -129,6 +219,35 @@ public class MEBuilderHelper {
      * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象列表
      * @param sourceGetTargetIdList 源对象获取源对象id
      * @param sourceSetTargetList 源对象设置目标对象列表
+     * @param index isLoad序列
+     * @param isLoadArray LoadArray参数
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildMultiTargetId(
+            M model, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
+            FunctionActuator<M, List<I>> sourceGetTargetIdList,
+            BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
+            Integer index, Boolean... isLoadArray
+    ) throws RestException {
+        List<I> targetIdList = sourceGetTargetIdList.actuate(model);
+        if (GeneralUtils.isNotEmpty(targetIdList) && isLoadArray.length > index && isLoadArray[index]) {
+            Set<I> targetIdSet = new HashSet<>(targetIdList);
+            List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdSet);
+            if (GeneralUtils.isNotEmpty(targetList)) {
+                sourceSetTargetList.actuate(model,targetList);
+            }
+        }
+    }
+
+    /**
+     * 通过目标对象id列表查询设置多个目标对象
+     * @param model 源对象模型
+     * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象列表
+     * @param sourceGetTargetIdList 源对象获取源对象id
+     * @param sourceSetTargetList 源对象设置目标对象列表
      * @param <I> 对象Id类型声明
      * @param <M> 源对象模型类型声明
      * @param <T> 目标对象模型类型声明
@@ -145,6 +264,35 @@ public class MEBuilderHelper {
         if (GeneralUtils.isNotEmpty(targetList)) {
             sourceSetTargetList.actuate(model,targetList);
         }
+    }
+
+    /**
+     * 通过源id查询设置多个目标对象
+     * @param entity 源对象实体
+     * @param model 源对象模型
+     * @param targetListQueryBySourceId 通过源对象id查询目标对象列表
+     * @param sourceSetTargetList 源对象设置目标对象列表
+     * @param index isLoad序列
+     * @param isLoadArray LoadArray参数
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @param <E> 源对象实体类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildMultiSourceId(
+            E entity, M model, FunctionActuator<I, List<T>> targetListQueryBySourceId,
+            BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
+            Integer index, Boolean... isLoadArray
+    ) throws RestException {
+        I sourceId = entity.getId();
+        if (GeneralUtils.isNotEmpty(sourceId) && isLoadArray.length > index && isLoadArray[index]) {
+            List<T> targetList = targetListQueryBySourceId.actuate(sourceId);
+            if (GeneralUtils.isNotEmpty(targetList)) {
+                sourceSetTargetList.actuate(model,targetList);
+            }
+        }
+
     }
 
     /**
@@ -177,6 +325,36 @@ public class MEBuilderHelper {
      * @param targetListQueryBySourceId 通过源对象id查询目标对象列表
      * @param entityGetSourceId 源对象实体获取源对象id
      * @param sourceSetTargetList 源对象设置目标对象列表
+     * @param index isLoad序列
+     * @param isLoadArray LoadArray参数
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @param <E> 源对象实体类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildMultiSourceId(
+            E entity, M model, FunctionActuator<I, List<T>> targetListQueryBySourceId,
+            FunctionActuator<E, I> entityGetSourceId,
+            BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
+            Integer index, Boolean... isLoadArray
+    ) throws RestException {
+        I sourceId = entityGetSourceId.actuate(entity);
+        if (GeneralUtils.isNotEmpty(sourceId) && isLoadArray.length > index && isLoadArray[index]) {
+            List<T> targetList = targetListQueryBySourceId.actuate(sourceId);
+            if (GeneralUtils.isNotEmpty(targetList)) {
+                sourceSetTargetList.actuate(model,targetList);
+            }
+        }
+    }
+
+    /**
+     * 通过源id查询设置多个目标对象
+     * @param entity 源对象实体
+     * @param model 源对象模型
+     * @param targetListQueryBySourceId 通过源对象id查询目标对象列表
+     * @param entityGetSourceId 源对象实体获取源对象id
+     * @param sourceSetTargetList 源对象设置目标对象列表
      * @param <I> 对象Id类型声明
      * @param <M> 源对象模型类型声明
      * @param <T> 目标对象模型类型声明
@@ -192,6 +370,35 @@ public class MEBuilderHelper {
         List<T> targetList = targetListQueryBySourceId.actuate(sourceId);
         if (GeneralUtils.isNotEmpty(targetList)) {
             sourceSetTargetList.actuate(model,targetList);
+        }
+    }
+
+
+    /**
+     * 通过目标对象id列表查询设置单个目标对象
+     * @param entityList 源对象实体集合
+     * @param modelList 源对象模型集合
+     * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象表
+     * @param entityGetTargetId 源对象实体获取目标对象id
+     * @param sourceGetTargetId 源对象模型获取目标对象id
+     * @param sourceSetTarget 源对象设置单个目标对象
+     * @param index isLoad序列
+     * @param isLoadArray LoadArray参数
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @param <E> 源对象实体类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleTargetId(
+            List<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
+            Function<E,I> entityGetTargetId, FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget,
+            Integer index, Boolean... isLoadArray
+    ) throws RestException {
+        List<I> targetIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetTargetId).distinct().collect(Collectors.toList());
+        if (GeneralUtils.isNotEmpty(targetIdList) && isLoadArray.length > index && isLoadArray[index]) {
+            List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdList);
+            buildSingleTargetId(modelList,targetList,sourceGetTargetId,sourceSetTarget);
         }
     }
 
@@ -211,13 +418,42 @@ public class MEBuilderHelper {
      */
     public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleTargetId(
             List<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
-            Function<E,I> entityGetTargetId,
-            FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
+            Function<E,I> entityGetTargetId, FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
         List<I> targetIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetTargetId).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(targetIdList)) {
             List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdList);
             buildSingleTargetId(modelList,targetList,sourceGetTargetId,sourceSetTarget);
+        }
+    }
+
+    /**
+     * 通过目标对象id列表查询设置单个目标对象
+     * @param entityList 源对象实体集合
+     * @param modelList 源对象模型集合
+     * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象表
+     * @param entityGetTargetId 源对象实体获取目标对象id
+     * @param targetGetTargetId 目标对象模型获取目标对象id
+     * @param sourceGetTargetId 源对象模型获取目标对象id
+     * @param sourceSetTarget 源对象设置单个目标对象
+     * @param index isLoad序列
+     * @param isLoadArray LoadArray参数
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @param <E> 源对象实体类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleTargetId(
+            List<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
+            Function<E,I> entityGetTargetId, FunctionActuator<T,I> targetGetTargetId,
+            FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget,
+            Integer index, Boolean... isLoadArray
+    ) throws RestException {
+        List<I> targetIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetTargetId).distinct().collect(Collectors.toList());
+        if (GeneralUtils.isNotEmpty(targetIdList) && isLoadArray.length > index && isLoadArray[index]) {
+            List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdList);
+            buildSingleTargetId(modelList,targetList,targetGetTargetId,sourceGetTargetId,sourceSetTarget);
         }
     }
 
@@ -255,6 +491,33 @@ public class MEBuilderHelper {
      * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
      * @param targetGetSourceId 目标对象模型获取源对象id
      * @param sourceSetTarget 源对象设置单个目标对象
+     * @param index isLoad序列
+     * @param isLoadArray LoadArray参数
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @param <E> 源对象实体类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleSourceId(
+            List<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
+            FunctionActuator<T,I> targetGetSourceId, BiConsumerActuator<M, T> sourceSetTarget,
+            Integer index, Boolean... isLoadArray
+    ) throws RestException {
+        List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(IdEntity::getId).distinct().collect(Collectors.toList());
+        if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
+            List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
+            buildSingleSourceId(modelList,targetList,targetGetSourceId,sourceSetTarget);
+        }
+    }
+
+    /**
+     * 通过源对象id列表查询设置单个目标对象
+     * @param entityList 源对象实体集合
+     * @param modelList 源对象模型集合
+     * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
+     * @param targetGetSourceId 目标对象模型获取源对象id
+     * @param sourceSetTarget 源对象设置单个目标对象
      * @param <I> 对象Id类型声明
      * @param <M> 源对象模型类型声明
      * @param <T> 目标对象模型类型声明
@@ -269,6 +532,36 @@ public class MEBuilderHelper {
         if (GeneralUtils.isNotEmpty(sourceIdList)) {
             List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
             buildSingleSourceId(modelList,targetList,targetGetSourceId,sourceSetTarget);
+        }
+    }
+
+    /**
+     * 通过源对象id列表查询设置单个目标对象
+     * @param entityList 源对象实体集合
+     * @param modelList 源对象模型集合
+     * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
+     * @param entityGetSourceId 源对象实体获取源对象id
+     * @param targetGetSourceId 目标对象模型获取源对象id
+     * @param sourceGetSourceId 源对象模型获取源对象id
+     * @param sourceSetTarget 源对象设置单个目标对象
+     * @param index isLoad序列
+     * @param isLoadArray LoadArray参数
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @param <E> 源对象实体类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleSourceId(
+            List<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
+            Function<E,I> entityGetSourceId, FunctionActuator<T,I> targetGetSourceId,
+            FunctionActuator<M,I> sourceGetSourceId, BiConsumerActuator<M, T> sourceSetTarget,
+            Integer index, Boolean... isLoadArray
+    ) throws RestException {
+        List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetSourceId).distinct().collect(Collectors.toList());
+        if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
+            List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
+            buildSingleSourceId(modelList,targetList,targetGetSourceId,sourceGetSourceId,sourceSetTarget);
         }
     }
 
@@ -305,6 +598,43 @@ public class MEBuilderHelper {
      * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象表
      * @param sourceGetTargetIdList 源对象模型获取目标对象id列表
      * @param sourceSetTargetList 源对象设置多个目标对象
+     * @param index isLoad序列
+     * @param isLoadArray LoadArray参数
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildMultiTargetId(
+            Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
+            FunctionActuator<M,List<I>> sourceGetTargetIdList, BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
+            Integer index, Boolean... isLoadArray
+    ) throws RestException {
+        Map<I, List<I>> sourceIdTargetIdListMap = new HashMap<>();
+        List<I> targetIdList = new ArrayList<>();
+        for (M model : modelList) {
+            if (GeneralUtils.isNotEmpty(model)) {
+                I sourceId = model.getId();
+                List<I> idList = sourceGetTargetIdList.actuate(model);
+                if (GeneralUtils.isNotEmpty(idList)) {
+                    targetIdList.addAll(idList);
+                    sourceIdTargetIdListMap.putIfAbsent(sourceId,idList);
+                }
+            }
+        }
+        Set<I> targetIdSet = new HashSet<>(targetIdList);
+        if (GeneralUtils.isNotEmpty(targetIdSet) && isLoadArray.length > index && isLoadArray[index]) {
+            List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdSet);
+            buildMultiTargetId(modelList,targetList,sourceIdTargetIdListMap,sourceSetTargetList);
+        }
+    }
+
+    /**
+     * 通过目标对象id列表查询设置多个目标对象
+     * @param modelList 源对象模型集合
+     * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象表
+     * @param sourceGetTargetIdList 源对象模型获取目标对象id列表
+     * @param sourceSetTargetList 源对象设置多个目标对象
      * @param <I> 对象Id类型声明
      * @param <M> 源对象模型类型声明
      * @param <T> 目标对象模型类型声明
@@ -330,6 +660,46 @@ public class MEBuilderHelper {
         if (GeneralUtils.isNotEmpty(targetIdSet)) {
             List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdSet);
             buildMultiTargetId(modelList,targetList,sourceIdTargetIdListMap,sourceSetTargetList);
+        }
+    }
+
+    /**
+     * 通过目标对象id列表查询设置多个目标对象
+     * @param modelList 源对象模型集合
+     * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象表
+     * @param sourceGetSourceId 源对象模型获取源对象id
+     * @param sourceGetTargetIdList 源对象模型获取目标对象id列表
+     * @param targetGetTargetId 目标对象模型获取目标对象id
+     * @param sourceSetTargetList 源对象设置多个目标对象
+     * @param index isLoad序列
+     * @param isLoadArray LoadArray参数
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildMultiTargetId(
+            Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
+            FunctionActuator<M,I> sourceGetSourceId, FunctionActuator<M,List<I>> sourceGetTargetIdList, FunctionActuator<T,I> targetGetTargetId,
+            BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
+            Integer index, Boolean... isLoadArray
+    ) throws RestException {
+        Map<I, List<I>> sourceIdTargetIdListMap = new HashMap<>();
+        List<I> targetIdList = new ArrayList<>();
+        for (M model : modelList) {
+            if (GeneralUtils.isNotEmpty(model)) {
+                I sourceId = sourceGetSourceId.actuate(model);
+                List<I> idList = sourceGetTargetIdList.actuate(model);
+                if (GeneralUtils.isNotEmpty(idList)) {
+                    targetIdList.addAll(idList);
+                    sourceIdTargetIdListMap.putIfAbsent(sourceId,idList);
+                }
+            }
+        }
+        Set<I> targetIdSet = new HashSet<>(targetIdList);
+        if (GeneralUtils.isNotEmpty(targetIdSet) && isLoadArray.length > index && isLoadArray[index]) {
+            List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdSet);
+            buildMultiTargetId(modelList,targetList,sourceIdTargetIdListMap,targetGetTargetId,sourceGetSourceId,sourceSetTargetList);
         }
     }
 
@@ -378,6 +748,35 @@ public class MEBuilderHelper {
      * @param targetGetSourceId 目标对象模型获取源对象id
      * @param sourceGetTargetId 源对象模型获取目标对象id
      * @param sourceSetTargetList 源对象设置多个目标对象
+     * @param index isLoad序列
+     * @param isLoadArray LoadArray参数
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @param <E> 源对象实体类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>,E extends IdEntity<I>> void buildMultiSourceId(
+            List<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
+            FunctionActuator<T,I> targetGetSourceId, FunctionActuator<M,I> sourceGetTargetId,
+            BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
+            Integer index, Boolean... isLoadArray
+    ) throws RestException {
+        List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(IdEntity::getId).distinct().collect(Collectors.toList());
+        if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
+            List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
+            buildMultiSourceId(modelList,targetList,targetGetSourceId,sourceGetTargetId,sourceSetTargetList);
+        }
+    }
+
+    /**
+     * 通过源对象id列表查询设置多个目标对象
+     * @param entityList 源对象实体集合
+     * @param modelList 源对象模型集合
+     * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
+     * @param targetGetSourceId 目标对象模型获取源对象id
+     * @param sourceGetTargetId 源对象模型获取目标对象id
+     * @param sourceSetTargetList 源对象设置多个目标对象
      * @param <I> 对象Id类型声明
      * @param <M> 源对象模型类型声明
      * @param <T> 目标对象模型类型声明
@@ -390,6 +789,34 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(IdEntity::getId).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList)) {
+            List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
+            buildMultiSourceId(modelList,targetList,targetGetSourceId,sourceGetTargetId,sourceSetTargetList);
+        }
+    }
+
+    /**
+     * 通过源对象id列表查询设置多个目标对象
+     * @param entityList 源对象实体集合
+     * @param modelList 源对象模型集合
+     * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
+     * @param entityGetSourceId 源对象实体获取源对象id
+     * @param targetGetSourceId 目标对象模型获取源对象id
+     * @param sourceGetTargetId 源对象模型获取目标对象id
+     * @param sourceSetTargetList 源对象设置多个目标对象
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @param <E> 源对象实体类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>,E extends IdEntity<I>> void buildMultiSourceId(
+            List<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
+            Function<E,I> entityGetSourceId, FunctionActuator<T,I> targetGetSourceId,
+            FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
+            Integer index, Boolean... isLoadArray
+    ) throws RestException {
+        List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetSourceId).distinct().collect(Collectors.toList());
+        if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
             List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
             buildMultiSourceId(modelList,targetList,targetGetSourceId,sourceGetTargetId,sourceSetTargetList);
         }
@@ -582,6 +1009,7 @@ public class MEBuilderHelper {
             sourceTargetList(modelList,sourceGetSourceId,sourceIdTargetListMap,sourceSetTargetList);
         }
     }
+
 
     /**
      * 源对象设置单个目标对象
