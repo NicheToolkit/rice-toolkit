@@ -34,7 +34,12 @@ public class RestPage<T> implements Serializable {
     }
 
     public RestPage(@NonNull Collection<T> items) {
+        this.pages = 1L;
+        this.pageNum = 1L;
         this.items = new ArrayList<>(items);
+        this.totals = (long) items.size();
+        this.pageSize = (long) items.size();
+        this.itemSize = (long) items.size();
     }
 
     public RestPage(Long totals, Long pageNum, Long pageSize, @NonNull Collection<T> items) {
