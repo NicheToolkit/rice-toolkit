@@ -43,7 +43,7 @@ import java.util.List;
 @SuppressWarnings("RedundantThrows")
 @Slf4j
 public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<I>, F extends IdFilter<I>>
-        implements InitializingBean, ApplicationContextAware, OptionalService<I, M>, ServiceAdvice<I, F> {
+        implements InitializingBean, ApplicationContextAware, OptionalService<I, M>, ServiceAdvice<I, F>, SaveAdvice<I, M> {
 
     private static ApplicationContext applicationContext;
 
@@ -203,6 +203,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         Integer result = supperMapper.save(entity);
         String message = "creating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
         OptionalHelper.create(result, message, simpleName);
+        this.afterCreate(model);
         return model;
     }
 
@@ -221,6 +222,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         Integer result = supperMapper.save(entity);
         String message = "updating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
         OptionalHelper.update(result, message, simpleName);
+        this.afterUppdate(model);
         return model;
     }
 
@@ -239,6 +241,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         Integer result = supperMapper.save(entity);
         String message = "saving method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
         OptionalHelper.save(result, message, simpleName);
+        this.afterSave(model);
         return model;
     }
 
@@ -256,6 +259,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         Boolean comparer = modelList.size() == supperMapper.saveAll(entityList);
         String message = "saveAll method has error with " + simpleName + ": " + JsonUtils.parseJson(modelList);
         OptionalHelper.saveAll(comparer, message, simpleName);
+        this.afterSaveAll(modelList);
         return new ArrayList<>(modelList);
     }
 
