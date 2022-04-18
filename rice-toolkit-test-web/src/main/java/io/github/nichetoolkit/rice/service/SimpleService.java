@@ -1,5 +1,6 @@
 package io.github.nichetoolkit.rice.service;
 
+import io.github.nichetoolkit.rice.service.extend.SingleService;
 import io.github.nichetoolkit.rice.simple.SimpleFilter;
 import io.github.nichetoolkit.rice.simple.SimpleModel;
 
@@ -8,5 +9,5 @@ import io.github.nichetoolkit.rice.simple.SimpleModel;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public interface SimpleService extends FilterService<String, SimpleModel, SimpleFilter> {
+public interface SimpleService extends FilterService<String, SimpleModel, SimpleFilter>, SingleService<String,SimpleModel> {
 }

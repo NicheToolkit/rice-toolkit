@@ -1,7 +1,9 @@
 package io.github.nichetoolkit.rice.simple;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.github.nichetoolkit.rice.RiceInfoModel;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
 import java.util.Date;
@@ -13,6 +15,8 @@ import java.util.Optional;
  * @version v1.0.0
  */
 public class SimpleModel extends RiceInfoModel<SimpleModel,SimpleEntity> {
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date time;
 
     public SimpleModel() {
@@ -36,7 +40,7 @@ public class SimpleModel extends RiceInfoModel<SimpleModel,SimpleEntity> {
     }
 
     @Override
-    public SimpleEntity toEntity(Long... idArray) {
+    public SimpleEntity toEntity() {
         SimpleEntity entity = new SimpleEntity();
         entity.setId(this.getId());
         entity.setName(this.getName());

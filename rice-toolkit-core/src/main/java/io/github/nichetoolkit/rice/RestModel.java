@@ -14,8 +14,4 @@ public interface RestModel<I,E extends IdEntity<I>> {
         throw new UnsupportedErrorException("the method has not implemented, 'toEntity()' ");
     }
 
-    default E toEntity(Long... idArray) throws RestException {
-        throw new UnsupportedErrorException("the method has not implemented, 'toEntity(Long...)' ");
-    }
-
 }

@@ -5,6 +5,9 @@ import io.github.nichetoolkit.rest.error.ClassUnsupportedException;
 import io.github.nichetoolkit.rest.identity.IdentityUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.IdModel;
+import io.github.nichetoolkit.rice.RiceIdModel;
+import io.github.nichetoolkit.rice.RiceInfoModel;
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -63,10 +66,16 @@ public class ClazzHelper {
         return parameterizedType.getActualTypeArguments();
     }
 
-    public static Class<?> clazz(Object object) throws ClassUnknownException {
-        Type[] actualTypes = types(object);
-        Optional<Type> first = Stream.of(actualTypes).findFirst();
-        return first.map(Class.class::cast).orElseThrow(ClassUnknownException::new);
+    public static Class<?> clazz(Object object) throws ClassUnknownException, ClassUnsupportedException {
+        if (object instanceof RiceIdModel || object instanceof RiceInfoModel) {
+            return String.class;
+        } else if (object instanceof IdModel) {
+            Type[] actualTypes = types(object);
+            Optional<Type> first = Stream.of(actualTypes).findFirst();
+            return first.map(Class.class::cast).orElseThrow(ClassUnknownException::new);
+        } else {
+            throw new ClassUnsupportedException("the model must extends 'RiceIdModel' or 'IdModel': " + object.getClass().getName());
+        }
     }
 
     @SuppressWarnings(value = "unchecked")
@@ -83,6 +92,7 @@ public class ClazzHelper {
     public static <I> I generate(IdModel<I> model) throws ClassUnsupportedException, ClassUnknownException {
         Class<?> clazz = clazz(model);
         Long id = IdentityUtils.generateLong();
+
         if (String.class.equals(clazz)) {
             return (I) String.valueOf(id);
         } else if (Long.class.equals(clazz)) {

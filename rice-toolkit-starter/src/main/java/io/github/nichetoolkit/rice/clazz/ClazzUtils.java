@@ -16,7 +16,7 @@ public class ClazzUtils {
     public static Class<?> clazz(Object object) {
         try {
             return ClazzHelper.clazz(object);
-        } catch (ClassUnknownException exception) {
+        } catch (ClassUnknownException | ClassUnsupportedException exception) {
             exception.printStackTrace();
             log.error("the class type of <I> is unknown",exception);
             return null;

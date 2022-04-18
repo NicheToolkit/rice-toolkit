@@ -1,15 +1,11 @@
 package io.github.nichetoolkit.rice.filter;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.serialization.DateDeserializer;
-import io.github.nichetoolkit.rice.serialization.DateSerializer;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
@@ -26,14 +22,10 @@ import java.util.HashSet;
 public class TimeFilter<D,I> extends IdFilter<I> {
 
     /** default like '2020-01-01 00:00:00' */
-//    @JsonDeserialize(using = DateDeserializer.class)
-//    @JsonSerialize(using = DateSerializer.class)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     protected D startTime;
     /** default like '2020-01-02 00:00:00' */
-//    @JsonDeserialize(using = DateDeserializer.class)
-//    @JsonSerialize(using = DateSerializer.class)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     protected D endTime;
