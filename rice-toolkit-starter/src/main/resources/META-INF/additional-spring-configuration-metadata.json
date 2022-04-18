@@ -4,6 +4,11 @@
       "name": "nichetoolkit.rice.bean.name",
       "sourceType": "io.github.nichetoolkit.rice.configure.RiceBeanNameProperties",
       "type": "io.github.nichetoolkit.rice.configure.RiceBeanNameProperties"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.key",
+      "sourceType": "io.github.nichetoolkit.rice.configure.RiceBeanKeyProperties",
+      "type": "io.github.nichetoolkit.rice.configure.RiceBeanKeyProperties"
     }
   ],
   "properties": [
@@ -16,6 +21,10 @@
       "name": "nichetoolkit.rice.bean.name.nonull-enabled",
       "type": "java.lang.Boolean",
       "description": "name nonnull enabled."
+    }, {
+      "name": "nichetoolkit.rice.bean.key.invade-enabled",
+      "type": "java.lang.Boolean",
+      "description": "invade key enabled."
     }
   ],
   "hints": [
@@ -42,6 +51,19 @@
         {
           "value": true,
           "description": "name nonnull enabled open."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.rice.bean.key.invade-enabled",
+      "values": [
+        {
+          "value": false,
+          "description": "key invade enabled close."
+        },
+        {
+          "value": true,
+          "description": "key invade enabled open."
         }
       ]
     }

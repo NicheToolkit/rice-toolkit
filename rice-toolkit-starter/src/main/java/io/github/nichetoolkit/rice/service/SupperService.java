@@ -12,6 +12,7 @@ import io.github.nichetoolkit.rice.IdEntity;
 import io.github.nichetoolkit.rice.IdModel;
 import io.github.nichetoolkit.rice.RestPage;
 import io.github.nichetoolkit.rice.clazz.ClazzHelper;
+import io.github.nichetoolkit.rice.configure.RiceBeanKeyProperties;
 import io.github.nichetoolkit.rice.configure.RiceBeanNameProperties;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.error.ServiceUnknownException;
@@ -60,6 +61,8 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
 
     protected RiceBeanNameProperties nameProperties;
 
+    protected RiceBeanKeyProperties keyProperties;
+
     @Override
     public void setApplicationContext(@NonNull ApplicationContext applicationContext) throws BeansException {
         SupperService.applicationContext = applicationContext;
@@ -68,6 +71,12 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
     @SuppressWarnings(value = "unchecked")
     @Override
     public void afterPropertiesSet() throws Exception {
+        this.keyProperties = applicationContext.getBean(RiceBeanKeyProperties.class);
+        if (GeneralUtils.isEmpty(keyProperties)) {
+            String message = "the bean of 'RiceBeanKeyProperties' type is not found!";
+            log.warn(message);
+            keyProperties = new RiceBeanKeyProperties();
+        }
         this.nameProperties = applicationContext.getBean(RiceBeanNameProperties.class);
         if (GeneralUtils.isEmpty(nameProperties)) {
             String message = "the bean of 'RiceBeanNameProperties' type is not found!";
@@ -442,6 +451,13 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         optional(model);
     };
 
+    private final ConsumerActuator<M> DEFAULT_INVADE_ACTUATOR = (@NonNull M model) -> {
+        if (createActuator != null) {
+            createActuator.actuate(model);
+        }
+        optional(model);
+    };
+
     protected ConsumerActuator<M> createActuator() {
         return DEFAULT_CREATE_ACTUATOR;
     }
@@ -450,9 +466,15 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         return DEFAULT_UPDATE_ACTUATOR;
     }
 
+    protected ConsumerActuator<M> invadeActuator() {
+        return DEFAULT_INVADE_ACTUATOR;
+    }
+
     protected void OptionalCreate(@NonNull M model) throws RestException {
-        if (GeneralUtils.isEmpty(model.getId())) {
+        if (GeneralUtils.isEmpty(model.getId()) || !keyProperties.getInvadeEnabled()) {
             createActuator().actuate(model);
+        } else {
+            invadeActuator().actuate(model);
         }
     }
 
