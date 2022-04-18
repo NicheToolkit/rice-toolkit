@@ -3,6 +3,7 @@ package io.github.nichetoolkit.rice.filter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import org.springframework.lang.NonNull;
 
@@ -71,7 +72,10 @@ public class PageFilter implements Serializable {
     }
 
     public <T> Page<T> toPage() {
-        return PageHelper.startPage(pageNum, pageSize);
+        if (GeneralUtils.isNotEmpty(this.pageSize)) {
+            return PageHelper.startPage(this.pageNum, this.pageSize);
+        }
+        return null;
     }
 
     public Boolean[] toLoadArray() {
