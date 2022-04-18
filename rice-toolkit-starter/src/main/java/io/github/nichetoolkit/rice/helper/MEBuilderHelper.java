@@ -746,7 +746,6 @@ public class MEBuilderHelper {
      * @param modelList 源对象模型集合
      * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
      * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param sourceGetTargetId 源对象模型获取目标对象id
      * @param sourceSetTargetList 源对象设置多个目标对象
      * @param index isLoad序列
      * @param isLoadArray LoadArray参数
@@ -758,14 +757,42 @@ public class MEBuilderHelper {
      */
     public static <I, M extends IdModel<I>, T extends IdModel<I>,E extends IdEntity<I>> void buildMultiSourceId(
             Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
-            FunctionActuator<T,I> targetGetSourceId, FunctionActuator<M,I> sourceGetTargetId,
+            FunctionActuator<T,I> targetGetSourceId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
+            Integer index, Boolean... isLoadArray
+    ) throws RestException {
+        List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(IdEntity::getId).distinct().collect(Collectors.toList());
+        if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
+            List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
+            buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceSetTargetList);
+        }
+    }
+
+    /**
+     * 通过源对象id列表查询设置多个目标对象
+     * @param entityList 源对象实体集合
+     * @param modelList 源对象模型集合
+     * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
+     * @param targetGetSourceId 目标对象模型获取源对象id
+     * @param sourceGetSourceId 源对象模型获取目标对象id
+     * @param sourceSetTargetList 源对象设置多个目标对象
+     * @param index isLoad序列
+     * @param isLoadArray LoadArray参数
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @param <E> 源对象实体类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>,E extends IdEntity<I>> void buildMultiSourceId(
+            Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
+            FunctionActuator<T,I> targetGetSourceId, FunctionActuator<M,I> sourceGetSourceId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
             Integer index, Boolean... isLoadArray
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(IdEntity::getId).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
             List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
-            buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetTargetId,sourceSetTargetList);
+            buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetSourceId,sourceSetTargetList);
         }
     }
 
@@ -983,6 +1010,28 @@ public class MEBuilderHelper {
             Map<I, List<T>> sourceIdTargetListMap = new HashMap<>();
             targetListMapTargetId(targetList,sourceIdTargetListMap,sourceIdTargetIdListMap,targetGetTargetId);
             sourceTargetList(modelList,sourceGetSourceId,sourceIdTargetListMap,sourceSetTargetList);
+        }
+    }
+
+    /**
+     * 通过源对象id列表设置多个目标对象
+     * @param modelList 源对象模型集合
+     * @param targetList 目标象模型集合
+     * @param targetGetSourceId 目标对象模型获取源对象id
+     * @param sourceSetTargetList 源对象设置多个目标对象
+     * @param <I> 对象Id类型声明
+     * @param <M> 源对象模型类型声明
+     * @param <T> 目标对象模型类型声明
+     * @throws RestException RestException
+     */
+    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildMultiTargetSourceId(
+            Collection<M> modelList, Collection<T> targetList,
+            FunctionActuator<T, I> targetGetSourceId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
+    ) throws RestException {
+        if (GeneralUtils.isNotEmpty(targetList)) {
+            Map<I, List<T>> sourceIdTargetListMap = new HashMap<>();
+            targetListMapSourceId(targetList,sourceIdTargetListMap,targetGetSourceId);
+            sourceTargetList(modelList,IdModel::getId,sourceIdTargetListMap,sourceSetTargetList);
         }
     }
 
