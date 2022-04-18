@@ -1,4 +1,4 @@
-package io.github.nichetoolkit.rice.service;
+package io.github.nichetoolkit.rice.service.extend;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestKey;

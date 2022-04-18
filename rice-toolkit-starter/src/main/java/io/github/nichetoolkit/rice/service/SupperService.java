@@ -19,6 +19,9 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
 import io.github.nichetoolkit.rice.mapper.SupperMapper;
 import io.github.nichetoolkit.rice.mapper.LoadMapper;
+import io.github.nichetoolkit.rice.service.advice.BuilderAdvice;
+import io.github.nichetoolkit.rice.service.advice.SaveAdvice;
+import io.github.nichetoolkit.rice.service.advice.ServiceAdvice;
 import io.github.nichetoolkit.rice.service.stereotype.RestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -263,7 +266,6 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         return new ArrayList<>(modelList);
     }
 
-    @Override
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void operateById(I id, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(operate)) {
@@ -272,7 +274,6 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         supperMapper.operateById(id, operate.getKey());
     }
 
-    @Override
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void operateAll(Collection<I> idList, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
@@ -281,7 +282,6 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         supperMapper.operateAll(idList,operate.getKey());
     }
 
-    @Override
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void alertById(I id, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(keyType)) {
@@ -290,7 +290,6 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         supperMapper.alertById(id, keyType.getKey());
     }
 
-    @Override
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void alertAll(Collection<I> idList, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
@@ -299,7 +298,6 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         supperMapper.alertAll(idList, keyType.getKey());
     }
 
-    @Override
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void removeById(I id) throws RestException {
         if (GeneralUtils.isEmpty(id)) {
@@ -308,7 +306,6 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         supperMapper.removeById(id);
     }
 
-    @Override
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void removeAll(Collection<I> idList) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {

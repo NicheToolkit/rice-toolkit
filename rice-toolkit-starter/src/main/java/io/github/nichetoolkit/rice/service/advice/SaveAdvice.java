@@ -1,11 +1,9 @@
-package io.github.nichetoolkit.rice.service;
+package io.github.nichetoolkit.rice.service.advice;
 
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rice.IdEntity;
 import io.github.nichetoolkit.rice.IdModel;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  * <p>BuilderAdvice</p>

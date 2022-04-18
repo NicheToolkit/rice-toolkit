@@ -1,7 +1,7 @@
 package io.github.nichetoolkit.rice;
 
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rice.service.BuilderAdvice;
+import io.github.nichetoolkit.rice.service.advice.BuilderAdvice;
 import io.github.nichetoolkit.rice.service.InfoService;
 
 /**
