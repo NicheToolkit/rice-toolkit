@@ -13,23 +13,23 @@ import java.util.Collection;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public interface OperateService<I> {
+public interface AlertService<I> {
+
     /**
      * 通过id集合批量逻辑删除
      * @param idList 对象的id集合
-     * @param operateType 对象的操作
+     * @param keyType 对象的操作
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void operateAll(Collection<I> idList, OperateType operateType) throws RestException;
+    void alertAll(Collection<I> idList, RestKey<Integer> keyType) throws RestException;
 
     /**
      * 通过id单个逻辑删除
      * @param id 对象的id
-     * @param operateType 对象的操作
+     * @param keyType 对象的操作
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void operateById(I id, OperateType operateType) throws RestException;
-
+    void alertById(I id, RestKey<Integer> keyType) throws RestException;
 }
