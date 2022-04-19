@@ -244,6 +244,23 @@ public final class SqlBuilder implements Serializable, CharSequence {
         return sqlBuilder;
     }
 
+
+    public SqlBuilder nu(String target, Boolean andOfOr) {
+      if (GeneralUtils.isNotEmpty(target)) {
+            this.andOfOr(andOfOr);
+            this.append(target).append(" IS NULL ");
+        }
+        return this;
+    }
+
+    public SqlBuilder nnu(String target, Boolean andOfOr) {
+        if (GeneralUtils.isNotEmpty(target)) {
+            this.andOfOr(andOfOr);
+            this.append(target).append(" IS NOT NULL ");
+        }
+        return this;
+    }
+
     public SqlBuilder eq(String target, Object value, Boolean andOfOr) {
         if (value instanceof Number) {
             this.andOfOr(andOfOr);

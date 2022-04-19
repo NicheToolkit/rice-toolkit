@@ -110,6 +110,22 @@ public class SqlBuilders {
         sqlBuilder.neq(target, value, true);
     }
 
+    public static SqlBuilder isnull(StringBuilder sqlBuilder, String target) {
+        return newSqlBuilder(sqlBuilder).nu(target,true);
+    }
+
+    public static void isnull(SqlBuilder sqlBuilder, String target) {
+        sqlBuilder.nu(target,true);
+    }
+
+    public static SqlBuilder nonnull(StringBuilder sqlBuilder, String target) {
+        return newSqlBuilder(sqlBuilder).nnu(target, true);
+    }
+
+    public static void nonnull(SqlBuilder sqlBuilder, String target) {
+        sqlBuilder.nnu(target, true);
+    }
+
     public static SqlBuilder append(StringBuilder sqlBuilder, String sql) {
         return newSqlBuilder(sqlBuilder).append(sql);
     }
