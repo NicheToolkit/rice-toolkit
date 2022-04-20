@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("MixedMutabilityReturnType")
 public class MEBuilderHelper {
 
-    public static <I, M extends IdModel<I>, E extends IdEntity<I>> List<E> entityList(Collection<M> modelList, ConsumerActuator<M> consumer, FunctionActuator<M, E> function) throws RestException {
+    public static <M, E> List<E> entityList(Collection<M> modelList, ConsumerActuator<M> consumer, FunctionActuator<M, E> function) throws RestException {
         if (GeneralUtils.isEmpty(modelList)) {
             return Collections.emptyList();
         }
@@ -37,7 +37,21 @@ public class MEBuilderHelper {
         return entityList;
     }
 
-    public static <I, M extends IdModel<I>, E extends IdEntity<I>> List<M> modelList(Collection<E> entityList, FunctionActuator<E, M> function) throws RestException {
+    public static <M, E> List<E> entityList(Collection<M> modelList, FunctionActuator<M, E> function) throws RestException {
+        if (GeneralUtils.isEmpty(modelList)) {
+            return Collections.emptyList();
+        }
+        List<M> collect = modelList.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        List<E> entityList = new ArrayList<>();
+        for (M model : collect) {
+            if (model != null) {
+                entityList.add(function.actuate(model));
+            }
+        }
+        return entityList;
+    }
+
+    public static <I, M, E> List<M> modelList(Collection<E> entityList, FunctionActuator<E, M> function) throws RestException {
         if (GeneralUtils.isEmpty(entityList)) {
             return Collections.emptyList();
         }
