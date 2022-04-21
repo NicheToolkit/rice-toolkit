@@ -14,6 +14,8 @@ public interface ServiceAdvice<I, F extends IdFilter<I>> {
 
     default void doServiceHandle() throws RestException {}
 
+    default void optionalFilter(F filter) throws RestException {}
+
     default String queryWhereSql(F filter) throws RestException {
         return filter.toSql();
     }

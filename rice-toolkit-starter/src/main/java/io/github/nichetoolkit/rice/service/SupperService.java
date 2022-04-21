@@ -63,6 +63,8 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
 
     protected RiceBeanKeyProperties keyProperties;
 
+    protected ThreadLocal<F> filterCache = new ThreadLocal<>();
+
     @Override
     public void setApplicationContext(@NonNull ApplicationContext applicationContext) throws BeansException {
         SupperService.applicationContext = applicationContext;
@@ -163,7 +165,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         M model = this.createModel(entity);
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
-            builderAdvice.buildModel(entity,model, isLoadArray);
+            builderAdvice.buildModel(entity, model, isLoadArray);
         }
         return model;
     }
@@ -400,6 +402,8 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
 
     @SuppressWarnings(value = "unchecked")
     public RestPage<M> queryAllWithFilter(F filter) throws RestException {
+        optionalFilter(filter);
+        filterCache.set(filter);
         String whereSql = queryWhereSql(filter);
         Boolean[] isLoadArray = loadArray(filter);
         Page<E> page = filter.toPage();

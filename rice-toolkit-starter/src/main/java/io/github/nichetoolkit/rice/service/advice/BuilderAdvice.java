@@ -24,4 +24,5 @@ public interface BuilderAdvice <I,M extends IdModel<I>, E extends IdEntity<I>> {
     default void buildModel(E entity, M model, Boolean... isLoadArray) throws RestException {}
 
     default void buildModelList(Collection<E> entityList, List<M> modelList, Boolean... isLoadArray) throws RestException {}
+
 }
