@@ -88,6 +88,10 @@ public class PropertyHelper {
         }
     }
 
+    public static Double transform(Long value, Integer scale) {
+        return value.doubleValue() / scale.doubleValue();
+    }
+
     public static Double toDouble(Object value) {
         if (GeneralUtils.isNotEmpty(value)) {
             String trim = value.toString().trim();
