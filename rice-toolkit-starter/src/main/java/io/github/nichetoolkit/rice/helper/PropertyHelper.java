@@ -5,6 +5,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.jsonb.Property;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.SpringApplication;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -90,6 +91,10 @@ public class PropertyHelper {
 
     public static Double transform(Long value, Integer scale) {
         return value.doubleValue() / scale.doubleValue();
+    }
+
+    public static Long transform(Double value, Integer scale) {
+        return (long) (value * scale.longValue());
     }
 
     public static Double toDouble(Object value) {
