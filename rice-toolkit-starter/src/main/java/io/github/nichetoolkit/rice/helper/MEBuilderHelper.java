@@ -221,10 +221,13 @@ public class MEBuilderHelper {
             BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
         I sourceId = entityGetSourceId.actuate(entity);
-        T target = targetQueryBySourceId.actuate(sourceId);
-        if (GeneralUtils.isNotEmpty(target)) {
-            sourceSetTarget.actuate(model,target);
+        if (GeneralUtils.isNotEmpty(sourceId)) {
+            T target = targetQueryBySourceId.actuate(sourceId);
+            if (GeneralUtils.isNotEmpty(target)) {
+                sourceSetTarget.actuate(model,target);
+            }
         }
+
     }
 
     /**
@@ -1091,9 +1094,11 @@ public class MEBuilderHelper {
     ) throws RestException {
         for (M model : modelList) {
             I keyId = getIdKey.actuate(model);
-            T target = keyIdTargetMap.get(keyId);
-            if (GeneralUtils.isNotEmpty(target)) {
-                sourceSetTarget.actuate(model, target);
+            if (GeneralUtils.isNotEmpty(keyId)) {
+                T target = keyIdTargetMap.get(keyId);
+                if (GeneralUtils.isNotEmpty(target)) {
+                    sourceSetTarget.actuate(model, target);
+                }
             }
         }
     }
@@ -1115,10 +1120,13 @@ public class MEBuilderHelper {
     ) throws RestException {
         for (M model : modelList) {
             I keyId = getIdKey.actuate(model);
-            List<T> targets = keyIdTargetListMap.get(keyId);
-            if (GeneralUtils.isNotEmpty(targets)) {
-                sourceSetTargetList.actuate(model, targets);
+            if (GeneralUtils.isNotEmpty(keyId)) {
+                List<T> targets = keyIdTargetListMap.get(keyId);
+                if (GeneralUtils.isNotEmpty(targets)) {
+                    sourceSetTargetList.actuate(model, targets);
+                }
             }
+
         }
     }
 
