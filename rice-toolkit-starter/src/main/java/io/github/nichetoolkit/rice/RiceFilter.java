@@ -1,8 +1,7 @@
 package io.github.nichetoolkit.rice;
 
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.filter.JsonbFilter;
-import io.github.nichetoolkit.rice.filter.TimeFilter;
+import io.github.nichetoolkit.rice.filter.NameFilter;
 import io.github.nichetoolkit.rice.jsonb.ContainRule;
 import io.github.nichetoolkit.rice.jsonb.ContrastRule;
 import io.github.nichetoolkit.rice.jsonb.EqualRule;
@@ -16,7 +15,7 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public abstract class RiceFilter extends JsonbFilter<Date,String> {
+public abstract class RiceFilter extends NameFilter<Date,String> {
     public RiceFilter() {
     }
 
@@ -26,6 +25,12 @@ public abstract class RiceFilter extends JsonbFilter<Date,String> {
 
     public RiceFilter(RiceFilter.Builder builder) {
         super(builder);
+    }
+
+    @Override
+    public RiceFilter toNameSql(@NonNull String alias) {
+        super.toNameSql(alias);
+        return this;
     }
 
     @Override
@@ -58,9 +63,28 @@ public abstract class RiceFilter extends JsonbFilter<Date,String> {
         return this;
     }
 
-    public static abstract class Builder extends JsonbFilter.Builder<Date,String> {
+    public static abstract class Builder extends NameFilter.Builder<Date,String> {
 
         public Builder() {
+        }
+
+
+        @Override
+        public RiceFilter.Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        @Override
+        public RiceFilter.Builder names(Collection<String> names) {
+            this.names = Optional.ofNullable(names).map(HashSet::new).orElse(null);
+            return this;
+        }
+
+        @Override
+        public RiceFilter.Builder names(String... names) {
+            this.names = Optional.ofNullable(names).map(propertyList -> new HashSet<>(Arrays.asList(propertyList))).orElse(null);
+            return this;
         }
 
         @Override
