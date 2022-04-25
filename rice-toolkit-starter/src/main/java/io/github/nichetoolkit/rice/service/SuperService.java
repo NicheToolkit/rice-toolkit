@@ -40,7 +40,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * <p>SupperService</p>
+ * <p>SuperService</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
@@ -55,7 +55,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
 
     protected ConsumerActuator<M> updateActuator;
 
-    protected SuperMapper<E, I> supperMapper;
+    protected SuperMapper<E, I> superMapper;
 
     private String simpleName;
 
@@ -101,17 +101,17 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isNotEmpty(service)) {
             Class<? extends SuperMapper> mapper = service.mapper();
             if (SuperMapper.class.isAssignableFrom(mapper)) {
-                this.supperMapper = applicationContext.getBean(mapper);
+                this.superMapper = applicationContext.getBean(mapper);
             }
         } else {
             try {
                 String mapperName = commonBeanName.concat("Mapper");
-                this.supperMapper = applicationContext.getBean(mapperName, SuperMapper.class);
+                this.superMapper = applicationContext.getBean(mapperName, SuperMapper.class);
             } catch (BeansException exception) {
                 log.warn(exception.getMessage());
                 try {
                     String lowerMapperName = lowerBeanName.concat("Mapper");
-                    this.supperMapper = applicationContext.getBean(lowerMapperName, SuperMapper.class);
+                    this.superMapper = applicationContext.getBean(lowerMapperName, SuperMapper.class);
                 } catch (BeansException exception1) {
                     exception1.printStackTrace();
                     String message = "the service and mapper name must be like 'xxxService'/'xxxServiceImpl' and 'xxxMapper'";
@@ -214,7 +214,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
         OptionalCreate(model);
         E entity = entityActuator(model, idArray);
-        Integer result = supperMapper.save(entity);
+        Integer result = superMapper.save(entity);
         String message = "creating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
         OptionalHelper.create(result, message, simpleName);
         this.afterCreate(model);
@@ -233,7 +233,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
         OptionalUpdate(model);
         E entity = entityActuator(model, idArray);
-        Integer result = supperMapper.save(entity);
+        Integer result = superMapper.save(entity);
         String message = "updating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
         OptionalHelper.update(result, message, simpleName);
         this.afterUppdate(model);
@@ -252,7 +252,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
         OptionalSave(model);
         E entity = entityActuator(model, idArray);
-        Integer result = supperMapper.save(entity);
+        Integer result = superMapper.save(entity);
         String message = "saving method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
         OptionalHelper.save(result, message, simpleName);
         this.afterSave(model);
@@ -270,7 +270,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return Collections.emptyList();
         }
         List<E> entityList = entityActuator(modelList, this::OptionalSave, idArray);
-        Boolean comparer = modelList.size() == supperMapper.saveAll(entityList);
+        Boolean comparer = modelList.size() == superMapper.saveAll(entityList);
         String message = "saveAll method has error with " + simpleName + ": " + JsonUtils.parseJson(modelList);
         OptionalHelper.saveAll(comparer, message, simpleName);
         this.afterSaveAll(modelList);
@@ -282,7 +282,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(operate)) {
             return;
         }
-        supperMapper.operateById(id, operate.getKey());
+        superMapper.operateById(id, operate.getKey());
     }
 
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
@@ -290,7 +290,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
-        supperMapper.operateAll(idList,operate.getKey());
+        superMapper.operateAll(idList,operate.getKey());
     }
 
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
@@ -298,7 +298,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(keyType)) {
             return;
         }
-        supperMapper.alertById(id, keyType.getKey());
+        superMapper.alertById(id, keyType.getKey());
     }
 
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
@@ -306,7 +306,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
-        supperMapper.alertAll(idList, keyType.getKey());
+        superMapper.alertAll(idList, keyType.getKey());
     }
 
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
@@ -314,7 +314,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(id)) {
             return;
         }
-        supperMapper.removeById(id);
+        superMapper.removeById(id);
     }
 
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
@@ -322,7 +322,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
-        supperMapper.removeAll(idList);
+        superMapper.removeAll(idList);
     }
 
     @Override
@@ -331,7 +331,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(id)) {
             return;
         }
-        supperMapper.deleteById(id);
+        superMapper.deleteById(id);
     }
 
     @Override
@@ -340,7 +340,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
-        supperMapper.deleteAll(idList);
+        superMapper.deleteAll(idList);
     }
 
     @Override
@@ -350,8 +350,8 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return null;
         }
         E entity;
-        if (isLoadArray.length > 0 && LoadMapper.class.isAssignableFrom(supperMapper.getClass())) {
-            LoadMapper<E,I> loadMapper = (LoadMapper<E,I>) supperMapper;
+        if (isLoadArray.length > 0 && LoadMapper.class.isAssignableFrom(superMapper.getClass())) {
+            LoadMapper<E,I> loadMapper = (LoadMapper<E,I>) superMapper;
             Method findMethod = null;
             try {
                 findMethod = loadMapper.getClass().getMethod("queryById", id.getClass(), Boolean[].class);
@@ -362,10 +362,10 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
                 entity = loadMapper.findById(id, isLoadArray);
             } else {
-                entity = supperMapper.findById(id);
+                entity = superMapper.findById(id);
             }
         } else {
-            entity = supperMapper.findById(id);
+            entity = superMapper.findById(id);
         }
         if (GeneralUtils.isEmpty(entity)) {
             return null;
@@ -380,8 +380,8 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return Collections.emptyList();
         }
         List<E> entityList;
-        if (isLoadArray.length > 0 && LoadMapper.class.isAssignableFrom(supperMapper.getClass())) {
-            LoadMapper<E,I> loadMapper = (LoadMapper<E,I>) supperMapper;
+        if (isLoadArray.length > 0 && LoadMapper.class.isAssignableFrom(superMapper.getClass())) {
+            LoadMapper<E,I> loadMapper = (LoadMapper<E,I>) superMapper;
             Method findMethod = null;
             try {
                 findMethod = loadMapper.getClass().getMethod("queryAll", List.class, Boolean[].class);
@@ -392,10 +392,10 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
                 entityList = loadMapper.findAll(idList, isLoadArray);
             } else {
-                entityList = supperMapper.findAll(idList);
+                entityList = superMapper.findAll(idList);
             }
         } else {
-            entityList = supperMapper.findAll(idList);
+            entityList = superMapper.findAll(idList);
         }
         return modelActuator(entityList, isLoadArray);
     }
@@ -408,8 +408,8 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         Boolean[] isLoadArray = loadArray(filter);
         Page<E> page = filter.toPage();
         List<E> entityList;
-        if (isLoadArray.length > 0 && LoadMapper.class.isAssignableFrom(supperMapper.getClass())) {
-            LoadMapper<E,I> loadMapper = (LoadMapper<E,I>) supperMapper;
+        if (isLoadArray.length > 0 && LoadMapper.class.isAssignableFrom(superMapper.getClass())) {
+            LoadMapper<E,I> loadMapper = (LoadMapper<E,I>) superMapper;
             Method findMethod = null;
             try {
                 findMethod = loadMapper.getClass().getMethod("findAllByWhere", List.class, Boolean[].class);
@@ -420,10 +420,10 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
                 entityList = loadMapper.findAllByWhere(whereSql,isLoadArray);
             } else {
-                entityList = supperMapper.findAllByWhere(whereSql);
+                entityList = superMapper.findAllByWhere(whereSql);
             }
         } else {
-            entityList = supperMapper.findAllByWhere(whereSql);
+            entityList = superMapper.findAllByWhere(whereSql);
         }
         List<M> modelList = modelActuator(entityList, isLoadArray);
         return RestPage.result(modelList, page);
@@ -433,7 +433,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     public void deleteAllWithFilter(F filter) throws RestException {
         String whereSql = deleteWhereSql(filter);
         if (GeneralUtils.isNotEmpty(whereSql)) {
-            supperMapper.deleteAllByWhere(whereSql);
+            superMapper.deleteAllByWhere(whereSql);
         }
     }
 

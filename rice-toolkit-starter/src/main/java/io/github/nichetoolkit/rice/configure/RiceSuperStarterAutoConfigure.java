@@ -5,7 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * <p>RiceStarterAutoConfigure</p>
+ * <p>RiceSuperStarterAutoConfigure</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */

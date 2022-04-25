@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * <p>IdMapper</p>
+ * <p>SuperMapper</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
