@@ -90,11 +90,17 @@ public class PropertyHelper {
     }
 
     public static Double transform(Long value, Integer scale) {
-        return value.doubleValue() / scale.doubleValue();
+        if (GeneralUtils.isNotEmpty(value)) {
+            return value.doubleValue() / scale.doubleValue();
+        }
+        return 0d;
     }
 
     public static Long transform(Double value, Integer scale) {
-        return (long) (value * scale.longValue());
+        if (GeneralUtils.isNotEmpty(value)) {
+            return (long) (value * scale.longValue());
+        }
+        return 0L;
     }
 
     public static Double toDouble(Object value) {
