@@ -17,7 +17,7 @@ import java.util.List;
  * @version v1.0.0
  */
 @SuppressWarnings("RedundantThrows")
-public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity<I>, F extends IdFilter<I>> extends SupperService<I,M,E,F> {
+public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity<I>, F extends IdFilter<I>> extends SuperService<I,M,E,F> {
 
     protected InfoMapper<E,I> consumerMapper;
 

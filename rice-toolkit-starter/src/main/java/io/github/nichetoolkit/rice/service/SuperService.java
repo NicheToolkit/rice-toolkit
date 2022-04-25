@@ -18,7 +18,7 @@ import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.error.ServiceUnknownException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
-import io.github.nichetoolkit.rice.mapper.SupperMapper;
+import io.github.nichetoolkit.rice.mapper.SuperMapper;
 import io.github.nichetoolkit.rice.mapper.LoadMapper;
 import io.github.nichetoolkit.rice.service.advice.BuilderAdvice;
 import io.github.nichetoolkit.rice.service.advice.SaveAdvice;
@@ -46,7 +46,7 @@ import java.util.List;
  */
 @SuppressWarnings("RedundantThrows")
 @Slf4j
-public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<I>, F extends IdFilter<I>>
+public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I>, F extends IdFilter<I>>
         implements InitializingBean, ApplicationContextAware, OptionalService<I, M>, ServiceAdvice<I, F>, SaveAdvice<I, M> {
 
     private static ApplicationContext applicationContext;
@@ -55,7 +55,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
 
     protected ConsumerActuator<M> updateActuator;
 
-    protected SupperMapper<E, I> supperMapper;
+    protected SuperMapper<E, I> supperMapper;
 
     private String simpleName;
 
@@ -67,7 +67,7 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
 
     @Override
     public void setApplicationContext(@NonNull ApplicationContext applicationContext) throws BeansException {
-        SupperService.applicationContext = applicationContext;
+        SuperService.applicationContext = applicationContext;
     }
 
     @SuppressWarnings(value = "unchecked")
@@ -99,24 +99,24 @@ public abstract class SupperService<I, M extends IdModel<I>, E extends IdEntity<
         String lowerBeanName = firstCase.toLowerCase().concat(otherCase);
         RestService service = this.getClass().getAnnotation(RestService.class);
         if (GeneralUtils.isNotEmpty(service)) {
-            Class<? extends SupperMapper> mapper = service.mapper();
-            if (SupperMapper.class.isAssignableFrom(mapper)) {
+            Class<? extends SuperMapper> mapper = service.mapper();
+            if (SuperMapper.class.isAssignableFrom(mapper)) {
                 this.supperMapper = applicationContext.getBean(mapper);
             }
         } else {
             try {
                 String mapperName = commonBeanName.concat("Mapper");
-                this.supperMapper = applicationContext.getBean(mapperName, SupperMapper.class);
+                this.supperMapper = applicationContext.getBean(mapperName, SuperMapper.class);
             } catch (BeansException exception) {
                 log.warn(exception.getMessage());
                 try {
                     String lowerMapperName = lowerBeanName.concat("Mapper");
-                    this.supperMapper = applicationContext.getBean(lowerMapperName, SupperMapper.class);
+                    this.supperMapper = applicationContext.getBean(lowerMapperName, SuperMapper.class);
                 } catch (BeansException exception1) {
                     exception1.printStackTrace();
                     String message = "the service and mapper name must be like 'xxxService'/'xxxServiceImpl' and 'xxxMapper'";
                     log.error(message);
-                    throw new ServiceUnknownException(SupperMapper.class.getName(), this.getClass().getName(),message,exception1);
+                    throw new ServiceUnknownException(SuperMapper.class.getName(), this.getClass().getName(),message,exception1);
                 }
             }
         }

@@ -12,7 +12,7 @@ import java.util.List;
  * @version v1.0.0
  */
 @SuppressWarnings("UnusedReturnValue")
-public interface SupperMapper<E extends IdEntity<I>,I> {
+public interface SuperMapper<E extends IdEntity<I>,I> {
 
     /*
      * Mapper的实现，关联实体映射泛型，必须放在第一个，在xxxMapper进行了多级继承的情况下，

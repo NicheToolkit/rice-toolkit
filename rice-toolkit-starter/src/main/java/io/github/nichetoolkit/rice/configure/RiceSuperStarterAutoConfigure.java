@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rice"})
-public class RiceSupperStarterAutoConfigure {
-    public RiceSupperStarterAutoConfigure() {
+public class RiceSuperStarterAutoConfigure {
+    public RiceSuperStarterAutoConfigure() {
         log.debug("================= rice-supper-toolkit-starter initiated ！ ===================");
     }
 }

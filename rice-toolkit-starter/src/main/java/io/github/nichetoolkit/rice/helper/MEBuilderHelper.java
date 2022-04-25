@@ -8,7 +8,6 @@ import io.github.nichetoolkit.rest.util.CollectUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.IdEntity;
 import io.github.nichetoolkit.rice.IdModel;
-import io.github.nichetoolkit.rice.service.SupperService;
 
 import java.util.*;
 import java.util.function.Function;

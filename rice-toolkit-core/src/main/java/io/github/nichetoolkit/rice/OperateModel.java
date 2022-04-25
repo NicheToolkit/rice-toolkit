@@ -15,7 +15,6 @@ public class OperateModel implements RestOperate, Serializable {
     protected OperateType operate;
 
     public OperateModel() {
-        this.operate = OperateType.NONE;
     }
 
     public OperateModel(OperateModel.Builder builder) {
