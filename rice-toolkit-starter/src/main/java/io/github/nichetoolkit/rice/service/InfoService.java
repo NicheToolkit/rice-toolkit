@@ -39,8 +39,8 @@ public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity
                 OptionalHelper.nameRepeat(existByName,model.getName());
             }
         };
-        if (super.supperMapper instanceof InfoMapper) {
-            this.consumerMapper = (InfoMapper) super.supperMapper;
+        if (super.superMapper instanceof InfoMapper) {
+            this.consumerMapper = (InfoMapper) super.superMapper;
         }
     }
 
