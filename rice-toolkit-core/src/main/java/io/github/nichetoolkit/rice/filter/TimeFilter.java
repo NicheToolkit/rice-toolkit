@@ -33,6 +33,10 @@ public class TimeFilter<D,I> extends IdFilter<I> {
     public TimeFilter() {
     }
 
+    public TimeFilter(I id) {
+        super(id);
+    }
+
     @SuppressWarnings(value = "unchecked")
     public TimeFilter(I... ids) {
         super(ids);

@@ -39,6 +39,10 @@ public class JsonbFilter<D,I> extends TimeFilter<D,I> {
     public JsonbFilter() {
     }
 
+    public JsonbFilter(I id) {
+        super(id);
+    }
+
     @SuppressWarnings(value = "unchecked")
     public JsonbFilter(I... ids) {
         super(ids);
