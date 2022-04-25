@@ -31,6 +31,7 @@ public class NameFilter<D,I> extends JsonbFilter<D,I> {
         super(id);
     }
 
+    @SuppressWarnings(value = "unchecked")
     public NameFilter(I... ids) {
         super(ids);
     }
