@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,10 +38,16 @@ public class RiceLoginResponseInterceptor implements ResponseBodyAdvice {
 
     private final List<RiceLoginInterceptor> loginInterceptors;
 
+    @Autowired
+    public RiceLoginResponseInterceptor() {
+        this.loginInterceptors = new ArrayList<>();
+    }
+
     @Autowired(required = false)
     public RiceLoginResponseInterceptor(List<RiceLoginInterceptor> loginInterceptors) {
         this.loginInterceptors = loginInterceptors;
     }
+
 
     @Override
     public boolean supports(@NonNull MethodParameter returnType, @NonNull Class converterType) {

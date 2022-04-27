@@ -17,6 +17,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,7 +29,12 @@ import java.util.List;
 @Component
 public class RiceUserArgumentResolver implements HandlerMethodArgumentResolver {
 
-    private List<RiceUserAdvice> userAdvices;
+    private final List<RiceUserAdvice> userAdvices;
+
+    @Autowired
+    public RiceUserArgumentResolver() {
+        this.userAdvices = new ArrayList<>();
+    }
 
     @Autowired(required = false)
     public RiceUserArgumentResolver(List<RiceUserAdvice> userAdvices) {

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.AsyncHandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,11 +30,19 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
     private final RiceLoginProperties loginProperties;
     private final List<RiceLoginInterceptor> loginInterceptors;
 
+    @Autowired
+    public RiceLoginRequestInterceptor(RiceLoginProperties loginProperties) {
+        this.loginProperties = loginProperties;
+        this.loginInterceptors = new ArrayList<>();
+    }
+
     @Autowired(required = false)
-    public RiceLoginRequestInterceptor(RiceLoginProperties loginProperties, List<RiceLoginInterceptor> loginInterceptors) {
+    public RiceLoginRequestInterceptor( RiceLoginProperties loginProperties,List<RiceLoginInterceptor> loginInterceptors) {
         this.loginProperties = loginProperties;
         this.loginInterceptors = loginInterceptors;
+
     }
+
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
