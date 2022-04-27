@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * <p>RiceLoginResult</p>
  * @author Cyan (snow22314@outlook.com)
@@ -12,7 +14,7 @@ import lombok.Data;
 @Data
 @JsonInclude(value= JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RiceLoginResult<T extends RiceLoginResult<T>> {
+public class RiceLoginResult<T extends RiceLoginResult<T>> implements Serializable {
 
     private String accessToken;
 
