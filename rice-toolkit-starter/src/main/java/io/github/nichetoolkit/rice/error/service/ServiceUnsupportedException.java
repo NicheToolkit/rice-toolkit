@@ -1,6 +1,7 @@
-package io.github.nichetoolkit.rice.error;
+package io.github.nichetoolkit.rice.error.service;
 
 import io.github.nichetoolkit.rest.error.natives.ServiceErrorException;
+import io.github.nichetoolkit.rice.error.ServiceErrorStatus;
 
 /**
  * <p>ServiceUnsupportedException</p>

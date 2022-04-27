@@ -15,7 +15,7 @@ import io.github.nichetoolkit.rice.clazz.ClazzHelper;
 import io.github.nichetoolkit.rice.configure.RiceBeanKeyProperties;
 import io.github.nichetoolkit.rice.configure.RiceBeanNameProperties;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.error.ServiceUnknownException;
+import io.github.nichetoolkit.rice.error.service.ServiceUnknownException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
 import io.github.nichetoolkit.rice.mapper.SuperMapper;

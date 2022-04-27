@@ -9,17 +9,16 @@ import lombok.Getter;
  * @version v1.0.0
  */
 @Getter
-public enum ServiceErrorStatus implements RestStatus {
-    SERVICE_REALIZATION_ERROR(10402,"the service must implement the interface of 'IdFilterService'"),
-    SERVICE_ANNOTATION_ERROR(10403,"the service must use the annotation of '@RestService'"),
-    SERVICE_UNKNOWN_ERROR(10404,"the service has unknown error "),
-    SERVICE_UNSUPPORTED_ERROR(10405,"the service method is unsupported"),
+public enum LoginErrorStatus implements RestStatus {
+    ACCESS_ERROR(10501,"the service access has error"),
+    NO_PERMISSION_ACCESS(10502,"the service is no permission to access"),
+    INVALID_TOKEN_PREFIX(10503,"the token prefix is invalid")
     ;
 
     private final Integer status;
     private final String message;
 
-    ServiceErrorStatus(Integer status, String message) {
+    LoginErrorStatus(Integer status, String message) {
         this.status = status;
         this.message = message;
     }

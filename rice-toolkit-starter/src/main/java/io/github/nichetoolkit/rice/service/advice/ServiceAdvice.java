@@ -1,7 +1,7 @@
 package io.github.nichetoolkit.rice.service.advice;
 
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rice.error.ServiceUnsupportedException;
+import io.github.nichetoolkit.rice.error.service.ServiceUnsupportedException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 
 /**
