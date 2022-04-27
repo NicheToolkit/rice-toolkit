@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rest.helper.RestRequestHelper;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
-import io.github.nichetoolkit.rice.error.login.InvalidTokenException;
+import io.github.nichetoolkit.rice.error.login.TokenPrefixInvalidException;
 import io.github.nichetoolkit.rice.helper.LoginTokenHelper;
 import io.github.nichetoolkit.rice.stereotype.*;
 import lombok.extern.slf4j.Slf4j;
@@ -107,7 +107,7 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
         return isAllow;
     }
     
-    private void checkTokePrefix(RestCheck restCheck, RestRequestWrapper requestWrapper) throws InvalidTokenException {
+    private void checkTokePrefix(RestCheck restCheck, RestRequestWrapper requestWrapper) throws TokenPrefixInvalidException {
         if (restCheck == null) {
             return;
         }
@@ -131,7 +131,7 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
                 }
             }
         }
-        throw new InvalidTokenException();
+        throw new TokenPrefixInvalidException();
     }
 
     private void handleResult(boolean isHandle, RestRequestWrapper request, HttpServletResponse response) {
