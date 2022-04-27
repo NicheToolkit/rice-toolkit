@@ -9,18 +9,18 @@ import lombok.Getter;
  * @version v1.0.0
  */
 @Getter
-public enum LoginErrorStatus implements RestStatus {
+public enum TokenErrorStatus implements RestStatus {
     TOKEN_INVALID_ERROR(10500,"the access token is invalid"),
-    ACCESS_ERROR(10501,"the service access has error"),
-    NO_PERMISSION_ACCESS(10502,"the service is no permission to access"),
-    TOKEN_PREFIX_INVALID(10503,"the token prefix is invalid")
+    TOKEN_ACCESS_ERROR(10501,"the access token has error"),
+    TOKEN_ACCESS_NO_PERMISSION(10502,"the access token is no permission to access"),
+    TOKEN_PREFIX_INVALID(10503,"the access token prefix is invalid")
 
     ;
 
     private final Integer status;
     private final String message;
 
-    LoginErrorStatus(Integer status, String message) {
+    TokenErrorStatus(Integer status, String message) {
         this.status = status;
         this.message = message;
     }

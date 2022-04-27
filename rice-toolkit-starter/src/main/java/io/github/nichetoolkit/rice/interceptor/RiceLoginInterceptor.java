@@ -5,7 +5,7 @@ import io.github.nichetoolkit.rest.RestResult;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rice.RestMap;
 import io.github.nichetoolkit.rice.constant.LoginConstants;
-import io.github.nichetoolkit.rice.error.login.NoPermissionException;
+import io.github.nichetoolkit.rice.error.login.TokenNoPermissionException;
 import io.github.nichetoolkit.rice.helper.LoginTokenHelper;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.method.HandlerMethod;
@@ -67,7 +67,7 @@ public interface RiceLoginInterceptor {
         }
         List<String> tokenList = LoginTokenHelper.getHeaderToken(request, headerTokens);
         if (tokenList.isEmpty()) {
-           throw new NoPermissionException();
+           throw new TokenNoPermissionException();
         }
         //todo 后面可以在这里校验token是否存在redis中
         return true;
