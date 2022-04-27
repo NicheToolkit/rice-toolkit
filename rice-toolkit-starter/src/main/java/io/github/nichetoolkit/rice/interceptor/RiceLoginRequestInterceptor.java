@@ -40,7 +40,6 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
     public RiceLoginRequestInterceptor( RiceLoginProperties loginProperties,List<RiceLoginInterceptor> loginInterceptors) {
         this.loginProperties = loginProperties;
         this.loginInterceptors = loginInterceptors;
-
     }
 
 

@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @version v1.0.0
  */
 @Component
-@ConfigurationProperties(prefix = "nichetoolkit.rest.login")
+@ConfigurationProperties(prefix = "nichetoolkit.rice.login")
 public class RiceLoginProperties {
     private Boolean enabled = false;
     /**
