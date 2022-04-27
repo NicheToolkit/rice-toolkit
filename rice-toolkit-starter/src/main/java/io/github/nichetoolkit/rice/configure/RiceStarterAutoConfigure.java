@@ -46,7 +46,6 @@ public class RiceStarterAutoConfigure implements InitializingBean {
     public void afterPropertiesSet(){
         if (loginProperties.getEnabled()) {
             resolveArgumentResolver();
-            log.debug("rest map argument resolver add successful!");
             LoginTokenHelper.init(loginProperties);
         }
     }
