@@ -31,7 +31,7 @@ public class RiceUserArgumentResolver implements HandlerMethodArgumentResolver {
 
     private final List<RiceUserAdvice> userAdvices;
 
-    @Autowired
+    @Autowired(required = false)
     public RiceUserArgumentResolver() {
         this.userAdvices = new ArrayList<>();
     }

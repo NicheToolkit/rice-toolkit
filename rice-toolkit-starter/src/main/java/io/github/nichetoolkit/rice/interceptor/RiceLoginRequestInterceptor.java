@@ -30,7 +30,7 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
     private final RiceLoginProperties loginProperties;
     private final List<RiceLoginInterceptor> loginInterceptors;
 
-    @Autowired
+    @Autowired(required = false)
     public RiceLoginRequestInterceptor(RiceLoginProperties loginProperties) {
         this.loginProperties = loginProperties;
         this.loginInterceptors = new ArrayList<>();

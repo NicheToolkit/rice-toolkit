@@ -38,7 +38,7 @@ public class RiceLoginResponseInterceptor implements ResponseBodyAdvice {
 
     private final List<RiceLoginInterceptor> loginInterceptors;
 
-    @Autowired
+    @Autowired(required = false)
     public RiceLoginResponseInterceptor() {
         this.loginInterceptors = new ArrayList<>();
     }
