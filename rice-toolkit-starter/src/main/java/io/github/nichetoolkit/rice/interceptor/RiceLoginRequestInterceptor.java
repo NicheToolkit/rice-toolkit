@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rest.helper.RestRequestHelper;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
-import io.github.nichetoolkit.rice.error.login.TokenPrefixInvalidException;
+import io.github.nichetoolkit.rice.error.token.TokenPrefixInvalidException;
 import io.github.nichetoolkit.rice.helper.LoginTokenHelper;
 import io.github.nichetoolkit.rice.stereotype.*;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package io.github.nichetoolkit.rice.error.login;
+package io.github.nichetoolkit.rice.error.token;
 
 import io.github.nichetoolkit.rest.error.natives.TokenErrorException;
 import io.github.nichetoolkit.rice.error.TokenErrorStatus;
