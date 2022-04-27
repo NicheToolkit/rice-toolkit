@@ -50,24 +50,27 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
             return true;
         }
         /** 接口不存在就不需要执行拦截逻辑 */
-        String packageName = ((HandlerMethod) handler).getBean().getClass().getName();
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        Class<?> methodBeanType = handlerMethod.getBeanType();
+        String packageName = handlerMethod.getBean().getClass().getName();
         String springbootError = "org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController";
         if (packageName.contains(springbootError)) {
             return false;
         }
-        if (((HandlerMethod) handler).hasMethodAnnotation(RestSkip.class)) {
+        if (handlerMethod.hasMethodAnnotation(RestSkip.class)
+                || GeneralUtils.isNotEmpty(methodBeanType.getAnnotation(RestSkip.class))) {
             return true;
         }
         /** 登录注解 */
-        RestLogin restLogin = ((HandlerMethod) handler).getMethodAnnotation(RestLogin.class);
+        RestLogin restLogin = handlerMethod.getMethodAnnotation(RestLogin.class);
         /** 授权码注解 */
-        RestAuth restAuth = ((HandlerMethod) handler).getMethodAnnotation(RestAuth.class);
+        RestAuth restAuth = handlerMethod.getMethodAnnotation(RestAuth.class);
         /** 如果登录注解和授权码注解都不为空，说明是使用授权码登录的接口，这里就需要调自定义的拦截器的检验授权码方法 */
         if (GeneralUtils.isNotEmpty(restLogin) && GeneralUtils.isNotEmpty(restAuth)) {
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
             if (GeneralUtils.isNotEmpty(loginInterceptors)) {
                 for (RiceLoginInterceptor loginInterceptor : loginInterceptors) {
-                    if (!loginInterceptor.checkAuthValue(requestWrapper, response, (HandlerMethod) handler)) {
+                    if (!loginInterceptor.checkAuthValue(requestWrapper, response, handlerMethod)) {
                         /** 只要有一个拦截器不通过就直接拦截 */
                         handleResult(false, requestWrapper, response);
                         return false;
@@ -77,12 +80,12 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
 
         }
         /** 授权访问注解 */
-        RestAccess restAccess = ((HandlerMethod) handler).getMethodAnnotation(RestAccess.class);
+        RestAccess restAccess = handlerMethod.getMethodAnnotation(RestAccess.class);
         if (GeneralUtils.isNotEmpty(restLogin) && restAccess != null) {
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
             if (GeneralUtils.isNotEmpty(loginInterceptors)) {
                 for (RiceLoginInterceptor loginInterceptor : loginInterceptors) {
-                    if (!loginInterceptor.checkAccessAuth(requestWrapper, response, (HandlerMethod) handler)) {
+                    if (!loginInterceptor.checkAccessAuth(requestWrapper, response, handlerMethod)) {
                         /** 只要有一个拦截器不通过就直接拦截 */
                         handleResult(false, requestWrapper, response);
                         return false;
@@ -94,7 +97,7 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
         if (GeneralUtils.isNotEmpty(restLogin)) {
             return true;
         }
-        RestCheck restCheck = ((HandlerMethod) handler).getMethodAnnotation(RestCheck.class);
+        RestCheck restCheck = handlerMethod.getMethodAnnotation(RestCheck.class);
         RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
         /** 校验token前缀 */
         checkTokePrefix(restCheck, requestWrapper);
@@ -102,7 +105,7 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
         boolean isAllow = false;
         if (GeneralUtils.isNotEmpty(loginInterceptors)) {
             for (RiceLoginInterceptor loginInterceptor : loginInterceptors) {
-                if (!loginInterceptor.preHandle(requestWrapper, response, (HandlerMethod) handler)) {
+                if (!loginInterceptor.preHandle(requestWrapper, response, handlerMethod)) {
                     /** 只要有一个拦截器不通过就直接拦截 */
                     isAllow = false;
                     break;

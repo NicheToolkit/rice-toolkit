@@ -6,6 +6,7 @@ import io.github.nichetoolkit.rice.RestPage;
 import io.github.nichetoolkit.rice.service.SimpleService;
 import io.github.nichetoolkit.rice.simple.SimpleFilter;
 import io.github.nichetoolkit.rice.simple.SimpleModel;
+import io.github.nichetoolkit.rice.stereotype.RestSkip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@RestSkip
 @CrossOrigin
 @RestController
 @RequestMapping("/rice/simple")
