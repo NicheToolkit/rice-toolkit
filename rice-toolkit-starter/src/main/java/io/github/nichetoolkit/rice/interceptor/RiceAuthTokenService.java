@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public interface RiceAuthTokenService<T>  {
+public interface RiceAuthTokenService<T, R extends RiceLoginResult>  {
 
-    String generateToken(RestMap restMap, Object login, RiceLoginResult loginResult);
+    String generateToken(RestMap restMap, Object login, R loginResult);
 
     T checkToken(String accessToken);
 
