@@ -79,9 +79,23 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
             }
 
         }
-        /** 登录注解 */
+        /** 模块权限注解 */
+        RestModule restModule = handlerMethod.getMethodAnnotation(RestModule.class);
+        if (GeneralUtils.isNotEmpty(restLogin) && restModule != null) {
+            RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
+            if (GeneralUtils.isNotEmpty(loginInterceptors)) {
+                for (RiceLoginInterceptor loginInterceptor : loginInterceptors) {
+                    if (!loginInterceptor.checkModule(requestWrapper, response, handlerMethod)) {
+                        /** 只要有一个拦截器不通过就直接拦截 */
+                        handleResult(false, requestWrapper, response);
+                        return false;
+                    }
+                }
+            }
+        }
+        /** 权限注解  */
         RestPurview restPurview = handlerMethod.getMethodAnnotation(RestPurview.class);
-        if (GeneralUtils.isNotEmpty(restLogin) && restPurview != null) {
+        if (GeneralUtils.isNotEmpty(restLogin) && GeneralUtils.isEmpty(restModule) && restPurview != null) {
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
             if (GeneralUtils.isNotEmpty(loginInterceptors)) {
                 for (RiceLoginInterceptor loginInterceptor : loginInterceptors) {

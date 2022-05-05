@@ -1,5 +1,11 @@
 package io.github.nichetoolkit.rice.stereotype;
 
+import io.github.nichetoolkit.rest.RestArithmetic;
+import io.github.nichetoolkit.rest.RestValue;
+import io.github.nichetoolkit.rice.enums.PurviewType;
+import io.github.nichetoolkit.rice.stereotype.ignored.DefaultModuleKeyValue;
+import io.github.nichetoolkit.rice.stereotype.ignored.DefaultPurviewKeyValue;
+
 import java.lang.annotation.*;
 
 /**
@@ -13,8 +19,10 @@ import java.lang.annotation.*;
 @RestLogin
 public @interface RestPurview {
 
-    String name() default "";
-
     long value() default 0L;
+
+    PurviewType[] purviews() default {};
+
+    Class<? extends RestArithmetic> purviewType() default DefaultPurviewKeyValue.class;
 
 }
