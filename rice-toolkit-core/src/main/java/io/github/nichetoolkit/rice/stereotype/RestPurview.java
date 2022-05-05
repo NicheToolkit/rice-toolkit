@@ -1,7 +1,5 @@
 package io.github.nichetoolkit.rice.stereotype;
 
-import io.github.nichetoolkit.rest.RestArithmetic;
-
 import java.lang.annotation.*;
 
 /**
@@ -18,7 +16,5 @@ public @interface RestPurview {
     String name() default "";
 
     long value() default 0L;
-
-    Class<? extends RestArithmetic> type() default RestArithmetic.class;
 
 }
