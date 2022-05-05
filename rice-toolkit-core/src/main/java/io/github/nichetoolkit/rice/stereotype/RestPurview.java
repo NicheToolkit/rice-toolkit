@@ -2,10 +2,7 @@ package io.github.nichetoolkit.rice.stereotype;
 
 import io.github.nichetoolkit.rest.RestArithmetic;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * <p>RestPurview</p>
@@ -14,7 +11,8 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.METHOD,ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@RestUser
+@Documented
+@RestLogin
 public @interface RestPurview {
 
     String name() default "";

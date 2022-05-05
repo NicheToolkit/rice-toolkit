@@ -2,13 +2,10 @@ package io.github.nichetoolkit.rice.configure;
 
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.interceptor.RiceLoginRequestInterceptor;
-import io.github.nichetoolkit.rice.resolver.RicePurviewArgumentResolver;
 import io.github.nichetoolkit.rice.resolver.RiceUserArgumentResolver;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -31,14 +28,12 @@ import java.util.List;
 public class RiceLoginAutoConfigure implements WebMvcConfigurer {
 
     private final RiceUserArgumentResolver userArgumentResolver;
-    private final RicePurviewArgumentResolver purviewArgumentResolver;
     private final RiceLoginRequestInterceptor loginRequestInterceptor;
     private final RiceLoginProperties loginProperties;
 
     @Autowired
-    public RiceLoginAutoConfigure(RiceUserArgumentResolver userArgumentResolver, RicePurviewArgumentResolver purviewArgumentResolver, RiceLoginRequestInterceptor loginRequestInterceptor, RiceLoginProperties loginProperties) {
+    public RiceLoginAutoConfigure(RiceUserArgumentResolver userArgumentResolver, RiceLoginRequestInterceptor loginRequestInterceptor, RiceLoginProperties loginProperties) {
         this.userArgumentResolver = userArgumentResolver;
-        this.purviewArgumentResolver = purviewArgumentResolver;
         this.loginRequestInterceptor = loginRequestInterceptor;
         this.loginProperties = loginProperties;
     }
@@ -46,7 +41,6 @@ public class RiceLoginAutoConfigure implements WebMvcConfigurer {
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(userArgumentResolver);
-        resolvers.add(purviewArgumentResolver);
     }
 
     @Override
