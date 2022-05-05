@@ -202,6 +202,8 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
 
     protected abstract M createModel(E entity) throws RestException;
 
+    protected void refresh() throws RestException {}
+
     public M create(M model) throws RestException {
         return create(model, (I[]) null);
     }
@@ -218,6 +220,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         String message = "creating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
         OptionalHelper.create(result, message, simpleName);
         this.afterCreate(model);
+        this.refresh();
         return model;
     }
 
@@ -236,7 +239,8 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         Integer result = superMapper.save(entity);
         String message = "updating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
         OptionalHelper.update(result, message, simpleName);
-        this.afterUppdate(model);
+        this.afterUpdate(model);
+        this.refresh();
         return model;
     }
 
@@ -256,6 +260,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         String message = "saving method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
         OptionalHelper.save(result, message, simpleName);
         this.afterSave(model);
+        this.refresh();
         return model;
     }
 
@@ -274,6 +279,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         String message = "saveAll method has error with " + simpleName + ": " + JsonUtils.parseJson(modelList);
         OptionalHelper.saveAll(comparer, message, simpleName);
         this.afterSaveAll(modelList);
+        this.refresh();
         return new ArrayList<>(modelList);
     }
 
@@ -283,6 +289,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return;
         }
         superMapper.operateById(id, operate.getKey());
+        this.refresh();
     }
 
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
@@ -291,6 +298,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return;
         }
         superMapper.operateAll(idList,operate.getKey());
+        this.refresh();
     }
 
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
@@ -299,6 +307,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return;
         }
         superMapper.alertById(id, keyType.getKey());
+        this.refresh();
     }
 
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
@@ -307,6 +316,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return;
         }
         superMapper.alertAll(idList, keyType.getKey());
+        this.refresh();
     }
 
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
@@ -315,6 +325,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return;
         }
         superMapper.removeById(id);
+        this.refresh();
     }
 
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
@@ -323,6 +334,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return;
         }
         superMapper.removeAll(idList);
+        this.refresh();
     }
 
     @Override
@@ -332,6 +344,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return;
         }
         superMapper.deleteById(id);
+        this.refresh();
     }
 
     @Override
@@ -341,6 +354,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return;
         }
         superMapper.deleteAll(idList);
+        this.refresh();
     }
 
     @Override
@@ -434,6 +448,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         String whereSql = deleteWhereSql(filter);
         if (GeneralUtils.isNotEmpty(whereSql)) {
             superMapper.deleteAllByWhere(whereSql);
+            this.refresh();
         }
     }
 

@@ -17,7 +17,7 @@ public interface SaveAdvice<I,M extends IdModel<I>> {
         afterSave(model);
     }
 
-    default void afterUppdate(M model) throws RestException {
+    default void afterUpdate(M model) throws RestException {
         afterSave(model);
     }
 
