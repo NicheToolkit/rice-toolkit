@@ -31,18 +31,28 @@ public class LoginTokenHelper {
     }
 
     public static List<String> getHeaderToken(HttpServletRequest request, List<String> headerTokens) {
-        List<String> list = new ArrayList<>(2);
+        List<String> tokenPrefixes = LOGIN_PROPERTIES.getTokenPrefixes();
+        List<String> tokenList = new ArrayList<>(2);
         for (String tokenName : headerTokens) {
             if (GeneralUtils.isEmpty(tokenName)) {
                 continue;
             }
             String token = request.getHeader(tokenName);
             if (GeneralUtils.isNotEmpty(token)) {
-                list.add(token);
+                if (GeneralUtils.isNotEmpty(tokenPrefixes)) {
+                    for (String tokenPrefix : tokenPrefixes) {
+                        if (token.startsWith(tokenPrefix)) {
+                            token = token.replaceFirst(tokenPrefix,"").trim();
+                            tokenList.add(token);
+                        }
+                    }
+                } else {
+                    tokenList.add(token);
+                }
                 break;
             }
         }
-        return list;
+        return tokenList;
     }
 
     public static List<String> getHeaderToken(HttpServletRequest request) {
