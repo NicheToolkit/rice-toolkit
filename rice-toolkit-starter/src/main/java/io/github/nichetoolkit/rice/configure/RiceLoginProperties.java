@@ -4,10 +4,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -59,6 +56,14 @@ public class RiceLoginProperties {
 
     public void setTokenPrefixes(String... tokenPrefixes) {
         this.tokenPrefixes = tokenPrefixes;
+    }
+
+    public void setTokenPrefixes(Collection<String> tokenPrefixes) {
+        if (GeneralUtils.isNotEmpty(tokenPrefixes)) {
+            String[] prefixArray= new String[tokenPrefixes.size()];
+            tokenPrefixes.toArray(prefixArray);
+            this.tokenPrefixes = prefixArray;
+        }
     }
 
     public List<String> getSkipUrls() {

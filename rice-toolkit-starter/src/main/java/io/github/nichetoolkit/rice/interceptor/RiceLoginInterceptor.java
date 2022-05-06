@@ -74,11 +74,10 @@ public interface RiceLoginInterceptor {
         if (headerTokens.isEmpty()) {
             return true;
         }
-        List<String> tokenList = LoginTokenHelper.getHeaderToken(request, headerTokens);
+        List<String> tokenList = LoginTokenHelper.getHeaderToken(request, headerTokens,false);
         if (tokenList.isEmpty()) {
            throw new TokenNoPermissionException();
         }
-        //todo 后面可以在这里校验token是否存在redis中
         return true;
     }
 

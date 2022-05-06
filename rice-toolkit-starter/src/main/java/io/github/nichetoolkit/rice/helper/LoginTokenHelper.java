@@ -23,14 +23,14 @@ public class LoginTokenHelper {
         if (request == null) {
             return null;
         }
-        List<String> tokenList = getHeaderToken(request);
+        List<String> tokenList = getHeaderToken(request,true);
         if (tokenList.isEmpty()) {
             return null;
         }
         return tokenList.get(0);
     }
 
-    public static List<String> getHeaderToken(HttpServletRequest request, List<String> headerTokens) {
+    public static List<String> getHeaderToken(HttpServletRequest request, List<String> headerTokens, boolean removePrefix) {
         List<String> tokenPrefixes = LOGIN_PROPERTIES.getTokenPrefixes();
         List<String> tokenList = new ArrayList<>(2);
         for (String tokenName : headerTokens) {
@@ -39,7 +39,7 @@ public class LoginTokenHelper {
             }
             String token = request.getHeader(tokenName);
             if (GeneralUtils.isNotEmpty(token)) {
-                if (GeneralUtils.isNotEmpty(tokenPrefixes)) {
+                if (removePrefix && GeneralUtils.isNotEmpty(tokenPrefixes)) {
                     for (String tokenPrefix : tokenPrefixes) {
                         if (token.startsWith(tokenPrefix)) {
                             token = token.replaceFirst(tokenPrefix,"").trim();
@@ -55,11 +55,11 @@ public class LoginTokenHelper {
         return tokenList;
     }
 
-    public static List<String> getHeaderToken(HttpServletRequest request) {
+    public static List<String> getHeaderToken(HttpServletRequest request, boolean removePrefix) {
         List<String> headerTokens = LOGIN_PROPERTIES.getHeaderTokens();
         if (headerTokens.isEmpty()) {
             return new ArrayList<>(0);
         }
-        return getHeaderToken(request, headerTokens);
+        return getHeaderToken(request, headerTokens,removePrefix);
     }
 }

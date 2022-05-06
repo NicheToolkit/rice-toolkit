@@ -152,7 +152,7 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
         if (headerTokens.isEmpty()) {
             return;
         }
-        List<String> tokenList = LoginTokenHelper.getHeaderToken(requestWrapper, headerTokens);
+        List<String> tokenList = LoginTokenHelper.getHeaderToken(requestWrapper, headerTokens,false);
         if (tokenList.isEmpty()) {
             return;
         }
@@ -167,6 +167,8 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
         /** 没有配置token前缀，不进行校验 */
         if (GeneralUtils.isEmpty(prefixList) ) {
             return;
+        } else {
+            loginProperties.setTokenPrefixes(prefixList);
         }
         /** 遍历获取到的token和配置的token前缀，只要有一个token是以配置的前缀开头，则放行 */
         for (String token : tokenList) {
