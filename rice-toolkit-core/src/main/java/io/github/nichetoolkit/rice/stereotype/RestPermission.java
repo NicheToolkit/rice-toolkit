@@ -16,7 +16,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface RestPermission {
 
-    long value() default 0L;
+    long permission() default 0L;
 
     PermissionType[] permissions() default {};
 

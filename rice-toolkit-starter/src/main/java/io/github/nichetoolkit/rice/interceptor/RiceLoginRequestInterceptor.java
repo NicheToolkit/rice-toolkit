@@ -85,8 +85,9 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
             return true;
         }
         /** 模块权限注解 */
-        RestModule restModule = handlerMethod.getMethodAnnotation(RestModule.class);
-        if (GeneralUtils.isNotEmpty(restModule)) {
+        RestModule methodRestModule = handlerMethod.getMethodAnnotation(RestModule.class);
+        RestModule beanRestModule = methodBeanType.getAnnotation(RestModule.class);
+        if (GeneralUtils.isNotEmpty(methodRestModule) || GeneralUtils.isNotEmpty(beanRestModule)) {
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
             if (GeneralUtils.isNotEmpty(loginInterceptors)) {
                 for (RiceLoginInterceptor loginInterceptor : loginInterceptors) {
@@ -99,8 +100,26 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
             }
         }
         /** 权限注解  */
-        RestPermission restPermission = handlerMethod.getMethodAnnotation(RestPermission.class);
-        if (GeneralUtils.isEmpty(restModule) && GeneralUtils.isNotEmpty(restPermission)) {
+        RestActor methodRestActor = handlerMethod.getMethodAnnotation(RestActor.class);
+        RestActor beanRestActor = methodBeanType.getAnnotation(RestActor.class);
+        if (GeneralUtils.isEmpty(methodRestModule) && GeneralUtils.isEmpty(beanRestModule)
+                && (GeneralUtils.isNotEmpty(methodRestActor) || GeneralUtils.isNotEmpty(beanRestActor) )) {
+            RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
+            if (GeneralUtils.isNotEmpty(loginInterceptors)) {
+                for (RiceLoginInterceptor loginInterceptor : loginInterceptors) {
+                    if (!loginInterceptor.checkActor(requestWrapper, response, handlerMethod)) {
+                        /** 只要有一个拦截器不通过就直接拦截 */
+                        handleResult(false, requestWrapper, response);
+                        return false;
+                    }
+                }
+            }
+        }
+        /** 权限注解  */
+        RestPermission methodRestPermission = handlerMethod.getMethodAnnotation(RestPermission.class);
+        RestPermission beanRestPermission = methodBeanType.getAnnotation(RestPermission.class);
+        if (GeneralUtils.isEmpty(methodRestActor) && GeneralUtils.isEmpty(beanRestActor)
+                && (GeneralUtils.isNotEmpty(methodRestPermission) || GeneralUtils.isNotEmpty(beanRestPermission) )) {
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
             if (GeneralUtils.isNotEmpty(loginInterceptors)) {
                 for (RiceLoginInterceptor loginInterceptor : loginInterceptors) {
