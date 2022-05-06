@@ -54,7 +54,7 @@ public interface RiceLoginInterceptor {
         return true;
     }
 
-    default boolean checkPurview(RestRequestWrapper request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
+    default boolean checkPermission(RestRequestWrapper request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
         return true;
     }
 

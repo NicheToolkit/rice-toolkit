@@ -2,9 +2,9 @@ package io.github.nichetoolkit.rice.stereotype;
 
 import io.github.nichetoolkit.rest.RestArithmetic;
 import io.github.nichetoolkit.rest.RestValue;
-import io.github.nichetoolkit.rice.enums.PurviewType;
+import io.github.nichetoolkit.rice.enums.PermissionType;
 import io.github.nichetoolkit.rice.stereotype.ignored.DefaultModuleKeyValue;
-import io.github.nichetoolkit.rice.stereotype.ignored.DefaultPurviewKeyValue;
+import io.github.nichetoolkit.rice.stereotype.ignored.DefaultPermissionKeyValue;
 import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.*;
@@ -17,7 +17,7 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD,ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@RestPurview
+@RestPermission
 public @interface RestModule {
 
     @AliasFor("name")
@@ -29,22 +29,22 @@ public @interface RestModule {
     Class<? extends RestValue<String,Long>> moduleType() default DefaultModuleKeyValue.class;
 
     @AliasFor(
-            annotation = io.github.nichetoolkit.rice.stereotype.RestPurview.class,
+            annotation = RestPermission.class,
             attribute = "value"
     )
     long value() default 0L;
 
     @AliasFor(
-            annotation = io.github.nichetoolkit.rice.stereotype.RestPurview.class,
-            attribute = "purviews"
+            annotation = RestPermission.class,
+            attribute = "permissions"
     )
-    PurviewType[] purviews() default {};
+    PermissionType[] permissions() default {};
 
     @AliasFor(
-            annotation = io.github.nichetoolkit.rice.stereotype.RestPurview.class,
-            attribute = "purviewType"
+            annotation = RestPermission.class,
+            attribute = "permissionType"
     )
-    Class<? extends RestArithmetic> purviewType() default DefaultPurviewKeyValue.class;
+    Class<? extends RestArithmetic> permissionType() default DefaultPermissionKeyValue.class;
 
 
 }

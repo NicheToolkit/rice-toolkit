@@ -3,11 +3,11 @@ package io.github.nichetoolkit.rice.stereotype.ignored;
 import io.github.nichetoolkit.rest.RestArithmetic;
 
 /**
- * <p>DefaultModuleKeyValue</p>
+ * <p>DefaultPermissionKeyValue</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public class DefaultPurviewKeyValue implements RestArithmetic {
+public class DefaultPermissionKeyValue implements RestArithmetic {
     @Override
     public String getValue() {
         return null;

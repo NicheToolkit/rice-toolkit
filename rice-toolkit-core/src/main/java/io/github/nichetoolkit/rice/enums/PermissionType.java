@@ -12,7 +12,7 @@ import java.util.Optional;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public enum PurviewType implements RestArithmetic {
+public enum PermissionType implements RestArithmetic {
     /** 无操作 */
     DEFAULT_NONE(0L,"无操作",0L),
     /** 数据新增 */
@@ -37,7 +37,7 @@ public enum PurviewType implements RestArithmetic {
     private final String value;
     private final Long arithmetic;
 
-    PurviewType(Long key, String value, Long arithmetic) {
+    PermissionType(Long key, String value, Long arithmetic) {
         this.key = key;
         this.value = value;
         this.arithmetic = arithmetic;
@@ -61,18 +61,18 @@ public enum PurviewType implements RestArithmetic {
 
 
     @JsonCreator
-    public static PurviewType parseKey(Long key) {
-        PurviewType sortTypeEnum = RestValue.parseKey(PurviewType.class, key);
-        return Optional.ofNullable(sortTypeEnum).orElse(PurviewType.DEFAULT_NONE);
+    public static PermissionType parseKey(Long key) {
+        PermissionType sortTypeEnum = RestValue.parseKey(PermissionType.class, key);
+        return Optional.ofNullable(sortTypeEnum).orElse(PermissionType.DEFAULT_NONE);
     }
 
-    public static PurviewType parseValue(String value) {
-        PurviewType sortTypeEnum = RestValue.parseValue(PurviewType.class, value);
-        return Optional.ofNullable(sortTypeEnum).orElse(PurviewType.DEFAULT_NONE);
+    public static PermissionType parseValue(String value) {
+        PermissionType sortTypeEnum = RestValue.parseValue(PermissionType.class, value);
+        return Optional.ofNullable(sortTypeEnum).orElse(PermissionType.DEFAULT_NONE);
     }
 
-    public static PurviewType parseArithmetic(Long arithmetic) {
-        PurviewType typeEnum = RestArithmetic.parseArithmetic(PurviewType.class, arithmetic);
-        return Optional.ofNullable(typeEnum).orElse(PurviewType.DEFAULT_NONE);
+    public static PermissionType parseArithmetic(Long arithmetic) {
+        PermissionType typeEnum = RestArithmetic.parseArithmetic(PermissionType.class, arithmetic);
+        return Optional.ofNullable(typeEnum).orElse(PermissionType.DEFAULT_NONE);
     }
 }
