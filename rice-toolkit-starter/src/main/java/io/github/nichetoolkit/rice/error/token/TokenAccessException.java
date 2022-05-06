@@ -4,26 +4,26 @@ import io.github.nichetoolkit.rest.error.natives.TokenErrorException;
 import io.github.nichetoolkit.rice.error.TokenErrorStatus;
 
 /**
- * <p>ServiceAccessException</p>
+ * <p>TokenAccessException</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public class TokenAccessErrorException extends TokenErrorException {
+public class TokenAccessException extends TokenErrorException {
 
-    public TokenAccessErrorException() {
+    public TokenAccessException() {
         super(TokenErrorStatus.TOKEN_ACCESS_ERROR);
     }
 
-    public TokenAccessErrorException(String service) {
+    public TokenAccessException(String service) {
         super(service, TokenErrorStatus.TOKEN_ACCESS_ERROR);
     }
 
-    public TokenAccessErrorException(String service, String error) {
+    public TokenAccessException(String service, String error) {
         super(service, TokenErrorStatus.TOKEN_ACCESS_ERROR, error);
     }
 
     @Override
-    public TokenAccessErrorException get() {
-        return new TokenAccessErrorException();
+    public TokenAccessException get() {
+        return new TokenAccessException();
     }
 }

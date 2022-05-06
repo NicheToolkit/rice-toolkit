@@ -14,12 +14,12 @@ public class TokenInvalidException extends TokenErrorException {
         super(TokenErrorStatus.TOKEN_INVALID_ERROR);
     }
 
-    public TokenInvalidException(String service) {
-        super(service, TokenErrorStatus.TOKEN_INVALID_ERROR);
+    public TokenInvalidException(String token) {
+        super(token, TokenErrorStatus.TOKEN_INVALID_ERROR);
     }
 
-    public TokenInvalidException(String service, String error) {
-        super(service, TokenErrorStatus.TOKEN_INVALID_ERROR, error);
+    public TokenInvalidException(String token, String error) {
+        super(token, TokenErrorStatus.TOKEN_INVALID_ERROR, error);
     }
 
     @Override

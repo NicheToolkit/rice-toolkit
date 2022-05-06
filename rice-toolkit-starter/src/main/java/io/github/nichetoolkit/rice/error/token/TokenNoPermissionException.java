@@ -4,22 +4,22 @@ import io.github.nichetoolkit.rest.error.natives.TokenErrorException;
 import io.github.nichetoolkit.rice.error.TokenErrorStatus;
 
 /**
- * <p>ServiceAccessException</p>
+ * <p>TokenNoPermissionException</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
 public class TokenNoPermissionException extends TokenErrorException {
 
     public TokenNoPermissionException() {
-        super(TokenErrorStatus.TOKEN_ACCESS_NO_PERMISSION);
+        super(TokenErrorStatus.TOKEN_NO_PERMISSION);
     }
 
-    public TokenNoPermissionException(String service) {
-        super(service, TokenErrorStatus.TOKEN_ACCESS_NO_PERMISSION);
+    public TokenNoPermissionException(String permission) {
+        super(permission, TokenErrorStatus.TOKEN_NO_PERMISSION);
     }
 
-    public TokenNoPermissionException(String service, String error) {
-        super(service, TokenErrorStatus.TOKEN_ACCESS_NO_PERMISSION, error);
+    public TokenNoPermissionException(String permission, String error) {
+        super(permission, TokenErrorStatus.TOKEN_NO_PERMISSION, error);
     }
 
     @Override
