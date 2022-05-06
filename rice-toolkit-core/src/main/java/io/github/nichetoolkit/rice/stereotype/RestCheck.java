@@ -11,5 +11,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface RestCheck {
-    String[] prefix() default {};
+    String[] prefixes() default {};
 }

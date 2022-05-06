@@ -42,6 +42,12 @@
       "description": "login enabled."
     },
     {
+      "name": "nichetoolkit.rice.login.token-prefixes",
+      "type": "java.lang.String[]",
+      "sourceType": "java.lang.String[]",
+      "description": "login token prefixes."
+    },
+    {
       "name": "nichetoolkit.rice.login.skip-urls",
       "type": "java.lang.String[]",
       "sourceType": "java.lang.String[]",

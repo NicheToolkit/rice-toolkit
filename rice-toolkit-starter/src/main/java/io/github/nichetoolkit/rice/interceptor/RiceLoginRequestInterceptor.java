@@ -17,6 +17,7 @@ import org.springframework.web.servlet.AsyncHandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -147,13 +148,6 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
     }
     
     private void checkTokePrefix(RestCheck restCheck, RestRequestWrapper requestWrapper) throws TokenPrefixInvalidException {
-        if (restCheck == null) {
-            return;
-        }
-        /** 没有配置token前缀，不进行校验 */
-        if (GeneralUtils.isEmpty(restCheck.prefix())) {
-            return;
-        }
         List<String> headerTokens = loginProperties.getHeaderTokens();
         if (headerTokens.isEmpty()) {
             return;
@@ -162,9 +156,21 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
         if (tokenList.isEmpty()) {
             return;
         }
+        List<String> prefixList = new ArrayList<>();
+        List<String> tokenPrefixes = loginProperties.getTokenPrefixes();
+        if (GeneralUtils.isNotEmpty(tokenPrefixes) ) {
+            prefixList.addAll(tokenPrefixes);
+        }
+        if (GeneralUtils.isNotEmpty(restCheck) && GeneralUtils.isNotEmpty(restCheck.prefixes())) {
+            prefixList.addAll(Arrays.asList(restCheck.prefixes()));
+        }
+        /** 没有配置token前缀，不进行校验 */
+        if (GeneralUtils.isEmpty(prefixList) ) {
+            return;
+        }
         /** 遍历获取到的token和配置的token前缀，只要有一个token是以配置的前缀开头，则放行 */
         for (String token : tokenList) {
-            for (String prefix : restCheck.prefix()) {
+            for (String prefix : prefixList) {
                 if (token.startsWith(prefix)) {
                     return;
                 }

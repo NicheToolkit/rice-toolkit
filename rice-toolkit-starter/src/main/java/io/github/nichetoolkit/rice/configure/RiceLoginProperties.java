@@ -19,6 +19,9 @@ import java.util.concurrent.TimeUnit;
 @ConfigurationProperties(prefix = "nichetoolkit.rice.login")
 public class RiceLoginProperties {
     private Boolean enabled = false;
+
+    /** 自定义token前缀 */
+    private String[] tokenPrefixes;
     /**
      * 不需要进行登录拦截的url
      */
@@ -45,6 +48,17 @@ public class RiceLoginProperties {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public List<String> getTokenPrefixes() {
+        if (GeneralUtils.isNotEmpty(this.tokenPrefixes)) {
+            return new ArrayList<>(Arrays.asList(tokenPrefixes));
+        }
+        return Collections.emptyList();
+    }
+
+    public void setTokenPrefixes(String... tokenPrefixes) {
+        this.tokenPrefixes = tokenPrefixes;
     }
 
     public List<String> getSkipUrls() {
