@@ -14,7 +14,6 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD,ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@RestLogin
 public @interface RestPermission {
 
     long value() default 0L;
