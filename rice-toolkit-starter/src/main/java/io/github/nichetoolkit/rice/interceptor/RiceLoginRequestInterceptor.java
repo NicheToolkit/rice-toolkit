@@ -80,9 +80,13 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
             }
 
         }
+        /** 登录接口、创建授权码接口是开放的 */
+        if (GeneralUtils.isNotEmpty(restLogin)) {
+            return true;
+        }
         /** 模块权限注解 */
         RestModule restModule = handlerMethod.getMethodAnnotation(RestModule.class);
-        if (GeneralUtils.isNotEmpty(restLogin) && restModule != null) {
+        if (GeneralUtils.isNotEmpty(restModule)) {
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
             if (GeneralUtils.isNotEmpty(loginInterceptors)) {
                 for (RiceLoginInterceptor loginInterceptor : loginInterceptors) {
@@ -96,7 +100,7 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
         }
         /** 权限注解  */
         RestPermission restPermission = handlerMethod.getMethodAnnotation(RestPermission.class);
-        if (GeneralUtils.isNotEmpty(restLogin) && GeneralUtils.isEmpty(restModule) && restPermission != null) {
+        if (GeneralUtils.isEmpty(restModule) && GeneralUtils.isNotEmpty(restPermission)) {
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
             if (GeneralUtils.isNotEmpty(loginInterceptors)) {
                 for (RiceLoginInterceptor loginInterceptor : loginInterceptors) {
@@ -110,7 +114,7 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
         }
         /** 授权访问注解 */
         RestAccess restAccess = handlerMethod.getMethodAnnotation(RestAccess.class);
-        if (GeneralUtils.isNotEmpty(restLogin) && restAccess != null) {
+        if (GeneralUtils.isNotEmpty(restAccess)) {
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
             if (GeneralUtils.isNotEmpty(loginInterceptors)) {
                 for (RiceLoginInterceptor loginInterceptor : loginInterceptors) {
@@ -121,10 +125,6 @@ public class RiceLoginRequestInterceptor implements AsyncHandlerInterceptor {
                     }
                 }
             }
-        }
-        /** 登录接口、创建授权码接口是开放的 */
-        if (GeneralUtils.isNotEmpty(restLogin)) {
-            return true;
         }
         RestCheck restCheck = handlerMethod.getMethodAnnotation(RestCheck.class);
         RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);

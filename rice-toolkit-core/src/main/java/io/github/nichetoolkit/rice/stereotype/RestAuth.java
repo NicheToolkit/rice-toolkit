@@ -12,5 +12,5 @@ import java.lang.annotation.*;
 @Documented
 @RestLogin
 public @interface RestAuth {
-    String name() default "auth";
+    String name() default "Rest-Auth";
 }

@@ -7,7 +7,7 @@ import java.lang.annotation.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@Target({ElementType.METHOD,ElementType.TYPE})
+@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface RestLogout {

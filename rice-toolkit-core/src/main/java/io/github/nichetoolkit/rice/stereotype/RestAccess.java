@@ -10,7 +10,6 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD,ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@RestLogin
 public @interface RestAccess {
-    String name() default "REST-ACCESS";
+    String name() default "Rest-Access";
 }
