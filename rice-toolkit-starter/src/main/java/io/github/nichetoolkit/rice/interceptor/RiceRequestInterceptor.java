@@ -4,6 +4,7 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.helper.RestRequestHelper;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.helper.InterceptorHelper;
 import io.github.nichetoolkit.rice.stereotype.RestAccess;
 import io.github.nichetoolkit.rice.stereotype.RestCheck;
 import io.github.nichetoolkit.rice.stereotype.RestSkip;
@@ -40,7 +41,7 @@ public interface RiceRequestInterceptor extends AsyncHandlerInterceptor {
         if (handlerMethod.getBean().getClass().getName().contains(BASIC_ERROR)) {
             return false;
         }
-        if (supports(RestSkip.class,handlerMethod)) {
+        if (InterceptorHelper.supports(RestSkip.class,handlerMethod)) {
             return true;
         }
         beforeHandle(httpServletRequest,httpServletResponse,handlerMethod);
@@ -49,23 +50,6 @@ public interface RiceRequestInterceptor extends AsyncHandlerInterceptor {
         }
         afterHandle(httpServletRequest,httpServletResponse,handlerMethod);
         return true;
-    }
-
-    default <T extends Annotation> boolean supports(Class<T> annotationType, HandlerMethod handlerMethod) throws RestException {
-        return handlerMethod.hasMethodAnnotation(annotationType) || GeneralUtils.isNotEmpty(handlerMethod.getBeanType().getAnnotation(annotationType));
-    }
-
-    default <T extends Annotation> T annotation(Class<T> annotationType, HandlerMethod handlerMethod) throws RestException {
-        Class<?> beanType = handlerMethod.getBeanType();
-        T beanAnnotation = beanType.getAnnotation(annotationType);
-        T methodAnnotation = handlerMethod.getMethodAnnotation(annotationType);
-        T annotation;
-        if (GeneralUtils.isNotEmpty(methodAnnotation)) {
-            annotation = methodAnnotation;
-        } else {
-            annotation = beanAnnotation;
-        }
-        return annotation;
     }
 
     default void beforeHandle(HttpServletRequest request, HttpServletResponse response,HandlerMethod handlerMethod) throws RestException {

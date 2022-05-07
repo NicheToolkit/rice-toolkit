@@ -1,9 +1,12 @@
 package io.github.nichetoolkit.rice.helper;
 
+import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
+import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +15,28 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public class LoginTokenHelper {
+public class InterceptorHelper {
     private static RiceLoginProperties LOGIN_PROPERTIES;
 
     public static void init(RiceLoginProperties loginProperties) {
         LOGIN_PROPERTIES = loginProperties;
+    }
+
+    public static <A extends Annotation> boolean supports(Class<A> annotationType, HandlerMethod handlerMethod) throws RestException {
+        return handlerMethod.hasMethodAnnotation(annotationType) || GeneralUtils.isNotEmpty(handlerMethod.getBeanType().getAnnotation(annotationType));
+    }
+
+    public static <A extends Annotation> A annotation(Class<A> annotationType, HandlerMethod handlerMethod) throws RestException {
+        Class<?> beanType = handlerMethod.getBeanType();
+        A beanAnnotation = beanType.getAnnotation(annotationType);
+        A methodAnnotation = handlerMethod.getMethodAnnotation(annotationType);
+        A annotation;
+        if (GeneralUtils.isNotEmpty(methodAnnotation)) {
+            annotation = methodAnnotation;
+        } else {
+            annotation = beanAnnotation;
+        }
+        return annotation;
     }
 
     public static String getRequestToken(HttpServletRequest request) {

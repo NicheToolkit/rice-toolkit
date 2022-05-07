@@ -6,7 +6,7 @@ import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rice.RestMap;
 import io.github.nichetoolkit.rice.constant.LoginConstants;
 import io.github.nichetoolkit.rice.error.token.TokenNoPermissionException;
-import io.github.nichetoolkit.rice.helper.LoginTokenHelper;
+import io.github.nichetoolkit.rice.helper.InterceptorHelper;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.method.HandlerMethod;
 
@@ -58,7 +58,7 @@ public interface RiceLoginAdvice {
         if (headerTokens.isEmpty()) {
             return true;
         }
-        List<String> tokenList = LoginTokenHelper.getHeaderToken(request, headerTokens,false);
+        List<String> tokenList = InterceptorHelper.getHeaderToken(request, headerTokens,false);
         if (tokenList.isEmpty()) {
            throw new TokenNoPermissionException();
         }

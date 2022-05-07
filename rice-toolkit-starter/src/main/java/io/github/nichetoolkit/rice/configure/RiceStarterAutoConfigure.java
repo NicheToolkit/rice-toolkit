@@ -1,7 +1,7 @@
 package io.github.nichetoolkit.rice.configure;
 
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.helper.LoginTokenHelper;
+import io.github.nichetoolkit.rice.helper.InterceptorHelper;
 import io.github.nichetoolkit.rice.resolver.RiceMapArgumentResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
@@ -47,7 +47,7 @@ public class RiceStarterAutoConfigure implements InitializingBean {
     public void afterPropertiesSet() {
         if (loginProperties.getEnabled()) {
             resolveArgumentResolver();
-            LoginTokenHelper.init(loginProperties);
+            InterceptorHelper.init(loginProperties);
         }
     }
 

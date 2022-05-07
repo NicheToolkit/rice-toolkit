@@ -7,7 +7,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
 import io.github.nichetoolkit.rice.error.service.ServiceUnauthorizedException;
 import io.github.nichetoolkit.rice.error.token.TokenPrefixInvalidException;
-import io.github.nichetoolkit.rice.helper.LoginTokenHelper;
+import io.github.nichetoolkit.rice.helper.InterceptorHelper;
 import io.github.nichetoolkit.rice.interceptor.advice.RiceLoginAdvice;
 import io.github.nichetoolkit.rice.stereotype.RestCheck;
 import lombok.extern.slf4j.Slf4j;
@@ -75,7 +75,7 @@ public class RiceLoginInterceptor implements RiceRequestInterceptor {
         if (headerTokens.isEmpty()) {
             return;
         }
-        List<String> tokenList = LoginTokenHelper.getHeaderToken(requestWrapper, headerTokens,false);
+        List<String> tokenList = InterceptorHelper.getHeaderToken(requestWrapper, headerTokens,false);
         if (tokenList.isEmpty()) {
             return;
         }
