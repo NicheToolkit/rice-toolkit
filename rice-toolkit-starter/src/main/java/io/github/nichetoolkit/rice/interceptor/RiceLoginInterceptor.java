@@ -1,96 +1,110 @@
 package io.github.nichetoolkit.rice.interceptor;
 
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rest.RestResult;
+import io.github.nichetoolkit.rest.helper.RestRequestHelper;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
-import io.github.nichetoolkit.rice.RestMap;
-import io.github.nichetoolkit.rice.constant.LoginConstants;
-import io.github.nichetoolkit.rice.error.token.TokenNoPermissionException;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
+import io.github.nichetoolkit.rice.error.service.ServiceAnnotationException;
+import io.github.nichetoolkit.rice.error.service.ServiceUnauthorizedException;
+import io.github.nichetoolkit.rice.error.token.TokenPrefixInvalidException;
 import io.github.nichetoolkit.rice.helper.LoginTokenHelper;
-import org.springframework.core.MethodParameter;
+import io.github.nichetoolkit.rice.interceptor.advice.RiceLoginAdvice;
+import io.github.nichetoolkit.rice.stereotype.RestCheck;
+import io.github.nichetoolkit.rice.stereotype.RestSkip;
+import io.github.nichetoolkit.rice.stereotype.login.RestAuth;
+import io.github.nichetoolkit.rice.stereotype.login.RestLogin;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.method.HandlerMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
- * <p>RiceLoginInterceptor 自定义登录用户信息参数解析器</p>
- * 登录模块自定义拦截器接口，实现类需要以注解或者其它形式将自己加到到Spring容器中
- * 支持拦截需要进行登录校验的每个请求
- * 支持拦截登录、登出接口响应，修改登录接口响应报文，登出接口响应不支持修改
- * 支持多个拦截器 只支持拦截Spring MVC管理的接口
+ * <p>RiceLoginInterceptor</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
-
  */
-@SuppressWarnings({"unused"})
-public interface RiceLoginInterceptor {
+@Slf4j
+@Component
+public class RiceLoginInterceptor implements RiceRequestInterceptor {
+    private final RiceLoginProperties loginProperties;
+    private final List<RiceLoginAdvice> loginInterceptors;
 
-    default Object authValue(RestRequestWrapper request, Object body, MethodParameter returnType, RestMap restMap) throws RestException {
-        return null;
+    @Autowired(required = false)
+    public RiceLoginInterceptor(RiceLoginProperties loginProperties) {
+        this.loginProperties = loginProperties;
+        this.loginInterceptors = new ArrayList<>();
     }
 
-    default Object pending(RestRequestWrapper request, Object body, MethodParameter returnType, RestMap restMap) throws RestException {
-        return null;
+    @Autowired(required = false)
+    public RiceLoginInterceptor(RiceLoginProperties loginProperties, List<RiceLoginAdvice> loginInterceptors) {
+        this.loginProperties = loginProperties;
+        this.loginInterceptors = loginInterceptors;
     }
 
-    default Object login(RestRequestWrapper request, Object body, MethodParameter returnType, RestMap restMap) throws RestException {
-        return null;
+    @Override
+    public void afterHandle(HttpServletRequest request, HttpServletResponse response,HandlerMethod handlerMethod) throws RestException {
+        RestCheck restCheck = handlerMethod.getMethodAnnotation(RestCheck.class);
+        RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
+        /** 校验token前缀 */
+        checkTokePrefix(restCheck, requestWrapper);
+        /** 使用自定义拦截器进行校验，默认进行拦截 */
+        boolean isAllow = false;
+        if (GeneralUtils.isNotEmpty(loginInterceptors)) {
+            for (RiceLoginAdvice loginInterceptor : loginInterceptors) {
+                if (!loginInterceptor.preHandle(requestWrapper, response, handlerMethod)) {
+                    /** 只要有一个拦截器不通过就直接拦截 */
+                    isAllow = false;
+                    break;
+                } else {
+                    isAllow = true;
+                }
+            }
+        }
+        if (!isAllow) {
+            throw new ServiceUnauthorizedException();
+        }
     }
-
-    default void logout(RestRequestWrapper request, Object body, MethodParameter returnType, RestMap restMap) throws RestException {
-    }
-
-
-    default boolean checkAccessAuth(RestRequestWrapper request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
-        return true;
-    }
-
-    default boolean checkAuthValue(RestRequestWrapper request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
-        return true;
-    }
-
-    default boolean checkModule(RestRequestWrapper request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
-        return true;
-    }
-
-    default boolean checkActor(RestRequestWrapper request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
-        return true;
-    }
-
-    default boolean checkPermission(RestRequestWrapper request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
-        return true;
-    }
-
-
-    boolean preHandle(RestRequestWrapper request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException;
-
-
-    default Object afterHandle(RestRequestWrapper request, Object body, MethodParameter returnType, RestMap restMap) throws RestException {
-        return null;
-    }
-
-    default boolean checkResponse(Object body) throws RestException {
-        return (!(body instanceof RestResult)) || !((RestResult) body).isSuccess();
-    }
-
-    default boolean checkHeader(RestRequestWrapper request, List<String> headerTokens) throws RestException {
+    
+    private void checkTokePrefix(RestCheck restCheck, RestRequestWrapper requestWrapper) throws TokenPrefixInvalidException {
+        List<String> headerTokens = loginProperties.getHeaderTokens();
         if (headerTokens.isEmpty()) {
-            return true;
+            return;
         }
-        List<String> tokenList = LoginTokenHelper.getHeaderToken(request, headerTokens,false);
+        List<String> tokenList = LoginTokenHelper.getHeaderToken(requestWrapper, headerTokens,false);
         if (tokenList.isEmpty()) {
-           throw new TokenNoPermissionException();
+            return;
         }
-        return true;
-    }
-
-    default boolean isSkipApi(RestRequestWrapper request, HandlerMethod handlerMethod) throws RestException {
-        String packageName = handlerMethod.getBean().getClass().getName();
-        if (packageName.startsWith(LoginConstants.SKIP_API_PACKAGE)) {
-            return true;
+        List<String> prefixList = new ArrayList<>();
+        List<String> tokenPrefixes = loginProperties.getTokenPrefixes();
+        if (GeneralUtils.isNotEmpty(tokenPrefixes) ) {
+            prefixList.addAll(tokenPrefixes);
         }
-        Object skipApiRequestFlag = request.getAttribute(LoginConstants.SKIP_API_REQUEST_FORWARD_FLAG);
-        return skipApiRequestFlag != null;
+        if (GeneralUtils.isNotEmpty(restCheck) && GeneralUtils.isNotEmpty(restCheck.prefixes())) {
+            prefixList.addAll(Arrays.asList(restCheck.prefixes()));
+        }
+        /** 没有配置token前缀，不进行校验 */
+        if (GeneralUtils.isEmpty(prefixList) ) {
+            return;
+        } else {
+            loginProperties.setTokenPrefixes(prefixList);
+        }
+        /** 遍历获取到的token和配置的token前缀，只要有一个token是以配置的前缀开头，则放行 */
+        for (String token : tokenList) {
+            for (String prefix : prefixList) {
+                if (token.startsWith(prefix)) {
+                    return;
+                }
+            }
+        }
+        throw new TokenPrefixInvalidException();
     }
 }

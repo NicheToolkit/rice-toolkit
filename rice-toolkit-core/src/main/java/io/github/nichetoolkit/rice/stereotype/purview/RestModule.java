@@ -1,4 +1,4 @@
-package io.github.nichetoolkit.rice.stereotype;
+package io.github.nichetoolkit.rice.stereotype.purview;
 
 import io.github.nichetoolkit.rest.RestArithmetic;
 import io.github.nichetoolkit.rest.RestValue;

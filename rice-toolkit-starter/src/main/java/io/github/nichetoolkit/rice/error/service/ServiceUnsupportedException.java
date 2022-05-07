@@ -22,7 +22,7 @@ public class ServiceUnsupportedException extends ServiceErrorException {
     }
 
     @Override
-    public ServiceUnknownException get() {
-        return new ServiceUnknownException();
+    public ServiceUnsupportedException get() {
+        return new ServiceUnsupportedException();
     }
 }

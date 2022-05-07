@@ -6,6 +6,7 @@ import io.github.nichetoolkit.rice.resolver.RiceMapArgumentResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.annotation.MapMethodProcessor;
@@ -23,6 +24,7 @@ import java.util.List;
 @Slf4j
 @Configuration
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rice"})
+@ImportAutoConfiguration(value = {RiceInterceptorAutoConfigure.class})
 public class RiceStarterAutoConfigure implements InitializingBean {
     private final RiceLoginProperties loginProperties;
 
@@ -32,9 +34,8 @@ public class RiceStarterAutoConfigure implements InitializingBean {
 
     @Autowired
     public RiceStarterAutoConfigure(RiceLoginProperties loginProperties,
-                                  RequestMappingHandlerAdapter requestMappingHandlerAdapter,
-                                  RiceMapArgumentResolver mapArgumentResolver
-    ) {
+                                    RequestMappingHandlerAdapter requestMappingHandlerAdapter,
+                                    RiceMapArgumentResolver mapArgumentResolver) {
 
         this.loginProperties = loginProperties;
         this.requestMappingHandlerAdapter = requestMappingHandlerAdapter;
@@ -43,7 +44,7 @@ public class RiceStarterAutoConfigure implements InitializingBean {
     }
 
     @Override
-    public void afterPropertiesSet(){
+    public void afterPropertiesSet() {
         if (loginProperties.getEnabled()) {
             resolveArgumentResolver();
             LoginTokenHelper.init(loginProperties);

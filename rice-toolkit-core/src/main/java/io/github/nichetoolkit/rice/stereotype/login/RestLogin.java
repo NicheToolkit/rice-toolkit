@@ -1,4 +1,4 @@
-package io.github.nichetoolkit.rice.stereotype;
+package io.github.nichetoolkit.rice.stereotype.login;
 
 import org.springframework.stereotype.Indexed;
 
@@ -9,7 +9,7 @@ import java.lang.annotation.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@Target({ElementType.METHOD,ElementType.TYPE})
+@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Indexed

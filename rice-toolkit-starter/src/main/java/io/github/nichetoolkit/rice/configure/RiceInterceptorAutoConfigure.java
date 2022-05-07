@@ -1,7 +1,8 @@
 package io.github.nichetoolkit.rice.configure;
 
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.interceptor.RiceLoginRequestInterceptor;
+import io.github.nichetoolkit.rice.interceptor.RiceRequestInterceptor;
+import io.github.nichetoolkit.rice.interceptor.advice.RiceAccessAdvice;
 import io.github.nichetoolkit.rice.resolver.RiceUserArgumentResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistration
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,17 +27,25 @@ import java.util.List;
 @SuppressWarnings("SameNameButDifferent")
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rest"})
 @ConditionalOnProperty(value = "nichetoolkit.rice.login.enabled", havingValue = "true")
-public class RiceLoginAutoConfigure implements WebMvcConfigurer {
+public class RiceInterceptorAutoConfigure implements WebMvcConfigurer {
 
     private final RiceUserArgumentResolver userArgumentResolver;
-    private final RiceLoginRequestInterceptor loginRequestInterceptor;
+    private final List<RiceRequestInterceptor> requestInterceptors;
     private final RiceLoginProperties loginProperties;
 
-    @Autowired
-    public RiceLoginAutoConfigure(RiceUserArgumentResolver userArgumentResolver, RiceLoginRequestInterceptor loginRequestInterceptor, RiceLoginProperties loginProperties) {
+    @Autowired(required = false)
+    public RiceInterceptorAutoConfigure(RiceUserArgumentResolver userArgumentResolver,  RiceLoginProperties loginProperties) {
         this.userArgumentResolver = userArgumentResolver;
-        this.loginRequestInterceptor = loginRequestInterceptor;
+        this.requestInterceptors = new ArrayList<>();
         this.loginProperties = loginProperties;
+    }
+
+    @Autowired(required = false)
+    public RiceInterceptorAutoConfigure(RiceUserArgumentResolver userArgumentResolver, List<RiceRequestInterceptor> requestInterceptors, RiceLoginProperties loginProperties) {
+        this.userArgumentResolver = userArgumentResolver;
+        this.requestInterceptors = requestInterceptors;
+        this.loginProperties = loginProperties;
+        log.debug("request interceptors size: {}",requestInterceptors.size());
     }
 
     @Override
@@ -45,13 +55,21 @@ public class RiceLoginAutoConfigure implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        InterceptorRegistration registration = registry.addInterceptor(loginRequestInterceptor);
         List<String> skipUrls = loginProperties.getSkipUrls();
-        if (GeneralUtils.isNotEmpty(skipUrls)) {
-            for (String url : skipUrls) {
-                registration.excludePathPatterns(url);
+        if (GeneralUtils.isNotEmpty(requestInterceptors)) {
+            for (RiceRequestInterceptor requestInterceptor : requestInterceptors) {
+                InterceptorRegistration registration = registry.addInterceptor(requestInterceptor);
+                if (GeneralUtils.isNotEmpty(skipUrls)) {
+                    for (String url : skipUrls) {
+                        registration.excludePathPatterns(url);
+                    }
+                }
             }
         }
+
+
+
+
     }
 
 }

@@ -1,15 +1,14 @@
-package io.github.nichetoolkit.rice.stereotype;
+package io.github.nichetoolkit.rice.stereotype.login;
 
 import java.lang.annotation.*;
 
 /**
- * <p>RestCheck 校验注解</p>
+ * <p>RestLogout</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface RestCheck {
-    String[] prefixes() default {};
+public @interface RestLogout {
 }

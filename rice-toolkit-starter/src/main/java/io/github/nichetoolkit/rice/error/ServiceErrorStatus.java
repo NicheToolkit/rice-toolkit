@@ -14,6 +14,7 @@ public enum ServiceErrorStatus implements RestStatus {
     SERVICE_ANNOTATION_ERROR(10403,"the service must use the annotation of '@RestService'"),
     SERVICE_UNKNOWN_ERROR(10404,"the service has unknown error "),
     SERVICE_UNSUPPORTED_ERROR(10405,"the service method is unsupported"),
+    SERVICE_UNAUTHORIZED_ERROR(10406,"the service method is unauthorized"),
     ;
 
     private final Integer status;

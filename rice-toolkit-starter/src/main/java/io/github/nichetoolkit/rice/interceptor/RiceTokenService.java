@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletRequest;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public interface RiceAuthTokenService<T, R extends RiceLoginResult> {
+public interface RiceTokenService<T, R extends RiceLoginResult> {
 
-    String generateToken(RestMap restMap, Object login, R loginResult) throws RestException;
+    String token(RestMap restMap, Object login, R loginResult) throws RestException;
 
-    T checkToken(String accessToken) throws RestException;
+    T check(String token) throws RestException;
 
     T userInfo() throws RestException;
 

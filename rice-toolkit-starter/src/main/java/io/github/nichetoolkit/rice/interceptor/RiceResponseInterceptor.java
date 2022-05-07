@@ -5,11 +5,12 @@ import io.github.nichetoolkit.rest.helper.RestRequestHelper;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestMap;
+import io.github.nichetoolkit.rice.interceptor.advice.RiceLoginAdvice;
 import io.github.nichetoolkit.rice.resolver.RiceMapArgumentResolver;
-import io.github.nichetoolkit.rice.stereotype.RestAuth;
-import io.github.nichetoolkit.rice.stereotype.RestLogin;
-import io.github.nichetoolkit.rice.stereotype.RestLogout;
-import io.github.nichetoolkit.rice.stereotype.RestPending;
+import io.github.nichetoolkit.rice.stereotype.login.RestAuth;
+import io.github.nichetoolkit.rice.stereotype.login.RestLogin;
+import io.github.nichetoolkit.rice.stereotype.login.RestLogout;
+import io.github.nichetoolkit.rice.stereotype.login.RestPending;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
@@ -34,17 +35,17 @@ import java.util.List;
 @Slf4j
 @Order(1)
 @ControllerAdvice
-public class RiceLoginResponseInterceptor implements ResponseBodyAdvice {
+public class RiceResponseInterceptor implements ResponseBodyAdvice {
 
-    private final List<RiceLoginInterceptor> loginInterceptors;
+    private final List<RiceLoginAdvice> loginInterceptors;
 
     @Autowired(required = false)
-    public RiceLoginResponseInterceptor() {
+    public RiceResponseInterceptor() {
         this.loginInterceptors = new ArrayList<>();
     }
 
     @Autowired(required = false)
-    public RiceLoginResponseInterceptor(List<RiceLoginInterceptor> loginInterceptors) {
+    public RiceResponseInterceptor(List<RiceLoginAdvice> loginInterceptors) {
         this.loginInterceptors = loginInterceptors;
     }
 
@@ -91,7 +92,7 @@ public class RiceLoginResponseInterceptor implements ResponseBodyAdvice {
             restAuth = requestWrapper.getMethodAnnotation(RestAuth.class);
         }
         if (GeneralUtils.isNotEmpty(loginInterceptors)) {
-            for (RiceLoginInterceptor loginInterceptor : loginInterceptors) {
+            for (RiceLoginAdvice loginInterceptor : loginInterceptors) {
                 try {
                     if (GeneralUtils.isNotEmpty(restLogout)) {
                         /** 登出接口拦截 */
@@ -117,7 +118,7 @@ public class RiceLoginResponseInterceptor implements ResponseBodyAdvice {
                     /** 拦截创建授权码接口一定要放在拦截登录接口后面 */
                     if (GeneralUtils.isNotEmpty(restAuth)) {
                         /** 授权码接口拦截 */
-                        Object authResult = loginInterceptor.authValue(requestWrapper, body, returnType, restMap);
+                        Object authResult = loginInterceptor.auth(requestWrapper, body, returnType, restMap);
                         if (GeneralUtils.isNotEmpty(authResult)) {
                             return authResult;
                         }
