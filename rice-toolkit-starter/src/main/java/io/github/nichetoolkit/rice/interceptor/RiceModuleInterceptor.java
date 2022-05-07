@@ -4,6 +4,7 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.helper.RestRequestHelper;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.helper.InterceptorHelper;
 import io.github.nichetoolkit.rice.interceptor.advice.RiceModuleAdvice;
 import io.github.nichetoolkit.rice.stereotype.purview.RestModule;
 import lombok.extern.slf4j.Slf4j;
@@ -34,8 +35,8 @@ public class RiceModuleInterceptor implements RiceRequestInterceptor {
 
     @Override
     public void afterHandle(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
-        if (supports(RestModule.class,handlerMethod)) {
-            RestModule restModule = annotation(RestModule.class, handlerMethod);
+        if (InterceptorHelper.supports(RestModule.class,handlerMethod)) {
+            RestModule restModule = InterceptorHelper.annotation(RestModule.class, handlerMethod);
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
             if (GeneralUtils.isNotEmpty(moduleAdvices)) {
                 for (RiceModuleAdvice moduleAdvice : moduleAdvices) {

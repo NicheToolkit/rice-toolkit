@@ -4,6 +4,7 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.helper.RestRequestHelper;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.helper.InterceptorHelper;
 import io.github.nichetoolkit.rice.interceptor.advice.RiceActorAdvice;
 import io.github.nichetoolkit.rice.stereotype.purview.RestActor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,8 +34,8 @@ public class RiceActorInterceptor implements RiceRequestInterceptor {
 
     @Override
     public void afterHandle(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
-        if (supports(RestActor.class,handlerMethod)) {
-            RestActor restActor = annotation(RestActor.class, handlerMethod);
+        if (InterceptorHelper.supports(RestActor.class,handlerMethod)) {
+            RestActor restActor = InterceptorHelper.annotation(RestActor.class, handlerMethod);
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
             if (GeneralUtils.isNotEmpty(actorAdvices)) {
                 for (RiceActorAdvice actorAdvice : actorAdvices) {

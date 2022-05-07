@@ -4,6 +4,7 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.helper.RestRequestHelper;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.helper.InterceptorHelper;
 import io.github.nichetoolkit.rice.interceptor.advice.RiceAuthAdvice;
 import io.github.nichetoolkit.rice.stereotype.login.RestAuth;
 import lombok.extern.slf4j.Slf4j;
@@ -35,8 +36,8 @@ public class RiceAuthInterceptor implements RiceRequestInterceptor {
 
     @Override
     public void beforeHandle(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
-        if (supports(RestAuth.class,handlerMethod)) {
-            RestAuth restAuth = annotation(RestAuth.class, handlerMethod);
+        if (InterceptorHelper.supports(RestAuth.class,handlerMethod)) {
+            RestAuth restAuth = InterceptorHelper.annotation(RestAuth.class, handlerMethod);
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
             if (GeneralUtils.isNotEmpty(authAdvices)) {
                 for (RiceAuthAdvice authAdvice : authAdvices) {

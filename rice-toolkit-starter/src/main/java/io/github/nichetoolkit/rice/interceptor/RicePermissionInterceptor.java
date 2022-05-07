@@ -4,6 +4,7 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.helper.RestRequestHelper;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.helper.InterceptorHelper;
 import io.github.nichetoolkit.rice.interceptor.advice.RicePermissionAdvice;
 import io.github.nichetoolkit.rice.stereotype.purview.RestPermission;
 import lombok.extern.slf4j.Slf4j;
@@ -34,8 +35,8 @@ public class RicePermissionInterceptor implements RiceRequestInterceptor {
 
     @Override
     public void afterHandle(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
-        if (supports(RestPermission.class,handlerMethod)) {
-            RestPermission restPermission = annotation(RestPermission.class, handlerMethod);
+        if (InterceptorHelper.supports(RestPermission.class,handlerMethod)) {
+            RestPermission restPermission = InterceptorHelper.annotation(RestPermission.class, handlerMethod);
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
             if (GeneralUtils.isNotEmpty(permissionAdvices)) {
                 for (RicePermissionAdvice permissionAdvice : permissionAdvices) {
