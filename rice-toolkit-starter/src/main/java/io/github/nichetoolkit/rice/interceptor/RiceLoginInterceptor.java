@@ -5,20 +5,15 @@ import io.github.nichetoolkit.rest.helper.RestRequestHelper;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
-import io.github.nichetoolkit.rice.error.service.ServiceAnnotationException;
 import io.github.nichetoolkit.rice.error.service.ServiceUnauthorizedException;
 import io.github.nichetoolkit.rice.error.token.TokenPrefixInvalidException;
 import io.github.nichetoolkit.rice.helper.LoginTokenHelper;
 import io.github.nichetoolkit.rice.interceptor.advice.RiceLoginAdvice;
 import io.github.nichetoolkit.rice.stereotype.RestCheck;
-import io.github.nichetoolkit.rice.stereotype.RestSkip;
-import io.github.nichetoolkit.rice.stereotype.login.RestAuth;
-import io.github.nichetoolkit.rice.stereotype.login.RestLogin;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +29,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
+@Order(10)
 public class RiceLoginInterceptor implements RiceRequestInterceptor {
     private final RiceLoginProperties loginProperties;
     private final List<RiceLoginAdvice> loginInterceptors;

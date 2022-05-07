@@ -8,6 +8,7 @@ import io.github.nichetoolkit.rice.interceptor.advice.RicePermissionAdvice;
 import io.github.nichetoolkit.rice.stereotype.purview.RestPermission;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
+@Order(15)
 public class RicePermissionInterceptor implements RiceRequestInterceptor {
     private final List<RicePermissionAdvice> permissionAdvices;
 

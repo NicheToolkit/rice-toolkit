@@ -8,6 +8,7 @@ import io.github.nichetoolkit.rice.interceptor.advice.RiceAuthAdvice;
 import io.github.nichetoolkit.rice.stereotype.login.RestAuth;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
+@Order(11)
 public class RiceAuthInterceptor implements RiceRequestInterceptor {
     private final List<RiceAuthAdvice> authAdvices;
 
