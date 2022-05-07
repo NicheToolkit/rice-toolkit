@@ -3,6 +3,7 @@ package io.github.nichetoolkit.rice.stereotype.purview;
 import io.github.nichetoolkit.rest.RestArithmetic;
 import io.github.nichetoolkit.rice.enums.PermissionType;
 import io.github.nichetoolkit.rice.stereotype.ignored.DefaultPermissionKeyValue;
+import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.*;
 
@@ -16,7 +17,11 @@ import java.lang.annotation.*;
 @Documented
 public @interface RestPermission {
 
+    @AliasFor("value")
     long permission() default 0L;
+
+    @AliasFor("permission")
+    long value() default 0L;
 
     PermissionType[] permissions() default {};
 
