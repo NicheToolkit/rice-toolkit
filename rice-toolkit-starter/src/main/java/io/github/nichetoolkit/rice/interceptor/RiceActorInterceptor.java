@@ -15,6 +15,7 @@ import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +28,12 @@ import java.util.List;
 @Order(14)
 public class RiceActorInterceptor implements RiceRequestInterceptor {
     private final List<RiceActorAdvice> actorAdvices;
+
+    @Autowired(required = false)
+    public RiceActorInterceptor() {
+        this.actorAdvices = new ArrayList<>();
+    }
+
     @Autowired(required = false)
     public RiceActorInterceptor(List<RiceActorAdvice> actorAdvices) {
         this.actorAdvices = actorAdvices;

@@ -15,6 +15,7 @@ import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +28,11 @@ import java.util.List;
 @Order(15)
 public class RicePermissionInterceptor implements RiceRequestInterceptor {
     private final List<RicePermissionAdvice> permissionAdvices;
+
+    @Autowired(required = false)
+    public RicePermissionInterceptor() {
+        this.permissionAdvices = new ArrayList<>();
+    }
 
     @Autowired(required = false)
     public RicePermissionInterceptor(List<RicePermissionAdvice> permissionAdvices) {
