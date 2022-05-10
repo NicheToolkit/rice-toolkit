@@ -25,6 +25,11 @@ public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
         super(id);
     }
 
+    public InfoModel(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public InfoModel(InfoModel.Builder<I> builder) {
         super(builder);
         this.name = builder.name;

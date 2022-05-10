@@ -19,6 +19,10 @@ public abstract class RiceInfoModel<M extends RiceInfoModel<M,E>,E extends RiceI
         super(id);
     }
 
+    public RiceInfoModel(String name, String description) {
+        super(name, description);
+    }
+
     public RiceInfoModel(RiceInfoModel.Builder builder) {
         super(builder);
     }
