@@ -93,14 +93,14 @@ public class PropertyHelper {
         if (GeneralUtils.isNotEmpty(value)) {
             return value.doubleValue() / scale.doubleValue();
         }
-        return 0d;
+        return null;
     }
 
     public static Long transform(Double value, Integer scale) {
         if (GeneralUtils.isNotEmpty(value)) {
             return (long) (value * scale.longValue());
         }
-        return 0L;
+        return null;
     }
 
     public static Double toDouble(Object value) {
