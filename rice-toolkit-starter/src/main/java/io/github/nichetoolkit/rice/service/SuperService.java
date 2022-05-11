@@ -214,7 +214,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(model)) {
             return null;
         }
-        OptionalCreate(model);
+        optionalCreate(model);
         E entity = entityActuator(model, idArray);
         Integer result = superMapper.save(entity);
         String message = "creating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
@@ -234,7 +234,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(model)) {
             return null;
         }
-        OptionalUpdate(model);
+        optionalUpdate(model);
         E entity = entityActuator(model, idArray);
         Integer result = superMapper.save(entity);
         String message = "updating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
@@ -254,7 +254,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(model)) {
             return null;
         }
-        OptionalSave(model);
+        optionalSave(model);
         E entity = entityActuator(model, idArray);
         Integer result = superMapper.save(entity);
         String message = "saving method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
@@ -274,7 +274,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(modelList)) {
             return Collections.emptyList();
         }
-        List<E> entityList = entityActuator(modelList, this::OptionalSave, idArray);
+        List<E> entityList = entityActuator(modelList, this::optionalSave, idArray);
         Boolean comparer = modelList.size() == superMapper.saveAll(entityList);
         String message = "saveAll method has error with " + simpleName + ": " + JsonUtils.parseJson(modelList);
         OptionalHelper.saveAll(comparer, message, simpleName);
@@ -489,7 +489,12 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         return DEFAULT_INVADE_ACTUATOR;
     }
 
-    protected void OptionalCreate(@NonNull M model) throws RestException {
+    protected void optionalInit(@NonNull M model) throws RestException {
+
+    }
+
+    protected void optionalCreate(@NonNull M model) throws RestException {
+        optionalInit(model);
         if (GeneralUtils.isEmpty(model.getId()) || !keyProperties.getInvadeEnabled()) {
             createActuator().actuate(model);
         } else {
@@ -497,13 +502,14 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
     }
 
-    protected void OptionalUpdate(@NonNull M model) throws RestException {
+    protected void optionalUpdate(@NonNull M model) throws RestException {
         OptionalHelper.idable(model.getId());
         updateActuator().actuate(model);
     }
 
-    protected void OptionalSave(@NonNull M model) throws RestException {
+    protected void optionalSave(@NonNull M model) throws RestException {
         if (GeneralUtils.isEmpty(model.getId())) {
+            optionalInit(model);
             createActuator().actuate(model);
         } else {
             updateActuator().actuate(model);
