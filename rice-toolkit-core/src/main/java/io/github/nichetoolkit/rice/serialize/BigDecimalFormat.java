@@ -21,5 +21,5 @@ import java.lang.annotation.Target;
 @JsonSerialize(using = BigDecimalSerializer.class)
 @JsonDeserialize(using = NumberDeserializers.BigDecimalDeserializer.class)
 public @interface BigDecimalFormat {
-    String value() default "###,##0.0000";
+    String value() default "0.0000";
 }
