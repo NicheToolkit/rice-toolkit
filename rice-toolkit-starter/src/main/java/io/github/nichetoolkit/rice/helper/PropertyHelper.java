@@ -106,7 +106,7 @@ public class PropertyHelper {
 
     public static BigDecimal transform(Long value, Integer scale) {
         if (GeneralUtils.isNotEmpty(value)) {
-            return new BigDecimal(value.doubleValue() / scale.doubleValue());
+            return BigDecimal.valueOf(value).divide(new BigDecimal(scale),4, BigDecimal.ROUND_HALF_UP);
         }
         return null;
     }
