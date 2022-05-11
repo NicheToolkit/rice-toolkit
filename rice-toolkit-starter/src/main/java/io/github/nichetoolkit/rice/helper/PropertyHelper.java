@@ -7,6 +7,7 @@ import io.github.nichetoolkit.rice.jsonb.Property;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -89,16 +90,30 @@ public class PropertyHelper {
         }
     }
 
-    public static Double transform(Long value, Integer scale) {
+    public static Double transforms(Long value, Integer scale) {
         if (GeneralUtils.isNotEmpty(value)) {
             return value.doubleValue() / scale.doubleValue();
         }
         return null;
     }
 
-    public static Long transform(Double value, Integer scale) {
+    public static Long transforms(Double value, Integer scale) {
         if (GeneralUtils.isNotEmpty(value)) {
             return (long) (value * scale.longValue());
+        }
+        return null;
+    }
+
+    public static BigDecimal transform(Long value, Integer scale) {
+        if (GeneralUtils.isNotEmpty(value)) {
+            return new BigDecimal(value.doubleValue() / scale.doubleValue());
+        }
+        return null;
+    }
+
+    public static Long transform(BigDecimal value, Integer scale) {
+        if (GeneralUtils.isNotEmpty(value)) {
+            return (long) (value.longValue() * scale.longValue());
         }
         return null;
     }
