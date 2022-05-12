@@ -29,6 +29,10 @@ public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity
         }
     }
 
+    protected void fieldRepeat(Boolean existByModel, M model) throws RestException {
+        OptionalHelper.fieldRepeat(existByModel, JsonUtils.parseJson(model));
+    }
+
     @SuppressWarnings(value = "unchecked")
     @Override
     public void doServiceHandle() {
@@ -39,7 +43,7 @@ public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity
             }
             if (isModelUnique()) {
                 Boolean existByModel = existByModel(model);
-                OptionalHelper.fieldRepeat(existByModel, JsonUtils.parseJson(model));
+                fieldRepeat(existByModel,model);
             }
         };
         this.updateActuator = (@NonNull M model) -> {
@@ -49,7 +53,7 @@ public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity
             }
             if (isModelUnique()) {
                 Boolean existByModel = existByModelAndNotId(model,model.getId());
-                OptionalHelper.fieldRepeat(existByModel,JsonUtils.parseJson(model));
+                fieldRepeat(existByModel,model);
             }
         };
         if (super.superMapper instanceof InfoMapper) {
