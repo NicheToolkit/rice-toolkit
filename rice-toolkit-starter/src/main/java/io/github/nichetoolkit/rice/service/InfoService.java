@@ -25,16 +25,16 @@ public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity
     @Override
     public void doServiceHandle() {
         this.createActuator = (@NonNull M model) -> {
-            if (nameProperties.getNonnullEnabled()) {
+            if (isNameNonnull()) {
                 OptionalHelper.fieldable(model.getName(), "name is null！");
             }
-            if (nameProperties.getUniqueEnabled()) {
+            if (isNameUnique()) {
                 Boolean existByName = existByName(model.getName());
                 OptionalHelper.nameRepeat(existByName, model.getName());
             }
         };
         this.updateActuator = (@NonNull M model) -> {
-            if (nameProperties.getUniqueEnabled()) {
+            if (isNameUnique()) {
                 Boolean existByName = existByNameAndNotId(model.getName(),model.getId());
                 OptionalHelper.nameRepeat(existByName,model.getName());
             }

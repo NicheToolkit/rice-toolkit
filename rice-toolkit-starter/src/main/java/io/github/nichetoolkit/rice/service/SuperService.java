@@ -489,13 +489,25 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         return DEFAULT_INVADE_ACTUATOR;
     }
 
+    protected Boolean isIdInvade() {
+        return keyProperties.getInvadeEnabled();
+    }
+
+    protected Boolean isNameNonnull() {
+        return nameProperties.getNonnullEnabled();
+    }
+
+    protected Boolean isNameUnique() {
+        return nameProperties.getUniqueEnabled();
+    }
+
     protected void optionalInit(@NonNull M model) throws RestException {
 
     }
 
     protected void optionalCreate(@NonNull M model) throws RestException {
         optionalInit(model);
-        if (GeneralUtils.isEmpty(model.getId()) || !keyProperties.getInvadeEnabled()) {
+        if (GeneralUtils.isEmpty(model.getId()) || !isIdInvade()) {
             createActuator().actuate(model);
         } else {
             invadeActuator().actuate(model);
