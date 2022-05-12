@@ -47,7 +47,7 @@ public class RiceBeanProperties {
     }
 
     public static class BeanModel{
-        private Boolean uniqueEnabled = true;
+        private Boolean uniqueEnabled = false;
 
         public BeanModel() {
         }
