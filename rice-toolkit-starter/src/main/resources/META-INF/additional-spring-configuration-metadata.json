@@ -2,13 +2,8 @@
   "groups": [
     {
       "name": "nichetoolkit.rice.bean.name",
-      "sourceType": "io.github.nichetoolkit.rice.configure.RiceBeanNameProperties",
-      "type": "io.github.nichetoolkit.rice.configure.RiceBeanNameProperties"
-    },
-    {
-      "name": "nichetoolkit.rice.bean.key",
-      "sourceType": "io.github.nichetoolkit.rice.configure.RiceBeanKeyProperties",
-      "type": "io.github.nichetoolkit.rice.configure.RiceBeanKeyProperties"
+      "sourceType": "io.github.nichetoolkit.rice.configure.RiceBeanProperties",
+      "type": "io.github.nichetoolkit.rice.configure.RiceBeanProperties"
     },
     {
       "name": "nichetoolkit.rice.login",

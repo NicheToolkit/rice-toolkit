@@ -12,8 +12,7 @@ import io.github.nichetoolkit.rice.IdEntity;
 import io.github.nichetoolkit.rice.IdModel;
 import io.github.nichetoolkit.rice.RestPage;
 import io.github.nichetoolkit.rice.clazz.ClazzHelper;
-import io.github.nichetoolkit.rice.configure.RiceBeanKeyProperties;
-import io.github.nichetoolkit.rice.configure.RiceBeanNameProperties;
+import io.github.nichetoolkit.rice.configure.RiceBeanProperties;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.error.service.ServiceUnknownException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
@@ -59,9 +58,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
 
     private String simpleName;
 
-    protected RiceBeanNameProperties nameProperties;
-
-    protected RiceBeanKeyProperties keyProperties;
+    protected RiceBeanProperties beanProperties;
 
     protected ThreadLocal<F> filterCache = new ThreadLocal<>();
 
@@ -73,17 +70,11 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     @SuppressWarnings(value = "unchecked")
     @Override
     public void afterPropertiesSet() throws Exception {
-        this.keyProperties = applicationContext.getBean(RiceBeanKeyProperties.class);
-        if (GeneralUtils.isEmpty(keyProperties)) {
-            String message = "the bean of 'RiceBeanKeyProperties' type is not found!";
-            log.warn(message);
-            keyProperties = new RiceBeanKeyProperties();
-        }
-        this.nameProperties = applicationContext.getBean(RiceBeanNameProperties.class);
-        if (GeneralUtils.isEmpty(nameProperties)) {
-            String message = "the bean of 'RiceBeanNameProperties' type is not found!";
+        this.beanProperties = applicationContext.getBean(RiceBeanProperties.class);
+        if (GeneralUtils.isEmpty(beanProperties)) {
+            String message = "the bean of 'RiceBeanProperties' type is not found!";
             log.error(message);
-            throw new ServiceUnknownException(RiceBeanNameProperties.class.getName(), this.getClass().getName(),message);
+            throw new ServiceUnknownException(RiceBeanProperties.class.getName(), this.getClass().getName(),message);
         }
         String commonBeanName;
         simpleName = this.getClass().getSimpleName();
@@ -490,15 +481,19 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     }
 
     protected Boolean isIdInvade() {
-        return keyProperties.getInvadeEnabled();
+        return beanProperties.getKey().getInvadeEnabled();
     }
 
     protected Boolean isNameNonnull() {
-        return nameProperties.getNonnullEnabled();
+        return beanProperties.getName().getNonnullEnabled();
     }
 
     protected Boolean isNameUnique() {
-        return nameProperties.getUniqueEnabled();
+        return beanProperties.getName().getUniqueEnabled();
+    }
+
+    protected Boolean isModelUnique() {
+        return beanProperties.getModel().getUniqueEnabled();
     }
 
     protected void optionalInit(@NonNull M model) throws RestException {

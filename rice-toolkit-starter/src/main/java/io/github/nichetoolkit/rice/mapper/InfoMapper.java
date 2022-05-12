@@ -25,4 +25,19 @@ public interface InfoMapper<E extends InfoEntity<I>,I> extends SuperMapper<E,I> 
      * @return List<T> 查询的数据集合
      */
     List<E> findByNameAndNotId(@Param("name") String name, @Param("id") I id);
+
+    /**
+     * 根据名称判断是否存在
+     * @param entity 对象实体
+     * @return List<T> 查询的数据集合
+     */
+    List<E> findByEntity(@Param("entity") E entity);
+
+    /**
+     * 根据id和名称判断是否存在
+     * @param entity 对象实体
+     * @param id 对象id
+     * @return List<T> 查询的数据集合
+     */
+    List<E> findByEntityAndNotId(@Param("entity") E entity, @Param("id") I id);
 }
