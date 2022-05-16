@@ -23,6 +23,11 @@ public interface SaveAdvice<I,M extends IdModel<I>> {
 
     default void beforeSave(M model) throws RestException {}
 
+    default void beforeSaveAll(Collection<M> modelList) throws RestException {
+        for (M model : modelList) {
+            beforeSave(model);
+        }
+    }
 
     default void afterCreate(M model) throws RestException {
         afterSave(model);
@@ -35,8 +40,8 @@ public interface SaveAdvice<I,M extends IdModel<I>> {
     default void afterSave(M model) throws RestException {}
 
     default void afterSaveAll(Collection<M> modelList) throws RestException {
-        for (M m : modelList) {
-            afterSave(m);
+        for (M model : modelList) {
+            afterSave(model);
         }
     }
 
