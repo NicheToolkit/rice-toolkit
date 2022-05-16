@@ -13,6 +13,17 @@ import java.util.Collection;
 @SuppressWarnings("RedundantThrows")
 public interface SaveAdvice<I,M extends IdModel<I>> {
 
+    default void beforeCreate(M model) throws RestException {
+        beforeSave(model);
+    }
+
+    default void beforeUpdate(M model) throws RestException {
+        beforeSave(model);
+    }
+
+    default void beforeSave(M model) throws RestException {}
+
+
     default void afterCreate(M model) throws RestException {
         afterSave(model);
     }

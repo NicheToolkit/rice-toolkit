@@ -206,6 +206,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return null;
         }
         optionalCreate(model);
+        this.beforeCreate(model);
         E entity = entityActuator(model, idArray);
         Integer result = superMapper.save(entity);
         String message = "creating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
@@ -226,6 +227,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return null;
         }
         optionalUpdate(model);
+        this.beforeUpdate(model);
         E entity = entityActuator(model, idArray);
         Integer result = superMapper.save(entity);
         String message = "updating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
@@ -246,6 +248,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return null;
         }
         optionalSave(model);
+        this.beforeSave(model);
         E entity = entityActuator(model, idArray);
         Integer result = superMapper.save(entity);
         String message = "saving method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
@@ -265,7 +268,10 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(modelList)) {
             return Collections.emptyList();
         }
-        List<E> entityList = entityActuator(modelList, this::optionalSave, idArray);
+        List<E> entityList = entityActuator(modelList, model -> {
+            this.beforeSave(model);
+            this.optionalSave(model);
+        }, idArray);
         Boolean comparer = modelList.size() == superMapper.saveAll(entityList);
         String message = "saveAll method has error with " + simpleName + ": " + JsonUtils.parseJson(modelList);
         OptionalHelper.saveAll(comparer, message, simpleName);
