@@ -269,8 +269,8 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return Collections.emptyList();
         }
         List<E> entityList = entityActuator(modelList, model -> {
-            this.beforeSave(model);
             this.optionalSave(model);
+            this.beforeSave(model);
         }, idArray);
         Boolean comparer = modelList.size() == superMapper.saveAll(entityList);
         String message = "saveAll method has error with " + simpleName + ": " + JsonUtils.parseJson(modelList);
