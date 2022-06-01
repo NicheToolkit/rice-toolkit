@@ -53,10 +53,11 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
     /**
      * 实体单个删除
      * @param id 实体id集合
+     * @param id 实体id集合
      * @param key 实体操作类型
      * @return Integer SQL影响行数（成功为1）
      */
-    Integer alertById(@Param("id") I id, @Param("key") Integer key);
+    Integer alertById(@Param("field") String field, @Param("id") I id, @Param("key") Integer key);
 
     /**
      * 实体批量删除
@@ -64,7 +65,7 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
      * @param key 实体操作类型
      * @return Integer SQL影响行数
      */
-    Integer alertAll(@Param("idList") Collection<I> idList, @Param("key") Integer key);
+    Integer alertAll(@Param("field") String field, @Param("idList") Collection<I> idList, @Param("key") Integer key);
 
     /**
      * 实体单个删除

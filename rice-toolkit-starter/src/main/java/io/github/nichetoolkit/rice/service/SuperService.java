@@ -313,20 +313,20 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     }
 
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertById(I id, RestKey<Integer> keyType) throws RestException {
+    public void alertById(String field, I id, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(keyType)) {
             return;
         }
-        superMapper.alertById(id, keyType.getKey());
+        superMapper.alertById(field, id, keyType.getKey());
         this.refresh();
     }
 
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertAll(Collection<I> idList, RestKey<Integer> keyType) throws RestException {
+    public void alertAll(String field, Collection<I> idList, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
-        superMapper.alertAll(idList, keyType.getKey());
+        superMapper.alertAll(field, idList, keyType.getKey());
         this.refresh();
     }
 

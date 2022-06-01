@@ -17,19 +17,21 @@ public interface AlertService<I> {
 
     /**
      * 通过id集合批量逻辑删除
+     * @param field 字段
      * @param idList 对象的id集合
      * @param keyType 对象的操作
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertAll(Collection<I> idList, RestKey<Integer> keyType) throws RestException;
+    void alertAll(String field, Collection<I> idList, RestKey<Integer> keyType) throws RestException;
 
     /**
      * 通过id单个逻辑删除
+     * @param field 字段
      * @param id 对象的id
      * @param keyType 对象的操作
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertById(I id, RestKey<Integer> keyType) throws RestException;
+    void alertById(String field, I id, RestKey<Integer> keyType) throws RestException;
 }
