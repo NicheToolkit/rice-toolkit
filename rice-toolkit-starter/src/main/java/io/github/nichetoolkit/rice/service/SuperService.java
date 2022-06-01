@@ -17,8 +17,7 @@ import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.error.service.ServiceUnknownException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
-import io.github.nichetoolkit.rice.mapper.SuperMapper;
-import io.github.nichetoolkit.rice.mapper.LoadMapper;
+import io.github.nichetoolkit.rice.mapper.*;
 import io.github.nichetoolkit.rice.service.advice.BuilderAdvice;
 import io.github.nichetoolkit.rice.service.advice.SaveAdvice;
 import io.github.nichetoolkit.rice.service.advice.ServiceAdvice;
@@ -74,7 +73,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(beanProperties)) {
             String message = "the bean of 'RiceBeanProperties' type is not found!";
             log.error(message);
-            throw new ServiceUnknownException(RiceBeanProperties.class.getName(), this.getClass().getName(),message);
+            throw new ServiceUnknownException(RiceBeanProperties.class.getName(), this.getClass().getName(), message);
         }
         String commonBeanName;
         simpleName = this.getClass().getSimpleName();
@@ -107,18 +106,19 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
                     exception1.printStackTrace();
                     String message = "the service and mapper name must be like 'xxxService'/'xxxServiceImpl' and 'xxxMapper'";
                     log.error(message);
-                    throw new ServiceUnknownException(SuperMapper.class.getName(), this.getClass().getName(),message,exception1);
+                    throw new ServiceUnknownException(SuperMapper.class.getName(), this.getClass().getName(), message, exception1);
                 }
             }
         }
         this.doServiceHandle();
     }
+
     @SuppressWarnings(value = "unchecked")
     protected E entityActuator(M model, I... idArray) throws RestException {
         E entity = this.createEntity(model);
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
-            builderAdvice.buildEntity(model,entity,idArray);
+            builderAdvice.buildEntity(model, entity, idArray);
         }
         return entity;
     }
@@ -193,7 +193,8 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
 
     protected abstract M createModel(E entity) throws RestException;
 
-    protected void refresh() throws RestException {}
+    protected void refresh() throws RestException {
+    }
 
     public M create(M model) throws RestException {
         return create(model, (I[]) null);
@@ -279,7 +280,8 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
                 optionalSave(model);
             }
             this.beforeSaveAll(modelList);
-            entityList = entityActuator(modelList, model -> {}, idArray);
+            entityList = entityActuator(modelList, model -> {
+            }, idArray);
         } else {
             entityList = entityActuator(modelList, model -> {
                 this.optionalSave(model);
@@ -294,58 +296,100 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         return new ArrayList<>(modelList);
     }
 
+    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void operateById(I id, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(operate)) {
             return;
         }
-        superMapper.operateById(id, operate.getKey());
-        this.refresh();
+        if (superMapper instanceof OperateMapper) {
+            ((OperateMapper<I>) superMapper).operateById(id, operate.getKey());
+            this.refresh();
+        }
     }
 
+    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void operateAll(Collection<I> idList, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
-        superMapper.operateAll(idList,operate.getKey());
-        this.refresh();
+        if (superMapper instanceof OperateMapper) {
+            ((OperateMapper<I>) superMapper).operateAll(idList, operate.getKey());
+            this.refresh();
+        }
     }
 
+    @SuppressWarnings(value = "unchecked")
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void alertById(I id, RestKey<Integer> keyType) throws RestException {
+        if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(keyType)) {
+            return;
+        }
+        if (superMapper instanceof AlertMapper) {
+            ((AlertMapper<I>) superMapper).alertById(id, keyType.getKey());
+            this.refresh();
+        }
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void alertAll(Collection<I> idList, RestKey<Integer> keyType) throws RestException {
+        if (GeneralUtils.isEmpty(idList)) {
+            return;
+        }
+        if (superMapper instanceof AlertMapper) {
+            ((AlertMapper<I>) superMapper).alertAll(idList, keyType.getKey());
+            this.refresh();
+        }
+    }
+
+    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void alertById(String field, I id, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(keyType)) {
             return;
         }
-        superMapper.alertById(field, id, keyType.getKey());
-        this.refresh();
+        if (superMapper instanceof AlertFieldMapper) {
+            ((AlertFieldMapper<I>) superMapper).alertById(field, id, keyType.getKey());
+            this.refresh();
+        }
     }
 
+    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void alertAll(String field, Collection<I> idList, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
-        superMapper.alertAll(field, idList, keyType.getKey());
-        this.refresh();
+        if (superMapper instanceof AlertFieldMapper) {
+            ((AlertFieldMapper<I>) superMapper).alertAll(field, idList, keyType.getKey());
+            this.refresh();
+        }
     }
 
+    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void removeById(I id) throws RestException {
         if (GeneralUtils.isEmpty(id)) {
             return;
         }
-        superMapper.removeById(id);
-        this.refresh();
+        if (superMapper instanceof RemoveMapper) {
+            ((RemoveMapper<I>) superMapper).removeById(id);
+            this.refresh();
+        }
     }
 
+    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void removeAll(Collection<I> idList) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
-        superMapper.removeAll(idList);
-        this.refresh();
+        if (superMapper instanceof RemoveMapper) {
+            ((RemoveMapper<I>) superMapper).removeAll(idList);
+            this.refresh();
+        }
     }
 
     @Override
@@ -376,7 +420,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
         E entity;
         if (isLoadArray.length > 0 && LoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            LoadMapper<E,I> loadMapper = (LoadMapper<E,I>) superMapper;
+            LoadMapper<E, I> loadMapper = (LoadMapper<E, I>) superMapper;
             Method findMethod = null;
             try {
                 findMethod = loadMapper.getClass().getMethod("queryById", id.getClass(), Boolean[].class);
@@ -406,7 +450,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
         List<E> entityList;
         if (isLoadArray.length > 0 && LoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            LoadMapper<E,I> loadMapper = (LoadMapper<E,I>) superMapper;
+            LoadMapper<E, I> loadMapper = (LoadMapper<E, I>) superMapper;
             Method findMethod = null;
             try {
                 findMethod = loadMapper.getClass().getMethod("queryAll", List.class, Boolean[].class);
@@ -434,7 +478,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         Page<E> page = filter.toPage();
         List<E> entityList;
         if (isLoadArray.length > 0 && LoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            LoadMapper<E,I> loadMapper = (LoadMapper<E,I>) superMapper;
+            LoadMapper<E, I> loadMapper = (LoadMapper<E, I>) superMapper;
             Method findMethod = null;
             try {
                 findMethod = loadMapper.getClass().getMethod("findAllByWhere", List.class, Boolean[].class);
@@ -443,7 +487,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             Method queryByIdMethod = findMethod;
             /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
             if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
-                entityList = loadMapper.findAllByWhere(whereSql,isLoadArray);
+                entityList = loadMapper.findAllByWhere(whereSql, isLoadArray);
             } else {
                 entityList = superMapper.findAllByWhere(whereSql);
             }

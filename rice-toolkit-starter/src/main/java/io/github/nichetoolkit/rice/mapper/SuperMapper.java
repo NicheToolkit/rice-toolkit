@@ -37,53 +37,6 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
     /**
      * 实体单个删除
      * @param id 实体id集合
-     * @param operate 实体操作类型
-     * @return Integer SQL影响行数（成功为1）
-     */
-    Integer operateById(@Param("id") I id, @Param("operate") Integer operate);
-
-    /**
-     * 实体批量删除
-     * @param idList 实体id集合
-     * @param operate 实体操作类型
-     * @return Integer SQL影响行数
-     */
-    Integer operateAll(@Param("idList") Collection<I> idList, @Param("operate") Integer operate);
-
-    /**
-     * 实体单个删除
-     * @param id 实体id集合
-     * @param id 实体id集合
-     * @param key 实体操作类型
-     * @return Integer SQL影响行数（成功为1）
-     */
-    Integer alertById(@Param("field") String field, @Param("id") I id, @Param("key") Integer key);
-
-    /**
-     * 实体批量删除
-     * @param idList 实体id集合
-     * @param key 实体操作类型
-     * @return Integer SQL影响行数
-     */
-    Integer alertAll(@Param("field") String field, @Param("idList") Collection<I> idList, @Param("key") Integer key);
-
-    /**
-     * 实体单个删除
-     * @param id 实体id集合
-     * @return Integer SQL影响行数（成功为1）
-     */
-    Integer removeById(@Param("id") I id);
-
-    /**
-     * 实体批量删除
-     * @param idList 实体id集合
-     * @return Integer SQL影响行数
-     */
-    Integer removeAll(@Param("idList") Collection<I> idList);
-
-    /**
-     * 实体单个删除
-     * @param id 实体id集合
      * @return Integer SQL影响行数（成功为1）
      */
     Integer deleteById(@Param("id") I id);
