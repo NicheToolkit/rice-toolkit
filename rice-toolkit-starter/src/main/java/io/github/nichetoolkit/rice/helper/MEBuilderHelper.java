@@ -1,5 +1,6 @@
 package io.github.nichetoolkit.rice.helper;
 
+import com.google.common.collect.Lists;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.actuator.BiConsumerActuator;
 import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
@@ -20,6 +21,27 @@ import java.util.stream.Collectors;
  */
 @SuppressWarnings("MixedMutabilityReturnType")
 public class MEBuilderHelper {
+
+    public static <I, T extends IdModel<I>> List<T> partition(Collection<I> targetIdList, FunctionActuator<Collection<I>, List<T>> targetListQueryByIdList) throws RestException {
+        Integer partition = RiceContextHolder.beanProperties().getPartition();
+        return partition(targetIdList,partition,targetListQueryByIdList);
+    }
+
+    public static <I, T extends IdModel<I>> List<T> partition(Collection<I> targetIdList, Integer partition,  FunctionActuator<Collection<I>, List<T>> targetListQueryByIdList) throws RestException {
+        Set<I> targetIdSet = new HashSet<>(targetIdList);
+        List<T> targetList;
+        if (GeneralUtils.isNotEmpty(partition) && targetIdList.size() > partition) {
+            targetList = new ArrayList<>();
+            List<List<I>> partitionList =  Lists.partition(new ArrayList<>(targetIdSet), partition);
+            for (List<I> partitions : partitionList) {
+                List<T> targets = targetListQueryByIdList.actuate(partitions);
+                targetList.addAll(targets);
+            }
+        } else {
+            targetList = targetListQueryByIdList.actuate(targetIdSet);
+        }
+        return targetList;
+    }
 
     public static <M, E> List<E> entityList(Collection<M> modelList, ConsumerActuator<M> consumer, FunctionActuator<M, E> function) throws RestException {
         if (GeneralUtils.isEmpty(modelList)) {
@@ -229,6 +251,7 @@ public class MEBuilderHelper {
 
     }
 
+
     /**
      * 通过目标对象id列表查询设置多个目标对象
      * @param model 源对象模型
@@ -250,8 +273,7 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> targetIdList = sourceGetTargetIdList.actuate(model);
         if (GeneralUtils.isNotEmpty(targetIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            Set<I> targetIdSet = new HashSet<>(targetIdList);
-            List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdSet);
+            List<T> targetList = partition(targetIdList,targetListQueryByTargetIdList);
             if (GeneralUtils.isNotEmpty(targetList)) {
                 sourceSetTargetList.actuate(model,targetList);
             }
@@ -275,8 +297,7 @@ public class MEBuilderHelper {
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList
     ) throws RestException {
         List<I> targetIdList = sourceGetTargetIdList.actuate(model);
-        Set<I> targetIdSet = new HashSet<>(targetIdList);
-        List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdSet);
+        List<T> targetList = partition(targetIdList,targetListQueryByTargetIdList);
         if (GeneralUtils.isNotEmpty(targetList)) {
             sourceSetTargetList.actuate(model,targetList);
         }
@@ -413,7 +434,7 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> targetIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetTargetId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(targetIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdList);
+            List<T> targetList = partition(targetIdList,targetListQueryByTargetIdList);
             buildSingleTargetTargetId(modelList,targetList,sourceGetTargetId,sourceSetTarget);
         }
     }
@@ -438,7 +459,7 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> targetIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetTargetId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(targetIdList)) {
-            List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdList);
+            List<T> targetList = partition(targetIdList,targetListQueryByTargetIdList);
             buildSingleTargetTargetId(modelList,targetList,sourceGetTargetId,sourceSetTarget);
         }
     }
@@ -468,7 +489,7 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> targetIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetTargetId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(targetIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdList);
+            List<T> targetList = partition(targetIdList,targetListQueryByTargetIdList);
             buildSingleTargetTargetId(modelList,targetList,targetGetTargetId,sourceGetTargetId,sourceSetTarget);
         }
     }
@@ -495,7 +516,7 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> targetIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetTargetId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(targetIdList)) {
-            List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdList);
+            List<T> targetList = partition(targetIdList,targetListQueryByTargetIdList);
             buildSingleTargetTargetId(modelList,targetList,targetGetTargetId,sourceGetTargetId,sourceSetTarget);
         }
     }
@@ -522,7 +543,7 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(IdEntity::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
+            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
             buildSingleTargetSourceId(modelList,targetList,targetGetSourceId,sourceSetTarget);
         }
     }
@@ -546,7 +567,7 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(IdEntity::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList)) {
-            List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
+            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
             buildSingleTargetSourceId(modelList,targetList,targetGetSourceId,sourceSetTarget);
         }
     }
@@ -576,7 +597,7 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetSourceId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
+            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
             buildSingleTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetSourceId,sourceSetTarget);
         }
     }
@@ -603,7 +624,7 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetSourceId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList)) {
-            List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
+            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
             buildSingleTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetSourceId,sourceSetTarget);
         }
     }
@@ -640,7 +661,7 @@ public class MEBuilderHelper {
         }
         Set<I> targetIdSet = new HashSet<>(targetIdList);
         if (GeneralUtils.isNotEmpty(targetIdSet) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdSet);
+            List<T> targetList = partition(targetIdSet,targetListQueryByTargetIdList);
             buildMultiTargetTargetId(modelList,targetList,sourceIdTargetIdListMap,sourceSetTargetList);
         }
     }
@@ -674,7 +695,7 @@ public class MEBuilderHelper {
         }
         Set<I> targetIdSet = new HashSet<>(targetIdList);
         if (GeneralUtils.isNotEmpty(targetIdSet)) {
-            List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdSet);
+            List<T> targetList = partition(targetIdSet,targetListQueryByTargetIdList);
             buildMultiTargetTargetId(modelList,targetList,sourceIdTargetIdListMap,sourceSetTargetList);
         }
     }
@@ -714,7 +735,7 @@ public class MEBuilderHelper {
         }
         Set<I> targetIdSet = new HashSet<>(targetIdList);
         if (GeneralUtils.isNotEmpty(targetIdSet) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdSet);
+            List<T> targetList = partition(targetIdSet,targetListQueryByTargetIdList);
             buildMultiTargetTargetId(modelList,targetList,sourceIdTargetIdListMap,targetGetTargetId,sourceGetSourceId,sourceSetTargetList);
         }
     }
@@ -751,7 +772,7 @@ public class MEBuilderHelper {
         }
         Set<I> targetIdSet = new HashSet<>(targetIdList);
         if (GeneralUtils.isNotEmpty(targetIdSet)) {
-            List<T> targetList = targetListQueryByTargetIdList.actuate(targetIdSet);
+            List<T> targetList = partition(targetIdSet,targetListQueryByTargetIdList);
             buildMultiTargetTargetId(modelList,targetList,sourceIdTargetIdListMap,targetGetTargetId,sourceGetSourceId,sourceSetTargetList);
         }
     }
@@ -778,7 +799,7 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(IdEntity::getId).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
+            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
             buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceSetTargetList);
         }
     }
@@ -807,7 +828,7 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(IdEntity::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
+            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
             buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetSourceId,sourceSetTargetList);
         }
     }
@@ -832,7 +853,7 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(IdEntity::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList)) {
-            List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
+            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
             buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetTargetId,sourceSetTargetList);
         }
     }
@@ -860,7 +881,7 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetSourceId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
+            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
             buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetTargetId,sourceSetTargetList);
         }
     }
@@ -887,7 +908,7 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetSourceId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList)) {
-            List<T> targetList = targetListQueryBySourceIdList.actuate(sourceIdList);
+            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
             buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetTargetId,sourceSetTargetList);
         }
     }

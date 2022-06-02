@@ -18,6 +18,8 @@ public class RiceBeanProperties {
     private BeanKey key = new BeanKey();
     @NestedConfigurationProperty
     private BeanName name = new BeanName();
+    /** 数据分段 */
+    private Integer partition = 500;
 
     public RiceBeanProperties() {
     }
@@ -44,6 +46,20 @@ public class RiceBeanProperties {
 
     public void setKey(BeanKey key) {
         this.key = key;
+    }
+
+    public Integer getPartition() {
+        if (this.partition > 1000) {
+            return 1000;
+        }
+        if (this.partition <= 0) {
+            return 0;
+        }
+        return this.partition;
+    }
+
+    public void setPartition(Integer partition) {
+        this.partition = partition;
     }
 
     public static class BeanModel{
