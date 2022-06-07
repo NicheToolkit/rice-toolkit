@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice;
 
 import com.github.pagehelper.PageInfo;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.filter.PageFilter;
 import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
@@ -57,6 +58,31 @@ public class RestPage<T> implements Serializable {
             this.pageNum = 0L;
             this.pages = 0L;
             this.itemSize = 0L;
+        }
+    }
+
+    public static <T, K> RestPage<T> result(Long totals, Collection<T> items, PageFilter filter) {
+        if (GeneralUtils.isEmpty(filter.getPageSize())) {
+            return new RestPage<>(items);
+        } else {
+            return new RestPage<>(totals,((long) filter.getPageNum()),((long) filter.getPageSize()), items);
+        }
+    }
+
+    public static <T, K> RestPage<T> result(Long totals, Collection<T> items, com.github.pagehelper.Page page) {
+        if (GeneralUtils.isEmpty(page)) {
+            return new RestPage<>(items);
+        } else {
+            return new RestPage<>(totals,((long) page.getPageNum()),((long)page.getPageSize()), items);
+        }
+    }
+
+
+    public static <T, K> RestPage<T> result(Long totals, Long pageNum, Long pageSize, Collection<T> items) {
+        if (GeneralUtils.isEmpty(pageSize)) {
+            return new RestPage<>(items);
+        } else {
+            return new RestPage<>(totals,pageNum,pageSize,items);
         }
     }
 
