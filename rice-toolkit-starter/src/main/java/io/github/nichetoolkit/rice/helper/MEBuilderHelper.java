@@ -7,8 +7,9 @@ import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
 import io.github.nichetoolkit.rest.actuator.FunctionActuator;
 import io.github.nichetoolkit.rest.util.CollectUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.IdEntity;
-import io.github.nichetoolkit.rice.IdModel;
+import io.github.nichetoolkit.rice.RestId;
+import io.github.nichetoolkit.rice.RestId;
+import io.github.nichetoolkit.rice.RestId;
 
 import java.util.*;
 import java.util.function.Function;
@@ -22,12 +23,12 @@ import java.util.stream.Collectors;
 @SuppressWarnings("MixedMutabilityReturnType")
 public class MEBuilderHelper {
 
-    public static <I, T extends IdModel<I>> List<T> partition(Collection<I> targetIdList, FunctionActuator<Collection<I>, List<T>> targetListQueryByIdList) throws RestException {
+    public static <I, T extends RestId<I>> List<T> partition(Collection<I> targetIdList, FunctionActuator<Collection<I>, List<T>> targetListQueryByIdList) throws RestException {
         Integer partition = RiceContextHolder.beanProperties().getPartition();
         return partition(targetIdList,partition,targetListQueryByIdList);
     }
 
-    public static <I, T extends IdModel<I>> List<T> partition(Collection<I> targetIdList, Integer partition,  FunctionActuator<Collection<I>, List<T>> targetListQueryByIdList) throws RestException {
+    public static <I, T extends RestId<I>> List<T> partition(Collection<I> targetIdList, Integer partition,  FunctionActuator<Collection<I>, List<T>> targetListQueryByIdList) throws RestException {
         Set<I> targetIdSet = new HashSet<>(targetIdList);
         List<T> targetList;
         if (GeneralUtils.isNotEmpty(partition) && targetIdList.size() > partition) {
@@ -100,7 +101,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             E entity, M model, FunctionActuator<I,T> targetQueryByTargetId,
             FunctionActuator<E, I> entityGetTargetId,
             BiConsumerActuator<M, T> sourceSetTarget,
@@ -129,7 +130,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             E entity, M model, FunctionActuator<I,T> targetQueryByTargetId,
             FunctionActuator<E, I> entityGetTargetId,
             BiConsumerActuator<M, T> sourceSetTarget
@@ -155,7 +156,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             E entity, M model, FunctionActuator<I,T> targetQueryBySourceId,
             BiConsumerActuator<M, T> sourceSetTarget,
             Integer index, Boolean... isLoadArray
@@ -182,7 +183,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             E entity, M model, FunctionActuator<I,T> targetQueryBySourceId,
             BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
@@ -208,7 +209,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             E entity, M model, FunctionActuator<I,T> targetQueryBySourceId,
             FunctionActuator<E, I> entityGetSourceId,
             BiConsumerActuator<M, T> sourceSetTarget,
@@ -236,7 +237,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             E entity, M model, FunctionActuator<I,T> targetQueryBySourceId,
             FunctionActuator<E, I> entityGetSourceId,
             BiConsumerActuator<M, T> sourceSetTarget
@@ -265,7 +266,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildMultiTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             M model, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             FunctionActuator<M, List<I>> sourceGetTargetIdList,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
@@ -291,7 +292,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildMultiTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             M model, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             FunctionActuator<M, List<I>> sourceGetTargetIdList,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList
@@ -317,7 +318,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildMultiSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             E entity, M model, FunctionActuator<I, List<T>> targetListQueryBySourceId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
             Integer index, Boolean... isLoadArray
@@ -344,7 +345,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildMultiSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             E entity, M model, FunctionActuator<I, List<T>> targetListQueryBySourceId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList
     ) throws RestException {
@@ -370,7 +371,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildMultiSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             E entity, M model, FunctionActuator<I, List<T>> targetListQueryBySourceId,
             FunctionActuator<E, I> entityGetSourceId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
@@ -398,7 +399,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildMultiSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             E entity, M model, FunctionActuator<I, List<T>> targetListQueryBySourceId,
             FunctionActuator<E, I> entityGetSourceId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList
@@ -427,7 +428,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             Function<E,I> entityGetTargetId, FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget,
             Integer index, Boolean... isLoadArray
@@ -453,7 +454,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             Function<E,I> entityGetTargetId, FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
@@ -481,7 +482,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             Function<E,I> entityGetTargetId, FunctionActuator<T,I> targetGetTargetId,
             FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget,
@@ -509,7 +510,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             Function<E,I> entityGetTargetId, FunctionActuator<T,I> targetGetTargetId,
             FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
@@ -536,12 +537,12 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             FunctionActuator<T,I> targetGetSourceId, BiConsumerActuator<M, T> sourceSetTarget,
             Integer index, Boolean... isLoadArray
     ) throws RestException {
-        List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(IdEntity::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
+        List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(RestId::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
             List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
             buildSingleTargetSourceId(modelList,targetList,targetGetSourceId,sourceSetTarget);
@@ -561,11 +562,11 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             FunctionActuator<T,I> targetGetSourceId, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
-        List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(IdEntity::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
+        List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(RestId::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList)) {
             List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
             buildSingleTargetSourceId(modelList,targetList,targetGetSourceId,sourceSetTarget);
@@ -589,7 +590,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             Function<E,I> entityGetSourceId, FunctionActuator<T,I> targetGetSourceId,
             FunctionActuator<M,I> sourceGetSourceId, BiConsumerActuator<M, T> sourceSetTarget,
@@ -617,7 +618,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>, E extends IdEntity<I>> void buildSingleSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             Function<E,I> entityGetSourceId, FunctionActuator<T,I> targetGetSourceId,
             FunctionActuator<M,I> sourceGetSourceId, BiConsumerActuator<M, T> sourceSetTarget
@@ -642,7 +643,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildMultiTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             FunctionActuator<M,List<I>> sourceGetTargetIdList, BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
             Integer index, Boolean... isLoadArray
@@ -677,7 +678,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildMultiTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             FunctionActuator<M,List<I>> sourceGetTargetIdList, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
     ) throws RestException {
@@ -715,7 +716,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildMultiTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             FunctionActuator<M,I> sourceGetSourceId, FunctionActuator<M,List<I>> sourceGetTargetIdList, FunctionActuator<T,I> targetGetTargetId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
@@ -753,7 +754,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildMultiTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             FunctionActuator<M,I> sourceGetSourceId, FunctionActuator<M,List<I>> sourceGetTargetIdList, FunctionActuator<T,I> targetGetTargetId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList
@@ -792,12 +793,12 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>,E extends IdEntity<I>> void buildMultiSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>,E extends RestId<I>> void buildMultiSourceId(
             Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             FunctionActuator<T,I> targetGetSourceId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
             Integer index, Boolean... isLoadArray
     ) throws RestException {
-        List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(IdEntity::getId).distinct().collect(Collectors.toList());
+        List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(RestId::getId).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
             List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
             buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceSetTargetList);
@@ -820,13 +821,13 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>,E extends IdEntity<I>> void buildMultiSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>,E extends RestId<I>> void buildMultiSourceId(
             Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             FunctionActuator<T,I> targetGetSourceId, FunctionActuator<M,I> sourceGetSourceId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
             Integer index, Boolean... isLoadArray
     ) throws RestException {
-        List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(IdEntity::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
+        List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(RestId::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
             List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
             buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetSourceId,sourceSetTargetList);
@@ -847,11 +848,11 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>,E extends IdEntity<I>> void buildMultiSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>,E extends RestId<I>> void buildMultiSourceId(
             Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             FunctionActuator<T,I> targetGetSourceId, FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
     ) throws RestException {
-        List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(IdEntity::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
+        List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(RestId::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList)) {
             List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
             buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetTargetId,sourceSetTargetList);
@@ -873,7 +874,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>,E extends IdEntity<I>> void buildMultiSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>,E extends RestId<I>> void buildMultiSourceId(
             Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             Function<E,I> entityGetSourceId, FunctionActuator<T,I> targetGetSourceId,
             FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
@@ -901,7 +902,7 @@ public class MEBuilderHelper {
      * @param <E> 源对象实体类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>,E extends IdEntity<I>> void buildMultiSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>,E extends RestId<I>> void buildMultiSourceId(
             Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             Function<E,I> entityGetSourceId, FunctionActuator<T,I> targetGetSourceId,
             FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
@@ -925,12 +926,12 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildSingleTargetTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void buildSingleTargetTargetId(
             Collection<M> modelList, Collection<T> targetList, FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
         if (GeneralUtils.isNotEmpty(targetList)) {
             Map<I, T> targetIdTargetMap = new HashMap<>();
-            targetMapTargetId(targetList,targetIdTargetMap,IdModel::getId);
+            targetMapTargetId(targetList,targetIdTargetMap,RestId::getId);
             sourceTarget(modelList,sourceGetTargetId,targetIdTargetMap,sourceSetTarget);
         }
     }
@@ -947,7 +948,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildSingleTargetTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void buildSingleTargetTargetId(
             Collection<M> modelList, Collection<T> targetList, FunctionActuator<T, I> targetGetTargetId,
             FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
@@ -969,14 +970,14 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildSingleTargetSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void buildSingleTargetSourceId(
             Collection<M> modelList, Collection<T> targetList, FunctionActuator<T, I> targetGetSourceId,
             BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
         if (GeneralUtils.isNotEmpty(targetList)) {
             Map<I, T> sourceIdTargetMap = new HashMap<>();
             targetMapSourceId(targetList,sourceIdTargetMap,targetGetSourceId);
-            sourceTarget(modelList,IdModel::getId,sourceIdTargetMap,sourceSetTarget);
+            sourceTarget(modelList,RestId::getId,sourceIdTargetMap,sourceSetTarget);
         }
     }
 
@@ -992,7 +993,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildSingleTargetSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void buildSingleTargetSourceId(
             Collection<M> modelList, Collection<T> targetList, FunctionActuator<T, I> targetGetSourceId,
             FunctionActuator<M,I> sourceGetSourceId, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
@@ -1014,14 +1015,14 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildMultiTargetTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetTargetId(
             Collection<M> modelList, Collection<T> targetList, Map<I, List<I>> sourceIdTargetIdListMap,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList
     ) throws RestException {
         if (GeneralUtils.isNotEmpty(targetList)) {
             Map<I, List<T>> sourceIdTargetListMap = new HashMap<>();
-            targetListMapTargetId(targetList,sourceIdTargetListMap,sourceIdTargetIdListMap,IdModel::getId);
-            sourceTargetList(modelList,IdModel::getId,sourceIdTargetListMap,sourceSetTargetList);
+            targetListMapTargetId(targetList,sourceIdTargetListMap,sourceIdTargetIdListMap,RestId::getId);
+            sourceTargetList(modelList,RestId::getId,sourceIdTargetListMap,sourceSetTargetList);
         }
     }
 
@@ -1038,7 +1039,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildMultiTargetTargetId(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetTargetId(
             Collection<M> modelList, Collection<T> targetList, Map<I, List<I>> sourceIdTargetIdListMap,
             FunctionActuator<T, I> targetGetTargetId, FunctionActuator<M,I> sourceGetSourceId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList
@@ -1061,14 +1062,14 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildMultiTargetSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetSourceId(
             Collection<M> modelList, Collection<T> targetList,
             FunctionActuator<T, I> targetGetSourceId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
     ) throws RestException {
         if (GeneralUtils.isNotEmpty(targetList)) {
             Map<I, List<T>> sourceIdTargetListMap = new HashMap<>();
             targetListMapSourceId(targetList,sourceIdTargetListMap,targetGetSourceId);
-            sourceTargetList(modelList,IdModel::getId,sourceIdTargetListMap,sourceSetTargetList);
+            sourceTargetList(modelList,RestId::getId,sourceIdTargetListMap,sourceSetTargetList);
         }
     }
 
@@ -1084,7 +1085,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void buildMultiTargetSourceId(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetSourceId(
             Collection<M> modelList, Collection<T> targetList,
             FunctionActuator<T, I> targetGetSourceId, FunctionActuator<M,I> sourceGetSourceId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList
@@ -1108,7 +1109,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void sourceTarget(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void sourceTarget(
             Collection<M> modelList, FunctionActuator<M,I> getIdKey,
             Map<I, T> keyIdTargetMap, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
@@ -1134,7 +1135,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, M extends IdModel<I>, T extends IdModel<I>> void sourceTargetList(
+    public static <I, M extends RestId<I>, T extends RestId<I>> void sourceTargetList(
             Collection<M> modelList, FunctionActuator<M,I> getIdKey,
             Map<I, List<T>> keyIdTargetListMap, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
     ) throws RestException {
@@ -1159,7 +1160,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, T extends IdModel<I>> void targetMapTargetId(Collection<T> targetList, Map<I, T> targetMap, FunctionActuator<T, I> targetGetTargetId) throws RestException {
+    public static <I, T extends RestId<I>> void targetMapTargetId(Collection<T> targetList, Map<I, T> targetMap, FunctionActuator<T, I> targetGetTargetId) throws RestException {
         for (T target : targetList) {
             if (GeneralUtils.isNotEmpty(target) && GeneralUtils.isNotEmpty(targetGetTargetId.actuate(target))) {
                 targetMap.putIfAbsent(targetGetTargetId.actuate(target), target);
@@ -1176,7 +1177,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, T extends IdModel<I>> void targetMapSourceId(Collection<T> targetList, Map<I, T> targetMap, FunctionActuator<T, I> targetGetSourceId) throws RestException {
+    public static <I, T extends RestId<I>> void targetMapSourceId(Collection<T> targetList, Map<I, T> targetMap, FunctionActuator<T, I> targetGetSourceId) throws RestException {
         for (T target : targetList) {
             if (GeneralUtils.isNotEmpty(target) && GeneralUtils.isNotEmpty(targetGetSourceId.actuate(target))) {
                 targetMap.putIfAbsent(targetGetSourceId.actuate(target), target);
@@ -1194,7 +1195,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, T extends IdModel<I>> void targetListMapTargetId(Collection<T> targetList, Map<I, List<T>> sourceIdTargetListMap,Map<I, List<I>> sourceIdTargetIdListMap, FunctionActuator<T, I> targetGetTargetId) throws RestException {
+    public static <I, T extends RestId<I>> void targetListMapTargetId(Collection<T> targetList, Map<I, List<T>> sourceIdTargetListMap,Map<I, List<I>> sourceIdTargetIdListMap, FunctionActuator<T, I> targetGetTargetId) throws RestException {
         Map<I, T> targetIdTargetMap = new HashMap<>();
         targetMapTargetId(targetList,targetIdTargetMap,targetGetTargetId);
         for (Map.Entry<I, List<I>> entry : sourceIdTargetIdListMap.entrySet()) {
@@ -1222,7 +1223,7 @@ public class MEBuilderHelper {
      * @param <T> 目标对象模型类型声明
      * @throws RestException RestException
      */
-    public static <I, T extends IdModel<I>> void targetListMapSourceId(Collection<T> targetList, Map<I, List<T>> targetListMap, FunctionActuator<T, I> targetGetSourceId) throws RestException {
+    public static <I, T extends RestId<I>> void targetListMapSourceId(Collection<T> targetList, Map<I, List<T>> targetListMap, FunctionActuator<T, I> targetGetSourceId) throws RestException {
         for (T target : targetList) {
             if (GeneralUtils.isNotEmpty(target) && GeneralUtils.isNotEmpty(targetGetSourceId.actuate(target))) {
                 I sourceId = targetGetSourceId.actuate(target);
