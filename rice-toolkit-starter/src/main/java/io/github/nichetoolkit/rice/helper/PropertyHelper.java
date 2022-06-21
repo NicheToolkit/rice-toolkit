@@ -113,7 +113,7 @@ public class PropertyHelper {
 
     public static Long transform(BigDecimal value, Integer scale) {
         if (GeneralUtils.isNotEmpty(value)) {
-            return (long) (value.longValue() * scale.longValue());
+            return (long) (value.doubleValue() * scale.longValue());
         }
         return null;
     }
