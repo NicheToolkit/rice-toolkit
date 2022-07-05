@@ -351,19 +351,19 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return;
         }
         if (superMapper instanceof AlertFieldMapper) {
-            ((AlertFieldMapper<I>) superMapper).alertById(field, id, keyType.getKey());
+            ((AlertFieldMapper<I>) superMapper).alertById(id,field, keyType.getKey());
             this.refresh();
         }
     }
 
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertAll(String field, Collection<I> idList, RestKey<Integer> keyType) throws RestException {
+    public void alertAll(Collection<I> idList, String field, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
         if (superMapper instanceof AlertFieldMapper) {
-            ((AlertFieldMapper<I>) superMapper).alertAll(field, idList, keyType.getKey());
+            ((AlertFieldMapper<I>) superMapper).alertAll(idList, field, keyType.getKey());
             this.refresh();
         }
     }

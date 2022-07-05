@@ -22,7 +22,7 @@ public interface AlertFieldService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertAll(String field, Collection<I> idList, RestKey<Integer> keyType) throws RestException;
+    void alertAll( Collection<I> idList, String field, RestKey<Integer> keyType) throws RestException;
 
     /**
      * 通过id单个逻辑删除
@@ -32,5 +32,5 @@ public interface AlertFieldService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertById(String field, I id, RestKey<Integer> keyType) throws RestException;
+    void alertById( I id, String field, RestKey<Integer> keyType) throws RestException;
 }
