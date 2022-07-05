@@ -13,8 +13,8 @@ public interface AlertFieldMapper<I> {
 
     /**
      * 实体单个删除
-     * @param id 实体id集合
-     * @param id 实体id集合
+     * @param id 实体id
+     * @param field 实体属性
      * @param key 实体操作类型
      * @return Integer SQL影响行数（成功为1）
      */
@@ -23,6 +23,7 @@ public interface AlertFieldMapper<I> {
     /**
      * 实体批量删除
      * @param idList 实体id集合
+     * @param field 实体属性
      * @param key 实体操作类型
      * @return Integer SQL影响行数
      */

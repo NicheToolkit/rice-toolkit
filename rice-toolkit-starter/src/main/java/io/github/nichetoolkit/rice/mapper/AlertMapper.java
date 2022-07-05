@@ -13,8 +13,7 @@ public interface AlertMapper<I> {
 
     /**
      * 实体单个删除
-     * @param id 实体id集合
-     * @param id 实体id集合
+     * @param id 实体id
      * @param key 实体操作类型
      * @return Integer SQL影响行数（成功为1）
      */
