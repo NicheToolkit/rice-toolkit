@@ -346,7 +346,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
 
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertById(String field, I id, RestKey<Integer> keyType) throws RestException {
+    public void alertById( I id, String field, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(keyType)) {
             return;
         }
