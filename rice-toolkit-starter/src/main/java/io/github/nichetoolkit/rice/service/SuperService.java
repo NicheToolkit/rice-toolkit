@@ -18,9 +18,7 @@ import io.github.nichetoolkit.rice.error.service.ServiceUnknownException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
 import io.github.nichetoolkit.rice.mapper.*;
-import io.github.nichetoolkit.rice.service.advice.BuilderAdvice;
-import io.github.nichetoolkit.rice.service.advice.SaveAdvice;
-import io.github.nichetoolkit.rice.service.advice.ServiceAdvice;
+import io.github.nichetoolkit.rice.service.advice.*;
 import io.github.nichetoolkit.rice.service.stereotype.RestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -45,7 +43,8 @@ import java.util.List;
 @SuppressWarnings("RedundantThrows")
 @Slf4j
 public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I>, F extends IdFilter<I>>
-        implements InitializingBean, ApplicationContextAware, OptionalService<I, M>, ServiceAdvice<I, F>, SaveAdvice<I, M> {
+        implements InitializingBean, ApplicationContextAware, OptionalService<I, M>, ServiceAdvice<I, F>,
+        SaveAdvice<I, M>, AlertAdvice<I>, OperateAdvice<I>, DeleteAdvice<I>, RemoveAdvice<I> {
 
     private static ApplicationContext applicationContext;
 
@@ -304,6 +303,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
         if (superMapper instanceof OperateMapper) {
             ((OperateMapper<I>) superMapper).operateById(id, operate.getKey());
+            this.afterOperate(id);
             this.refresh();
         }
     }
@@ -316,6 +316,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
         if (superMapper instanceof OperateMapper) {
             ((OperateMapper<I>) superMapper).operateAll(idList, operate.getKey());
+            this.afterOperateAll(idList);
             this.refresh();
         }
     }
@@ -328,6 +329,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
         if (superMapper instanceof AlertMapper) {
             ((AlertMapper<I>) superMapper).alertById(id, keyType.getKey());
+            this.afterAlert(id);
             this.refresh();
         }
     }
@@ -340,18 +342,20 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
         if (superMapper instanceof AlertMapper) {
             ((AlertMapper<I>) superMapper).alertAll(idList, keyType.getKey());
+            this.afterAlertAll(idList);
             this.refresh();
         }
     }
 
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertById( I id, String field, RestKey<Integer> keyType) throws RestException {
+    public void alertById(I id, String field, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(keyType)) {
             return;
         }
         if (superMapper instanceof AlertFieldMapper) {
-            ((AlertFieldMapper<I>) superMapper).alertById(id,field, keyType.getKey());
+            ((AlertFieldMapper<I>) superMapper).alertById(id, field, keyType.getKey());
+            this.afterAlert(id);
             this.refresh();
         }
     }
@@ -364,6 +368,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
         if (superMapper instanceof AlertFieldMapper) {
             ((AlertFieldMapper<I>) superMapper).alertAll(idList, field, keyType.getKey());
+            this.afterAlertAll(idList);
             this.refresh();
         }
     }
@@ -376,6 +381,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
         if (superMapper instanceof RemoveMapper) {
             ((RemoveMapper<I>) superMapper).removeById(id);
+            this.afterRemove(id);
             this.refresh();
         }
     }
@@ -388,6 +394,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
         if (superMapper instanceof RemoveMapper) {
             ((RemoveMapper<I>) superMapper).removeAll(idList);
+            this.afterRemoveAll(idList);
             this.refresh();
         }
     }
@@ -399,6 +406,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return;
         }
         superMapper.deleteById(id);
+        this.afterDelete(id);
         this.refresh();
     }
 
@@ -409,6 +417,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return;
         }
         superMapper.deleteAll(idList);
+        this.afterDeleteAll(idList);
         this.refresh();
     }
 
