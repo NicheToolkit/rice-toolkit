@@ -10,6 +10,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.IdEntity;
 import io.github.nichetoolkit.rice.IdModel;
+import io.github.nichetoolkit.rice.RestId;
 import io.github.nichetoolkit.rice.RestPage;
 import io.github.nichetoolkit.rice.clazz.ClazzHelper;
 import io.github.nichetoolkit.rice.configure.RiceBeanProperties;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>SuperService</p>
@@ -511,7 +513,22 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     public void deleteAllWithFilter(F filter) throws RestException {
         String whereSql = deleteWhereSql(filter);
         if (GeneralUtils.isNotEmpty(whereSql)) {
+            List<I> idList = null;
+            Method afterDeleteAll = null;
+            try {
+                afterDeleteAll = this.getClass().getMethod("afterDeleteAll", Collection.class);
+            } catch (NoSuchMethodException ignored) {
+            }
+            if (afterDeleteAll != null && !afterDeleteAll.isDefault()) {
+                List<E> entityList = superMapper.findAllByWhere(whereSql);
+                if (GeneralUtils.isNotEmpty(entityList)) {
+                    idList = entityList.stream().map(IdEntity::getId).distinct().collect(Collectors.toList());
+                }
+            }
             superMapper.deleteAllByWhere(whereSql);
+            if (GeneralUtils.isNotEmpty(idList)) {
+                this.afterDeleteAll(idList);
+            }
             this.refresh();
         }
     }
