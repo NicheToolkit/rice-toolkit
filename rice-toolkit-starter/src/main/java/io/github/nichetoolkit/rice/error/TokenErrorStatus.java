@@ -10,10 +10,10 @@ import lombok.Getter;
  */
 @Getter
 public enum TokenErrorStatus implements RestStatus {
-    TOKEN_INVALID_ERROR(10500,"the token is invalid"),
-    TOKEN_ACCESS_ERROR(10501,"the token access error"),
-    TOKEN_NO_PERMISSION(10502,"the token is no permission"),
-    TOKEN_PREFIX_INVALID(10503,"the token prefix is invalid"),
+    TOKEN_INVALID_ERROR(11500,"the token is invalid"),
+    TOKEN_ACCESS_ERROR(11501,"the token access error"),
+    TOKEN_NO_PERMISSION(11502,"the token is no permission"),
+    TOKEN_PREFIX_INVALID(11503,"the token prefix is invalid"),
     ;
 
     private final Integer status;
