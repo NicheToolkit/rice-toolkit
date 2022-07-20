@@ -13,6 +13,14 @@ import java.util.Collection;
 @SuppressWarnings("RedundantThrows")
 public interface OperateAdvice<I> {
 
+    default void beforeOperate(I id) throws RestException {}
+
+    default void beforeOperateAll(Collection<I> idList) throws RestException {
+        for (I id : idList) {
+            beforeOperate(id);
+        }
+    }
+
     default void afterOperate(I id) throws RestException {}
 
     default void afterOperateAll(Collection<I> idList) throws RestException {

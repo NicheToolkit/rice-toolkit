@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.service.advice;
 
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rice.IdEntity;
 import io.github.nichetoolkit.rice.IdModel;
 
 import java.util.Collection;
@@ -11,13 +12,21 @@ import java.util.Collection;
  * @version v1.0.0
  */
 @SuppressWarnings("RedundantThrows")
-public interface RemoveAdvice<I> {
+public interface RemoveAdvice<I,E extends IdEntity<I>> {
 
-    default void afterRemove(I id) throws RestException {}
+    default void beforeRemove(E entity) throws RestException {}
 
-    default void afterRemoveAll(Collection<I> idList) throws RestException {
-        for (I id : idList) {
-            afterRemove(id);
+    default void beforeRemoveAll(Collection<E> entityList) throws RestException {
+        for (E entity : entityList) {
+            beforeRemove(entity);
+        }
+    }
+
+    default void afterRemove(E entity) throws RestException {}
+
+    default void afterRemoveAll(Collection<E> entityList) throws RestException {
+        for (E entity : entityList) {
+            afterRemove(entity);
         }
     }
 
