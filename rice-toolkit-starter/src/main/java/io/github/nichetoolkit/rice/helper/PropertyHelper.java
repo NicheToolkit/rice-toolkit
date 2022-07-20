@@ -90,30 +90,37 @@ public class PropertyHelper {
         }
     }
 
-    public static Double transforms(Long value, Integer scale) {
+    public static Double transforms(Long value, Long multiple) {
         if (GeneralUtils.isNotEmpty(value)) {
-            return value.doubleValue() / scale.doubleValue();
+            return value.doubleValue() / multiple.doubleValue();
         }
         return null;
     }
 
-    public static Long transforms(Double value, Integer scale) {
+    public static Long transforms(Double value, Long multiple) {
         if (GeneralUtils.isNotEmpty(value)) {
-            return (long) (value * scale.longValue());
+            return (long) (value * multiple);
         }
         return null;
     }
 
-    public static BigDecimal transform(Long value, Integer scale) {
+    public static BigDecimal transform(Long value, Long multiple) {
         if (GeneralUtils.isNotEmpty(value)) {
-            return BigDecimal.valueOf(value).divide(new BigDecimal(scale),4, BigDecimal.ROUND_HALF_UP);
+            return BigDecimal.valueOf(value).divide(new BigDecimal(multiple),2, BigDecimal.ROUND_HALF_UP);
         }
         return null;
     }
 
-    public static Long transform(BigDecimal value, Integer scale) {
+    public static BigDecimal transform(Long value, Long multiple, Integer scale) {
         if (GeneralUtils.isNotEmpty(value)) {
-            return (long) (value.doubleValue() * scale.longValue());
+            return BigDecimal.valueOf(value).divide(new BigDecimal(multiple),scale, BigDecimal.ROUND_HALF_UP);
+        }
+        return null;
+    }
+
+    public static Long transform(BigDecimal value, Long multiple) {
+        if (GeneralUtils.isNotEmpty(value)) {
+            return (long) (value.doubleValue() * multiple);
         }
         return null;
     }
