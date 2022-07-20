@@ -10,9 +10,9 @@ import lombok.Getter;
  */
 @Getter
 public enum UserErrorStatus implements RestStatus {
-    USER_INVALID_ERROR(10600,"the user is invalid"),
-    USER_ACCESS_ERROR(10601,"the user access error"),
-    USER_NO_PERMISSION(10602,"the user is no permission"),
+    USER_INVALID_ERROR(11510,"the user is invalid"),
+    USER_ACCESS_ERROR(11511,"the user access error"),
+    USER_NO_PERMISSION(11512,"the user is no permission"),
     ;
 
     private final Integer status;

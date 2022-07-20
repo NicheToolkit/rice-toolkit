@@ -10,12 +10,12 @@ import lombok.Getter;
  */
 @Getter
 public enum ServiceErrorStatus implements RestStatus {
-    SERVICE_REALIZATION_ERROR(10402,"the service must implement the interface of 'IdFilterService'"),
-    SERVICE_ANNOTATION_ERROR(10403,"the service must use the annotation of '@RestService'"),
-    SERVICE_UNKNOWN_ERROR(10404,"the service has unknown error "),
-    SERVICE_UNSUPPORTED_ERROR(10405,"the service method is unsupported"),
-    SERVICE_UNAUTHORIZED_ERROR(10406,"the service method is unauthorized"),
-    SERVICE_UNCAUGHT_ERROR(10407,"the service method has uncaught error"),
+    SERVICE_REALIZATION_ERROR(11102,"the service must implement the interface of 'IdFilterService'"),
+    SERVICE_ANNOTATION_ERROR(11103,"the service must use the annotation of '@RestService'"),
+    SERVICE_UNKNOWN_ERROR(11104,"the service has unknown error "),
+    SERVICE_UNSUPPORTED_ERROR(11105,"the service method is unsupported"),
+    SERVICE_UNAUTHORIZED_ERROR(11106,"the service method is unauthorized"),
+    SERVICE_UNCAUGHT_ERROR(11107,"the service method has uncaught error"),
     ;
 
     private final Integer status;

@@ -8,9 +8,9 @@ import io.github.nichetoolkit.rest.RestStatus;
  * @version v1.0.0
  */
 public enum LoginErrorStatus implements RestStatus {
-    LOGIN_INFO_ERROR(10601,"the info of account or password  is error"),
-    LOGIN_ACCOUNT_ERROR(10602,"the account is error"),
-    LOGIN_PASSWORD_ERROR(10603,"the password is error"),
+    LOGIN_INFO_ERROR(11201,"the info of account or password  is error"),
+    LOGIN_ACCOUNT_ERROR(11202,"the account is error"),
+    LOGIN_PASSWORD_ERROR(11203,"the password is error"),
     ;
 
     private final Integer status;
