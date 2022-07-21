@@ -383,6 +383,34 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
 
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void alertById(I id, String field, String biField, RestKey<Integer> keyType) throws RestException {
+        if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(keyType)) {
+            return;
+        }
+        if (superMapper instanceof AlertBiFieldMapper) {
+            this.beforeAlert(id);
+            ((AlertBiFieldMapper<I>) superMapper).alertById(id, field, biField, keyType.getKey());
+            this.afterAlert(id);
+            this.refresh();
+        }
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void alertAll(Collection<I> idList, String field, String biField, RestKey<Integer> keyType) throws RestException {
+        if (GeneralUtils.isEmpty(idList)) {
+            return;
+        }
+        if (superMapper instanceof AlertBiFieldMapper) {
+            this.beforeAlertAll(idList);
+            ((AlertBiFieldMapper<I>) superMapper).alertAll(idList, field, biField, keyType.getKey());
+            this.afterAlertAll(idList);
+            this.refresh();
+        }
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void removeById(I id) throws RestException {
         if (GeneralUtils.isEmpty(id)) {
             return;

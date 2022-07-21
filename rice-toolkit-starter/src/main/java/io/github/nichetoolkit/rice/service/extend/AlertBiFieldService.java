@@ -12,7 +12,7 @@ import java.util.Collection;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public interface AlertFieldService<I> {
+public interface AlertBiFieldService<I> {
 
     /**
      * 通过id集合批量逻辑删除
@@ -22,7 +22,7 @@ public interface AlertFieldService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertAll(Collection<I> idList, String field, RestKey<Integer> keyType) throws RestException;
+    void alertAll(Collection<I> idList, String field, String biField, RestKey<Integer> keyType) throws RestException;
 
     /**
      * 通过id单个逻辑删除
@@ -32,5 +32,5 @@ public interface AlertFieldService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertById(I id, String field, RestKey<Integer> keyType) throws RestException;
+    void alertById(I id, String field, String biField, RestKey<Integer> keyType) throws RestException;
 }
