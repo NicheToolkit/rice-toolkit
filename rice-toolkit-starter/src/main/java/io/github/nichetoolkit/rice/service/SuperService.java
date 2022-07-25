@@ -537,7 +537,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         filterCache.set(filter);
         String whereSql = queryWhereSql(filter);
         Boolean[] isLoadArray = loadArray(filter);
-        Page<E> page = filter.toPage();
+        Page<E> page;
         List<E> entityList;
         if (isLoadArray.length > 0 && LoadMapper.class.isAssignableFrom(superMapper.getClass())) {
             LoadMapper<E, I> loadMapper = (LoadMapper<E, I>) superMapper;
@@ -549,11 +549,14 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             Method queryByIdMethod = findMethod;
             /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
             if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
+                page = filter.toPage();
                 entityList = loadMapper.findAllByWhere(whereSql, isLoadArray);
             } else {
+                page = filter.toPage();
                 entityList = superMapper.findAllByWhere(whereSql);
             }
         } else {
+            page = filter.toPage();
             entityList = superMapper.findAllByWhere(whereSql);
         }
         List<M> modelList = modelActuator(entityList, isLoadArray);
