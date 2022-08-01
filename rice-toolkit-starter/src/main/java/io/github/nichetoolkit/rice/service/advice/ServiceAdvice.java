@@ -36,4 +36,7 @@ public interface ServiceAdvice<I, F extends IdFilter<I>> {
         return filter.toLoadArray();
     }
 
+    default String[] fieldArray(F filter) throws RestException {
+        return filter.toFieldArray();
+    }
 }

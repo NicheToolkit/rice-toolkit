@@ -26,6 +26,8 @@ public class PageFilter implements Serializable {
     @JsonIgnore
     public static final String PAGE_OFFSET = "OFFSET";
     @JsonIgnore
+    protected final List<String> FIELD_ARRAY = new ArrayList<>();
+    @JsonIgnore
     protected final List<Boolean> LOAD_ARRAY = new ArrayList<>();
     protected Integer pageNum = 1;
     protected Integer pageSize = 0;
@@ -87,8 +89,21 @@ public class PageFilter implements Serializable {
         return LOAD_ARRAY.toArray(new Boolean[0]);
     }
 
+    public String[] toFieldArray() {
+        return FIELD_ARRAY.toArray(new String[0]);
+    }
+
+    public String[] toFieldArray(@NonNull String... fields) {
+        this.addFieldArray(fields);
+        return FIELD_ARRAY.toArray(new String[0]);
+    }
+
     public void addLoadArray(@NonNull Boolean... isLoads) {
         LOAD_ARRAY.addAll(Arrays.asList(isLoads));
+    }
+
+    public void addFieldArray(@NonNull String... fields) {
+        FIELD_ARRAY.addAll(Arrays.asList(fields));
     }
 
     public String name() {
