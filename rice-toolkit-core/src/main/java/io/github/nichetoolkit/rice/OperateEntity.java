@@ -17,6 +17,9 @@ public class OperateEntity implements Serializable {
     /** 数据操作 */
     protected Integer operate;
 
+    /** 逻辑删除标记 */
+    protected String logicSign;
+
     public OperateEntity() {
     }
 
@@ -30,6 +33,14 @@ public class OperateEntity implements Serializable {
 
     public void setOperate(Integer operate) {
         this.operate = operate;
+    }
+
+    public String getLogicSign() {
+        return logicSign;
+    }
+
+    public void setLogicSign(String logicSign) {
+        this.logicSign = logicSign;
     }
 
     @SuppressWarnings("WeakerAccess")
