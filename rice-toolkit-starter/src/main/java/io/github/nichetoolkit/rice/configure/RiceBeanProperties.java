@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.rice.configure;
 
+import io.github.nichetoolkit.rice.enums.DeleteType;
+import io.github.nichetoolkit.rice.enums.RemoveType;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.stereotype.Component;
@@ -20,6 +22,9 @@ public class RiceBeanProperties {
     private BeanName name = new BeanName();
     /** 数据分段 */
     private Integer partition = 500;
+    /** 数据删除模式 */
+    @NestedConfigurationProperty
+    private DeleteModel delete = new DeleteModel();
 
     public RiceBeanProperties() {
     }
@@ -46,6 +51,14 @@ public class RiceBeanProperties {
 
     public void setKey(BeanKey key) {
         this.key = key;
+    }
+
+    public DeleteModel getDelete() {
+        return delete;
+    }
+
+    public void setDelete(DeleteModel delete) {
+        this.delete = delete;
     }
 
     public Integer getPartition() {
@@ -115,6 +128,91 @@ public class RiceBeanProperties {
         public void setNonnullEnabled(Boolean nonnullEnabled) {
             this.nonnullEnabled = nonnullEnabled;
         }
+    }
+
+    public static class DeleteModel {
+
+        private DeleteType deleteModel = DeleteType.REMOVE;
+
+        private RemoveType removeModel = RemoveType.BOOLEAN;
+
+        /** removeType BOOLEAN 模式 标记值 */
+        private boolean booleanSign = true;
+
+        /** removeType NUMBER 模式 标记数值 */
+        private Integer numberSign = 1;
+
+        public DeleteModel() {
+        }
+
+        public DeleteType getDeleteModel() {
+            return deleteModel;
+        }
+
+        public void setDeleteModel(DeleteType deleteModel) {
+            this.deleteModel = deleteModel;
+        }
+
+        public RemoveType getRemoveModel() {
+            return removeModel;
+        }
+
+        public void setRemoveModel(RemoveType removeModel) {
+            this.removeModel = removeModel;
+        }
+
+        public boolean isBooleanSign() {
+            return booleanSign;
+        }
+
+        public void setBooleanSign(boolean booleanSign) {
+            this.booleanSign = booleanSign;
+        }
+
+        public Integer getNumberSign() {
+            return numberSign;
+        }
+
+        public void setNumberSign(Integer numberSign) {
+            this.numberSign = numberSign;
+        }
+    }
+
+    public Boolean isIdInvade() {
+        return this.getKey().getInvadeEnabled();
+    }
+
+    public Boolean isNameNonnull() {
+        return this.getName().getNonnullEnabled();
+    }
+
+    public Boolean isNameUnique() {
+        return this.getName().getUniqueEnabled();
+    }
+
+    public Boolean isModelUnique() {
+        return this.getModel().getUniqueEnabled();
+    }
+
+    public DeleteType deleteModel() {
+        return this.getDelete().getDeleteModel();
+    }
+
+
+    public RemoveType removeModel() {
+        return this.getDelete().getRemoveModel();
+    }
+
+    public Boolean booleanSign() {
+        return this.getDelete().isBooleanSign();
+    }
+
+    public Integer numberSign() {
+        return this.getDelete().getNumberSign();
+    }
+
+    public String removeSign() {
+        return RemoveType.sign(removeModel(),booleanSign(),numberSign());
     }
 
 }

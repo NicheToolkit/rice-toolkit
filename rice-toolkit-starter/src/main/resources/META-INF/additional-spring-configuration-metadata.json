@@ -31,6 +31,34 @@
       "description": "invade key enabled."
     },
     {
+      "name": "nichetoolkit.rice.bean.delete.delete-model",
+      "type": "io.github.nichetoolkit.rice.enums.DeleteType",
+      "sourceType": "io.github.nichetoolkit.rice.enums.DeleteType",
+      "description": "delete model.",
+      "defaultValue": "REMOVE"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.remove-model",
+      "type": "io.github.nichetoolkit.rice.enums.RemoveType",
+      "sourceType": "io.github.nichetoolkit.rice.enums.RemoveType",
+      "description": "remove model.",
+      "defaultValue": "BOOLEAN"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.boolean-sign",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "boolean sign value.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.number-sign",
+      "type": "java.lang.Integer",
+      "sourceType": "java.lang.Integer",
+      "description": "number sign value.",
+      "defaultValue": "1"
+    },
+    {
       "name": "nichetoolkit.rice.login.enabled",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
@@ -117,6 +145,48 @@
         {
           "value": true,
           "description": "rice invade enabled open."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.delete-model",
+      "values": [
+        {
+          "value": "REMOVE",
+          "description": "rice bean delete delete model REMOVE."
+        },
+        {
+          "value": "DELETE",
+          "description": "rice bean delete delete model DELETE."
+        },
+        {
+          "value": "OPERATE",
+          "description": "rice bean delete delete model OPERATE."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.remove-model",
+      "values": [
+        {
+          "value": "BOOLEAN",
+          "description": "rice bean delete remove model BOOLEAN."
+        },
+        {
+          "value": "NUMBER",
+          "description": "rice bean delete remove model NUMBER."
+        },
+        {
+          "value": "DATETIME",
+          "description": "rice bean delete remove model DATETIME."
+        },
+        {
+          "value": "IDENTITY",
+          "description": "rice bean delete remove model IDENTITY."
+        },
+        {
+          "value": "BACKUP",
+          "description": "rice bean delete remove model BACKUP."
         }
       ]
     }

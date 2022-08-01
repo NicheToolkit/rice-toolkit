@@ -24,6 +24,14 @@ public interface ServiceAdvice<I, F extends IdFilter<I>> {
         throw new ServiceUnsupportedException();
     }
 
+    default String removeWhereSql(F filter) throws RestException {
+        return deleteWhereSql(filter);
+    }
+
+    default String operateWhereSql(F filter) throws RestException {
+        return deleteWhereSql(filter);
+    }
+
     default Boolean[] loadArray(F filter) throws RestException {
         return filter.toLoadArray();
     }

@@ -16,12 +16,19 @@ public interface RemoveMapper<I> {
      * @param id 实体id集合
      * @return Integer SQL影响行数（成功为1）
      */
-    Integer removeById(@Param("id") I id);
+    Integer removeById(@Param("id") I id, @Param("sign") String sign);
 
     /**
      * 实体批量删除
      * @param idList 实体id集合
      * @return Integer SQL影响行数
      */
-    Integer removeAll(@Param("idList") Collection<I> idList);
+    Integer removeAll(@Param("idList") Collection<I> idList, @Param("sign") String sign);
+
+    /**
+     * 通过filter查询条件删除
+     * @param whereSql 过滤条件
+     * @return Integer SQL影响行数
+     */
+    Integer removeAllByWhere(@Param("whereSql") String whereSql,@Param("sign") String sign);
 }

@@ -1,11 +1,24 @@
 package io.github.nichetoolkit.rice;
 
+import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.builder.SqlBuilders;
+import io.github.nichetoolkit.rice.configure.RiceBeanProperties;
+import io.github.nichetoolkit.rice.enums.DeleteType;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import io.github.nichetoolkit.rice.enums.RemoveType;
+import io.github.nichetoolkit.rice.error.service.ServiceUnknownException;
 import io.github.nichetoolkit.rice.filter.NameFilter;
 import io.github.nichetoolkit.rice.jsonb.ContainRule;
 import io.github.nichetoolkit.rice.jsonb.ContrastRule;
 import io.github.nichetoolkit.rice.jsonb.EqualRule;
 import io.github.nichetoolkit.rice.jsonb.RangeRule;
+import io.github.nichetoolkit.rice.mapper.SuperMapper;
+import io.github.nichetoolkit.rice.service.SuperService;
+import io.github.nichetoolkit.rice.service.stereotype.RestService;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.lang.NonNull;
 
 import java.util.*;
@@ -15,7 +28,21 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public abstract class RiceFilter extends NameFilter<Date,String> {
+public abstract class RiceFilter extends NameFilter<Date,String> implements InitializingBean, ApplicationContextAware{
+
+    private static ApplicationContext applicationContext;
+
+    protected RiceBeanProperties beanProperties;
+    @Override
+    public void setApplicationContext(@NonNull ApplicationContext applicationContext) throws BeansException {
+        RiceFilter.applicationContext = applicationContext;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        this.beanProperties = applicationContext.getBean(RiceBeanProperties.class);
+    }
+
     public RiceFilter() {
     }
 
@@ -63,11 +90,41 @@ public abstract class RiceFilter extends NameFilter<Date,String> {
         return this;
     }
 
+    public RiceFilter toRemoveSql(@NonNull String alias) {
+        RemoveType removeType = beanProperties.removeModel();
+        String removeSign = beanProperties.removeSign();
+        if (GeneralUtils.isNotEmpty(removeSign)) {
+            if (removeType == RemoveType.BOOLEAN || removeType == RemoveType.NUMBER) {
+                if (this.isRemove) {
+                    SqlBuilders.equal(SQL_BUILDER, alias, removeSign);
+                } else {
+                    SqlBuilders.unequal(SQL_BUILDER, alias, removeSign);
+                }
+            } else if (removeType == RemoveType.DATETIME || removeType == RemoveType.IDENTITY) {
+                if (this.isRemove) {
+                    SqlBuilders.nonnull(SQL_BUILDER, alias);
+                } else {
+                    SqlBuilders.isnull(SQL_BUILDER, alias);
+                }
+            }
+        }
+        return this;
+    }
+
+    public RiceFilter toQuerySql(@NonNull String alias) {
+        DeleteType deleteType = beanProperties.deleteModel();
+        if (deleteType == DeleteType.OPERATE) {
+            return toOperateSql(alias);
+        } else if (deleteType == DeleteType.REMOVE) {
+            return toRemoveSql(alias);
+        }
+        return this;
+    }
+
     public static abstract class Builder extends NameFilter.Builder<Date,String> {
 
         public Builder() {
         }
-
 
         @Override
         public RiceFilter.Builder name(String name) {

@@ -10,11 +10,12 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.IdEntity;
 import io.github.nichetoolkit.rice.IdModel;
-import io.github.nichetoolkit.rice.RestId;
 import io.github.nichetoolkit.rice.RestPage;
 import io.github.nichetoolkit.rice.clazz.ClazzHelper;
 import io.github.nichetoolkit.rice.configure.RiceBeanProperties;
+import io.github.nichetoolkit.rice.enums.DeleteType;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import io.github.nichetoolkit.rice.enums.RemoveType;
 import io.github.nichetoolkit.rice.error.service.ServiceUnknownException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
@@ -35,7 +36,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * <p>SuperService</p>
@@ -46,7 +46,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I>, F extends IdFilter<I>>
         implements InitializingBean, ApplicationContextAware, OptionalService<I, M>, ServiceAdvice<I, F>,
-        SaveAdvice<I, M>, AlertAdvice<I>, OperateAdvice<I>, DeleteAdvice<I,E>, RemoveAdvice<I,E> {
+        SaveAdvice<I, M>, AlertAdvice<I>, OperateAdvice<I,E>, DeleteAdvice<I,E>, RemoveAdvice<I,E> {
 
     private static ApplicationContext applicationContext;
 
@@ -304,10 +304,13 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return;
         }
         if (superMapper instanceof OperateMapper) {
-            this.beforeOperate(id);
-            ((OperateMapper<I>) superMapper).operateById(id, operate.getKey());
-            this.afterOperate(id);
-            this.refresh();
+            E entity = superMapper.findById(id);
+            if (GeneralUtils.isNotEmpty(entity)) {
+                this.beforeOperate(entity);
+                ((OperateMapper<I>) superMapper).operateById(id, operate.getKey());
+                this.afterOperate(entity);
+                this.refresh();
+            }
         }
     }
 
@@ -318,10 +321,13 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             return;
         }
         if (superMapper instanceof OperateMapper) {
-            this.beforeOperateAll(idList);
-            ((OperateMapper<I>) superMapper).operateAll(idList, operate.getKey());
-            this.afterOperateAll(idList);
-            this.refresh();
+            List<E> entityList = superMapper.findAll(idList);
+            if (GeneralUtils.isNotEmpty(entityList)) {
+                this.beforeOperateAll(entityList);
+                ((OperateMapper<I>) superMapper).operateAll(idList, operate.getKey());
+                this.afterOperateAll(entityList);
+                this.refresh();
+            }
         }
     }
 
@@ -415,11 +421,12 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(id)) {
             return;
         }
+        String removeSign = removeSign();
         if (superMapper instanceof RemoveMapper) {
             E entity = superMapper.findById(id);
             if (GeneralUtils.isNotEmpty(entity)) {
                 this.beforeRemove(entity);
-                ((RemoveMapper<I>) superMapper).removeById(id);
+                ((RemoveMapper<I>) superMapper).removeById(id,removeSign);
                 this.afterRemove(entity);
                 this.refresh();
             }
@@ -432,11 +439,12 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
+        String removeSign = removeSign();
         if (superMapper instanceof RemoveMapper) {
             List<E> entityList = superMapper.findAll(idList);
             if (GeneralUtils.isNotEmpty(entityList)) {
                 this.beforeRemoveAll(entityList);
-                ((RemoveMapper<I>) superMapper).removeAll(idList);
+                ((RemoveMapper<I>) superMapper).removeAll(idList,removeSign);
                 this.afterRemoveAll(entityList);
                 this.refresh();
             }
@@ -449,12 +457,19 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(id)) {
             return;
         }
-        E entity = superMapper.findById(id);
-        if (GeneralUtils.isNotEmpty(entity)) {
-            this.beforeDelete(entity);
-            superMapper.deleteById(id);
-            this.afterDelete(entity);
-            this.refresh();
+        DeleteType deleteModel = deleteModel();
+        if (deleteModel == DeleteType.REMOVE) {
+            removeById(id);
+        } else if (deleteModel == DeleteType.OPERATE) {
+            operateById(id,OperateType.REMOVE);
+        } else {
+            E entity = superMapper.findById(id);
+            if (GeneralUtils.isNotEmpty(entity)) {
+                this.beforeDelete(entity);
+                superMapper.deleteById(id);
+                this.afterDelete(entity);
+                this.refresh();
+            }
         }
     }
 
@@ -464,14 +479,20 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
-        List<E> entityList = superMapper.findAll(idList);
-        if (GeneralUtils.isNotEmpty(entityList)) {
-            this.beforeDeleteAll(entityList);
-            superMapper.deleteAll(idList);
-            this.afterDeleteAll(entityList);
-            this.refresh();
+        DeleteType deleteModel = deleteModel();
+        if (deleteModel == DeleteType.REMOVE) {
+            removeAll(idList);
+        } else if (deleteModel == DeleteType.OPERATE) {
+            operateAll(idList,OperateType.REMOVE);
+        } else {
+            List<E> entityList = superMapper.findAll(idList);
+            if (GeneralUtils.isNotEmpty(entityList)) {
+                this.beforeDeleteAll(entityList);
+                superMapper.deleteAll(idList);
+                this.afterDeleteAll(entityList);
+                this.refresh();
+            }
         }
-
     }
 
     @Override
@@ -567,14 +588,50 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     public void deleteAllWithFilter(F filter) throws RestException {
         String whereSql = deleteWhereSql(filter);
         if (GeneralUtils.isNotEmpty(whereSql)) {
+            DeleteType deleteModel = deleteModel();
+            if (deleteModel == DeleteType.REMOVE) {
+                removeAllWithFilter(filter);
+            } else if (deleteModel == DeleteType.OPERATE) {
+                operateAllWithFilter(filter);
+            } else {
+                List<E> entityList = superMapper.findAllByWhere(whereSql);
+                if (GeneralUtils.isNotEmpty(entityList)) {
+                    this.beforeDeleteAll(entityList);
+                    superMapper.deleteAllByWhere(whereSql);
+                    this.afterDeleteAll(entityList);
+                    this.refresh();
+                }
+            }
+        }
+    }
+
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void removeAllWithFilter(F filter) throws RestException {
+        String whereSql = removeWhereSql(filter);
+        if (GeneralUtils.isNotEmpty(whereSql)) {
+            String removeSign = removeSign();
             List<E> entityList = superMapper.findAllByWhere(whereSql);
-            if (GeneralUtils.isNotEmpty(entityList)) {
-                this.beforeDeleteAll(entityList);
-                superMapper.deleteAllByWhere(whereSql);
+            if (GeneralUtils.isNotEmpty(entityList) && superMapper instanceof RemoveMapper) {
+                this.beforeRemoveAll(entityList);
+                ((RemoveMapper) superMapper).removeAllByWhere(whereSql,removeSign);
                 this.afterDeleteAll(entityList);
                 this.refresh();
             }
+        }
+    }
 
+
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void operateAllWithFilter(F filter) throws RestException {
+        String whereSql = operateWhereSql(filter);
+        if (GeneralUtils.isNotEmpty(whereSql)) {
+            List<E> entityList = superMapper.findAllByWhere(whereSql);
+            if (GeneralUtils.isNotEmpty(entityList) && superMapper instanceof OperateMapper) {
+                this.beforeRemoveAll(entityList);
+                ((OperateMapper) superMapper).operateAllByWhere(whereSql,OperateType.REMOVE.getKey());
+                this.afterDeleteAll(entityList);
+                this.refresh();
+            }
         }
     }
 
@@ -616,19 +673,40 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     }
 
     protected Boolean isIdInvade() {
-        return beanProperties.getKey().getInvadeEnabled();
+        return beanProperties.isIdInvade();
     }
 
     protected Boolean isNameNonnull() {
-        return beanProperties.getName().getNonnullEnabled();
+        return beanProperties.isNameNonnull();
     }
 
     protected Boolean isNameUnique() {
-        return beanProperties.getName().getUniqueEnabled();
+        return beanProperties.isNameUnique();
     }
 
     protected Boolean isModelUnique() {
-        return beanProperties.getModel().getUniqueEnabled();
+        return beanProperties.isModelUnique();
+    }
+
+    protected DeleteType deleteModel() {
+        return beanProperties.deleteModel();
+    }
+
+
+    protected RemoveType removeModel() {
+        return beanProperties.removeModel();
+    }
+
+    protected Boolean booleanSign() {
+        return beanProperties.booleanSign();
+    }
+
+    protected Integer numberSign() {
+        return beanProperties.numberSign();
+    }
+
+    protected String removeSign() {
+        return beanProperties.removeSign();
     }
 
     protected void optionalInit(@NonNull M model) throws RestException {

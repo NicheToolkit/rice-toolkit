@@ -148,7 +148,7 @@ public class IdFilter<I> extends OperateFilter {
 
     public IdFilter<I> toOperateSql(@NonNull String alias) {
         if (this.isRemove) {
-            SqlBuilders.equal(SQL_BUILDER, alias, OperateType.DELETE);
+            SqlBuilders.equal(SQL_BUILDER, alias, OperateType.REMOVE);
         } else if (GeneralUtils.isNotEmpty(this.operate)) {
             SqlBuilders.equal(SQL_BUILDER, alias, this.operate);
         } else if (GeneralUtils.isNotEmpty(this.operates)) {

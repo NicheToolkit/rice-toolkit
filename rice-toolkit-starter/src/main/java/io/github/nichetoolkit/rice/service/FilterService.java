@@ -26,4 +26,19 @@ public interface FilterService<I,M extends IdModel<I>, F extends IdFilter<I>> ex
      * @throws RestException 模块异常
      */
     void deleteAllWithFilter(F filter) throws RestException;
+
+    /**
+     * 通过过滤器删除
+     * @param filter 过滤器
+     * @throws RestException 模块异常
+     */
+    void removeAllWithFilter(F filter) throws RestException;
+
+    /**
+     * 通过过滤器操作
+     * @param filter 过滤器
+     * @throws RestException 模块异常
+     */
+    void operateAllWithFilter(F filter) throws RestException;
+
 }

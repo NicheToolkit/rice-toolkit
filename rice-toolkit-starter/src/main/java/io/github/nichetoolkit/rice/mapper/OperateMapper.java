@@ -25,4 +25,12 @@ public interface OperateMapper<I> {
      * @return Integer SQL影响行数
      */
     Integer operateAll(@Param("idList") Collection<I> idList, @Param("operate") Integer operate);
+
+    /**
+     * 通过filter查询条件 操作
+     * @param whereSql 过滤条件
+     * @param operate 实体操作类型
+     * @return Integer SQL影响行数
+     */
+    Integer operateAllByWhere(@Param("whereSql") String whereSql, @Param("operate") Integer operate);
 }
