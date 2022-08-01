@@ -19,9 +19,7 @@ public interface LoadMapper<E extends IdEntity<I>,I> {
      * @param loadParams 查询加载参数
      * @return T 查询的数据
      */
-    default E findByLoadId(@Param("id") I id, @Param("loadParams") Boolean... loadParams) {
-        return null;
-    }
+    E findByLoadId(@Param("id") I id, @Param("loadParams") Boolean... loadParams);
 
     /**
      * 实体批量查询
@@ -29,9 +27,7 @@ public interface LoadMapper<E extends IdEntity<I>,I> {
      * @param loadParams 查询加载参数
      * @return List<T> 查询的数据集合
      */
-    default List<E> findAllLoad(@Param("idList") Collection<I> idList, @Param("loadParams") Boolean... loadParams) {
-        return Collections.emptyList();
-    }
+    List<E> findAllLoad(@Param("idList") Collection<I> idList, @Param("loadParams") Boolean... loadParams);
 
     /**
      * 通过filter查询条件查询
@@ -39,7 +35,5 @@ public interface LoadMapper<E extends IdEntity<I>,I> {
      * @param loadParams 查询加载参数
      * @return List<T>
      */
-    default List<E> findAllByLoadWhere(@Param("whereSql") String whereSql, @Param("loadParams") Boolean... loadParams) {
-        return Collections.emptyList();
-    }
+    List<E> findAllByLoadWhere(@Param("whereSql") String whereSql, @Param("loadParams") Boolean... loadParams);
 }

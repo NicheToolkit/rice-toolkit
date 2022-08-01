@@ -20,7 +20,6 @@ public interface FieldMapper<E extends IdEntity<I>,I> {
      * @param fieldParams 查询加载参数
      * @return List<T>
      */
-    default List<E> findAllByFieldWhere(@Param("whereSql") String whereSql, @Param("fieldParams") String... fieldParams) {
-        return Collections.emptyList();
-    }
+    List<E> findAllByFieldWhere(@Param("whereSql") String whereSql, @Param("fieldParams") String... fieldParams);
+
 }

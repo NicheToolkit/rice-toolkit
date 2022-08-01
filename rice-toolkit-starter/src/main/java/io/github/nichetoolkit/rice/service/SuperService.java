@@ -565,7 +565,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             LoadMapper<E, I> loadMapper = (LoadMapper<E, I>) superMapper;
             Method findMethod = null;
             try {
-                findMethod = loadMapper.getClass().getMethod("findAllByLoadWhere", List.class, Boolean[].class);
+                findMethod = loadMapper.getClass().getMethod("findAllByLoadWhere", String.class, Boolean[].class);
             } catch (NoSuchMethodException ignored) {
             }
             Method findAllByWhereMethod = findMethod;
@@ -578,17 +578,17 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
                 entityList = superMapper.findAllByWhere(whereSql);
             }
         } else if (fieldArray.length > 0 && FieldMapper.class.isAssignableFrom(superMapper.getClass())) {
-            FieldMapper<E, I> findMapper = (FieldMapper<E, I>) superMapper;
+            FieldMapper<E, I> fieldMapper = (FieldMapper<E, I>) superMapper;
             Method findMethod = null;
             try {
-                findMethod = findMapper.getClass().getMethod("findAllByFieldWhere", List.class, String[].class);
+                findMethod = fieldMapper.getClass().getMethod("findAllByFieldWhere", String.class, String[].class);
             } catch (NoSuchMethodException ignored) {
             }
             Method findAllByWhereMethod = findMethod;
             /* 当FindMapper被复写的时候 优先调用FindMapper的findAllByWhereMethod */
             if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
                 page = filter.toPage();
-                entityList = findMapper.findAllByFieldWhere(whereSql, fieldArray);
+                entityList = fieldMapper.findAllByFieldWhere(whereSql, fieldArray);
             } else {
                 page = filter.toPage();
                 entityList = superMapper.findAllByWhere(whereSql);
