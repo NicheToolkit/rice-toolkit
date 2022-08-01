@@ -68,4 +68,14 @@ public enum RemoveType implements RestValue<Integer,String> {
             return null;
         }
     }
+
+    public static String value(RemoveType removeModel, boolean booleanValue,Integer numberValue) {
+        if (removeModel == RemoveType.BOOLEAN) {
+            return String.valueOf(booleanValue);
+        } else if(removeModel == RemoveType.NUMBER) {
+            return String.valueOf(numberValue);
+        } else {
+            return null;
+        }
+    }
 }

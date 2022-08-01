@@ -33,6 +33,7 @@ public abstract class RiceFilter extends NameFilter<Date,String> implements Init
     private static ApplicationContext applicationContext;
 
     protected RiceBeanProperties beanProperties;
+
     @Override
     public void setApplicationContext(@NonNull ApplicationContext applicationContext) throws BeansException {
         RiceFilter.applicationContext = applicationContext;
@@ -90,9 +91,9 @@ public abstract class RiceFilter extends NameFilter<Date,String> implements Init
         return this;
     }
 
-    public RiceFilter toRemoveSql(@NonNull String alias) {
-        RemoveType removeType = beanProperties.removeModel();
-        String removeSign = beanProperties.removeSign();
+    public RiceFilter toRemoveSql(SuperService superService, @NonNull String alias) {
+        RemoveType removeType = superService.removeModel();
+        String removeSign = superService.removeSign();
         if (GeneralUtils.isNotEmpty(removeSign)) {
             if (removeType == RemoveType.BOOLEAN || removeType == RemoveType.NUMBER) {
                 if (this.isRemove) {
@@ -111,12 +112,12 @@ public abstract class RiceFilter extends NameFilter<Date,String> implements Init
         return this;
     }
 
-    public RiceFilter toQuerySql(@NonNull String alias) {
-        DeleteType deleteType = beanProperties.deleteModel();
+    public RiceFilter toQuerySql(SuperService superService, @NonNull String alias) {
+        DeleteType deleteType = superService.deleteModel();
         if (deleteType == DeleteType.OPERATE) {
             return toOperateSql(alias);
         } else if (deleteType == DeleteType.REMOVE) {
-            return toRemoveSql(alias);
+            return toRemoveSql(superService,alias);
         }
         return this;
     }

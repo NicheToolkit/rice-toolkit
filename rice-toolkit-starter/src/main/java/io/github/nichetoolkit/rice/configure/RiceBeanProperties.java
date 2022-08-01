@@ -136,11 +136,20 @@ public class RiceBeanProperties {
 
         private RemoveType removeModel = RemoveType.BOOLEAN;
 
-        /** removeType BOOLEAN 模式 标记值 */
+        /** 是否开启移除字段标记索引 */
+        private boolean removeIndex = false;
+
+        /** removeType BOOLEAN 模式 删除数据标记值 */
         private boolean booleanSign = true;
 
-        /** removeType NUMBER 模式 标记数值 */
-        private Integer numberSign = 1;
+        /** removeType BOOLEAN 模式 未删除数据标记值 */
+        private boolean booleanValue = false;
+
+        /** removeType NUMBER 模式 删除数据标记值 */
+        private Integer numberSign = 2;
+
+        /** removeType NUMBER 模式 未删除数据标记值 */
+        private Integer numberValue = 1;
 
         public DeleteModel() {
         }
@@ -159,6 +168,30 @@ public class RiceBeanProperties {
 
         public void setRemoveModel(RemoveType removeModel) {
             this.removeModel = removeModel;
+        }
+
+        public boolean isRemoveIndex() {
+            return removeIndex;
+        }
+
+        public void setRemoveIndex(boolean removeIndex) {
+            this.removeIndex = removeIndex;
+        }
+
+        public boolean isBooleanValue() {
+            return booleanValue;
+        }
+
+        public void setBooleanValue(boolean booleanValue) {
+            this.booleanValue = booleanValue;
+        }
+
+        public Integer getNumberValue() {
+            return numberValue;
+        }
+
+        public void setNumberValue(Integer numberValue) {
+            this.numberValue = numberValue;
         }
 
         public boolean isBooleanSign() {
@@ -198,9 +231,12 @@ public class RiceBeanProperties {
         return this.getDelete().getDeleteModel();
     }
 
-
     public RemoveType removeModel() {
         return this.getDelete().getRemoveModel();
+    }
+
+    public Boolean removeIndex() {
+        return this.getDelete().isRemoveIndex();
     }
 
     public Boolean booleanSign() {
@@ -211,8 +247,20 @@ public class RiceBeanProperties {
         return this.getDelete().getNumberSign();
     }
 
+    public Boolean booleanValue() {
+        return this.getDelete().isBooleanValue();
+    }
+
+    public Integer numberValue() {
+        return this.getDelete().getNumberValue();
+    }
+
     public String removeSign() {
         return RemoveType.sign(removeModel(),booleanSign(),numberSign());
+    }
+
+    public String removeValue() {
+        return RemoveType.value(removeModel(),booleanValue(),numberValue());
     }
 
 }

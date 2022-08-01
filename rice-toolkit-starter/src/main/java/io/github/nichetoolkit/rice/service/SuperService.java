@@ -688,25 +688,40 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         return beanProperties.isModelUnique();
     }
 
-    protected DeleteType deleteModel() {
+    public DeleteType deleteModel() {
         return beanProperties.deleteModel();
     }
 
-
-    protected RemoveType removeModel() {
+    public RemoveType removeModel() {
         return beanProperties.removeModel();
     }
 
-    protected Boolean booleanSign() {
+    public Boolean removeIndex() {
+        return beanProperties.removeIndex();
+    }
+
+    public Boolean booleanSign() {
         return beanProperties.booleanSign();
     }
 
-    protected Integer numberSign() {
+    public Boolean booleanValue() {
+        return beanProperties.booleanValue();
+    }
+
+    public Integer numberSign() {
         return beanProperties.numberSign();
     }
 
-    protected String removeSign() {
-        return beanProperties.removeSign();
+    public Integer numberValue() {
+        return beanProperties.numberValue();
+    }
+
+    public String removeSign() {
+        return RemoveType.sign(removeModel(),booleanSign(),numberSign());
+    }
+
+    public String removeValue() {
+        return RemoveType.value(removeModel(),booleanValue(),numberValue());
     }
 
     protected void optionalInit(@NonNull M model) throws RestException {
