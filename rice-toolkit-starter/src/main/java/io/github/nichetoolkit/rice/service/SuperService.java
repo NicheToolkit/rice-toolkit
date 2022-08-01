@@ -725,7 +725,9 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     }
 
     protected void optionalInit(@NonNull M model) throws RestException {
-
+        if (GeneralUtils.isEmpty(model.getLogicSign())) {
+            model.setLogicSign(removeValue());
+        }
     }
 
     protected void optionalCreate(@NonNull M model) throws RestException {
