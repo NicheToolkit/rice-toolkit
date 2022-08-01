@@ -173,6 +173,10 @@
       "name": "nichetoolkit.rice.bean.delete.delete-model",
       "values": [
         {
+          "value": "NONE",
+          "description": "rice bean delete delete model NONE."
+        },
+        {
           "value": "REMOVE",
           "description": "rice bean delete delete model REMOVE."
         },

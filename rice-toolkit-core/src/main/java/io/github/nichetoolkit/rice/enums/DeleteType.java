@@ -13,6 +13,8 @@ import java.util.Optional;
  */
 public enum DeleteType implements RestValue<Integer,String> {
     /** 移除 逻辑删除 */
+    NONE(0,"none"),
+    /** 移除 逻辑删除 */
     REMOVE(1,"remove"),
     /** 删除 物理删除  */
     DELETE(2,"delete"),
