@@ -42,7 +42,7 @@
       "type": "io.github.nichetoolkit.rice.enums.RemoveType",
       "sourceType": "io.github.nichetoolkit.rice.enums.RemoveType",
       "description": "remove model.",
-      "defaultValue": "BOOLEAN"
+      "defaultValue": "NUMBER"
     },
     {
       "name": "nichetoolkit.rice.bean.delete.remove-index",

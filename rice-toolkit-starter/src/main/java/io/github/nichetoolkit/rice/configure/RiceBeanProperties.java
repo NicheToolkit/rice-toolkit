@@ -134,7 +134,7 @@ public class RiceBeanProperties {
 
         private DeleteType deleteModel = DeleteType.NONE;
 
-        private RemoveType removeModel = RemoveType.BOOLEAN;
+        private RemoveType removeModel = RemoveType.NUMBER;
 
         /** 是否开启移除字段标记索引 */
         private boolean removeIndex = false;

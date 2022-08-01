@@ -14,6 +14,9 @@ public class OperateModel implements RestOperate, Serializable {
 
     protected OperateType operate;
 
+    /** 逻辑删除标记 */
+    protected String logicSign;
+
     public OperateModel() {
     }
 
@@ -29,6 +32,14 @@ public class OperateModel implements RestOperate, Serializable {
     @Override
     public void setOperate(OperateType operate) {
         this.operate = operate;
+    }
+
+    public String getLogicSign() {
+        return logicSign;
+    }
+
+    public void setLogicSign(String logicSign) {
+        this.logicSign = logicSign;
     }
 
     public static class Builder {
