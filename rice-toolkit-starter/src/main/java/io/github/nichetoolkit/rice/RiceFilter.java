@@ -94,13 +94,24 @@ public abstract class RiceFilter extends NameFilter<Date,String> implements Init
     public RiceFilter toRemoveSql(SuperService superService, @NonNull String alias) {
         RemoveType removeType = superService.removeModel();
         String removeSign = superService.removeSign();
+        Boolean removeIndex = superService.removeIndex();
         if (GeneralUtils.isNotEmpty(removeSign)) {
             if (removeType == RemoveType.BOOLEAN || removeType == RemoveType.NUMBER) {
-                if (this.isRemove) {
-                    SqlBuilders.equal(SQL_BUILDER, alias, removeSign);
+                String removeValue = superService.removeValue();
+                if (removeIndex && GeneralUtils.isNotEmpty(removeValue)) {
+                    if (this.isRemove) {
+                        SqlBuilders.equal(SQL_BUILDER, alias, removeSign);
+                    } else {
+                        SqlBuilders.equal(SQL_BUILDER, alias, removeValue);
+                    }
                 } else {
-                    SqlBuilders.unequal(SQL_BUILDER, alias, removeSign);
+                    if (this.isRemove) {
+                        SqlBuilders.equal(SQL_BUILDER, alias, removeSign);
+                    } else {
+                        SqlBuilders.unequal(SQL_BUILDER, alias, removeSign);
+                    }
                 }
+
             } else if (removeType == RemoveType.DATETIME || removeType == RemoveType.IDENTITY) {
                 if (this.isRemove) {
                     SqlBuilders.nonnull(SQL_BUILDER, alias);

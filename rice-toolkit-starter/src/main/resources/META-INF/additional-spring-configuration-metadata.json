@@ -45,6 +45,13 @@
       "defaultValue": "BOOLEAN"
     },
     {
+      "name": "nichetoolkit.rice.bean.delete.remove-index",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "remove index.",
+      "defaultValue": "false"
+    },
+    {
       "name": "nichetoolkit.rice.bean.delete.boolean-sign",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
@@ -52,7 +59,21 @@
       "defaultValue": "true"
     },
     {
+      "name": "nichetoolkit.rice.bean.delete.boolean-value",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "boolean sign value.",
+      "defaultValue": "false"
+    },
+    {
       "name": "nichetoolkit.rice.bean.delete.number-sign",
+      "type": "java.lang.Integer",
+      "sourceType": "java.lang.Integer",
+      "description": "number sign value.",
+      "defaultValue": "2"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.number-value",
       "type": "java.lang.Integer",
       "sourceType": "java.lang.Integer",
       "description": "number sign value.",
