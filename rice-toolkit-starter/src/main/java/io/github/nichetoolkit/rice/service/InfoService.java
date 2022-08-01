@@ -24,6 +24,7 @@ public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity
 
     @Override
     protected void optionalInit(@NonNull M model) throws RestException {
+        super.optionalInit(model);
         if (isNameNonnull()) {
             OptionalHelper.fieldable(model.getName(), "名称不能为空！");
         }
