@@ -11,13 +11,13 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public interface FindMapper<E extends IdEntity<I>,I> {
+public interface FieldMapper<E extends IdEntity<I>,I> {
 
     /**
      * 通过filter查询条件查询
      * @param whereSql 过滤条件
-     * @param fields 查询加载参数
+     * @param fieldParams 查询加载参数
      * @return List<T>
      */
-    List<E> findAllByWhere(@Param("whereSql") String whereSql, @Param("fields") String... fields);
+    List<E> findAllByFieldWhere(@Param("whereSql") String whereSql, @Param("fieldParams") String... fieldParams);
 }
