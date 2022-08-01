@@ -4,6 +4,7 @@ import io.github.nichetoolkit.rice.IdEntity;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,5 +20,7 @@ public interface FieldMapper<E extends IdEntity<I>,I> {
      * @param fieldParams 查询加载参数
      * @return List<T>
      */
-    List<E> findAllByFieldWhere(@Param("whereSql") String whereSql, @Param("fieldParams") String... fieldParams);
+    default List<E> findAllByFieldWhere(@Param("whereSql") String whereSql, @Param("fieldParams") String... fieldParams) {
+        return Collections.emptyList();
+    }
 }
