@@ -35,7 +35,7 @@
       "type": "io.github.nichetoolkit.rice.enums.DeleteType",
       "sourceType": "io.github.nichetoolkit.rice.enums.DeleteType",
       "description": "delete model.",
-      "defaultValue": "REMOVE"
+      "defaultValue": "NONE"
     },
     {
       "name": "nichetoolkit.rice.bean.delete.remove-model",

@@ -132,7 +132,7 @@ public class RiceBeanProperties {
 
     public static class DeleteModel {
 
-        private DeleteType deleteModel = DeleteType.REMOVE;
+        private DeleteType deleteModel = DeleteType.NONE;
 
         private RemoveType removeModel = RemoveType.BOOLEAN;
 
