@@ -39,6 +39,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
         this.sqlBuilder = new StringBuilder(seq);
     }
 
+    public SqlBuilder clear() {
+        this.sqlBuilder.delete(0, this.sqlBuilder.length());
+        return this;
+    }
+
     public SqlBuilder append(Object obj) {
         return append(String.valueOf(obj));
     }

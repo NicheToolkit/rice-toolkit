@@ -110,15 +110,16 @@ public class IdFilter<I> extends OperateFilter {
     }
 
     public String toSql(boolean resume) {
-        String sql = SQL_CACHE.get();
+        String sql = this.SQL_CACHE.get();
         if (!resume && GeneralUtils.isNotEmpty(sql)) {
             return sql;
         }
-        SQL_CACHE.remove();
+        this.SQL_BUILDER.clear();
+        this.SQL_CACHE.remove();
         String sort = super.toSort();
         sql = this.SQL_BUILDER.append(sort).toString();
         if (GeneralUtils.isNotEmpty(sql)) {
-            SQL_CACHE.set(sql);
+            this.SQL_CACHE.set(sql);
             return sql;
         }
         return null;
