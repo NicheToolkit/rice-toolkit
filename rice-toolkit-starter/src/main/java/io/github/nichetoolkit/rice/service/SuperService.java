@@ -631,7 +631,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             if (GeneralUtils.isNotEmpty(entityList) && superMapper instanceof RemoveMapper) {
                 this.beforeRemoveAll(entityList);
                 ((RemoveMapper) superMapper).removeAllByWhere(whereSql,removeSign);
-                this.afterDeleteAll(entityList);
+                this.afterRemoveAll(entityList);
                 this.refresh();
             }
         }
@@ -644,9 +644,9 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isNotEmpty(whereSql)) {
             List<E> entityList = superMapper.findAllByWhere(whereSql);
             if (GeneralUtils.isNotEmpty(entityList) && superMapper instanceof OperateMapper) {
-                this.beforeRemoveAll(entityList);
+                this.beforeOperateAll(entityList);
                 ((OperateMapper) superMapper).operateAllByWhere(whereSql,OperateType.REMOVE.getKey());
-                this.afterDeleteAll(entityList);
+                this.afterOperateAll(entityList);
                 this.refresh();
             }
         }

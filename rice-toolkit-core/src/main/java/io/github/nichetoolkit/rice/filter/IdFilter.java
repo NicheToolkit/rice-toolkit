@@ -23,6 +23,9 @@ public class IdFilter<I> extends OperateFilter {
     @JsonIgnore
     protected final SqlBuilder SQL_BUILDER = new SqlBuilder();
 
+    @JsonIgnore
+    protected final ThreadLocal<String> SQL_CACHE = new ThreadLocal<>();
+
     protected I id;
 
     protected Set<I> ids;
@@ -97,17 +100,23 @@ public class IdFilter<I> extends OperateFilter {
         }
     }
 
-
-
     public String toIdSort(@NonNull String alias) {
         addSorts(alias);
         return super.toSort();
     }
 
     public String toSql() {
+        String sql = SQL_CACHE.get();
+        if (GeneralUtils.isNotEmpty(sql)) {
+            return sql;
+        }
         String sort = super.toSort();
-        String sql = this.SQL_BUILDER.append(sort).toString();
-        return sql.length() > 0 ? sql : null;
+        sql = this.SQL_BUILDER.append(sort).toString();
+        if (GeneralUtils.isNotEmpty(sql)) {
+            SQL_CACHE.set(sql);
+            return sql;
+        }
+        return null;
     }
 
     @Override
