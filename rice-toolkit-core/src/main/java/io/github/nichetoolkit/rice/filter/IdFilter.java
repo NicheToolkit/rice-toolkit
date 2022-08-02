@@ -114,12 +114,12 @@ public class IdFilter<I> extends OperateFilter {
         if (!resume && GeneralUtils.isNotEmpty(sql)) {
             return sql;
         }
-        this.SQL_BUILDER.clear();
         this.SQL_CACHE.remove();
         String sort = super.toSort();
         sql = this.SQL_BUILDER.append(sort).toString();
         if (GeneralUtils.isNotEmpty(sql)) {
             this.SQL_CACHE.set(sql);
+            this.SQL_BUILDER.clear();
             return sql;
         }
         return null;
