@@ -1,6 +1,6 @@
 package io.github.nichetoolkit.rice.resolver;
 
-import io.github.nichetoolkit.rice.RestUser;
+import io.github.nichetoolkit.rice.RestUserInfo;
 
 /**
  * <p>UserHolder</p>
@@ -8,13 +8,13 @@ import io.github.nichetoolkit.rice.RestUser;
  * @version v1.0.0
  */
 public class RiceUserHolder {
-    private static final ThreadLocal<RestUser> REST_USER_HOLDER = new ThreadLocal<>();
+    private static final ThreadLocal<RestUserInfo> REST_USER_HOLDER = new ThreadLocal<>();
 
-    public static RestUser getUser() {
+    public static RestUserInfo getUser() {
         return REST_USER_HOLDER.get();
     }
 
-    protected static void setUser(RestUser user) {
+    protected static void setUser(RestUserInfo user) {
         REST_USER_HOLDER.set(user);
     }
 }

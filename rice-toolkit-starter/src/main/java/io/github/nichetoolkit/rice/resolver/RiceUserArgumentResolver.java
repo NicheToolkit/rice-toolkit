@@ -4,6 +4,7 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.helper.RestRequestHelper;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.RestUserInfo;
 import io.github.nichetoolkit.rice.RiceUserAdvice;
 import io.github.nichetoolkit.rice.stereotype.RestUser;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +54,7 @@ public class RiceUserArgumentResolver implements HandlerMethodArgumentResolver {
             for (RiceUserAdvice userAdvice : userAdvices) {
                 try {
                     if (userAdvice.supports(parameter)) {
-                        io.github.nichetoolkit.rice.RestUser restUser = userAdvice.resolveArgument(parameter, requestWrapper);
+                        RestUserInfo restUser = userAdvice.resolveArgument(parameter, requestWrapper);
                         RiceUserHolder.setUser(restUser);
                         return restUser;
                     }

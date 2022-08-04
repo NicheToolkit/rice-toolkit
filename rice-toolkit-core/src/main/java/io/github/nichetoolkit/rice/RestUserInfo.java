@@ -1,11 +1,11 @@
 package io.github.nichetoolkit.rice;
 
 /**
- * <p>RestUser</p>
+ * <p>RestUserInfo</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public interface RestUser<I> extends RestId<I> {
+public interface RestUserInfo<I> extends RestInfo<I> {
 
     String getUsername();
 

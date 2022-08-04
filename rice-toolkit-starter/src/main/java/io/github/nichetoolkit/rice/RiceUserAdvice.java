@@ -31,5 +31,5 @@ public interface RiceUserAdvice {
      * @return 登录用户信息
      * @throws RestException RestException
      */
-    io.github.nichetoolkit.rice.RestUser resolveArgument(MethodParameter parameter, RestRequestWrapper requestWrapper) throws RestException;
+    RestUserInfo resolveArgument(MethodParameter parameter, RestRequestWrapper requestWrapper) throws RestException;
 }
