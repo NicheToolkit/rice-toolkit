@@ -53,7 +53,9 @@ public class RiceUserArgumentResolver implements HandlerMethodArgumentResolver {
             for (RiceUserAdvice userAdvice : userAdvices) {
                 try {
                     if (userAdvice.supports(parameter)) {
-                        return userAdvice.resolveArgument(parameter, requestWrapper);
+                        io.github.nichetoolkit.rice.RestUser restUser = userAdvice.resolveArgument(parameter, requestWrapper);
+                        RiceUserHolder.setUser(restUser);
+                        return restUser;
                     }
                 } catch (RestException exception) {
                     log.error("the user resolver can not resolve parameter, parameter: {}, error", parameter,exception.getMessage());
