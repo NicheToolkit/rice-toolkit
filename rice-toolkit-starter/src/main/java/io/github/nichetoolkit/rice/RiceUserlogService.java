@@ -54,8 +54,9 @@ public abstract class RiceUserlogService<T extends RiceUserlog> extends RestNote
                     renew.setTargetIds(this.userlog.getTargetIds());
                     apply(renew);
                 }
+            } else {
+                log.warn("the userlog is null!");
             }
-            log.warn("the userlog is null!");
         } catch (Exception exception) {
             log.warn("the userlog exception is ignored! error: {}", exception.getMessage());
         }
