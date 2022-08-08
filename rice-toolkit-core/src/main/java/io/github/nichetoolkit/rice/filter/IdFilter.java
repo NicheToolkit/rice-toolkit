@@ -99,6 +99,16 @@ public class IdFilter<I> extends OperateFilter {
             this.ids.addAll(ids);
         }
     }
+    public List<I> toIds() {
+        Set<I> idSet = new HashSet<>();
+        if (GeneralUtils.isNotEmpty(this.id)) {
+            idSet.add(this.id);
+        }
+        if (GeneralUtils.isNotEmpty(this.ids)) {
+            idSet.addAll(this.ids);
+        }
+        return new ArrayList<>(idSet);
+    }
 
     public String toIdSort(@NonNull String alias) {
         addSorts(alias);
