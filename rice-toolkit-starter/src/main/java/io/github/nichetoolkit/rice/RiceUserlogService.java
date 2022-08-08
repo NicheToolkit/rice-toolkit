@@ -1,9 +1,6 @@
 package io.github.nichetoolkit.rice;
 
-import io.github.nichetoolkit.rest.RestNoteService;
-import io.github.nichetoolkit.rest.RestNotelog;
-import io.github.nichetoolkit.rest.RestRequest;
-import io.github.nichetoolkit.rest.RestResponse;
+import io.github.nichetoolkit.rest.*;
 import io.github.nichetoolkit.rest.log.LogType;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.resolver.RiceUserHolder;
@@ -36,12 +33,12 @@ public abstract class RiceUserlogService extends RestNoteService {
                 apply(this.userlog);
             }
             log.warn("the userlog is null!");
-        } catch (Exception ignored) {
-            log.warn("the userlog exception is ignored!");
+        } catch (Exception exception) {
+            log.warn("the userlog exception is ignored! error: {}", exception.getMessage());
         }
     }
 
-    public abstract void apply(RiceUserlog userlog);
+    public abstract void apply(RiceUserlog userlog) throws RestException;
 
     protected void transfer() {
         applyUserInfo();
