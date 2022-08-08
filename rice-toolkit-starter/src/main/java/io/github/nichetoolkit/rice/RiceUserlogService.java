@@ -2,10 +2,13 @@ package io.github.nichetoolkit.rice;
 
 import io.github.nichetoolkit.rest.*;
 import io.github.nichetoolkit.rest.log.LogType;
+import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.clazz.ClazzUtils;
 import io.github.nichetoolkit.rice.resolver.RiceUserHolder;
 import lombok.extern.slf4j.Slf4j;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.Date;
 import java.util.Set;
 
@@ -15,12 +18,17 @@ import java.util.Set;
  * @version v1.0.0
  */
 @Slf4j
-public abstract class RiceUserlogService extends RestNoteService {
+public abstract class RiceUserlogService<T extends RiceUserlog> extends RestNoteService {
 
     private RiceRequest request;
     private RiceResponse response;
     private RiceNotelog notelog;
-    private RiceUserlog userlog = new RiceUserlog();
+    private RiceUserlog<? extends RiceIdModel, ? extends RiceIdEntity> userlog = new RiceUserlog<>();
+
+    @SuppressWarnings(value = "unchecked")
+    private Class<T> userlogClass() {
+        return (Class<T>)((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    }
 
     @Override
     public void handler(RestRequest restRequest, RestResponse restResponse, RestNotelog notelog) {
@@ -30,7 +38,12 @@ public abstract class RiceUserlogService extends RestNoteService {
             this.notelog = new RiceNotelog(notelog);
             transfer();
             if (GeneralUtils.isNotEmpty(this.userlog)) {
-                apply(this.userlog);
+                T renew = ClazzUtils.renew(userlogClass());
+                if (GeneralUtils.isNotEmpty(renew)) {
+                    BeanUtils.copyNonullProperties(userlog,renew);
+                    renew.setTargetIds(userlog.getTargetIds());
+                    apply(renew);
+                }
             }
             log.warn("the userlog is null!");
         } catch (Exception exception) {
@@ -38,7 +51,7 @@ public abstract class RiceUserlogService extends RestNoteService {
         }
     }
 
-    public abstract void apply(RiceUserlog userlog) throws RestException;
+    public abstract void apply(T userlog) throws RestException;
 
     protected void transfer() {
         applyUserInfo();

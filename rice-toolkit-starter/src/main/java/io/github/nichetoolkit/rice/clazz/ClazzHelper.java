@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.clazz;
 
 import io.github.nichetoolkit.rest.error.ClassUnknownException;
+import io.github.nichetoolkit.rest.error.ClassUnrenewException;
 import io.github.nichetoolkit.rest.error.ClassUnsupportedException;
 import io.github.nichetoolkit.rest.identity.IdentityUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
@@ -8,6 +9,8 @@ import io.github.nichetoolkit.rice.IdModel;
 import io.github.nichetoolkit.rice.RiceIdModel;
 import io.github.nichetoolkit.rice.RiceInfoModel;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -76,6 +79,27 @@ public class ClazzHelper {
         } else {
             throw new ClassUnsupportedException("the model must extends 'RiceIdModel' or 'IdModel': " + object.getClass().getName());
         }
+    }
+
+    public static <T> T renew(Class<T> clazz) throws ClassUnrenewException {
+        T renew;
+        try {
+            renew = clazz.newInstance();
+        } catch (InstantiationException | IllegalAccessException exception) {
+            throw new ClassUnrenewException(exception.getMessage());
+        }
+        return renew;
+    }
+
+    public static <T> T renew(Constructor<T> clazz, Object ... initargs) throws ClassUnrenewException {
+        T renew;
+        try {
+            renew = clazz.newInstance(initargs);
+        } catch (InstantiationException | IllegalAccessException
+                | IllegalArgumentException | InvocationTargetException exception) {
+            throw new ClassUnrenewException(exception.getMessage());
+        }
+        return renew;
     }
 
     @SuppressWarnings(value = "unchecked")
