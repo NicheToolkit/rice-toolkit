@@ -32,7 +32,7 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
     abstract public String toSql(@NonNull String alias, @NonNull String variable);
 
     String target(String target, String name, String value, ValueType type) {
-        return target(target,name,value,type.getValue());
+        return target(target,name,value,type.getField());
     }
 
     private String target(String target, String name, String value, String type) {
