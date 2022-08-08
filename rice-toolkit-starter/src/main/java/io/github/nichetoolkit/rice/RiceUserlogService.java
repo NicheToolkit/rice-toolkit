@@ -37,9 +37,15 @@ public abstract class RiceUserlogService<T extends RiceUserlog> extends RestNote
     @Override
     public void handler(RestRequest restRequest, RestResponse restResponse, RestNotelog notelog) {
         try {
-            this.request = new RiceRequest(restRequest);
-            this.response = new RiceResponse(restResponse);
-            this.notelog = new RiceNotelog(notelog);
+            if (GeneralUtils.isNotEmpty(restRequest)) {
+                this.request = new RiceRequest(restRequest);
+            }
+            if (GeneralUtils.isNotEmpty(restResponse)) {
+                this.response = new RiceResponse(restResponse);
+            }
+            if (GeneralUtils.isNotEmpty(notelog)) {
+                this.notelog = new RiceNotelog(notelog);
+            }
             transfer();
             if (GeneralUtils.isNotEmpty(this.userlog)) {
                 T renew = ClazzUtils.renew(userlogClass());
