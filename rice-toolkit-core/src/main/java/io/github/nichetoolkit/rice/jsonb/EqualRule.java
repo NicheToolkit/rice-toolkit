@@ -71,7 +71,10 @@ public class EqualRule extends JsonbRule<EqualRule> {
     @Override
     @SuppressWarnings("Duplicates")
     public String toSql(@NonNull String alias, @NonNull String variable) {
-        if (GeneralUtils.isEmpty(this.value) || GeneralUtils.isEmpty(this.type) || GeneralUtils.isEmpty(this.operation)) {
+        if (GeneralUtils.isEmpty(this.type) || GeneralUtils.isEmpty(this.operation)) {
+            return SqlBuilder.EMPTY;
+        }
+        if (EqualOperation.NOT_NULL_OPERATION != this.operation && GeneralUtils.isEmpty(this.value)) {
             return SqlBuilder.EMPTY;
         }
         SqlBuilder sqlBuilder = SqlBuilders.newSqlBuilder();

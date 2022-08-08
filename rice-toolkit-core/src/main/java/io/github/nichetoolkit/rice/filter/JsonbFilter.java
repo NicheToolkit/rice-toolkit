@@ -195,6 +195,7 @@ public class JsonbFilter<D,I> extends TimeFilter<D,I> {
         this.appendSql(alias,variable,getRanges(),sqlBuilder);
         this.appendSql(alias,variable,getContains(),sqlBuilder);
         this.appendSql(alias,variable,getEquals(),sqlBuilder);
+        SqlBuilders.append(this.SQL_BUILDER, sqlBuilder.toString());
         return this;
     }
 
