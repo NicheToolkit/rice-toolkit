@@ -75,7 +75,18 @@ public class RiceRequest extends RestRequest<RiceRequest> {
         return null;
     }
 
-    public Set<String> toBodyIds() {
+    public Set<String> toListIds() {
+        if (GeneralUtils.isNotEmpty(this.body)) {
+            List<String> idList = JsonUtils.parseBean(this.body, new TypeReference<List<String>>() {});
+            if (GeneralUtils.isNotEmpty(idList)) {
+                return new HashSet<>(idList);
+            }
+        }
+        return null;
+    }
+
+
+    public Set<String> toFilterIds() {
         if (GeneralUtils.isNotEmpty(this.body)) {
             IdFilter<String> idFilter = JsonUtils.parseBean(this.body, new TypeReference<IdFilter<String>>() {});
             if (GeneralUtils.isNotEmpty(idFilter) && GeneralUtils.isNotEmpty(idFilter.toIds())) {

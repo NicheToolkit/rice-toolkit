@@ -153,16 +153,16 @@ public abstract class RiceUserlogService<T extends RiceUserlog> extends RestNote
                     }
                 } else if (LogType.DELETE_ALL == logType) {
                     Set<String> paramIds = this.request.toParamIds();
-                    Set<String> bodyIds = this.request.toBodyIds();
+                    Set<String> listIds = this.request.toListIds();
                     if (GeneralUtils.isNotEmpty(paramIds)) {
                         this.userlog.setTargetIds(paramIds);
-                    } else if (GeneralUtils.isNotEmpty(bodyIds)) {
-                        this.userlog.setTargetIds(bodyIds);
+                    } else if (GeneralUtils.isNotEmpty(listIds)) {
+                        this.userlog.setTargetIds(listIds);
                     }
                 } else if (LogType.DELETE_FILTER == logType) {
-                    Set<String> bodyIds = this.request.toBodyIds();
-                    if (GeneralUtils.isNotEmpty(bodyIds)) {
-                        this.userlog.setTargetIds(bodyIds);
+                    Set<String> filterIds = this.request.toFilterIds();
+                    if (GeneralUtils.isNotEmpty(filterIds)) {
+                        this.userlog.setTargetIds(filterIds);
                     }
                 }
             }
