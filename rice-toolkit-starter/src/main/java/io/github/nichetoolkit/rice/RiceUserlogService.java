@@ -23,7 +23,11 @@ public abstract class RiceUserlogService<T extends RiceUserlog> extends RestNote
     private RiceRequest request;
     private RiceResponse response;
     private RiceNotelog notelog;
-    private RiceUserlog<? extends RiceIdModel, ? extends RiceIdEntity> userlog = new RiceUserlog<>();
+    private RiceUserlog<? extends RiceIdModel, ? extends RiceIdEntity> userlog;
+
+    public RiceUserlogService() {
+        this.userlog = new RiceUserlog<>();
+    }
 
     @SuppressWarnings(value = "unchecked")
     private Class<T> userlogClass() {
@@ -40,8 +44,8 @@ public abstract class RiceUserlogService<T extends RiceUserlog> extends RestNote
             if (GeneralUtils.isNotEmpty(this.userlog)) {
                 T renew = ClazzUtils.renew(userlogClass());
                 if (GeneralUtils.isNotEmpty(renew)) {
-                    BeanUtils.copyNonullProperties(userlog,renew);
-                    renew.setTargetIds(userlog.getTargetIds());
+                    BeanUtils.copyNonullProperties(this.userlog,renew);
+                    renew.setTargetIds(this.userlog.getTargetIds());
                     apply(renew);
                 }
             }
@@ -49,6 +53,7 @@ public abstract class RiceUserlogService<T extends RiceUserlog> extends RestNote
         } catch (Exception exception) {
             log.warn("the userlog exception is ignored! error: {}", exception.getMessage());
         }
+        this.userlog = new RiceUserlog<>();
     }
 
     public abstract void apply(T userlog) throws RestException;

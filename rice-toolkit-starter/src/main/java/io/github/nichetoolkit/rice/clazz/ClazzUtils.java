@@ -7,7 +7,6 @@ import io.github.nichetoolkit.rice.IdModel;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * <p>RestIdAccessUtils</p>
