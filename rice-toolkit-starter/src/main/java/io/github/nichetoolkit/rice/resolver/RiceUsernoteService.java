@@ -8,7 +8,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.*;
 import io.github.nichetoolkit.rice.clazz.ClazzUtils;
 import io.github.nichetoolkit.rice.interceptor.advice.RiceUserlogAdvice;
-import io.github.nichetoolkit.rice.resolver.RiceUserHolder;
+import io.github.nichetoolkit.rice.pack.UserInfoPack;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.method.HandlerMethod;
 
@@ -82,14 +82,32 @@ public abstract class RiceUsernoteService<T extends RiceUsernote> extends RestUs
 
 
     protected void transfer() {
-        applyUserInfo();
         applyNotelog();
         applyRequest();
         applyResponse();
         applyTargetIds();
+        applyUserInfo();
     }
 
     protected void applyUserInfo() {
+        if (GeneralUtils.isEmpty(RiceUserHolder.getUser()) && GeneralUtils.isNotEmpty(this.usernotelog.getLogType())) {
+            LogType logType = this.usernotelog.getLogType();
+            if (logType == LogType.USER_LOGON && GeneralUtils.isNotEmpty(this.response) && this.response.isSuccess()) {
+                if (GeneralUtils.isNotEmpty(this.response.getData()) && GeneralUtils.isNotEmpty(this.response.toDataUserInfo())) {
+                    UserInfoPack user = this.response.toDataUserInfo();
+                    if (GeneralUtils.isNotEmpty(user)) {
+                        RiceUserHolder.setUser(user);
+                    }
+                }
+            } else if (logType == LogType.USER_LOGIN && GeneralUtils.isNotEmpty(this.response) && this.response.isSuccess()) {
+                if (GeneralUtils.isNotEmpty(this.response.getData()) && GeneralUtils.isNotEmpty(this.response.toDataUserInfo())) {
+                    UserInfoPack user = this.response.toDataUserLogin();
+                    if (GeneralUtils.isNotEmpty(user)) {
+                        RiceUserHolder.setUser(user);
+                    }
+                }
+            }
+        }
         RestUserInfo userInfo = RiceUserHolder.getUser();
         if (GeneralUtils.isNotEmpty(userInfo)) {
             if (GeneralUtils.isNotEmpty(userInfo.getId())) {

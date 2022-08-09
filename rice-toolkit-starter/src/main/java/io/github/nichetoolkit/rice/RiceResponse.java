@@ -8,6 +8,8 @@ import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.pack.IdPack;
+import io.github.nichetoolkit.rice.pack.UserInfoPack;
+import io.github.nichetoolkit.rice.pack.UserLoginPack;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -50,6 +52,23 @@ public class RiceResponse extends RestResponse<RiceResponse> {
             List<IdPack> idPacks = JsonUtils.parseList(data, IdPack.class);
             if (GeneralUtils.isNotEmpty(idPacks) ) {
                 return idPacks.stream().map(IdPack::getId).filter(Objects::nonNull).collect(Collectors.toSet());
+            }
+        }
+        return null;
+    }
+
+    public UserInfoPack toDataUserInfo() {
+        if (GeneralUtils.isNotEmpty(this.data)) {
+            return JsonUtils.parseBean(this.data, UserInfoPack.class);
+        }
+        return null;
+    }
+
+    public UserInfoPack toDataUserLogin() {
+        if (GeneralUtils.isNotEmpty(this.data)) {
+            UserLoginPack userLoginPack = JsonUtils.parseBean(this.data, UserLoginPack.class);
+            if (GeneralUtils.isNotEmpty(userLoginPack)) {
+                return userLoginPack.getUser();
             }
         }
         return null;
