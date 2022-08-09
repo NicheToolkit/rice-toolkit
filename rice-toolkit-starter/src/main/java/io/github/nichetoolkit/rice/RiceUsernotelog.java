@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.github.nichetoolkit.rest.log.LogType;
+import io.github.nichetoolkit.rest.userlog.LogType;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,7 +22,7 @@ import java.util.*;
 @EqualsAndHashCode(callSuper = true)
 @JsonInclude(value= JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RiceUserlog<M extends RiceIdModel<M, E>, E extends RiceIdEntity<E, M>> extends RiceIdModel<M,E> {
+public class RiceUsernotelog<M extends RiceIdModel<M, E>, E extends RiceIdEntity<E, M>> extends RiceIdModel<M,E> {
     /** 用户id */
     protected String userId;
     /** 操作数据id集合 */
@@ -50,9 +50,9 @@ public class RiceUserlog<M extends RiceIdModel<M, E>, E extends RiceIdEntity<E, 
     /** 响应消息 */
     protected String responseMessage;
     /** 标题 */
-    protected String logTitle;
+    protected String notelog;
     /** 信息 */
-    protected String logMessage;
+    protected String userlog;
     /** 操作key */
     protected Integer logKey;
     /** 操作值 */
@@ -64,10 +64,10 @@ public class RiceUserlog<M extends RiceIdModel<M, E>, E extends RiceIdEntity<E, 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date logTime;
 
-    public RiceUserlog() {
+    public RiceUsernotelog() {
     }
 
-    public RiceUserlog(String id) {
+    public RiceUsernotelog(String id) {
         super(id);
     }
 
