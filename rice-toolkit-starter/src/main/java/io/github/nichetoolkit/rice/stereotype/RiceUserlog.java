@@ -18,6 +18,11 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @RestUserlog
 public @interface RiceUserlog {
+
+    String USER_ID = "";
+
+    String USERNAME = "";
+
     @AliasFor(
             annotation = io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog.class,
             attribute = "value"
@@ -53,10 +58,4 @@ public @interface RiceUserlog {
             attribute = "logType"
     )
     LogType logType() default LogType.NONE;
-
-
-    String userId() default "";
-
-
-    String username() default "";
 }

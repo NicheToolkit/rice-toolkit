@@ -23,9 +23,6 @@ import java.util.Set;
  */
 @Slf4j
 public abstract class RiceUsernoteService<T extends RiceUsernotelog> extends RestUsernoteService implements RiceUserlogAdvice {
-
-    private static final ThreadLocal<RiceUserlog> USER_LOG_HOLDER = new ThreadLocal<>();
-
     private RiceRequest request;
     private RiceResponse response;
     private RestUsernote usernote;
@@ -42,13 +39,15 @@ public abstract class RiceUsernoteService<T extends RiceUsernotelog> extends Res
 
     @SuppressWarnings(value = "unchecked")
     private Class<T> usernotelogClass() {
-        return (Class<T>)((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+        return (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
     @Override
     public void userlog(HandlerMethod handlerMethod, RestRequestWrapper requestWrapper, RiceUserlog userlog) throws RestException {
-        userlog(requestWrapper,userlog);
-        USER_LOG_HOLDER.set(userlog);
+        RestUserInfo user = RiceUserHolder.getUser();
+        if (GeneralUtils.isEmpty(user)) {
+            userlog(requestWrapper, userlog);
+        }
     }
 
     @Override
@@ -67,7 +66,7 @@ public abstract class RiceUsernoteService<T extends RiceUsernotelog> extends Res
             if (GeneralUtils.isNotEmpty(this.usernotelog)) {
                 T renew = ClazzUtils.renew(usernotelogClass());
                 if (GeneralUtils.isNotEmpty(renew)) {
-                    BeanUtils.copyNonullProperties(this.usernotelog,renew);
+                    BeanUtils.copyNonullProperties(this.usernotelog, renew);
                     renew.setTargetIds(this.usernotelog.getTargetIds());
                     usernote(renew);
                 }
@@ -81,7 +80,6 @@ public abstract class RiceUsernoteService<T extends RiceUsernotelog> extends Res
     }
 
 
-
     protected void transfer() {
         applyUserInfo();
         applyNotelog();
@@ -91,20 +89,12 @@ public abstract class RiceUsernoteService<T extends RiceUsernotelog> extends Res
     }
 
     protected void applyUserInfo() {
-        RiceUserlog userlog = USER_LOG_HOLDER.get();
-        if (GeneralUtils.isNotEmpty(userlog)) {
-            if (GeneralUtils.isNotEmpty(userlog.userId())) {
-                this.usernotelog.setUserId(userlog.userId());
+        RestUserInfo userInfo = RiceUserHolder.getUser();
+        if (GeneralUtils.isNotEmpty(userInfo)) {
+            if (GeneralUtils.isNotEmpty(userInfo.getId())) {
+                this.usernotelog.setUserId(String.valueOf(userInfo.getId()));
             }
-            this.usernotelog.setUsername(userlog.username());
-        } else {
-            RestUserInfo userInfo = RiceUserHolder.getUser();
-            if (GeneralUtils.isNotEmpty(userInfo)) {
-                if (GeneralUtils.isNotEmpty(userInfo.getId())) {
-                    this.usernotelog.setUserId(String.valueOf(userInfo.getId()));
-                }
-                this.usernotelog.setUsername(userInfo.getUsername());
-            }
+            this.usernotelog.setUsername(userInfo.getUsername());
         }
     }
 
