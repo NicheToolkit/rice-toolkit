@@ -47,7 +47,7 @@ public class RiceUserlogInterceptor implements RiceRequestInterceptor {
             if (GeneralUtils.isNotEmpty(this.userlogAdvices)) {
                 for (RiceUserlogAdvice userlogAdvice : this.userlogAdvices) {
                     if (userlogAdvice.supports(userlog,handlerMethod)) {
-                        userlogAdvice.userlog(handlerMethod,requestWrapper,userlog);
+                        userlogAdvice.userlog(handlerMethod,requestWrapper);
                     }
                 }
             }
