@@ -1,14 +1,14 @@
-package io.github.nichetoolkit.rice;
+package io.github.nichetoolkit.rice.resolver;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.userlog.*;
 import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.*;
 import io.github.nichetoolkit.rice.clazz.ClazzUtils;
 import io.github.nichetoolkit.rice.interceptor.advice.RiceUserlogAdvice;
 import io.github.nichetoolkit.rice.resolver.RiceUserHolder;
-import io.github.nichetoolkit.rice.stereotype.RiceUserlog;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.method.HandlerMethod;
 
@@ -17,22 +17,22 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * <p>RiceUserlogService</p>
+ * <p>RiceUsernoteService</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
 @Slf4j
-public abstract class RiceUsernoteService<T extends RiceUsernotelog> extends RestUsernoteService implements RiceUserlogAdvice {
+public abstract class RiceUsernoteService<T extends RiceUsernote> extends RestUsernoteService implements RiceUserlogAdvice {
     private RiceRequest request;
     private RiceResponse response;
     private RestUsernote usernote;
-    private RiceUsernotelog<? extends RiceIdModel, ? extends RiceIdEntity> usernotelog;
+    private RiceUsernote<? extends RiceIdModel, ? extends RiceIdEntity> usernotelog;
 
     public RiceUsernoteService() {
-        this.usernotelog = new RiceUsernotelog<>();
+        this.usernotelog = new RiceUsernote<>();
     }
 
-    public abstract void userlog(RestRequestWrapper requestWrapper, RiceUserlog userlog) throws RestException;
+    public abstract RestUserInfo userlog(RestRequestWrapper requestWrapper) throws RestException;
 
     public abstract void usernote(T usernotelog) throws RestException;
 
@@ -43,10 +43,11 @@ public abstract class RiceUsernoteService<T extends RiceUsernotelog> extends Res
     }
 
     @Override
-    public void userlog(HandlerMethod handlerMethod, RestRequestWrapper requestWrapper, RiceUserlog userlog) throws RestException {
-        RestUserInfo user = RiceUserHolder.getUser();
-        if (GeneralUtils.isEmpty(user)) {
-            userlog(requestWrapper, userlog);
+    public void userlog(HandlerMethod handlerMethod, RestRequestWrapper requestWrapper) throws RestException {
+        RestUserInfo userInfo = RiceUserHolder.getUser();
+        if (GeneralUtils.isEmpty(userInfo)) {
+            RestUserInfo userlog = userlog(requestWrapper);
+            RiceUserHolder.setUser(userlog);
         }
     }
 
@@ -76,7 +77,7 @@ public abstract class RiceUsernoteService<T extends RiceUsernotelog> extends Res
         } catch (Exception exception) {
             log.warn("the usernotelog exception is ignored! error: {}", exception.getMessage());
         }
-        this.usernotelog = new RiceUsernotelog<>();
+        this.usernotelog = new RiceUsernote<>();
     }
 
 

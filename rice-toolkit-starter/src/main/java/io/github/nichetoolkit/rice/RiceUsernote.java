@@ -22,7 +22,7 @@ import java.util.*;
 @EqualsAndHashCode(callSuper = true)
 @JsonInclude(value= JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RiceUsernotelog<M extends RiceIdModel<M, E>, E extends RiceIdEntity<E, M>> extends RiceIdModel<M,E> {
+public class RiceUsernote<M extends RiceIdModel<M, E>, E extends RiceIdEntity<E, M>> extends RiceIdModel<M,E> {
     /** 用户id */
     protected String userId;
     /** 操作数据id集合 */
@@ -64,10 +64,10 @@ public class RiceUsernotelog<M extends RiceIdModel<M, E>, E extends RiceIdEntity
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date logTime;
 
-    public RiceUsernotelog() {
+    public RiceUsernote() {
     }
 
-    public RiceUsernotelog(String id) {
+    public RiceUsernote(String id) {
         super(id);
     }
 

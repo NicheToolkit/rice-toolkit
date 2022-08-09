@@ -17,7 +17,7 @@ public interface RiceUserlogAdvice {
         return GeneralUtils.isNotEmpty(userlog);
     }
 
-    default void userlog(HandlerMethod handlerMethod, RestRequestWrapper requestWrapper, RiceUserlog userlog) throws RestException {
+    default void userlog(HandlerMethod handlerMethod, RestRequestWrapper requestWrapper) throws RestException {
     }
 
 }
