@@ -3,10 +3,10 @@ package io.github.nichetoolkit.rice.interceptor;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.helper.RestRequestHelper;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
+import io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.helper.InterceptorHelper;
 import io.github.nichetoolkit.rice.interceptor.advice.RiceUserlogAdvice;
-import io.github.nichetoolkit.rice.stereotype.RiceUserlog;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
@@ -41,8 +41,8 @@ public class RiceUserlogInterceptor implements RiceRequestInterceptor {
 
     @Override
     public void afterHandle(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
-        if (InterceptorHelper.supports(RiceUserlog.class,handlerMethod)) {
-            RiceUserlog userlog = InterceptorHelper.annotation(RiceUserlog.class, handlerMethod);
+        if (InterceptorHelper.supports(RestUserlog.class,handlerMethod)) {
+            RestUserlog userlog = InterceptorHelper.annotation(RestUserlog.class, handlerMethod);
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
             if (GeneralUtils.isNotEmpty(this.userlogAdvices)) {
                 for (RiceUserlogAdvice userlogAdvice : this.userlogAdvices) {
