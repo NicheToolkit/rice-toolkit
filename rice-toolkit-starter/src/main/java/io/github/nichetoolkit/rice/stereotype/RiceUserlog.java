@@ -19,10 +19,6 @@ import java.lang.annotation.Target;
 @RestUserlog
 public @interface RiceUserlog {
 
-    String USER_ID = "";
-
-    String USERNAME = "";
-
     @AliasFor(
             annotation = io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog.class,
             attribute = "value"
