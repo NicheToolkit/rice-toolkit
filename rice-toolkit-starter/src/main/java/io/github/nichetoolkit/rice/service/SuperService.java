@@ -557,11 +557,12 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         optionalFilter(filter);
         filterCache.set(filter);
         String whereSql = queryWhereSql(filter);
-        Boolean[] isLoadArray = loadArray(filter);
+        Boolean[] loadArray = findLoadArray(filter);
+        Boolean[] isLoadArray = queryLoadArray(filter);
         String[] fieldArray = fieldArray(filter);
         Page<E> page;
         List<E> entityList;
-        if (isLoadArray.length > 0 && LoadFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
+        if (loadArray.length > 0 && LoadFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
             LoadFilterMapper<E, I> loadFilterMapper = (LoadFilterMapper<E, I>) superMapper;
             Method findMethod = null;
             try {
@@ -572,7 +573,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             /* 当LoadMapper被复写的时候 优先调用LoadMapper的findAllByWhereMethod */
             if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
                 page = filter.toPage();
-                entityList = loadFilterMapper.findAllByLoadWhere(whereSql, isLoadArray);
+                entityList = loadFilterMapper.findAllByLoadWhere(whereSql, loadArray);
             } else {
                 page = filter.toPage();
                 entityList = superMapper.findAllByWhere(whereSql);

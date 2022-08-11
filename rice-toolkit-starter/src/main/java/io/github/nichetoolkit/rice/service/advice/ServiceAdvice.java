@@ -32,7 +32,11 @@ public interface ServiceAdvice<I, F extends IdFilter<I>> {
         return deleteWhereSql(filter);
     }
 
-    default Boolean[] loadArray(F filter) throws RestException {
+    default Boolean[] findLoadArray(F filter) throws RestException {
+        return filter.toLoadArray();
+    }
+
+    default Boolean[] queryLoadArray(F filter) throws RestException {
         return filter.toLoadArray();
     }
 

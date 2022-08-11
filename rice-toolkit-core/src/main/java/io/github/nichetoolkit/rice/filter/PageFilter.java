@@ -81,21 +81,25 @@ public class PageFilter implements Serializable {
     }
 
     public Boolean[] toLoadArray() {
-        return LOAD_ARRAY.toArray(new Boolean[0]);
+        Boolean[] toArray = LOAD_ARRAY.toArray(new Boolean[0]);
+        LOAD_ARRAY.clear();
+        return toArray;
     }
 
     public Boolean[] toLoadArray(@NonNull Boolean... isLoads) {
         this.addLoadArray(isLoads);
-        return LOAD_ARRAY.toArray(new Boolean[0]);
+        return toLoadArray();
     }
 
     public String[] toFieldArray() {
-        return FIELD_ARRAY.toArray(new String[0]);
+        String[] toArray = FIELD_ARRAY.toArray(new String[0]);
+        FIELD_ARRAY.clear();
+        return toArray;
     }
 
     public String[] toFieldArray(@NonNull String... fields) {
         this.addFieldArray(fields);
-        return FIELD_ARRAY.toArray(new String[0]);
+        return toFieldArray();
     }
 
     public void addLoadArray(@NonNull Boolean... isLoads) {
