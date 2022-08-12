@@ -135,6 +135,21 @@ public class IdFilter<I> extends OperateFilter {
         return null;
     }
 
+    public String toDeleteSql() {
+        return toNonsortSql();
+    }
+
+    public String toNonsortSql() {
+        String sql = this.SQL_BUILDER.toString();
+        if (GeneralUtils.isNotEmpty(sql)) {
+            this.SQL_BUILDER.clear();
+            return sql;
+        }
+        return null;
+    }
+
+
+
     @Override
     public IdFilter<I> addSorts(@NonNull String... sorts) {
         super.addSorts(sorts);
