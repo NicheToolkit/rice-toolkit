@@ -22,6 +22,9 @@ public class SortFilter extends PageFilter {
 
     protected Set<RestSort> sorts;
 
+    @JsonIgnore
+    protected boolean isSort = true;
+
     public SortFilter() {
     }
 
@@ -47,6 +50,14 @@ public class SortFilter extends PageFilter {
             return new ArrayList<>(sorts);
         }
         return Collections.emptyList();
+    }
+
+    public boolean isSort() {
+        return isSort;
+    }
+
+    public void setSort(boolean sort) {
+        isSort = sort;
     }
 
     public void setSorts(@NonNull String... sorts) {
@@ -91,7 +102,7 @@ public class SortFilter extends PageFilter {
 
     public String toSort() {
         StringBuilder sortBuilder = new StringBuilder();
-        if (GeneralUtils.isNotEmpty(this.sorts)) {
+        if (this.isSort() && GeneralUtils.isNotEmpty(this.sorts)) {
             sortBuilder.append(SORT_ORDER);
             this.sorts.forEach(sort -> sortBuilder.append(sort.toString()).append(SORT_REGEX));
             sortBuilder.deleteCharAt(sortBuilder.length() - 1);
