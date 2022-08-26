@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -135,6 +136,27 @@ public class PropertyHelper {
         return null;
     }
 
+
+    public static BigInteger toBigInteger(Object value) {
+        if (GeneralUtils.isNotEmpty(value)) {
+            String trim = value.toString().trim();
+            if (isBigInteger(trim)) {
+                return new BigInteger(trim);
+            }
+        }
+        return null;
+    }
+
+    public static BigDecimal toBigDecimal(Object value) {
+        if (GeneralUtils.isNotEmpty(value)) {
+            String trim = value.toString().trim();
+            if (isBigDecimal(trim)) {
+                return new BigDecimal(trim);
+            }
+        }
+        return null;
+    }
+
     public static Integer toInteger(Object value) {
         if (GeneralUtils.isNotEmpty(value)) {
             String trim = value.toString().trim();
@@ -166,6 +188,27 @@ public class PropertyHelper {
             }
         }
         return null;
+    }
+
+
+    public static boolean isBigInteger(String value) {
+        try {
+            new BigInteger(value);
+            return true;
+        } catch (NumberFormatException exception) {
+            log.debug(" {} to convent BigInteger fail！", value);
+            return false;
+        }
+    }
+
+    public static boolean isBigDecimal(String value) {
+        try {
+            new BigDecimal(value);
+            return true;
+        } catch (NumberFormatException exception) {
+            log.debug(" {} to convent BigDecimal fail！", value);
+            return false;
+        }
     }
 
     public static boolean isInteger(String value) {
