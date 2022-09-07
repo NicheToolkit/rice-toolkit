@@ -16,6 +16,7 @@ import io.github.nichetoolkit.rice.configure.RiceBeanProperties;
 import io.github.nichetoolkit.rice.enums.DeleteType;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.enums.RemoveType;
+import io.github.nichetoolkit.rice.enums.SaveType;
 import io.github.nichetoolkit.rice.error.service.ServiceUnknownException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
@@ -755,19 +756,23 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         } else {
             invadeActuator().actuate(model);
         }
+        model.setSave(SaveType.CREATE);
     }
 
     protected void optionalUpdate(@NonNull M model) throws RestException {
         OptionalHelper.idable(model.getId());
         updateActuator().actuate(model);
+        model.setSave(SaveType.UPDATE);
     }
 
     protected void optionalSave(@NonNull M model) throws RestException {
         if (GeneralUtils.isEmpty(model.getId())) {
             optionalInit(model);
             createActuator().actuate(model);
+            model.setSave(SaveType.CREATE);
         } else {
             updateActuator().actuate(model);
+            model.setSave(SaveType.UPDATE);
         }
     }
 }
