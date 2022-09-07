@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice;
 
 import io.github.nichetoolkit.rice.enums.OperateType;
+import io.github.nichetoolkit.rice.enums.SaveType;
 
 import java.io.Serializable;
 
@@ -10,12 +11,9 @@ import java.io.Serializable;
  * @version v1.0.0
  */
 @SuppressWarnings("WeakerAccess")
-public class OperateModel implements RestOperate, Serializable {
+public class OperateModel extends SaveModel implements RestOperate{
 
     protected OperateType operate;
-
-    /** 逻辑删除标记 */
-    protected String logicSign;
 
     public OperateModel() {
     }
@@ -34,15 +32,7 @@ public class OperateModel implements RestOperate, Serializable {
         this.operate = operate;
     }
 
-    public String getLogicSign() {
-        return logicSign;
-    }
-
-    public void setLogicSign(String logicSign) {
-        this.logicSign = logicSign;
-    }
-
-    public static class Builder {
+    public static class Builder extends SaveModel.Builder {
         protected OperateType operate = OperateType.NONE;
 
         public Builder() {
@@ -55,6 +45,18 @@ public class OperateModel implements RestOperate, Serializable {
 
         public OperateModel.Builder operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
+            return this;
+        }
+
+        @Override
+        public OperateModel.Builder save(SaveType save) {
+            this.save = save;
+            return this;
+        }
+
+        @Override
+        public OperateModel.Builder save(Integer save) {
+            this.save = SaveType.parseKey(save);
             return this;
         }
 

@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice;
 
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import io.github.nichetoolkit.rice.enums.SaveType;
 import org.springframework.lang.NonNull;
 
 import java.util.Date;
@@ -91,6 +92,8 @@ public class IdModel<I> extends TimeModel implements RestId<I>{
             return this;
         }
 
+
+
         @Override
         public IdModel.Builder<I> operate(OperateType operate) {
             this.operate = operate;
@@ -100,6 +103,17 @@ public class IdModel<I> extends TimeModel implements RestId<I>{
         @Override
         public IdModel.Builder<I> operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
+            return this;
+        }
+
+        @Override
+        public IdModel.Builder<I> save(SaveType save) {
+            this.save = save;
+            return this;
+        }
+        @Override
+        public IdModel.Builder<I> save(Integer save) {
+            this.save = SaveType.parseKey(save);
             return this;
         }
 

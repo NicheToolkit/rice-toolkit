@@ -3,6 +3,7 @@ package io.github.nichetoolkit.rice.simple;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.github.nichetoolkit.rice.RiceInfoModel;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import io.github.nichetoolkit.rice.enums.SaveType;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
@@ -116,6 +117,17 @@ public class SimpleModel extends RiceInfoModel<SimpleModel,SimpleEntity> {
         @Override
         public SimpleModel.Builder operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
+            return this;
+        }
+
+        @Override
+        public SimpleModel.Builder save(SaveType save) {
+            this.save = save;
+            return this;
+        }
+        @Override
+        public SimpleModel.Builder save(Integer save) {
+            this.save = SaveType.parseKey(save);
             return this;
         }
 

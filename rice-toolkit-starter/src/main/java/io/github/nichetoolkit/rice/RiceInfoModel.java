@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice;
 
 import io.github.nichetoolkit.rice.enums.OperateType;
+import io.github.nichetoolkit.rice.enums.SaveType;
 import org.springframework.lang.NonNull;
 
 import java.util.Date;
@@ -83,6 +84,17 @@ public abstract class RiceInfoModel<M extends RiceInfoModel<M,E>,E extends RiceI
         @Override
         public RiceInfoModel.Builder operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
+            return this;
+        }
+
+        @Override
+        public RiceInfoModel.Builder save(SaveType save) {
+            this.save = save;
+            return this;
+        }
+        @Override
+        public RiceInfoModel.Builder save(Integer save) {
+            this.save = SaveType.parseKey(save);
             return this;
         }
 
