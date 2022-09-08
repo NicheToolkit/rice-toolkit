@@ -613,7 +613,8 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             } else if (deleteModel == DeleteType.OPERATE) {
                 operateAllWithFilter(filter);
             } else {
-                List<E> entityList = superMapper.findAllByWhere(whereSql);
+                String queryWhereSql = queryWhereSql(filter);
+                List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
                 if (GeneralUtils.isNotEmpty(entityList)) {
                     this.beforeDeleteAll(entityList);
                     superMapper.deleteAllByWhere(whereSql);
@@ -626,13 +627,14 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
 
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void removeAllWithFilter(F filter) throws RestException {
-        String whereSql = removeWhereSql(filter);
-        if (GeneralUtils.isNotEmpty(whereSql)) {
+        String removeWhereSql = removeWhereSql(filter);
+        if (GeneralUtils.isNotEmpty(removeWhereSql)) {
             String removeSign = removeSign();
-            List<E> entityList = superMapper.findAllByWhere(whereSql);
+            String queryWhereSql = queryWhereSql(filter);
+            List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
             if (GeneralUtils.isNotEmpty(entityList) && superMapper instanceof RemoveMapper) {
                 this.beforeRemoveAll(entityList);
-                ((RemoveMapper) superMapper).removeAllByWhere(whereSql,removeSign);
+                ((RemoveMapper) superMapper).removeAllByWhere(removeWhereSql,removeSign);
                 this.afterRemoveAll(entityList);
                 this.refresh();
             }
@@ -642,12 +644,13 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
 
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void operateAllWithFilter(F filter) throws RestException {
-        String whereSql = operateWhereSql(filter);
-        if (GeneralUtils.isNotEmpty(whereSql)) {
-            List<E> entityList = superMapper.findAllByWhere(whereSql);
+        String operateWhereSql = operateWhereSql(filter);
+        if (GeneralUtils.isNotEmpty(operateWhereSql)) {
+            String queryWhereSql = queryWhereSql(filter);
+            List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
             if (GeneralUtils.isNotEmpty(entityList) && superMapper instanceof OperateMapper) {
                 this.beforeOperateAll(entityList);
-                ((OperateMapper) superMapper).operateAllByWhere(whereSql,OperateType.REMOVE.getKey());
+                ((OperateMapper) superMapper).operateAllByWhere(operateWhereSql,OperateType.REMOVE.getKey());
                 this.afterOperateAll(entityList);
                 this.refresh();
             }
