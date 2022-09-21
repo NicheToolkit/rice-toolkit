@@ -16,7 +16,13 @@ public enum SaveType implements RestValue<Integer,String> {
     /** 创建 */
     CREATE(2,"创建"),
     /** 更新 */
-    UPDATE(4,"更新")
+    UPDATE(4,"更新"),
+    /** 复制 */
+    COPY(8,"复制"),
+    /** 移除 逻辑删除 */
+    REMOVE(16,"移除"),
+    /** 删除 物理删除 */
+    DELETE(32,"删除"),
     ;
 
     private final Integer key;
