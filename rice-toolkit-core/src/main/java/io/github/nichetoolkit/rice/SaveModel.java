@@ -36,6 +36,37 @@ public class SaveModel implements RestSave, Serializable {
         this.save = save;
     }
 
+    public boolean isSaveNone() {
+        return this.save == SaveType.NONE;
+    }
+
+    public boolean isSaveCreate() {
+        return this.save == SaveType.CREATE;
+    }
+
+    public boolean isSaveUpdate() {
+        return this.save == SaveType.UPDATE;
+    }
+
+    public boolean isSaveCopy() {
+        return this.save == SaveType.COPY;
+    }
+
+    public boolean isSaveRemove() {
+        return this.save == SaveType.REMOVE;
+    }
+
+    public boolean isSaveDelete() {
+        return this.save == SaveType.DELETE;
+    }
+
+    public boolean isSaveHigher(SaveType saveType) {
+        return this.save.getKey() >= saveType.getKey();
+    }
+
+    public boolean isSaveLower(SaveType saveType) {
+        return this.save.getKey() < saveType.getKey();
+    }
     public String getLogicSign() {
         return logicSign;
     }

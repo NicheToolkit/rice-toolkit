@@ -32,6 +32,30 @@ public class OperateModel extends SaveModel implements RestOperate{
         this.operate = operate;
     }
 
+    public boolean isOperateNone() {
+        return this.operate == OperateType.NONE;
+    }
+
+    public boolean isOperateCreate() {
+        return this.operate == OperateType.INSERT;
+    }
+
+    public boolean isOperateUpdate() {
+        return this.operate == OperateType.UPDATE;
+    }
+
+    public boolean isOperateCopy() {
+        return this.operate == OperateType.COPY;
+    }
+
+    public boolean isOperateRemove() {
+        return this.operate == OperateType.REMOVE;
+    }
+
+    public boolean isOperateDelete() {
+        return this.operate == OperateType.DELETE;
+    }
+
     public static class Builder extends SaveModel.Builder {
         protected OperateType operate = OperateType.NONE;
 
