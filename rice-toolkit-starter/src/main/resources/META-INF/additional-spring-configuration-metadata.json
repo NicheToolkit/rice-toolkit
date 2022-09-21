@@ -45,6 +45,20 @@
       "defaultValue": "NUMBER"
     },
     {
+      "name": "nichetoolkit.rice.bean.delete.before-skip",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "before skip.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.after-skip",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "after skip.",
+      "defaultValue": "true"
+    },
+    {
       "name": "nichetoolkit.rice.bean.delete.remove-index",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
