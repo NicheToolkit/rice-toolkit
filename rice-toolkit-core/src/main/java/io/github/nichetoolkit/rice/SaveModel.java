@@ -36,26 +36,32 @@ public class SaveModel implements RestSave, Serializable {
         this.save = save;
     }
 
+    @JsonIgnore
     public boolean isSaveNone() {
         return this.save == SaveType.NONE;
     }
 
+    @JsonIgnore
     public boolean isSaveCreate() {
         return this.save == SaveType.CREATE;
     }
 
+    @JsonIgnore
     public boolean isSaveUpdate() {
         return this.save == SaveType.UPDATE;
     }
 
+    @JsonIgnore
     public boolean isSaveCopy() {
         return this.save == SaveType.COPY;
     }
 
+    @JsonIgnore
     public boolean isSaveRemove() {
         return this.save == SaveType.REMOVE;
     }
 
+    @JsonIgnore
     public boolean isSaveDelete() {
         return this.save == SaveType.DELETE;
     }

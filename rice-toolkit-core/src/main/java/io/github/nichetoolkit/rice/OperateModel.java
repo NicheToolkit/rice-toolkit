@@ -1,5 +1,6 @@
 package io.github.nichetoolkit.rice;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.enums.SaveType;
 
@@ -32,26 +33,32 @@ public class OperateModel extends SaveModel implements RestOperate{
         this.operate = operate;
     }
 
+    @JsonIgnore
     public boolean isOperateNone() {
         return this.operate == OperateType.NONE;
     }
 
+    @JsonIgnore
     public boolean isOperateCreate() {
         return this.operate == OperateType.INSERT;
     }
 
+    @JsonIgnore
     public boolean isOperateUpdate() {
         return this.operate == OperateType.UPDATE;
     }
 
+    @JsonIgnore
     public boolean isOperateCopy() {
         return this.operate == OperateType.COPY;
     }
 
+    @JsonIgnore
     public boolean isOperateRemove() {
         return this.operate == OperateType.REMOVE;
     }
 
+    @JsonIgnore
     public boolean isOperateDelete() {
         return this.operate == OperateType.DELETE;
     }
