@@ -136,6 +136,12 @@ public class RiceBeanProperties {
 
         private RemoveType removeModel = RemoveType.NUMBER;
 
+        /** 是否跳过 before处理 */
+        private boolean beforeSkip = true;
+
+        /** 是否跳过 after处理 */
+        private boolean afterSkip = true;
+
         /** 是否开启移除字段标记索引 */
         private boolean removeIndex = false;
 
@@ -160,6 +166,22 @@ public class RiceBeanProperties {
 
         public void setDeleteModel(DeleteType deleteModel) {
             this.deleteModel = deleteModel;
+        }
+
+        public boolean isBeforeSkip() {
+            return beforeSkip;
+        }
+
+        public void setBeforeSkip(boolean beforeSkip) {
+            this.beforeSkip = beforeSkip;
+        }
+
+        public boolean isAfterSkip() {
+            return afterSkip;
+        }
+
+        public void setAfterSkip(boolean afterSkip) {
+            this.afterSkip = afterSkip;
         }
 
         public RemoveType getRemoveModel() {
@@ -225,6 +247,14 @@ public class RiceBeanProperties {
 
     public Boolean isModelUnique() {
         return this.getModel().getUniqueEnabled();
+    }
+
+    public Boolean isBeforeSkip() {
+        return this.getDelete().isBeforeSkip();
+    }
+
+    public Boolean isAfterSkip() {
+        return this.getDelete().isAfterSkip();
     }
 
     public DeleteType deleteModel() {
