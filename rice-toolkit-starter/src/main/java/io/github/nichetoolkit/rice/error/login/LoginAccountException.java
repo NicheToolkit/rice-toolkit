@@ -13,8 +13,8 @@ public class LoginAccountException extends LoginErrorException {
         super(LoginErrorStatus.LOGIN_ACCOUNT_ERROR);
     }
 
-    public LoginAccountException(String service) {
-        super(service, LoginErrorStatus.LOGIN_ACCOUNT_ERROR);
+    public LoginAccountException(String error) {
+        super(LoginErrorStatus.LOGIN_ACCOUNT_ERROR,error);
     }
 
     public LoginAccountException(String service, String error) {

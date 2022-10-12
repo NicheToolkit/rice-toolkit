@@ -13,8 +13,8 @@ public class LoginPasswordException extends LoginErrorException {
         super(LoginErrorStatus.LOGIN_PASSWORD_ERROR);
     }
 
-    public LoginPasswordException(String service) {
-        super(service, LoginErrorStatus.LOGIN_PASSWORD_ERROR);
+    public LoginPasswordException(String error) {
+        super(LoginErrorStatus.LOGIN_PASSWORD_ERROR,error);
     }
 
     public LoginPasswordException(String service, String error) {
