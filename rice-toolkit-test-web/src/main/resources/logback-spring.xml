@@ -54,6 +54,11 @@
             <!--日志文件保留天数-->
             <maxHistory>15</maxHistory>
         </rollingPolicy>
+        <!-- 此日志文件 不过滤就是和控制台同步 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
     </appender>
 
     <!-- 时间滚动输出 level为 DEBUG 日志 -->
