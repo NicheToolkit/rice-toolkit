@@ -14,8 +14,8 @@ public class TokenInvalidException extends TokenErrorException {
         super(TokenErrorStatus.TOKEN_INVALID_ERROR);
     }
 
-    public TokenInvalidException(String token) {
-        super(token, TokenErrorStatus.TOKEN_INVALID_ERROR);
+    public TokenInvalidException(String error) {
+        super(TokenErrorStatus.TOKEN_INVALID_ERROR, error);
     }
 
     public TokenInvalidException(String token, String error) {

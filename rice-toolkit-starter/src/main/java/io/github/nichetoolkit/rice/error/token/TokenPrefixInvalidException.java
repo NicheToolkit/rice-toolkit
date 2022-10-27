@@ -14,8 +14,8 @@ public class TokenPrefixInvalidException extends TokenErrorException {
         super(TokenErrorStatus.TOKEN_PREFIX_INVALID);
     }
 
-    public TokenPrefixInvalidException(String prefix) {
-        super(prefix, TokenErrorStatus.TOKEN_PREFIX_INVALID);
+    public TokenPrefixInvalidException(String error) {
+        super(TokenErrorStatus.TOKEN_PREFIX_INVALID, error);
     }
 
     public TokenPrefixInvalidException(String prefix, String error) {

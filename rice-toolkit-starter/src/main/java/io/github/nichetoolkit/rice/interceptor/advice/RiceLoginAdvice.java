@@ -60,7 +60,7 @@ public interface RiceLoginAdvice {
         }
         List<String> tokenList = InterceptorHelper.getHeaderToken(request, headerTokens,false);
         if (tokenList.isEmpty()) {
-           throw new TokenNoPermissionException();
+           throw new TokenNoPermissionException("访问令牌无权限！");
         }
         return true;
     }

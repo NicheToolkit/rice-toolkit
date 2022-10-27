@@ -101,6 +101,6 @@ public class RiceLoginInterceptor implements RiceRequestInterceptor {
                 }
             }
         }
-        throw new TokenPrefixInvalidException();
+        throw new TokenPrefixInvalidException("访问令牌前缀验证错误！");
     }
 }

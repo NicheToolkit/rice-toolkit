@@ -14,8 +14,8 @@ public class TokenNoPermissionException extends TokenErrorException {
         super(TokenErrorStatus.TOKEN_NO_PERMISSION);
     }
 
-    public TokenNoPermissionException(String permission) {
-        super(permission, TokenErrorStatus.TOKEN_NO_PERMISSION);
+    public TokenNoPermissionException(String error) {
+        super(TokenErrorStatus.TOKEN_NO_PERMISSION, error);
     }
 
     public TokenNoPermissionException(String permission, String error) {

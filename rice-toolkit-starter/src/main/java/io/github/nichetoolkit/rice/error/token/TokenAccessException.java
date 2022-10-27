@@ -14,8 +14,8 @@ public class TokenAccessException extends TokenErrorException {
         super(TokenErrorStatus.TOKEN_ACCESS_ERROR);
     }
 
-    public TokenAccessException(String service) {
-        super(service, TokenErrorStatus.TOKEN_ACCESS_ERROR);
+    public TokenAccessException(String error) {
+        super(TokenErrorStatus.TOKEN_ACCESS_ERROR, error);
     }
 
     public TokenAccessException(String service, String error) {

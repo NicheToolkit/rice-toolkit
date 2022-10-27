@@ -39,7 +39,7 @@ public class RiceUsernote<M extends RiceIdModel<M, E>, E extends RiceIdEntity<E,
     protected String requestParams;
     /** 请求地址 */
     protected String requestUrl;
-    /** 方法名 */
+    /** 方法名称 */
     protected String methodName;
     /** 请求媒介类型 */
     protected String mediaType;
@@ -49,9 +49,9 @@ public class RiceUsernote<M extends RiceIdModel<M, E>, E extends RiceIdEntity<E,
     protected Integer responseStatus;
     /** 响应消息 */
     protected String responseMessage;
-    /** 标题 */
+    /** 日志标题 */
     protected String notelog;
-    /** 信息 */
+    /** 日志信息 */
     protected String userlog;
     /** 操作key */
     protected Integer logKey;
