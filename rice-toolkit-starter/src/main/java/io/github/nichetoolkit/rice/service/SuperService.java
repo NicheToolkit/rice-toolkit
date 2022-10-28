@@ -808,27 +808,27 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
 
     private final ConsumerActuator<M> DEFAULT_CREATE_ACTUATOR = (@NonNull M model) -> {
         model.setId(ClazzHelper.generate(model));
+        optional(model);
         if (createActuator != null) {
             createActuator.actuate(model);
         }
-        optional(model);
     };
 
     private final ConsumerActuator<M> DEFAULT_UPDATE_ACTUATOR = (@NonNull M model) -> {
         boolean exist = existById(model.getId());
         String message = "the data no found，id: " + model.getId();
         OptionalHelper.falseable(exist, message, "id", DataQueryException::new);
+        optional(model);
         if (updateActuator != null) {
             updateActuator.actuate(model);
         }
-        optional(model);
     };
 
     private final ConsumerActuator<M> DEFAULT_INVADE_ACTUATOR = (@NonNull M model) -> {
+        optional(model);
         if (createActuator != null) {
             createActuator.actuate(model);
         }
-        optional(model);
     };
 
     protected ConsumerActuator<M> createActuator() {
