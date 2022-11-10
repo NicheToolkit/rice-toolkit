@@ -23,8 +23,7 @@ public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity
     protected InfoMapper<E,I> consumerMapper;
 
     @Override
-    protected void optionalInit(@NonNull M model) throws RestException {
-        super.optionalInit(model);
+    protected void optionalName(@NonNull M model) throws RestException {
         if (isNameNonnull()) {
             OptionalHelper.fieldable(model.getName(), "名称不能为空！");
         }

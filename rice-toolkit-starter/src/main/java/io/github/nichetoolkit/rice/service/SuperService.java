@@ -903,14 +903,23 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         return beanProperties.isAfterSkip();
     }
 
-    protected void optionalInit(@NonNull M model) throws RestException {
+    private void optionalLogicSign(@NonNull M model) throws RestException {
         if (GeneralUtils.isEmpty(model.getLogicSign())) {
             model.setLogicSign(removeValue());
         }
+        optionalName(model);
+        optionalInit(model);
     }
 
+    protected void optionalName(@NonNull M model) throws RestException {
+    }
+
+    protected void optionalInit(@NonNull M model) throws RestException {
+    }
+
+
     protected void optionalCreate(@NonNull M model) throws RestException {
-        optionalInit(model);
+        optionalLogicSign(model);
         if (GeneralUtils.isEmpty(model.getId()) || !isIdInvade()) {
             createActuator().actuate(model);
         } else {
@@ -931,7 +940,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
 
     protected void optionalSave(@NonNull M model) throws RestException {
         if (GeneralUtils.isEmpty(model.getId())) {
-            optionalInit(model);
+            optionalLogicSign(model);
             createActuator().actuate(model);
             if (model.isSaveLower(SaveType.CREATE)) {
                 model.setSave(SaveType.CREATE);
