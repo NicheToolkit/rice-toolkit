@@ -38,23 +38,22 @@ public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity
     @Override
     public void doServiceHandle() {
         this.createActuator = (@NonNull M model) -> {
-            if (isNameUnique()) {
-                Boolean existByName = existByName(model.getName());
-                OptionalHelper.nameRepeat(existByName, model.getName());
-            }
             if (isModelUnique()) {
                 Boolean existByModel = existByModel(model);
                 fieldRepeat(existByModel,model);
+            } else if (isNameUnique()) {
+                Boolean existByName = existByName(model.getName());
+                OptionalHelper.nameRepeat(existByName, model.getName());
             }
+
         };
         this.updateActuator = (@NonNull M model) -> {
-            if (isNameUnique()) {
-                Boolean existByName = existByNameAndNotId(model.getName(),model.getId());
-                OptionalHelper.nameRepeat(existByName,model.getName());
-            }
             if (isModelUnique()) {
                 Boolean existByModel = existByModelAndNotId(model,model.getId());
                 fieldRepeat(existByModel,model);
+            } else if (isNameUnique()) {
+                Boolean existByName = existByNameAndNotId(model.getName(),model.getId());
+                OptionalHelper.nameRepeat(existByName,model.getName());
             }
         };
         if (super.superMapper instanceof InfoMapper) {
