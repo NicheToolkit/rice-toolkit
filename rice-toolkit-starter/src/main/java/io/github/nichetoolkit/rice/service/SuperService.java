@@ -808,6 +808,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
 
     private final ConsumerActuator<M> DEFAULT_CREATE_ACTUATOR = (@NonNull M model) -> {
         model.setId(ClazzHelper.generate(model));
+        optionalInit(model);
         optional(model);
         if (createActuator != null) {
             createActuator.actuate(model);
@@ -825,6 +826,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     };
 
     private final ConsumerActuator<M> DEFAULT_INVADE_ACTUATOR = (@NonNull M model) -> {
+        optionalInit(model);
         optional(model);
         if (createActuator != null) {
             createActuator.actuate(model);
@@ -908,7 +910,6 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             model.setLogicSign(removeValue());
         }
         optionalName(model);
-        optionalInit(model);
     }
 
     protected void optionalName(@NonNull M model) throws RestException {
@@ -918,7 +919,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     }
 
 
-    protected void optionalCreate(@NonNull M model) throws RestException {
+    private void optionalCreate(@NonNull M model) throws RestException {
         optionalLogicSign(model);
         if (GeneralUtils.isEmpty(model.getId()) || !isIdInvade()) {
             createActuator().actuate(model);
@@ -930,7 +931,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
     }
 
-    protected void optionalUpdate(@NonNull M model) throws RestException {
+    private void optionalUpdate(@NonNull M model) throws RestException {
         OptionalHelper.idable(model.getId());
         updateActuator().actuate(model);
         if (model.isSaveLower(SaveType.UPDATE)) {
@@ -938,7 +939,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
     }
 
-    protected void optionalSave(@NonNull M model) throws RestException {
+    private void optionalSave(@NonNull M model) throws RestException {
         if (GeneralUtils.isEmpty(model.getId())) {
             optionalLogicSign(model);
             createActuator().actuate(model);
