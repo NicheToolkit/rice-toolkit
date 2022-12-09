@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rest.error.natives.ServiceErrorException;
 import io.github.nichetoolkit.rice.error.ServiceErrorStatus;
 
 /**
- * <p>ServiceUnsupportedException</p>
+ * <p>ServiceUnauthorizedException</p>
  * @author Cyan (snow22314 @ outlook.com)
  * @version v1.0.0
  */
