@@ -33,13 +33,13 @@
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper</artifactId>
-            <version>${tk-mybatis-mapper.version}</version>
+            <version>${tk-mybatis.version}</version>
         </dependency>
 
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
-            <version>${tk-mybatis-starter.version}</version>
+            <version>${tk-mybatis.version}</version>
         </dependency>
 
         <dependency>
