@@ -19,10 +19,24 @@ public interface RemoveLinkMapper<I> extends RemoveMapper<I> {
     Integer removeByLinkId(@Param("linkId") I linkId, @Param("sign") String sign);
 
     /**
+     * 实体单个删除
+     * @param linkId 实体id集合
+     * @return Integer SQL影响行数（成功为1）
+     */
+    Integer removeByLinkId(@Param("table") String table, @Param("linkId") I linkId, @Param("sign") String sign);
+
+    /**
      * 实体批量删除
      * @param linkIdList 实体id集合
      * @return Integer SQL影响行数
      */
     Integer removeAllByLinkIds(@Param("linkIdList") Collection<I> linkIdList, @Param("sign") String sign);
+
+    /**
+     * 实体批量删除
+     * @param linkIdList 实体id集合
+     * @return Integer SQL影响行数
+     */
+    Integer removeAllByLinkIds(@Param("table") String table, @Param("linkIdList") Collection<I> linkIdList, @Param("sign") String sign);
 
 }

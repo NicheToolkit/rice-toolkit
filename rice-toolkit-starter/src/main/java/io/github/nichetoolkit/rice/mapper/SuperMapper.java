@@ -28,11 +28,25 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
     Integer save(@Param("entity") E entity);
 
     /**
+     * 实体保存（存在更新不存在插入）
+     * @param entity 实体
+     * @return Integer SQL影响行数
+     */
+    Integer save(@Param("table") String table, @Param("entity") E entity);
+
+    /**
      * 批量保存（存在更新不存在插入）
      * @param entityList 实体集合
      * @return Integer SQL影响行数
      */
     Integer saveAll(@Param("entityList") Collection<E> entityList);
+
+    /**
+     * 批量保存（存在更新不存在插入）
+     * @param entityList 实体集合
+     * @return Integer SQL影响行数
+     */
+    Integer saveAll(@Param("table") String table, @Param("entityList") Collection<E> entityList);
 
     /**
      * 实体单个删除
@@ -42,11 +56,26 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
     Integer deleteById(@Param("id") I id);
 
     /**
+     * 实体单个删除
+     * @param id 实体id集合
+     * @return Integer SQL影响行数（成功为1）
+     */
+    Integer deleteById(@Param("table") String table, @Param("id") I id);
+
+    /**
      * 实体批量删除
      * @param idList 实体id集合
      * @return Integer SQL影响行数
      */
     Integer deleteAll(@Param("idList") Collection<I> idList);
+
+
+    /**
+     * 实体批量删除
+     * @param idList 实体id集合
+     * @return Integer SQL影响行数
+     */
+    Integer deleteAll(@Param("table") String table, @Param("idList") Collection<I> idList);
 
     /**
      * 通过id查询实体
@@ -56,11 +85,25 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
     E findById(@Param("id") I id);
 
     /**
+     * 通过id查询实体
+     * @param id 实体id
+     * @return T 查询的数据
+     */
+    E findById(@Param("table") String table, @Param("id") I id);
+
+    /**
      * 实体批量查询
      * @param idList 实体集合
      * @return List<T> 查询的数据集合
      */
     List<E> findAll(@Param("idList") Collection<I> idList);
+
+    /**
+     * 实体批量查询
+     * @param idList 实体集合
+     * @return List<T> 查询的数据集合
+     */
+    List<E> findAll(@Param("table") String table, @Param("idList") Collection<I> idList);
 
     /**
      * 通过filter查询条件查询
@@ -70,8 +113,21 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
     List<E> findAllByWhere(@Param("whereSql") String whereSql);
 
     /**
+     * 通过filter查询条件查询
+     * @param whereSql 过滤条件
+     * @return List<T>
+     */
+    List<E> findAllByWhere(@Param("table") String table, @Param("whereSql") String whereSql);
+
+    /**
      * 通过filter查询条件删除
      * @param whereSql 过滤条件
      */
     Integer deleteAllByWhere(@Param("whereSql") String whereSql);
+
+    /**
+     * 通过filter查询条件删除
+     * @param whereSql 过滤条件
+     */
+    Integer deleteAllByWhere(@Param("table") String table, @Param("whereSql") String whereSql);
 }
