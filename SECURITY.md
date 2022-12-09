@@ -7,8 +7,8 @@ currently being supported with security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| Spring boot 2.6.6+   | :white_check_mark: |
-| < 2.6.6   | :x:                |
+| Spring boot 2.7.6+   | :white_check_mark: |
+| < 2.7.6   | :x:                |
 | Maven 3.6.0+   | :white_check_mark: |
 | < 3.6.0   | :x:                |
 | JDK 1.8  | :white_check_mark: |               |
