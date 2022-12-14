@@ -18,7 +18,7 @@ import java.util.HashSet;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess","unchecked"})
 public class TimeFilter<D,I> extends IdFilter<I> {
 
     /** default like '2020-01-01 00:00:00' */

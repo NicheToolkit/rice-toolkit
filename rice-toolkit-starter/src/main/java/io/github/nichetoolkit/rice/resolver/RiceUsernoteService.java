@@ -22,6 +22,7 @@ import java.util.Set;
  * @version v1.0.0
  */
 @Slf4j
+@SuppressWarnings({"WeakerAccess","unchecked"})
 public abstract class RiceUsernoteService<T extends RiceUsernote> extends RestUsernoteService implements RiceUserlogAdvice {
     private RiceRequest request;
     private RiceResponse response;

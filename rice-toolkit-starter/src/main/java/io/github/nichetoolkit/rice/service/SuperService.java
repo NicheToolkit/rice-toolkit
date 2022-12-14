@@ -51,9 +51,9 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
 
     private static ApplicationContext applicationContext;
 
-    protected ConsumerActuator<M> createActuator;
+    protected BiConsumerActuator<String,M> createActuator;
 
-    protected ConsumerActuator<M> updateActuator;
+    protected BiConsumerActuator<String,M> updateActuator;
 
     protected SuperMapper<E, I> superMapper;
 
@@ -523,13 +523,13 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
     }
 
-    public void alertById(I id, String field, RestKey<Integer> keyType) throws RestException {
-        alertById(null, id, field, keyType);
+    public void alertFieldById(I id, String field, RestKey<Integer> keyType) throws RestException {
+        alertFieldById(null, id, field, keyType);
     }
 
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertById(String tableKey, I id, String field, RestKey<Integer> keyType) throws RestException {
+    public void alertFieldById(String tableKey, I id, String field, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(keyType)) {
             return;
         }
@@ -537,22 +537,22 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             String tablename = tablename(tableKey);
             this.beforeAlert(id);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((AlertFieldMapper<I>) superMapper).alertById(tablename, id, field, keyType.getKey());
+                ((AlertFieldMapper<I>) superMapper).alertFieldById(tablename, id, field, keyType.getKey());
             } else {
-                ((AlertFieldMapper<I>) superMapper).alertById(id, field, keyType.getKey());
+                ((AlertFieldMapper<I>) superMapper).alertFieldById(id, field, keyType.getKey());
             }
             this.afterAlert(id);
             this.refresh();
         }
     }
 
-    public void alertAll(Collection<I> idList, String field, RestKey<Integer> keyType) throws RestException {
-        alertAll(null, idList, field, keyType);
+    public void alertFieldAll(Collection<I> idList, String field, RestKey<Integer> keyType) throws RestException {
+        alertFieldAll(null, idList, field, keyType);
     }
 
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertAll(String tableKey, Collection<I> idList, String field, RestKey<Integer> keyType) throws RestException {
+    public void alertFieldAll(String tableKey, Collection<I> idList, String field, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
@@ -561,11 +561,11 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             this.beforeAlertAll(idList);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                 PartitionHelper.partition(idList, this.deletePartition(), ids -> {
-                    ((AlertFieldMapper<I>) superMapper).alertAll(tablename, ids, field, keyType.getKey());
+                    ((AlertFieldMapper<I>) superMapper).alertFieldAll(tablename, ids, field, keyType.getKey());
                 });
             } else {
                 PartitionHelper.partition(idList, this.deletePartition(), ids -> {
-                    ((AlertFieldMapper<I>) superMapper).alertAll(ids, field, keyType.getKey());
+                    ((AlertFieldMapper<I>) superMapper).alertFieldAll(ids, field, keyType.getKey());
                 });
             }
             this.afterAlertAll(idList);
@@ -573,13 +573,13 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
     }
 
-    public void alertById(I id, String field, String biField, RestKey<Integer> keyType) throws RestException {
-        alertById(null, id, field, biField, keyType);
+    public void alertBiFieldById(I id, String field, String biField, RestKey<Integer> keyType) throws RestException {
+        alertBiFieldById(null, id, field, biField, keyType);
     }
 
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertById(String tableKey, I id, String field, String biField, RestKey<Integer> keyType) throws RestException {
+    public void alertBiFieldById(String tableKey, I id, String field, String biField, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(keyType)) {
             return;
         }
@@ -587,22 +587,22 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             String tablename = tablename(tableKey);
             this.beforeAlert(id);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((AlertBiFieldMapper<I>) superMapper).alertById(tablename, id, field, biField, keyType.getKey());
+                ((AlertBiFieldMapper<I>) superMapper).alertBiFieldById(tablename, id, field, biField, keyType.getKey());
             } else {
-                ((AlertBiFieldMapper<I>) superMapper).alertById(id, field, biField, keyType.getKey());
+                ((AlertBiFieldMapper<I>) superMapper).alertBiFieldById(id, field, biField, keyType.getKey());
             }
             this.afterAlert(id);
             this.refresh();
         }
     }
 
-    public void alertAll(Collection<I> idList, String field, String biField, RestKey<Integer> keyType) throws RestException {
-        alertAll(null, idList, field, biField, keyType);
+    public void alertBiFieldAll(Collection<I> idList, String field, String biField, RestKey<Integer> keyType) throws RestException {
+        alertBiFieldAll(null, idList, field, biField, keyType);
     }
 
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertAll(String tableKey, Collection<I> idList, String field, String biField, RestKey<Integer> keyType) throws RestException {
+    public void alertBiFieldAll(String tableKey, Collection<I> idList, String field, String biField, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
@@ -611,11 +611,11 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             this.beforeAlertAll(idList);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                 PartitionHelper.partition(idList, this.deletePartition(), ids -> {
-                    ((AlertBiFieldMapper<I>) superMapper).alertAll(tablename, ids, field, biField, keyType.getKey());
+                    ((AlertBiFieldMapper<I>) superMapper).alertBiFieldAll(tablename, ids, field, biField, keyType.getKey());
                 });
             } else {
                 PartitionHelper.partition(idList, this.deletePartition(), ids -> {
-                    ((AlertBiFieldMapper<I>) superMapper).alertAll(ids, field, biField, keyType.getKey());
+                    ((AlertBiFieldMapper<I>) superMapper).alertBiFieldAll(ids, field, biField, keyType.getKey());
                 });
             }
             this.afterAlertAll(idList);
@@ -1148,16 +1148,16 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
     }
 
-    private final ConsumerActuator<M> DEFAULT_CREATE_ACTUATOR = (@NonNull M model) -> {
+    private final BiConsumerActuator<String,M> DEFAULT_CREATE_ACTUATOR = (String tableKey, @NonNull M model) -> {
         model.setId(ClazzHelper.generate(model));
         optionalInit(model);
         optional(model);
         if (createActuator != null) {
-            createActuator.actuate(model);
+            createActuator.actuate(tableKey,model);
         }
     };
 
-    private final ConsumerActuator<M> DEFAULT_UPDATE_ACTUATOR = (@NonNull M model) -> {
+    private final BiConsumerActuator<String,M> DEFAULT_UPDATE_ACTUATOR = (String tableKey, @NonNull M model) -> {
         boolean exist;
         if (isDynamicTable() && model instanceof RestTable) {
             exist = existById(((RestTable) model).getTableKey(), model.getId());
@@ -1168,27 +1168,27 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         OptionalHelper.falseable(exist, message, "id", DataQueryException::new);
         optional(model);
         if (updateActuator != null) {
-            updateActuator.actuate(model);
+            updateActuator.actuate(tableKey,model);
         }
     };
 
-    private final ConsumerActuator<M> DEFAULT_INVADE_ACTUATOR = (@NonNull M model) -> {
+    private final BiConsumerActuator<String,M> DEFAULT_INVADE_ACTUATOR = (String tableKey, @NonNull M model) -> {
         optionalInit(model);
         optional(model);
         if (createActuator != null) {
-            createActuator.actuate(model);
+            createActuator.actuate(tableKey,model);
         }
     };
 
-    protected ConsumerActuator<M> createActuator() {
+    protected BiConsumerActuator<String,M> createActuator() {
         return DEFAULT_CREATE_ACTUATOR;
     }
 
-    protected ConsumerActuator<M> updateActuator() {
+    protected BiConsumerActuator<String,M> updateActuator() {
         return DEFAULT_UPDATE_ACTUATOR;
     }
 
-    protected ConsumerActuator<M> invadeActuator() {
+    protected BiConsumerActuator<String,M> invadeActuator() {
         return DEFAULT_INVADE_ACTUATOR;
     }
 
@@ -1268,7 +1268,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         return beanProperties.getPartitionQuery();
     }
 
-    private String tablename(String tableKey) throws RestException {
+    protected String tablename(String tableKey) throws RestException {
         if (GeneralUtils.isEmpty(tableKey)) {
             return null;
         }
@@ -1279,7 +1279,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         return null;
     }
 
-    private String tablename(String tableKey, M model) throws RestException {
+    protected String tablename(String tableKey, M model) throws RestException {
         if (GeneralUtils.isEmpty(tableKey) && GeneralUtils.isEmpty(model)) {
             return null;
         }
@@ -1295,7 +1295,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         return null;
     }
 
-    private String tablename(String tableKey, Collection<M> modelList) throws RestException {
+    protected String tablename(String tableKey, Collection<M> modelList) throws RestException {
         if (GeneralUtils.isEmpty(tableKey) && GeneralUtils.isEmpty(modelList)) {
             return null;
         } else if (GeneralUtils.isNotEmpty(tableKey)) {
@@ -1366,9 +1366,9 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         optionalLogicSign(model);
         optionalDynamicTable(tableKey, model);
         if (GeneralUtils.isEmpty(model.getId()) || !isIdInvade()) {
-            createActuator().actuate(model);
+            createActuator().actuate(tableKey,model);
         } else {
-            invadeActuator().actuate(model);
+            invadeActuator().actuate(tableKey,model);
         }
         if (model.isSaveLower(SaveType.CREATE)) {
             model.setSave(SaveType.CREATE);
@@ -1378,7 +1378,7 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     private void optionalUpdate(String tableKey, @NonNull M model) throws RestException {
         OptionalHelper.idable(model.getId());
         optionalDynamicTable(tableKey, model);
-        updateActuator().actuate(model);
+        updateActuator().actuate(tableKey,model);
         if (model.isSaveLower(SaveType.UPDATE)) {
             model.setSave(SaveType.UPDATE);
         }
@@ -1389,13 +1389,13 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         if (GeneralUtils.isEmpty(model.getId())) {
             optionalLogicSign(model);
             optionalDynamicTable(tableKey, model);
-            createActuator().actuate(model);
+            createActuator().actuate(tableKey,model);
             if (model.isSaveLower(SaveType.CREATE)) {
                 model.setSave(SaveType.CREATE);
             }
         } else {
             optionalDynamicTable(tableKey, model);
-            updateActuator().actuate(model);
+            updateActuator().actuate(tableKey,model);
             if (model.isSaveLower(SaveType.UPDATE)) {
                 model.setSave(SaveType.UPDATE);
             }

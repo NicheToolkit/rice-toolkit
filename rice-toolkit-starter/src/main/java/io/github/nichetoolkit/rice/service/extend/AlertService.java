@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 
 /**
- * <p>OperateService</p>
+ * <p>AlertService</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */

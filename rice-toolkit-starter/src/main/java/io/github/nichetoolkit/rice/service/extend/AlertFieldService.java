@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 
 /**
- * <p>OperateService</p>
+ * <p>AlertFieldService</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
@@ -22,7 +22,7 @@ public interface AlertFieldService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertAll(Collection<I> idList, String field, RestKey<Integer> keyType) throws RestException;
+    void alertFieldAll(Collection<I> idList, String field, RestKey<Integer> keyType) throws RestException;
 
     /**
      * 通过id集合批量逻辑删除
@@ -32,7 +32,7 @@ public interface AlertFieldService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertAll(String tableKey, Collection<I> idList, String field, RestKey<Integer> keyType) throws RestException;
+    void alertFieldAll(String tableKey, Collection<I> idList, String field, RestKey<Integer> keyType) throws RestException;
 
     /**
      * 通过id单个逻辑删除
@@ -42,7 +42,7 @@ public interface AlertFieldService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertById(I id, String field, RestKey<Integer> keyType) throws RestException;
+    void alertFieldById(I id, String field, RestKey<Integer> keyType) throws RestException;
 
     /**
      * 通过id单个逻辑删除
@@ -52,5 +52,5 @@ public interface AlertFieldService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertById(String tableKey, I id, String field, RestKey<Integer> keyType) throws RestException;
+    void alertFieldById(String tableKey, I id, String field, RestKey<Integer> keyType) throws RestException;
 }

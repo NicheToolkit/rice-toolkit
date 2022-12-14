@@ -19,6 +19,7 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version V.0.0.1
  */
+@SuppressWarnings({"WeakerAccess","unchecked","MixedMutabilityReturnType"})
 public class NameFilter<D,I> extends JsonbFilter<D,I> {
     /** 通过名称查询数据 */
     protected String name;

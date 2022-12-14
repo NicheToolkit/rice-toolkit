@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 
 /**
- * <p>RemoveLinkService</p>
+ * <p>DeleteLinkService</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */

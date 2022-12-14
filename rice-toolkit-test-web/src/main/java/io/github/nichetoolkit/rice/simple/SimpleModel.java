@@ -46,7 +46,6 @@ public class SimpleModel extends RiceInfoModel<SimpleModel,SimpleEntity> {
         entity.setId(this.getId());
         entity.setName(this.getName());
         entity.setDescription(this.getDescription());
-        entity.setTime(Optional.ofNullable(this.getTime()).map(Date::getTime).orElse(null));
         return entity;
     }
 

@@ -16,7 +16,7 @@
     </sql>
 
     <insert id="save">
-        INSERT INTO ntr_simple ( <include refid="all_column"/> )
+        INSERT INTO ${tablename} ( <include refid="all_column"/> )
         VALUES (
         #{entity.id},
         #{entity.name},
@@ -26,15 +26,15 @@
         now()
         ) ON CONFLICT (id) DO UPDATE
         <set>
-            "name" = CASE WHEN EXCLUDED."name" IS NOT NULL THEN EXCLUDED."name" ELSE ntr_simple."name" END,
-            "description" = CASE WHEN EXCLUDED."description" IS NOT NULL THEN EXCLUDED."description" ELSE ntr_simple."description" END,
-            "time" = CASE WHEN EXCLUDED."time" IS NOT NULL THEN EXCLUDED."time" ELSE ntr_simple."time" END,
+            "name" = CASE WHEN EXCLUDED."name" IS NOT NULL THEN EXCLUDED."name" ELSE ${tablename}."name" END,
+            "description" = CASE WHEN EXCLUDED."description" IS NOT NULL THEN EXCLUDED."description" ELSE ${tablename}."description" END,
+            "time" = CASE WHEN EXCLUDED."time" IS NOT NULL THEN EXCLUDED."time" ELSE ${tablename}."time" END,
             update_time = now()
         </set>
     </insert>
 
     <update id="saveAll">
-        INSERT INTO ntr_simple (
+        INSERT INTO ${tablename} (
         <include refid="all_column"/>
         )
         VALUES
@@ -50,20 +50,20 @@
         </foreach>
         ON CONFLICT (id) DO UPDATE
         <set>
-            "name" = CASE WHEN EXCLUDED."name" IS NOT NULL THEN EXCLUDED."name" ELSE ntr_simple."name" END,
-            "description" = CASE WHEN EXCLUDED."description" IS NOT NULL THEN EXCLUDED."description" ELSE ntr_simple."description" END,
-            "time" = CASE WHEN EXCLUDED."time" IS NOT NULL THEN EXCLUDED."time" ELSE ntr_simple."time" END,
+            "name" = CASE WHEN EXCLUDED."name" IS NOT NULL THEN EXCLUDED."name" ELSE ${tablename}."name" END,
+            "description" = CASE WHEN EXCLUDED."description" IS NOT NULL THEN EXCLUDED."description" ELSE ${tablename}."description" END,
+            "time" = CASE WHEN EXCLUDED."time" IS NOT NULL THEN EXCLUDED."time" ELSE ${tablename}."time" END,
             update_time = now()
         </set>
     </update>
 
     <delete id="deleteById">
-        DELETE FROM ntr_simple
+        DELETE FROM ${tablename}
         WHERE id = #{id}
     </delete>
 
     <delete id="deleteAll">
-        DELETE FROM ntr_simple
+        DELETE FROM ${tablename}
         WHERE id IN
         <foreach item="id" index="index" collection="idList" open="(" separator="," close=")">
             #{id}
@@ -72,14 +72,14 @@
 
     <select id="findById" resultMap="simpleResultMap">
         SELECT<include refid="all_column"/>
-        FROM ntr_simple
+        FROM ${tablename}
         WHERE id = #{id}
     </select>
 
     <select id="findAll" resultMap="simpleResultMap">
         SELECT
         <include refid="all_column"/>
-        FROM ntr_simple
+        FROM ${tablename}
         WHERE id IN
         <foreach item="id" index="index" collection="idList" open="(" separator="," close=")">
             #{id}
@@ -89,7 +89,7 @@
     <select id="findAllByWhere" resultMap="simpleResultMap">
         SELECT
         <include refid="all_column"/>
-        FROM ntr_simple
+        FROM ${tablename}
         WHERE 1=1
         <if test="whereSql!=null">
             ${whereSql}
@@ -97,7 +97,7 @@
     </select>
 
     <delete id="deleteAllByWhere">
-        DELETE FROM ntr_simple
+        DELETE FROM ${tablename}
         WHERE 1=1
         <if test="whereSql!=null">
             ${whereSql}
@@ -106,13 +106,19 @@
 
     <select id="findByName" resultMap="simpleResultMap">
         SELECT <include refid="all_column"/>
-        FROM ntr_simple
+        FROM ${tablename}
+        WHERE name = #{name}
+    </select>
+
+    <select id="findByName" resultMap="simpleResultMap">
+        SELECT <include refid="all_column"/>
+        FROM ${tablename}
         WHERE name = #{name}
     </select>
 
     <select id="findByNameAndNotId" resultMap="simpleResultMap">
         SELECT <include refid="all_column"/>
-        FROM ntr_simple
+        FROM ${tablename}
         WHERE name = #{name}
         AND id != #{id}
     </select>
