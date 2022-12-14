@@ -25,6 +25,11 @@
         </license>
     </licenses>
 
+    <organization>
+        <name>NicheToolkit</name>
+        <url>https://github.com/NicheToolkit</url>
+    </organization>
+
     <developers>
         <developer>
             <name>Cyan</name>
@@ -55,7 +60,6 @@
             <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
-
 
     <properties>
         <java.version>1.8</java.version>

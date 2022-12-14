@@ -12,7 +12,7 @@ import java.util.Collection;
  * @version v1.0.0
  */
 public interface DeleteLinkService<I> {
-    
+
     /**
      * 通过id集合批量逻辑删除
      * @param linkIdList 对象的id集合
@@ -22,11 +22,27 @@ public interface DeleteLinkService<I> {
     void deleteAllByLinkIds(Collection<I> linkIdList) throws RestException;
 
     /**
+     * 通过id集合批量逻辑删除
+     * @param linkIdList 对象的id集合
+     * @throws RestException 模块异常
+     */
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    void deleteAllByLinkIds(String tableKey, Collection<I> linkIdList) throws RestException;
+
+    /**
      * 通过id单个逻辑删除
      * @param linkId 对象的id
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     void deleteByLinkId(I linkId) throws RestException;
+
+    /**
+     * 通过id单个逻辑删除
+     * @param linkId 对象的id
+     * @throws RestException 模块异常
+     */
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    void deleteByLinkId(String tableKey, I linkId) throws RestException;
 
 }

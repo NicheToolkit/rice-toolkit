@@ -23,6 +23,16 @@ public interface SingleService<I, M extends IdModel<I>> {
     M create(M model, I... idArray) throws RestException;
 
     /**
+     * 单个创建
+     * @param model 对象信息
+     * @return M 创建的对象
+     * @throws RestException 模块异常
+     */
+    @SuppressWarnings(value = "unchecked")
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    M create(String tableKey, M model, I... idArray) throws RestException;
+
+    /**
      * 单个更新
      * @param model 对象信息
      * @return M 创建的对象
@@ -31,4 +41,14 @@ public interface SingleService<I, M extends IdModel<I>> {
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     M update(M model, I... idArray) throws RestException;
+
+    /**
+     * 单个更新
+     * @param model 对象信息
+     * @return M 创建的对象
+     * @throws RestException 模块异常
+     */
+    @SuppressWarnings(value = "unchecked")
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    M update(String tableKey, M model, I... idArray) throws RestException;
 }

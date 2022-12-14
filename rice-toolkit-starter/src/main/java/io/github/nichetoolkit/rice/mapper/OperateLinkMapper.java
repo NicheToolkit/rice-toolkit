@@ -12,18 +12,34 @@ import java.util.Collection;
 public interface OperateLinkMapper<I> extends OperateMapper<I> {
     /**
      * 实体单个删除
-     * @param linkId 实体id集合
+     * @param linkId  实体id集合
      * @param operate 实体操作类型
      * @return Integer SQL影响行数（成功为1）
      */
     Integer operateByLinkId(@Param("id") I linkId, @Param("operate") Integer operate);
 
     /**
+     * 实体单个删除
+     * @param linkId  实体id集合
+     * @param operate 实体操作类型
+     * @return Integer SQL影响行数（成功为1）
+     */
+    Integer operateByLinkId(@Param("tablename") String tablename, @Param("id") I linkId, @Param("operate") Integer operate);
+
+    /**
      * 实体批量删除
      * @param linkIdList 实体id集合
-     * @param operate 实体操作类型
+     * @param operate    实体操作类型
      * @return Integer SQL影响行数
      */
     Integer operateAllByLinkIds(@Param("linkIdList") Collection<I> linkIdList, @Param("operate") Integer operate);
+
+    /**
+     * 实体批量删除
+     * @param linkIdList 实体id集合
+     * @param operate    实体操作类型
+     * @return Integer SQL影响行数
+     */
+    Integer operateAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection<I> linkIdList, @Param("operate") Integer operate);
 
 }

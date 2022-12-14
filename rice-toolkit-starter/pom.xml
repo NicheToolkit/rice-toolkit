@@ -28,6 +28,11 @@
         </license>
     </licenses>
 
+    <organization>
+        <name>NicheToolkit</name>
+        <url>https://github.com/NicheToolkit</url>
+    </organization>
+
     <developers>
         <developer>
             <name>Cyan</name>

@@ -28,6 +28,11 @@
         </license>
     </licenses>
 
+    <organization>
+        <name>NicheToolkit</name>
+        <url>https://github.com/NicheToolkit</url>
+    </organization>
+
     <developers>
         <developer>
             <name>Cyan</name>
@@ -75,7 +80,7 @@
         <dependency>
             <groupId>io.github.nichetoolkit</groupId>
             <artifactId>rest-toolkit-starter</artifactId>
-            <version>${rest-toolkit.version}</version>
+            <version>1.0.6-SNAPSHOT</version>
         </dependency>
 
         <dependency>

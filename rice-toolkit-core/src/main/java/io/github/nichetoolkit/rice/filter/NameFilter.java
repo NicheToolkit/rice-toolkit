@@ -186,6 +186,12 @@ public class NameFilter<D,I> extends JsonbFilter<D,I> {
         }
 
         @Override
+        public NameFilter.Builder<D,I>  tableKey(String tableKey) {
+            this.tableKey = tableKey;
+            return this;
+        }
+
+        @Override
         public NameFilter.Builder<D,I> isRemove(boolean isRemove) {
             this.isRemove = isRemove;
             return this;

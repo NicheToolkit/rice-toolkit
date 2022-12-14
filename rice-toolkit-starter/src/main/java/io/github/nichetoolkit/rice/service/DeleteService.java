@@ -21,10 +21,26 @@ public interface DeleteService<I>{
     void deleteAll(Collection<I> idList) throws RestException;
 
     /**
+     * 通过id集合批量删除
+     * @param idList 对象的id集合
+     * @throws RestException 模块异常
+     */
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    void deleteAll(String tableKey,Collection<I> idList) throws RestException;
+
+    /**
      * 通过id单个删除
      * @param id 对象的id
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     void deleteById(I id) throws RestException;
+
+    /**
+     * 通过id单个删除
+     * @param id 对象的id
+     * @throws RestException 模块异常
+     */
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    void deleteById(String tableKey, I id) throws RestException;
 }

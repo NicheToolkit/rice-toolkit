@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rest.RestStatus;
 import lombok.Getter;
 
 /**
- * <p>ServiceErrorStatus</p>
+ * <p>UserErrorStatus</p>
  * @author Cyan (snow22314 @ outlook.com)
  * @version v1.0.0
  */

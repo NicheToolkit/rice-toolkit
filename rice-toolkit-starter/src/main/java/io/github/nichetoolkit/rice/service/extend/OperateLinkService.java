@@ -16,7 +16,7 @@ public interface OperateLinkService<I> {
 
     /**
      * 通过id集合批量逻辑删除
-     * @param linkIdList 对象的id集合
+     * @param linkIdList  对象的id集合
      * @param operateType 对象的操作
      * @throws RestException 模块异常
      */
@@ -24,12 +24,30 @@ public interface OperateLinkService<I> {
     void operateAllByLinkIds(Collection<I> linkIdList, OperateType operateType) throws RestException;
 
     /**
+     * 通过id集合批量逻辑删除
+     * @param linkIdList  对象的id集合
+     * @param operateType 对象的操作
+     * @throws RestException 模块异常
+     */
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    void operateAllByLinkIds(String tableKey, Collection<I> linkIdList, OperateType operateType) throws RestException;
+
+    /**
      * 通过id单个逻辑删除
-     * @param linkId 对象的id
+     * @param linkId      对象的id
      * @param operateType 对象的操作
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     void operateByLinkId(I linkId, OperateType operateType) throws RestException;
+
+    /**
+     * 通过id单个逻辑删除
+     * @param linkId      对象的id
+     * @param operateType 对象的操作
+     * @throws RestException 模块异常
+     */
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    void operateByLinkId(String tableKey, I linkId, OperateType operateType) throws RestException;
 
 }

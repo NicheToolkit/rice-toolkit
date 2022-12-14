@@ -304,6 +304,12 @@ public class JsonbFilter<D,I> extends TimeFilter<D,I> {
         }
 
         @Override
+        public JsonbFilter.Builder tableKey(String tableKey) {
+            this.tableKey = tableKey;
+            return this;
+        }
+
+        @Override
         public JsonbFilter.Builder<D,I> isRemove(boolean isRemove) {
             this.isRemove = isRemove;
             return this;

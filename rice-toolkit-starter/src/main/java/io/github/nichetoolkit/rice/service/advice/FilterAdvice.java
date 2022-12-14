@@ -5,16 +5,15 @@ import io.github.nichetoolkit.rice.error.service.ServiceUnsupportedException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 
 /**
- * <p>ServiceHandler</p>
+ * <p>FilterAdvice</p>
  * @author Cyan (snow22314 @ outlook.com)
  * @version v1.0.0
  */
 @SuppressWarnings("RedundantThrows")
-public interface ServiceAdvice<I, F extends IdFilter<I>> {
+public interface FilterAdvice<I, F extends IdFilter<I>> {
 
-    default void doServiceHandle() throws RestException {}
-
-    default void optionalFilter(F filter) throws RestException {}
+    default void doServiceHandle() throws RestException {
+    }
 
     default String queryWhereSql(F filter) throws RestException {
         return filter.toSql();
@@ -42,5 +41,9 @@ public interface ServiceAdvice<I, F extends IdFilter<I>> {
 
     default String[] fieldArray(F filter) throws RestException {
         return filter.toFieldArray();
+    }
+
+    default String tableKey(F filter) throws RestException {
+        return filter.toTableKey();
     }
 }

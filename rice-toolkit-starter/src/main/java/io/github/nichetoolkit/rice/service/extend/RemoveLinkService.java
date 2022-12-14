@@ -13,7 +13,7 @@ import java.util.Collection;
  * @version v1.0.0
  */
 public interface RemoveLinkService<I> {
-    
+
     /**
      * 通过id集合批量逻辑删除
      * @param linkIdList 对象的id集合
@@ -23,11 +23,27 @@ public interface RemoveLinkService<I> {
     void removeAllByLinkIds(Collection<I> linkIdList) throws RestException;
 
     /**
+     * 通过id集合批量逻辑删除
+     * @param linkIdList 对象的id集合
+     * @throws RestException 模块异常
+     */
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    void removeAllByLinkIds(String tableKey, Collection<I> linkIdList) throws RestException;
+
+    /**
      * 通过id单个逻辑删除
      * @param linkId 对象的id
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     void removeByLinkId(I linkId) throws RestException;
+
+    /**
+     * 通过id单个逻辑删除
+     * @param linkId 对象的id
+     * @throws RestException 模块异常
+     */
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    void removeByLinkId(String tableKey, I linkId) throws RestException;
 
 }

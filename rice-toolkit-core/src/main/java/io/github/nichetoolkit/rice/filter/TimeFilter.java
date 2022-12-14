@@ -130,6 +130,12 @@ public class TimeFilter<D,I> extends IdFilter<I> {
         }
 
         @Override
+        public TimeFilter.Builder tableKey(String tableKey) {
+            this.tableKey = tableKey;
+            return this;
+        }
+
+        @Override
         public TimeFilter.Builder<D,I> isRemove(boolean isRemove) {
             this.isRemove = isRemove;
             return this;

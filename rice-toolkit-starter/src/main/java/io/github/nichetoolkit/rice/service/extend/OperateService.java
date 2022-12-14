@@ -15,7 +15,7 @@ import java.util.Collection;
 public interface OperateService<I> {
     /**
      * 通过id集合批量逻辑删除
-     * @param idList 对象的id集合
+     * @param idList      对象的id集合
      * @param operateType 对象的操作
      * @throws RestException 模块异常
      */
@@ -23,12 +23,30 @@ public interface OperateService<I> {
     void operateAll(Collection<I> idList, OperateType operateType) throws RestException;
 
     /**
+     * 通过id集合批量逻辑删除
+     * @param idList      对象的id集合
+     * @param operateType 对象的操作
+     * @throws RestException 模块异常
+     */
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    void operateAll(String tableKey, Collection<I> idList, OperateType operateType) throws RestException;
+
+    /**
      * 通过id单个逻辑删除
-     * @param id 对象的id
+     * @param id          对象的id
      * @param operateType 对象的操作
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     void operateById(I id, OperateType operateType) throws RestException;
+
+    /**
+     * 通过id单个逻辑删除
+     * @param id          对象的id
+     * @param operateType 对象的操作
+     * @throws RestException 模块异常
+     */
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    void operateById(String tableKey, I id, OperateType operateType) throws RestException;
 
 }

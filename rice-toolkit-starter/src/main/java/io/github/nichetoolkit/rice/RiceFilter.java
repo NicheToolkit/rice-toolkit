@@ -8,6 +8,7 @@ import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.enums.RemoveType;
 import io.github.nichetoolkit.rice.error.service.ServiceUnknownException;
 import io.github.nichetoolkit.rice.filter.NameFilter;
+import io.github.nichetoolkit.rice.filter.TableFilter;
 import io.github.nichetoolkit.rice.jsonb.ContainRule;
 import io.github.nichetoolkit.rice.jsonb.ContrastRule;
 import io.github.nichetoolkit.rice.jsonb.EqualRule;
@@ -111,7 +112,6 @@ public abstract class RiceFilter extends NameFilter<Date,String> implements Init
                         SqlBuilders.unequal(SQL_BUILDER, alias, removeSign);
                     }
                 }
-
             } else if (removeType == RemoveType.DATETIME || removeType == RemoveType.IDENTITY) {
                 if (this.isRemove) {
                     SqlBuilders.nonnull(SQL_BUILDER, alias);
@@ -225,6 +225,12 @@ public abstract class RiceFilter extends NameFilter<Date,String> implements Init
         @Override
         public RiceFilter.Builder ids(@NonNull String... ids) {
             this.ids = new HashSet<>(Arrays.asList(ids));
+            return this;
+        }
+
+        @Override
+        public RiceFilter.Builder tableKey(String tableKey) {
+            this.tableKey = tableKey;
             return this;
         }
 

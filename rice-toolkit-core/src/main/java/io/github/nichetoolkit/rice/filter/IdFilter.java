@@ -19,7 +19,7 @@ import java.util.*;
  * @version v1.0.0
  */
 @SuppressWarnings({"WeakerAccess", "MixedMutabilityReturnType"})
-public class IdFilter<I> extends OperateFilter {
+public class IdFilter<I> extends TableFilter {
     @JsonIgnore
     protected final SqlBuilder SQL_BUILDER = new SqlBuilder();
 
@@ -213,7 +213,7 @@ public class IdFilter<I> extends OperateFilter {
         return keyBuilder.toString();
     }
 
-    public static class Builder<I> extends OperateFilter.Builder {
+    public static class Builder<I> extends TableFilter.Builder {
         protected I id;
         protected Set<I> ids;
 
@@ -233,6 +233,12 @@ public class IdFilter<I> extends OperateFilter {
         @SuppressWarnings(value = "unchecked")
         public IdFilter.Builder<I> ids(@NonNull I... ids) {
             this.ids = new HashSet<>(Arrays.asList(ids));
+            return this;
+        }
+
+        @Override
+        public IdFilter.Builder<I> tableKey(String tableKey) {
+            this.tableKey = tableKey;
             return this;
         }
 
@@ -285,7 +291,7 @@ public class IdFilter<I> extends OperateFilter {
         }
 
         @Override
-        public IdFilter.Builder sorts(@NonNull String... sorts) {
+        public IdFilter.Builder<I> sorts(@NonNull String... sorts) {
             this.sorts = new HashSet<>(RestSort.build(sorts));
             return this;
         }

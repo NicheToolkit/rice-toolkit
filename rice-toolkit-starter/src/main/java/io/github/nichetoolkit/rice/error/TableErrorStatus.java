@@ -4,22 +4,22 @@ import io.github.nichetoolkit.rest.RestStatus;
 import lombok.Getter;
 
 /**
- * <p>TokenErrorStatus</p>
+ * <p>TablenameErrorStatus</p>
  * @author Cyan (snow22314 @ outlook.com)
  * @version v1.0.0
  */
 @Getter
-public enum TokenErrorStatus implements RestStatus {
-    TOKEN_INVALID_ERROR(11500,"the token is invalid"),
-    TOKEN_ACCESS_ERROR(11501,"the token access error"),
-    TOKEN_NO_PERMISSION(11502,"the token is no permission"),
-    TOKEN_PREFIX_INVALID(11503,"the token prefix is invalid"),
+public enum TableErrorStatus implements RestStatus {
+    TABLE_UNKNOWN_ERROR(11310,"the table has unknown error!"),
+    TABLE_NAME_IS_NULL(11311, "the table name can not be null!"),
+    TABLE_IS_NOT_EXIST(11312, "the table structure is not exist!"),
+    TABLE_ALREADY_EXIST(11313, "the table structure already exists!"),
     ;
 
     private final Integer status;
     private final String message;
 
-    TokenErrorStatus(Integer status, String message) {
+    TableErrorStatus(Integer status, String message) {
         this.status = status;
         this.message = message;
     }

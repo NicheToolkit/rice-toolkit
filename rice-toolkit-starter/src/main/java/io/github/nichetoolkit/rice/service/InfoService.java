@@ -18,9 +18,9 @@ import java.util.List;
  * @version v1.0.0
  */
 @SuppressWarnings("RedundantThrows")
-public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity<I>, F extends IdFilter<I>> extends SuperService<I,M,E,F> {
+public abstract class InfoService<I, M extends InfoModel<I>, E extends InfoEntity<I>, F extends IdFilter<I>> extends SuperService<I, M, E, F> {
 
-    protected InfoMapper<E,I> consumerMapper;
+    protected InfoMapper<E, I> consumerMapper;
 
     @Override
     protected void optionalName(@NonNull M model) throws RestException {
@@ -39,20 +39,20 @@ public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity
         this.createActuator = (@NonNull M model) -> {
             if (isModelUnique()) {
                 Boolean existByModel = existByModel(model);
-                fieldRepeat(existByModel,model);
+                fieldRepeat(existByModel, model);
             } else if (isNameUnique()) {
-                Boolean existByName = existByName(model.getName());
+                Boolean existByName = existByName(model);
                 OptionalHelper.nameRepeat(existByName, model.getName());
             }
 
         };
         this.updateActuator = (@NonNull M model) -> {
             if (isModelUnique()) {
-                Boolean existByModel = existByModelAndNotId(model,model.getId());
-                fieldRepeat(existByModel,model);
+                Boolean existByModel = existByModelAndNotId(model, model.getId());
+                fieldRepeat(existByModel, model);
             } else if (isNameUnique()) {
-                Boolean existByName = existByNameAndNotId(model.getName(),model.getId());
-                OptionalHelper.nameRepeat(existByName,model.getName());
+                Boolean existByName = existByNameAndNotId(model, model.getId());
+                OptionalHelper.nameRepeat(existByName, model.getName());
             }
         };
         if (super.superMapper instanceof InfoMapper) {
@@ -60,23 +60,35 @@ public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity
         }
     }
 
-    protected Boolean existByName(String name) throws RestException {
-        if (GeneralUtils.isEmpty(name)) {
+    protected Boolean existByName(M model) throws RestException {
+        if (GeneralUtils.isEmpty(model.getName())) {
             return false;
         }
-        List<E> entityList = consumerMapper.findByName(name);
+        String tablename = tablename(model);
+        List<E> entityList;
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            entityList = consumerMapper.findByName(tablename, model.getName());
+        } else {
+            entityList = consumerMapper.findByName(model.getName());
+        }
         return GeneralUtils.isNotEmpty(entityList);
     }
 
 
-    protected Boolean existByNameAndNotId(String name, I id) throws RestException {
-        if (GeneralUtils.isEmpty(name)) {
+    protected Boolean existByNameAndNotId(M model, I id) throws RestException {
+        if (GeneralUtils.isEmpty(model.getName())) {
             return false;
         }
         if (GeneralUtils.isEmpty(id)) {
-            return existByName(name);
+            return existByName(model);
         }
-        List<E> entityList = consumerMapper.findByNameAndNotId(name, id);
+        String tablename = tablename(model);
+        List<E> entityList;
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            entityList = consumerMapper.findByNameAndNotId(tablename,model.getName(), id);
+        } else {
+            entityList = consumerMapper.findByNameAndNotId(model.getName(), id);
+        }
         return GeneralUtils.isNotEmpty(entityList);
     }
 
@@ -85,7 +97,13 @@ public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity
             return false;
         }
         E entity = this.createEntity(model);
-        List<E> entityList = consumerMapper.findByEntity(entity);
+        String tablename = tablename(model);
+        List<E> entityList;
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            entityList = consumerMapper.findByEntity(tablename,entity);
+        } else {
+            entityList = consumerMapper.findByEntity(entity);
+        }
         return GeneralUtils.isNotEmpty(entityList);
     }
 
@@ -97,7 +115,13 @@ public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity
             return existByModel(model);
         }
         E entity = this.createEntity(model);
-        List<E> entityList = consumerMapper.findByEntityAndNotId(entity, id);
+        String tablename = tablename(model);
+        List<E> entityList;
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            entityList = consumerMapper.findByEntityAndNotId(tablename,entity, id);
+        } else {
+            entityList = consumerMapper.findByEntityAndNotId(entity, id);
+        }
         return GeneralUtils.isNotEmpty(entityList);
     }
 }
