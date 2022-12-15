@@ -9,7 +9,7 @@ import io.github.nichetoolkit.rice.service.SuperService;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public abstract class RiceIdService<M extends RiceIdModel<M,E>,E extends RiceIdEntity<E,M>,F extends RiceFilter> extends SuperService<String, M, E, F> implements BuilderAdvice<String,M, E> {
+public abstract class RiceIdService<M extends RiceIdModel<M,E>,E extends RiceIdEntity<E,M>,F extends RiceFilter> extends SuperService<String, String, M, E, F> implements BuilderAdvice<String,M, E> {
 
     @Override
     protected E createEntity(M model) throws RestException {

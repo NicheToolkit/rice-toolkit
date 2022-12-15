@@ -14,7 +14,7 @@ import java.util.List;
  * @version v1.0.0
  */
 @SuppressWarnings("RedundantThrows")
-public interface SaveService<I, M extends IdModel<I>> extends QueryService<I, M> {
+public interface SaveService<K, I, M extends IdModel<I>> extends QueryService<K,I, M> {
 
     /**
      * 单个保存
@@ -34,7 +34,7 @@ public interface SaveService<I, M extends IdModel<I>> extends QueryService<I, M>
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     @SuppressWarnings(value = "unchecked")
-    M save(String tableKey, M model, I... idArray) throws RestException;
+    M save(K tablekey, M model, I... idArray) throws RestException;
 
     /**
      * 批量保存（存在更新,不存在新增）
@@ -54,6 +54,6 @@ public interface SaveService<I, M extends IdModel<I>> extends QueryService<I, M>
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     @SuppressWarnings(value = "unchecked")
-    List<M> saveAll(String tableKey, Collection<M> modelList, I... idArray) throws RestException;
+    List<M> saveAll(K tablekey, Collection<M> modelList, I... idArray) throws RestException;
 
 }

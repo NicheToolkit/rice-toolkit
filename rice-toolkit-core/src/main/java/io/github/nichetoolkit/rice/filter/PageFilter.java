@@ -121,6 +121,7 @@ public class PageFilter implements Serializable {
     public static class Builder {
         protected Integer pageNum;
         protected Integer pageSize;
+
         public Builder() {
         }
 

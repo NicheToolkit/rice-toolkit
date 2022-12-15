@@ -31,7 +31,7 @@ public interface AlertService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertAll(String tableKey, Collection<I> idList, RestKey<Integer> keyType) throws RestException;
+    void alertAll(String tablekey, Collection<I> idList, RestKey<Integer> keyType) throws RestException;
 
     /**
      * 通过id单个逻辑删除
@@ -49,5 +49,5 @@ public interface AlertService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertById(String tableKey, I id, RestKey<Integer> keyType) throws RestException;
+    void alertById(String tablekey, I id, RestKey<Integer> keyType) throws RestException;
 }

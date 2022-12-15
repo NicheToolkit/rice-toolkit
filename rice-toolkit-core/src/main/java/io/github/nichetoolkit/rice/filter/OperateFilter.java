@@ -13,11 +13,11 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@SuppressWarnings({"WeakerAccess","MixedMutabilityReturnType"})
+@SuppressWarnings({"WeakerAccess", "MixedMutabilityReturnType"})
 public class OperateFilter extends SortFilter {
     /** 是否逻辑删除 */
     protected boolean isRemove;
-    
+
     protected OperateType operate;
 
     protected Set<OperateType> operates;
@@ -150,6 +150,6 @@ public class OperateFilter extends SortFilter {
             return new OperateFilter(this);
         }
     }
-    
-    
+
+
 }

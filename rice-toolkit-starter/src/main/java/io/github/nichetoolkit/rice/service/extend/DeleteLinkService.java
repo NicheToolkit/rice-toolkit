@@ -27,7 +27,7 @@ public interface DeleteLinkService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void deleteAllByLinkIds(String tableKey, Collection<I> linkIdList) throws RestException;
+    void deleteAllByLinkIds(String tablekey, Collection<I> linkIdList) throws RestException;
 
     /**
      * 通过id单个逻辑删除
@@ -43,6 +43,6 @@ public interface DeleteLinkService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void deleteByLinkId(String tableKey, I linkId) throws RestException;
+    void deleteByLinkId(String tablekey, I linkId) throws RestException;
 
 }

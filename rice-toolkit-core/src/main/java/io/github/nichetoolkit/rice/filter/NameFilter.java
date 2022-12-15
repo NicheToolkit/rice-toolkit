@@ -19,8 +19,8 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version V.0.0.1
  */
-@SuppressWarnings({"WeakerAccess","unchecked","MixedMutabilityReturnType"})
-public class NameFilter<D,I> extends JsonbFilter<D,I> {
+@SuppressWarnings({"WeakerAccess", "unchecked", "MixedMutabilityReturnType"})
+public class NameFilter<D, I, K> extends JsonbFilter<D, I, K> {
     /** 通过名称查询数据 */
     protected String name;
     protected Set<String> names;
@@ -37,7 +37,7 @@ public class NameFilter<D,I> extends JsonbFilter<D,I> {
         super(ids);
     }
 
-    public NameFilter(NameFilter.Builder<D,I> builder) {
+    public NameFilter(NameFilter.Builder<D, I, K> builder) {
         super(builder);
         this.name = builder.name;
         this.names = builder.names;
@@ -92,150 +92,150 @@ public class NameFilter<D,I> extends JsonbFilter<D,I> {
         return this;
     }
 
-    public static class Builder<D,I> extends JsonbFilter.Builder<D,I> {
+    public static class Builder<D, I, K> extends JsonbFilter.Builder<D, I, K> {
         protected String name;
         protected Set<String> names;
 
         public Builder() {
         }
 
-        public NameFilter.Builder<D,I> name(String name) {
+        public NameFilter.Builder<D, I, K> name(String name) {
             this.name = name;
             return this;
         }
 
-        public NameFilter.Builder<D,I> names(Collection<String> names) {
+        public NameFilter.Builder<D, I, K> names(Collection<String> names) {
             this.names = Optional.ofNullable(names).map(HashSet::new).orElse(null);
             return this;
         }
 
-        public NameFilter.Builder<D,I> names(String... names) {
+        public NameFilter.Builder<D, I, K> names(String... names) {
             this.names = Optional.ofNullable(names).map(propertyList -> new HashSet<>(Arrays.asList(propertyList))).orElse(null);
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> contrasts(Collection<ContrastRule> contrasts) {
+        public NameFilter.Builder<D, I, K> contrasts(Collection<ContrastRule> contrasts) {
             this.contrasts = Optional.ofNullable(contrasts).map(HashSet::new).orElse(null);
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> contrasts(ContrastRule... contrasts) {
+        public NameFilter.Builder<D, I, K> contrasts(ContrastRule... contrasts) {
             this.contrasts = Optional.ofNullable(contrasts).map(contrastList -> new HashSet<>(Arrays.asList(contrastList))).orElse(null);
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> ranges(Collection<RangeRule> ranges) {
+        public NameFilter.Builder<D, I, K> ranges(Collection<RangeRule> ranges) {
             this.ranges = Optional.ofNullable(ranges).map(HashSet::new).orElse(null);
             return this;
         }
 
-        public NameFilter.Builder<D,I> ranges(RangeRule... ranges) {
+        public NameFilter.Builder<D, I, K> ranges(RangeRule... ranges) {
             this.ranges = Optional.ofNullable(ranges).map(rangeList -> new HashSet<>(Arrays.asList(rangeList))).orElse(null);
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> equals(Collection<EqualRule> equals) {
+        public NameFilter.Builder<D, I, K> equals(Collection<EqualRule> equals) {
             this.equals = Optional.ofNullable(equals).map(HashSet::new).orElse(null);
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> equals(EqualRule... equals) {
+        public NameFilter.Builder<D, I, K> equals(EqualRule... equals) {
             this.equals = Optional.ofNullable(equals).map(equalList -> new HashSet<>(Arrays.asList(equalList))).orElse(null);
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> contains(Collection<ContainRule> contains) {
+        public NameFilter.Builder<D, I, K> contains(Collection<ContainRule> contains) {
             this.contains = Optional.ofNullable(contains).map(HashSet::new).orElse(null);
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> contains(ContainRule... contains) {
+        public NameFilter.Builder<D, I, K> contains(ContainRule... contains) {
             this.contains = Optional.ofNullable(contains).map(containList -> new HashSet<>(Arrays.asList(containList))).orElse(null);
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> startTime(D startTime) {
+        public NameFilter.Builder<D, I, K> startTime(D startTime) {
             this.startTime = startTime;
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> endTime(D endTime) {
+        public NameFilter.Builder<D, I, K> endTime(D endTime) {
             this.endTime = endTime;
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> ids(@NonNull Collection<I> ids) {
+        public NameFilter.Builder<D, I, K> ids(@NonNull Collection<I> ids) {
             this.ids = new HashSet<>(ids);
             return this;
         }
 
         @Override
         @SuppressWarnings(value = "unchecked")
-        public NameFilter.Builder<D,I> ids(@NonNull I... ids) {
+        public NameFilter.Builder<D, I, K> ids(@NonNull I... ids) {
             this.ids = new HashSet<>(Arrays.asList(ids));
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I>  tableKey(String tableKey) {
-            this.tableKey = tableKey;
+        public NameFilter.Builder<D, I, K> tablekey(K tablekey) {
+            this.tablekey = tablekey;
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> isRemove(boolean isRemove) {
+        public NameFilter.Builder<D, I, K> isRemove(boolean isRemove) {
             this.isRemove = isRemove;
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> operate(OperateType operate) {
+        public NameFilter.Builder<D, I, K> operate(OperateType operate) {
             this.operate = operate;
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> operate(Integer operate) {
+        public NameFilter.Builder<D, I, K> operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> operates(@NonNull Collection<OperateType> operates) {
+        public NameFilter.Builder<D, I, K> operates(@NonNull Collection<OperateType> operates) {
             this.operates = new HashSet<>(operates);
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> operates(@NonNull OperateType... operates) {
+        public NameFilter.Builder<D, I, K> operates(@NonNull OperateType... operates) {
             this.operates = new HashSet<>(Arrays.asList(operates));
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> operates(@NonNull Integer... operates) {
+        public NameFilter.Builder<D, I, K> operates(@NonNull Integer... operates) {
             this.operates = new HashSet<>(RestOperate.build(operates));
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> sorts(@NonNull Collection<RestSort> sorts) {
+        public NameFilter.Builder<D, I, K> sorts(@NonNull Collection<RestSort> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> sorts(@NonNull RestSort... sorts) {
+        public NameFilter.Builder<D, I, K> sorts(@NonNull RestSort... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
             return this;
         }
@@ -247,19 +247,19 @@ public class NameFilter<D,I> extends JsonbFilter<D,I> {
         }
 
         @Override
-        public NameFilter.Builder<D,I> pageNum(Integer pageNum) {
+        public NameFilter.Builder<D, I, K> pageNum(Integer pageNum) {
             this.pageNum = pageNum;
             return this;
         }
 
         @Override
-        public NameFilter.Builder<D,I> pageSize(Integer pageSize) {
+        public NameFilter.Builder<D, I, K> pageSize(Integer pageSize) {
             this.pageSize = pageSize;
             return this;
         }
 
         @Override
-        public NameFilter<D,I> build() {
+        public NameFilter<D, I, K> build() {
             return new NameFilter<>(this);
         }
     }

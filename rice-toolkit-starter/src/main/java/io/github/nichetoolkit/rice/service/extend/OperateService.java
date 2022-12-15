@@ -12,7 +12,7 @@ import java.util.Collection;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public interface OperateService<I> {
+public interface OperateService<K,I> {
     /**
      * 通过id集合批量逻辑删除
      * @param idList      对象的id集合
@@ -29,7 +29,7 @@ public interface OperateService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void operateAll(String tableKey, Collection<I> idList, OperateType operateType) throws RestException;
+    void operateAll(K tablekey, Collection<I> idList, OperateType operateType) throws RestException;
 
     /**
      * 通过id单个逻辑删除
@@ -47,6 +47,6 @@ public interface OperateService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void operateById(String tableKey, I id, OperateType operateType) throws RestException;
+    void operateById(K tablekey, I id, OperateType operateType) throws RestException;
 
 }

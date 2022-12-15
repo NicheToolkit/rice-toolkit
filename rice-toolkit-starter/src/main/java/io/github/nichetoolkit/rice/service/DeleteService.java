@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
+import org.checkerframework.checker.units.qual.K;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
@@ -11,7 +12,7 @@ import java.util.Collection;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public interface DeleteService<I>{
+public interface DeleteService<K,I>{
     /**
      * 通过id集合批量删除
      * @param idList 对象的id集合
@@ -26,7 +27,7 @@ public interface DeleteService<I>{
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void deleteAll(String tableKey,Collection<I> idList) throws RestException;
+    void deleteAll(K tablekey, Collection<I> idList) throws RestException;
 
     /**
      * 通过id单个删除
@@ -42,5 +43,5 @@ public interface DeleteService<I>{
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void deleteById(String tableKey, I id) throws RestException;
+    void deleteById(K tablekey, I id) throws RestException;
 }

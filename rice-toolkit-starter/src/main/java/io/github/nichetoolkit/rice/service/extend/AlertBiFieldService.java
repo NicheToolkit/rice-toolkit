@@ -32,7 +32,7 @@ public interface AlertBiFieldService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertBiFieldAll(String tableKey, Collection<I> idList, String field, String biField, RestKey<Integer> keyType) throws RestException;
+    void alertBiFieldAll(String tablekey, Collection<I> idList, String field, String biField, RestKey<Integer> keyType) throws RestException;
 
     /**
      * 通过id单个逻辑删除
@@ -52,5 +52,5 @@ public interface AlertBiFieldService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertBiFieldById(String tableKey, I id, String field, String biField, RestKey<Integer> keyType) throws RestException;
+    void alertBiFieldById(String tablekey, I id, String field, String biField, RestKey<Integer> keyType) throws RestException;
 }

@@ -9,6 +9,7 @@ import io.github.nichetoolkit.rice.RestSort;
 import io.github.nichetoolkit.rice.builder.SqlBuilder;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import org.checkerframework.checker.units.qual.K;
 import org.springframework.lang.NonNull;
 
 import java.util.*;
@@ -19,7 +20,7 @@ import java.util.*;
  * @version v1.0.0
  */
 @SuppressWarnings({"WeakerAccess", "MixedMutabilityReturnType"})
-public class IdFilter<I> extends TableFilter {
+public class IdFilter<I, K> extends TableFilter<K> {
     @JsonIgnore
     protected final SqlBuilder SQL_BUILDER = new SqlBuilder();
 
@@ -51,7 +52,7 @@ public class IdFilter<I> extends TableFilter {
         this.ids = new HashSet<>(ids);
     }
 
-    public IdFilter(IdFilter.Builder<I> builder) {
+    public IdFilter(IdFilter.Builder<I, K> builder) {
         super(builder);
         this.id = builder.id;
         this.ids = builder.ids;
@@ -99,6 +100,7 @@ public class IdFilter<I> extends TableFilter {
             this.ids.addAll(ids);
         }
     }
+
     public List<I> toIds() {
         Set<I> idSet = new HashSet<>();
         if (GeneralUtils.isNotEmpty(this.id)) {
@@ -148,31 +150,29 @@ public class IdFilter<I> extends TableFilter {
         return null;
     }
 
-
-
     @Override
-    public IdFilter<I> addSorts(@NonNull String... sorts) {
+    public IdFilter<I, K> addSorts(@NonNull String... sorts) {
         super.addSorts(sorts);
         return this;
     }
 
     @Override
-    public IdFilter<I> addSorts(@NonNull RestSort... sorts) {
+    public IdFilter<I, K> addSorts(@NonNull RestSort... sorts) {
         super.addSorts(sorts);
         return this;
     }
 
     @Override
-    public IdFilter<I> addSorts(@NonNull Collection<RestSort> sorts) {
+    public IdFilter<I, K> addSorts(@NonNull Collection<RestSort> sorts) {
         super.addSorts(sorts);
         return this;
     }
 
-    public IdFilter<I> toIdSql() {
+    public IdFilter<I, K> toIdSql() {
         return toIdSql("id");
     }
 
-    public IdFilter<I> toIdSql(@NonNull String alias) {
+    public IdFilter<I, K> toIdSql(@NonNull String alias) {
         if (GeneralUtils.isNotEmpty(this.id)) {
             SqlBuilders.equal(SQL_BUILDER, alias, this.id);
         } else if (GeneralUtils.isNotEmpty(this.ids)) {
@@ -181,12 +181,12 @@ public class IdFilter<I> extends TableFilter {
         return this;
     }
 
-    public IdFilter<I> toOperateSql() {
+    public IdFilter<I, K> toOperateSql() {
         toOperateSql("operate");
         return this;
     }
 
-    public IdFilter<I> toOperateSql(@NonNull String alias) {
+    public IdFilter<I, K> toOperateSql(@NonNull String alias) {
         if (this.isRemove) {
             SqlBuilders.equal(SQL_BUILDER, alias, OperateType.REMOVE);
         } else if (GeneralUtils.isNotEmpty(this.operate)) {
@@ -194,7 +194,7 @@ public class IdFilter<I> extends TableFilter {
         } else if (GeneralUtils.isNotEmpty(this.operates)) {
             SqlBuilders.in(SQL_BUILDER, alias, this.operates);
         } else {
-            SqlBuilders.nonin(SQL_BUILDER, alias, Arrays.asList(OperateType.REMOVE,OperateType.DELETE));
+            SqlBuilders.nonin(SQL_BUILDER, alias, Arrays.asList(OperateType.REMOVE, OperateType.DELETE));
         }
         return this;
     }
@@ -213,103 +213,103 @@ public class IdFilter<I> extends TableFilter {
         return keyBuilder.toString();
     }
 
-    public static class Builder<I> extends TableFilter.Builder {
+    public static class Builder<I, K> extends TableFilter.Builder<K> {
         protected I id;
         protected Set<I> ids;
 
         public Builder() {
         }
 
-        public IdFilter.Builder<I> id(I id) {
+        public IdFilter.Builder<I, K> id(I id) {
             this.id = id;
             return this;
         }
 
-        public IdFilter.Builder<I> ids(@NonNull Collection<I> ids) {
+        public IdFilter.Builder<I, K> ids(@NonNull Collection<I> ids) {
             this.ids = new HashSet<>(ids);
             return this;
         }
 
         @SuppressWarnings(value = "unchecked")
-        public IdFilter.Builder<I> ids(@NonNull I... ids) {
+        public IdFilter.Builder<I, K> ids(@NonNull I... ids) {
             this.ids = new HashSet<>(Arrays.asList(ids));
             return this;
         }
 
         @Override
-        public IdFilter.Builder<I> tableKey(String tableKey) {
-            this.tableKey = tableKey;
+        public IdFilter.Builder<I, K> tablekey(K tablekey) {
+            this.tablekey = tablekey;
             return this;
         }
 
         @Override
-        public IdFilter.Builder<I> isRemove(boolean isRemove) {
+        public IdFilter.Builder<I, K> isRemove(boolean isRemove) {
             this.isRemove = isRemove;
             return this;
         }
 
         @Override
-        public IdFilter.Builder<I> operate(OperateType operate) {
+        public IdFilter.Builder<I, K> operate(OperateType operate) {
             this.operate = operate;
             return this;
         }
 
         @Override
-        public IdFilter.Builder<I> operate(Integer operate) {
+        public IdFilter.Builder<I, K> operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
             return this;
         }
 
         @Override
-        public IdFilter.Builder<I> operates(@NonNull Collection<OperateType> operates) {
+        public IdFilter.Builder<I, K> operates(@NonNull Collection<OperateType> operates) {
             this.operates = new HashSet<>(operates);
             return this;
         }
 
         @Override
-        public IdFilter.Builder<I> operates(@NonNull OperateType... operates) {
+        public IdFilter.Builder<I, K> operates(@NonNull OperateType... operates) {
             this.operates = new HashSet<>(Arrays.asList(operates));
             return this;
         }
 
         @Override
-        public IdFilter.Builder<I> operates(@NonNull Integer... operates) {
+        public IdFilter.Builder<I, K> operates(@NonNull Integer... operates) {
             this.operates = new HashSet<>(RestOperate.build(operates));
             return this;
         }
 
         @Override
-        public IdFilter.Builder<I> sorts(@NonNull Collection<RestSort> sorts) {
+        public IdFilter.Builder<I, K> sorts(@NonNull Collection<RestSort> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
         }
 
         @Override
-        public IdFilter.Builder<I> sorts(@NonNull RestSort... sorts) {
+        public IdFilter.Builder<I, K> sorts(@NonNull RestSort... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
             return this;
         }
 
         @Override
-        public IdFilter.Builder<I> sorts(@NonNull String... sorts) {
+        public IdFilter.Builder<I, K> sorts(@NonNull String... sorts) {
             this.sorts = new HashSet<>(RestSort.build(sorts));
             return this;
         }
 
         @Override
-        public IdFilter.Builder<I> pageNum(Integer pageNum) {
+        public IdFilter.Builder<I, K> pageNum(Integer pageNum) {
             this.pageNum = pageNum;
             return this;
         }
 
         @Override
-        public IdFilter.Builder<I> pageSize(Integer pageSize) {
+        public IdFilter.Builder<I, K> pageSize(Integer pageSize) {
             this.pageSize = pageSize;
             return this;
         }
 
         @Override
-        public IdFilter<I> build() {
+        public IdFilter<I, K> build() {
             return new IdFilter<>(this);
         }
     }

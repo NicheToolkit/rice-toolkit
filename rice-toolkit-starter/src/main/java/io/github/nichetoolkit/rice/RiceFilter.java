@@ -29,7 +29,7 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public abstract class RiceFilter extends NameFilter<Date,String> implements InitializingBean, ApplicationContextAware{
+public abstract class RiceFilter extends NameFilter<Date,String,String> implements InitializingBean, ApplicationContextAware{
 
     private static ApplicationContext applicationContext;
 
@@ -133,7 +133,7 @@ public abstract class RiceFilter extends NameFilter<Date,String> implements Init
         return this;
     }
 
-    public static abstract class Builder extends NameFilter.Builder<Date,String> {
+    public static abstract class Builder extends NameFilter.Builder<Date,String,String> {
 
         public Builder() {
         }
@@ -229,8 +229,8 @@ public abstract class RiceFilter extends NameFilter<Date,String> implements Init
         }
 
         @Override
-        public RiceFilter.Builder tableKey(String tableKey) {
-            this.tableKey = tableKey;
+        public RiceFilter.Builder tablekey(String tablekey) {
+            this.tablekey = tablekey;
             return this;
         }
 

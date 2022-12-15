@@ -110,12 +110,6 @@
         WHERE name = #{name}
     </select>
 
-    <select id="findByName" resultMap="simpleResultMap">
-        SELECT <include refid="all_column"/>
-        FROM ${tablename}
-        WHERE name = #{name}
-    </select>
-
     <select id="findByNameAndNotId" resultMap="simpleResultMap">
         SELECT <include refid="all_column"/>
         FROM ${tablename}

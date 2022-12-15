@@ -3,6 +3,7 @@ package io.github.nichetoolkit.rice.service.advice;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.error.service.ServiceUnsupportedException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
+import org.checkerframework.checker.units.qual.K;
 
 /**
  * <p>FilterAdvice</p>
@@ -10,7 +11,7 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
  * @version v1.0.0
  */
 @SuppressWarnings("RedundantThrows")
-public interface FilterAdvice<I, F extends IdFilter<I>> {
+public interface FilterAdvice<K, I, F extends IdFilter<I, K>> {
 
     default void doServiceHandle() throws RestException {
     }
@@ -43,7 +44,7 @@ public interface FilterAdvice<I, F extends IdFilter<I>> {
         return filter.toFieldArray();
     }
 
-    default String tableKey(F filter) throws RestException {
-        return filter.toTableKey();
+    default K tablekey(F filter) throws RestException {
+        return filter.toTablekey();
     }
 }

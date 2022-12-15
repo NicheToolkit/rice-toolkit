@@ -11,7 +11,7 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public interface QueryService<I, M extends IdModel<I>> extends DeleteService<I> {
+public interface QueryService<K,I, M extends IdModel<I>> extends DeleteService<K,I> {
 
     /**
      * 通过id集合查询所有
@@ -29,7 +29,7 @@ public interface QueryService<I, M extends IdModel<I>> extends DeleteService<I> 
      * @return List<M> 查询的数据
      * @throws RestException 模块异常
      */
-    List<M> queryAll(String tableKey, Collection<I> idList, Boolean... isLoadArray) throws RestException;
+    List<M> queryAll(K tablekey, Collection<I> idList, Boolean... isLoadArray) throws RestException;
 
     /**
      * 通过id集合查询单个
@@ -47,6 +47,6 @@ public interface QueryService<I, M extends IdModel<I>> extends DeleteService<I> 
      * @return M 查询的对象
      * @throws RestException 模块异常
      */
-    M queryById(String tableKey, I id, Boolean... isLoadArray) throws RestException;
+    M queryById(K tablekey, I id, Boolean... isLoadArray) throws RestException;
 
 }

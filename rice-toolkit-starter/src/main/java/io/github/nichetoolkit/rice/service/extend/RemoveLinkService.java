@@ -12,7 +12,7 @@ import java.util.Collection;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public interface RemoveLinkService<I> {
+public interface RemoveLinkService<K,I> {
 
     /**
      * 通过id集合批量逻辑删除
@@ -28,7 +28,7 @@ public interface RemoveLinkService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void removeAllByLinkIds(String tableKey, Collection<I> linkIdList) throws RestException;
+    void removeAllByLinkIds(K tablekey, Collection<I> linkIdList) throws RestException;
 
     /**
      * 通过id单个逻辑删除
@@ -44,6 +44,6 @@ public interface RemoveLinkService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void removeByLinkId(String tableKey, I linkId) throws RestException;
+    void removeByLinkId(K tablekey, I linkId) throws RestException;
 
 }

@@ -30,7 +30,7 @@ public interface OperateLinkService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void operateAllByLinkIds(String tableKey, Collection<I> linkIdList, OperateType operateType) throws RestException;
+    void operateAllByLinkIds(String tablekey, Collection<I> linkIdList, OperateType operateType) throws RestException;
 
     /**
      * 通过id单个逻辑删除
@@ -48,6 +48,6 @@ public interface OperateLinkService<I> {
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void operateByLinkId(String tableKey, I linkId, OperateType operateType) throws RestException;
+    void operateByLinkId(String tablekey, I linkId, OperateType operateType) throws RestException;
 
 }
