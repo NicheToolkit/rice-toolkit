@@ -1155,6 +1155,9 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         if (createActuator != null) {
             createActuator.actuate(tablekey, model);
         }
+        if (model.isSaveLower(SaveType.CREATE)) {
+            model.setSave(SaveType.CREATE);
+        }
     };
 
     @SuppressWarnings(value = "unchecked")
@@ -1171,6 +1174,32 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         if (updateActuator != null) {
             updateActuator.actuate(tablekey, model);
         }
+        if (model.isSaveLower(SaveType.UPDATE)) {
+            model.setSave(SaveType.UPDATE);
+        }
+    };
+
+    @SuppressWarnings(value = "unchecked")
+    private final BiConsumerActuator<K, M> DEFAULT_SAVE_ACTUATOR = (K tablekey, @NonNull M model) -> {
+        boolean exist;
+        if (isDynamicTable() && model instanceof RestTablekey) {
+            exist = existById(((RestTablekey<K>) model).getTablekey(), model.getId());
+        } else {
+            exist = existById(model.getId());
+        }
+        if ( !exist && isIdInvade()) {
+            invadeActuator().actuate(tablekey, model);
+        } else {
+            String message = "the data no found，id: " + model.getId();
+            OptionalHelper.falseable(exist, message, "id", DataQueryException::new);
+            optional(model);
+            if (updateActuator != null) {
+                updateActuator.actuate(tablekey, model);
+            }
+            if (model.isSaveLower(SaveType.UPDATE)) {
+                model.setSave(SaveType.UPDATE);
+            }
+        }
     };
 
     private final BiConsumerActuator<K, M> DEFAULT_INVADE_ACTUATOR = (K tablekey, @NonNull M model) -> {
@@ -1178,6 +1207,9 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         optional(model);
         if (createActuator != null) {
             createActuator.actuate(tablekey, model);
+        }
+        if (model.isSaveLower(SaveType.CREATE)) {
+            model.setSave(SaveType.CREATE);
         }
     };
 
@@ -1187,6 +1219,10 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
 
     protected BiConsumerActuator<K, M> updateActuator() {
         return DEFAULT_UPDATE_ACTUATOR;
+    }
+
+    protected BiConsumerActuator<K, M> saveActuator() {
+        return DEFAULT_SAVE_ACTUATOR;
     }
 
     protected BiConsumerActuator<K, M> invadeActuator() {
@@ -1370,19 +1406,12 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         } else {
             invadeActuator().actuate(tablekey, model);
         }
-        if (model.isSaveLower(SaveType.CREATE)) {
-            model.setSave(SaveType.CREATE);
-        }
     }
 
     private void optionalUpdate(K tablekey, @NonNull M model) throws RestException {
         OptionalHelper.idable(model.getId());
         optionalDynamicTable(tablekey, model);
         updateActuator().actuate(tablekey, model);
-        if (model.isSaveLower(SaveType.UPDATE)) {
-            model.setSave(SaveType.UPDATE);
-        }
-
     }
 
     private void optionalSave(K tablekey, @NonNull M model) throws RestException {
@@ -1390,15 +1419,9 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             optionalLogicSign(model);
             optionalDynamicTable(tablekey, model);
             createActuator().actuate(tablekey, model);
-            if (model.isSaveLower(SaveType.CREATE)) {
-                model.setSave(SaveType.CREATE);
-            }
         } else {
             optionalDynamicTable(tablekey, model);
-            updateActuator().actuate(tablekey, model);
-            if (model.isSaveLower(SaveType.UPDATE)) {
-                model.setSave(SaveType.UPDATE);
-            }
+            saveActuator().actuate(tablekey, model);
         }
     }
 }
