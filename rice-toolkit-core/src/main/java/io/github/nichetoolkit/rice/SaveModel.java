@@ -17,6 +17,7 @@ public class SaveModel implements RestSave, Serializable {
     protected SaveType save = SaveType.NONE;
 
     /** 逻辑删除标记 */
+    @JsonIgnore
     protected String logicSign;
 
     public SaveModel() {
@@ -73,6 +74,7 @@ public class SaveModel implements RestSave, Serializable {
     public boolean isSaveLower(SaveType saveType) {
         return this.save.getKey() < saveType.getKey();
     }
+
     public String getLogicSign() {
         return logicSign;
     }

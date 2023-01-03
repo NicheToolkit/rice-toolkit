@@ -92,8 +92,6 @@ public class IdModel<I> extends TimeModel implements RestId<I>{
             return this;
         }
 
-
-
         @Override
         public IdModel.Builder<I> operate(OperateType operate) {
             this.operate = operate;

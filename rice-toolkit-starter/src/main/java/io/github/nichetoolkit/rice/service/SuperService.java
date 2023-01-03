@@ -118,6 +118,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     @SuppressWarnings(value = "unchecked")
     protected E entityActuator(M model, I... idArray) throws RestException {
         E entity = this.createEntity(model);
+        entity.setLogicSign(model.getLogicSign());
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
             builderAdvice.buildEntity(model, entity, idArray);
@@ -139,6 +140,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             /** 当buildEntity和buildEntityList都被复写的时候 优先调用buildEntityList */
             entityList = MEBuilderHelper.entityList(modelList, actuator, (M model) -> {
                 E entity = createEntity(model);
+                entity.setLogicSign(model.getLogicSign());
                 if (buildEntityListMethod == null || buildEntityListMethod.isDefault()) {
                     builderAdvice.buildEntity(model, entity, idArray);
                 }
