@@ -75,6 +75,37 @@ public class MEBuilderHelper {
         return entityList;
     }
 
+    public static <M, E> List<E> indexList(Collection<M> modelList, FunctionActuator<M, List<E>> function) throws RestException {
+        if (GeneralUtils.isEmpty(modelList)) {
+            return Collections.emptyList();
+        }
+        List<M> collect = modelList.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        List<E> entityList = new ArrayList<>();
+        for (M model : collect) {
+            if (model != null) {
+                entityList.addAll(function.actuate(model));
+            }
+        }
+        return entityList;
+    }
+
+    public static <M, E> List<E> indexList(Collection<M> modelList, ConsumerActuator<M> consumer, FunctionActuator<M, List<E>> function) throws RestException {
+        if (GeneralUtils.isEmpty(modelList)) {
+            return Collections.emptyList();
+        }
+        List<M> collect = modelList.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        List<E> entityList = new ArrayList<>();
+        for (M model : collect) {
+            if (model != null) {
+                consumer.actuate(model);
+                entityList.addAll(function.actuate(model));
+            }
+        }
+        return entityList;
+    }
+
+
+
     public static <I, M, E> List<M> modelList(Collection<E> entityList, FunctionActuator<E, M> function) throws RestException {
         if (GeneralUtils.isEmpty(entityList)) {
             return Collections.emptyList();
