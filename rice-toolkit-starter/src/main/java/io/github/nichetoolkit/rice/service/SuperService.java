@@ -1164,14 +1164,16 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
 
     @SuppressWarnings(value = "unchecked")
     private final BiConsumerActuator<K, M> DEFAULT_UPDATE_ACTUATOR = (K tablekey, @NonNull M model) -> {
-        boolean exist;
-        if (isDynamicTable() && model instanceof RestTablekey) {
-            exist = existById(((RestTablekey<K>) model).getTablekey(), model.getId());
-        } else {
-            exist = existById(model.getId());
+        if (isIdExist()) {
+            boolean exist;
+            if (isDynamicTable() && model instanceof RestTablekey) {
+                exist = existById(((RestTablekey<K>) model).getTablekey(), model.getId());
+            } else {
+                exist = existById(model.getId());
+            }
+            String message = "the data no found，id: " + model.getId();
+            OptionalHelper.falseable(exist, message, "id", DataQueryException::new);
         }
-        String message = "the data no found，id: " + model.getId();
-        OptionalHelper.falseable(exist, message, "id", DataQueryException::new);
         optional(model);
         if (updateActuator != null) {
             updateActuator.actuate(tablekey, model);
@@ -1183,25 +1185,29 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
 
     @SuppressWarnings(value = "unchecked")
     private final BiConsumerActuator<K, M> DEFAULT_SAVE_ACTUATOR = (K tablekey, @NonNull M model) -> {
-        boolean exist;
-        if (isDynamicTable() && model instanceof RestTablekey) {
-            exist = existById(((RestTablekey<K>) model).getTablekey(), model.getId());
-        } else {
-            exist = existById(model.getId());
-        }
-        if ( !exist && isIdInvade()) {
-            optionalLogicSign(model);
-            invadeActuator().actuate(tablekey, model);
-        } else {
-            String message = "the data no found，id: " + model.getId();
-            OptionalHelper.falseable(exist, message, "id", DataQueryException::new);
-            optional(model);
-            if (updateActuator != null) {
-                updateActuator.actuate(tablekey, model);
+        if (isIdExist()) {
+            boolean exist;
+            if (isDynamicTable() && model instanceof RestTablekey) {
+                exist = existById(((RestTablekey<K>) model).getTablekey(), model.getId());
+            } else {
+                exist = existById(model.getId());
             }
-            if (model.isSaveLower(SaveType.UPDATE)) {
-                model.setSave(SaveType.UPDATE);
+            if ( !exist && isIdInvade()) {
+                optionalLogicSign(model);
+                invadeActuator().actuate(tablekey, model);
+            } else {
+                String message = "the data no found，id: " + model.getId();
+                OptionalHelper.falseable(exist, message, "id", DataQueryException::new);
+                optional(model);
+                if (updateActuator != null) {
+                    updateActuator.actuate(tablekey, model);
+                }
+                if (model.isSaveLower(SaveType.UPDATE)) {
+                    model.setSave(SaveType.UPDATE);
+                }
             }
+        } else {
+            updateActuator().actuate(tablekey, model);
         }
     };
 
@@ -1234,6 +1240,10 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
 
     protected Boolean isIdInvade() {
         return beanProperties.isIdInvade();
+    }
+
+    protected Boolean isIdExist() {
+        return beanProperties.isIdExist();
     }
 
     protected Boolean isNameNonnull() {

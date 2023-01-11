@@ -43,6 +43,12 @@
       "description": "invade key enabled."
     },
     {
+      "name": "nichetoolkit.rice.bean.key.exist-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "exist key enabled."
+    },
+    {
       "name": "nichetoolkit.rice.bean.partition.query-size",
       "type": "java.lang.Integer",
       "sourceType": "java.lang.Integer",

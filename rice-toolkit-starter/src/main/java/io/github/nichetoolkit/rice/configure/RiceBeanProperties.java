@@ -170,6 +170,7 @@ public class RiceBeanProperties {
 
     public static class BeanKey {
         private Boolean invadeEnabled = false;
+        private Boolean existEnabled = true;
 
         public BeanKey() {
         }
@@ -180,6 +181,14 @@ public class RiceBeanProperties {
 
         public void setInvadeEnabled(Boolean invadeEnabled) {
             this.invadeEnabled = invadeEnabled;
+        }
+
+        public Boolean getExistEnabled() {
+            return existEnabled;
+        }
+
+        public void setExistEnabled(Boolean existEnabled) {
+            this.existEnabled = existEnabled;
         }
     }
 
@@ -313,6 +322,10 @@ public class RiceBeanProperties {
 
     public Boolean isIdInvade() {
         return this.getKey().getInvadeEnabled();
+    }
+
+    public Boolean isIdExist() {
+        return this.getKey().getExistEnabled();
     }
 
     public Boolean isNameNonnull() {
