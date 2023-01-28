@@ -1193,7 +1193,6 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                 exist = existById(model.getId());
             }
             if ( !exist && isIdInvade()) {
-                optionalLogicSign(model);
                 invadeActuator().actuate(tablekey, model);
             } else {
                 String message = "the data no found，id: " + model.getId();
@@ -1409,11 +1408,11 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                 tableNameMap.put(tablekey, tablename);
             }
         }
+        optionalLogicSign(model);
     }
 
     private void optionalCreate(K tablekey, @NonNull M model) throws RestException {
         optionalDynamicTable(tablekey, model);
-        optionalLogicSign(model);
         if (GeneralUtils.isEmpty(model.getId()) || !isIdInvade()) {
             createActuator().actuate(tablekey, model);
         } else {
@@ -1430,7 +1429,6 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     private void optionalSave(K tablekey, @NonNull M model) throws RestException {
         optionalDynamicTable(tablekey, model);
         if (GeneralUtils.isEmpty(model.getId())) {
-            optionalLogicSign(model);
             createActuator().actuate(tablekey, model);
         } else {
             saveActuator().actuate(tablekey, model);
