@@ -16,10 +16,10 @@ import java.util.List;
 public interface BuilderAdvice <I,M extends IdModel<I>, E extends IdEntity<I>> {
 
     @SuppressWarnings(value = "unchecked")
-    default void buildEntity(M model, E entity, I... idArray) throws RestException {}
+    default void buildEntity(M model, E entity, Object... idArray) throws RestException {}
 
     @SuppressWarnings(value = "unchecked")
-    default void buildEntityList(Collection<M> modelList, List<E> entityList, I... idArray) throws RestException {}
+    default void buildEntityList(Collection<M> modelList, List<E> entityList, Object... idArray) throws RestException {}
 
     default void buildModel(E entity, M model, Boolean... isLoadArray) throws RestException {}
 

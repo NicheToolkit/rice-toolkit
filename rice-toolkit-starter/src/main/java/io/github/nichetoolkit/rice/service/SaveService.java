@@ -13,7 +13,6 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@SuppressWarnings("RedundantThrows")
 public interface SaveService<K, I, M extends IdModel<I>> extends QueryService<K,I, M> {
 
     /**
@@ -23,8 +22,7 @@ public interface SaveService<K, I, M extends IdModel<I>> extends QueryService<K,
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    @SuppressWarnings(value = "unchecked")
-    M save(M model, I... idArray) throws RestException;
+    M save(M model, Object... idArray) throws RestException;
 
     /**
      * 单个保存
@@ -33,8 +31,7 @@ public interface SaveService<K, I, M extends IdModel<I>> extends QueryService<K,
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    @SuppressWarnings(value = "unchecked")
-    M save(K tablekey, M model, I... idArray) throws RestException;
+    M save(K tablekey, M model, Object... idArray) throws RestException;
 
     /**
      * 批量保存（存在更新,不存在新增）
@@ -43,8 +40,7 @@ public interface SaveService<K, I, M extends IdModel<I>> extends QueryService<K,
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    @SuppressWarnings(value = "unchecked")
-    List<M> saveAll(Collection<M> modelList, I... idArray) throws RestException;
+    List<M> saveAll(Collection<M> modelList, Object... idArray) throws RestException;
 
     /**
      * 批量保存（存在更新,不存在新增）
@@ -53,7 +49,6 @@ public interface SaveService<K, I, M extends IdModel<I>> extends QueryService<K,
      * @throws RestException 模块异常
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    @SuppressWarnings(value = "unchecked")
-    List<M> saveAll(K tablekey, Collection<M> modelList, I... idArray) throws RestException;
+    List<M> saveAll(K tablekey, Collection<M> modelList, Object... idArray) throws RestException;
 
 }

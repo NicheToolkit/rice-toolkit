@@ -121,7 +121,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     }
 
     @SuppressWarnings(value = "unchecked")
-    protected E entityActuator(M model, I... idArray) throws RestException {
+    protected E entityActuator(M model, Object... idArray) throws RestException {
         E entity = this.createEntity(model);
         entity.setLogicSign(model.getLogicSign());
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
@@ -132,15 +132,13 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     }
 
     @SuppressWarnings(value = "unchecked")
-    protected List<E> entityActuator(Collection<M> modelList, ConsumerActuator<M> actuator, I... idArray) throws RestException {
+    protected List<E> entityActuator(Collection<M> modelList, ConsumerActuator<M> actuator, Object... idArray) throws RestException {
         List<E> entityList;
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
             Method entityListFindMethod = null;
             try {
-                Class<? extends Object[]> arrayClass = idArray.getClass();
-                Class<I[]> idArrayClass = ((Class<I[]>) arrayClass);
-                entityListFindMethod = builderAdvice.getClass().getMethod("buildEntityList", Collection.class, List.class, idArrayClass);
+                entityListFindMethod = builderAdvice.getClass().getMethod("buildEntityList", Collection.class, List.class, Object[].class);
             } catch (NoSuchMethodException ignored) {
             }
             Method buildEntityListMethod = entityListFindMethod;
@@ -208,7 +206,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     }
 
     @SuppressWarnings(value = "unchecked")
-    private Integer single(K tablekey, M model, I... idArray) throws RestException {
+    private Integer single(K tablekey, M model, Object... idArray) throws RestException {
         E entity = entityActuator(model, idArray);
         String tablename = tablename(tablekey, model);
         Integer result;
@@ -220,14 +218,12 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         return result;
     }
 
-    @SuppressWarnings(value = "unchecked")
-    public M create(M model, I... idArray) throws RestException {
+    public M create(M model, Object... idArray) throws RestException {
         return create(null, model, idArray);
     }
 
-    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public M create(K tablekey, M model, I... idArray) throws RestException {
+    public M create(K tablekey, M model, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return null;
         }
@@ -241,14 +237,12 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         return model;
     }
 
-    @SuppressWarnings(value = "unchecked")
-    public M update(M model, I... idArray) throws RestException {
+    public M update(M model, Object... idArray) throws RestException {
         return update(null, model, idArray);
     }
 
-    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public M update(K tablekey, M model, I... idArray) throws RestException {
+    public M update(K tablekey, M model, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return null;
         }
@@ -262,14 +256,12 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         return model;
     }
 
-    @SuppressWarnings(value = "unchecked")
-    public M save(M model, I... idArray) throws RestException {
+    public M save(M model, Object... idArray) throws RestException {
         return save(null, model, idArray);
     }
 
-    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public M save(K tablekey, M model, I... idArray) throws RestException {
+    public M save(K tablekey, M model, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return null;
         }
@@ -284,17 +276,15 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     }
 
     public List<M> saveAll(Collection<M> modelList) throws RestException {
-        return saveAll(modelList, (I[]) null);
+        return saveAll(modelList, (Object[]) null);
     }
 
-    @SuppressWarnings(value = "unchecked")
-    public List<M> saveAll(Collection<M> modelList, I... idArray) throws RestException {
+    public List<M> saveAll(Collection<M> modelList, Object... idArray) throws RestException {
         return saveAll(null, modelList, idArray);
     }
 
-    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public List<M> saveAll(K tablekey, Collection<M> modelList, I... idArray) throws RestException {
+    public List<M> saveAll(K tablekey, Collection<M> modelList, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(modelList)) {
             return Collections.emptyList();
         }
