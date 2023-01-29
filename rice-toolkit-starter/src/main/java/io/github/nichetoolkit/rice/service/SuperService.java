@@ -282,7 +282,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
 
     @SuppressWarnings(value = "unchecked")
     public List<M> saveAll(Collection<M> modelList, I... idArray) throws RestException {
-        return saveAll(null, modelList, (I[]) null);
+        return saveAll(null, modelList, idArray);
     }
 
     @SuppressWarnings(value = "unchecked")
