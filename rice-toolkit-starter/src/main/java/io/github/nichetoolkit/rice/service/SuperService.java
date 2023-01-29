@@ -121,7 +121,15 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         entity.setLogicSign(model.getLogicSign());
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
-            builderAdvice.buildEntity(model, entity, idArray);
+            Method entityFindMethod = null;
+            try {
+                entityFindMethod = builderAdvice.getClass().getMethod("buildEntity");
+            } catch (NoSuchMethodException ignored) {
+            }
+            Method buildEntityMethod = entityFindMethod;
+            if (buildEntityMethod == null || buildEntityMethod.isDefault()) {
+                builderAdvice.buildEntity(model, entity, idArray);
+            }
         }
         return entity;
     }
@@ -131,17 +139,20 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         List<E> entityList;
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
-            Method findMethod = null;
+            Method entityFindMethod = null;
+            Method entityListFindMethod = null;
             try {
-                findMethod = builderAdvice.getClass().getMethod("buildEntityList", Collection.class, List.class, Boolean[].class);
+                entityFindMethod = builderAdvice.getClass().getMethod("buildEntity");
+                entityListFindMethod = builderAdvice.getClass().getMethod("buildEntityList");
             } catch (NoSuchMethodException ignored) {
             }
-            Method buildEntityListMethod = findMethod;
+            Method buildEntityMethod = entityFindMethod;
+            Method buildEntityListMethod = entityListFindMethod;
             /** 当buildEntity和buildEntityList都被复写的时候 优先调用buildEntityList */
             entityList = MEBuilderHelper.entityList(modelList, actuator, (M model) -> {
                 E entity = createEntity(model);
                 entity.setLogicSign(model.getLogicSign());
-                if (buildEntityListMethod == null || buildEntityListMethod.isDefault()) {
+                if (buildEntityMethod == null || buildEntityMethod.isDefault()) {
                     builderAdvice.buildEntity(model, entity, idArray);
                 }
                 return entity;
