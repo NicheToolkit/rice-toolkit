@@ -137,13 +137,6 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             Method entityListFindMethod = null;
             try {
                 Class<I[]> idArrayClass = ((Class<I[]>) idArray.getClass());
-                Type genericSuperclass = this.getClass().getGenericSuperclass();
-                if (genericSuperclass instanceof ParameterizedType) {
-                    Type[] actualTypeArguments = ((ParameterizedType) genericSuperclass).getActualTypeArguments();
-                    if (GeneralUtils.isNotEmpty(actualTypeArguments) && actualTypeArguments.length > 1) {
-                        idArrayClass = ((Class<I[]>) actualTypeArguments[1]);
-                    }
-                }
                 entityListFindMethod = builderAdvice.getClass().getMethod("buildEntityList", Collection.class, List.class, idArrayClass);
             } catch (NoSuchMethodException ignored) {
             }
