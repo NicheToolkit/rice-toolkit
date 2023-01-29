@@ -1,5 +1,6 @@
 package io.github.nichetoolkit.rice.service;
 
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.github.pagehelper.Page;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestKey;
@@ -121,15 +122,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         entity.setLogicSign(model.getLogicSign());
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
-            Method entityFindMethod = null;
-            try {
-                entityFindMethod = builderAdvice.getClass().getMethod("buildEntity");
-            } catch (NoSuchMethodException ignored) {
-            }
-            Method buildEntityMethod = entityFindMethod;
-            if (buildEntityMethod == null || buildEntityMethod.isDefault()) {
-                builderAdvice.buildEntity(model, entity, idArray);
-            }
+            builderAdvice.buildEntity(model, entity, idArray);
         }
         return entity;
     }
@@ -139,20 +132,17 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         List<E> entityList;
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
-            Method entityFindMethod = null;
             Method entityListFindMethod = null;
             try {
-                entityFindMethod = builderAdvice.getClass().getMethod("buildEntity");
-                entityListFindMethod = builderAdvice.getClass().getMethod("buildEntityList");
+                entityListFindMethod = builderAdvice.getClass().getMethod("buildEntityList", Collection.class, List.class, idArray.getClass());
             } catch (NoSuchMethodException ignored) {
             }
-            Method buildEntityMethod = entityFindMethod;
             Method buildEntityListMethod = entityListFindMethod;
             /** 当buildEntity和buildEntityList都被复写的时候 优先调用buildEntityList */
             entityList = MEBuilderHelper.entityList(modelList, actuator, (M model) -> {
                 E entity = createEntity(model);
                 entity.setLogicSign(model.getLogicSign());
-                if (buildEntityMethod == null || buildEntityMethod.isDefault()) {
+                if (buildEntityListMethod == null || buildEntityListMethod.isDefault()) {
                     builderAdvice.buildEntity(model, entity, idArray);
                 }
                 return entity;
