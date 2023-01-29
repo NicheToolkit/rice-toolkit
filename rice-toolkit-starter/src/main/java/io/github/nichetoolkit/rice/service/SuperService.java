@@ -136,8 +136,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
             Method entityListFindMethod = null;
             try {
-                Class<I[]> aClass = ((Class<I[]>) idArray.getClass());
-                Class<I[]> idArrayClass; 
+                Class<I[]> idArrayClass = ((Class<I[]>) idArray.getClass());
                 Type genericSuperclass = this.getClass().getGenericSuperclass();
                 if (genericSuperclass instanceof ParameterizedType) {
                     Type[] actualTypeArguments = ((ParameterizedType) genericSuperclass).getActualTypeArguments();
