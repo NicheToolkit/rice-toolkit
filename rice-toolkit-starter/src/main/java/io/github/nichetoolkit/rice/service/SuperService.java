@@ -1,10 +1,11 @@
 package io.github.nichetoolkit.rice.service;
 
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.github.pagehelper.Page;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestKey;
-import io.github.nichetoolkit.rest.actuator.*;
+import io.github.nichetoolkit.rest.actuator.AnchorActuator;
+import io.github.nichetoolkit.rest.actuator.BiConsumerActuator;
+import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
 import io.github.nichetoolkit.rest.error.data.DataQueryException;
 import io.github.nichetoolkit.rest.helper.OptionalHelper;
 import io.github.nichetoolkit.rest.helper.PartitionHelper;
@@ -20,7 +21,6 @@ import io.github.nichetoolkit.rice.enums.DeleteType;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.enums.RemoveType;
 import io.github.nichetoolkit.rice.enums.SaveType;
-import io.github.nichetoolkit.rice.error.service.ServiceUnimplementedException;
 import io.github.nichetoolkit.rice.error.service.ServiceUnknownException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
@@ -36,6 +36,8 @@ import org.springframework.lang.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -134,7 +136,16 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
             Method entityListFindMethod = null;
             try {
-                entityListFindMethod = builderAdvice.getClass().getMethod("buildEntityList", Collection.class, List.class, idArray.getClass());
+                Class<I[]> aClass = ((Class<I[]>) idArray.getClass());
+                Class<I[]> idArrayClass; 
+                Type genericSuperclass = this.getClass().getGenericSuperclass();
+                if (genericSuperclass instanceof ParameterizedType) {
+                    Type[] actualTypeArguments = ((ParameterizedType) genericSuperclass).getActualTypeArguments();
+                    if (GeneralUtils.isNotEmpty(actualTypeArguments) && actualTypeArguments.length > 1) {
+                        idArrayClass = ((Class<I[]>) actualTypeArguments[1]);
+                    }
+                }
+                entityListFindMethod = builderAdvice.getClass().getMethod("buildEntityList", Collection.class, List.class, idArrayClass);
             } catch (NoSuchMethodException ignored) {
             }
             Method buildEntityListMethod = entityListFindMethod;
