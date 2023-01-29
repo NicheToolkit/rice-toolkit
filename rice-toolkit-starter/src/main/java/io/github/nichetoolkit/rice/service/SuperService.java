@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.rice.service;
 
+import com.fasterxml.jackson.databind.type.ArrayType;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.github.pagehelper.Page;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestKey;
@@ -136,7 +138,8 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
             Method entityListFindMethod = null;
             try {
-                Class<I[]> idArrayClass = ((Class<I[]>) idArray.getClass());
+                Class<? extends Object[]> arrayClass = idArray.getClass();
+                Class<I[]> idArrayClass = ((Class<I[]>) arrayClass);
                 entityListFindMethod = builderAdvice.getClass().getMethod("buildEntityList", Collection.class, List.class, idArrayClass);
             } catch (NoSuchMethodException ignored) {
             }
