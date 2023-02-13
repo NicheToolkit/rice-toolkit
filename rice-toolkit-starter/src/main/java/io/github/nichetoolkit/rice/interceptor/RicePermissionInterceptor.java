@@ -6,7 +6,7 @@ import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.helper.InterceptorHelper;
 import io.github.nichetoolkit.rice.interceptor.advice.RicePermissionAdvice;
-import io.github.nichetoolkit.rice.stereotype.purview.RestPermission;
+import io.github.nichetoolkit.rice.stereotype.purview.RestPermit;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
@@ -41,8 +41,8 @@ public class RicePermissionInterceptor implements RiceRequestInterceptor {
 
     @Override
     public void afterHandle(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
-        if (InterceptorHelper.supports(RestPermission.class,handlerMethod)) {
-            RestPermission restPermission = InterceptorHelper.annotation(RestPermission.class, handlerMethod);
+        if (InterceptorHelper.supports(RestPermit.class,handlerMethod)) {
+            RestPermit restPermission = InterceptorHelper.annotation(RestPermit.class, handlerMethod);
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
             if (GeneralUtils.isNotEmpty(permissionAdvices)) {
                 for (RicePermissionAdvice permissionAdvice : permissionAdvices) {

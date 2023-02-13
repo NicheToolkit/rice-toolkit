@@ -8,11 +8,11 @@ import io.github.nichetoolkit.rest.RestValue;
 import java.util.Optional;
 
 /**
- * <p>PurviewType</p>
+ * <p>PermitType</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public enum PermissionType implements RestArithmetic {
+public enum PermitType implements RestArithmetic {
     /** 无操作 */
     DEFAULT_NONE(0L,"无操作",0L),
     /** 数据新增 */
@@ -37,7 +37,7 @@ public enum PermissionType implements RestArithmetic {
     private final String value;
     private final Long arithmetic;
 
-    PermissionType(Long key, String value, Long arithmetic) {
+    PermitType(Long key, String value, Long arithmetic) {
         this.key = key;
         this.value = value;
         this.arithmetic = arithmetic;
@@ -61,18 +61,18 @@ public enum PermissionType implements RestArithmetic {
 
 
     @JsonCreator
-    public static PermissionType parseKey(Long key) {
-        PermissionType sortTypeEnum = RestValue.parseKey(PermissionType.class, key);
-        return Optional.ofNullable(sortTypeEnum).orElse(PermissionType.DEFAULT_NONE);
+    public static PermitType parseKey(Long key) {
+        PermitType sortTypeEnum = RestValue.parseKey(PermitType.class, key);
+        return Optional.ofNullable(sortTypeEnum).orElse(PermitType.DEFAULT_NONE);
     }
 
-    public static PermissionType parseValue(String value) {
-        PermissionType sortTypeEnum = RestValue.parseValue(PermissionType.class, value);
-        return Optional.ofNullable(sortTypeEnum).orElse(PermissionType.DEFAULT_NONE);
+    public static PermitType parseValue(String value) {
+        PermitType sortTypeEnum = RestValue.parseValue(PermitType.class, value);
+        return Optional.ofNullable(sortTypeEnum).orElse(PermitType.DEFAULT_NONE);
     }
 
-    public static PermissionType parseArithmetic(Long arithmetic) {
-        PermissionType typeEnum = RestArithmetic.parseArithmetic(PermissionType.class, arithmetic);
-        return Optional.ofNullable(typeEnum).orElse(PermissionType.DEFAULT_NONE);
+    public static PermitType parseArithmetic(Long arithmetic) {
+        PermitType typeEnum = RestArithmetic.parseArithmetic(PermitType.class, arithmetic);
+        return Optional.ofNullable(typeEnum).orElse(PermitType.DEFAULT_NONE);
     }
 }

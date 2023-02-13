@@ -8,7 +8,7 @@ import io.github.nichetoolkit.rest.RestValue;
 import java.util.Optional;
 
 /**
- * <p>PurviewType</p>
+ * <p>ActorType</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
@@ -20,7 +20,7 @@ public enum ActorType implements RestArithmetic {
     /** 管理员 */
     ADMIN(2L,"管理员",2L),
     /** 领导者 */
-    LEADER(4L,"领导者",4L),
+    LEADER(4L,"领导",4L),
     /** 组长 */
     GROUP(8L,"组长",8L),
     /** 用户 */
