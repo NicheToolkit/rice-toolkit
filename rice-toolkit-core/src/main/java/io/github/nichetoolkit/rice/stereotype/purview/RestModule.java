@@ -20,4 +20,6 @@ public @interface RestModule {
     @AliasFor("module")
     String name() default "";
 
+    String[] modules() default {};
+
 }
