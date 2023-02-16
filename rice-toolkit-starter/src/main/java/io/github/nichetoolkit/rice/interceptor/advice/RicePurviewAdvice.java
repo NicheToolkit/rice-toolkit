@@ -9,17 +9,17 @@ import org.springframework.web.method.HandlerMethod;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * <p>RicePermissionAdvice </p>
+ * <p>RicePurviewAdvice </p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public interface RicePermissionAdvice {
+public interface RicePurviewAdvice {
 
     default boolean supports(RestPurview restPermission, HandlerMethod handlerMethod) {
         return GeneralUtils.isNotEmpty(restPermission);
     }
 
-    default void checkPermission(RestRequestWrapper request, HttpServletResponse response, HandlerMethod handlerMethod, RestPurview restPermission) throws RestException {
+    default void checkPurview(RestRequestWrapper request, HttpServletResponse response, HandlerMethod handlerMethod, RestPurview restPurview) throws RestException {
     }
 
 }

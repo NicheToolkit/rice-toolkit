@@ -9,17 +9,17 @@ import org.springframework.web.method.HandlerMethod;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * <p>RiceActorAdvice </p>
+ * <p>RiceRoleAdvice </p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public interface RiceActorAdvice {
+public interface RiceRoleAdvice {
 
-    default boolean supports(RestRole restActor, HandlerMethod handlerMethod) {
-        return GeneralUtils.isNotEmpty(restActor);
+    default boolean supports(RestRole restRole, HandlerMethod handlerMethod) {
+        return GeneralUtils.isNotEmpty(restRole);
     }
 
-    default void checkActor(RestRequestWrapper request, HttpServletResponse response, HandlerMethod handlerMethod, RestRole restActor) throws RestException {
+    default void checkRole(RestRequestWrapper request, HttpServletResponse response, HandlerMethod handlerMethod, RestRole restRole) throws RestException {
     }
 
 }

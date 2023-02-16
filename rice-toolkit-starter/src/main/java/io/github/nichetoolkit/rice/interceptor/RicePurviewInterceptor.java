@@ -5,7 +5,7 @@ import io.github.nichetoolkit.rest.helper.RestRequestHelper;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.helper.InterceptorHelper;
-import io.github.nichetoolkit.rice.interceptor.advice.RicePermissionAdvice;
+import io.github.nichetoolkit.rice.interceptor.advice.RicePurviewAdvice;
 import io.github.nichetoolkit.rice.stereotype.purview.RestPurview;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,35 +19,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>RicePermissionInterceptor</p>
+ * <p>RicePurviewInterceptor</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
 @Slf4j
 @Component
 @Order(15)
-public class RicePermissionInterceptor implements RiceRequestInterceptor {
-    private final List<RicePermissionAdvice> permissionAdvices;
+public class RicePurviewInterceptor implements RiceRequestInterceptor {
+    private final List<RicePurviewAdvice> purviewAdvices;
 
     @Autowired(required = false)
-    public RicePermissionInterceptor() {
-        this.permissionAdvices = new ArrayList<>();
+    public RicePurviewInterceptor() {
+        this.purviewAdvices = new ArrayList<>();
     }
 
     @Autowired(required = false)
-    public RicePermissionInterceptor(List<RicePermissionAdvice> permissionAdvices) {
-        this.permissionAdvices = permissionAdvices;
+    public RicePurviewInterceptor(List<RicePurviewAdvice> purviewAdvices) {
+        this.purviewAdvices = purviewAdvices;
     }
 
     @Override
     public void afterHandle(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
         if (InterceptorHelper.supports(RestPurview.class,handlerMethod)) {
-            RestPurview restPermission = InterceptorHelper.annotation(RestPurview.class, handlerMethod);
+            RestPurview restPurview = InterceptorHelper.annotation(RestPurview.class, handlerMethod);
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
-            if (GeneralUtils.isNotEmpty(permissionAdvices)) {
-                for (RicePermissionAdvice permissionAdvice : permissionAdvices) {
-                    if (permissionAdvice.supports(restPermission,handlerMethod)) {
-                        permissionAdvice.checkPermission(requestWrapper, response, handlerMethod,restPermission);
+            if (GeneralUtils.isNotEmpty(purviewAdvices)) {
+                for (RicePurviewAdvice purviewAdvice : purviewAdvices) {
+                    if (purviewAdvice.supports(restPurview,handlerMethod)) {
+                        purviewAdvice.checkPurview(requestWrapper, response, handlerMethod,restPurview);
                     }
                 }
             }
