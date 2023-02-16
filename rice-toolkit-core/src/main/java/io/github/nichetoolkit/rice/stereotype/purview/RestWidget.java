@@ -1,6 +1,6 @@
 package io.github.nichetoolkit.rice.stereotype.purview;
 
-import io.github.nichetoolkit.rice.stereotype.value.RestModuleValue;
+import io.github.nichetoolkit.rice.stereotype.value.RestWidgetValue;
 import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.*;
@@ -23,6 +23,6 @@ public @interface RestWidget {
 
     String[] widgets() default {};
 
-    RestModuleValue[] values() default {};
+    RestWidgetValue[] values() default {};
 
 }

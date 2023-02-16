@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice.stereotype.value;
 import java.lang.annotation.*;
 
 /**
- * <p>RestModuleValue</p>
+ * <p>RestWidgetValue</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
