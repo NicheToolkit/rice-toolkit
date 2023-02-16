@@ -46,13 +46,13 @@ public enum RemoveType implements RestValue<Integer,String> {
 
     @JsonCreator
     public static RemoveType parseKey(Integer key) {
-        RemoveType sortTypeEnum = RestValue.parseKey(RemoveType.class, key);
-        return Optional.ofNullable(sortTypeEnum).orElse(RemoveType.BOOLEAN);
+        RemoveType typeEnum = RestValue.parseKey(RemoveType.class, key);
+        return Optional.ofNullable(typeEnum).orElse(RemoveType.BOOLEAN);
     }
 
     public static RemoveType parseValue(String value) {
-        RemoveType sortTypeEnum = RestValue.parseValue(RemoveType.class, value);
-        return Optional.ofNullable(sortTypeEnum).orElse(RemoveType.BOOLEAN);
+        RemoveType typeEnum = RestValue.parseValue(RemoveType.class, value);
+        return Optional.ofNullable(typeEnum).orElse(RemoveType.BOOLEAN);
     }
 
     public static String sign(RemoveType removeModel,boolean booleanSign,Integer numberSign) {

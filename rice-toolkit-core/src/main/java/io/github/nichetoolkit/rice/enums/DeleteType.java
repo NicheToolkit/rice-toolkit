@@ -43,13 +43,13 @@ public enum DeleteType implements RestValue<Integer,String> {
 
     @JsonCreator
     public static DeleteType parseKey(Integer key) {
-        DeleteType sortTypeEnum = RestValue.parseKey(DeleteType.class, key);
-        return Optional.ofNullable(sortTypeEnum).orElse(DeleteType.REMOVE);
+        DeleteType typeEnum = RestValue.parseKey(DeleteType.class, key);
+        return Optional.ofNullable(typeEnum).orElse(DeleteType.REMOVE);
     }
 
     public static DeleteType parseValue(String value) {
-        DeleteType sortTypeEnum = RestValue.parseValue(DeleteType.class, value);
-        return Optional.ofNullable(sortTypeEnum).orElse(DeleteType.REMOVE);
+        DeleteType typeEnum = RestValue.parseValue(DeleteType.class, value);
+        return Optional.ofNullable(typeEnum).orElse(DeleteType.REMOVE);
     }
 
 

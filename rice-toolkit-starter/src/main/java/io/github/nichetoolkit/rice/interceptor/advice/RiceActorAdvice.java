@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice.interceptor.advice;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.stereotype.purview.RestActor;
+import io.github.nichetoolkit.rice.stereotype.purview.RestRole;
 import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletResponse;
@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface RiceActorAdvice {
 
-    default boolean supports(RestActor restActor, HandlerMethod handlerMethod) {
+    default boolean supports(RestRole restActor, HandlerMethod handlerMethod) {
         return GeneralUtils.isNotEmpty(restActor);
     }
 
-    default void checkActor(RestRequestWrapper request, HttpServletResponse response, HandlerMethod handlerMethod, RestActor restActor) throws RestException {
+    default void checkActor(RestRequestWrapper request, HttpServletResponse response, HandlerMethod handlerMethod, RestRole restActor) throws RestException {
     }
 
 }

@@ -6,7 +6,7 @@ import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.helper.InterceptorHelper;
 import io.github.nichetoolkit.rice.interceptor.advice.RiceActorAdvice;
-import io.github.nichetoolkit.rice.stereotype.purview.RestActor;
+import io.github.nichetoolkit.rice.stereotype.purview.RestRole;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
@@ -41,8 +41,8 @@ public class RiceActorInterceptor implements RiceRequestInterceptor {
 
     @Override
     public void afterHandle(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
-        if (InterceptorHelper.supports(RestActor.class,handlerMethod)) {
-            RestActor restActor = InterceptorHelper.annotation(RestActor.class, handlerMethod);
+        if (InterceptorHelper.supports(RestRole.class,handlerMethod)) {
+            RestRole restActor = InterceptorHelper.annotation(RestRole.class, handlerMethod);
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
             if (GeneralUtils.isNotEmpty(actorAdvices)) {
                 for (RiceActorAdvice actorAdvice : actorAdvices) {
