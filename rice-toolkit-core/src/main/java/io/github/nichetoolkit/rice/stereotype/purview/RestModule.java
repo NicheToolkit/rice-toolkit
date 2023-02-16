@@ -1,7 +1,6 @@
 package io.github.nichetoolkit.rice.stereotype.purview;
 
 import io.github.nichetoolkit.rice.stereotype.value.RestModuleValue;
-import io.github.nichetoolkit.rice.stereotype.value.RestPurviewValue;
 import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.*;
