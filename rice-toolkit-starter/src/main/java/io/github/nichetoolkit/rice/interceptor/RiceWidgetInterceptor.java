@@ -5,8 +5,9 @@ import io.github.nichetoolkit.rest.helper.RestRequestHelper;
 import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.helper.InterceptorHelper;
-import io.github.nichetoolkit.rice.interceptor.advice.RicePurviewAdvice;
-import io.github.nichetoolkit.rice.stereotype.purview.RestPurview;
+import io.github.nichetoolkit.rice.interceptor.advice.RiceWidgetAdvice;
+import io.github.nichetoolkit.rice.interceptor.advice.RiceWidgetAdvice;
+import io.github.nichetoolkit.rice.stereotype.purview.RestWidget;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
@@ -19,35 +20,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>RicePurviewInterceptor</p>
+ * <p>RiceWidgetInterceptor</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
 @Slf4j
 @Component
-@Order(16)
-public class RicePurviewInterceptor implements RiceRequestInterceptor {
-    private final List<RicePurviewAdvice> purviewAdvices;
+@Order(15)
+public class RiceWidgetInterceptor implements RiceRequestInterceptor {
+    private final List<RiceWidgetAdvice> widgetAdvices;
 
     @Autowired(required = false)
-    public RicePurviewInterceptor() {
-        this.purviewAdvices = new ArrayList<>();
+    public RiceWidgetInterceptor() {
+        this.widgetAdvices = new ArrayList<>();
     }
 
     @Autowired(required = false)
-    public RicePurviewInterceptor(List<RicePurviewAdvice> purviewAdvices) {
-        this.purviewAdvices = purviewAdvices;
+    public RiceWidgetInterceptor(List<RiceWidgetAdvice> widgetAdvices) {
+        this.widgetAdvices = widgetAdvices;
     }
 
     @Override
     public void afterHandle(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
-        if (InterceptorHelper.supports(RestPurview.class,handlerMethod)) {
-            RestPurview restPurview = InterceptorHelper.annotation(RestPurview.class, handlerMethod);
+        if (InterceptorHelper.supports(RestWidget.class,handlerMethod)) {
+            RestWidget restWidget = InterceptorHelper.annotation(RestWidget.class, handlerMethod);
             RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
-            if (GeneralUtils.isNotEmpty(purviewAdvices)) {
-                for (RicePurviewAdvice purviewAdvice : purviewAdvices) {
-                    if (purviewAdvice.supports(restPurview,handlerMethod)) {
-                        purviewAdvice.checkPurview(requestWrapper, response, handlerMethod,restPurview);
+            if (GeneralUtils.isNotEmpty(widgetAdvices)) {
+                for (RiceWidgetAdvice widgetAdvice : widgetAdvices) {
+                    if (widgetAdvice.supports(restWidget,handlerMethod)) {
+                        widgetAdvice.checkWidget(requestWrapper, response, handlerMethod,restWidget);
                     }
                 }
             }
