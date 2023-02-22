@@ -58,7 +58,7 @@ public class MEBuilderHelper {
                 entityList.add(function.actuate(model));
             }
         }
-        return entityList;
+        return entityList.stream().distinct().collect(Collectors.toList());
     }
 
     public static <M, E> List<E> entityList(Collection<M> modelList, FunctionActuator<M, E> function) throws RestException {
@@ -72,7 +72,7 @@ public class MEBuilderHelper {
                 entityList.add(function.actuate(model));
             }
         }
-        return entityList;
+        return entityList.stream().distinct().collect(Collectors.toList());
     }
 
     public static <M, E> List<E> indexList(Collection<M> modelList, FunctionActuator<M, List<E>> function) throws RestException {
@@ -86,7 +86,7 @@ public class MEBuilderHelper {
                 entityList.addAll(function.actuate(model));
             }
         }
-        return entityList;
+        return entityList.stream().distinct().collect(Collectors.toList());
     }
 
     public static <M, E> List<E> indexList(Collection<M> modelList, ConsumerActuator<M> consumer, FunctionActuator<M, List<E>> function) throws RestException {
@@ -101,7 +101,7 @@ public class MEBuilderHelper {
                 entityList.addAll(function.actuate(model));
             }
         }
-        return entityList;
+        return entityList.stream().distinct().collect(Collectors.toList());
     }
 
 
@@ -116,7 +116,7 @@ public class MEBuilderHelper {
                 modelList.add(function.actuate(entity));
             }
         }
-        return modelList;
+        return modelList.stream().distinct().collect(Collectors.toList());
     }
 
     /**
