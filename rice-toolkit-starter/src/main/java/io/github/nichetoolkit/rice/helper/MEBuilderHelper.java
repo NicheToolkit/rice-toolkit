@@ -31,18 +31,17 @@ public class MEBuilderHelper {
 
     public static <I, T extends RestId<I>> List<T> partition(Collection<I> targetIdList, Integer partition,  FunctionActuator<Collection<I>, List<T>> targetListQueryByIdList) throws RestException {
         Set<I> targetIdSet = new HashSet<>(targetIdList);
-        List<T> targetList;
         if (GeneralUtils.isNotEmpty(partition) && targetIdList.size() > partition) {
-            targetList = new ArrayList<>();
+            Set<T> targetList = new LinkedHashSet<>();
             List<List<I>> partitionList =  Lists.partition(new ArrayList<>(targetIdSet), partition);
             for (List<I> partitions : partitionList) {
                 List<T> targets = targetListQueryByIdList.actuate(partitions);
                 targetList.addAll(targets);
             }
+            return new ArrayList<>(targetList);
         } else {
-            targetList = targetListQueryByIdList.actuate(targetIdSet);
+            return targetListQueryByIdList.actuate(targetIdSet);
         }
-        return targetList;
     }
 
 
@@ -51,14 +50,14 @@ public class MEBuilderHelper {
             return Collections.emptyList();
         }
         List<M> collect = modelList.stream().filter(Objects::nonNull).distinct().collect(Collectors.toList());
-        List<E> entityList = new ArrayList<>();
+        Set<E> entityList = new LinkedHashSet<>();
         for (M model : collect) {
             if (model != null) {
                 consumer.actuate(model);
                 entityList.add(function.actuate(model));
             }
         }
-        return entityList.stream().distinct().collect(Collectors.toList());
+        return new ArrayList<>(entityList);
     }
 
     public static <M, E> List<E> entityList(Collection<M> modelList, FunctionActuator<M, E> function) throws RestException {
@@ -66,13 +65,13 @@ public class MEBuilderHelper {
             return Collections.emptyList();
         }
         List<M> collect = modelList.stream().filter(Objects::nonNull).distinct().collect(Collectors.toList());
-        List<E> entityList = new ArrayList<>();
+        Set<E> entityList = new LinkedHashSet<>();
         for (M model : collect) {
             if (model != null) {
                 entityList.add(function.actuate(model));
             }
         }
-        return entityList.stream().distinct().collect(Collectors.toList());
+        return new ArrayList<>(entityList);
     }
 
     public static <M, E> List<E> indexList(Collection<M> modelList, FunctionActuator<M, List<E>> function) throws RestException {
@@ -80,13 +79,13 @@ public class MEBuilderHelper {
             return Collections.emptyList();
         }
         List<M> collect = modelList.stream().filter(Objects::nonNull).distinct().collect(Collectors.toList());
-        List<E> entityList = new ArrayList<>();
+        Set<E> entityList = new LinkedHashSet<>();
         for (M model : collect) {
             if (model != null) {
                 entityList.addAll(function.actuate(model));
             }
         }
-        return entityList.stream().distinct().collect(Collectors.toList());
+        return new ArrayList<>(entityList);
     }
 
     public static <M, E> List<E> indexList(Collection<M> modelList, ConsumerActuator<M> consumer, FunctionActuator<M, List<E>> function) throws RestException {
@@ -94,14 +93,14 @@ public class MEBuilderHelper {
             return Collections.emptyList();
         }
         List<M> collect = modelList.stream().filter(Objects::nonNull).distinct().collect(Collectors.toList());
-        List<E> entityList = new ArrayList<>();
+        Set<E> entityList = new LinkedHashSet<>();
         for (M model : collect) {
             if (model != null) {
                 consumer.actuate(model);
                 entityList.addAll(function.actuate(model));
             }
         }
-        return entityList.stream().distinct().collect(Collectors.toList());
+        return new ArrayList<>(entityList);
     }
 
 
@@ -110,13 +109,13 @@ public class MEBuilderHelper {
         if (GeneralUtils.isEmpty(entityList)) {
             return Collections.emptyList();
         }
-        List<M> modelList = new ArrayList<>();
+        Set<M> modelList = new LinkedHashSet<>();
         for (E entity : entityList) {
             if (entity != null) {
                 modelList.add(function.actuate(entity));
             }
         }
-        return modelList.stream().distinct().collect(Collectors.toList());
+        return new ArrayList<>(modelList);
     }
 
     /**
