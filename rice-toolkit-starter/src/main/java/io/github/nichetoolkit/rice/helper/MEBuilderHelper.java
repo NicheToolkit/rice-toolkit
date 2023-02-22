@@ -50,7 +50,7 @@ public class MEBuilderHelper {
         if (GeneralUtils.isEmpty(modelList)) {
             return Collections.emptyList();
         }
-        List<M> collect = modelList.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        List<M> collect = modelList.stream().filter(Objects::nonNull).distinct().collect(Collectors.toList());
         List<E> entityList = new ArrayList<>();
         for (M model : collect) {
             if (model != null) {
@@ -65,7 +65,7 @@ public class MEBuilderHelper {
         if (GeneralUtils.isEmpty(modelList)) {
             return Collections.emptyList();
         }
-        List<M> collect = modelList.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        List<M> collect = modelList.stream().filter(Objects::nonNull).distinct().collect(Collectors.toList());
         List<E> entityList = new ArrayList<>();
         for (M model : collect) {
             if (model != null) {
@@ -79,7 +79,7 @@ public class MEBuilderHelper {
         if (GeneralUtils.isEmpty(modelList)) {
             return Collections.emptyList();
         }
-        List<M> collect = modelList.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        List<M> collect = modelList.stream().filter(Objects::nonNull).distinct().collect(Collectors.toList());
         List<E> entityList = new ArrayList<>();
         for (M model : collect) {
             if (model != null) {
@@ -93,7 +93,7 @@ public class MEBuilderHelper {
         if (GeneralUtils.isEmpty(modelList)) {
             return Collections.emptyList();
         }
-        List<M> collect = modelList.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        List<M> collect = modelList.stream().filter(Objects::nonNull).distinct().collect(Collectors.toList());
         List<E> entityList = new ArrayList<>();
         for (M model : collect) {
             if (model != null) {
