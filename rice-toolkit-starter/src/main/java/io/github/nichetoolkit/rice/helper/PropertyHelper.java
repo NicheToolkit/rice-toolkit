@@ -92,35 +92,49 @@ public class PropertyHelper {
     }
 
     public static Double transforms(Long value, Long multiple) {
-        if (GeneralUtils.isNotEmpty(value)) {
+        if (value != null) {
             return value.doubleValue() / multiple.doubleValue();
         }
         return null;
     }
 
     public static Long transforms(Double value, Long multiple) {
-        if (GeneralUtils.isNotEmpty(value)) {
+        if (value != null) {
             return (long) (value * multiple);
         }
         return null;
     }
 
+    public static BigDecimal transform(Long value) {
+        if (value != null) {
+            return BigDecimal.valueOf(value);
+        }
+        return null;
+    }
+
     public static BigDecimal transform(Long value, Long multiple) {
-        if (GeneralUtils.isNotEmpty(value)) {
+        if (value != null) {
             return BigDecimal.valueOf(value).divide(new BigDecimal(multiple),2, BigDecimal.ROUND_HALF_UP);
         }
         return null;
     }
 
     public static BigDecimal transform(Long value, Long multiple, Integer scale) {
-        if (GeneralUtils.isNotEmpty(value)) {
+        if (value != null) {
             return BigDecimal.valueOf(value).divide(new BigDecimal(multiple),scale, BigDecimal.ROUND_HALF_UP);
         }
         return null;
     }
 
+    public static Long transform(BigDecimal value) {
+        if (value != null) {
+            return (long) value.doubleValue();
+        }
+        return null;
+    }
+
     public static Long transform(BigDecimal value, Long multiple) {
-        if (GeneralUtils.isNotEmpty(value)) {
+        if (value != null) {
             return (long) (value.doubleValue() * multiple);
         }
         return null;
