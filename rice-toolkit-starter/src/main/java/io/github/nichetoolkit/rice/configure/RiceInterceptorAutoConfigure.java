@@ -1,14 +1,22 @@
 package io.github.nichetoolkit.rice.configure;
 
+import io.github.nichetoolkit.rest.RestLogKey;
+import io.github.nichetoolkit.rest.configure.RestLogbackProperties;
+import io.github.nichetoolkit.rest.logback.DefaultLogKeyGenerator;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.interceptor.RiceRequestInterceptor;
 import io.github.nichetoolkit.rice.interceptor.advice.RiceAccessAdvice;
+import io.github.nichetoolkit.rice.resolver.RiceLogKeyGenerator;
 import io.github.nichetoolkit.rice.resolver.RiceUserArgumentResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -23,10 +31,10 @@ import java.util.List;
  * @version v1.0.0
  */
 @Slf4j
-@Configuration
+@AutoConfiguration
 @SuppressWarnings("SameNameButDifferent")
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rest"})
-@ConditionalOnProperty(value = "nichetoolkit.rice.login.enabled", havingValue = "true")
+@ConditionalOnProperty(value = "nichetoolkit.rice.login.enabled", havingValue = "true",matchIfMissing = true)
 public class RiceInterceptorAutoConfigure implements WebMvcConfigurer {
 
     private final RiceUserArgumentResolver userArgumentResolver;
@@ -66,10 +74,12 @@ public class RiceInterceptorAutoConfigure implements WebMvcConfigurer {
                 }
             }
         }
+    }
 
-
-
-
+    @Bean
+    @Primary
+    public RestLogKey restLogKey(RestLogbackProperties logbackProperties) {
+        return new RiceLogKeyGenerator(logbackProperties);
     }
 
 }
