@@ -64,6 +64,8 @@ public class RiceLoginInterceptor implements RiceRequestInterceptor {
                     isAllow = true;
                 }
             }
+        } else {
+            isAllow = true;
         }
         if (!isAllow) {
             throw new ServiceUnauthorizedException();
