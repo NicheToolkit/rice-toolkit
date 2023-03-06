@@ -221,52 +221,6 @@
           "description": "rice invade enabled open."
         }
       ]
-    },
-    {
-      "name": "nichetoolkit.rice.bean.delete.delete-model",
-      "values": [
-        {
-          "value": "NONE",
-          "description": "rice bean delete delete model NONE."
-        },
-        {
-          "value": "REMOVE",
-          "description": "rice bean delete delete model REMOVE."
-        },
-        {
-          "value": "DELETE",
-          "description": "rice bean delete delete model DELETE."
-        },
-        {
-          "value": "OPERATE",
-          "description": "rice bean delete delete model OPERATE."
-        }
-      ]
-    },
-    {
-      "name": "nichetoolkit.rice.bean.delete.remove-model",
-      "values": [
-        {
-          "value": "BOOLEAN",
-          "description": "rice bean delete remove model BOOLEAN."
-        },
-        {
-          "value": "NUMBER",
-          "description": "rice bean delete remove model NUMBER."
-        },
-        {
-          "value": "DATETIME",
-          "description": "rice bean delete remove model DATETIME."
-        },
-        {
-          "value": "IDENTITY",
-          "description": "rice bean delete remove model IDENTITY."
-        },
-        {
-          "value": "BACKUP",
-          "description": "rice bean delete remove model BACKUP."
-        }
-      ]
     }
   ]
 }
