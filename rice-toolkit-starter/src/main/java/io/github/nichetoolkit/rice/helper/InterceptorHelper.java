@@ -8,6 +8,7 @@ import org.springframework.web.method.HandlerMethod;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -51,6 +52,9 @@ public class InterceptorHelper {
     }
 
     public static List<String> getHeaderToken(HttpServletRequest request, List<String> headerTokens, boolean removePrefix) {
+        if (GeneralUtils.isEmpty(LOGIN_PROPERTIES)) {
+            return Collections.emptyList();
+        }
         List<String> tokenPrefixes = LOGIN_PROPERTIES.getTokenPrefixes();
         List<String> tokenList = new ArrayList<>(2);
         for (String tokenName : headerTokens) {
@@ -76,9 +80,12 @@ public class InterceptorHelper {
     }
 
     public static List<String> getHeaderToken(HttpServletRequest request, boolean removePrefix) {
+        if (GeneralUtils.isEmpty(LOGIN_PROPERTIES)) {
+            return Collections.emptyList();
+        }
         List<String> headerTokens = LOGIN_PROPERTIES.getHeaderTokens();
         if (headerTokens.isEmpty()) {
-            return new ArrayList<>(0);
+            return Collections.emptyList();
         }
         return getHeaderToken(request, headerTokens,removePrefix);
     }
