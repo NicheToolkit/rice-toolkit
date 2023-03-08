@@ -9,6 +9,7 @@ import io.github.nichetoolkit.rest.actuator.AnchorActuator;
 import io.github.nichetoolkit.rest.actuator.BiConsumerActuator;
 import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
 import io.github.nichetoolkit.rest.error.data.DataQueryException;
+import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
 import io.github.nichetoolkit.rest.helper.OptionalHelper;
 import io.github.nichetoolkit.rest.helper.PartitionHelper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
@@ -25,6 +26,7 @@ import io.github.nichetoolkit.rice.enums.RemoveType;
 import io.github.nichetoolkit.rice.enums.SaveType;
 import io.github.nichetoolkit.rice.error.service.ServiceUnknownException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
+import io.github.nichetoolkit.rice.filter.PageFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
 import io.github.nichetoolkit.rice.mapper.*;
 import io.github.nichetoolkit.rice.service.advice.*;
@@ -1043,6 +1045,26 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                 page = filter.toPage();
                 entityList = findAllByWhere(whereSql, tablename);
             }
+        } else if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
+            FilterMapper<E> filterMapper = (FilterMapper<E>) superMapper;
+            Method findMethod = null;
+            try {
+                findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, PageFilter.class);
+            } catch (NoSuchMethodException ignored) {
+            }
+            Method findAllByWhereMethod = findMethod;
+            /* 当FindMapper被复写的时候 优先调用FindMapper的findAllByWhereMethod */
+            if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
+                page = filter.toPage();
+                if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                    entityList = filterMapper.findAllByFilterWhere(tablename, whereSql, filter);
+                } else {
+                    entityList = filterMapper.findAllByFilterWhere(whereSql, filter);
+                }
+            } else {
+                page = filter.toPage();
+                entityList = findAllByWhere(whereSql, tablename);
+            }
         } else {
             page = filter.toPage();
             entityList = findAllByWhere(whereSql, tablename);
@@ -1051,6 +1073,29 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         return RestPage.result(modelList, page);
     }
 
+    private void deleteAllByWhere(String whereSql, String tablename, F filter) throws RestException {
+        if (DeleteType.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                superMapper.deleteAllByWhere(tablename, whereSql);
+            } else {
+                superMapper.deleteAllByWhere(whereSql);
+            }
+        } else {
+            String queryWhereSql = queryWhereSql(filter);
+            List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
+            if (GeneralUtils.isNotEmpty(entityList)) {
+                deleteAdvice(entityList, () -> {
+                    if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                        superMapper.deleteAllByWhere(tablename, whereSql);
+                    } else {
+                        superMapper.deleteAllByWhere(whereSql);
+                    }
+                });
+            }
+        }
+    }
+
+    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void deleteAllWithFilter(F filter) throws RestException {
         DeleteType deleteModel = deleteModel();
@@ -1064,29 +1109,79 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             K tablekey = tablekey(filter);
             String tablename = tablename(tablekey);
             if (GeneralUtils.isNotEmpty(whereSql)) {
-                if (DeleteType.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
-                    if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                        superMapper.deleteAllByWhere(tablename, whereSql);
+                if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
+                    FilterMapper<E> filterMapper = (FilterMapper<E>) superMapper;
+                    Method findMethod = null;
+                    Method deleteMethod = null;
+                    try {
+                        findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, PageFilter.class);
+                        deleteMethod = filterMapper.getClass().getMethod("deleteAllByFilterWhere", String.class, PageFilter.class);
+                    } catch (NoSuchMethodException ignored) {
+                    }
+                    Method findAllByWhereMethod = findMethod;
+                    Method deleteAllByWhereMethod = deleteMethod;
+                    if (deleteAllByWhereMethod != null && !deleteAllByWhereMethod.isDefault()) {
+                        if (DeleteType.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+                            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                                filterMapper.deleteAllByFilterWhere(tablename, whereSql, filter);
+                            } else {
+                                filterMapper.deleteAllByFilterWhere(whereSql, filter);
+                            }
+                        } else {
+                            String queryWhereSql = queryWhereSql(filter);
+                            List<E> entityList;
+                            if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
+                                entityList = filterMapper.findAllByFilterWhere(queryWhereSql, filter);
+                            } else {
+                                entityList = superMapper.findAllByWhere(queryWhereSql);
+                            }
+                            if (GeneralUtils.isNotEmpty(entityList)) {
+                                deleteAdvice(entityList, () -> {
+                                    if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                                        filterMapper.deleteAllByFilterWhere(tablename, whereSql, filter);
+                                    } else {
+                                        filterMapper.deleteAllByFilterWhere(whereSql, filter);
+                                    }
+                                });
+                            }
+                        }
                     } else {
-                        superMapper.deleteAllByWhere(whereSql);
+                        deleteAllByWhere(whereSql, tablename, filter);
                     }
                 } else {
-                    String queryWhereSql = queryWhereSql(filter);
-                    List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
-                    if (GeneralUtils.isNotEmpty(entityList)) {
-                        deleteAdvice(entityList, () -> {
-                            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                                superMapper.deleteAllByWhere(tablename, whereSql);
-                            } else {
-                                superMapper.deleteAllByWhere(whereSql);
-                            }
-                        });
-                    }
+                    deleteAllByWhere(whereSql, tablename, filter);
                 }
             }
         }
     }
 
+    private void removeAllByWhere(String removeWhereSql, String tablename, F filter) throws RestException {
+        if (!(superMapper instanceof RemoveMapper)) {
+            throw new UnsupportedErrorException("the mapper is not support method of 'removeAllWithFilter' with the delete model is 'REMOVE' !");
+        }
+        String removeSign = removeSign();
+        if (DeleteType.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                ((RemoveMapper) superMapper).removeAllByWhere(tablename, removeWhereSql, removeSign);
+            } else {
+                ((RemoveMapper) superMapper).removeAllByWhere(removeWhereSql, removeSign);
+            }
+        } else {
+            String queryWhereSql = queryWhereSql(filter);
+            List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
+            if (GeneralUtils.isNotEmpty(entityList)) {
+                removeAdvice(entityList, removeSign, sign -> {
+                    if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                        ((RemoveMapper) superMapper).removeAllByWhere(tablename, removeWhereSql, sign);
+                    } else {
+                        ((RemoveMapper) superMapper).removeAllByWhere(removeWhereSql, sign);
+                    }
+                });
+            }
+        }
+    }
+
+    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void removeAllWithFilter(F filter) throws RestException {
         optionalRemoveFilter(filter);
@@ -1095,29 +1190,80 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         String tablename = tablename(tablekey);
         if (GeneralUtils.isNotEmpty(removeWhereSql)) {
             String removeSign = removeSign();
-            if (DeleteType.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
-                if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    ((RemoveMapper) superMapper).removeAllByWhere(tablename, removeWhereSql, removeSign);
+            if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
+                FilterMapper<E> filterMapper = (FilterMapper<E>) superMapper;
+                Method findMethod = null;
+                Method removeMethod = null;
+                try {
+                    findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, PageFilter.class);
+                    removeMethod = filterMapper.getClass().getMethod("removeAllByFilterWhere", String.class, PageFilter.class, String.class);
+                } catch (NoSuchMethodException ignored) {
+                }
+                Method findAllByWhereMethod = findMethod;
+                Method removeAllByWhereMethod = removeMethod;
+                if (removeAllByWhereMethod != null && !removeAllByWhereMethod.isDefault()) {
+                    if (DeleteType.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+                        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                            filterMapper.removeAllByFilterWhere(tablename, removeWhereSql, filter, removeSign);
+                        } else {
+                            filterMapper.removeAllByFilterWhere(removeWhereSql, filter, removeSign);
+                        }
+                    } else {
+                        String queryWhereSql = queryWhereSql(filter);
+                        List<E> entityList;
+                        if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
+                            entityList = filterMapper.findAllByFilterWhere(queryWhereSql, filter);
+                        } else {
+                            entityList = superMapper.findAllByWhere(queryWhereSql);
+                        }
+                        if (GeneralUtils.isNotEmpty(entityList)) {
+                            removeAdvice(entityList, removeSign, sign -> {
+                                if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                                    filterMapper.removeAllByFilterWhere(tablename, removeWhereSql, filter, sign);
+                                } else {
+                                    filterMapper.removeAllByFilterWhere(removeWhereSql, filter, sign);
+                                }
+                            });
+                        }
+                    }
                 } else {
-                    ((RemoveMapper) superMapper).removeAllByWhere(removeWhereSql, removeSign);
+                    removeAllByWhere(removeWhereSql, tablename, filter);
                 }
             } else {
-                String queryWhereSql = queryWhereSql(filter);
-                List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
-                if (GeneralUtils.isNotEmpty(entityList) && superMapper instanceof RemoveMapper) {
-                    removeAdvice(entityList, removeSign, sign -> {
-                        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                            ((RemoveMapper) superMapper).removeAllByWhere(tablename, removeWhereSql, sign);
-                        } else {
-                            ((RemoveMapper) superMapper).removeAllByWhere(removeWhereSql, sign);
-                        }
-                    });
-                }
+                removeAllByWhere(removeWhereSql, tablename, filter);
+            }
+
+        }
+    }
+
+
+    private void operateAllByWhere(String operateWhereSql, String tablename, F filter) throws RestException {
+        if (!(superMapper instanceof OperateMapper)) {
+            throw new UnsupportedErrorException("the mapper is not support method of 'operateAllWithFilter' with the delete model is 'OPERATE' !");
+        }
+        if (DeleteType.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                ((OperateMapper) superMapper).operateAllByWhere(tablename, operateWhereSql, OperateType.REMOVE.getKey());
+            } else {
+                ((OperateMapper) superMapper).operateAllByWhere(operateWhereSql, OperateType.REMOVE.getKey());
+            }
+        } else {
+            String queryWhereSql = queryWhereSql(filter);
+            List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
+            if (GeneralUtils.isNotEmpty(entityList)) {
+                operateAdvice(entityList, OperateType.REMOVE, operate -> {
+                    if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                        ((OperateMapper) superMapper).operateAllByWhere(tablename, operateWhereSql, operate.getKey());
+                    } else {
+                        ((OperateMapper) superMapper).operateAllByWhere(operateWhereSql, operate.getKey());
+                    }
+                });
             }
         }
     }
 
 
+    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void operateAllWithFilter(F filter) throws RestException {
         optionalOperateFilter(filter);
@@ -1125,24 +1271,47 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         K tablekey = tablekey(filter);
         String tablename = tablename(tablekey);
         if (GeneralUtils.isNotEmpty(operateWhereSql)) {
-            if (DeleteType.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
-                if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    ((OperateMapper) superMapper).operateAllByWhere(tablename, operateWhereSql, OperateType.REMOVE.getKey());
+            if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
+                FilterMapper<E> filterMapper = (FilterMapper<E>) superMapper;
+                Method findMethod = null;
+                Method operateMethod = null;
+                try {
+                    findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, PageFilter.class);
+                    operateMethod = filterMapper.getClass().getMethod("operateAllByFilterWhere", String.class, PageFilter.class,Integer.class);
+                } catch (NoSuchMethodException ignored) {
+                }
+                Method findAllByWhereMethod = findMethod;
+                Method operateAllByWhereMethod = operateMethod;
+                if (operateAllByWhereMethod != null && !operateAllByWhereMethod.isDefault()) {
+                    if (DeleteType.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+                        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                            filterMapper.operateAllByFilterWhere(tablename, operateWhereSql,filter, OperateType.REMOVE.getKey());
+                        } else {
+                            filterMapper.operateAllByFilterWhere(operateWhereSql, filter,OperateType.REMOVE.getKey());
+                        }
+                    } else {
+                        String queryWhereSql = queryWhereSql(filter);
+                        List<E> entityList;
+                        if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
+                            entityList = filterMapper.findAllByFilterWhere(queryWhereSql, filter);
+                        } else {
+                            entityList = superMapper.findAllByWhere(queryWhereSql);
+                        }
+                        if (GeneralUtils.isNotEmpty(entityList)) {
+                            operateAdvice(entityList, OperateType.REMOVE, operate -> {
+                                if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                                    filterMapper.operateAllByFilterWhere(tablename, operateWhereSql,filter, operate.getKey());
+                                } else {
+                                    filterMapper.operateAllByFilterWhere(operateWhereSql, filter,operate.getKey());
+                                }
+                            });
+                        }
+                    }
                 } else {
-                    ((OperateMapper) superMapper).operateAllByWhere(operateWhereSql, OperateType.REMOVE.getKey());
+                    operateAllByWhere(operateWhereSql, tablename, filter);
                 }
             } else {
-                String queryWhereSql = queryWhereSql(filter);
-                List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
-                if (GeneralUtils.isNotEmpty(entityList) && superMapper instanceof OperateMapper) {
-                    operateAdvice(entityList, OperateType.REMOVE, operate -> {
-                        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                            ((OperateMapper) superMapper).operateAllByWhere(tablename, operateWhereSql, operate.getKey());
-                        } else {
-                            ((OperateMapper) superMapper).operateAllByWhere(operateWhereSql, operate.getKey());
-                        }
-                    });
-                }
+                operateAllByWhere(operateWhereSql, tablename, filter);
             }
         }
     }
@@ -1189,7 +1358,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             } else {
                 exist = existById(model.getId());
             }
-            if ( !exist && isIdInvade()) {
+            if (!exist && isIdInvade()) {
                 invadeActuator().actuate(tablekey, model);
             } else {
                 String message = "the data no found，id: " + model.getId();
