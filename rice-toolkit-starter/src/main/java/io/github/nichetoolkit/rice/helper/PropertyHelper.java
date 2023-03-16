@@ -92,56 +92,56 @@ public class PropertyHelper {
     }
 
     public static Double transforms(Long value, Long multiple) {
-        if (value != null) {
+        if (GeneralUtils.isValid(value)) {
             return value.doubleValue() / multiple.doubleValue();
         }
         return null;
     }
 
     public static Long transforms(Double value, Long multiple) {
-        if (value != null) {
+        if (GeneralUtils.isValid(value)) {
             return (long) (value * multiple);
         }
         return null;
     }
 
     public static BigDecimal transform(Long value) {
-        if (value != null) {
+        if (GeneralUtils.isValid(value)) {
             return BigDecimal.valueOf(value);
         }
         return null;
     }
 
     public static BigDecimal transform(Long value, Long multiple) {
-        if (value != null) {
+        if (GeneralUtils.isValid(value)) {
             return BigDecimal.valueOf(value).divide(new BigDecimal(multiple),2, BigDecimal.ROUND_HALF_UP);
         }
         return null;
     }
 
     public static BigDecimal transform(Long value, Long multiple, Integer scale) {
-        if (value != null) {
+        if (GeneralUtils.isValid(value)) {
             return BigDecimal.valueOf(value).divide(new BigDecimal(multiple),scale, BigDecimal.ROUND_HALF_UP);
         }
         return null;
     }
 
     public static Long transform(BigDecimal value) {
-        if (value != null) {
+        if (GeneralUtils.isValid(value)) {
             return (long) value.doubleValue();
         }
         return null;
     }
 
     public static Long transform(BigDecimal value, Long multiple) {
-        if (value != null) {
+        if (GeneralUtils.isValid(value)) {
             return (long) (value.doubleValue() * multiple);
         }
         return null;
     }
 
     public static Double toDouble(Object value) {
-        if (GeneralUtils.isNotEmpty(value)) {
+        if (GeneralUtils.isValid(value)) {
             String trim = value.toString().trim();
             if (isDouble(trim)) {
                 return Double.valueOf(trim);
@@ -152,7 +152,7 @@ public class PropertyHelper {
 
 
     public static BigInteger toBigInteger(Object value) {
-        if (GeneralUtils.isNotEmpty(value)) {
+        if (GeneralUtils.isValid(value)) {
             String trim = value.toString().trim();
             if (isBigInteger(trim)) {
                 return new BigInteger(trim);
@@ -162,7 +162,7 @@ public class PropertyHelper {
     }
 
     public static BigDecimal toBigDecimal(Object value) {
-        if (GeneralUtils.isNotEmpty(value)) {
+        if (GeneralUtils.isValid(value)) {
             String trim = value.toString().trim();
             if (isBigDecimal(trim)) {
                 return new BigDecimal(trim);
@@ -172,7 +172,7 @@ public class PropertyHelper {
     }
 
     public static Integer toInteger(Object value) {
-        if (GeneralUtils.isNotEmpty(value)) {
+        if (GeneralUtils.isValid(value)) {
             String trim = value.toString().trim();
             if (isInteger(trim)) {
                 return Integer.valueOf(trim);
@@ -182,7 +182,7 @@ public class PropertyHelper {
     }
 
     public static Long toLong(Object value) {
-        if (GeneralUtils.isNotEmpty(value)) {
+        if (GeneralUtils.isValid(value)) {
             String trim = value.toString().trim();
             if (isLong(trim)) {
                 return Long.valueOf(trim);
@@ -192,7 +192,7 @@ public class PropertyHelper {
     }
 
     public static Long toTime(Object value) {
-        if (GeneralUtils.isNotEmpty(value)) {
+        if (GeneralUtils.isValid(value)) {
             String trim = value.toString().trim();
             if (isLong(trim)) {
                 return Long.valueOf(trim);
