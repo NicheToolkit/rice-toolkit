@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.rice.jsonb;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilder;
@@ -14,6 +16,8 @@ import java.util.*;
  * @version v1.0.0
  */
 @SuppressWarnings("WeakerAccess")
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ContainRule extends JsonbRule<ContainRule> {
     /** 属性值类型 */
     protected ValueType type = ValueType.LONG;

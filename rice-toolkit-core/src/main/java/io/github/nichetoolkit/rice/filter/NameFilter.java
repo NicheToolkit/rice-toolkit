@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.rice.filter;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
@@ -20,6 +22,8 @@ import java.util.*;
  * @version V.0.0.1
  */
 @SuppressWarnings({"WeakerAccess", "unchecked", "MixedMutabilityReturnType"})
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NameFilter<D, I, K> extends JsonbFilter<D, I, K> {
     /** 通过名称查询数据 */
     protected String name;

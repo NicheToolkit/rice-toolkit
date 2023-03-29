@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.rice.filter;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
@@ -19,6 +21,8 @@ import java.util.*;
  * @version v1.0.0
  */
 @SuppressWarnings({"WeakerAccess", "unchecked", "MixedMutabilityReturnType"})
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonbFilter<D, I, K> extends TimeFilter<D, I, K> {
     /**
      * 数值型对比运算集合

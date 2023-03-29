@@ -1,6 +1,8 @@
 package io.github.nichetoolkit.rice;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import org.springframework.lang.NonNull;
@@ -14,6 +16,8 @@ import java.util.Objects;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class IdEntity<I> extends TimeEntity implements RestId<I> {
     @Id
     @TableId

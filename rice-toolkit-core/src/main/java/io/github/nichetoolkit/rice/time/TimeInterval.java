@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.rice.time;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 
 import java.time.Duration;
@@ -12,6 +14,8 @@ import java.util.Date;
  * @version v1.0.0
  */
 @SuppressWarnings("WeakerAccess")
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeInterval implements TimeValue<TimeInterval> {
     private Instant start;
     private Instant end;

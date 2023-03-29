@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.rice.filter;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
 import io.github.nichetoolkit.rice.enums.OperateType;
@@ -15,6 +17,9 @@ import java.util.HashSet;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("WeakerAccess")
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TableFilter<K> extends OperateFilter {
     /** 动态表key */
     protected K tablekey;

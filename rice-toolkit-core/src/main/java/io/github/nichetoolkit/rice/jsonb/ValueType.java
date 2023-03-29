@@ -18,7 +18,6 @@ import java.util.stream.Stream;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@SuppressWarnings("WeakerAccess")
 public enum ValueType implements RestField {
     /** 短整型 */
     SHORT(1, "短整型","int2"),
@@ -33,7 +32,7 @@ public enum ValueType implements RestField {
     /** 文本类型 */
     TEXT(6, "文本类型","text"),
     /** 日期类型 */
-    DATE(7, "日期类型","timestamptz"),
+    DATE(7, "日期类型","timestamp"),
     /** 布尔类型 */
     BOOLEAN(8, "布尔类型","bool"),
     /** 字符串类型 */

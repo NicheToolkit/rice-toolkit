@@ -1,6 +1,8 @@
 package io.github.nichetoolkit.rice.filter;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
@@ -20,6 +22,8 @@ import java.util.HashSet;
  * @version v1.0.0
  */
 @SuppressWarnings({"WeakerAccess", "unchecked"})
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeFilter<D, I, K> extends IdFilter<I, K> {
 
     /** default like '2020-01-01 00:00:00' */

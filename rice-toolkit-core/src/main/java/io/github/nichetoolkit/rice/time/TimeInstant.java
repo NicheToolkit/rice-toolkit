@@ -1,5 +1,8 @@
 package io.github.nichetoolkit.rice.time;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
@@ -10,6 +13,8 @@ import java.util.Objects;
  * @version v1.0.0
  */
 @SuppressWarnings("WeakerAccess")
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeInstant implements TimeValue<TimeInstant> {
     
     private final Instant instant;

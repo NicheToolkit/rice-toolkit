@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.rice;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import org.springframework.lang.NonNull;
 
@@ -10,6 +12,8 @@ import java.util.Date;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
     /** 事物名称 */
     protected String name;
