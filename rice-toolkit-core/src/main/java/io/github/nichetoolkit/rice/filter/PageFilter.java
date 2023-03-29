@@ -54,8 +54,12 @@ public class PageFilter implements Serializable {
     }
 
     public void setPageNum(Integer pageNum) {
-        if (pageNum > 0) {
+        if (pageNum == null) {
+            this.pageNum = 1;
+        } else if (pageNum > 0) {
             this.pageNum = pageNum;
+        } else {
+            this.pageNum = 1;
         }
     }
 
