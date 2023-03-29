@@ -1,6 +1,5 @@
 package io.github.nichetoolkit.rice.helper;
 
-import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.stereotype.purview.RestModule;
 import io.github.nichetoolkit.rice.stereotype.purview.RestPurview;
