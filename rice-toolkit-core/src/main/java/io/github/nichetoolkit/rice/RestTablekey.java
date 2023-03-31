@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@SuppressWarnings("WeakerAccess")
 public interface RestTablekey<K> {
 
     @JsonIgnore

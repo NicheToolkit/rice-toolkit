@@ -5,7 +5,7 @@ package io.github.nichetoolkit.rice;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public abstract class RiceInfoEntity<E extends RiceInfoEntity<E,M>,M extends RiceInfoModel<M,E>> extends InfoEntity<String> implements RestEntity<String,M> {
+public abstract class RiceInfoEntity<E extends RiceInfoEntity<E,M>,M extends RiceInfoModel<M,E>> extends InfoEntity<String> implements RiceEntity<String,M> {
 
     public RiceInfoEntity() {
     }

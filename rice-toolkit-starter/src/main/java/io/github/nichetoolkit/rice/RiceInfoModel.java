@@ -11,7 +11,7 @@ import java.util.Date;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public abstract class RiceInfoModel<M extends RiceInfoModel<M,E>,E extends RiceInfoEntity<E,M>> extends InfoModel<String> implements RestModel<String,E> {
+public abstract class RiceInfoModel<M extends RiceInfoModel<M,E>,E extends RiceInfoEntity<E,M>> extends InfoModel<String> implements RiceModel<String,E> {
 
     public RiceInfoModel() {
     }
