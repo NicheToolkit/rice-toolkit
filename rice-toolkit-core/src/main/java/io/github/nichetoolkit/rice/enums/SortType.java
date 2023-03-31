@@ -13,6 +13,7 @@ import java.util.Optional;
  * @version v1.0.0
  */
 public enum SortType implements RestValue<String,String> {
+    NONE("",""),
     ASC("ASC","升序"),
     DESC("DESC","降序")
     ;

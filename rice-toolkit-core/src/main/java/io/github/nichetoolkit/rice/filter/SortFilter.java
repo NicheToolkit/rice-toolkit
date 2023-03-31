@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestSort;
+import io.github.nichetoolkit.rice.enums.SortType;
 import org.springframework.lang.NonNull;
 
 import java.util.*;
@@ -108,7 +109,8 @@ public class SortFilter extends PageFilter {
         StringBuilder sortBuilder = new StringBuilder();
         if (this.isSort() && GeneralUtils.isNotEmpty(this.sorts)) {
             sortBuilder.append(SORT_ORDER);
-            this.sorts.forEach(sort -> sortBuilder.append(sort.toString()).append(SORT_REGEX));
+            this.sorts.stream().filter(sort -> GeneralUtils.isNotEmpty(sort) && SortType.NONE != sort.getType())
+                    .forEach(sort -> sortBuilder.append(sort.toString()).append(SORT_REGEX));
             sortBuilder.deleteCharAt(sortBuilder.length() - 1);
         }
         return sortBuilder.toString();
