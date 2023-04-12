@@ -68,7 +68,9 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
 
     protected RiceBeanProperties beanProperties;
 
-    protected ThreadLocal<Map<K, String>> tablenameMapCache = new ThreadLocal<>();
+    private ThreadLocal<F> queryFilterCache = new ThreadLocal<>();
+
+    private ThreadLocal<Map<K, String>> tablenameMapCache = new ThreadLocal<>();
 
     @Override
     public void setApplicationContext(@NonNull ApplicationContext applicationContext) throws BeansException {
@@ -205,6 +207,14 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     protected abstract M createModel(E entity) throws RestException;
 
     protected void refresh() throws RestException {
+    }
+
+    protected F queryFilter() throws RestException {
+        return this.queryFilterCache.get();
+    }
+
+    protected Map<K, String> tablenames() throws RestException {
+        return this.tablenameMapCache.get();
     }
 
     @SuppressWarnings(value = "unchecked")
@@ -997,6 +1007,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     @SuppressWarnings(value = "unchecked")
     public RestPage<M> queryAllWithFilter(F filter) throws RestException {
         optionalQueryFilter(filter);
+        queryFilterCache.set(filter);
         String whereSql = queryWhereSql(filter);
         Boolean[] loadArray = findLoadArray(filter);
         Boolean[] isLoadArray = queryLoadArray(filter);
@@ -1070,6 +1081,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             entityList = findAllByWhere(whereSql, tablename);
         }
         List<M> modelList = modelActuator(entityList, isLoadArray);
+        queryFilterCache.remove();
         return RestPage.result(modelList, page);
     }
 
