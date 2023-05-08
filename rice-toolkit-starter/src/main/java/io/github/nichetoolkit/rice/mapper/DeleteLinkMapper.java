@@ -23,7 +23,7 @@ public interface DeleteLinkMapper<I> {
      * @param linkId 实体id集合
      * @return Integer SQL影响行数（成功为1）
      */
-    Integer deleteByLinkId(@Param("tablename") String tablename, @Param("linkId") I linkId);
+    Integer deleteDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") I linkId);
 
     /**
      * 实体批量删除
@@ -37,6 +37,6 @@ public interface DeleteLinkMapper<I> {
      * @param linkIdList 实体id集合
      * @return Integer SQL影响行数
      */
-    Integer deleteAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection<I> linkIdList);
+    Integer deleteDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection<I> linkIdList);
 
 }

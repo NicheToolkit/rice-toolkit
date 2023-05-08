@@ -1,7 +1,5 @@
 package io.github.nichetoolkit.rice.service;
 
-import com.fasterxml.jackson.databind.type.ArrayType;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.github.pagehelper.Page;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestKey;
@@ -40,8 +38,6 @@ import org.springframework.lang.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -223,7 +219,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         String tablename = tablename(tablekey, model);
         Integer result;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            result = superMapper.save(tablename, entity);
+            result = superMapper.saveDynamic(tablename, entity);
         } else {
             result = superMapper.save(entity);
         }
@@ -322,7 +318,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         String tablename = tablename(tablekey, modelList);
         Integer result;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            result = PartitionHelper.save(entityList, this.savePartition(), entities -> superMapper.saveAll(tablename, entities));
+            result = PartitionHelper.save(entityList, this.savePartition(), entities -> superMapper.saveDynamicAll(tablename, entities));
         } else {
             result = PartitionHelper.save(entityList, this.savePartition(), superMapper::saveAll);
         }
@@ -341,7 +337,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     private E findById(I id, String tablename) throws RestException {
         E entity;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entity = superMapper.findById(tablename, id);
+            entity = superMapper.findDynamicById(tablename, id);
         } else {
             entity = superMapper.findById(id);
         }
@@ -358,7 +354,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             String tablename = tablename(tablekey);
             if (DeleteType.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    ((OperateMapper<I>) superMapper).operateById(tablename, id, operate.getKey());
+                    ((OperateMapper<I>) superMapper).operateDynamicById(tablename, id, operate.getKey());
                 } else {
                     ((OperateMapper<I>) superMapper).operateById(id, operate.getKey());
                 }
@@ -369,7 +365,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                         this.beforeOperate(entity);
                     }
                     if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                        ((OperateMapper<I>) superMapper).operateById(tablename, id, operate.getKey());
+                        ((OperateMapper<I>) superMapper).operateDynamicById(tablename, id, operate.getKey());
                     } else {
                         ((OperateMapper<I>) superMapper).operateById(id, operate.getKey());
                     }
@@ -390,7 +386,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     private void operatePartition(String tablename, Collection<I> idList, OperateType operate) throws RestException {
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
             PartitionHelper.partition(idList, this.deletePartition(), ids -> {
-                ((OperateMapper<I>) superMapper).operateAll(tablename, ids, operate.getKey());
+                ((OperateMapper<I>) superMapper).operateDynamicAll(tablename, ids, operate.getKey());
             });
         } else {
             PartitionHelper.partition(idList, this.deletePartition(), ids -> {
@@ -413,7 +409,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     private List<E> findAll(Collection<I> idList, String tablename) throws RestException {
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = PartitionHelper.query(idList, this.queryPartition(), ids -> superMapper.findAll(tablename, ids));
+            entityList = PartitionHelper.query(idList, this.queryPartition(), ids -> superMapper.findDynamicAll(tablename, ids));
         } else {
             entityList = PartitionHelper.query(idList, this.queryPartition(), superMapper::findAll);
         }
@@ -473,7 +469,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             String tablename = tablename(tablekey);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                 PartitionHelper.partition(linkIdList, this.deletePartition(), linkIds -> {
-                    ((OperateLinkMapper<I>) superMapper).operateAllByLinkIds(tablename, linkIds, operate.getKey());
+                    ((OperateLinkMapper<I>) superMapper).operateDynamicAllByLinkIds(tablename, linkIds, operate.getKey());
                 });
             } else {
                 PartitionHelper.partition(linkIdList, this.deletePartition(), linkIds -> {
@@ -498,7 +494,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             String tablename = tablename(tablekey);
             this.beforeAlert(id);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((AlertMapper<I>) superMapper).alertById(tablename, id, keyType.getKey());
+                ((AlertMapper<I>) superMapper).alertDynamicById(tablename, id, keyType.getKey());
             } else {
                 ((AlertMapper<I>) superMapper).alertById(id, keyType.getKey());
             }
@@ -522,7 +518,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             this.beforeAlertAll(idList);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                 PartitionHelper.partition(idList, this.deletePartition(), ids -> {
-                    ((AlertMapper<I>) superMapper).alertAll(tablename, ids, keyType.getKey());
+                    ((AlertMapper<I>) superMapper).alertDynamicAll(tablename, ids, keyType.getKey());
                 });
             } else {
                 PartitionHelper.partition(idList, this.deletePartition(), ids -> {
@@ -548,7 +544,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             String tablename = tablename(tablekey);
             this.beforeAlert(id);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((AlertFieldMapper<I>) superMapper).alertFieldById(tablename, id, field, keyType.getKey());
+                ((AlertFieldMapper<I>) superMapper).alertDynamicFieldById(tablename, id, field, keyType.getKey());
             } else {
                 ((AlertFieldMapper<I>) superMapper).alertFieldById(id, field, keyType.getKey());
             }
@@ -572,7 +568,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             this.beforeAlertAll(idList);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                 PartitionHelper.partition(idList, this.deletePartition(), ids -> {
-                    ((AlertFieldMapper<I>) superMapper).alertFieldAll(tablename, ids, field, keyType.getKey());
+                    ((AlertFieldMapper<I>) superMapper).alertDynamicFieldAll(tablename, ids, field, keyType.getKey());
                 });
             } else {
                 PartitionHelper.partition(idList, this.deletePartition(), ids -> {
@@ -598,7 +594,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             String tablename = tablename(tablekey);
             this.beforeAlert(id);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((AlertBiFieldMapper<I>) superMapper).alertBiFieldById(tablename, id, field, biField, keyType.getKey());
+                ((AlertBiFieldMapper<I>) superMapper).alertDynamicBiFieldById(tablename, id, field, biField, keyType.getKey());
             } else {
                 ((AlertBiFieldMapper<I>) superMapper).alertBiFieldById(id, field, biField, keyType.getKey());
             }
@@ -622,7 +618,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             this.beforeAlertAll(idList);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                 PartitionHelper.partition(idList, this.deletePartition(), ids -> {
-                    ((AlertBiFieldMapper<I>) superMapper).alertBiFieldAll(tablename, ids, field, biField, keyType.getKey());
+                    ((AlertBiFieldMapper<I>) superMapper).alertDynamicBiFieldAll(tablename, ids, field, biField, keyType.getKey());
                 });
             } else {
                 PartitionHelper.partition(idList, this.deletePartition(), ids -> {
@@ -649,7 +645,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             String tablename = tablename(tablekey);
             if (DeleteType.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    ((RemoveMapper) superMapper).removeById(tablename, id, removeSign);
+                    ((RemoveMapper) superMapper).removeDynamicById(tablename, id, removeSign);
                 } else {
                     ((RemoveMapper) superMapper).removeById(id, removeSign);
                 }
@@ -660,7 +656,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                         this.beforeRemove(entity);
                     }
                     if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                        ((RemoveMapper<I>) superMapper).removeById(tablename, id, removeSign);
+                        ((RemoveMapper<I>) superMapper).removeDynamicById(tablename, id, removeSign);
                     } else {
                         ((RemoveMapper<I>) superMapper).removeById(id, removeSign);
                     }
@@ -681,7 +677,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     private void removePartition(String tablename, Collection<I> idList, String removeSign) throws RestException {
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
             PartitionHelper.delete(idList, this.deletePartition(), ids -> {
-                ((RemoveMapper<I>) superMapper).removeAll(tablename, ids, removeSign);
+                ((RemoveMapper<I>) superMapper).removeDynamicAll(tablename, ids, removeSign);
             });
         } else {
             PartitionHelper.delete(idList, this.deletePartition(), ids -> {
@@ -734,7 +730,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         if (superMapper instanceof RemoveLinkMapper) {
             String tablename = tablename(tablekey);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((RemoveLinkMapper<I>) superMapper).removeByLinkId(tablename, linkId, removeSign);
+                ((RemoveLinkMapper<I>) superMapper).removeDynamicByLinkId(tablename, linkId, removeSign);
             } else {
                 ((RemoveLinkMapper<I>) superMapper).removeByLinkId(linkId, removeSign);
             }
@@ -757,7 +753,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             String tablename = tablename(tablekey);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                 PartitionHelper.partition(linkIdList, this.deletePartition(), linkIds -> {
-                    ((RemoveLinkMapper<I>) superMapper).removeAllByLinkIds(tablename, linkIds, removeSign);
+                    ((RemoveLinkMapper<I>) superMapper).removeDynamicAllByLinkIds(tablename, linkIds, removeSign);
                 });
             } else {
                 PartitionHelper.partition(linkIdList, this.deletePartition(), linkIds -> {
@@ -788,7 +784,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             String tablename = tablename(tablekey);
             if (DeleteType.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    superMapper.deleteById(tablename, id);
+                    superMapper.deleteDynamicById(tablename, id);
                 } else {
                     superMapper.deleteById(id);
                 }
@@ -799,7 +795,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                         this.beforeDelete(entity);
                     }
                     if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                        superMapper.deleteById(tablename, id);
+                        superMapper.deleteDynamicById(tablename, id);
                     } else {
                         superMapper.deleteById(id);
                     }
@@ -819,7 +815,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
 
     private void deletePartition(String tablename, Collection<I> idList) throws RestException {
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            PartitionHelper.delete(idList, this.deletePartition(), ids -> superMapper.deleteAll(tablename, ids));
+            PartitionHelper.delete(idList, this.deletePartition(), ids -> superMapper.deleteDynamicAll(tablename, ids));
         } else {
             PartitionHelper.delete(idList, this.deletePartition(), ids -> superMapper.deleteAll(ids));
         }
@@ -878,7 +874,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         } else if (superMapper instanceof DeleteLinkMapper) {
             String tablename = tablename(tablekey);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((DeleteLinkMapper<I>) superMapper).deleteByLinkId(tablename, linkId);
+                ((DeleteLinkMapper<I>) superMapper).deleteDynamicByLinkId(tablename, linkId);
             } else {
                 ((DeleteLinkMapper<I>) superMapper).deleteByLinkId(linkId);
             }
@@ -906,7 +902,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             String tablename = tablename(tablekey);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                 PartitionHelper.delete(linkIdList, this.deletePartition(), linkIds -> {
-                    ((DeleteLinkMapper<I>) superMapper).deleteAllByLinkIds(tablename, linkIds);
+                    ((DeleteLinkMapper<I>) superMapper).deleteDynamicAllByLinkIds(tablename, linkIds);
                 });
             } else {
                 PartitionHelper.delete(linkIdList, this.deletePartition(), linkIds -> {
@@ -941,7 +937,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
             if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    entity = loadMapper.findByLoadId(tablename, id, isLoadArray);
+                    entity = loadMapper.findDynamicByLoadId(tablename, id, isLoadArray);
                 } else {
                     entity = loadMapper.findByLoadId(id, isLoadArray);
                 }
@@ -981,7 +977,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             /** 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
             if (queryAllMethod != null && !queryAllMethod.isDefault()) {
                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    entityList = PartitionHelper.query(idList, this.queryPartition(), ids -> loadMapper.findAllLoad(tablename, ids, isLoadArray));
+                    entityList = PartitionHelper.query(idList, this.queryPartition(), ids -> loadMapper.findDynamicAllLoad(tablename, ids, isLoadArray));
                 } else {
                     entityList = PartitionHelper.query(idList, this.queryPartition(), ids -> loadMapper.findAllLoad(ids, isLoadArray));
                 }
@@ -997,7 +993,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     private List<E> findAllByWhere(String whereSql, String tablename) throws RestException {
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = superMapper.findAllByWhere(tablename, whereSql);
+            entityList = superMapper.findDynamicAllByWhere(tablename, whereSql);
         } else {
             entityList = superMapper.findAllByWhere(whereSql);
         }
@@ -1028,7 +1024,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
                 page = filter.toPage();
                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    entityList = loadFilterMapper.findAllByLoadWhere(tablename, whereSql, loadArray);
+                    entityList = loadFilterMapper.findDynamicAllByLoadWhere(tablename, whereSql, loadArray);
                 } else {
                     entityList = loadFilterMapper.findAllByLoadWhere(whereSql, loadArray);
                 }
@@ -1048,7 +1044,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
                 page = filter.toPage();
                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    entityList = fieldFilterMapper.findAllByFieldWhere(tablename, whereSql, fieldArray);
+                    entityList = fieldFilterMapper.findDynamicAllByFieldWhere(tablename, whereSql, fieldArray);
                 } else {
                     entityList = fieldFilterMapper.findAllByFieldWhere(whereSql, fieldArray);
                 }
@@ -1068,7 +1064,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
                 page = filter.toPage();
                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    entityList = filterMapper.findAllByFilterWhere(tablename, whereSql, filter);
+                    entityList = filterMapper.findDynamicAllByFilterWhere(tablename, whereSql, filter);
                 } else {
                     entityList = filterMapper.findAllByFilterWhere(whereSql, filter);
                 }
@@ -1088,7 +1084,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     private void deleteAllByWhere(String whereSql, String tablename, F filter) throws RestException {
         if (DeleteType.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                superMapper.deleteAllByWhere(tablename, whereSql);
+                superMapper.deleteDynamicAllByWhere(tablename, whereSql);
             } else {
                 superMapper.deleteAllByWhere(whereSql);
             }
@@ -1098,7 +1094,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             if (GeneralUtils.isNotEmpty(entityList)) {
                 deleteAdvice(entityList, () -> {
                     if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                        superMapper.deleteAllByWhere(tablename, whereSql);
+                        superMapper.deleteDynamicAllByWhere(tablename, whereSql);
                     } else {
                         superMapper.deleteAllByWhere(whereSql);
                     }
@@ -1135,7 +1131,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                     if (deleteAllByWhereMethod != null && !deleteAllByWhereMethod.isDefault()) {
                         if (DeleteType.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
                             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                                filterMapper.deleteAllByFilterWhere(tablename, whereSql, filter);
+                                filterMapper.deleteDynamicAllByFilterWhere(tablename, whereSql, filter);
                             } else {
                                 filterMapper.deleteAllByFilterWhere(whereSql, filter);
                             }
@@ -1150,7 +1146,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                             if (GeneralUtils.isNotEmpty(entityList)) {
                                 deleteAdvice(entityList, () -> {
                                     if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                                        filterMapper.deleteAllByFilterWhere(tablename, whereSql, filter);
+                                        filterMapper.deleteDynamicAllByFilterWhere(tablename, whereSql, filter);
                                     } else {
                                         filterMapper.deleteAllByFilterWhere(whereSql, filter);
                                     }
@@ -1174,7 +1170,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         String removeSign = removeSign();
         if (DeleteType.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((RemoveMapper) superMapper).removeAllByWhere(tablename, removeWhereSql, removeSign);
+                ((RemoveMapper) superMapper).removeDynamicAllByWhere(tablename, removeWhereSql, removeSign);
             } else {
                 ((RemoveMapper) superMapper).removeAllByWhere(removeWhereSql, removeSign);
             }
@@ -1184,7 +1180,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             if (GeneralUtils.isNotEmpty(entityList)) {
                 removeAdvice(entityList, removeSign, sign -> {
                     if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                        ((RemoveMapper) superMapper).removeAllByWhere(tablename, removeWhereSql, sign);
+                        ((RemoveMapper) superMapper).removeDynamicAllByWhere(tablename, removeWhereSql, sign);
                     } else {
                         ((RemoveMapper) superMapper).removeAllByWhere(removeWhereSql, sign);
                     }
@@ -1216,7 +1212,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                 if (removeAllByWhereMethod != null && !removeAllByWhereMethod.isDefault()) {
                     if (DeleteType.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
                         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                            filterMapper.removeAllByFilterWhere(tablename, removeWhereSql, filter, removeSign);
+                            filterMapper.removeDynamicAllByFilterWhere(tablename, removeWhereSql, filter, removeSign);
                         } else {
                             filterMapper.removeAllByFilterWhere(removeWhereSql, filter, removeSign);
                         }
@@ -1231,7 +1227,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                         if (GeneralUtils.isNotEmpty(entityList)) {
                             removeAdvice(entityList, removeSign, sign -> {
                                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                                    filterMapper.removeAllByFilterWhere(tablename, removeWhereSql, filter, sign);
+                                    filterMapper.removeDynamicAllByFilterWhere(tablename, removeWhereSql, filter, sign);
                                 } else {
                                     filterMapper.removeAllByFilterWhere(removeWhereSql, filter, sign);
                                 }
@@ -1255,7 +1251,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         }
         if (DeleteType.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((OperateMapper) superMapper).operateAllByWhere(tablename, operateWhereSql, OperateType.REMOVE.getKey());
+                ((OperateMapper) superMapper).operateDynamicAllByWhere(tablename, operateWhereSql, OperateType.REMOVE.getKey());
             } else {
                 ((OperateMapper) superMapper).operateAllByWhere(operateWhereSql, OperateType.REMOVE.getKey());
             }
@@ -1265,7 +1261,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             if (GeneralUtils.isNotEmpty(entityList)) {
                 operateAdvice(entityList, OperateType.REMOVE, operate -> {
                     if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                        ((OperateMapper) superMapper).operateAllByWhere(tablename, operateWhereSql, operate.getKey());
+                        ((OperateMapper) superMapper).operateDynamicAllByWhere(tablename, operateWhereSql, operate.getKey());
                     } else {
                         ((OperateMapper) superMapper).operateAllByWhere(operateWhereSql, operate.getKey());
                     }
@@ -1297,7 +1293,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                 if (operateAllByWhereMethod != null && !operateAllByWhereMethod.isDefault()) {
                     if (DeleteType.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
                         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                            filterMapper.operateAllByFilterWhere(tablename, operateWhereSql,filter, OperateType.REMOVE.getKey());
+                            filterMapper.operateDynamicAllByFilterWhere(tablename, operateWhereSql,filter, OperateType.REMOVE.getKey());
                         } else {
                             filterMapper.operateAllByFilterWhere(operateWhereSql, filter,OperateType.REMOVE.getKey());
                         }
@@ -1312,7 +1308,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                         if (GeneralUtils.isNotEmpty(entityList)) {
                             operateAdvice(entityList, OperateType.REMOVE, operate -> {
                                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                                    filterMapper.operateAllByFilterWhere(tablename, operateWhereSql,filter, operate.getKey());
+                                    filterMapper.operateDynamicAllByFilterWhere(tablename, operateWhereSql,filter, operate.getKey());
                                 } else {
                                     filterMapper.operateAllByFilterWhere(operateWhereSql, filter,operate.getKey());
                                 }

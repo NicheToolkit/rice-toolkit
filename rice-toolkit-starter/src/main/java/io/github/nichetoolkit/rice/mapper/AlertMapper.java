@@ -25,7 +25,7 @@ public interface AlertMapper<I> {
      * @param key 实体操作类型
      * @return Integer SQL影响行数（成功为1）
      */
-    Integer alertById(@Param("tablename") String tablename, @Param("id") I id, @Param("key") Integer key);
+    Integer alertDynamicById(@Param("tablename") String tablename, @Param("id") I id, @Param("key") Integer key);
 
     /**
      * 实体批量删除
@@ -41,6 +41,6 @@ public interface AlertMapper<I> {
      * @param key    实体操作类型
      * @return Integer SQL影响行数
      */
-    Integer alertAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList, @Param("key") Integer key);
+    Integer alertDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList, @Param("key") Integer key);
 
 }

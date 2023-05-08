@@ -24,7 +24,7 @@ public interface OperateMapper<I> {
      * @param operate 实体操作类型
      * @return Integer SQL影响行数（成功为1）
      */
-    Integer operateById(@Param("tablename") String tablename, @Param("id") I id, @Param("operate") Integer operate);
+    Integer operateDynamicById(@Param("tablename") String tablename, @Param("id") I id, @Param("operate") Integer operate);
 
     /**
      * 实体批量删除
@@ -40,7 +40,7 @@ public interface OperateMapper<I> {
      * @param operate 实体操作类型
      * @return Integer SQL影响行数
      */
-    Integer operateAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList, @Param("operate") Integer operate);
+    Integer operateDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList, @Param("operate") Integer operate);
 
     /**
      * 通过filter查询条件 操作
@@ -56,5 +56,5 @@ public interface OperateMapper<I> {
      * @param operate  实体操作类型
      * @return Integer SQL影响行数
      */
-    Integer operateAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("operate") Integer operate);
+    Integer operateDynamicAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("operate") Integer operate);
 }

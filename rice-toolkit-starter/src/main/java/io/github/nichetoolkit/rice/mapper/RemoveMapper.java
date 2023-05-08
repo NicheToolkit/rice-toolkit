@@ -23,7 +23,7 @@ public interface RemoveMapper<I> {
      * @param id 实体id集合
      * @return Integer SQL影响行数（成功为1）
      */
-    Integer removeById(@Param("tablename") String tablename, @Param("id") I id, @Param("sign") String sign);
+    Integer removeDynamicById(@Param("tablename") String tablename, @Param("id") I id, @Param("sign") String sign);
 
     /**
      * 实体批量删除
@@ -37,7 +37,7 @@ public interface RemoveMapper<I> {
      * @param idList 实体id集合
      * @return Integer SQL影响行数
      */
-    Integer removeAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList, @Param("sign") String sign);
+    Integer removeDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList, @Param("sign") String sign);
 
     /**
      * 通过filter查询条件删除
@@ -51,5 +51,5 @@ public interface RemoveMapper<I> {
      * @param whereSql 过滤条件
      * @return Integer SQL影响行数
      */
-    Integer removeAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql,@Param("sign") String sign);
+    Integer removeDynamicAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql,@Param("sign") String sign);
 }

@@ -27,7 +27,7 @@ public interface FilterMapper<E> {
      * @param operate  实体操作类型
      * @return Integer SQL影响行数
      */
-    Integer operateAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") PageFilter filter, @Param("operate") Integer operate);
+    Integer operateDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") PageFilter filter, @Param("operate") Integer operate);
 
     /**
      * 通过filter查询条件删除
@@ -41,7 +41,7 @@ public interface FilterMapper<E> {
      * @param whereSql 过滤条件
      * @return Integer SQL影响行数
      */
-    Integer removeAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") PageFilter filter, @Param("sign") String sign);
+    Integer removeDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") PageFilter filter, @Param("sign") String sign);
 
     /**
      * 通过filter查询条件查询
@@ -55,7 +55,7 @@ public interface FilterMapper<E> {
      * @param whereSql 过滤条件
      * @return List<T>
      */
-    List<E> findAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") PageFilter filter);
+    List<E> findDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") PageFilter filter);
 
     /**
      * 通过filter查询条件删除
@@ -67,5 +67,5 @@ public interface FilterMapper<E> {
      * 通过filter查询条件删除
      * @param whereSql 过滤条件
      */
-    Integer deleteAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") PageFilter filter);
+    Integer deleteDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") PageFilter filter);
 }

@@ -28,6 +28,6 @@ public interface FieldFilterMapper<E extends IdEntity<I>, I> {
      * @param fieldParams 查询加载参数
      * @return List<T>
      */
-    List<E> findAllByFieldWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("fieldParams") String... fieldParams);
+    List<E> findDynamicAllByFieldWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("fieldParams") String... fieldParams);
 
 }

@@ -68,7 +68,7 @@ public abstract class InfoService<K, I, M extends InfoModel<I>, E extends InfoEn
         String tablename = tablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = consumerMapper.findByName(tablename, model.getName());
+            entityList = consumerMapper.findDynamicByName(tablename, model.getName());
         } else {
             entityList = consumerMapper.findByName(model.getName());
         }
@@ -86,7 +86,7 @@ public abstract class InfoService<K, I, M extends InfoModel<I>, E extends InfoEn
         String tablename = tablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = consumerMapper.findByNameAndNotId(tablename, model.getName(), id);
+            entityList = consumerMapper.findDynamicByNameAndNotId(tablename, model.getName(), id);
         } else {
             entityList = consumerMapper.findByNameAndNotId(model.getName(), id);
         }
@@ -101,7 +101,7 @@ public abstract class InfoService<K, I, M extends InfoModel<I>, E extends InfoEn
         String tablename = tablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = consumerMapper.findByEntity(tablename, entity);
+            entityList = consumerMapper.findDynamicByEntity(tablename, entity);
         } else {
             entityList = consumerMapper.findByEntity(entity);
         }
@@ -119,7 +119,7 @@ public abstract class InfoService<K, I, M extends InfoModel<I>, E extends InfoEn
         String tablename = tablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = consumerMapper.findByEntityAndNotId(tablename, entity, id);
+            entityList = consumerMapper.findDynamicByEntityAndNotId(tablename, entity, id);
         } else {
             entityList = consumerMapper.findByEntityAndNotId(entity, id);
         }

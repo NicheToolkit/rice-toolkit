@@ -32,7 +32,7 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
      * @param entity 实体
      * @return Integer SQL影响行数
      */
-    Integer save(@Param("tablename") String tablename, @Param("entity") E entity);
+    Integer saveDynamic(@Param("tablename") String tablename, @Param("entity") E entity);
 
     /**
      * 批量保存（存在更新不存在插入）
@@ -46,7 +46,7 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
      * @param entityList 实体集合
      * @return Integer SQL影响行数
      */
-    Integer saveAll(@Param("tablename") String tablename, @Param("entityList") Collection<E> entityList);
+    Integer saveDynamicAll(@Param("tablename") String tablename, @Param("entityList") Collection<E> entityList);
 
     /**
      * 实体单个删除
@@ -60,7 +60,7 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
      * @param id 实体id集合
      * @return Integer SQL影响行数（成功为1）
      */
-    Integer deleteById(@Param("tablename") String tablename, @Param("id") I id);
+    Integer deleteDynamicById(@Param("tablename") String tablename, @Param("id") I id);
 
     /**
      * 实体批量删除
@@ -75,7 +75,7 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
      * @param idList 实体id集合
      * @return Integer SQL影响行数
      */
-    Integer deleteAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList);
+    Integer deleteDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList);
 
     /**
      * 通过id查询实体
@@ -89,7 +89,7 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
      * @param id 实体id
      * @return T 查询的数据
      */
-    E findById(@Param("tablename") String tablename, @Param("id") I id);
+    E findDynamicById(@Param("tablename") String tablename, @Param("id") I id);
 
     /**
      * 实体批量查询
@@ -103,7 +103,7 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
      * @param idList 实体集合
      * @return List<T> 查询的数据集合
      */
-    List<E> findAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList);
+    List<E> findDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList);
 
     /**
      * 通过filter查询条件查询
@@ -117,7 +117,7 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
      * @param whereSql 过滤条件
      * @return List<T>
      */
-    List<E> findAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql);
+    List<E> findDynamicAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql);
 
     /**
      * 通过filter查询条件删除
@@ -129,5 +129,5 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
      * 通过filter查询条件删除
      * @param whereSql 过滤条件
      */
-    Integer deleteAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql);
+    Integer deleteDynamicAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql);
 }

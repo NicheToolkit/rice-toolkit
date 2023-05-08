@@ -24,7 +24,7 @@ public interface OperateLinkMapper<I> extends OperateMapper<I> {
      * @param operate 实体操作类型
      * @return Integer SQL影响行数（成功为1）
      */
-    Integer operateByLinkId(@Param("tablename") String tablename, @Param("id") I linkId, @Param("operate") Integer operate);
+    Integer operateDynamicByLinkId(@Param("tablename") String tablename, @Param("id") I linkId, @Param("operate") Integer operate);
 
     /**
      * 实体批量删除
@@ -40,6 +40,6 @@ public interface OperateLinkMapper<I> extends OperateMapper<I> {
      * @param operate    实体操作类型
      * @return Integer SQL影响行数
      */
-    Integer operateAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection<I> linkIdList, @Param("operate") Integer operate);
+    Integer operateDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection<I> linkIdList, @Param("operate") Integer operate);
 
 }

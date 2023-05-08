@@ -27,7 +27,7 @@ public interface AlertBiFieldMapper<I> {
      * @param key   实体操作类型
      * @return Integer SQL影响行数（成功为1）
      */
-    Integer alertBiFieldById(@Param("tablename") String tablename, @Param("id") I id, @Param("field") String field, @Param("biField") String biField, @Param("key") Integer key);
+    Integer alertDynamicBiFieldById(@Param("tablename") String tablename, @Param("id") I id, @Param("field") String field, @Param("biField") String biField, @Param("key") Integer key);
 
     /**
      * 实体批量删除
@@ -45,6 +45,6 @@ public interface AlertBiFieldMapper<I> {
      * @param key    实体操作类型
      * @return Integer SQL影响行数
      */
-    Integer alertBiFieldAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList, @Param("field") String field, @Param("biField") String biField, @Param("key") Integer key);
+    Integer alertDynamicBiFieldAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList, @Param("field") String field, @Param("biField") String biField, @Param("key") Integer key);
 
 }

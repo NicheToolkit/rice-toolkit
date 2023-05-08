@@ -27,7 +27,7 @@ public interface LoadMapper<E extends IdEntity<I>, I> {
      * @param loadParams 查询加载参数
      * @return T 查询的数据
      */
-    E findByLoadId(@Param("tablename") String tablename, @Param("id") I id, @Param("loadParams") Boolean... loadParams);
+    E findDynamicByLoadId(@Param("tablename") String tablename, @Param("id") I id, @Param("loadParams") Boolean... loadParams);
 
     /**
      * 实体批量查询
@@ -43,6 +43,6 @@ public interface LoadMapper<E extends IdEntity<I>, I> {
      * @param loadParams 查询加载参数
      * @return List<T> 查询的数据集合
      */
-    List<E> findAllLoad(@Param("tablename") String tablename, @Param("idList") Collection<I> idList, @Param("loadParams") Boolean... loadParams);
+    List<E> findDynamicAllLoad(@Param("tablename") String tablename, @Param("idList") Collection<I> idList, @Param("loadParams") Boolean... loadParams);
 
 }

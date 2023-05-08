@@ -26,6 +26,6 @@ public interface LoadFilterMapper<E extends IdEntity<I>, I> {
      * @param loadParams 查询加载参数
      * @return List<T>
      */
-    List<E> findAllByLoadWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("loadParams") Boolean... loadParams);
+    List<E> findDynamicAllByLoadWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("loadParams") Boolean... loadParams);
 
 }
