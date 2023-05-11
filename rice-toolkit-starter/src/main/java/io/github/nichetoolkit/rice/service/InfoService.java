@@ -68,9 +68,9 @@ public abstract class InfoService<K, I, M extends InfoModel<I>, E extends InfoEn
         String tablename = tablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = consumerMapper.findDynamicByName(tablename, model.getName());
+            entityList = consumerMapper.findDynamicByName(tablename, model.getName(), removeValue());
         } else {
-            entityList = consumerMapper.findByName(model.getName());
+            entityList = consumerMapper.findByName(model.getName(), removeValue());
         }
         return GeneralUtils.isNotEmpty(entityList);
     }
@@ -86,9 +86,9 @@ public abstract class InfoService<K, I, M extends InfoModel<I>, E extends InfoEn
         String tablename = tablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = consumerMapper.findDynamicByNameAndNotId(tablename, model.getName(), id);
+            entityList = consumerMapper.findDynamicByNameAndNotId(tablename, model.getName(), id, removeValue());
         } else {
-            entityList = consumerMapper.findByNameAndNotId(model.getName(), id);
+            entityList = consumerMapper.findByNameAndNotId(model.getName(), id, removeValue());
         }
         return GeneralUtils.isNotEmpty(entityList);
     }
@@ -101,9 +101,9 @@ public abstract class InfoService<K, I, M extends InfoModel<I>, E extends InfoEn
         String tablename = tablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = consumerMapper.findDynamicByEntity(tablename, entity);
+            entityList = consumerMapper.findDynamicByEntity(tablename, entity, removeValue());
         } else {
-            entityList = consumerMapper.findByEntity(entity);
+            entityList = consumerMapper.findByEntity(entity, removeValue());
         }
         return GeneralUtils.isNotEmpty(entityList);
     }
@@ -119,9 +119,9 @@ public abstract class InfoService<K, I, M extends InfoModel<I>, E extends InfoEn
         String tablename = tablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = consumerMapper.findDynamicByEntityAndNotId(tablename, entity, id);
+            entityList = consumerMapper.findDynamicByEntityAndNotId(tablename, entity, id, removeValue());
         } else {
-            entityList = consumerMapper.findByEntityAndNotId(entity, id);
+            entityList = consumerMapper.findByEntityAndNotId(entity, id, removeValue());
         }
         return GeneralUtils.isNotEmpty(entityList);
     }

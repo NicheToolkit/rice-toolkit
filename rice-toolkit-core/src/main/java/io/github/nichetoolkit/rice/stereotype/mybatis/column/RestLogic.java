@@ -14,8 +14,5 @@ import java.lang.annotation.*;
 @Documented
 @Indexed
 public @interface RestLogic {
-
-    String value() default "";
-
 }
 
