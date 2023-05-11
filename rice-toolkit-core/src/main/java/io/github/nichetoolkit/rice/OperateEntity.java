@@ -3,6 +3,8 @@ package io.github.nichetoolkit.rice;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestLogic;
+import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestOperate;
 import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
@@ -18,9 +20,11 @@ import java.io.Serializable;
 public class OperateEntity implements Serializable {
 
     /** 数据操作 */
+    @RestOperate
     protected Integer operate;
 
     /** 逻辑删除标记 */
+    @RestLogic
     protected String logicSign;
 
     public OperateEntity() {
@@ -28,10 +32,10 @@ public class OperateEntity implements Serializable {
 
     public OperateEntity(OperateEntity.Builder builder) {
         this.operate = builder.operate;
+        this.logicSign = builder.logicSign;
     }
 
     public Integer getOperate() {
-
         return operate;
     }
 
@@ -50,6 +54,7 @@ public class OperateEntity implements Serializable {
     @SuppressWarnings("WeakerAccess")
     public static class Builder {
         protected Integer operate;
+        protected String logicSign;
 
         public Builder() {
         }
@@ -61,6 +66,11 @@ public class OperateEntity implements Serializable {
 
         public OperateEntity.Builder operate(@NonNull OperateType operate) {
             this.operate = operate.getKey();
+            return this;
+        }
+
+        public OperateEntity.Builder logicSign(String logicSign) {
+            this.logicSign = logicSign;
             return this;
         }
 

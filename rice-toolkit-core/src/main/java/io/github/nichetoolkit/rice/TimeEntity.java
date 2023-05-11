@@ -82,6 +82,12 @@ public class TimeEntity extends OperateEntity {
         }
 
         @Override
+        public TimeEntity.Builder logicSign(String logicSign) {
+            this.logicSign = logicSign;
+            return this;
+        }
+
+        @Override
         public TimeEntity build() {
             return new TimeEntity(this);
         }

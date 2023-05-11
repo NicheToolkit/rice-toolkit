@@ -103,6 +103,12 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
         }
 
         @Override
+        public IdEntity.Builder logicSign(String logicSign) {
+            this.logicSign = logicSign;
+            return this;
+        }
+
+        @Override
         public IdEntity<I> build() {
             return new IdEntity<>(this);
         }
