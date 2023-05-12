@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestForceInsert;
 import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestForceUpdate;
+import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestUpdate;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.Column;
@@ -20,6 +21,7 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeEntity extends OperateEntity {
     /** 数据创建时间 */
+    @RestUpdate(false)
     @RestForceInsert("now()")
     @Column(name = "create_time")
     protected Date createTime;
