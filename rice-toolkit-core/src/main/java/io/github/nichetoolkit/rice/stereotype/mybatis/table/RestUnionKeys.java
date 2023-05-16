@@ -31,6 +31,6 @@ public @interface RestUnionKeys {
     /**
      * 是否将主键注解添加到联合主键
      */
-    boolean unionIdentity() default false;
+    boolean unionIdentity() default true;
 
 }
