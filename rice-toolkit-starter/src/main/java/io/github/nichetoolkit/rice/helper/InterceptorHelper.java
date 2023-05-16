@@ -3,6 +3,8 @@ package io.github.nichetoolkit.rice.helper;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
+import io.github.nichetoolkit.rice.stereotype.mybatis.table.RestEntity;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,8 +31,8 @@ public class InterceptorHelper {
 
     public static <A extends Annotation> A annotation(Class<A> annotationType, HandlerMethod handlerMethod) throws RestException {
         Class<?> beanType = handlerMethod.getBeanType();
-        A beanAnnotation = beanType.getAnnotation(annotationType);
-        A methodAnnotation = handlerMethod.getMethodAnnotation(annotationType);
+        A beanAnnotation = AnnotationUtils.getAnnotation(beanType, annotationType);
+        A methodAnnotation = AnnotationUtils.getAnnotation(handlerMethod.getMethod(), annotationType);
         A annotation;
         if (GeneralUtils.isNotEmpty(methodAnnotation)) {
             annotation = methodAnnotation;
