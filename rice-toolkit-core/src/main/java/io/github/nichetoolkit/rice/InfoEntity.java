@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestUnique;
+import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestUniqueKey;
 import org.springframework.lang.NonNull;
 
 import java.util.Date;
@@ -17,7 +17,7 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
     /** 事物名称 */
-    @RestUnique
+    @RestUniqueKey
     protected String name;
     /** 事物描述 */
     protected String description;

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Indexed;
 import java.lang.annotation.*;
 
 /**
- * <p>RestUnionKeys</p>
+ * <p>RestUniqueKeys</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
@@ -14,26 +14,15 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Documented
 @Indexed
-public @interface RestUnionKeys {
+public @interface RestUniqueKeys {
 
-    /**
-     * 联合主键的字段名称
-     */
-    @AliasFor("unionKeys")
+    @AliasFor("uniqueKeys")
     String[] value() default {};
 
-    /**
-     * 联合主键的字段名称
-     */
     @AliasFor("value")
-    String[] unionKeys() default {};
+    String[] uniqueKeys() default {};
 
 
     String[] ignores() default {};
-
-    /**
-     * 是否将主键注解添加到联合主键
-     */
-    boolean unionIdentity() default true;
 
 }

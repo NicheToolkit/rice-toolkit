@@ -6,7 +6,7 @@ import org.springframework.stereotype.Indexed;
 import java.lang.annotation.*;
 
 /**
- * <p>RestUniques</p>
+ * <p>RestAlertKeys</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
@@ -14,13 +14,13 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Documented
 @Indexed
-public @interface RestUniques {
+public @interface RestAlertKeys {
 
-    @AliasFor("uniques")
+    @AliasFor("alertKeys")
     String[] value() default {};
 
     @AliasFor("value")
-    String[] uniques() default {};
+    String[] alertKeys() default {};
 
 
     String[] ignores() default {};

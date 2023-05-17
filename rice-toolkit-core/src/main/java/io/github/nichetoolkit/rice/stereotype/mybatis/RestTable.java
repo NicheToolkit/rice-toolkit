@@ -21,6 +21,8 @@ import java.lang.annotation.*;
 @RestExcludes
 @RestUnionKeys
 @RestLinkKeys
+@RestUniqueKeys
+@RestAlertKeys
 public @interface RestTable {
     /**
      * 表名，默认空时使用对象名
@@ -55,8 +57,20 @@ public @interface RestTable {
     /**
      * 联合主键的字段名称
      */
+    @AliasFor(annotation = RestAlertKeys.class, attribute = "alertKeys")
+    String[] alertKeys() default {};
+
+    /**
+     * 联合主键的字段名称
+     */
     @AliasFor(annotation = RestLinkKeys.class, attribute = "linkKeys")
     String[] linkKeys() default {};
+
+    /**
+     * 联合主键的字段名称
+     */
+    @AliasFor(annotation = RestUniqueKeys.class, attribute = "uniqueKeys")
+    String[] uniqueKeys() default {};
 
     /**
      * catalog 名称，配置后，会在表名前面加上 catalog名称

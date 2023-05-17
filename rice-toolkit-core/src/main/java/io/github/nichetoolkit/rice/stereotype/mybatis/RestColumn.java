@@ -26,6 +26,9 @@ import java.lang.annotation.*;
 @RestSelect
 @RestPrimaryKey
 @RestUnionKey
+@RestLinkKey
+@RestAlertKey
+@RestUniqueKey
 @RestSortType
 @RestJdbcType
 @RestProperties
@@ -51,14 +54,21 @@ public @interface RestColumn {
     /**
      * 标记字段是否 用于联合主键字段
      */
-    @AliasFor(annotation = RestUnionKey.class, attribute = "value")
-    boolean unionKey() default false;
+    @AliasFor(annotation = RestLinkKey.class, attribute = "value")
+    boolean linkKey() default false;
+
 
     /**
      * 标记字段是否 用于联合主键字段
      */
-    @AliasFor(annotation = RestLinkKey.class, attribute = "value")
-    boolean linkKey() default false;
+    @AliasFor(annotation = RestAlertKey.class, attribute = "value")
+    boolean alertKey() default false;
+
+    /**
+     * 标记字段是否 用于联合主键字段
+     */
+    @AliasFor(annotation = RestUnionKey.class, attribute = "value")
+    boolean unionKey() default false;
 
     /**
      * 用于联合主键的顺序，数值越小优先级越高

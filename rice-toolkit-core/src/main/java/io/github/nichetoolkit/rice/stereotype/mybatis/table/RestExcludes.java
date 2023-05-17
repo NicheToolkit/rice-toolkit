@@ -28,6 +28,9 @@ public @interface RestExcludes {
     @AliasFor("value")
     String[] fields() default {};
 
+
+    String[] ignores() default {};
+
     /**
      * 排除指定类型的字段
      */

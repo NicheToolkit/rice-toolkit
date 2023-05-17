@@ -28,4 +28,7 @@ public @interface RestLinkKeys {
     @AliasFor("value")
     String[] linkKeys() default {};
 
+
+    String[] ignores() default {};
+
 }
