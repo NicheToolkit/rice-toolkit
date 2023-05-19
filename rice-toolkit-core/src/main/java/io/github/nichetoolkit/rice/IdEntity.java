@@ -91,19 +91,19 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
         }
 
         @Override
-        public IdEntity.Builder operate(Integer operate) {
+        public IdEntity.Builder<I> operate(Integer operate) {
             this.operate = operate;
             return this;
         }
 
         @Override
-        public IdEntity.Builder operate(@NonNull OperateType operate) {
+        public IdEntity.Builder<I> operate(@NonNull OperateType operate) {
             this.operate = operate.getKey();
             return this;
         }
 
         @Override
-        public IdEntity.Builder logicSign(String logicSign) {
+        public IdEntity.Builder<I> logicSign(String logicSign) {
             this.logicSign = logicSign;
             return this;
         }

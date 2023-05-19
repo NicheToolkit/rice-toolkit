@@ -1,17 +1,16 @@
 package io.github.nichetoolkit.rice;
 
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rice.service.advice.BuilderAdvice;
 import io.github.nichetoolkit.rice.service.InfoService;
-
-import java.util.Date;
+import io.github.nichetoolkit.rice.service.advice.BuilderAdvice;
+import org.checkerframework.checker.units.qual.K;
 
 /**
- * <p>RiceInfoService</p>
+ * <p>RestInfoService</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public abstract class RiceInfoService<M extends RiceInfoModel<M, E>, E extends RiceInfoEntity<E, M>, F extends RiceFilter> extends RestInfoService<Date, String, String, M, E, F> {
+public abstract class RestInfoService<D, K, I, M extends RestInfoModel<M, E, I>, E extends RestInfoEntity<E, M, I>, F extends RestFilter<D, I, K>> extends InfoService<K, I, M, E, F> implements BuilderAdvice<I, M, E> {
 
     @Override
     protected E createEntity(M model) throws RestException {

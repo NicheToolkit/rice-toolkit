@@ -108,7 +108,7 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
         }
 
         @Override
-        public InfoEntity.Builder logicSign(String logicSign) {
+        public InfoEntity.Builder<I> logicSign(String logicSign) {
             this.logicSign = logicSign;
             return this;
         }

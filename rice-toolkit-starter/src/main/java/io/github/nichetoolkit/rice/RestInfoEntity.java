@@ -6,81 +6,81 @@ import org.springframework.lang.NonNull;
 import java.util.Date;
 
 /**
- * <p>RiceInfoEntity</p>
+ * <p>RestInfoEntity</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public abstract class RiceInfoEntity<E extends RiceInfoEntity<E, M>, M extends RiceInfoModel<M, E>> extends RestInfoEntity<E, M, String> {
+public abstract class RestInfoEntity<E extends RestInfoEntity<E,M,I>,M extends RestInfoModel<M,E,I>,I> extends InfoEntity<I> implements RestEntity<I,M> {
 
-    public RiceInfoEntity() {
+    public RestInfoEntity() {
     }
 
-    public RiceInfoEntity(String id) {
+    public RestInfoEntity(I id) {
         super(id);
     }
 
-    public RiceInfoEntity(String id, String name) {
+    public RestInfoEntity(I id, String name) {
         super(id, name);
     }
 
-    public RiceInfoEntity(Builder<E, M> builder) {
+    public RestInfoEntity(Builder<E,M,I> builder) {
         super(builder);
     }
 
-    public static abstract class Builder<E extends RiceInfoEntity<E, M>, M extends RiceInfoModel<M, E>> extends RestInfoEntity.Builder<E, M, String> {
+    public static abstract class Builder<E extends RestInfoEntity<E,M,I>,M extends RestInfoModel<M,E,I>,I> extends InfoEntity.Builder<I> {
 
         public Builder() {
         }
 
         @Override
-        public RiceInfoEntity.Builder<E, M> id(String id) {
+        public RestInfoEntity.Builder<E,M,I> id(I id) {
             this.id = id;
             return this;
         }
 
         @Override
-        public RiceInfoEntity.Builder<E, M> name(String name) {
+        public RestInfoEntity.Builder<E,M,I> name(String name) {
             this.name = name;
             return this;
         }
 
         @Override
-        public RiceInfoEntity.Builder<E, M> description(String description) {
+        public RestInfoEntity.Builder<E,M,I> description(String description) {
             this.description = description;
             return this;
         }
 
         @Override
-        public RiceInfoEntity.Builder<E, M> createTime(Date createTime) {
+        public RestInfoEntity.Builder<E,M,I> createTime(Date createTime) {
             this.createTime = createTime;
             return this;
         }
 
         @Override
-        public RiceInfoEntity.Builder<E, M> updateTime(Date updateTime) {
+        public RestInfoEntity.Builder<E,M,I> updateTime(Date updateTime) {
             this.updateTime = updateTime;
             return this;
         }
 
         @Override
-        public RiceInfoEntity.Builder<E, M> operate(Integer operate) {
+        public RestInfoEntity.Builder<E,M,I> operate(Integer operate) {
             this.operate = operate;
             return this;
         }
 
         @Override
-        public RiceInfoEntity.Builder<E, M> operate(@NonNull OperateType operate) {
+        public RestInfoEntity.Builder<E,M,I> operate(@NonNull OperateType operate) {
             this.operate = operate.getKey();
             return this;
         }
 
         @Override
-        public RiceInfoEntity.Builder<E, M> logicSign(String logicSign) {
+        public RestInfoEntity.Builder<E,M,I> logicSign(String logicSign) {
             this.logicSign = logicSign;
             return this;
         }
 
         @Override
-        public abstract RiceInfoEntity<E, M> build();
+        public abstract RestInfoEntity<E,M,I> build();
     }
 }

@@ -130,6 +130,7 @@ public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
             this.save = save;
             return this;
         }
+
         @Override
         public InfoModel.Builder<I> save(Integer save) {
             this.save = SaveType.parseKey(save);

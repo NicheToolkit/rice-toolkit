@@ -1,17 +1,15 @@
 package io.github.nichetoolkit.rice;
 
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rice.service.SuperService;
 import io.github.nichetoolkit.rice.service.advice.BuilderAdvice;
-import io.github.nichetoolkit.rice.service.InfoService;
-
-import java.util.Date;
 
 /**
- * <p>RiceInfoService</p>
+ * <p>RestIdService</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public abstract class RiceInfoService<M extends RiceInfoModel<M, E>, E extends RiceInfoEntity<E, M>, F extends RiceFilter> extends RestInfoService<Date, String, String, M, E, F> {
+public abstract class RestIdService<D, K, I, M extends RestIdModel<M, E, I>, E extends RestIdEntity<E, M, I>, F extends RestFilter<D, I, K>> extends SuperService<K, I, M, E, F> implements BuilderAdvice<I, M, E> {
 
     @Override
     protected E createEntity(M model) throws RestException {
@@ -22,4 +20,5 @@ public abstract class RiceInfoService<M extends RiceInfoModel<M, E>, E extends R
     protected M createModel(E entity) throws RestException {
         return entity.toModel();
     }
+
 }

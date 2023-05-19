@@ -11,79 +11,77 @@ import java.util.Date;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public abstract class RiceIdModel<M extends RiceIdModel<M, E>, E extends RiceIdEntity<E, M>> extends RestIdModel<M, E, String> {
+public abstract class RestIdModel<M extends RestIdModel<M,E,I>,E extends RestIdEntity<E,M,I>,I> extends IdModel<I> implements RestModel<I,E> {
 
-    public RiceIdModel() {
+    public RestIdModel() {
     }
 
-    public RiceIdModel(String id) {
+    public RestIdModel(I id) {
         super(id);
     }
 
-    public RiceIdModel(RiceIdModel.Builder<M, E> builder) {
+    public RestIdModel(RestIdModel.Builder<M,E,I> builder) {
         super(builder);
     }
 
-    public static abstract class Builder<M extends RiceIdModel<M, E>, E extends RiceIdEntity<E, M>> extends RestIdModel.Builder<M, E, String> {
+    public static abstract class Builder<M extends RestIdModel<M,E,I>,E extends RestIdEntity<E,M,I>,I> extends IdModel.Builder<I> {
 
         public Builder() {
         }
 
-        @Override
-        public RiceIdModel.Builder<M, E> id(String id) {
+        public RestIdModel.Builder<M,E,I> id(I id) {
             this.id = id;
             return this;
         }
 
         @Override
-        public RiceIdModel.Builder<M, E> createTime(Date createTime) {
+        public RestIdModel.Builder<M,E,I> createTime(Date createTime) {
             this.createTime = createTime;
             return this;
         }
 
         @Override
-        public RiceIdModel.Builder<M, E> createTime(@NonNull Long createTime) {
+        public RestIdModel.Builder<M,E,I> createTime(@NonNull Long createTime) {
             this.createTime = new Date(createTime);
             return this;
         }
 
         @Override
-        public RiceIdModel.Builder<M, E> updateTime(Date updateTime) {
+        public RestIdModel.Builder<M,E,I> updateTime(Date updateTime) {
             this.updateTime = updateTime;
             return this;
         }
 
         @Override
-        public RiceIdModel.Builder<M, E> updateTime(@NonNull Long updateTime) {
+        public RestIdModel.Builder<M,E,I> updateTime(@NonNull Long updateTime) {
             this.updateTime = new Date(updateTime);
             return this;
         }
 
         @Override
-        public RiceIdModel.Builder<M, E> operate(OperateType operate) {
+        public RestIdModel.Builder<M,E,I> operate(OperateType operate) {
             this.operate = operate;
             return this;
         }
 
         @Override
-        public RiceIdModel.Builder<M, E> operate(Integer operate) {
+        public RestIdModel.Builder<M,E,I> operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
             return this;
         }
 
         @Override
-        public RiceIdModel.Builder<M, E> save(SaveType save) {
+        public RestIdModel.Builder<M,E,I> save(SaveType save) {
             this.save = save;
             return this;
         }
-
         @Override
-        public RiceIdModel.Builder<M, E> save(Integer save) {
+        public RestIdModel.Builder<M,E,I> save(Integer save) {
             this.save = SaveType.parseKey(save);
             return this;
         }
-
+        
         @Override
-        public abstract RiceIdModel<M, E> build();
+        public abstract RestIdModel<M,E,I> build();
     }
 }
