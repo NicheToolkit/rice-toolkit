@@ -14,6 +14,7 @@ import org.springframework.lang.NonNull;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 
 /**
@@ -24,16 +25,16 @@ import java.util.HashSet;
 @SuppressWarnings({"WeakerAccess", "unchecked"})
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TimeFilter<D, I, K> extends IdFilter<I, K> {
+public class TimeFilter<I, K> extends IdFilter<I, K> {
 
     /** default like '2020-01-01 00:00:00' */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    protected D startTime;
+    protected Date startTime;
     /** default like '2020-01-02 00:00:00' */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    protected D endTime;
+    protected Date endTime;
 
     public TimeFilter() {
     }
@@ -47,29 +48,29 @@ public class TimeFilter<D, I, K> extends IdFilter<I, K> {
         super(ids);
     }
 
-    public TimeFilter(TimeFilter.Builder<D, I, K> builder) {
+    public TimeFilter(TimeFilter.Builder<I, K> builder) {
         super(builder);
         this.startTime = builder.startTime;
         this.endTime = builder.endTime;
     }
 
-    public D getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(D startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public D getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(D endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
-    public TimeFilter<D, I, K> toTimeSql(@NonNull String alias) {
+    public TimeFilter<I, K> toTimeSql(@NonNull String alias) {
         if (GeneralUtils.isNotEmpty(this.startTime) && GeneralUtils.isNotEmpty(this.endTime) && this.startTime == this.endTime) {
             SqlBuilders.equal(SQL_BUILDER, alias, this.startTime);
         } else {
@@ -79,13 +80,13 @@ public class TimeFilter<D, I, K> extends IdFilter<I, K> {
     }
 
     @Override
-    public TimeFilter<D, I, K> toIdSql(@NonNull String alias) {
+    public TimeFilter<I, K> toIdSql(@NonNull String alias) {
         super.toIdSql(alias);
         return this;
     }
 
     @Override
-    public TimeFilter<D, I, K> toOperateSql(@NonNull String alias) {
+    public TimeFilter<I, K> toOperateSql(@NonNull String alias) {
         super.toOperateSql(alias);
         return this;
     }
@@ -104,32 +105,32 @@ public class TimeFilter<D, I, K> extends IdFilter<I, K> {
         return keyBuilder.toString();
     }
 
-    public static class Builder<D, I, K> extends IdFilter.Builder<I, K> {
-        protected D startTime;
-        protected D endTime;
+    public static class Builder<I, K> extends IdFilter.Builder<I, K> {
+        protected Date startTime;
+        protected Date endTime;
 
         public Builder() {
         }
 
-        public TimeFilter.Builder<D, I, K> startTime(D startTime) {
+        public TimeFilter.Builder<I, K> startTime(Date startTime) {
             this.startTime = startTime;
             return this;
         }
 
-        public TimeFilter.Builder<D, I, K> endTime(D endTime) {
+        public TimeFilter.Builder<I, K> endTime(Date endTime) {
             this.endTime = endTime;
             return this;
         }
 
         @Override
-        public TimeFilter.Builder<D, I, K> ids(@NonNull Collection<I> ids) {
+        public TimeFilter.Builder<I, K> ids(@NonNull Collection<I> ids) {
             this.ids = new HashSet<>(ids);
             return this;
         }
 
         @Override
         @SuppressWarnings(value = "unchecked")
-        public TimeFilter.Builder<D, I, K> ids(@NonNull I... ids) {
+        public TimeFilter.Builder<I, K> ids(@NonNull I... ids) {
             this.ids = new HashSet<>(Arrays.asList(ids));
             return this;
         }
@@ -141,49 +142,49 @@ public class TimeFilter<D, I, K> extends IdFilter<I, K> {
         }
 
         @Override
-        public TimeFilter.Builder<D, I, K> isRemove(boolean isRemove) {
+        public TimeFilter.Builder<I, K> isRemove(boolean isRemove) {
             this.isRemove = isRemove;
             return this;
         }
 
         @Override
-        public TimeFilter.Builder<D, I, K> operate(OperateType operate) {
+        public TimeFilter.Builder<I, K> operate(OperateType operate) {
             this.operate = operate;
             return this;
         }
 
         @Override
-        public TimeFilter.Builder<D, I, K> operate(Integer operate) {
+        public TimeFilter.Builder<I, K> operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
             return this;
         }
 
         @Override
-        public TimeFilter.Builder<D, I, K> operates(@NonNull Collection<OperateType> operates) {
+        public TimeFilter.Builder<I, K> operates(@NonNull Collection<OperateType> operates) {
             this.operates = new HashSet<>(operates);
             return this;
         }
 
         @Override
-        public TimeFilter.Builder<D, I, K> operates(@NonNull OperateType... operates) {
+        public TimeFilter.Builder<I, K> operates(@NonNull OperateType... operates) {
             this.operates = new HashSet<>(Arrays.asList(operates));
             return this;
         }
 
         @Override
-        public TimeFilter.Builder<D, I, K> operates(@NonNull Integer... operates) {
+        public TimeFilter.Builder<I, K> operates(@NonNull Integer... operates) {
             this.operates = new HashSet<>(RestOperate.build(operates));
             return this;
         }
 
         @Override
-        public TimeFilter.Builder<D, I, K> sorts(@NonNull Collection<RestSort> sorts) {
+        public TimeFilter.Builder<I, K> sorts(@NonNull Collection<RestSort> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
         }
 
         @Override
-        public TimeFilter.Builder<D, I, K> sorts(@NonNull RestSort... sorts) {
+        public TimeFilter.Builder<I, K> sorts(@NonNull RestSort... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
             return this;
         }
@@ -195,19 +196,19 @@ public class TimeFilter<D, I, K> extends IdFilter<I, K> {
         }
 
         @Override
-        public TimeFilter.Builder<D, I, K> pageNum(Integer pageNum) {
+        public TimeFilter.Builder<I, K> pageNum(Integer pageNum) {
             this.pageNum = pageNum;
             return this;
         }
 
         @Override
-        public TimeFilter.Builder<D, I, K> pageSize(Integer pageSize) {
+        public TimeFilter.Builder<I, K> pageSize(Integer pageSize) {
             this.pageSize = pageSize;
             return this;
         }
 
         @Override
-        public TimeFilter<D, I, K> build() {
+        public TimeFilter<I, K> build() {
             return new TimeFilter<>(this);
         }
     }

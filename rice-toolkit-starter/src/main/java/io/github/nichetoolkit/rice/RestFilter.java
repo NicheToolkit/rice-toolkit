@@ -25,7 +25,7 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public abstract class RestFilter<D, I, K> extends NameFilter<D, I, K> implements InitializingBean, ApplicationContextAware{
+public abstract class RestFilter<I, K> extends NameFilter<I, K> implements InitializingBean, ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
 
@@ -49,42 +49,42 @@ public abstract class RestFilter<D, I, K> extends NameFilter<D, I, K> implements
         super(ids);
     }
 
-    public RestFilter(RestFilter.Builder<D,I,K> builder) {
+    public RestFilter(RestFilter.Builder<I, K> builder) {
         super(builder);
     }
 
     @Override
-    public RestFilter<D, I, K> toNameSql(@NonNull String alias) {
+    public RestFilter<I, K> toNameSql(@NonNull String alias) {
         super.toNameSql(alias);
         return this;
     }
 
     @Override
-    public RestFilter<D, I, K> toJsonbSql(@NonNull String alias) {
+    public RestFilter<I, K> toJsonbSql(@NonNull String alias) {
         super.toJsonbSql(alias);
         return this;
     }
 
     @Override
-    public RestFilter<D, I, K> toJsonbSql(@NonNull String alias, String variable) {
-        super.toJsonbSql(alias,variable);
+    public RestFilter<I, K> toJsonbSql(@NonNull String alias, String variable) {
+        super.toJsonbSql(alias, variable);
         return this;
     }
 
     @Override
-    public RestFilter<D, I, K> toTimeSql(@NonNull String alias) {
+    public RestFilter<I, K> toTimeSql(@NonNull String alias) {
         super.toTimeSql(alias);
         return this;
     }
 
     @Override
-    public RestFilter<D, I, K> toIdSql(@NonNull String alias) {
+    public RestFilter<I, K> toIdSql(@NonNull String alias) {
         super.toIdSql(alias);
         return this;
     }
 
     @Override
-    public RestFilter<D, I, K> toOperateSql(@NonNull String alias) {
+    public RestFilter<I, K> toOperateSql(@NonNull String alias) {
         super.toOperateSql(alias);
         return this;
     }
@@ -125,174 +125,174 @@ public abstract class RestFilter<D, I, K> extends NameFilter<D, I, K> implements
         if (deleteType == DeleteType.OPERATE) {
             return toOperateSql(alias);
         } else if (deleteType == DeleteType.REMOVE) {
-            return toRemoveSql(superService,alias);
+            return toRemoveSql(superService, alias);
         }
         return this;
     }
 
-    public static abstract class Builder<D,I,K> extends NameFilter.Builder<D,I,K> {
+    public static abstract class Builder<I, K> extends NameFilter.Builder<I, K> {
 
         public Builder() {
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> name(String name) {
+        public RestFilter.Builder<I, K> name(String name) {
             this.name = name;
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> names(Collection<String> names) {
+        public RestFilter.Builder<I, K> names(Collection<String> names) {
             this.names = Optional.ofNullable(names).map(HashSet::new).orElse(null);
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> names(String... names) {
+        public RestFilter.Builder<I, K> names(String... names) {
             this.names = Optional.ofNullable(names).map(propertyList -> new HashSet<>(Arrays.asList(propertyList))).orElse(null);
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> contrasts(Collection<ContrastRule> contrasts) {
+        public RestFilter.Builder<I, K> contrasts(Collection<ContrastRule> contrasts) {
             this.contrasts = Optional.ofNullable(contrasts).map(HashSet::new).orElse(null);
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> contrasts(ContrastRule... contrasts) {
+        public RestFilter.Builder<I, K> contrasts(ContrastRule... contrasts) {
             this.contrasts = Optional.ofNullable(contrasts).map(contrastList -> new HashSet<>(Arrays.asList(contrastList))).orElse(null);
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> ranges(Collection<RangeRule> ranges) {
+        public RestFilter.Builder<I, K> ranges(Collection<RangeRule> ranges) {
             this.ranges = Optional.ofNullable(ranges).map(HashSet::new).orElse(null);
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> ranges(RangeRule... ranges) {
+        public RestFilter.Builder<I, K> ranges(RangeRule... ranges) {
             this.ranges = Optional.ofNullable(ranges).map(rangeList -> new HashSet<>(Arrays.asList(rangeList))).orElse(null);
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> equals(Collection<EqualRule> equals) {
+        public RestFilter.Builder<I, K> equals(Collection<EqualRule> equals) {
             this.equals = Optional.ofNullable(equals).map(HashSet::new).orElse(null);
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> equals(EqualRule... equals) {
+        public RestFilter.Builder<I, K> equals(EqualRule... equals) {
             this.equals = Optional.ofNullable(equals).map(equalList -> new HashSet<>(Arrays.asList(equalList))).orElse(null);
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> contains(Collection<ContainRule> contains) {
+        public RestFilter.Builder<I, K> contains(Collection<ContainRule> contains) {
             this.contains = Optional.ofNullable(contains).map(HashSet::new).orElse(null);
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> contains(ContainRule... contains) {
+        public RestFilter.Builder<I, K> contains(ContainRule... contains) {
             this.contains = Optional.ofNullable(contains).map(containList -> new HashSet<>(Arrays.asList(containList))).orElse(null);
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> startTime(D startTime) {
+        public RestFilter.Builder<I, K> startTime(Date startTime) {
             this.startTime = startTime;
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> endTime(D endTime) {
+        public RestFilter.Builder<I, K> endTime(Date endTime) {
             this.endTime = endTime;
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> ids(@NonNull Collection<I> ids) {
+        public RestFilter.Builder<I, K> ids(@NonNull Collection<I> ids) {
             this.ids = new HashSet<>(ids);
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> ids(@NonNull I... ids) {
+        public RestFilter.Builder<I, K> ids(@NonNull I... ids) {
             this.ids = new HashSet<>(Arrays.asList(ids));
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> tablekey(K tablekey) {
+        public RestFilter.Builder<I, K> tablekey(K tablekey) {
             this.tablekey = tablekey;
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> isRemove(boolean isRemove) {
+        public RestFilter.Builder<I, K> isRemove(boolean isRemove) {
             this.isRemove = isRemove;
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> operate(OperateType operate) {
+        public RestFilter.Builder<I, K> operate(OperateType operate) {
             this.operate = operate;
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> operate(Integer operate) {
+        public RestFilter.Builder<I, K> operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> operates(@NonNull Collection<OperateType> operates) {
+        public RestFilter.Builder<I, K> operates(@NonNull Collection<OperateType> operates) {
             this.operates = new HashSet<>(operates);
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> operates(@NonNull OperateType... operates) {
+        public RestFilter.Builder<I, K> operates(@NonNull OperateType... operates) {
             this.operates = new HashSet<>(Arrays.asList(operates));
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> operates(@NonNull Integer... operates) {
+        public RestFilter.Builder<I, K> operates(@NonNull Integer... operates) {
             this.operates = new HashSet<>(RestOperate.build(operates));
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> sorts(@NonNull Collection<RestSort> sorts) {
+        public RestFilter.Builder<I, K> sorts(@NonNull Collection<RestSort> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> sorts(@NonNull RestSort... sorts) {
+        public RestFilter.Builder<I, K> sorts(@NonNull RestSort... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> sorts(@NonNull String... sorts) {
+        public RestFilter.Builder<I, K> sorts(@NonNull String... sorts) {
             this.sorts = new HashSet<>(RestSort.build(sorts));
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> pageNum(Integer pageNum) {
+        public RestFilter.Builder<I, K> pageNum(Integer pageNum) {
             this.pageNum = pageNum;
             return this;
         }
 
         @Override
-        public RestFilter.Builder<D,I,K> pageSize(Integer pageSize) {
+        public RestFilter.Builder<I, K> pageSize(Integer pageSize) {
             this.pageSize = pageSize;
             return this;
         }

@@ -17,7 +17,7 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public abstract class RiceFilter extends RestFilter<Date,String,String>{
+public abstract class RiceFilter extends RestFilter<String,String>{
 
     private static ApplicationContext applicationContext;
 
@@ -80,7 +80,7 @@ public abstract class RiceFilter extends RestFilter<Date,String,String>{
         return this;
     }
 
-    public static abstract class Builder extends RestFilter.Builder<Date,String,String> {
+    public static abstract class Builder extends RestFilter.Builder<String,String> {
 
         public Builder() {
         }

@@ -9,7 +9,7 @@ import io.github.nichetoolkit.rice.service.advice.BuilderAdvice;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public abstract class RestIdService<D, K, I, M extends RestIdModel<M, E, I>, E extends RestIdEntity<E, M, I>, F extends RestFilter<D, I, K>> extends SuperService<K, I, M, E, F> implements BuilderAdvice<I, M, E> {
+public abstract class RestIdService<K, I, M extends RestIdModel<M, E, I>, E extends RestIdEntity<E, M, I>, F extends RestFilter<I, K>> extends SuperService<K, I, M, E, F> implements BuilderAdvice<I, M, E> {
 
     @Override
     protected E createEntity(M model) throws RestException {
