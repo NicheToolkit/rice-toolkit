@@ -15,12 +15,12 @@ public class TableIsNotExistException extends ServiceErrorException {
         super(TableErrorStatus.TABLE_IS_NOT_EXIST);
     }
 
-    public TableIsNotExistException(String tablename) {
-        super(tablename, TableErrorStatus.TABLE_IS_NOT_EXIST);
+    public TableIsNotExistException(String error) {
+        super( TableErrorStatus.TABLE_IS_NOT_EXIST,error);
     }
 
     public TableIsNotExistException(String tablename, String error) {
-        super(tablename, TableErrorStatus.TABLE_IS_NOT_EXIST, error);
+        super(TableErrorStatus.TABLE_IS_NOT_EXIST, tablename, error);
     }
 
     @Override

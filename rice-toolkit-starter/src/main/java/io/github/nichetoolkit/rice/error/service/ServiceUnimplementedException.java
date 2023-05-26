@@ -13,8 +13,12 @@ public class ServiceUnimplementedException extends ServiceErrorException {
         super(ServiceErrorStatus.SERVICE_UNIMPLEMENTED_ERROR);
     }
 
-    public ServiceUnimplementedException(String resource, String service) {
-        super(resource, service, ServiceErrorStatus.SERVICE_UNIMPLEMENTED_ERROR);
+    public ServiceUnimplementedException(String error) {
+        super(ServiceErrorStatus.SERVICE_UNIMPLEMENTED_ERROR,error);
+    }
+
+    public ServiceUnimplementedException(String resource, String error) {
+        super(ServiceErrorStatus.SERVICE_UNIMPLEMENTED_ERROR,resource, error);
     }
 
     public ServiceUnimplementedException(String resource, String service, String error) {

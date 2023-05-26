@@ -197,7 +197,7 @@ public class PropertyHelper {
             if (isLong(trim)) {
                 return Long.valueOf(trim);
             } else {
-                Date date = DateUtils.parseDateTime(trim);
+                Date date = DateUtils.parseTime(trim);
                 return Optional.ofNullable(date).map(Date::getTime).orElse(null);
             }
         }

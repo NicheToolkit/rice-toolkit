@@ -15,12 +15,12 @@ public class UserNoPermissionException extends TokenErrorException {
         super(UserErrorStatus.USER_NO_PERMISSION);
     }
 
-    public UserNoPermissionException(String permission) {
-        super(permission, UserErrorStatus.USER_NO_PERMISSION);
+    public UserNoPermissionException(String error) {
+        super(UserErrorStatus.USER_NO_PERMISSION,error);
     }
 
     public UserNoPermissionException(String permission, String error) {
-        super(permission, UserErrorStatus.USER_NO_PERMISSION, error);
+        super( UserErrorStatus.USER_NO_PERMISSION,permission, error);
     }
 
     @Override

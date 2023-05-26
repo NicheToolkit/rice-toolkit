@@ -13,8 +13,12 @@ public class ServiceUnknownException extends ServiceErrorException {
         super(ServiceErrorStatus.SERVICE_UNKNOWN_ERROR);
     }
 
-    public ServiceUnknownException(String resource, String service) {
-        super(resource, service, ServiceErrorStatus.SERVICE_UNKNOWN_ERROR);
+    public ServiceUnknownException(String error) {
+        super(ServiceErrorStatus.SERVICE_UNKNOWN_ERROR,error);
+    }
+
+    public ServiceUnknownException(String resource, String error) {
+        super(ServiceErrorStatus.SERVICE_UNKNOWN_ERROR,resource, error);
     }
 
     public ServiceUnknownException(String resource, String service, String error) {

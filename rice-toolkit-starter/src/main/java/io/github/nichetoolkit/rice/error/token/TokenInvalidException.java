@@ -19,7 +19,7 @@ public class TokenInvalidException extends TokenErrorException {
     }
 
     public TokenInvalidException(String token, String error) {
-        super(token, TokenErrorStatus.TOKEN_INVALID_ERROR, error);
+        super(TokenErrorStatus.TOKEN_INVALID_ERROR,token,  error);
     }
 
     @Override

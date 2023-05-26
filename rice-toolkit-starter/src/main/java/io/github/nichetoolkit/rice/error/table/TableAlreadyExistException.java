@@ -15,12 +15,12 @@ public class TableAlreadyExistException extends ServiceErrorException {
         super(TableErrorStatus.TABLE_ALREADY_EXIST);
     }
 
-    public TableAlreadyExistException(String tablename) {
-        super(tablename, TableErrorStatus.TABLE_ALREADY_EXIST);
+    public TableAlreadyExistException(String error) {
+        super(TableErrorStatus.TABLE_ALREADY_EXIST, error);
     }
 
     public TableAlreadyExistException(String tablename, String error) {
-        super(tablename, TableErrorStatus.TABLE_ALREADY_EXIST, error);
+        super(TableErrorStatus.TABLE_ALREADY_EXIST, tablename, error);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class ServiceUnsupportedException extends ServiceErrorException {
     }
 
     public ServiceUnsupportedException(String service, String error) {
-        super(service, ServiceErrorStatus.SERVICE_UNSUPPORTED_ERROR,error);
+        super( ServiceErrorStatus.SERVICE_UNSUPPORTED_ERROR,service,error);
     }
 
     public ServiceUnsupportedException(String resource, String service, String error) {

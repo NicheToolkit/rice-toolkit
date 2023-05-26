@@ -15,12 +15,12 @@ public class UserAccessException extends TokenErrorException {
         super(UserErrorStatus.USER_ACCESS_ERROR);
     }
 
-    public UserAccessException(String service) {
-        super(service, UserErrorStatus.USER_ACCESS_ERROR);
+    public UserAccessException(String error) {
+        super(UserErrorStatus.USER_ACCESS_ERROR, error);
     }
 
     public UserAccessException(String service, String error) {
-        super(service, UserErrorStatus.USER_ACCESS_ERROR, error);
+        super( UserErrorStatus.USER_ACCESS_ERROR,service, error);
     }
 
     @Override

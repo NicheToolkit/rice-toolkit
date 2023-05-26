@@ -19,7 +19,7 @@ public class TokenAccessException extends TokenErrorException {
     }
 
     public TokenAccessException(String service, String error) {
-        super(service, TokenErrorStatus.TOKEN_ACCESS_ERROR, error);
+        super(TokenErrorStatus.TOKEN_ACCESS_ERROR,service,  error);
     }
 
     @Override

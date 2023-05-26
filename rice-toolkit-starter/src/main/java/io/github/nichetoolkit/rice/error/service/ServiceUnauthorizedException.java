@@ -13,12 +13,16 @@ public class ServiceUnauthorizedException extends ServiceErrorException {
         super(ServiceErrorStatus.SERVICE_UNAUTHORIZED_ERROR);
     }
 
-    public ServiceUnauthorizedException(String resource, String service) {
-        super(resource, service, ServiceErrorStatus.SERVICE_UNAUTHORIZED_ERROR);
+    public ServiceUnauthorizedException(String error) {
+        super(ServiceErrorStatus.SERVICE_UNAUTHORIZED_ERROR,error);
+    }
+
+    public ServiceUnauthorizedException(String resource, String error) {
+        super(ServiceErrorStatus.SERVICE_UNAUTHORIZED_ERROR, resource, error);
     }
 
     public ServiceUnauthorizedException(String resource, String service, String error) {
-        super(resource, service, ServiceErrorStatus.SERVICE_UNAUTHORIZED_ERROR, error);
+        super(ServiceErrorStatus.SERVICE_UNAUTHORIZED_ERROR, resource, service, error);
     }
 
     @Override

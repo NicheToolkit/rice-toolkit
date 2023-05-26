@@ -15,12 +15,12 @@ public class TableUnknownException extends ServiceErrorException {
         super(TableErrorStatus.TABLE_UNKNOWN_ERROR);
     }
 
-    public TableUnknownException(String tablename) {
-        super(tablename, TableErrorStatus.TABLE_UNKNOWN_ERROR);
+    public TableUnknownException(String error) {
+        super(TableErrorStatus.TABLE_UNKNOWN_ERROR,error);
     }
 
     public TableUnknownException(String tablename, String error) {
-        super(tablename, TableErrorStatus.TABLE_UNKNOWN_ERROR, error);
+        super(TableErrorStatus.TABLE_UNKNOWN_ERROR, tablename,  error);
     }
 
     @Override

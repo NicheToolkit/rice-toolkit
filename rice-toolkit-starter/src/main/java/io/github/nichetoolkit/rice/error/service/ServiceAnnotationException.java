@@ -15,12 +15,12 @@ public class ServiceAnnotationException extends ServiceErrorException {
         super(ServiceErrorStatus.SERVICE_ANNOTATION_ERROR);
     }
 
-    public ServiceAnnotationException(String service) {
-        super(service, ServiceErrorStatus.SERVICE_ANNOTATION_ERROR);
+    public ServiceAnnotationException(String error) {
+        super(ServiceErrorStatus.SERVICE_ANNOTATION_ERROR, error);
     }
 
     public ServiceAnnotationException(String service, String error) {
-        super(service, ServiceErrorStatus.SERVICE_ANNOTATION_ERROR, error);
+        super(ServiceErrorStatus.SERVICE_ANNOTATION_ERROR, service, error);
     }
 
     @Override
