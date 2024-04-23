@@ -126,6 +126,12 @@
         <compiler-plugin.version>3.3</compiler-plugin.version>
         <release-plugin.version>2.5.3</release-plugin.version>
 
+        <pagehelper.version>1.4.6</pagehelper.version>
+        <mybatis-plus.version>3.5.2</mybatis-plus.version>
+        <mybatis-spring-starter.version>2.3.0</mybatis-spring-starter.version>
+        <persistence.version>1.0</persistence.version>
+        <tk-mybatis-mapper.version>4.1.5</tk-mybatis-mapper.version>
+        <tk-mybatis-starter.version>2.1.5</tk-mybatis-starter.version>
     </properties>
 
     <build>
