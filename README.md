@@ -18,7 +18,7 @@
 ## 依赖环境
  > [Spring Boot](https://spring.io/projects/spring-boot) 2.7.7.RELEASE\
  > [Maven](https://maven.apache.org/) 3.6.0+\
- > [JDK](https://www.oracle.com/java/technologies/downloads/#java8) 1.8\
+ > [JDK](https://www.oracle.com/java/technologies/downloads/#java8) 1.8
  
 ## rice-toolkit-core
  * Maven (`pom.xml`)
