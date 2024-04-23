@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.rice.filter;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
@@ -17,8 +19,10 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@SuppressWarnings({"WeakerAccess","MixedMutabilityReturnType"})
-public class JsonbFilter<D,I> extends TimeFilter<D,I> {
+@SuppressWarnings({"WeakerAccess", "unchecked", "MixedMutabilityReturnType"})
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class JsonbFilter<I, K> extends TimeFilter<I, K> {
     /**
      * 数值型对比运算集合
      */
@@ -48,7 +52,7 @@ public class JsonbFilter<D,I> extends TimeFilter<D,I> {
         super(ids);
     }
 
-    public JsonbFilter(JsonbFilter.Builder<D,I> builder) {
+    public JsonbFilter(JsonbFilter.Builder<I, K> builder) {
         super(builder);
         this.contrasts = builder.contrasts;
         this.ranges = builder.ranges;
@@ -184,17 +188,17 @@ public class JsonbFilter<D,I> extends TimeFilter<D,I> {
         this.equals = Optional.ofNullable(equals).map(HashSet::new).orElse(null);
     }
 
-    public JsonbFilter<D,I> toJsonbSql(@NonNull String alias) {
-        this.toJsonbSql(alias,"value");
+    public JsonbFilter<I, K> toJsonbSql(@NonNull String alias) {
+        this.toJsonbSql(alias, "value");
         return this;
     }
 
-    public JsonbFilter<D,I> toJsonbSql(@NonNull String alias, String variable) {
+    public JsonbFilter<I, K> toJsonbSql(@NonNull String alias, String variable) {
         SqlBuilder sqlBuilder = SqlBuilders.newSqlBuilder();
-        this.appendSql(alias,variable,getContrasts(),sqlBuilder);
-        this.appendSql(alias,variable,getRanges(),sqlBuilder);
-        this.appendSql(alias,variable,getContains(),sqlBuilder);
-        this.appendSql(alias,variable,getEquals(),sqlBuilder);
+        this.appendSql(alias, variable, getContrasts(), sqlBuilder);
+        this.appendSql(alias, variable, getRanges(), sqlBuilder);
+        this.appendSql(alias, variable, getContains(), sqlBuilder);
+        this.appendSql(alias, variable, getEquals(), sqlBuilder);
         SqlBuilders.append(this.SQL_BUILDER, sqlBuilder.toString());
         return this;
     }
@@ -202,7 +206,7 @@ public class JsonbFilter<D,I> extends TimeFilter<D,I> {
     public <R extends JsonbRule<R>> void appendSql(@NonNull String alias, String variable, List<R> rules, SqlBuilder sqlBuilder) {
         if (GeneralUtils.isNotEmpty(rules)) {
             rules.forEach(rule -> {
-                String sql = rule.toSql(alias,variable);
+                String sql = rule.toSql(alias, variable);
                 if (GeneralUtils.isNotEmpty(sql)) {
                     sqlBuilder.append(sql);
                 }
@@ -212,24 +216,24 @@ public class JsonbFilter<D,I> extends TimeFilter<D,I> {
 
 
     @Override
-    public JsonbFilter<D,I> toTimeSql(@NonNull String alias) {
+    public JsonbFilter<I, K> toTimeSql(@NonNull String alias) {
         super.toTimeSql(alias);
         return this;
     }
 
     @Override
-    public JsonbFilter<D,I> toIdSql(@NonNull String alias) {
+    public JsonbFilter<I, K> toIdSql(@NonNull String alias) {
         super.toIdSql(alias);
         return this;
     }
 
     @Override
-    public JsonbFilter<D,I> toOperateSql(@NonNull String alias) {
+    public JsonbFilter<I, K> toOperateSql(@NonNull String alias) {
         super.toOperateSql(alias);
         return this;
     }
 
-    public static class Builder<D,I> extends TimeFilter.Builder<D,I> {
+    public static class Builder<I, K> extends TimeFilter.Builder<I, K> {
         protected Set<ContrastRule> contrasts;
         protected Set<RangeRule> ranges;
         protected Set<EqualRule> equals;
@@ -238,115 +242,121 @@ public class JsonbFilter<D,I> extends TimeFilter<D,I> {
         public Builder() {
         }
 
-        public JsonbFilter.Builder<D,I> contrasts(Collection<ContrastRule> contrasts) {
+        public JsonbFilter.Builder<I, K> contrasts(Collection<ContrastRule> contrasts) {
             this.contrasts = Optional.ofNullable(contrasts).map(HashSet::new).orElse(null);
             return this;
         }
 
-        public JsonbFilter.Builder<D,I> contrasts(ContrastRule... contrasts) {
+        public JsonbFilter.Builder<I, K> contrasts(ContrastRule... contrasts) {
             this.contrasts = Optional.ofNullable(contrasts).map(contrastList -> new HashSet<>(Arrays.asList(contrastList))).orElse(null);
             return this;
         }
 
-        public JsonbFilter.Builder<D,I> ranges(Collection<RangeRule> ranges) {
+        public JsonbFilter.Builder<I, K> ranges(Collection<RangeRule> ranges) {
             this.ranges = Optional.ofNullable(ranges).map(HashSet::new).orElse(null);
             return this;
         }
 
-        public JsonbFilter.Builder<D,I> ranges(RangeRule... ranges) {
+        public JsonbFilter.Builder<I, K> ranges(RangeRule... ranges) {
             this.ranges = Optional.ofNullable(ranges).map(rangeList -> new HashSet<>(Arrays.asList(rangeList))).orElse(null);
             return this;
         }
 
-        public JsonbFilter.Builder<D,I> equals(Collection<EqualRule> equals) {
+        public JsonbFilter.Builder<I, K> equals(Collection<EqualRule> equals) {
             this.equals = Optional.ofNullable(equals).map(HashSet::new).orElse(null);
             return this;
         }
 
-        public JsonbFilter.Builder<D,I> equals(EqualRule... equals) {
+        public JsonbFilter.Builder<I, K> equals(EqualRule... equals) {
             this.equals = Optional.ofNullable(equals).map(equalList -> new HashSet<>(Arrays.asList(equalList))).orElse(null);
             return this;
         }
 
-        public JsonbFilter.Builder<D,I> contains(Collection<ContainRule> contains) {
+        public JsonbFilter.Builder<I, K> contains(Collection<ContainRule> contains) {
             this.contains = Optional.ofNullable(contains).map(HashSet::new).orElse(null);
             return this;
         }
 
-        public JsonbFilter.Builder<D,I> contains(ContainRule... contains) {
+        public JsonbFilter.Builder<I, K> contains(ContainRule... contains) {
             this.contains = Optional.ofNullable(contains).map(containList -> new HashSet<>(Arrays.asList(containList))).orElse(null);
             return this;
         }
 
         @Override
-        public JsonbFilter.Builder<D,I> startTime(D startTime) {
+        public JsonbFilter.Builder<I, K> startTime(Date startTime) {
             this.startTime = startTime;
             return this;
         }
 
         @Override
-        public JsonbFilter.Builder<D,I> endTime(D endTime) {
+        public JsonbFilter.Builder<I, K> endTime(Date endTime) {
             this.endTime = endTime;
             return this;
         }
 
         @Override
-        public JsonbFilter.Builder<D,I> ids(@NonNull Collection<I> ids) {
+        public JsonbFilter.Builder<I, K> ids(@NonNull Collection<I> ids) {
             this.ids = new HashSet<>(ids);
             return this;
         }
 
         @Override
         @SuppressWarnings(value = "unchecked")
-        public JsonbFilter.Builder<D,I> ids(@NonNull I... ids) {
+        public JsonbFilter.Builder<I, K> ids(@NonNull I... ids) {
             this.ids = new HashSet<>(Arrays.asList(ids));
             return this;
         }
 
         @Override
-        public JsonbFilter.Builder<D,I> isRemove(boolean isRemove) {
+        public JsonbFilter.Builder tablekey(K tablekey) {
+            this.tablekey = tablekey;
+            return this;
+        }
+
+        @Override
+        public JsonbFilter.Builder<I, K> isRemove(boolean isRemove) {
             this.isRemove = isRemove;
             return this;
         }
 
         @Override
-        public JsonbFilter.Builder<D,I> operate(OperateType operate) {
+        public JsonbFilter.Builder<I, K> operate(OperateType operate) {
             this.operate = operate;
             return this;
         }
 
         @Override
-        public JsonbFilter.Builder<D,I> operate(Integer operate) {
+        public JsonbFilter.Builder<I, K> operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
             return this;
         }
 
         @Override
-        public JsonbFilter.Builder<D,I> operates(@NonNull Collection<OperateType> operates) {
+        public JsonbFilter.Builder<I, K> operates(@NonNull Collection<OperateType> operates) {
             this.operates = new HashSet<>(operates);
             return this;
         }
 
         @Override
-        public JsonbFilter.Builder<D,I> operates(@NonNull OperateType... operates) {
+        public JsonbFilter.Builder<I, K> operates(@NonNull OperateType... operates) {
             this.operates = new HashSet<>(Arrays.asList(operates));
             return this;
         }
 
         @Override
-        public JsonbFilter.Builder<D,I> operates(@NonNull Integer... operates) {
+        public JsonbFilter.Builder<I, K> operates(@NonNull Integer... operates) {
             this.operates = new HashSet<>(RestOperate.build(operates));
             return this;
         }
 
         @Override
-        public JsonbFilter.Builder<D,I> sorts(@NonNull Collection<RestSort> sorts) {
+        public JsonbFilter.Builder<I, K> sorts(@NonNull Collection<RestSort> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
         }
 
         @Override
-        public JsonbFilter.Builder<D,I> sorts(@NonNull RestSort... sorts) {
+        public JsonbFilter.Builder<I, K> sorts(@NonNull RestSort... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
             return this;
         }
@@ -358,19 +368,19 @@ public class JsonbFilter<D,I> extends TimeFilter<D,I> {
         }
 
         @Override
-        public JsonbFilter.Builder<D,I> pageNum(Integer pageNum) {
+        public JsonbFilter.Builder<I, K> pageNum(Integer pageNum) {
             this.pageNum = pageNum;
             return this;
         }
 
         @Override
-        public JsonbFilter.Builder<D,I> pageSize(Integer pageSize) {
+        public JsonbFilter.Builder<I, K> pageSize(Integer pageSize) {
             this.pageSize = pageSize;
             return this;
         }
 
         @Override
-        public JsonbFilter<D,I> build() {
+        public JsonbFilter<I, K> build() {
             return new JsonbFilter<>(this);
         }
     }

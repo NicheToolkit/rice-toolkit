@@ -13,6 +13,18 @@
   ],
   "properties": [
     {
+      "name": "nichetoolkit.rice.bean.model.unique-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "model unique enabled."
+    },
+    {
+      "name": "nichetoolkit.rice.bean.model.dynamic-table-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "model dynamic table enabled."
+    },
+    {
       "name": "nichetoolkit.rice.bean.name.unique-enabled",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
@@ -29,6 +41,33 @@
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
       "description": "invade key enabled."
+    },
+    {
+      "name": "nichetoolkit.rice.bean.key.exist-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "exist key enabled."
+    },
+    {
+      "name": "nichetoolkit.rice.bean.partition.query-size",
+      "type": "java.lang.Integer",
+      "sourceType": "java.lang.Integer",
+      "description": "the maximum number of query segments is default 2000.",
+      "defaultValue": "2000"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.partition.save-size",
+      "type": "java.lang.Integer",
+      "sourceType": "java.lang.Integer",
+      "description": "the maximum number of save segments is default 500.",
+      "defaultValue": "500"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.partition.delete-size",
+      "type": "java.lang.Integer",
+      "sourceType": "java.lang.Integer",
+      "description": "the maximum number of delete segments is default 1000.",
+      "defaultValue": "1000"
     },
     {
       "name": "nichetoolkit.rice.bean.delete.delete-model",
@@ -180,52 +219,6 @@
         {
           "value": true,
           "description": "rice invade enabled open."
-        }
-      ]
-    },
-    {
-      "name": "nichetoolkit.rice.bean.delete.delete-model",
-      "values": [
-        {
-          "value": "NONE",
-          "description": "rice bean delete delete model NONE."
-        },
-        {
-          "value": "REMOVE",
-          "description": "rice bean delete delete model REMOVE."
-        },
-        {
-          "value": "DELETE",
-          "description": "rice bean delete delete model DELETE."
-        },
-        {
-          "value": "OPERATE",
-          "description": "rice bean delete delete model OPERATE."
-        }
-      ]
-    },
-    {
-      "name": "nichetoolkit.rice.bean.delete.remove-model",
-      "values": [
-        {
-          "value": "BOOLEAN",
-          "description": "rice bean delete remove model BOOLEAN."
-        },
-        {
-          "value": "NUMBER",
-          "description": "rice bean delete remove model NUMBER."
-        },
-        {
-          "value": "DATETIME",
-          "description": "rice bean delete remove model DATETIME."
-        },
-        {
-          "value": "IDENTITY",
-          "description": "rice bean delete remove model IDENTITY."
-        },
-        {
-          "value": "BACKUP",
-          "description": "rice bean delete remove model BACKUP."
         }
       ]
     }

@@ -3,11 +3,14 @@ package io.github.nichetoolkit.rice.helper;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
+import io.github.nichetoolkit.rice.stereotype.mybatis.table.RestEntity;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -28,8 +31,8 @@ public class InterceptorHelper {
 
     public static <A extends Annotation> A annotation(Class<A> annotationType, HandlerMethod handlerMethod) throws RestException {
         Class<?> beanType = handlerMethod.getBeanType();
-        A beanAnnotation = beanType.getAnnotation(annotationType);
-        A methodAnnotation = handlerMethod.getMethodAnnotation(annotationType);
+        A beanAnnotation = AnnotationUtils.getAnnotation(beanType, annotationType);
+        A methodAnnotation = AnnotationUtils.getAnnotation(handlerMethod.getMethod(), annotationType);
         A annotation;
         if (GeneralUtils.isNotEmpty(methodAnnotation)) {
             annotation = methodAnnotation;
@@ -51,6 +54,9 @@ public class InterceptorHelper {
     }
 
     public static List<String> getHeaderToken(HttpServletRequest request, List<String> headerTokens, boolean removePrefix) {
+        if (GeneralUtils.isEmpty(LOGIN_PROPERTIES)) {
+            return Collections.emptyList();
+        }
         List<String> tokenPrefixes = LOGIN_PROPERTIES.getTokenPrefixes();
         List<String> tokenList = new ArrayList<>(2);
         for (String tokenName : headerTokens) {
@@ -76,9 +82,12 @@ public class InterceptorHelper {
     }
 
     public static List<String> getHeaderToken(HttpServletRequest request, boolean removePrefix) {
+        if (GeneralUtils.isEmpty(LOGIN_PROPERTIES)) {
+            return Collections.emptyList();
+        }
         List<String> headerTokens = LOGIN_PROPERTIES.getHeaderTokens();
         if (headerTokens.isEmpty()) {
-            return new ArrayList<>(0);
+            return Collections.emptyList();
         }
         return getHeaderToken(request, headerTokens,removePrefix);
     }

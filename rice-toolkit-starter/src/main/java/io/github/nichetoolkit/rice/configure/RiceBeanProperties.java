@@ -14,6 +14,12 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "nichetoolkit.rice.bean")
 public class RiceBeanProperties {
+    public static final Integer MAX_PARTITION_SIZE = 2000;
+    public static final Integer MIN_PARTITION_SIZE = 0;
+    public static final Integer QUERY_SIZE = 2000;
+    public static final Integer SAVE_SIZE = 500;
+    public static final Integer DELETE_SIZE = 1000;
+
     @NestedConfigurationProperty
     private BeanModel model = new BeanModel();
     @NestedConfigurationProperty
@@ -21,13 +27,90 @@ public class RiceBeanProperties {
     @NestedConfigurationProperty
     private BeanName name = new BeanName();
     /** 数据分段 */
-    private Integer partition = 500;
+    @NestedConfigurationProperty
+    private BeanPartition partition = new BeanPartition();
     /** 数据删除模式 */
     @NestedConfigurationProperty
     private DeleteModel delete = new DeleteModel();
 
     public RiceBeanProperties() {
     }
+
+    public static class BeanPartition {
+        /** the maximum number of query segments is default 2000 */
+        private Integer querySize = QUERY_SIZE;
+        /** the maximum number of save segments is default 500 */
+        private Integer saveSize = SAVE_SIZE;
+        /** the maximum number of delete segments is default 1000 */
+        private Integer deleteSize = DELETE_SIZE;
+
+        public BeanPartition() {
+        }
+
+        public Integer getQuerySize() {
+            return querySize;
+        }
+
+        public void setQuerySize(Integer querySize) {
+            this.querySize = querySize;
+        }
+
+        public Integer getSaveSize() {
+            return saveSize;
+        }
+
+        public void setSaveSize(Integer saveSize) {
+            this.saveSize = saveSize;
+        }
+
+        public Integer getDeleteSize() {
+            return deleteSize;
+        }
+
+        public void setDeleteSize(Integer deleteSize) {
+            this.deleteSize = deleteSize;
+        }
+    }
+
+    public BeanPartition getPartition() {
+        return partition;
+    }
+
+    public void setPartition(BeanPartition partition) {
+        this.partition = partition;
+    }
+
+    public Integer getPartitionQuery() {
+        if (this.partition.querySize > MAX_PARTITION_SIZE) {
+            return QUERY_SIZE;
+        }
+        if (this.partition.querySize <= MIN_PARTITION_SIZE) {
+            return QUERY_SIZE;
+        }
+        return this.partition.querySize;
+    }
+
+
+    public Integer getPartitionSave() {
+        if (this.partition.saveSize > MAX_PARTITION_SIZE) {
+            return SAVE_SIZE;
+        }
+        if (this.partition.saveSize <= MIN_PARTITION_SIZE) {
+            return SAVE_SIZE;
+        }
+        return this.partition.saveSize;
+    }
+
+    public Integer getPartitionDelete() {
+        if (this.partition.deleteSize > MAX_PARTITION_SIZE) {
+            return DELETE_SIZE;
+        }
+        if (this.partition.deleteSize <= MIN_PARTITION_SIZE) {
+            return DELETE_SIZE;
+        }
+        return this.partition.deleteSize;
+    }
+
 
     public BeanModel getModel() {
         return model;
@@ -61,22 +144,9 @@ public class RiceBeanProperties {
         this.delete = delete;
     }
 
-    public Integer getPartition() {
-        if (this.partition > 1000) {
-            return 1000;
-        }
-        if (this.partition <= 0) {
-            return 0;
-        }
-        return this.partition;
-    }
-
-    public void setPartition(Integer partition) {
-        this.partition = partition;
-    }
-
-    public static class BeanModel{
+    public static class BeanModel {
         private Boolean uniqueEnabled = false;
+        private Boolean dynamicTableEnabled = false;
 
         public BeanModel() {
         }
@@ -88,10 +158,19 @@ public class RiceBeanProperties {
         public void setUniqueEnabled(Boolean uniqueEnabled) {
             this.uniqueEnabled = uniqueEnabled;
         }
+
+        public Boolean getDynamicTableEnabled() {
+            return dynamicTableEnabled;
+        }
+
+        public void setDynamicTableEnabled(Boolean dynamicTableEnabled) {
+            this.dynamicTableEnabled = dynamicTableEnabled;
+        }
     }
 
     public static class BeanKey {
         private Boolean invadeEnabled = false;
+        private Boolean existEnabled = true;
 
         public BeanKey() {
         }
@@ -103,10 +182,18 @@ public class RiceBeanProperties {
         public void setInvadeEnabled(Boolean invadeEnabled) {
             this.invadeEnabled = invadeEnabled;
         }
+
+        public Boolean getExistEnabled() {
+            return existEnabled;
+        }
+
+        public void setExistEnabled(Boolean existEnabled) {
+            this.existEnabled = existEnabled;
+        }
     }
 
 
-    public static class BeanName{
+    public static class BeanName {
         private Boolean uniqueEnabled = true;
         private Boolean nonnullEnabled = true;
 
@@ -237,6 +324,10 @@ public class RiceBeanProperties {
         return this.getKey().getInvadeEnabled();
     }
 
+    public Boolean isIdExist() {
+        return this.getKey().getExistEnabled();
+    }
+
     public Boolean isNameNonnull() {
         return this.getName().getNonnullEnabled();
     }
@@ -247,6 +338,10 @@ public class RiceBeanProperties {
 
     public Boolean isModelUnique() {
         return this.getModel().getUniqueEnabled();
+    }
+
+    public Boolean isDynamicTable() {
+        return this.getModel().getDynamicTableEnabled();
     }
 
     public Boolean isBeforeSkip() {
@@ -286,11 +381,11 @@ public class RiceBeanProperties {
     }
 
     public String removeSign() {
-        return RemoveType.sign(removeModel(),booleanSign(),numberSign());
+        return RemoveType.sign(removeModel(), booleanSign(), numberSign());
     }
 
     public String removeValue() {
-        return RemoveType.value(removeModel(),booleanValue(),numberValue());
+        return RemoveType.value(removeModel(), booleanValue(), numberValue());
     }
 
 }

@@ -1,6 +1,8 @@
 package io.github.nichetoolkit.rice;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.SaveType;
 
 import java.io.Serializable;
@@ -11,12 +13,15 @@ import java.io.Serializable;
  * @version v1.0.0
  */
 @SuppressWarnings("WeakerAccess")
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SaveModel implements RestSave, Serializable {
 
     @JsonIgnore
     protected SaveType save = SaveType.NONE;
 
     /** 逻辑删除标记 */
+    @JsonIgnore
     protected String logicSign;
 
     public SaveModel() {
@@ -73,6 +78,7 @@ public class SaveModel implements RestSave, Serializable {
     public boolean isSaveLower(SaveType saveType) {
         return this.save.getKey() < saveType.getKey();
     }
+
     public String getLogicSign() {
         return logicSign;
     }

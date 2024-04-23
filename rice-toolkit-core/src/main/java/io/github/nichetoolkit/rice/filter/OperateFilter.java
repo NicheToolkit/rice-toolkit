@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.rice.filter;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
@@ -13,11 +15,13 @@ import java.util.*;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@SuppressWarnings({"WeakerAccess","MixedMutabilityReturnType"})
+@SuppressWarnings({"WeakerAccess", "MixedMutabilityReturnType"})
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OperateFilter extends SortFilter {
     /** 是否逻辑删除 */
     protected boolean isRemove;
-    
+
     protected OperateType operate;
 
     protected Set<OperateType> operates;
@@ -150,6 +154,6 @@ public class OperateFilter extends SortFilter {
             return new OperateFilter(this);
         }
     }
-    
-    
+
+
 }

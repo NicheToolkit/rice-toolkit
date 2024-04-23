@@ -13,8 +13,12 @@ public class ServiceUncaughtException extends ServiceErrorException {
         super(ServiceErrorStatus.SERVICE_UNCAUGHT_ERROR);
     }
 
-    public ServiceUncaughtException(String resource, String service) {
-        super(resource, service, ServiceErrorStatus.SERVICE_UNCAUGHT_ERROR);
+    public ServiceUncaughtException(String error) {
+        super(ServiceErrorStatus.SERVICE_UNCAUGHT_ERROR,error);
+    }
+
+    public ServiceUncaughtException(String resource, String error) {
+        super(ServiceErrorStatus.SERVICE_UNCAUGHT_ERROR,resource, error);
     }
 
     public ServiceUncaughtException(String resource, String service, String error) {

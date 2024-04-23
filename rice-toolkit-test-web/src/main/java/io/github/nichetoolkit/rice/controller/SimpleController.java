@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.controller;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestResult;
+import io.github.nichetoolkit.rest.userlog.stereotype.RestNotelog;
 import io.github.nichetoolkit.rice.RestPage;
 import io.github.nichetoolkit.rice.service.SimpleService;
 import io.github.nichetoolkit.rice.simple.SimpleFilter;
@@ -18,12 +19,20 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestSkip
 @CrossOrigin
+@RestNotelog
 @RestController
 @RequestMapping("/rice/simple")
 public class SimpleController {
 
     @Autowired
     private SimpleService simpleService;
+
+    @GetMapping("/error")
+    public ResponseEntity<RestResult> error() throws RestException {
+        Object test = null;
+        test.toString();
+        return RestResult.ok();
+    }
 
     @PostMapping("/create")
     public ResponseEntity<RestResult<SimpleModel>> create(@RequestBody SimpleModel simpleModel) throws RestException {

@@ -13,7 +13,6 @@ import java.util.Optional;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@SuppressWarnings("WeakerAccess")
 public enum RangeOperation implements RestField {
     /** 大于等于且小于等于 */
     GREATER_EQUAL_LESS_EQUAL_OPERATION(1, "大于等于且小于等于","(target >= start and target <= end)"),

@@ -7,6 +7,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestMap;
 import io.github.nichetoolkit.rice.interceptor.advice.RiceLoginAdvice;
 import io.github.nichetoolkit.rice.resolver.RiceMapArgumentResolver;
+import io.github.nichetoolkit.rice.stereotype.RestCheck;
 import io.github.nichetoolkit.rice.stereotype.login.RestAuth;
 import io.github.nichetoolkit.rice.stereotype.login.RestLogin;
 import io.github.nichetoolkit.rice.stereotype.login.RestLogout;
@@ -14,6 +15,7 @@ import io.github.nichetoolkit.rice.stereotype.login.RestPending;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.ServerHttpRequest;
@@ -72,22 +74,22 @@ public class RiceResponseInterceptor implements ResponseBodyAdvice {
             restMap = new RestMap();
         }
         /** 登出接口注解 */
-        RestLogout restLogout = returnType.getMethodAnnotation(RestLogout.class);
+        RestLogout restLogout = AnnotationUtils.getAnnotation(returnType.getAnnotatedElement(), RestLogout.class);
         if (GeneralUtils.isEmpty(restLogout) && GeneralUtils.isNotEmpty(requestWrapper)) {
             restLogout = requestWrapper.getMethodAnnotation(RestLogout.class);
         }
         /** 登录接口注解 */
-        RestLogin restLogin = returnType.getMethodAnnotation(RestLogin.class);
+        RestLogin restLogin = AnnotationUtils.getAnnotation(returnType.getAnnotatedElement(), RestLogin.class);
         if (GeneralUtils.isEmpty(restLogin) && GeneralUtils.isNotEmpty(requestWrapper)) {
             restLogin = requestWrapper.getMethodAnnotation(RestLogin.class);
         }
         /** 预登录接口注解 */
-        RestPending restPending = returnType.getMethodAnnotation(RestPending.class);
+        RestPending restPending = AnnotationUtils.getAnnotation(returnType.getAnnotatedElement(), RestPending.class);
         if (GeneralUtils.isEmpty(restPending) && GeneralUtils.isNotEmpty(requestWrapper)) {
             restPending = requestWrapper.getMethodAnnotation(RestPending.class);
         }
         /** 授权码接口注解 */
-        RestAuth restAuth = returnType.getMethodAnnotation(RestAuth.class);
+        RestAuth restAuth = AnnotationUtils.getAnnotation(returnType.getAnnotatedElement(), RestAuth.class);
         if (GeneralUtils.isEmpty(restAuth) && GeneralUtils.isNotEmpty(requestWrapper)) {
             restAuth = requestWrapper.getMethodAnnotation(RestAuth.class);
         }

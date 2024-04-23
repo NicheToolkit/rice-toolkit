@@ -1,6 +1,9 @@
 package io.github.nichetoolkit.rice;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestUniqueKey;
 import org.springframework.lang.NonNull;
 
 import java.util.Date;
@@ -10,8 +13,11 @@ import java.util.Date;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
     /** 事物名称 */
+    @RestUniqueKey
     protected String name;
     /** 事物描述 */
     protected String description;
@@ -98,6 +104,12 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
         @Override
         public InfoEntity.Builder<I> operate(@NonNull OperateType operate) {
             this.operate = operate.getKey();
+            return this;
+        }
+
+        @Override
+        public InfoEntity.Builder<I> logicSign(String logicSign) {
+            this.logicSign = logicSign;
             return this;
         }
 

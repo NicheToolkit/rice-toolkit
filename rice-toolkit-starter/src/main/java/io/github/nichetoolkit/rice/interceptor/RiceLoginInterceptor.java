@@ -12,6 +12,7 @@ import io.github.nichetoolkit.rice.interceptor.advice.RiceLoginAdvice;
 import io.github.nichetoolkit.rice.stereotype.RestCheck;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -48,7 +49,7 @@ public class RiceLoginInterceptor implements RiceRequestInterceptor {
 
     @Override
     public void afterHandle(HttpServletRequest request, HttpServletResponse response,HandlerMethod handlerMethod) throws RestException {
-        RestCheck restCheck = handlerMethod.getMethodAnnotation(RestCheck.class);
+        RestCheck restCheck = AnnotationUtils.getAnnotation(handlerMethod.getMethod(), RestCheck.class);
         RestRequestWrapper requestWrapper = RestRequestHelper.getRestRequestWrapper(request);
         /** 校验token前缀 */
         checkTokePrefix(restCheck, requestWrapper);
@@ -64,6 +65,8 @@ public class RiceLoginInterceptor implements RiceRequestInterceptor {
                     isAllow = true;
                 }
             }
+        } else {
+            isAllow = true;
         }
         if (!isAllow) {
             throw new ServiceUnauthorizedException();

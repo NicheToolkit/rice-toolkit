@@ -19,7 +19,7 @@ public class TokenPrefixInvalidException extends TokenErrorException {
     }
 
     public TokenPrefixInvalidException(String prefix, String error) {
-        super(prefix, TokenErrorStatus.TOKEN_PREFIX_INVALID, error);
+        super(TokenErrorStatus.TOKEN_PREFIX_INVALID,prefix,  error);
     }
 
     @Override

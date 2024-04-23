@@ -88,7 +88,7 @@ public class RiceRequest extends RestRequest<RiceRequest> {
 
     public Set<String> toFilterIds() {
         if (GeneralUtils.isNotEmpty(this.body)) {
-            IdFilter<String> idFilter = JsonUtils.parseBean(this.body, new TypeReference<IdFilter<String>>() {});
+            IdFilter<String,String> idFilter = JsonUtils.parseBean(this.body, new TypeReference<IdFilter<String,String>>() {});
             if (GeneralUtils.isNotEmpty(idFilter) && GeneralUtils.isNotEmpty(idFilter.toIds())) {
                 return new HashSet<>(idFilter.toIds());
             }

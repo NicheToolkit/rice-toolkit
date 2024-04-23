@@ -18,7 +18,7 @@ public class LoginInfoException extends LoginErrorException {
     }
 
     public LoginInfoException(String service, String error) {
-        super(service, LoginErrorStatus.LOGIN_INFO_ERROR, error);
+        super( LoginErrorStatus.LOGIN_INFO_ERROR,service, error);
     }
 
     @Override

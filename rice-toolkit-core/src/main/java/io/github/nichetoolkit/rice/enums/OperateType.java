@@ -47,12 +47,12 @@ public enum OperateType implements RestValue<Integer,String> {
 
     @JsonCreator
     public static OperateType parseKey(Integer key) {
-        OperateType sortTypeEnum = RestValue.parseKey(OperateType.class, key);
-        return Optional.ofNullable(sortTypeEnum).orElse(OperateType.NONE);
+        OperateType typeEnum = RestValue.parseKey(OperateType.class, key);
+        return Optional.ofNullable(typeEnum).orElse(OperateType.NONE);
     }
 
     public static OperateType parseValue(String value) {
-        OperateType sortTypeEnum = RestValue.parseValue(OperateType.class, value);
-        return Optional.ofNullable(sortTypeEnum).orElse(OperateType.NONE);
+        OperateType typeEnum = RestValue.parseValue(OperateType.class, value);
+        return Optional.ofNullable(typeEnum).orElse(OperateType.NONE);
     }
 }

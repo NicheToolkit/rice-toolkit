@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.rice;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.enums.SaveType;
@@ -13,6 +15,8 @@ import java.util.Date;
  * @version v1.0.0
  */
 @SuppressWarnings("WeakerAccess")
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
     /** 名称 */
     protected String name;
@@ -126,6 +130,7 @@ public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
             this.save = save;
             return this;
         }
+
         @Override
         public InfoModel.Builder<I> save(Integer save) {
             this.save = SaveType.parseKey(save);

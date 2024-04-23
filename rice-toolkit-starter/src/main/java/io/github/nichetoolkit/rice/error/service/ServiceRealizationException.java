@@ -14,12 +14,12 @@ public class ServiceRealizationException extends ServiceErrorException {
         super(ServiceErrorStatus.SERVICE_REALIZATION_ERROR);
     }
 
-    public ServiceRealizationException(String service) {
-        super(service, ServiceErrorStatus.SERVICE_REALIZATION_ERROR);
+    public ServiceRealizationException(String error) {
+        super(ServiceErrorStatus.SERVICE_REALIZATION_ERROR, error);
     }
 
     public ServiceRealizationException(String service, String error) {
-        super(service, ServiceErrorStatus.SERVICE_REALIZATION_ERROR, error);
+        super(ServiceErrorStatus.SERVICE_REALIZATION_ERROR, service, error);
     }
 
     @Override

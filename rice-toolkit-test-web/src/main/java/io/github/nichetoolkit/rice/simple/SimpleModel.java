@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.simple;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.github.nichetoolkit.rice.RestTablekey;
 import io.github.nichetoolkit.rice.RiceInfoModel;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.enums.SaveType;
@@ -8,14 +9,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
 import java.util.Date;
-import java.util.Optional;
 
 /**
  * <p>SimpleModel</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-public class SimpleModel extends RiceInfoModel<SimpleModel,SimpleEntity> {
+public class SimpleModel extends RiceInfoModel<SimpleModel,SimpleEntity> implements RestTablekey {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date time;
@@ -46,8 +46,12 @@ public class SimpleModel extends RiceInfoModel<SimpleModel,SimpleEntity> {
         entity.setId(this.getId());
         entity.setName(this.getName());
         entity.setDescription(this.getDescription());
-        entity.setTime(Optional.ofNullable(this.getTime()).map(Date::getTime).orElse(null));
         return entity;
+    }
+
+    @Override
+    public String getTablekey() {
+        return "_dynamic";
     }
 
     public static class Builder extends RiceInfoModel.Builder {

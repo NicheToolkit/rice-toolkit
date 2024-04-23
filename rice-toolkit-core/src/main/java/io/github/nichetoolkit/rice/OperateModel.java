@@ -1,6 +1,8 @@
 package io.github.nichetoolkit.rice;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.enums.SaveType;
 
@@ -12,6 +14,8 @@ import java.io.Serializable;
  * @version v1.0.0
  */
 @SuppressWarnings("WeakerAccess")
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OperateModel extends SaveModel implements RestOperate{
 
     protected OperateType operate;

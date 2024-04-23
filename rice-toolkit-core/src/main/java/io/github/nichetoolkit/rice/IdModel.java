@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.rice;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.enums.SaveType;
@@ -14,6 +16,8 @@ import java.util.Objects;
  * @version v1.0.0
  */
 @SuppressWarnings("WeakerAccess")
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class IdModel<I> extends TimeModel implements RestId<I>{
     protected I id;
 
@@ -91,8 +95,6 @@ public class IdModel<I> extends TimeModel implements RestId<I>{
             this.updateTime = new Date(updateTime);
             return this;
         }
-
-
 
         @Override
         public IdModel.Builder<I> operate(OperateType operate) {

@@ -8,6 +8,7 @@ import io.github.nichetoolkit.rice.InfoEntity;
 import io.github.nichetoolkit.rice.InfoModel;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.mapper.InfoMapper;
+import org.checkerframework.checker.units.qual.K;
 import org.springframework.lang.NonNull;
 
 import java.util.List;
@@ -18,9 +19,9 @@ import java.util.List;
  * @version v1.0.0
  */
 @SuppressWarnings("RedundantThrows")
-public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity<I>, F extends IdFilter<I>> extends SuperService<I,M,E,F> {
+public abstract class InfoService<K, I, M extends InfoModel<I>, E extends InfoEntity<I>, F extends IdFilter<I, K>> extends SuperService<K, I, M, E, F> {
 
-    protected InfoMapper<E,I> consumerMapper;
+    protected InfoMapper<E, I> consumerMapper;
 
     @Override
     protected void optionalName(@NonNull M model) throws RestException {
@@ -36,23 +37,23 @@ public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity
     @SuppressWarnings(value = "unchecked")
     @Override
     public void doServiceHandle() {
-        this.createActuator = (@NonNull M model) -> {
+        this.createActuator = (K tablekey, @NonNull M model) -> {
             if (isModelUnique()) {
-                Boolean existByModel = existByModel(model);
-                fieldRepeat(existByModel,model);
+                Boolean existByModel = existByModel(tablekey, model);
+                fieldRepeat(existByModel, model);
             } else if (isNameUnique()) {
-                Boolean existByName = existByName(model.getName());
+                Boolean existByName = existByName(tablekey, model);
                 OptionalHelper.nameRepeat(existByName, model.getName());
             }
 
         };
-        this.updateActuator = (@NonNull M model) -> {
+        this.updateActuator = (K tablekey, @NonNull M model) -> {
             if (isModelUnique()) {
-                Boolean existByModel = existByModelAndNotId(model,model.getId());
-                fieldRepeat(existByModel,model);
+                Boolean existByModel = existByModelAndNotId(tablekey, model, model.getId());
+                fieldRepeat(existByModel, model);
             } else if (isNameUnique()) {
-                Boolean existByName = existByNameAndNotId(model.getName(),model.getId());
-                OptionalHelper.nameRepeat(existByName,model.getName());
+                Boolean existByName = existByNameAndNotId(tablekey, model, model.getId());
+                OptionalHelper.nameRepeat(existByName, model.getName());
             }
         };
         if (super.superMapper instanceof InfoMapper) {
@@ -60,44 +61,68 @@ public abstract class InfoService<I,M extends InfoModel<I>, E extends InfoEntity
         }
     }
 
-    protected Boolean existByName(String name) throws RestException {
-        if (GeneralUtils.isEmpty(name)) {
+    protected Boolean existByName(K tablekey, M model) throws RestException {
+        if (GeneralUtils.isEmpty(model.getName())) {
             return false;
         }
-        List<E> entityList = consumerMapper.findByName(name);
+        String tablename = tablename(tablekey, model);
+        List<E> entityList;
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            entityList = consumerMapper.findDynamicByName(tablename, model.getName(), removeValue());
+        } else {
+            entityList = consumerMapper.findByName(model.getName(), removeValue());
+        }
         return GeneralUtils.isNotEmpty(entityList);
     }
 
 
-    protected Boolean existByNameAndNotId(String name, I id) throws RestException {
-        if (GeneralUtils.isEmpty(name)) {
+    protected Boolean existByNameAndNotId(K tablekey, M model, I id) throws RestException {
+        if (GeneralUtils.isEmpty(model.getName())) {
             return false;
         }
         if (GeneralUtils.isEmpty(id)) {
-            return existByName(name);
+            return existByName(tablekey, model);
         }
-        List<E> entityList = consumerMapper.findByNameAndNotId(name, id);
+        String tablename = tablename(tablekey, model);
+        List<E> entityList;
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            entityList = consumerMapper.findDynamicByNameAndNotId(tablename, model.getName(), id, removeValue());
+        } else {
+            entityList = consumerMapper.findByNameAndNotId(model.getName(), id, removeValue());
+        }
         return GeneralUtils.isNotEmpty(entityList);
     }
 
-    protected Boolean existByModel(M model) throws RestException {
+    protected Boolean existByModel(K tablekey, M model) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return false;
         }
         E entity = this.createEntity(model);
-        List<E> entityList = consumerMapper.findByEntity(entity);
+        String tablename = tablename(tablekey, model);
+        List<E> entityList;
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            entityList = consumerMapper.findDynamicByEntity(tablename, entity, removeValue());
+        } else {
+            entityList = consumerMapper.findByEntity(entity, removeValue());
+        }
         return GeneralUtils.isNotEmpty(entityList);
     }
 
-    protected Boolean existByModelAndNotId(M model, I id) throws RestException {
+    protected Boolean existByModelAndNotId(K tablekey, M model, I id) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return false;
         }
         if (GeneralUtils.isEmpty(id)) {
-            return existByModel(model);
+            return existByModel(tablekey, model);
         }
         E entity = this.createEntity(model);
-        List<E> entityList = consumerMapper.findByEntityAndNotId(entity, id);
+        String tablename = tablename(tablekey, model);
+        List<E> entityList;
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            entityList = consumerMapper.findDynamicByEntityAndNotId(tablename, entity, id, removeValue());
+        } else {
+            entityList = consumerMapper.findByEntityAndNotId(entity, id, removeValue());
+        }
         return GeneralUtils.isNotEmpty(entityList);
     }
 }

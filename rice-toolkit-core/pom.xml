@@ -5,11 +5,11 @@
     <parent>
         <groupId>io.github.nichetoolkit</groupId>
         <artifactId>rice-toolkit-parent</artifactId>
-        <version>1.0.4</version>
+        <version>1.0.5</version>
     </parent>
 
     <artifactId>rice-toolkit-core</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <name>rice-toolkit-core</name>
     <packaging>jar</packaging>
     <description>Rice toolkit core project for Spring Boot</description>
@@ -27,6 +27,11 @@
             <url>https://github.com/NicheToolkit/rice-toolkit/blob/master/LICENSE</url>
         </license>
     </licenses>
+
+    <organization>
+        <name>NicheToolkit</name>
+        <url>https://github.com/NicheToolkit</url>
+    </organization>
 
     <developers>
         <developer>
@@ -75,7 +80,7 @@
         <dependency>
             <groupId>io.github.nichetoolkit</groupId>
             <artifactId>rest-toolkit-starter</artifactId>
-            <version>${rest-toolkit.version}</version>
+            <version>1.0.6-SNAPSHOT</version>
         </dependency>
 
         <dependency>

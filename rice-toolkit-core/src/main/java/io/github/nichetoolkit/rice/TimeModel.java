@@ -1,6 +1,8 @@
 package io.github.nichetoolkit.rice;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
@@ -12,6 +14,8 @@ import java.util.Date;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeModel extends OperateModel {
     /** 数据创建时间 */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

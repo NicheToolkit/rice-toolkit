@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.rice;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.enums.SortType;
 
@@ -13,6 +15,8 @@ import java.util.stream.Collectors;
  * @version v1.0.0
  */
 @SuppressWarnings("WeakerAccess")
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RestSort<S extends RestSort<S>> implements Serializable {
     protected String name;
     protected SortType type = SortType.DESC;
@@ -65,7 +69,10 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
 
     @Override
     public String toString() {
-        return name.concat(" ").concat(type.getKey());
+        if (this.type != SortType.NONE) {
+            return name.concat(" ").concat(type.getKey());
+        }
+        return "";
     }
 
     public static List<RestSort> build(String... sorts) {

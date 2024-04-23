@@ -1,5 +1,6 @@
 package io.github.nichetoolkit.rice.jsonb;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 
@@ -12,7 +13,8 @@ import java.util.Objects;
  * @version v1.0.0
  */
 @Builder
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Property implements Serializable {
     public static final String VALUE = "value";
 

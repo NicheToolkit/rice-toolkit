@@ -1,6 +1,8 @@
 package io.github.nichetoolkit.rice.filter;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
@@ -18,6 +20,8 @@ import java.util.List;
  * @version v1.0.0
  */
 @SuppressWarnings("WeakerAccess")
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PageFilter implements Serializable {
     @JsonIgnore
     public static final String PAGE_REGEX = "_";
@@ -50,8 +54,12 @@ public class PageFilter implements Serializable {
     }
 
     public void setPageNum(Integer pageNum) {
-        if (pageNum > 0) {
+        if (pageNum == null) {
+            this.pageNum = 1;
+        } else if (pageNum > 0) {
             this.pageNum = pageNum;
+        } else {
+            this.pageNum = 1;
         }
     }
 
@@ -121,6 +129,7 @@ public class PageFilter implements Serializable {
     public static class Builder {
         protected Integer pageNum;
         protected Integer pageSize;
+
         public Builder() {
         }
 

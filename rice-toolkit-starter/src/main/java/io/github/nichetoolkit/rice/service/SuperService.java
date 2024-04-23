@@ -3,15 +3,19 @@ package io.github.nichetoolkit.rice.service;
 import com.github.pagehelper.Page;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestKey;
+import io.github.nichetoolkit.rest.actuator.AnchorActuator;
+import io.github.nichetoolkit.rest.actuator.BiConsumerActuator;
 import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
-import io.github.nichetoolkit.rest.actuator.FunctionActuator;
 import io.github.nichetoolkit.rest.error.data.DataQueryException;
+import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
 import io.github.nichetoolkit.rest.helper.OptionalHelper;
+import io.github.nichetoolkit.rest.helper.PartitionHelper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.IdEntity;
 import io.github.nichetoolkit.rice.IdModel;
 import io.github.nichetoolkit.rice.RestPage;
+import io.github.nichetoolkit.rice.RestTablekey;
 import io.github.nichetoolkit.rice.clazz.ClazzHelper;
 import io.github.nichetoolkit.rice.configure.RiceBeanProperties;
 import io.github.nichetoolkit.rice.enums.DeleteType;
@@ -20,10 +24,10 @@ import io.github.nichetoolkit.rice.enums.RemoveType;
 import io.github.nichetoolkit.rice.enums.SaveType;
 import io.github.nichetoolkit.rice.error.service.ServiceUnknownException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
+import io.github.nichetoolkit.rice.filter.PageFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
 import io.github.nichetoolkit.rice.mapper.*;
 import io.github.nichetoolkit.rice.service.advice.*;
-import io.github.nichetoolkit.rice.service.extend.OperateLinkService;
 import io.github.nichetoolkit.rice.service.stereotype.RestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -35,10 +39,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Method;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * <p>SuperService</p>
@@ -47,15 +48,15 @@ import java.util.List;
  */
 @SuppressWarnings("RedundantThrows")
 @Slf4j
-public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I>, F extends IdFilter<I>>
-        implements InitializingBean, ApplicationContextAware, OptionalService<I, M>, ServiceAdvice<I, F>,
+public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntity<I>, F extends IdFilter<I, K>>
+        implements InitializingBean, ApplicationContextAware, OptionalService<K, I, M, F>, FilterAdvice<K, I, F>,
         SaveAdvice<I, M>, AlertAdvice<I>, OperateAdvice<I, E>, DeleteAdvice<I, E>, RemoveAdvice<I, E> {
 
     private static ApplicationContext applicationContext;
 
-    protected ConsumerActuator<M> createActuator;
+    protected BiConsumerActuator<K, M> createActuator;
 
-    protected ConsumerActuator<M> updateActuator;
+    protected BiConsumerActuator<K, M> updateActuator;
 
     protected SuperMapper<E, I> superMapper;
 
@@ -63,7 +64,9 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
 
     protected RiceBeanProperties beanProperties;
 
-    protected ThreadLocal<F> filterCache = new ThreadLocal<>();
+    private ThreadLocal<F> queryFilterCache = new ThreadLocal<>();
+
+    private ThreadLocal<Map<K, String>> tablenameMapCache = new ThreadLocal<>();
 
     @Override
     public void setApplicationContext(@NonNull ApplicationContext applicationContext) throws BeansException {
@@ -118,8 +121,9 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     }
 
     @SuppressWarnings(value = "unchecked")
-    protected E entityActuator(M model, I... idArray) throws RestException {
+    protected E entityActuator(M model, Object... idArray) throws RestException {
         E entity = this.createEntity(model);
+        entity.setLogicSign(model.getLogicSign());
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
             builderAdvice.buildEntity(model, entity, idArray);
@@ -128,19 +132,20 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     }
 
     @SuppressWarnings(value = "unchecked")
-    protected List<E> entityActuator(Collection<M> modelList, ConsumerActuator<M> actuator, I... idArray) throws RestException {
+    protected List<E> entityActuator(Collection<M> modelList, ConsumerActuator<M> actuator, Object... idArray) throws RestException {
         List<E> entityList;
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice builderAdvice = (BuilderAdvice) this;
-            Method findMethod = null;
+            Method entityListFindMethod = null;
             try {
-                findMethod = builderAdvice.getClass().getMethod("buildEntityList", Collection.class, List.class, Boolean[].class);
+                entityListFindMethod = builderAdvice.getClass().getMethod("buildEntityList", Collection.class, List.class, Object[].class);
             } catch (NoSuchMethodException ignored) {
             }
-            Method buildEntityListMethod = findMethod;
-            /* 当buildEntity和buildEntityList都被复写的时候 优先调用buildEntityList */
+            Method buildEntityListMethod = entityListFindMethod;
+            /** 当buildEntity和buildEntityList都被复写的时候 优先调用buildEntityList */
             entityList = MEBuilderHelper.entityList(modelList, actuator, (M model) -> {
                 E entity = createEntity(model);
+                entity.setLogicSign(model.getLogicSign());
                 if (buildEntityListMethod == null || buildEntityListMethod.isDefault()) {
                     builderAdvice.buildEntity(model, entity, idArray);
                 }
@@ -200,20 +205,39 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     protected void refresh() throws RestException {
     }
 
-    public M create(M model) throws RestException {
-        return create(model, (I[]) null);
+    protected F queryFilter() throws RestException {
+        return this.queryFilterCache.get();
+    }
+
+    protected Map<K, String> tablenames() throws RestException {
+        return this.tablenameMapCache.get();
     }
 
     @SuppressWarnings(value = "unchecked")
+    private Integer single(K tablekey, M model, Object... idArray) throws RestException {
+        E entity = entityActuator(model, idArray);
+        String tablename = tablename(tablekey, model);
+        Integer result;
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            result = superMapper.saveDynamic(tablename, entity);
+        } else {
+            result = superMapper.save(entity);
+        }
+        return result;
+    }
+
+    public M create(M model, Object... idArray) throws RestException {
+        return create(null, model, idArray);
+    }
+
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public M create(M model, I... idArray) throws RestException {
+    public M create(K tablekey, M model, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return null;
         }
-        optionalCreate(model);
+        optionalCreate(tablekey, model);
         this.beforeCreate(model);
-        E entity = entityActuator(model, idArray);
-        Integer result = superMapper.save(entity);
+        Integer result = single(tablekey, model, idArray);
         String message = "creating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
         OptionalHelper.create(result, message, simpleName);
         this.afterCreate(model);
@@ -221,20 +245,18 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         return model;
     }
 
-    public M update(M model) throws RestException {
-        return update(model, (I[]) null);
+    public M update(M model, Object... idArray) throws RestException {
+        return update(null, model, idArray);
     }
 
-    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public M update(M model, I... idArray) throws RestException {
+    public M update(K tablekey, M model, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return null;
         }
-        optionalUpdate(model);
+        optionalUpdate(tablekey, model);
         this.beforeUpdate(model);
-        E entity = entityActuator(model, idArray);
-        Integer result = superMapper.save(entity);
+        Integer result = single(tablekey, model, idArray);
         String message = "updating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
         OptionalHelper.update(result, message, simpleName);
         this.afterUpdate(model);
@@ -242,20 +264,18 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         return model;
     }
 
-    public M save(M model) throws RestException {
-        return save(model, (I[]) null);
+    public M save(M model, Object... idArray) throws RestException {
+        return save(null, model, idArray);
     }
 
-    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public M save(M model, I... idArray) throws RestException {
+    public M save(K tablekey, M model, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return null;
         }
-        optionalSave(model);
+        optionalSave(tablekey, model);
         this.beforeSave(model);
-        E entity = entityActuator(model, idArray);
-        Integer result = superMapper.save(entity);
+        Integer result = single(tablekey, model, idArray);
         String message = "saving method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
         OptionalHelper.save(result, message, simpleName);
         this.afterSave(model);
@@ -264,12 +284,15 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     }
 
     public List<M> saveAll(Collection<M> modelList) throws RestException {
-        return saveAll(modelList, (I[]) null);
+        return saveAll(modelList, (Object[]) null);
     }
 
-    @SuppressWarnings(value = "unchecked")
+    public List<M> saveAll(Collection<M> modelList, Object... idArray) throws RestException {
+        return saveAll(null, modelList, idArray);
+    }
+
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public List<M> saveAll(Collection<M> modelList, I... idArray) throws RestException {
+    public List<M> saveAll(K tablekey, Collection<M> modelList, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(modelList)) {
             return Collections.emptyList();
         }
@@ -281,18 +304,25 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         List<E> entityList;
         if (beforeSaveAllMethod != null && !beforeSaveAllMethod.isDefault()) {
             for (M model : modelList) {
-                optionalSave(model);
+                optionalSave(tablekey, model);
             }
             this.beforeSaveAll(modelList);
             entityList = entityActuator(modelList, model -> {
             }, idArray);
         } else {
             entityList = entityActuator(modelList, model -> {
-                this.optionalSave(model);
+                this.optionalSave(tablekey, model);
                 this.beforeSave(model);
             }, idArray);
         }
-        Boolean comparer = modelList.size() == superMapper.saveAll(entityList);
+        String tablename = tablename(tablekey, modelList);
+        Integer result;
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            result = PartitionHelper.save(entityList, this.savePartition(), entities -> superMapper.saveDynamicAll(tablename, entities));
+        } else {
+            result = PartitionHelper.save(entityList, this.savePartition(), superMapper::saveAll);
+        }
+        Boolean comparer = modelList.size() == result;
         String message = "saveAll method has error with " + simpleName + ": " + JsonUtils.parseJson(modelList);
         OptionalHelper.saveAll(comparer, message, simpleName);
         this.afterSaveAll(modelList);
@@ -300,22 +330,45 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         return new ArrayList<>(modelList);
     }
 
+    public void operateById(I id, OperateType operate) throws RestException {
+        operateById(null, id, operate);
+    }
+
+    private E findById(I id, String tablename) throws RestException {
+        E entity;
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            entity = superMapper.findDynamicById(tablename, id);
+        } else {
+            entity = superMapper.findById(id);
+        }
+        return entity;
+    }
+
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void operateById(I id, OperateType operate) throws RestException {
+    public void operateById(K tablekey, I id, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(operate)) {
             return;
         }
         if (superMapper instanceof OperateMapper) {
+            String tablename = tablename(tablekey);
             if (DeleteType.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
-                ((OperateMapper<I>) superMapper).operateById(id, operate.getKey());
+                if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                    ((OperateMapper<I>) superMapper).operateDynamicById(tablename, id, operate.getKey());
+                } else {
+                    ((OperateMapper<I>) superMapper).operateById(id, operate.getKey());
+                }
             } else {
-                E entity = superMapper.findById(id);
+                E entity = findById(id, tablename);
                 if (GeneralUtils.isNotEmpty(entity)) {
                     if (DeleteType.OPERATE == deleteModel() && !isBeforeSkip()) {
                         this.beforeOperate(entity);
                     }
-                    ((OperateMapper<I>) superMapper).operateById(id, operate.getKey());
+                    if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                        ((OperateMapper<I>) superMapper).operateDynamicById(tablename, id, operate.getKey());
+                    } else {
+                        ((OperateMapper<I>) superMapper).operateById(id, operate.getKey());
+                    }
                     if (DeleteType.OPERATE == deleteModel() && !isAfterSkip()) {
                         this.afterOperate(entity);
                     }
@@ -325,156 +378,288 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
     }
 
-    @SuppressWarnings(value = "unchecked")
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void operateAll(Collection<I> idList, OperateType operate) throws RestException {
+        operateAll(null, idList, operate);
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    private void operatePartition(String tablename, Collection<I> idList, OperateType operate) throws RestException {
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            PartitionHelper.partition(idList, this.deletePartition(), ids -> {
+                ((OperateMapper<I>) superMapper).operateDynamicAll(tablename, ids, operate.getKey());
+            });
+        } else {
+            PartitionHelper.partition(idList, this.deletePartition(), ids -> {
+                ((OperateMapper<I>) superMapper).operateAll(ids, operate.getKey());
+            });
+        }
+    }
+
+    private void operateAdvice(List<E> entityList, OperateType operate, ConsumerActuator<OperateType> operateActuator) throws RestException {
+        if (DeleteType.OPERATE == deleteModel() && !isBeforeSkip()) {
+            this.beforeOperateAll(entityList);
+        }
+        operateActuator.actuate(operate);
+        if (DeleteType.OPERATE == deleteModel() && !isAfterSkip()) {
+            this.afterOperateAll(entityList);
+        }
+        this.refresh();
+    }
+
+    private List<E> findAll(Collection<I> idList, String tablename) throws RestException {
+        List<E> entityList;
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            entityList = PartitionHelper.query(idList, this.queryPartition(), ids -> superMapper.findDynamicAll(tablename, ids));
+        } else {
+            entityList = PartitionHelper.query(idList, this.queryPartition(), superMapper::findAll);
+        }
+        return entityList;
+    }
+
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void operateAll(K tablekey, Collection<I> idList, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
         if (superMapper instanceof OperateMapper) {
+            String tablename = tablename(tablekey);
             if (DeleteType.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
-                ((OperateMapper<I>) superMapper).operateAll(idList, operate.getKey());
+                operatePartition(tablename, idList, operate);
             } else {
-                List<E> entityList = superMapper.findAll(idList);
+                List<E> entityList = findAll(idList, tablename);
                 if (GeneralUtils.isNotEmpty(entityList)) {
-                    if (DeleteType.OPERATE == deleteModel() && !isBeforeSkip()) {
-                        this.beforeOperateAll(entityList);
-                    }
-                    ((OperateMapper<I>) superMapper).operateAll(idList, operate.getKey());
-                    if (DeleteType.OPERATE == deleteModel() && !isAfterSkip()) {
-                        this.afterOperateAll(entityList);
-                    }
-                    this.refresh();
+                    operateAdvice(entityList, operate, type -> operatePartition(tablename, idList, type));
                 }
             }
         }
     }
 
+    public void operateByLinkId(I linkId, OperateType operate) throws RestException {
+        operateByLinkId(null, linkId, operate);
+    }
+
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void operateByLinkId(I linkId, OperateType operate) throws RestException {
+    public void operateByLinkId(K tablekey, I linkId, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
             return;
         }
         if (superMapper instanceof OperateLinkMapper) {
-            ((OperateLinkMapper<I>) superMapper).operateByLinkId(linkId, operate.getKey());
+            String tablename = tablename(tablekey);
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                ((OperateLinkMapper<I>) superMapper).operateByLinkId(linkId, operate.getKey());
+            } else {
+                ((OperateLinkMapper<I>) superMapper).operateByLinkId(linkId, operate.getKey());
+            }
             this.refresh();
         }
     }
 
+    public void operateAllByLinkIds(Collection<I> linkIdList, OperateType operate) throws RestException {
+        operateAllByLinkIds(null, linkIdList, operate);
+    }
+
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void operateAllByLinkIds(Collection<I> linkIdList, OperateType operate) throws RestException {
+    public void operateAllByLinkIds(K tablekey, Collection<I> linkIdList, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
             return;
         }
         if (superMapper instanceof OperateLinkMapper) {
-            ((OperateLinkMapper<I>) superMapper).operateAllByLinkIds(linkIdList, operate.getKey());
+            String tablename = tablename(tablekey);
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                PartitionHelper.partition(linkIdList, this.deletePartition(), linkIds -> {
+                    ((OperateLinkMapper<I>) superMapper).operateDynamicAllByLinkIds(tablename, linkIds, operate.getKey());
+                });
+            } else {
+                PartitionHelper.partition(linkIdList, this.deletePartition(), linkIds -> {
+                    ((OperateLinkMapper<I>) superMapper).operateAllByLinkIds(linkIds, operate.getKey());
+                });
+            }
             this.refresh();
         }
     }
 
-    @SuppressWarnings(value = "unchecked")
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void alertById(I id, RestKey<Integer> keyType) throws RestException {
+        alertById(null, id, keyType);
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void alertById(K tablekey, I id, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(keyType)) {
             return;
         }
         if (superMapper instanceof AlertMapper) {
+            String tablename = tablename(tablekey);
             this.beforeAlert(id);
-            ((AlertMapper<I>) superMapper).alertById(id, keyType.getKey());
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                ((AlertMapper<I>) superMapper).alertDynamicById(tablename, id, keyType.getKey());
+            } else {
+                ((AlertMapper<I>) superMapper).alertById(id, keyType.getKey());
+            }
             this.afterAlert(id);
             this.refresh();
         }
     }
 
-    @SuppressWarnings(value = "unchecked")
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void alertAll(Collection<I> idList, RestKey<Integer> keyType) throws RestException {
+        alertAll(null, idList, keyType);
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void alertAll(K tablekey, Collection<I> idList, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
         if (superMapper instanceof AlertMapper) {
+            String tablename = tablename(tablekey);
             this.beforeAlertAll(idList);
-            ((AlertMapper<I>) superMapper).alertAll(idList, keyType.getKey());
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                PartitionHelper.partition(idList, this.deletePartition(), ids -> {
+                    ((AlertMapper<I>) superMapper).alertDynamicAll(tablename, ids, keyType.getKey());
+                });
+            } else {
+                PartitionHelper.partition(idList, this.deletePartition(), ids -> {
+                    ((AlertMapper<I>) superMapper).alertAll(ids, keyType.getKey());
+                });
+            }
             this.afterAlertAll(idList);
             this.refresh();
         }
     }
 
+    public void alertFieldById(I id, String field, RestKey<Integer> keyType) throws RestException {
+        alertFieldById(null, id, field, keyType);
+    }
+
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertById(I id, String field, RestKey<Integer> keyType) throws RestException {
+    public void alertFieldById(K tablekey, I id, String field, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(keyType)) {
             return;
         }
         if (superMapper instanceof AlertFieldMapper) {
+            String tablename = tablename(tablekey);
             this.beforeAlert(id);
-            ((AlertFieldMapper<I>) superMapper).alertById(id, field, keyType.getKey());
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                ((AlertFieldMapper<I>) superMapper).alertDynamicFieldById(tablename, id, field, keyType.getKey());
+            } else {
+                ((AlertFieldMapper<I>) superMapper).alertFieldById(id, field, keyType.getKey());
+            }
             this.afterAlert(id);
             this.refresh();
         }
     }
 
+    public void alertFieldAll(Collection<I> idList, String field, RestKey<Integer> keyType) throws RestException {
+        alertFieldAll(null, idList, field, keyType);
+    }
+
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertAll(Collection<I> idList, String field, RestKey<Integer> keyType) throws RestException {
+    public void alertFieldAll(K tablekey, Collection<I> idList, String field, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
         if (superMapper instanceof AlertFieldMapper) {
+            String tablename = tablename(tablekey);
             this.beforeAlertAll(idList);
-            ((AlertFieldMapper<I>) superMapper).alertAll(idList, field, keyType.getKey());
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                PartitionHelper.partition(idList, this.deletePartition(), ids -> {
+                    ((AlertFieldMapper<I>) superMapper).alertDynamicFieldAll(tablename, ids, field, keyType.getKey());
+                });
+            } else {
+                PartitionHelper.partition(idList, this.deletePartition(), ids -> {
+                    ((AlertFieldMapper<I>) superMapper).alertFieldAll(ids, field, keyType.getKey());
+                });
+            }
             this.afterAlertAll(idList);
             this.refresh();
         }
     }
 
+    public void alertBiFieldById(I id, String field, String biField, RestKey<Integer> keyType) throws RestException {
+        alertBiFieldById(null, id, field, biField, keyType);
+    }
+
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertById(I id, String field, String biField, RestKey<Integer> keyType) throws RestException {
+    public void alertBiFieldById(K tablekey, I id, String field, String biField, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(keyType)) {
             return;
         }
         if (superMapper instanceof AlertBiFieldMapper) {
+            String tablename = tablename(tablekey);
             this.beforeAlert(id);
-            ((AlertBiFieldMapper<I>) superMapper).alertById(id, field, biField, keyType.getKey());
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                ((AlertBiFieldMapper<I>) superMapper).alertDynamicBiFieldById(tablename, id, field, biField, keyType.getKey());
+            } else {
+                ((AlertBiFieldMapper<I>) superMapper).alertBiFieldById(id, field, biField, keyType.getKey());
+            }
             this.afterAlert(id);
             this.refresh();
         }
     }
 
+    public void alertBiFieldAll(Collection<I> idList, String field, String biField, RestKey<Integer> keyType) throws RestException {
+        alertBiFieldAll(null, idList, field, biField, keyType);
+    }
+
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertAll(Collection<I> idList, String field, String biField, RestKey<Integer> keyType) throws RestException {
+    public void alertBiFieldAll(K tablekey, Collection<I> idList, String field, String biField, RestKey<Integer> keyType) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
         if (superMapper instanceof AlertBiFieldMapper) {
+            String tablename = tablename(tablekey);
             this.beforeAlertAll(idList);
-            ((AlertBiFieldMapper<I>) superMapper).alertAll(idList, field, biField, keyType.getKey());
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                PartitionHelper.partition(idList, this.deletePartition(), ids -> {
+                    ((AlertBiFieldMapper<I>) superMapper).alertDynamicBiFieldAll(tablename, ids, field, biField, keyType.getKey());
+                });
+            } else {
+                PartitionHelper.partition(idList, this.deletePartition(), ids -> {
+                    ((AlertBiFieldMapper<I>) superMapper).alertBiFieldAll(ids, field, biField, keyType.getKey());
+                });
+            }
             this.afterAlertAll(idList);
             this.refresh();
         }
     }
 
-    @SuppressWarnings(value = "unchecked")
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void removeById(I id) throws RestException {
+        removeById(null, id);
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void removeById(K tablekey, I id) throws RestException {
         if (GeneralUtils.isEmpty(id)) {
             return;
         }
         String removeSign = removeSign();
         if (superMapper instanceof RemoveMapper) {
+            String tablename = tablename(tablekey);
             if (DeleteType.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
-                ((RemoveMapper) superMapper).removeById(id, removeSign);
+                if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                    ((RemoveMapper) superMapper).removeDynamicById(tablename, id, removeSign);
+                } else {
+                    ((RemoveMapper) superMapper).removeById(id, removeSign);
+                }
             } else {
-                E entity = superMapper.findById(id);
+                E entity = findById(id, tablename);
                 if (GeneralUtils.isNotEmpty(entity)) {
                     if (DeleteType.REMOVE == deleteModel() && !isBeforeSkip()) {
                         this.beforeRemove(entity);
                     }
-                    ((RemoveMapper<I>) superMapper).removeById(id, removeSign);
+                    if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                        ((RemoveMapper<I>) superMapper).removeDynamicById(tablename, id, removeSign);
+                    } else {
+                        ((RemoveMapper<I>) superMapper).removeById(id, removeSign);
+                    }
                     if (DeleteType.REMOVE == deleteModel() && !isAfterSkip()) {
                         this.afterRemove(entity);
                     }
@@ -484,79 +669,136 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         }
     }
 
-    @SuppressWarnings(value = "unchecked")
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void removeAll(Collection<I> idList) throws RestException {
+        removeAll(null, idList);
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    private void removePartition(String tablename, Collection<I> idList, String removeSign) throws RestException {
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            PartitionHelper.delete(idList, this.deletePartition(), ids -> {
+                ((RemoveMapper<I>) superMapper).removeDynamicAll(tablename, ids, removeSign);
+            });
+        } else {
+            PartitionHelper.delete(idList, this.deletePartition(), ids -> {
+                ((RemoveMapper<I>) superMapper).removeAll(ids, removeSign);
+            });
+        }
+    }
+
+    private void removeAdvice(List<E> entityList, String removeSign, ConsumerActuator<String> removeActuator) throws RestException {
+        if (DeleteType.REMOVE == deleteModel() && !isBeforeSkip()) {
+            this.beforeRemoveAll(entityList);
+        }
+        removeActuator.actuate(removeSign);
+        if (DeleteType.REMOVE == deleteModel() && !isAfterSkip()) {
+            this.afterRemoveAll(entityList);
+        }
+        this.refresh();
+    }
+
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void removeAll(K tablekey, Collection<I> idList) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
         String removeSign = removeSign();
         if (superMapper instanceof RemoveMapper) {
+            String tablename = tablename(tablekey);
             if (DeleteType.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
-                ((RemoveMapper<I>) superMapper).removeAll(idList, removeSign);
+                removePartition(tablename, idList, removeSign);
             } else {
-                List<E> entityList = superMapper.findAll(idList);
+                List<E> entityList = findAll(idList, tablename);
                 if (GeneralUtils.isNotEmpty(entityList)) {
-                    if (DeleteType.REMOVE == deleteModel() && !isBeforeSkip()) {
-                        this.beforeRemoveAll(entityList);
-                    }
-                    ((RemoveMapper<I>) superMapper).removeAll(idList, removeSign);
-                    if (DeleteType.REMOVE == deleteModel() && !isAfterSkip()) {
-                        this.afterRemoveAll(entityList);
-                    }
-                    this.refresh();
+                    removeAdvice(entityList, removeSign, sign -> removePartition(tablename, idList, sign));
                 }
             }
         }
     }
 
+    public void removeByLinkId(I linkId) throws RestException {
+        removeByLinkId(null, linkId);
+    }
+
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void removeByLinkId(I linkId) throws RestException {
+    public void removeByLinkId(K tablekey, I linkId) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
             return;
         }
         String removeSign = removeSign();
         if (superMapper instanceof RemoveLinkMapper) {
-            ((RemoveLinkMapper<I>) superMapper).removeByLinkId(linkId, removeSign);
+            String tablename = tablename(tablekey);
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                ((RemoveLinkMapper<I>) superMapper).removeDynamicByLinkId(tablename, linkId, removeSign);
+            } else {
+                ((RemoveLinkMapper<I>) superMapper).removeByLinkId(linkId, removeSign);
+            }
             this.refresh();
         }
     }
 
+    public void removeAllByLinkIds(Collection<I> linkIdList) throws RestException {
+        removeAllByLinkIds(null, linkIdList);
+    }
+
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void removeAllByLinkIds(Collection<I> linkIdList) throws RestException {
+    public void removeAllByLinkIds(K tablekey, Collection<I> linkIdList) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
             return;
         }
         String removeSign = removeSign();
         if (superMapper instanceof RemoveLinkMapper) {
-            ((RemoveLinkMapper<I>) superMapper).removeAllByLinkIds(linkIdList, removeSign);
+            String tablename = tablename(tablekey);
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                PartitionHelper.partition(linkIdList, this.deletePartition(), linkIds -> {
+                    ((RemoveLinkMapper<I>) superMapper).removeDynamicAllByLinkIds(tablename, linkIds, removeSign);
+                });
+            } else {
+                PartitionHelper.partition(linkIdList, this.deletePartition(), linkIds -> {
+                    ((RemoveLinkMapper<I>) superMapper).removeAllByLinkIds(linkIds, removeSign);
+                });
+            }
             this.refresh();
         }
     }
 
     @Override
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void deleteById(I id) throws RestException {
+        deleteById(null, id);
+    }
+
+    @Override
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void deleteById(K tablekey, I id) throws RestException {
         if (GeneralUtils.isEmpty(id)) {
             return;
         }
         DeleteType deleteModel = deleteModel();
         if (deleteModel == DeleteType.REMOVE) {
-            removeById(id);
+            removeById(tablekey, id);
         } else if (deleteModel == DeleteType.OPERATE) {
-            operateById(id, OperateType.REMOVE);
+            operateById(tablekey, id, OperateType.REMOVE);
         } else {
+            String tablename = tablename(tablekey);
             if (DeleteType.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
-                superMapper.deleteById(id);
+                if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                    superMapper.deleteDynamicById(tablename, id);
+                } else {
+                    superMapper.deleteById(id);
+                }
             } else {
-                E entity = superMapper.findById(id);
+                E entity = findById(id, tablename);
                 if (GeneralUtils.isNotEmpty(entity)) {
                     if (DeleteType.DELETE == deleteModel() && !isBeforeSkip()) {
                         this.beforeDelete(entity);
                     }
-                    superMapper.deleteById(id);
+                    if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                        superMapper.deleteDynamicById(tablename, id);
+                    } else {
+                        superMapper.deleteById(id);
+                    }
                     if (DeleteType.DELETE == deleteModel() && !isAfterSkip()) {
                         this.afterDelete(entity);
                     }
@@ -567,66 +809,123 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     }
 
     @Override
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void deleteAll(Collection<I> idList) throws RestException {
+        deleteAll(null, idList);
+    }
+
+    private void deletePartition(String tablename, Collection<I> idList) throws RestException {
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            PartitionHelper.delete(idList, this.deletePartition(), ids -> superMapper.deleteDynamicAll(tablename, ids));
+        } else {
+            PartitionHelper.delete(idList, this.deletePartition(), ids -> superMapper.deleteAll(ids));
+        }
+    }
+
+    private void deleteAdvice(List<E> entityList, AnchorActuator deleteActuator) throws RestException {
+        if (DeleteType.DELETE == deleteModel() && !isBeforeSkip()) {
+            this.beforeDeleteAll(entityList);
+        }
+        deleteActuator.actuate();
+        if (DeleteType.DELETE == deleteModel() && !isAfterSkip()) {
+            this.afterDeleteAll(entityList);
+        }
+        this.refresh();
+    }
+
+    @Override
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void deleteAll(K tablekey, Collection<I> idList) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
         DeleteType deleteModel = deleteModel();
         if (deleteModel == DeleteType.REMOVE) {
-            removeAll(idList);
+            removeAll(tablekey, idList);
         } else if (deleteModel == DeleteType.OPERATE) {
-            operateAll(idList, OperateType.REMOVE);
+            operateAll(tablekey, idList, OperateType.REMOVE);
         } else {
+            String tablename = tablename(tablekey);
             if (DeleteType.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
-                superMapper.deleteAll(idList);
+                deletePartition(tablename, idList);
             } else {
                 List<E> entityList = superMapper.findAll(idList);
                 if (GeneralUtils.isNotEmpty(entityList)) {
-                    if (DeleteType.DELETE == deleteModel() && !isBeforeSkip()) {
-                        this.beforeDeleteAll(entityList);
-                    }
-                    superMapper.deleteAll(idList);
-                    if (DeleteType.DELETE == deleteModel() && !isAfterSkip()) {
-                        this.afterDeleteAll(entityList);
-                    }
-                    this.refresh();
+                    deleteAdvice(entityList, () -> deletePartition(tablename, idList));
                 }
             }
         }
     }
 
-    @SuppressWarnings(value = "unchecked")
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void deleteByLinkId(I linkId) throws RestException {
-        if (GeneralUtils.isEmpty(linkId)) {
-            return;
-        }
-        if (superMapper instanceof DeleteLinkMapper) {
-            ((DeleteLinkMapper<I>) superMapper).deleteByLinkId(linkId);
-            this.refresh();
-        }
+        deleteByLinkId(null, linkId);
     }
 
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void deleteByLinkId(K tablekey, I linkId) throws RestException {
+        if (GeneralUtils.isEmpty(linkId)) {
+            return;
+        }
+        DeleteType deleteModel = deleteModel();
+        if (deleteModel == DeleteType.REMOVE) {
+            removeByLinkId(tablekey, linkId);
+        } else if (deleteModel == DeleteType.OPERATE) {
+            operateByLinkId(tablekey, linkId, OperateType.REMOVE);
+        } else if (superMapper instanceof DeleteLinkMapper) {
+            String tablename = tablename(tablekey);
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                ((DeleteLinkMapper<I>) superMapper).deleteDynamicByLinkId(tablename, linkId);
+            } else {
+                ((DeleteLinkMapper<I>) superMapper).deleteByLinkId(linkId);
+            }
+            this.refresh();
+        }
+    }
+
     public void deleteAllByLinkIds(Collection<I> linkIdList) throws RestException {
+        deleteAllByLinkIds(null, linkIdList);
+    }
+
+
+    @SuppressWarnings(value = "unchecked")
+    @Transactional(rollbackFor = {RestException.class, SQLException.class})
+    public void deleteAllByLinkIds(K tablekey, Collection<I> linkIdList) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
             return;
         }
-        if (superMapper instanceof DeleteLinkMapper) {
-            ((DeleteLinkMapper<I>) superMapper).deleteAllByLinkIds(linkIdList);
+        DeleteType deleteModel = deleteModel();
+        if (deleteModel == DeleteType.REMOVE) {
+            removeAllByLinkIds(tablekey, linkIdList);
+        } else if (deleteModel == DeleteType.OPERATE) {
+            operateAllByLinkIds(tablekey, linkIdList, OperateType.REMOVE);
+        } else if (superMapper instanceof DeleteLinkMapper) {
+            String tablename = tablename(tablekey);
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                PartitionHelper.delete(linkIdList, this.deletePartition(), linkIds -> {
+                    ((DeleteLinkMapper<I>) superMapper).deleteDynamicAllByLinkIds(tablename, linkIds);
+                });
+            } else {
+                PartitionHelper.delete(linkIdList, this.deletePartition(), linkIds -> {
+                    ((DeleteLinkMapper<I>) superMapper).deleteAllByLinkIds(linkIds);
+                });
+            }
             this.refresh();
         }
     }
 
     @Override
-    @SuppressWarnings(value = "unchecked")
     public M queryById(I id, Boolean... isLoadArray) throws RestException {
+        return queryById(null, id, isLoadArray);
+    }
+
+    @Override
+    @SuppressWarnings(value = "unchecked")
+    public M queryById(K tablekey, I id, Boolean... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(id)) {
             return null;
         }
         E entity;
+        String tablename = tablename(tablekey);
         if (isLoadArray.length > 0 && LoadMapper.class.isAssignableFrom(superMapper.getClass())) {
             LoadMapper<E, I> loadMapper = (LoadMapper<E, I>) superMapper;
             Method findMethod = null;
@@ -637,12 +936,16 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             Method queryByIdMethod = findMethod;
             /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
             if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
-                entity = loadMapper.findByLoadId(id, isLoadArray);
+                if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                    entity = loadMapper.findDynamicByLoadId(tablename, id, isLoadArray);
+                } else {
+                    entity = loadMapper.findByLoadId(id, isLoadArray);
+                }
             } else {
-                entity = superMapper.findById(id);
+                entity = findById(id, tablename);
             }
         } else {
-            entity = superMapper.findById(id);
+            entity = findById(id, tablename);
         }
         if (GeneralUtils.isEmpty(entity)) {
             return null;
@@ -651,12 +954,18 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     }
 
     @Override
-    @SuppressWarnings(value = "unchecked")
     public List<M> queryAll(Collection<I> idList, Boolean... isLoadArray) throws RestException {
+        return queryAll(null, idList, isLoadArray);
+    }
+
+    @Override
+    @SuppressWarnings(value = "unchecked")
+    public List<M> queryAll(K tablekey, Collection<I> idList, Boolean... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return Collections.emptyList();
         }
         List<E> entityList;
+        String tablename = tablename(tablekey);
         if (isLoadArray.length > 0 && LoadMapper.class.isAssignableFrom(superMapper.getClass())) {
             LoadMapper<E, I> loadMapper = (LoadMapper<E, I>) superMapper;
             Method findMethod = null;
@@ -665,26 +974,42 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             } catch (NoSuchMethodException ignored) {
             }
             Method queryAllMethod = findMethod;
-            /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
+            /** 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
             if (queryAllMethod != null && !queryAllMethod.isDefault()) {
-                entityList = loadMapper.findAllLoad(idList, isLoadArray);
+                if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                    entityList = PartitionHelper.query(idList, this.queryPartition(), ids -> loadMapper.findDynamicAllLoad(tablename, ids, isLoadArray));
+                } else {
+                    entityList = PartitionHelper.query(idList, this.queryPartition(), ids -> loadMapper.findAllLoad(ids, isLoadArray));
+                }
             } else {
-                entityList = superMapper.findAll(idList);
+                entityList = findAll(idList, tablename);
             }
         } else {
-            entityList = superMapper.findAll(idList);
+            entityList = findAll(idList, tablename);
         }
         return modelActuator(entityList, isLoadArray);
     }
 
+    private List<E> findAllByWhere(String whereSql, String tablename) throws RestException {
+        List<E> entityList;
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+            entityList = superMapper.findDynamicAllByWhere(tablename, whereSql);
+        } else {
+            entityList = superMapper.findAllByWhere(whereSql);
+        }
+        return entityList;
+    }
+
     @SuppressWarnings(value = "unchecked")
     public RestPage<M> queryAllWithFilter(F filter) throws RestException {
-        optionalFilter(filter);
-        filterCache.set(filter);
+        optionalQueryFilter(filter);
+        queryFilterCache.set(filter);
         String whereSql = queryWhereSql(filter);
         Boolean[] loadArray = findLoadArray(filter);
         Boolean[] isLoadArray = queryLoadArray(filter);
         String[] fieldArray = fieldArray(filter);
+        K tablekey = tablekey(filter);
+        String tablename = tablename(tablekey);
         Page<E> page;
         List<E> entityList;
         if (loadArray.length > 0 && LoadFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
@@ -698,10 +1023,14 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             /* 当LoadMapper被复写的时候 优先调用LoadMapper的findAllByWhereMethod */
             if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
                 page = filter.toPage();
-                entityList = loadFilterMapper.findAllByLoadWhere(whereSql, loadArray);
+                if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                    entityList = loadFilterMapper.findDynamicAllByLoadWhere(tablename, whereSql, loadArray);
+                } else {
+                    entityList = loadFilterMapper.findAllByLoadWhere(whereSql, loadArray);
+                }
             } else {
                 page = filter.toPage();
-                entityList = superMapper.findAllByWhere(whereSql);
+                entityList = findAllByWhere(whereSql, tablename);
             }
         } else if (fieldArray.length > 0 && FieldFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
             FieldFilterMapper<E, I> fieldFilterMapper = (FieldFilterMapper<E, I>) superMapper;
@@ -714,139 +1043,380 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
             /* 当FindMapper被复写的时候 优先调用FindMapper的findAllByWhereMethod */
             if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
                 page = filter.toPage();
-                entityList = fieldFilterMapper.findAllByFieldWhere(whereSql, fieldArray);
+                if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                    entityList = fieldFilterMapper.findDynamicAllByFieldWhere(tablename, whereSql, fieldArray);
+                } else {
+                    entityList = fieldFilterMapper.findAllByFieldWhere(whereSql, fieldArray);
+                }
             } else {
                 page = filter.toPage();
-                entityList = superMapper.findAllByWhere(whereSql);
+                entityList = findAllByWhere(whereSql, tablename);
+            }
+        } else if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
+            FilterMapper<E> filterMapper = (FilterMapper<E>) superMapper;
+            Method findMethod = null;
+            try {
+                findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, PageFilter.class);
+            } catch (NoSuchMethodException ignored) {
+            }
+            Method findAllByWhereMethod = findMethod;
+            /* 当FindMapper被复写的时候 优先调用FindMapper的findAllByWhereMethod */
+            if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
+                page = filter.toPage();
+                if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                    entityList = filterMapper.findDynamicAllByFilterWhere(tablename, whereSql, filter);
+                } else {
+                    entityList = filterMapper.findAllByFilterWhere(whereSql, filter);
+                }
+            } else {
+                page = filter.toPage();
+                entityList = findAllByWhere(whereSql, tablename);
             }
         } else {
             page = filter.toPage();
-            entityList = superMapper.findAllByWhere(whereSql);
+            entityList = findAllByWhere(whereSql, tablename);
         }
         List<M> modelList = modelActuator(entityList, isLoadArray);
+        queryFilterCache.remove();
         return RestPage.result(modelList, page);
     }
 
+    private void deleteAllByWhere(String whereSql, String tablename, F filter) throws RestException {
+        if (DeleteType.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                superMapper.deleteDynamicAllByWhere(tablename, whereSql);
+            } else {
+                superMapper.deleteAllByWhere(whereSql);
+            }
+        } else {
+            String queryWhereSql = queryWhereSql(filter);
+            List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
+            if (GeneralUtils.isNotEmpty(entityList)) {
+                deleteAdvice(entityList, () -> {
+                    if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                        superMapper.deleteDynamicAllByWhere(tablename, whereSql);
+                    } else {
+                        superMapper.deleteAllByWhere(whereSql);
+                    }
+                });
+            }
+        }
+    }
+
+    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void deleteAllWithFilter(F filter) throws RestException {
-        String whereSql = deleteWhereSql(filter);
-        if (GeneralUtils.isNotEmpty(whereSql)) {
-            DeleteType deleteModel = deleteModel();
-            if (deleteModel == DeleteType.REMOVE) {
-                removeAllWithFilter(filter);
-            } else if (deleteModel == DeleteType.OPERATE) {
-                operateAllWithFilter(filter);
-            } else {
-                if (DeleteType.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
-                    superMapper.deleteAllByWhere(whereSql);
-                } else {
-                    String queryWhereSql = queryWhereSql(filter);
-                    List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
-                    if (GeneralUtils.isNotEmpty(entityList)) {
-                        if (DeleteType.DELETE == deleteModel() && !isBeforeSkip()) {
-                            this.beforeDeleteAll(entityList);
-                        }
-                        superMapper.deleteAllByWhere(whereSql);
-                        if (DeleteType.DELETE == deleteModel() && !isAfterSkip()) {
-                            this.afterDeleteAll(entityList);
-                        }
-                        this.refresh();
+        DeleteType deleteModel = deleteModel();
+        if (deleteModel == DeleteType.REMOVE) {
+            removeAllWithFilter(filter);
+        } else if (deleteModel == DeleteType.OPERATE) {
+            operateAllWithFilter(filter);
+        } else {
+            optionalDeleteFilter(filter);
+            String whereSql = deleteWhereSql(filter);
+            K tablekey = tablekey(filter);
+            String tablename = tablename(tablekey);
+            if (GeneralUtils.isNotEmpty(whereSql)) {
+                if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
+                    FilterMapper<E> filterMapper = (FilterMapper<E>) superMapper;
+                    Method findMethod = null;
+                    Method deleteMethod = null;
+                    try {
+                        findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, PageFilter.class);
+                        deleteMethod = filterMapper.getClass().getMethod("deleteAllByFilterWhere", String.class, PageFilter.class);
+                    } catch (NoSuchMethodException ignored) {
                     }
+                    Method findAllByWhereMethod = findMethod;
+                    Method deleteAllByWhereMethod = deleteMethod;
+                    if (deleteAllByWhereMethod != null && !deleteAllByWhereMethod.isDefault()) {
+                        if (DeleteType.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+                            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                                filterMapper.deleteDynamicAllByFilterWhere(tablename, whereSql, filter);
+                            } else {
+                                filterMapper.deleteAllByFilterWhere(whereSql, filter);
+                            }
+                        } else {
+                            String queryWhereSql = queryWhereSql(filter);
+                            List<E> entityList;
+                            if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
+                                entityList = filterMapper.findAllByFilterWhere(queryWhereSql, filter);
+                            } else {
+                                entityList = superMapper.findAllByWhere(queryWhereSql);
+                            }
+                            if (GeneralUtils.isNotEmpty(entityList)) {
+                                deleteAdvice(entityList, () -> {
+                                    if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                                        filterMapper.deleteDynamicAllByFilterWhere(tablename, whereSql, filter);
+                                    } else {
+                                        filterMapper.deleteAllByFilterWhere(whereSql, filter);
+                                    }
+                                });
+                            }
+                        }
+                    } else {
+                        deleteAllByWhere(whereSql, tablename, filter);
+                    }
+                } else {
+                    deleteAllByWhere(whereSql, tablename, filter);
                 }
             }
         }
     }
 
+    private void removeAllByWhere(String removeWhereSql, String tablename, F filter) throws RestException {
+        if (!(superMapper instanceof RemoveMapper)) {
+            throw new UnsupportedErrorException("the mapper is not support method of 'removeAllWithFilter' with the delete model is 'REMOVE' !");
+        }
+        String removeSign = removeSign();
+        if (DeleteType.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                ((RemoveMapper) superMapper).removeDynamicAllByWhere(tablename, removeWhereSql, removeSign);
+            } else {
+                ((RemoveMapper) superMapper).removeAllByWhere(removeWhereSql, removeSign);
+            }
+        } else {
+            String queryWhereSql = queryWhereSql(filter);
+            List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
+            if (GeneralUtils.isNotEmpty(entityList)) {
+                removeAdvice(entityList, removeSign, sign -> {
+                    if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                        ((RemoveMapper) superMapper).removeDynamicAllByWhere(tablename, removeWhereSql, sign);
+                    } else {
+                        ((RemoveMapper) superMapper).removeAllByWhere(removeWhereSql, sign);
+                    }
+                });
+            }
+        }
+    }
+
+    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void removeAllWithFilter(F filter) throws RestException {
+        optionalRemoveFilter(filter);
         String removeWhereSql = removeWhereSql(filter);
+        K tablekey = tablekey(filter);
+        String tablename = tablename(tablekey);
         if (GeneralUtils.isNotEmpty(removeWhereSql)) {
             String removeSign = removeSign();
-            if (DeleteType.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
-                ((RemoveMapper) superMapper).removeAllByWhere(removeWhereSql, removeSign);
-
-            } else {
-                String queryWhereSql = queryWhereSql(filter);
-                List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
-                if (GeneralUtils.isNotEmpty(entityList) && superMapper instanceof RemoveMapper) {
-                    if (DeleteType.REMOVE == deleteModel() && !isBeforeSkip()) {
-                        this.beforeRemoveAll(entityList);
-                    }
-                    ((RemoveMapper) superMapper).removeAllByWhere(removeWhereSql, removeSign);
-                    if (DeleteType.REMOVE == deleteModel() && !isAfterSkip()) {
-                        this.afterRemoveAll(entityList);
-                    }
-                    this.refresh();
+            if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
+                FilterMapper<E> filterMapper = (FilterMapper<E>) superMapper;
+                Method findMethod = null;
+                Method removeMethod = null;
+                try {
+                    findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, PageFilter.class);
+                    removeMethod = filterMapper.getClass().getMethod("removeAllByFilterWhere", String.class, PageFilter.class, String.class);
+                } catch (NoSuchMethodException ignored) {
                 }
+                Method findAllByWhereMethod = findMethod;
+                Method removeAllByWhereMethod = removeMethod;
+                if (removeAllByWhereMethod != null && !removeAllByWhereMethod.isDefault()) {
+                    if (DeleteType.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+                        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                            filterMapper.removeDynamicAllByFilterWhere(tablename, removeWhereSql, filter, removeSign);
+                        } else {
+                            filterMapper.removeAllByFilterWhere(removeWhereSql, filter, removeSign);
+                        }
+                    } else {
+                        String queryWhereSql = queryWhereSql(filter);
+                        List<E> entityList;
+                        if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
+                            entityList = filterMapper.findAllByFilterWhere(queryWhereSql, filter);
+                        } else {
+                            entityList = superMapper.findAllByWhere(queryWhereSql);
+                        }
+                        if (GeneralUtils.isNotEmpty(entityList)) {
+                            removeAdvice(entityList, removeSign, sign -> {
+                                if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                                    filterMapper.removeDynamicAllByFilterWhere(tablename, removeWhereSql, filter, sign);
+                                } else {
+                                    filterMapper.removeAllByFilterWhere(removeWhereSql, filter, sign);
+                                }
+                            });
+                        }
+                    }
+                } else {
+                    removeAllByWhere(removeWhereSql, tablename, filter);
+                }
+            } else {
+                removeAllByWhere(removeWhereSql, tablename, filter);
+            }
+
+        }
+    }
+
+
+    private void operateAllByWhere(String operateWhereSql, String tablename, F filter) throws RestException {
+        if (!(superMapper instanceof OperateMapper)) {
+            throw new UnsupportedErrorException("the mapper is not support method of 'operateAllWithFilter' with the delete model is 'OPERATE' !");
+        }
+        if (DeleteType.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                ((OperateMapper) superMapper).operateDynamicAllByWhere(tablename, operateWhereSql, OperateType.REMOVE.getKey());
+            } else {
+                ((OperateMapper) superMapper).operateAllByWhere(operateWhereSql, OperateType.REMOVE.getKey());
+            }
+        } else {
+            String queryWhereSql = queryWhereSql(filter);
+            List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
+            if (GeneralUtils.isNotEmpty(entityList)) {
+                operateAdvice(entityList, OperateType.REMOVE, operate -> {
+                    if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                        ((OperateMapper) superMapper).operateDynamicAllByWhere(tablename, operateWhereSql, operate.getKey());
+                    } else {
+                        ((OperateMapper) superMapper).operateAllByWhere(operateWhereSql, operate.getKey());
+                    }
+                });
             }
         }
     }
 
 
+    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void operateAllWithFilter(F filter) throws RestException {
+        optionalOperateFilter(filter);
         String operateWhereSql = operateWhereSql(filter);
+        K tablekey = tablekey(filter);
+        String tablename = tablename(tablekey);
         if (GeneralUtils.isNotEmpty(operateWhereSql)) {
-            if (DeleteType.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
-                ((OperateMapper) superMapper).operateAllByWhere(operateWhereSql, OperateType.REMOVE.getKey());
-            } else {
-                String queryWhereSql = queryWhereSql(filter);
-                List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
-                if (GeneralUtils.isNotEmpty(entityList) && superMapper instanceof OperateMapper) {
-                    if (DeleteType.OPERATE == deleteModel() && !isBeforeSkip()) {
-                        this.beforeOperateAll(entityList);
-                    }
-                    ((OperateMapper) superMapper).operateAllByWhere(operateWhereSql, OperateType.REMOVE.getKey());
-                    if (DeleteType.OPERATE == deleteModel() && !isAfterSkip()) {
-                        this.afterOperateAll(entityList);
-                    }
-                    this.refresh();
+            if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
+                FilterMapper<E> filterMapper = (FilterMapper<E>) superMapper;
+                Method findMethod = null;
+                Method operateMethod = null;
+                try {
+                    findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, PageFilter.class);
+                    operateMethod = filterMapper.getClass().getMethod("operateAllByFilterWhere", String.class, PageFilter.class,Integer.class);
+                } catch (NoSuchMethodException ignored) {
                 }
+                Method findAllByWhereMethod = findMethod;
+                Method operateAllByWhereMethod = operateMethod;
+                if (operateAllByWhereMethod != null && !operateAllByWhereMethod.isDefault()) {
+                    if (DeleteType.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+                        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                            filterMapper.operateDynamicAllByFilterWhere(tablename, operateWhereSql,filter, OperateType.REMOVE.getKey());
+                        } else {
+                            filterMapper.operateAllByFilterWhere(operateWhereSql, filter,OperateType.REMOVE.getKey());
+                        }
+                    } else {
+                        String queryWhereSql = queryWhereSql(filter);
+                        List<E> entityList;
+                        if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
+                            entityList = filterMapper.findAllByFilterWhere(queryWhereSql, filter);
+                        } else {
+                            entityList = superMapper.findAllByWhere(queryWhereSql);
+                        }
+                        if (GeneralUtils.isNotEmpty(entityList)) {
+                            operateAdvice(entityList, OperateType.REMOVE, operate -> {
+                                if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
+                                    filterMapper.operateDynamicAllByFilterWhere(tablename, operateWhereSql,filter, operate.getKey());
+                                } else {
+                                    filterMapper.operateAllByFilterWhere(operateWhereSql, filter,operate.getKey());
+                                }
+                            });
+                        }
+                    }
+                } else {
+                    operateAllByWhere(operateWhereSql, tablename, filter);
+                }
+            } else {
+                operateAllByWhere(operateWhereSql, tablename, filter);
             }
         }
     }
 
-    private final ConsumerActuator<M> DEFAULT_CREATE_ACTUATOR = (@NonNull M model) -> {
+    private final BiConsumerActuator<K, M> DEFAULT_CREATE_ACTUATOR = (K tablekey, @NonNull M model) -> {
         model.setId(ClazzHelper.generate(model));
         optionalInit(model);
         optional(model);
         if (createActuator != null) {
-            createActuator.actuate(model);
+            createActuator.actuate(tablekey, model);
+        }
+        if (model.isSaveLower(SaveType.CREATE)) {
+            model.setSave(SaveType.CREATE);
         }
     };
 
-    private final ConsumerActuator<M> DEFAULT_UPDATE_ACTUATOR = (@NonNull M model) -> {
-        boolean exist = existById(model.getId());
-        String message = "the data no found，id: " + model.getId();
-        OptionalHelper.falseable(exist, message, "id", DataQueryException::new);
+    @SuppressWarnings(value = "unchecked")
+    private final BiConsumerActuator<K, M> DEFAULT_UPDATE_ACTUATOR = (K tablekey, @NonNull M model) -> {
+        if (isIdExist()) {
+            boolean exist;
+            if (isDynamicTable() && model instanceof RestTablekey) {
+                exist = existById(((RestTablekey<K>) model).getTablekey(), model.getId());
+            } else {
+                exist = existById(model.getId());
+            }
+            String message = "the data no found，id: " + model.getId();
+            OptionalHelper.falseable(exist, message, "id", DataQueryException::new);
+        }
         optional(model);
         if (updateActuator != null) {
-            updateActuator.actuate(model);
+            updateActuator.actuate(tablekey, model);
+        }
+        if (model.isSaveLower(SaveType.UPDATE)) {
+            model.setSave(SaveType.UPDATE);
         }
     };
 
-    private final ConsumerActuator<M> DEFAULT_INVADE_ACTUATOR = (@NonNull M model) -> {
+    @SuppressWarnings(value = "unchecked")
+    private final BiConsumerActuator<K, M> DEFAULT_SAVE_ACTUATOR = (K tablekey, @NonNull M model) -> {
+        if (isIdExist()) {
+            boolean exist;
+            if (isDynamicTable() && model instanceof RestTablekey) {
+                exist = existById(((RestTablekey<K>) model).getTablekey(), model.getId());
+            } else {
+                exist = existById(model.getId());
+            }
+            if (!exist && isIdInvade()) {
+                invadeActuator().actuate(tablekey, model);
+            } else {
+                String message = "the data no found，id: " + model.getId();
+                OptionalHelper.falseable(exist, message, "id", DataQueryException::new);
+                optional(model);
+                if (updateActuator != null) {
+                    updateActuator.actuate(tablekey, model);
+                }
+                if (model.isSaveLower(SaveType.UPDATE)) {
+                    model.setSave(SaveType.UPDATE);
+                }
+            }
+        } else {
+            updateActuator().actuate(tablekey, model);
+        }
+    };
+
+    private final BiConsumerActuator<K, M> DEFAULT_INVADE_ACTUATOR = (K tablekey, @NonNull M model) -> {
         optionalInit(model);
         optional(model);
         if (createActuator != null) {
-            createActuator.actuate(model);
+            createActuator.actuate(tablekey, model);
+        }
+        if (model.isSaveLower(SaveType.CREATE)) {
+            model.setSave(SaveType.CREATE);
         }
     };
 
-    protected ConsumerActuator<M> createActuator() {
+    protected BiConsumerActuator<K, M> createActuator() {
         return DEFAULT_CREATE_ACTUATOR;
     }
 
-    protected ConsumerActuator<M> updateActuator() {
+    protected BiConsumerActuator<K, M> updateActuator() {
         return DEFAULT_UPDATE_ACTUATOR;
     }
 
-    protected ConsumerActuator<M> invadeActuator() {
+    protected BiConsumerActuator<K, M> saveActuator() {
+        return DEFAULT_SAVE_ACTUATOR;
+    }
+
+    protected BiConsumerActuator<K, M> invadeActuator() {
         return DEFAULT_INVADE_ACTUATOR;
     }
 
     protected Boolean isIdInvade() {
         return beanProperties.isIdInvade();
+    }
+
+    protected Boolean isIdExist() {
+        return beanProperties.isIdExist();
     }
 
     protected Boolean isNameNonnull() {
@@ -859,6 +1429,10 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
 
     protected Boolean isModelUnique() {
         return beanProperties.isModelUnique();
+    }
+
+    protected Boolean isDynamicTable() {
+        return beanProperties.isDynamicTable();
     }
 
     public DeleteType deleteModel() {
@@ -905,11 +1479,62 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
         return beanProperties.isAfterSkip();
     }
 
-    private void optionalLogicSign(@NonNull M model) throws RestException {
-        if (GeneralUtils.isEmpty(model.getLogicSign())) {
-            model.setLogicSign(removeValue());
+    public Integer queryPartition() {
+        return beanProperties.getPartitionQuery();
+    }
+
+    public Integer savePartition() {
+        return beanProperties.getPartitionQuery();
+    }
+
+    public Integer deletePartition() {
+        return beanProperties.getPartitionQuery();
+    }
+
+    protected String tablename(K tablekey) throws RestException {
+        if (GeneralUtils.isEmpty(tablekey)) {
+            return null;
         }
-        optionalName(model);
+        Map<K, String> tablenameMap = tablenameMapCache.get();
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablenameMap)) {
+            return tablenameMap.get(tablekey);
+        }
+        return null;
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    protected String tablename(K tablekey, M model) throws RestException {
+        if (GeneralUtils.isEmpty(tablekey) && GeneralUtils.isEmpty(model)) {
+            return null;
+        }
+        Map<K, String> tablenameMap = tablenameMapCache.get();
+        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablenameMap)) {
+            if (GeneralUtils.isNotEmpty(tablekey)) {
+                return tablenameMap.get(tablekey);
+            } else if (GeneralUtils.isNotEmpty(model) && model instanceof RestTablekey) {
+                RestTablekey<K> table = (RestTablekey<K>) model;
+                return tablenameMap.get(table.getTablekey());
+            }
+        }
+        return null;
+    }
+
+    protected String tablename(K tablekey, Collection<M> modelList) throws RestException {
+        if (GeneralUtils.isEmpty(tablekey) && GeneralUtils.isEmpty(modelList)) {
+            return null;
+        } else if (GeneralUtils.isNotEmpty(tablekey)) {
+            Map<K, String> tablenameMap = tablenameMapCache.get();
+            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablenameMap)) {
+                return tablenameMap.get(tablekey);
+            }
+        } else if (GeneralUtils.isNotEmpty(modelList)) {
+            Optional<M> optionalAny = modelList.stream().findAny();
+            if (optionalAny.isPresent()) {
+                M model = optionalAny.get();
+                return tablename(tablekey, model);
+            }
+        }
+        return null;
     }
 
     protected void optionalName(@NonNull M model) throws RestException {
@@ -918,39 +1543,69 @@ public abstract class SuperService<I, M extends IdModel<I>, E extends IdEntity<I
     protected void optionalInit(@NonNull M model) throws RestException {
     }
 
+    protected void optionalTablename(@NonNull String tablename) throws RestException {
+    }
 
-    private void optionalCreate(@NonNull M model) throws RestException {
+    protected String dynamicTablename(@NonNull K tablekey) throws RestException {
+        return null;
+    }
+
+    private void optionalLogicSign(@NonNull M model) throws RestException {
+        if (GeneralUtils.isEmpty(model.getLogicSign())) {
+            model.setLogicSign(removeValue());
+        }
+        optionalName(model);
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    private void optionalDynamicTable(K tablekey, @NonNull M model) throws RestException {
+        if (isDynamicTable()) {
+            Map<K, String> tableNameMap = tablenameMapCache.get();
+            if (GeneralUtils.isEmpty(tableNameMap)) {
+                tableNameMap = new HashMap<>();
+                tablenameMapCache.set(tableNameMap);
+            }
+            if (GeneralUtils.isEmpty(tablekey) && model instanceof RestTablekey) {
+                RestTablekey<K> tablekeyModel = (RestTablekey<K>) model;
+                tablekey = tablekeyModel.getTablekey();
+            }
+            if (GeneralUtils.isEmpty(tablekey)) {
+                return;
+            }
+            String tablename = tableNameMap.get(tablekey);
+            if (GeneralUtils.isNotEmpty(tablename)) {
+                return;
+            }
+            tablename = dynamicTablename(tablekey);
+            if (GeneralUtils.isNotEmpty(tablename)) {
+                optionalTablename(tablename);
+                tableNameMap.put(tablekey, tablename);
+            }
+        }
         optionalLogicSign(model);
+    }
+
+    private void optionalCreate(K tablekey, @NonNull M model) throws RestException {
+        optionalDynamicTable(tablekey, model);
         if (GeneralUtils.isEmpty(model.getId()) || !isIdInvade()) {
-            createActuator().actuate(model);
+            createActuator().actuate(tablekey, model);
         } else {
-            invadeActuator().actuate(model);
-        }
-        if (model.isSaveLower(SaveType.CREATE)) {
-            model.setSave(SaveType.CREATE);
+            invadeActuator().actuate(tablekey, model);
         }
     }
 
-    private void optionalUpdate(@NonNull M model) throws RestException {
+    private void optionalUpdate(K tablekey, @NonNull M model) throws RestException {
         OptionalHelper.idable(model.getId());
-        updateActuator().actuate(model);
-        if (model.isSaveLower(SaveType.UPDATE)) {
-            model.setSave(SaveType.UPDATE);
-        }
+        optionalDynamicTable(tablekey, model);
+        updateActuator().actuate(tablekey, model);
     }
 
-    private void optionalSave(@NonNull M model) throws RestException {
+    private void optionalSave(K tablekey, @NonNull M model) throws RestException {
+        optionalDynamicTable(tablekey, model);
         if (GeneralUtils.isEmpty(model.getId())) {
-            optionalLogicSign(model);
-            createActuator().actuate(model);
-            if (model.isSaveLower(SaveType.CREATE)) {
-                model.setSave(SaveType.CREATE);
-            }
+            createActuator().actuate(tablekey, model);
         } else {
-            updateActuator().actuate(model);
-            if (model.isSaveLower(SaveType.UPDATE)) {
-                model.setSave(SaveType.UPDATE);
-            }
+            saveActuator().actuate(tablekey, model);
         }
     }
 }

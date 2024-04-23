@@ -1,8 +1,11 @@
 package io.github.nichetoolkit.rice;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import io.github.nichetoolkit.rice.stereotype.mybatis.RestIdentity;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.Id;
@@ -14,9 +17,12 @@ import java.util.Objects;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class IdEntity<I> extends TimeEntity implements RestId<I> {
     @Id
     @TableId
+    @RestIdentity
     protected I id;
 
     public IdEntity() {
@@ -85,14 +91,20 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
         }
 
         @Override
-        public IdEntity.Builder operate(Integer operate) {
+        public IdEntity.Builder<I> operate(Integer operate) {
             this.operate = operate;
             return this;
         }
 
         @Override
-        public IdEntity.Builder operate(@NonNull OperateType operate) {
+        public IdEntity.Builder<I> operate(@NonNull OperateType operate) {
             this.operate = operate.getKey();
+            return this;
+        }
+
+        @Override
+        public IdEntity.Builder<I> logicSign(String logicSign) {
+            this.logicSign = logicSign;
             return this;
         }
 

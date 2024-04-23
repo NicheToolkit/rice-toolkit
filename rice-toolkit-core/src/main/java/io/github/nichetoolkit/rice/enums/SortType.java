@@ -13,6 +13,7 @@ import java.util.Optional;
  * @version v1.0.0
  */
 public enum SortType implements RestValue<String,String> {
+    NONE("",""),
     ASC("ASC","升序"),
     DESC("DESC","降序")
     ;
@@ -38,13 +39,13 @@ public enum SortType implements RestValue<String,String> {
 
     @JsonCreator
     public static SortType parseKey(String key) {
-        SortType sortTypeEnum = RestValue.parseKey(SortType.class, key);
-        return Optional.ofNullable(sortTypeEnum).orElse(SortType.DESC);
+        SortType typeEnum = RestValue.parseKey(SortType.class, key);
+        return Optional.ofNullable(typeEnum).orElse(SortType.DESC);
     }
 
     public static SortType parseValue(String value) {
-        SortType sortTypeEnum = RestValue.parseValue(SortType.class, value);
-        return Optional.ofNullable(sortTypeEnum).orElse(SortType.DESC);
+        SortType typeEnum = RestValue.parseValue(SortType.class, value);
+        return Optional.ofNullable(typeEnum).orElse(SortType.DESC);
     }
 
 

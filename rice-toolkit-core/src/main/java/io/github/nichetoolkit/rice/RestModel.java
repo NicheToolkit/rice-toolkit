@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
 
 /**
- * <p>RestModel</p>
+ * <p>RiceModel</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */

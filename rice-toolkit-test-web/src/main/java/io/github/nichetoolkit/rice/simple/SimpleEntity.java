@@ -3,6 +3,7 @@ package io.github.nichetoolkit.rice.simple;
 import io.github.nichetoolkit.rice.RiceInfoEntity;
 
 import javax.persistence.Table;
+import java.util.Date;
 
 
 /**
@@ -13,13 +14,21 @@ import javax.persistence.Table;
 @Table(name = "ntr_simple")
 public class SimpleEntity extends RiceInfoEntity<SimpleEntity,SimpleModel> {
 
-    private Long time;
+    private Date time;
 
     public SimpleEntity() {
     }
 
     public SimpleEntity(String id) {
         super(id);
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     @Override
@@ -30,14 +39,6 @@ public class SimpleEntity extends RiceInfoEntity<SimpleEntity,SimpleModel> {
                 .description(this.description)
                 .time(this.time);
         return new SimpleModel(builder);
-    }
-
-    public Long getTime() {
-        return time;
-    }
-
-    public void setTime(Long time) {
-        this.time = time;
     }
 
 }

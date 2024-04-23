@@ -46,12 +46,12 @@ public enum SaveType implements RestValue<Integer,String> {
 
     @JsonCreator
     public static SaveType parseKey(Integer key) {
-        SaveType sortTypeEnum = RestValue.parseKey(SaveType.class, key);
-        return Optional.ofNullable(sortTypeEnum).orElse(SaveType.NONE);
+        SaveType typeEnum = RestValue.parseKey(SaveType.class, key);
+        return Optional.ofNullable(typeEnum).orElse(SaveType.NONE);
     }
 
     public static SaveType parseValue(String value) {
-        SaveType sortTypeEnum = RestValue.parseValue(SaveType.class, value);
-        return Optional.ofNullable(sortTypeEnum).orElse(SaveType.NONE);
+        SaveType typeEnum = RestValue.parseValue(SaveType.class, value);
+        return Optional.ofNullable(typeEnum).orElse(SaveType.NONE);
     }
 }

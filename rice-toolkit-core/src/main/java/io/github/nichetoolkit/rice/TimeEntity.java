@@ -1,6 +1,11 @@
 package io.github.nichetoolkit.rice;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestForceInsert;
+import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestForceUpdate;
+import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestUpdate;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.Column;
@@ -12,11 +17,17 @@ import java.util.Date;
  * @version v1.0.0
  */
 @SuppressWarnings("WeakerAccess")
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeEntity extends OperateEntity {
     /** 数据创建时间 */
+    @RestUpdate(false)
+    @RestForceInsert("now()")
     @Column(name = "create_time")
     protected Date createTime;
     /** 数据更新时间 */
+    @RestForceInsert("now()")
+    @RestForceUpdate("now()")
     @Column(name = "update_time")
     protected Date updateTime;
 
@@ -72,6 +83,12 @@ public class TimeEntity extends OperateEntity {
         @Override
         public TimeEntity.Builder operate(@NonNull OperateType operate) {
             this.operate = operate.getKey();
+            return this;
+        }
+
+        @Override
+        public TimeEntity.Builder logicSign(String logicSign) {
+            this.logicSign = logicSign;
             return this;
         }
 

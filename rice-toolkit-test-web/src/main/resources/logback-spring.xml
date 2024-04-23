@@ -10,14 +10,37 @@
     <contextName>logback</contextName>
     <!-- name的值是变量的名称，value的值时变量定义的值。通过定义的值会被插入到logger上下文中。定义变量后，可以使“${}”来使用变量。 -->
     <property name="log.path" value="${LOG_PATH}" />
+    <!-- 自定义日志 -->
+    <conversionRule conversionWord="rmx" converterClass="io.github.nichetoolkit.rest.logback.DefaultMessageConverter" />
+    <!--格式化输出：
+        %d 日期时间，也可以自定义格式%d{yyyy-MM-dd HH:mm:ss.SSS}
+        %X{logKey}表示日志key，同一个请求的日志key相同 根据RestLogbackProperties配置得到
+        %X{requestKey}表示请求key，同一个请求的key相同 根据RestLogbackProperties配置得到
+        %method 方法名字,或者%M
+        %level 日志级别,或者%-5level或 级别从左显示5个字符宽度
+        ${PID:- } 进程号,或者 $PID
+        %thread表示线程名,或者%t
+        %logger{40} 包名字符个数，会在长度为40的空间尽可能显示较全的类名，太长会保留首字母并用点号分割
+        %line 行号，或者%L
+        %msg 日志消息，或者%m或者%message
+        %n是换行符,
+        %c类的完整名称
+        %-40.40logger{40}: "-"表示左对齐，不够40个字符给右侧补空格。
+                         ".40"表示超过40个字符的情况下从左侧切断
+                         {40}表示输出字符最长40个字符，否则按照句点分割
+                         %black 黑色
+        %red 红色 %green 绿色 %yellow 黄色 %blue 蓝色 %magenta 洋红色 %cyan 青色 %white 白色 %gray 灰色 %highlight 高亮色 支持的颜色字符编码
+        %boldRed %boldGreen %boldYellow %boldBlue %boldMagenta %boldCyan %boldWhite 加粗的颜色字符编码
+        %red(%d) 把需要加颜色的部分用上面的关键字后面加个小括号包裹起来
+    -->
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
     <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
     <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
     <!-- 彩色日志格式 -->
-    <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
-
+    <property name="CONSOLE_LOG_PATTERN"
+              value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%X{logKey}){magenta} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %rmx%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
 
     <!--输出到控制台-->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -32,7 +55,6 @@
         </encoder>
     </appender>
 
-
     <!--输出到文件-->
 
     <!-- 时间滚动输出 所有 日志 -->
@@ -41,7 +63,7 @@
         <file>${log.path}/logs.log</file>
         <!--日志文件输出格式-->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %X{logKey} %X{requestKey} [%thread] %-5level %logger{50} - %rmx%n</pattern>
             <charset>UTF-8</charset> <!-- 设置字符集 -->
         </encoder>
         <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
@@ -67,7 +89,7 @@
         <file>${log.path}/log_debug.log</file>
         <!--日志文件输出格式-->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %X{logKey} %X{requestKey} [%thread] %-5level %logger{50} - %rmx%n</pattern>
             <charset>UTF-8</charset> <!-- 设置字符集 -->
         </encoder>
         <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
@@ -94,7 +116,7 @@
         <file>${log.path}/log_info.log</file>
         <!--日志文件输出格式-->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %X{logKey} %X{requestKey} [%thread] %-5level %logger{50} - %rmx%n</pattern>
             <charset>UTF-8</charset>
         </encoder>
         <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
@@ -121,7 +143,7 @@
         <file>${log.path}/log_warn.log</file>
         <!--日志文件输出格式-->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %X{logKey} %X{requestKey} [%thread] %-5level %logger{50} - %rmx%n</pattern>
             <charset>UTF-8</charset> <!-- 此处设置字符集 -->
         </encoder>
         <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
@@ -148,7 +170,7 @@
         <file>${log.path}/log_error.log</file>
         <!--日志文件输出格式-->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %X{logKey} %X{requestKey} [%thread] %-5level %logger{50} - %rmx%n</pattern>
             <charset>UTF-8</charset> <!-- 此处设置字符集 -->
         </encoder>
         <!-- 日志记录器的滚动策略，按日期，按大小记录 -->

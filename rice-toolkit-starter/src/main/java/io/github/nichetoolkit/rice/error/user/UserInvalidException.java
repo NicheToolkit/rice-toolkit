@@ -15,12 +15,12 @@ public class UserInvalidException extends TokenErrorException {
         super(UserErrorStatus.USER_INVALID_ERROR);
     }
 
-    public UserInvalidException(String user) {
-        super(user, UserErrorStatus.USER_INVALID_ERROR);
+    public UserInvalidException(String error) {
+        super(UserErrorStatus.USER_INVALID_ERROR,error);
     }
 
     public UserInvalidException(String user, String error) {
-        super(user, UserErrorStatus.USER_INVALID_ERROR, error);
+        super(UserErrorStatus.USER_INVALID_ERROR,user,  error);
     }
 
     @Override
