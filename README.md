@@ -6,7 +6,7 @@
 [![Nexus Snapshot](https://img.shields.io/nexus/s/io.github.nichetoolkit/rice-toolkit-starter?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/nichetoolkit/rice-toolkit-starter/)
 ![Tests](https://github.com/NicheToolkit/rice-toolkit/workflows/Tests/badge.svg)
 
-&emsp;&emsp; 依赖[rest-toolkit](https://github.com/NicheToolkit/rest-toolkit/rest-toolkit-starter)组件下的基于[postgresql](https://www.postgresql.org/)数据库环境下的简单业务通用服务开发组件.
+&emsp;&emsp; 依赖[rest-toolkit](https://github.com/NicheToolkit/rest-toolkit/rest-toolkit-starter)组件下的简单业务通用服务开发组件.
 
 ## Maven Central
 
