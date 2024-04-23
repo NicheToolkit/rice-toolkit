@@ -5,7 +5,7 @@
 
     <groupId>io.github.nichetoolkit</groupId>
     <artifactId>rice-toolkit-parent</artifactId>
-    <version>1.0.5-SNAPSHOT</version>
+    <version>1.0.5</version>
 
     <modules>
         <module>rice-toolkit-core</module>
@@ -116,8 +116,8 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring-boot.version>2.7.7</spring-boot.version>
-        <rest-toolkit.version>1.0.6-SNAPSHOT</rest-toolkit.version>
-        <rice-toolkit.version>1.0.5-SNAPSHOT</rice-toolkit.version>
+        <rest-toolkit.version>1.0.6</rest-toolkit.version>
+        <rice-toolkit.version>1.0.5</rice-toolkit.version>
 
         <source-plugin.version>2.2.1</source-plugin.version>
         <javadoc-plugin.version>2.9.1</javadoc-plugin.version>
