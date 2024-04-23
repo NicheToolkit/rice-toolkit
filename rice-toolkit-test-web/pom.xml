@@ -20,6 +20,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <skipTests>true</skipTests>
+
+        <pagehelper.version>1.4.6</pagehelper.version>
+        <mybatis-plus.version>3.5.2</mybatis-plus.version>
+        <mybatis-spring-starter.version>2.3.0</mybatis-spring-starter.version>
+        <persistence.version>1.0</persistence.version>
+        <tk-mybatis-mapper.version>4.1.5</tk-mybatis-mapper.version>
+        <tk-mybatis-starter.version>2.1.5</tk-mybatis-starter.version>
     </properties>
 
     <dependencies>
