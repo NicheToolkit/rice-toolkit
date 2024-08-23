@@ -3,9 +3,9 @@ package io.github.nichetoolkit.rice;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestForceInsert;
-import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestForceUpdate;
-import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestUpdate;
+import io.github.nichetoolkit.mybatis.stereotype.column.RestForceInsert;
+import io.github.nichetoolkit.mybatis.stereotype.column.RestForceUpdate;
+import io.github.nichetoolkit.mybatis.stereotype.column.RestUpdate;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.Column;

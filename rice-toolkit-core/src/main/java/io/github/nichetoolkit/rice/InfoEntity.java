@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestUniqueKey;
+import io.github.nichetoolkit.mybatis.stereotype.column.RestUniqueKey;
 import org.springframework.lang.NonNull;
 
 import java.util.Date;

@@ -3,7 +3,6 @@ package io.github.nichetoolkit.rice.helper;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
-import io.github.nichetoolkit.rice.stereotype.mybatis.table.RestEntity;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.method.HandlerMethod;
 

@@ -60,6 +60,18 @@
     <dependencies>
 
         <dependency>
+            <groupId>io.github.nichetoolkit</groupId>
+            <artifactId>mybatis-toolkit-core</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.nichetoolkit</groupId>
+            <artifactId>rest-toolkit-starter</artifactId>
+            <version>1.0.6-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>${pagehelper.version}</version>
@@ -77,11 +89,7 @@
             <version>${mybatis-spring-starter.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>io.github.nichetoolkit</groupId>
-            <artifactId>rest-toolkit-starter</artifactId>
-            <version>1.0.6-SNAPSHOT</version>
-        </dependency>
+
 
         <dependency>
             <groupId>javax.persistence</groupId>

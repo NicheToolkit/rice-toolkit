@@ -3,9 +3,9 @@ package io.github.nichetoolkit.rice;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.github.nichetoolkit.mybatis.stereotype.RestIdentity;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.stereotype.mybatis.RestIdentity;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.Id;

@@ -3,8 +3,8 @@ package io.github.nichetoolkit.rice;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestLogic;
-import io.github.nichetoolkit.rice.stereotype.mybatis.column.RestOperate;
+import io.github.nichetoolkit.mybatis.stereotype.column.RestLogic;
+import io.github.nichetoolkit.mybatis.stereotype.column.RestOperate;
 import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
