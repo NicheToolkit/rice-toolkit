@@ -62,13 +62,13 @@
         <dependency>
             <groupId>io.github.nichetoolkit</groupId>
             <artifactId>mybatis-toolkit-core</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <version>${mybatis-toolkit.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.github.nichetoolkit</groupId>
             <artifactId>rest-toolkit-starter</artifactId>
-            <version>1.0.6-SNAPSHOT</version>
+            <version>${rest-toolkit.version}</version>
         </dependency>
 
         <dependency>
@@ -88,8 +88,6 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${mybatis-spring-starter.version}</version>
         </dependency>
-
-
 
         <dependency>
             <groupId>javax.persistence</groupId>
