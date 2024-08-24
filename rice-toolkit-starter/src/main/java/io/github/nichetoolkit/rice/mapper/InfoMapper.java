@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.mapper;
 
 import io.github.nichetoolkit.rice.InfoEntity;
+import io.github.nichetoolkit.rice.mapper.SuperMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

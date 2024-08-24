@@ -27,6 +27,7 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.filter.PageFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
 import io.github.nichetoolkit.rice.mapper.*;
+import io.github.nichetoolkit.rice.mapper.natives.*;
 import io.github.nichetoolkit.rice.service.advice.*;
 import io.github.nichetoolkit.rice.service.stereotype.RestService;
 import lombok.extern.slf4j.Slf4j;
