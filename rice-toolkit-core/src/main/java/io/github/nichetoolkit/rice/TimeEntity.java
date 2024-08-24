@@ -8,7 +8,6 @@ import io.github.nichetoolkit.mybatis.stereotype.column.RestForceUpdate;
 import io.github.nichetoolkit.mybatis.stereotype.column.RestUpdate;
 import org.springframework.lang.NonNull;
 
-import javax.persistence.Column;
 import java.util.Date;
 
 /**
@@ -23,12 +22,10 @@ public class TimeEntity extends OperateEntity {
     /** 数据创建时间 */
     @RestUpdate(false)
     @RestForceInsert("now()")
-    @Column(name = "create_time")
     protected Date createTime;
     /** 数据更新时间 */
     @RestForceInsert("now()")
     @RestForceUpdate("now()")
-    @Column(name = "update_time")
     protected Date updateTime;
 
     public TimeEntity() {

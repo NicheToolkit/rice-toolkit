@@ -18,7 +18,6 @@ import java.util.Optional;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ContrastRule extends JsonbRule<ContrastRule> {
-
     /** 属性值类型 */
     protected ValueType type = ValueType.LONG;
     /** 属性值 */

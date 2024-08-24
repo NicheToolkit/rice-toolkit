@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.mybatis.stereotype.RestIdentity;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import io.mybatis.provider.Entity;
 import org.springframework.lang.NonNull;
 
-import javax.persistence.Id;
 import java.util.Date;
 import java.util.Objects;
 
@@ -20,8 +20,10 @@ import java.util.Objects;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class IdEntity<I> extends TimeEntity implements RestId<I> {
-    @Id
+    /* 兼容mybatis-plus 3.x版本 */
     @TableId
+    /* 兼容mybatis-mapper 2.x版本 */
+    @Entity.Column(id = true)
     @RestIdentity
     protected I id;
 

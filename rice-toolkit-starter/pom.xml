@@ -72,6 +72,12 @@
             <version>${rice-toolkit.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.github.nichetoolkit</groupId>
+            <artifactId>mybatis-toolkit-starter</artifactId>
+            <version>${mybatis-toolkit.version}</version>
+        </dependency>
+
     </dependencies>
 
     <repositories>

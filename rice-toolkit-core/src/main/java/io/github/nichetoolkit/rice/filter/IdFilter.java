@@ -5,13 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.OperateModel;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
 import io.github.nichetoolkit.rice.builder.SqlBuilder;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import org.checkerframework.checker.units.qual.K;
 import org.springframework.lang.NonNull;
 
 import java.util.*;
@@ -61,7 +59,6 @@ public class IdFilter<I, K> extends TableFilter<K> {
         this.id = builder.id;
         this.ids = builder.ids;
     }
-
 
     public I getId() {
         return id;

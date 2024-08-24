@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.enums.SaveType;
 
-import java.io.Serializable;
-
 /**
  * <p>OperateModel</p>
  * @author Cyan (snow22314@outlook.com)

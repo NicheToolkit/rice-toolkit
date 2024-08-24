@@ -2,9 +2,9 @@ package io.github.nichetoolkit.rice.builder;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import io.github.nichetoolkit.mybatis.enums.SortType;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestSort;
-import io.github.nichetoolkit.rice.enums.SortType;
 import io.github.nichetoolkit.rice.filter.PageFilter;
 import io.github.nichetoolkit.rice.filter.SortFilter;
 

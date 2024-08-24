@@ -66,41 +66,26 @@
         </dependency>
 
         <dependency>
-            <groupId>io.github.nichetoolkit</groupId>
-            <artifactId>rest-toolkit-starter</artifactId>
-            <version>${rest-toolkit.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <artifactId>pagehelper</artifactId>
             <version>${pagehelper.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.mybatis.spring.boot</groupId>
-                    <artifactId>mybatis-spring-boot-starter</artifactId>
-                </exclusion>
-            </exclusions>
+            <optional>true</optional>
         </dependency>
 
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>${mybatis-spring-starter.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>${persistence.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
+        <!-- mybatis-plus 3.x -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-annotation</artifactId>
             <version>${mybatis-plus.version}</version>
-            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- mybatis-mapper 2.x -->
+        <dependency>
+            <groupId>io.mybatis</groupId>
+            <artifactId>mybatis-provider</artifactId>
+            <version>${mybatis-mapper.version}</version>
+            <optional>true</optional>
         </dependency>
 
     </dependencies>

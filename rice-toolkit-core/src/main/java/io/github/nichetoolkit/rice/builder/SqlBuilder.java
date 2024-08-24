@@ -3,6 +3,7 @@ package io.github.nichetoolkit.rice.builder;
 import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.util.DateUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -15,9 +16,10 @@ import java.util.Date;
  */
 @SuppressWarnings({"WeakerAccess","UnusedReturnValue"})
 public final class SqlBuilder implements Serializable, CharSequence {
+
     public static final String EMPTY = "";
 
-    protected final StringBuilder sqlBuilder;
+    private final StringBuilder sqlBuilder;
 
     public SqlBuilder() {
         this.sqlBuilder = new StringBuilder();
@@ -232,11 +234,13 @@ public final class SqlBuilder implements Serializable, CharSequence {
         return sqlBuilder.charAt(index);
     }
 
+    @NonNull
     @Override
     public CharSequence subSequence(int start, int end) {
         return sqlBuilder.subSequence(start,end);
     }
 
+    @NonNull
     @Override
     public String toString() {
         if (GeneralUtils.isEmpty(sqlBuilder)) {
@@ -559,7 +563,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
             // the value is like '2020-09-11 00:00:00'
             this.append("'").append(DateUtils.formatTime((Date) value)).append("'");
         } else if (value instanceof RestKey) {
-            this.append(((RestKey) value).getKey());
+            this.append(((RestKey<?>) value).getKey());
         } else {
             this.append(value);
         }
@@ -578,7 +582,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
             // the value is like '2020-09-11 00:00:00'
             this.append("'").append(DateUtils.formatTime((Date) value)).append("'").append(symbol).append(" ");
         } else if (value instanceof RestKey) {
-            this.append("'").append(((RestKey) value).getKey()).append("'").append(symbol).append(" ");
+            this.append("'").append(((RestKey<?>) value).getKey()).append("'").append(symbol).append(" ");
         } else {
             this.append(value).append(symbol).append(" ");
         }
