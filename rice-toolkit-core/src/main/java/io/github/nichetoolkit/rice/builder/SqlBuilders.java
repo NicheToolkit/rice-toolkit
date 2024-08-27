@@ -167,7 +167,11 @@ public class SqlBuilders {
 
     public static <T> Page<T> page(PageFilter filter) {
         if (GeneralUtils.isNotEmpty(filter.getPageSize())) {
-            return PageHelper.startPage(filter.getPageNum(), filter.getPageSize());
+            if (filter.getLoadLastPage()) {
+                return PageHelper.startPage(Integer.MAX_VALUE, filter.getPageSize(),true,true,null);
+            } else {
+                return PageHelper.startPage(filter.getPageNum(), filter.getPageSize());
+            }
         }
         return null;
     }

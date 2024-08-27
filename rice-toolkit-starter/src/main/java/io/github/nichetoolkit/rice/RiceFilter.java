@@ -1,11 +1,16 @@
 package io.github.nichetoolkit.rice;
 
+import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import io.github.nichetoolkit.rice.configure.RiceBeanProperties;
+import io.github.nichetoolkit.rice.enums.DeleteType;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import io.github.nichetoolkit.rice.enums.RemoveType;
 import io.github.nichetoolkit.rice.jsonb.ContainRule;
 import io.github.nichetoolkit.rice.jsonb.ContrastRule;
 import io.github.nichetoolkit.rice.jsonb.EqualRule;
 import io.github.nichetoolkit.rice.jsonb.RangeRule;
+import io.github.nichetoolkit.rice.service.SuperService;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.lang.NonNull;
@@ -19,20 +24,6 @@ import java.util.*;
  */
 public abstract class RiceFilter extends RestFilter<String,String>{
 
-    private static ApplicationContext applicationContext;
-
-    protected RiceBeanProperties beanProperties;
-
-    @Override
-    public void setApplicationContext(@NonNull ApplicationContext applicationContext) throws BeansException {
-        RiceFilter.applicationContext = applicationContext;
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        this.beanProperties = applicationContext.getBean(RiceBeanProperties.class);
-    }
-
     public RiceFilter() {
     }
 
@@ -43,6 +34,48 @@ public abstract class RiceFilter extends RestFilter<String,String>{
     public RiceFilter(RiceFilter.Builder builder) {
         super(builder);
     }
+
+    public RestFilter toRemoveSql(SuperService superService, @NonNull String alias) {
+        RemoveType removeType = superService.removeModel();
+        String removeSign = superService.removeSign();
+        Boolean removeIndex = superService.removeIndex();
+        if (GeneralUtils.isNotEmpty(removeSign)) {
+            if (removeType == RemoveType.BOOLEAN || removeType == RemoveType.NUMBER) {
+                String removeValue = superService.removeValue();
+                if (removeIndex && GeneralUtils.isNotEmpty(removeValue)) {
+                    if (this.isRemove) {
+                        SqlBuilders.equal(SQL_BUILDER, alias, removeSign);
+                    } else {
+                        SqlBuilders.equal(SQL_BUILDER, alias, removeValue);
+                    }
+                } else {
+                    if (this.isRemove) {
+                        SqlBuilders.equal(SQL_BUILDER, alias, removeSign);
+                    } else {
+                        SqlBuilders.unequal(SQL_BUILDER, alias, removeSign);
+                    }
+                }
+            } else if (removeType == RemoveType.DATETIME || removeType == RemoveType.IDENTITY) {
+                if (this.isRemove) {
+                    SqlBuilders.nonnull(SQL_BUILDER, alias);
+                } else {
+                    SqlBuilders.isnull(SQL_BUILDER, alias);
+                }
+            }
+        }
+        return this;
+    }
+
+    public RestFilter toQuerySql(SuperService superService, @NonNull String alias) {
+        DeleteType deleteType = superService.deleteModel();
+        if (deleteType == DeleteType.OPERATE) {
+            return toOperateSql(alias);
+        } else if (deleteType == DeleteType.REMOVE) {
+            return toRemoveSql(superService, alias);
+        }
+        return this;
+    }
+
 
     @Override
     public RiceFilter toNameSql(@NonNull String alias) {

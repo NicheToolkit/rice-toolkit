@@ -34,6 +34,10 @@ public class RestPage<T> implements Serializable {
     protected Long itemSize;
     /** 数据 */
     protected List<T> items = Collections.emptyList();
+    /** 是否第一页 */
+    protected Boolean isFirstPage;
+    /** 是否最后一页 */
+    protected Boolean isLastPage;
 
     public RestPage() {
     }
@@ -45,6 +49,8 @@ public class RestPage<T> implements Serializable {
         this.totals = (long) items.size();
         this.pageSize = (long) items.size();
         this.itemSize = (long) items.size();
+        this.isFirstPage = true;
+        this.isLastPage = true;
     }
 
     public RestPage(Long totals, Long pageNum, Long pageSize, @NonNull Collection<T> items) {
@@ -63,13 +69,15 @@ public class RestPage<T> implements Serializable {
             this.pages = 0L;
             this.itemSize = 0L;
         }
+        this.isFirstPage = this.pageNum == 1;
+        this.isLastPage = this.pageNum.equals(this.pages) || this.pages == 0;
     }
 
     public static <T, K> RestPage<T> result(Long totals, Collection<T> items, PageFilter filter) {
         if (GeneralUtils.isEmpty(filter.getPageSize())) {
             return new RestPage<>(items);
         } else {
-            return new RestPage<>(totals,((long) filter.getPageNum()),((long) filter.getPageSize()), items);
+            return new RestPage<>(totals, ((long) filter.getPageNum()), ((long) filter.getPageSize()), items);
         }
     }
 
@@ -77,7 +85,7 @@ public class RestPage<T> implements Serializable {
         if (GeneralUtils.isEmpty(page)) {
             return new RestPage<>(items);
         } else {
-            return new RestPage<>(totals,((long) page.getPageNum()),((long)page.getPageSize()), items);
+            return new RestPage<>(totals, ((long) page.getPageNum()), ((long) page.getPageSize()), items);
         }
     }
 
@@ -86,7 +94,7 @@ public class RestPage<T> implements Serializable {
         if (GeneralUtils.isEmpty(pageSize)) {
             return new RestPage<>(items);
         } else {
-            return new RestPage<>(totals,pageNum,pageSize,items);
+            return new RestPage<>(totals, pageNum, pageSize, items);
         }
     }
 
@@ -99,10 +107,12 @@ public class RestPage<T> implements Serializable {
                 pageBuilder.items(items);
             }
             pageBuilder.itemSize((long) page.getResult().size())
-                    .pageNum((long)page.getPageNum())
-                    .pageSize((long)page.getPageSize())
-                    .pages((long)page.getPages())
-                    .totals(page.getTotal());
+                    .pageNum((long) page.getPageNum())
+                    .pageSize((long) page.getPageSize())
+                    .pages((long) page.getPages())
+                    .totals(page.getTotal())
+                    .firstPage(page.getPageNum() == 1)
+                    .lastPage(page.getPageNum() == page.getPages() || page.getPages() == 0);
             return pageBuilder.build();
         }
     }
@@ -119,7 +129,9 @@ public class RestPage<T> implements Serializable {
                     .pageNum(page.getPageNum())
                     .pageSize(page.getPageSize())
                     .pages(page.getPages())
-                    .totals(page.getTotals());
+                    .totals(page.getTotals())
+                    .firstPage(page.getFirstPage())
+                    .lastPage(page.getLastPage());
             return pageBuilder.build();
         }
     }
@@ -132,10 +144,12 @@ public class RestPage<T> implements Serializable {
             if (GeneralUtils.isNotEmpty(items)) {
                 resultPage.setItems(items);
             }
-            resultPage.setPageNum((long)pageInfo.getPageNum());
-            resultPage.setPageSize((long)pageInfo.getPageSize());
-            resultPage.setPages((long)pageInfo.getPages());
+            resultPage.setPageNum((long) pageInfo.getPageNum());
+            resultPage.setPageSize((long) pageInfo.getPageSize());
+            resultPage.setPages((long) pageInfo.getPages());
             resultPage.setTotals(pageInfo.getTotal());
+            resultPage.setFirstPage(pageInfo.isIsFirstPage());
+            resultPage.setLastPage(pageInfo.isIsLastPage());
             return resultPage;
         }
     }
@@ -147,6 +161,8 @@ public class RestPage<T> implements Serializable {
         this.pageSize = builder.pageSize;
         this.itemSize = builder.itemSize;
         this.items = builder.items;
+        this.isFirstPage = builder.isFirstPage;
+        this.isLastPage = builder.isLastPage;
     }
 
     public Long getTotals() {
@@ -197,6 +213,22 @@ public class RestPage<T> implements Serializable {
         this.items = new ArrayList<>(items);
     }
 
+    public Boolean getFirstPage() {
+        return isFirstPage;
+    }
+
+    public void setFirstPage(Boolean firstPage) {
+        isFirstPage = firstPage;
+    }
+
+    public Boolean getLastPage() {
+        return isLastPage;
+    }
+
+    public void setLastPage(Boolean lastPage) {
+        isLastPage = lastPage;
+    }
+
     @SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
     public static class Builder<T> {
         protected Long totals;
@@ -205,6 +237,8 @@ public class RestPage<T> implements Serializable {
         protected Long pageSize;
         protected Long itemSize;
         protected List<T> items = Collections.emptyList();
+        protected Boolean isFirstPage;
+        protected Boolean isLastPage;
 
         public Builder() {
         }
@@ -236,6 +270,16 @@ public class RestPage<T> implements Serializable {
 
         public RestPage.Builder<T> items(Collection<T> items) {
             this.items = new ArrayList<>(items);
+            return this;
+        }
+
+        public RestPage.Builder<T> firstPage(Boolean firstPage) {
+            this.isFirstPage = firstPage;
+            return this;
+        }
+
+        public RestPage.Builder<T> lastPage(Boolean lastPage) {
+            this.isLastPage = lastPage;
             return this;
         }
 

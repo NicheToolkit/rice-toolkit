@@ -35,6 +35,8 @@ public class PageFilter implements Serializable {
     protected final List<Boolean> LOAD_ARRAY = new ArrayList<>();
     protected Integer pageNum = 1;
     protected Integer pageSize = 0;
+    /** 是否直接加载最后一页 */
+    protected Boolean loadLastPage = false;
 
     public PageFilter() {
     }
@@ -71,10 +73,19 @@ public class PageFilter implements Serializable {
         this.pageSize = pageSize;
     }
 
+    public Boolean getLoadLastPage() {
+        return loadLastPage;
+    }
+
+    public void setLoadLastPage(Boolean loadLastPage) {
+        this.loadLastPage = loadLastPage;
+    }
+
     @Override
     public String toString() {
         return JsonUtils.parseJson(this);
     }
+
 
     public String toPageSql() {
         return PAGE_LIMIT + " " + this.pageSize +
@@ -83,9 +94,14 @@ public class PageFilter implements Serializable {
 
     public <T> Page<T> toPage() {
         if (GeneralUtils.isNotEmpty(this.pageSize)) {
-            return PageHelper.startPage(this.pageNum, this.pageSize);
+            if (this.loadLastPage) {
+                return PageHelper.startPage(Integer.MAX_VALUE, this.pageSize,true,true,null);
+            } else {
+                return PageHelper.startPage(this.pageNum, this.pageSize);
+            }
         }
         return null;
+
     }
 
     public Boolean[] toLoadArray() {

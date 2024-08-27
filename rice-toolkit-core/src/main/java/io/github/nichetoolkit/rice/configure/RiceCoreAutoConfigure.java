@@ -14,6 +14,6 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rice"})
 public class RiceCoreAutoConfigure {
     public RiceCoreAutoConfigure() {
-        log.debug("================= rice-toolkit-core initiated ！ ===================");
+        log.debug("================= rice-toolkit-core-config initiated ！ ===================");
     }
 }

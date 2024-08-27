@@ -7,7 +7,7 @@ import org.springframework.lang.NonNull;
 import java.util.Date;
 
 /**
- * <p>ChiefModel</p>
+ * <p>RestIdModel</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */

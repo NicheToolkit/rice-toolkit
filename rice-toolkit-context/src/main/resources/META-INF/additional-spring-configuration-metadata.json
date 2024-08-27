@@ -1,0 +1,172 @@
+{
+  "groups": [
+    {
+      "name": "nichetoolkit.rice.bean.name",
+      "sourceType": "io.github.nichetoolkit.rice.configure.RiceBeanProperties",
+      "type": "io.github.nichetoolkit.rice.configure.RiceBeanProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "nichetoolkit.rice.bean.model.unique-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "model unique enabled."
+    },
+    {
+      "name": "nichetoolkit.rice.bean.model.dynamic-table-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "model dynamic table enabled."
+    },
+    {
+      "name": "nichetoolkit.rice.bean.name.unique-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "name unique enabled."
+    },
+    {
+      "name": "nichetoolkit.rice.bean.name.nonull-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "name nonnull enabled."
+    },
+    {
+      "name": "nichetoolkit.rice.bean.key.invade-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "invade key enabled."
+    },
+    {
+      "name": "nichetoolkit.rice.bean.key.exist-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "exist key enabled."
+    },
+    {
+      "name": "nichetoolkit.rice.bean.partition.query-size",
+      "type": "java.lang.Integer",
+      "sourceType": "java.lang.Integer",
+      "description": "the maximum number of query segments is default 2000.",
+      "defaultValue": "2000"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.partition.save-size",
+      "type": "java.lang.Integer",
+      "sourceType": "java.lang.Integer",
+      "description": "the maximum number of save segments is default 500.",
+      "defaultValue": "500"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.partition.delete-size",
+      "type": "java.lang.Integer",
+      "sourceType": "java.lang.Integer",
+      "description": "the maximum number of delete segments is default 1000.",
+      "defaultValue": "1000"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.delete-model",
+      "type": "io.github.nichetoolkit.rice.enums.DeleteType",
+      "sourceType": "io.github.nichetoolkit.rice.enums.DeleteType",
+      "description": "delete model.",
+      "defaultValue": "NONE"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.remove-model",
+      "type": "io.github.nichetoolkit.rice.enums.RemoveType",
+      "sourceType": "io.github.nichetoolkit.rice.enums.RemoveType",
+      "description": "remove model.",
+      "defaultValue": "NUMBER"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.before-skip",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "before skip.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.after-skip",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "after skip.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.remove-index",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "remove index.",
+      "defaultValue": "false"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.boolean-sign",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "boolean sign value.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.boolean-value",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "boolean sign value.",
+      "defaultValue": "false"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.number-sign",
+      "type": "java.lang.Integer",
+      "sourceType": "java.lang.Integer",
+      "description": "number sign value.",
+      "defaultValue": "2"
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.number-value",
+      "type": "java.lang.Integer",
+      "sourceType": "java.lang.Integer",
+      "description": "number sign value.",
+      "defaultValue": "1"
+    }
+  ],
+  "hints": [
+    {
+      "name": "nichetoolkit.rice.bean.name.unique-enabled",
+      "values": [
+        {
+          "value": false,
+          "description": "name unique enabled close."
+        },
+        {
+          "value": true,
+          "description": "name unique enabled open."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.rice.bean.name.nonull-enabled",
+      "values": [
+        {
+          "value": false,
+          "description": "name nonnull enabled close."
+        },
+        {
+          "value": true,
+          "description": "name nonnull enabled open."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.rice.bean.key.invade-enabled",
+      "values": [
+        {
+          "value": false,
+          "description": "key invade enabled close."
+        },
+        {
+          "value": true,
+          "description": "key invade enabled open."
+        }
+      ]
+    }
+  ]
+}

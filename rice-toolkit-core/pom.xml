@@ -69,7 +69,7 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
             <version>${pagehelper.version}</version>
-            <optional>true</optional>
+            <scope>compile</scope>
         </dependency>
 
         <!-- mybatis-plus 3.x -->

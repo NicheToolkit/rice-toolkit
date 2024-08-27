@@ -1,17 +1,12 @@
 package io.github.nichetoolkit.rice;
 
-import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import io.github.nichetoolkit.rice.configure.RiceBeanProperties;
-import io.github.nichetoolkit.rice.enums.DeleteType;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.enums.RemoveType;
 import io.github.nichetoolkit.rice.filter.NameFilter;
 import io.github.nichetoolkit.rice.jsonb.ContainRule;
 import io.github.nichetoolkit.rice.jsonb.ContrastRule;
 import io.github.nichetoolkit.rice.jsonb.EqualRule;
 import io.github.nichetoolkit.rice.jsonb.RangeRule;
-import io.github.nichetoolkit.rice.service.SuperService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
@@ -89,46 +84,6 @@ public abstract class RestFilter<I, K> extends NameFilter<I, K> implements Initi
         return this;
     }
 
-    public RestFilter toRemoveSql(SuperService superService, @NonNull String alias) {
-        RemoveType removeType = superService.removeModel();
-        String removeSign = superService.removeSign();
-        Boolean removeIndex = superService.removeIndex();
-        if (GeneralUtils.isNotEmpty(removeSign)) {
-            if (removeType == RemoveType.BOOLEAN || removeType == RemoveType.NUMBER) {
-                String removeValue = superService.removeValue();
-                if (removeIndex && GeneralUtils.isNotEmpty(removeValue)) {
-                    if (this.isRemove) {
-                        SqlBuilders.equal(SQL_BUILDER, alias, removeSign);
-                    } else {
-                        SqlBuilders.equal(SQL_BUILDER, alias, removeValue);
-                    }
-                } else {
-                    if (this.isRemove) {
-                        SqlBuilders.equal(SQL_BUILDER, alias, removeSign);
-                    } else {
-                        SqlBuilders.unequal(SQL_BUILDER, alias, removeSign);
-                    }
-                }
-            } else if (removeType == RemoveType.DATETIME || removeType == RemoveType.IDENTITY) {
-                if (this.isRemove) {
-                    SqlBuilders.nonnull(SQL_BUILDER, alias);
-                } else {
-                    SqlBuilders.isnull(SQL_BUILDER, alias);
-                }
-            }
-        }
-        return this;
-    }
-
-    public RestFilter toQuerySql(SuperService superService, @NonNull String alias) {
-        DeleteType deleteType = superService.deleteModel();
-        if (deleteType == DeleteType.OPERATE) {
-            return toOperateSql(alias);
-        } else if (deleteType == DeleteType.REMOVE) {
-            return toRemoveSql(superService, alias);
-        }
-        return this;
-    }
 
     public static abstract class Builder<I, K> extends NameFilter.Builder<I, K> {
 
@@ -298,6 +253,6 @@ public abstract class RestFilter<I, K> extends NameFilter<I, K> implements Initi
         }
 
         @Override
-        public abstract RestFilter build();
+        public abstract RestFilter<I, K> build();
     }
 }

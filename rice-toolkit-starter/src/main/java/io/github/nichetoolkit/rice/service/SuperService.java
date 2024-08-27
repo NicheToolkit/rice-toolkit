@@ -26,8 +26,10 @@ import io.github.nichetoolkit.rice.error.service.ServiceUnknownException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.filter.PageFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
-import io.github.nichetoolkit.rice.mapper.*;
-import io.github.nichetoolkit.rice.mapper.natives.*;
+import io.github.nichetoolkit.rice.mapper.AlertMapper;
+import io.github.nichetoolkit.rice.mapper.OperateLinkMapper;
+import io.github.nichetoolkit.rice.mapper.OperateMapper;
+import io.github.nichetoolkit.rice.mapper.SuperMapper;
 import io.github.nichetoolkit.rice.service.advice.*;
 import io.github.nichetoolkit.rice.service.stereotype.RestService;
 import lombok.extern.slf4j.Slf4j;
@@ -65,9 +67,9 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
 
     protected RiceBeanProperties beanProperties;
 
-    private ThreadLocal<F> queryFilterCache = new ThreadLocal<>();
+    private final ThreadLocal<F> queryFilterCache = new ThreadLocal<>();
 
-    private ThreadLocal<Map<K, String>> tablenameMapCache = new ThreadLocal<>();
+    private final ThreadLocal<Map<K, String>> tablenameMapCache = new ThreadLocal<>();
 
     @Override
     public void setApplicationContext(@NonNull ApplicationContext applicationContext) throws BeansException {
