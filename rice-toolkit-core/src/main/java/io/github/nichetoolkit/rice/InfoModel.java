@@ -9,18 +9,11 @@ import org.springframework.lang.NonNull;
 
 import java.util.Date;
 
-/**
- * <p>InfoModel</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
-    /** 名称 */
     protected String name;
-    /** 描述信息 */
     protected String description;
 
     public InfoModel() {

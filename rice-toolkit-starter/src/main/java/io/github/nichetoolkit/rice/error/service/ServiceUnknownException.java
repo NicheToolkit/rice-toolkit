@@ -3,11 +3,6 @@ package io.github.nichetoolkit.rice.error.service;
 import io.github.nichetoolkit.rest.error.natives.ServiceErrorException;
 import io.github.nichetoolkit.rice.error.ServiceErrorStatus;
 
-/**
- * <p>ServiceUnknownException</p>
- * @author Cyan (snow22314 @ outlook.com)
- * @version v1.0.0
- */
 public class ServiceUnknownException extends ServiceErrorException {
     public ServiceUnknownException() {
         super(ServiceErrorStatus.SERVICE_UNKNOWN_ERROR);

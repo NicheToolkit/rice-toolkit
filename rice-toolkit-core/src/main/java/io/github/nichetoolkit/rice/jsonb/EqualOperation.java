@@ -7,22 +7,12 @@ import io.github.nichetoolkit.rest.RestValue;
 
 import java.util.Optional;
 
-/**
- * <p>EqualOperation</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("WeakerAccess")
 public enum EqualOperation implements RestField {
-    /** 相等 */
     EQUAL_OPERATION(1, "相等","target = 'values'"),
-    /** 左模糊 */
     LEFT_LIKE_OPERATION(2, "左模糊","target like concat('%','values')"),
-    /** 右模糊 */
     RIGHT_LIKE_OPERATION(3, "右模糊","target like concat('values','%')"),
-    /** 全模糊 */
     ALL_LIKE_OPERATION(4, "全模糊","target like concat('%','values','%')"),
-    /** 不为空 */
     NOT_NULL_OPERATION(5, "不为空","target is not null"),
     ;
 

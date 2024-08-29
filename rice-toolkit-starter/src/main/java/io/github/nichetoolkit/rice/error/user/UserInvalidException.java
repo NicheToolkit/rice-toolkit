@@ -4,11 +4,6 @@ import io.github.nichetoolkit.rest.error.natives.TokenErrorException;
 import io.github.nichetoolkit.rice.error.TokenErrorStatus;
 import io.github.nichetoolkit.rice.error.UserErrorStatus;
 
-/**
- * <p>UserInvalidException</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 public class UserInvalidException extends TokenErrorException {
 
     public UserInvalidException() {

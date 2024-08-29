@@ -44,11 +44,6 @@ import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.*;
 
-/**
- * <p>SuperService</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("RedundantThrows")
 @Slf4j
 public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntity<I>, F extends IdFilter<I, K>>

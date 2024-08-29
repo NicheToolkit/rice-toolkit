@@ -9,11 +9,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
-/**
- * <p>SqlBuilder</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings({"WeakerAccess","UnusedReturnValue"})
 public final class SqlBuilder implements Serializable, CharSequence {
 
@@ -33,7 +28,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
         this.sqlBuilder = new StringBuilder(capacity);
     }
 
-    public SqlBuilder(String str) {
+    public SqlBuilder(String str) throws RuntimeException {
         this.sqlBuilder = new StringBuilder(str);
     }
 

@@ -10,11 +10,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * <p>BigDecimalFormat</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @JacksonAnnotationsInside

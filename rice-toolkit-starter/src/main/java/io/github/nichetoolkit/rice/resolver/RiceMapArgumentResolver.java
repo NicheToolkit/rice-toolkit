@@ -11,11 +11,6 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-/**
- * <p>RestModelMapArgumentResolver RestMap 模型数据容器参数解析器</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Component
 public class RiceMapArgumentResolver implements HandlerMethodArgumentResolver {
 

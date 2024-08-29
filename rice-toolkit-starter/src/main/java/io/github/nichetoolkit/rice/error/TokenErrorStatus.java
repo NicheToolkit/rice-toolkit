@@ -3,11 +3,6 @@ package io.github.nichetoolkit.rice.error;
 import io.github.nichetoolkit.rest.RestStatus;
 import lombok.Getter;
 
-/**
- * <p>TokenErrorStatus</p>
- * @author Cyan (snow22314 @ outlook.com)
- * @version v1.0.0
- */
 @Getter
 public enum TokenErrorStatus implements RestStatus {
     TOKEN_INVALID_ERROR(11500,"the token is invalid"),

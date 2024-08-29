@@ -12,11 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * <p>SimpleController</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @RestSkip
 @CrossOrigin
 @RestNotelog

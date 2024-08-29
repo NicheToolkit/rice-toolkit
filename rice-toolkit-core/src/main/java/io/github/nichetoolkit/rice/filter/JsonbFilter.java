@@ -14,30 +14,13 @@ import org.springframework.lang.NonNull;
 
 import java.util.*;
 
-/**
- * <p>JsonbFilter</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings({"WeakerAccess", "unchecked", "MixedMutabilityReturnType"})
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonbFilter<I, K> extends TimeFilter<I, K> {
-    /**
-     * 数值型对比运算集合
-     */
     protected Set<ContrastRule> contrasts;
-    /**
-     * 数值型范围对比运算集合
-     */
     protected Set<RangeRule> ranges;
-    /**
-     * 字符串型比较模糊运算集合
-     */
     protected Set<EqualRule> equals;
-    /**
-     * 包含运算in
-     */
     protected Set<ContainRule> contains;
 
     public JsonbFilter() {
@@ -350,19 +333,19 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
         }
 
         @Override
-        public JsonbFilter.Builder<I, K> sorts(@NonNull Collection<RestSort> sorts) {
+        public JsonbFilter.Builder<I, K> sorts(@NonNull Collection<RestSort<?>> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
         }
 
         @Override
-        public JsonbFilter.Builder<I, K> sorts(@NonNull RestSort... sorts) {
+        public JsonbFilter.Builder<I, K> sorts(@NonNull RestSort<?>... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
             return this;
         }
 
         @Override
-        public JsonbFilter.Builder sorts(@NonNull String... sorts) {
+        public JsonbFilter.Builder<I, K> sorts(@NonNull String... sorts) {
             this.sorts = new HashSet<>(RestSort.build(sorts));
             return this;
         }

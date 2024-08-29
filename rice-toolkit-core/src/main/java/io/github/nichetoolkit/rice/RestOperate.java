@@ -9,11 +9,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * <p>RestOperate</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 public interface RestOperate {
 
     default OperateType getOperate() {

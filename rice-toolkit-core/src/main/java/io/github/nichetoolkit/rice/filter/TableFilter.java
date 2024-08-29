@@ -11,16 +11,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 
-/**
- * <p>TableFilter</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TableFilter<K> extends OperateFilter {
-    /** 动态表key */
     protected K tablekey;
 
     public TableFilter() {
@@ -91,13 +85,13 @@ public class TableFilter<K> extends OperateFilter {
         }
 
         @Override
-        public TableFilter.Builder<K> sorts(@NonNull Collection<RestSort> sorts) {
+        public TableFilter.Builder<K> sorts(@NonNull Collection<RestSort<?>> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
         }
 
         @Override
-        public TableFilter.Builder<K> sorts(@NonNull RestSort... sorts) {
+        public TableFilter.Builder<K> sorts(@NonNull RestSort<?>... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
             return this;
         }

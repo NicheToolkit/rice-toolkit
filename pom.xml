@@ -116,18 +116,16 @@
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
         <spring-boot.version>2.7.18</spring-boot.version>
+        <spring-boot-maven-plugin.version>2.7.18</spring-boot-maven-plugin.version>
+        <maven-gpg-plugin.version>3.2.5</maven-gpg-plugin.version>
+        <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
+        <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
 
         <rest-toolkit.version>1.0.7-SNAPSHOT</rest-toolkit.version>
         <rice-toolkit.version>1.0.6-SNAPSHOT</rice-toolkit.version>
         <mybatis-toolkit.version>1.0.1-SNAPSHOT</mybatis-toolkit.version>
-
-        <source-plugin.version>2.2.1</source-plugin.version>
-        <javadoc-plugin.version>2.9.1</javadoc-plugin.version>
-        <gpg-plugin.version>1.5</gpg-plugin.version>
-        <nexus-staging-plugin.version>1.6.7</nexus-staging-plugin.version>
-        <compiler-plugin.version>3.3</compiler-plugin.version>
-        <release-plugin.version>2.5.3</release-plugin.version>
 
         <pagehelper.version>6.1.0</pagehelper.version>
         <pagehelper-starter.version>2.1.0</pagehelper-starter.version>
@@ -138,7 +136,123 @@
 
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>io.github.nichetoolkit</groupId>
+                <artifactId>rest-toolkit-parent</artifactId>
+                <version>${rest-toolkit.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>io.github.nichetoolkit</groupId>
+                <artifactId>mybatis-toolkit-parent</artifactId>
+                <version>${mybatis-toolkit.version}</version>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.nichetoolkit</groupId>
+                <artifactId>rice-toolkit-core</artifactId>
+                <version>${rice-toolkit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.nichetoolkit</groupId>
+                <artifactId>rice-toolkit-context</artifactId>
+                <version>${rice-toolkit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.nichetoolkit</groupId>
+                <artifactId>rice-toolkit-starter</artifactId>
+                <version>${rice-toolkit.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.nichetoolkit</groupId>
+                <artifactId>rest-toolkit-starter</artifactId>
+                <version>${rest-toolkit.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.nichetoolkit</groupId>
+                <artifactId>mybatis-toolkit-core</artifactId>
+                <version>${mybatis-toolkit.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.mybatis</groupId>
+                <artifactId>mybatis-provider</artifactId>
+                <version>${mybatis-mapper.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${maven-gpg-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>${nexus-staging-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${maven-release-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <finalName>${project.artifactId}</finalName>
         <resources>
             <resource>
@@ -153,7 +267,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>${source-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -166,9 +279,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${javadoc-plugin.version}</version>
                 <configuration>
-                    <aggregate>true</aggregate>
                     <charset>UTF-8</charset>
                     <encoding>UTF-8</encoding>
                     <docencoding>UTF-8</docencoding>
@@ -180,16 +291,12 @@
                             <goal>jar</goal>
                         </goals>
                         <phase>package</phase>
-                        <configuration>
-                            <additionalparam>-Xdoclint:none</additionalparam>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>${gpg-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -203,7 +310,6 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>${nexus-staging-plugin.version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>sonatype-nexus-central</serverId>
@@ -214,7 +320,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>${release-plugin.version}</version>
                 <configuration>
                     <tagNameFormat>v@{project.version}</tagNameFormat>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
@@ -226,7 +331,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${compiler-plugin.version}</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>

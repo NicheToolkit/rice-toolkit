@@ -6,11 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.stereotype.Component;
 
-/**
- * <p>RiceBeanNameProperties</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Component
 @ConfigurationProperties(prefix = "nichetoolkit.rice.bean")
 public class RiceBeanProperties {
@@ -26,10 +21,8 @@ public class RiceBeanProperties {
     private BeanKey key = new BeanKey();
     @NestedConfigurationProperty
     private BeanName name = new BeanName();
-    /** 数据分段 */
     @NestedConfigurationProperty
     private BeanPartition partition = new BeanPartition();
-    /** 数据删除模式 */
     @NestedConfigurationProperty
     private DeleteModel delete = new DeleteModel();
 
@@ -37,11 +30,8 @@ public class RiceBeanProperties {
     }
 
     public static class BeanPartition {
-        /** the maximum number of query segments is default 2000 */
         private Integer querySize = QUERY_SIZE;
-        /** the maximum number of save segments is default 500 */
         private Integer saveSize = SAVE_SIZE;
-        /** the maximum number of delete segments is default 1000 */
         private Integer deleteSize = DELETE_SIZE;
 
         public BeanPartition() {
@@ -223,25 +213,18 @@ public class RiceBeanProperties {
 
         private RemoveType removeModel = RemoveType.NUMBER;
 
-        /** 是否跳过 before处理 */
         private boolean beforeSkip = true;
 
-        /** 是否跳过 after处理 */
         private boolean afterSkip = true;
 
-        /** 是否开启移除字段标记索引 */
         private boolean removeIndex = false;
 
-        /** removeType BOOLEAN 模式 删除数据标记值 */
         private boolean booleanSign = true;
 
-        /** removeType BOOLEAN 模式 未删除数据标记值 */
         private boolean booleanValue = false;
 
-        /** removeType NUMBER 模式 删除数据标记值 */
         private Integer numberSign = 2;
 
-        /** removeType NUMBER 模式 未删除数据标记值 */
         private Integer numberValue = 1;
 
         public DeleteModel() {

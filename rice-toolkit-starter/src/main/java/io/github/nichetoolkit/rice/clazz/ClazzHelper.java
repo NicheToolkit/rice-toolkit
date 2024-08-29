@@ -19,11 +19,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-/**
- * <p>RestIdAccessUtils</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("unused")
 public class ClazzHelper {
 

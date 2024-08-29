@@ -21,11 +21,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>RestIdentityAutoConfigure</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Slf4j
 @AutoConfiguration
 @SuppressWarnings("SameNameButDifferent")

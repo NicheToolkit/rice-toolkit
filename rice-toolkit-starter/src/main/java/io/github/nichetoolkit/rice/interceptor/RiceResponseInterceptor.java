@@ -7,7 +7,6 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestMap;
 import io.github.nichetoolkit.rice.interceptor.advice.RiceLoginAdvice;
 import io.github.nichetoolkit.rice.resolver.RiceMapArgumentResolver;
-import io.github.nichetoolkit.rice.stereotype.RestCheck;
 import io.github.nichetoolkit.rice.stereotype.login.RestAuth;
 import io.github.nichetoolkit.rice.stereotype.login.RestLogin;
 import io.github.nichetoolkit.rice.stereotype.login.RestLogout;
@@ -29,11 +28,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>LoginResponseInterceptor</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Slf4j
 @Order(1)
 @ControllerAdvice

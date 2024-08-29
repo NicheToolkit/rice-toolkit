@@ -9,23 +9,14 @@ import org.springframework.lang.NonNull;
 
 import java.util.Optional;
 
-/**
- * <p>RangeRule</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RangeRule extends JsonbRule<RangeRule> {
 
-    /** 属性值类型 */
     protected ValueType type = ValueType.STRING;
-    /** 属性开始值 */
     protected Object startValue;
-    /** 属性结束值 */
     protected Object endValue;
-    /** 计算操作 */
     protected RangeOperation operation = RangeOperation.GREATER_EQUAL_LESS_EQUAL_OPERATION;
 
 

@@ -6,7 +6,6 @@ import io.github.nichetoolkit.rest.interceptor.RestRequestWrapper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.helper.InterceptorHelper;
 import io.github.nichetoolkit.rice.interceptor.advice.RiceWidgetAdvice;
-import io.github.nichetoolkit.rice.interceptor.advice.RiceWidgetAdvice;
 import io.github.nichetoolkit.rice.stereotype.purview.RestWidget;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>RiceWidgetInterceptor</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Slf4j
 @Component
 @Order(15)

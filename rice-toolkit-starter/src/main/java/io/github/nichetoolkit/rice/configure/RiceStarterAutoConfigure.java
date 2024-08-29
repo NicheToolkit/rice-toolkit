@@ -17,11 +17,6 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * <p>RiceSuperStarterAutoConfigure</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Slf4j
 @Configuration
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rice"})

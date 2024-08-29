@@ -1,8 +1,5 @@
 package io.github.nichetoolkit.rice;
 
-import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.builder.SqlBuilders;
-import io.github.nichetoolkit.rice.configure.RiceBeanProperties;
 import io.github.nichetoolkit.rice.enums.DeleteType;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.enums.RemoveType;
@@ -11,18 +8,11 @@ import io.github.nichetoolkit.rice.jsonb.ContrastRule;
 import io.github.nichetoolkit.rice.jsonb.EqualRule;
 import io.github.nichetoolkit.rice.jsonb.RangeRule;
 import io.github.nichetoolkit.rice.service.SuperService;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
 import org.springframework.lang.NonNull;
 
 import java.util.*;
 
-/**
- * <p>RiceFilter</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
-public abstract class RiceFilter extends RestFilter<String,String>{
+public abstract class RiceFilter extends BaseFilter<String,String> {
 
     public RiceFilter() {
     }
@@ -35,44 +25,22 @@ public abstract class RiceFilter extends RestFilter<String,String>{
         super(builder);
     }
 
-    public RestFilter toRemoveSql(SuperService superService, @NonNull String alias) {
+    public RiceFilter toRemoveSql(SuperService<String,String,? extends IdModel<String>,? extends IdEntity<String>,? extends RiceFilter> superService, @NonNull String alias) {
         RemoveType removeType = superService.removeModel();
         String removeSign = superService.removeSign();
         Boolean removeIndex = superService.removeIndex();
-        if (GeneralUtils.isNotEmpty(removeSign)) {
-            if (removeType == RemoveType.BOOLEAN || removeType == RemoveType.NUMBER) {
-                String removeValue = superService.removeValue();
-                if (removeIndex && GeneralUtils.isNotEmpty(removeValue)) {
-                    if (this.isRemove) {
-                        SqlBuilders.equal(SQL_BUILDER, alias, removeSign);
-                    } else {
-                        SqlBuilders.equal(SQL_BUILDER, alias, removeValue);
-                    }
-                } else {
-                    if (this.isRemove) {
-                        SqlBuilders.equal(SQL_BUILDER, alias, removeSign);
-                    } else {
-                        SqlBuilders.unequal(SQL_BUILDER, alias, removeSign);
-                    }
-                }
-            } else if (removeType == RemoveType.DATETIME || removeType == RemoveType.IDENTITY) {
-                if (this.isRemove) {
-                    SqlBuilders.nonnull(SQL_BUILDER, alias);
-                } else {
-                    SqlBuilders.isnull(SQL_BUILDER, alias);
-                }
-            }
-        }
+        String removeValue = superService.removeValue();
+        super.toRemoveSql(removeType,removeSign,removeIndex,removeValue,alias);
         return this;
     }
 
-    public RestFilter toQuerySql(SuperService superService, @NonNull String alias) {
+    public RiceFilter toQuerySql(SuperService<String,String,? extends IdModel<String>,? extends IdEntity<String>,? extends RiceFilter> superService, @NonNull String alias) {
         DeleteType deleteType = superService.deleteModel();
-        if (deleteType == DeleteType.OPERATE) {
-            return toOperateSql(alias);
-        } else if (deleteType == DeleteType.REMOVE) {
-            return toRemoveSql(superService, alias);
-        }
+        RemoveType removeType = superService.removeModel();
+        String removeSign = superService.removeSign();
+        Boolean removeIndex = superService.removeIndex();
+        String removeValue = superService.removeValue();
+        super.toQuerySql(deleteType,removeType,removeSign,removeIndex,removeValue,alias);
         return this;
     }
 
@@ -113,7 +81,7 @@ public abstract class RiceFilter extends RestFilter<String,String>{
         return this;
     }
 
-    public static abstract class Builder extends RestFilter.Builder<String,String> {
+    public static abstract class Builder extends BaseFilter.Builder<String,String> {
 
         public Builder() {
         }
@@ -251,13 +219,13 @@ public abstract class RiceFilter extends RestFilter<String,String>{
         }
 
         @Override
-        public RiceFilter.Builder sorts(@NonNull Collection<RestSort> sorts) {
+        public RiceFilter.Builder sorts(@NonNull Collection<RestSort<?>> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
         }
 
         @Override
-        public RiceFilter.Builder sorts(@NonNull RestSort... sorts) {
+        public RiceFilter.Builder sorts(@NonNull RestSort<?>... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
             return this;
         }

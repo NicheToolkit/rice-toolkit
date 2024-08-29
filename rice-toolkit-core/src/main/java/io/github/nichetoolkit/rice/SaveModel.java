@@ -7,11 +7,6 @@ import io.github.nichetoolkit.rice.enums.SaveType;
 
 import java.io.Serializable;
 
-/**
- * <p>SaveModel</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,7 +15,6 @@ public class SaveModel implements RestSave, Serializable {
     @JsonIgnore
     protected SaveType save = SaveType.NONE;
 
-    /** 逻辑删除标记 */
     @JsonIgnore
     protected String logicSign;
 

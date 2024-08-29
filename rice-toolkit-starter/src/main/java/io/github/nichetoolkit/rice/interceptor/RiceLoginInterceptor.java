@@ -23,11 +23,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * <p>RiceLoginInterceptor</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Slf4j
 @Component
 @Order(10)
@@ -72,7 +67,7 @@ public class RiceLoginInterceptor implements RiceRequestInterceptor {
             throw new ServiceUnauthorizedException();
         }
     }
-    
+
     private void checkTokePrefix(RestCheck restCheck, RestRequestWrapper requestWrapper) throws TokenPrefixInvalidException {
         List<String> headerTokens = loginProperties.getHeaderTokens();
         if (headerTokens.isEmpty()) {

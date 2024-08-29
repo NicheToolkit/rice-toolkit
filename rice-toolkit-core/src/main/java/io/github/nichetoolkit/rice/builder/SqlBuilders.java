@@ -10,11 +10,6 @@ import io.github.nichetoolkit.rice.filter.SortFilter;
 
 import java.util.Collection;
 
-/**
- * <p>SqlBuilders</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class SqlBuilders {
 
@@ -135,18 +130,18 @@ public class SqlBuilders {
     }
 
     public static SqlBuilder sort(StringBuilder sqlBuilder, String name, SortType type) {
-        return newSqlBuilder(sqlBuilder).append(new SortFilter(new RestSort(name,type)).toSort());
+        return newSqlBuilder(sqlBuilder).append(new SortFilter(new RestSort<>(name,type)).toSort());
     }
 
     public static void sort(SqlBuilder sqlBuilder, String name, SortType type) {
-        sqlBuilder.append(new SortFilter(new RestSort(name,type)).toSort());
+        sqlBuilder.append(new SortFilter(new RestSort<>(name,type)).toSort());
     }
 
-    public static SqlBuilder sort(StringBuilder sqlBuilder, RestSort... sorts) {
+    public static SqlBuilder sort(StringBuilder sqlBuilder, RestSort<?>... sorts) {
         return newSqlBuilder(sqlBuilder).append(new SortFilter(sorts).toSort());
     }
 
-    public static void sort(SqlBuilder sqlBuilder, RestSort... sorts) {
+    public static void sort(SqlBuilder sqlBuilder, RestSort<?>... sorts) {
         sqlBuilder.append(new SortFilter(sorts).toSort());
     }
 

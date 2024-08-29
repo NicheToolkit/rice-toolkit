@@ -3,11 +3,6 @@ package io.github.nichetoolkit.rice.error;
 import io.github.nichetoolkit.rest.RestStatus;
 import lombok.Getter;
 
-/**
- * <p>ServiceErrorStatus</p>
- * @author Cyan (snow22314 @ outlook.com)
- * @version v1.0.0
- */
 @Getter
 public enum ServiceErrorStatus implements RestStatus {
     SERVICE_REALIZATION_ERROR(11102,"the service must implement the interface of 'IdFilterService'"),

@@ -13,30 +13,17 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * <p>Page</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RestPage<T> implements Serializable {
-    /** 总数据量 */
     protected Long totals;
-    /** 总页数 */
     protected Long pages;
-    /** 当前页码 */
     protected Long pageNum;
-    /** 页码大小 */
     protected Long pageSize;
-    /** 当前页码大小 */
     protected Long itemSize;
-    /** 数据 */
     protected List<T> items = Collections.emptyList();
-    /** 是否第一页 */
     protected Boolean isFirstPage;
-    /** 是否最后一页 */
     protected Boolean isLastPage;
 
     public RestPage() {

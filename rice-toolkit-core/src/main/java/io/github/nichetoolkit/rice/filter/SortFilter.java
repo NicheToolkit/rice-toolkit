@@ -11,11 +11,6 @@ import org.springframework.lang.NonNull;
 
 import java.util.*;
 
-/**
- * <p>SortFilter</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings({"WeakerAccess", "UnusedReturnValue", "MixedMutabilityReturnType"})
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -25,7 +20,7 @@ public class SortFilter extends PageFilter {
     @JsonIgnore
     public static final String SORT_ORDER = " ORDER BY ";
 
-    protected Set<RestSort> sorts;
+    protected Set<RestSort<?>> sorts;
 
     @JsonIgnore
     protected boolean isSort = true;
@@ -33,7 +28,7 @@ public class SortFilter extends PageFilter {
     public SortFilter() {
     }
 
-    public SortFilter(@NonNull RestSort... sorts) {
+    public SortFilter(@NonNull RestSort<?>... sorts) {
         this.sorts = new LinkedHashSet<>(Arrays.asList(sorts));
     }
 
@@ -50,7 +45,7 @@ public class SortFilter extends PageFilter {
         this.sorts = builder.sorts;
     }
 
-    public List<RestSort> getSorts() {
+    public List<RestSort<?>> getSorts() {
         if (GeneralUtils.isNotEmpty(sorts)) {
             return new ArrayList<>(sorts);
         }
@@ -69,12 +64,12 @@ public class SortFilter extends PageFilter {
         this.setSorts(RestSort.build(sorts));
     }
 
-    public void setSorts(@NonNull RestSort... sorts) {
+    public void setSorts(@NonNull RestSort<?>... sorts) {
         this.sorts = new LinkedHashSet<>(Arrays.asList(sorts));
     }
 
     @JsonSetter
-    public void setSorts(@NonNull Collection<RestSort> sorts) {
+    public void setSorts(@NonNull Collection<RestSort<?>> sorts) {
         this.sorts = new LinkedHashSet<>(sorts);
     }
 
@@ -87,7 +82,7 @@ public class SortFilter extends PageFilter {
         return this;
     }
 
-    public SortFilter addSorts(@NonNull RestSort... sorts) {
+    public SortFilter addSorts(@NonNull RestSort<?>... sorts) {
         if (GeneralUtils.isEmpty(this.sorts)) {
             this.sorts = new LinkedHashSet<>(Arrays.asList(sorts));
         } else {
@@ -96,7 +91,7 @@ public class SortFilter extends PageFilter {
         return this;
     }
 
-    public SortFilter addSorts(@NonNull Collection<RestSort> sorts) {
+    public SortFilter addSorts(@NonNull Collection<RestSort<?>> sorts) {
         if (GeneralUtils.isEmpty(this.sorts)) {
             this.sorts = new LinkedHashSet<>(sorts);
         } else {
@@ -117,17 +112,17 @@ public class SortFilter extends PageFilter {
     }
 
     public static class Builder extends PageFilter.Builder {
-        protected Set<RestSort> sorts;
+        protected Set<RestSort<?>> sorts;
 
         public Builder() {
         }
 
-        public SortFilter.Builder sorts(@NonNull Collection<RestSort> sorts) {
+        public SortFilter.Builder sorts(@NonNull Collection<RestSort<?>> sorts) {
             this.sorts = new LinkedHashSet<>(sorts);
             return this;
         }
 
-        public SortFilter.Builder sorts(@NonNull RestSort... sorts) {
+        public SortFilter.Builder sorts(@NonNull RestSort<?>... sorts) {
             this.sorts = new LinkedHashSet<>(Arrays.asList(sorts));
             return this;
         }

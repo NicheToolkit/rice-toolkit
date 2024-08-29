@@ -8,19 +8,10 @@ import org.springframework.lang.NonNull;
 
 import java.util.Optional;
 
-/**
- * <p>RangeOperation</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 public enum RangeOperation implements RestField {
-    /** 大于等于且小于等于 */
     GREATER_EQUAL_LESS_EQUAL_OPERATION(1, "大于等于且小于等于","(target >= start and target <= end)"),
-    /** 大于等于且小于 */
     GREATER_EQUAL_LESS_OPERATION(2, "大于等于且小于","(target >= start and target < end)"),
-    /** 大于且小于等于 */
     GREATER_LESS_EQUAL_OPERATION(3, "大于且小于等于","(target > start and target <= end)"),
-    /** 大于且小于 */
     GREATER_LESS_OPERATION(4, "大于且小于","(target > start and target < end)"),
     ;
 

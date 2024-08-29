@@ -7,11 +7,6 @@ import lombok.Builder;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
- * <p>Property</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Builder
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

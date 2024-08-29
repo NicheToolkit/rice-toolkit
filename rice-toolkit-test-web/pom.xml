@@ -27,13 +27,11 @@
         <dependency>
             <groupId>io.github.nichetoolkit</groupId>
             <artifactId>rice-toolkit-starter</artifactId>
-            <version>${rice-toolkit.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>${pagehelper-starter.version}</version>
         </dependency>
 
         <dependency>

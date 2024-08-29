@@ -17,11 +17,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * <p>RiceRequest</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @JsonInclude(value= JsonInclude.Include.NON_NULL)

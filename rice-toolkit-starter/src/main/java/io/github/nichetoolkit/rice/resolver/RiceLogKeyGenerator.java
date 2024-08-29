@@ -8,11 +8,6 @@ import io.github.nichetoolkit.rice.helper.InterceptorHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
-/**
- * <p>RiceLogKeyGenerator</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Slf4j
 public class RiceLogKeyGenerator extends RestLogKeyGenerator {
     private final RiceLoginProperties loginProperties;

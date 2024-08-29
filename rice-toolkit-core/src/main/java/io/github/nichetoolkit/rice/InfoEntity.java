@@ -8,18 +8,11 @@ import org.springframework.lang.NonNull;
 
 import java.util.Date;
 
-/**
- * <p>InfoEntity</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
-    /** 事物名称 */
     @RestUniqueKey
     protected String name;
-    /** 事物描述 */
     protected String description;
 
     public InfoEntity() {

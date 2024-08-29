@@ -9,15 +9,9 @@ import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
 
-/**
- * <p>JsonbRule</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable {
-    /** 属性名 */
     String name;
 
     JsonbRule() {

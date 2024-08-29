@@ -1,12 +1,7 @@
 package io.github.nichetoolkit.rice;
 
 
-/**
- * <p>RiceIdEntity</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
-public abstract class RiceIdEntity<E extends RiceIdEntity<E,M>,M extends RiceIdModel<M,E>> extends RestIdEntity<E,M,String> {
+public abstract class RiceIdEntity<E extends RiceIdEntity<E,M>,M extends RiceIdModel<M,E>> extends BaseIdEntity<E,M,String> {
 
     public RiceIdEntity() {
     }
@@ -19,7 +14,7 @@ public abstract class RiceIdEntity<E extends RiceIdEntity<E,M>,M extends RiceIdM
         super(builder);
     }
 
-    public static abstract class Builder<E extends RiceIdEntity<E,M>,M extends RiceIdModel<M,E>> extends RestIdEntity.Builder<E,M,String> {
+    public static abstract class Builder<E extends RiceIdEntity<E,M>,M extends RiceIdModel<M,E>> extends BaseIdEntity.Builder<E,M,String> {
 
         public Builder() {
         }

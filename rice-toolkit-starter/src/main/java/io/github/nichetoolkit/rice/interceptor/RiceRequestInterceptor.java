@@ -10,11 +10,6 @@ import org.springframework.web.servlet.AsyncHandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * <p>RiceRequestInterceptor</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 public interface RiceRequestInterceptor extends AsyncHandlerInterceptor {
     String BASIC_ERROR = "org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController";
 

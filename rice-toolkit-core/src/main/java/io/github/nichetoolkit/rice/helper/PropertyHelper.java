@@ -8,11 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * <p>PropertyHelper</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Slf4j
 public class PropertyHelper {
 
@@ -41,7 +36,6 @@ public class PropertyHelper {
             return JsonUtils.parseJson(Collections.emptyList());
         }
     }
-
 
 
     public static Map<String,String> toPropertiesMap(Collection<Property> properties) {

@@ -6,11 +6,6 @@ import javax.persistence.Table;
 import java.util.Date;
 
 
-/**
- * <p>SimpleEntity</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Table(name = "ntr_simple")
 public class SimpleEntity extends RiceInfoEntity<SimpleEntity,SimpleModel> {
 

@@ -12,20 +12,19 @@ import io.github.nichetoolkit.rice.jsonb.ContainRule;
 import io.github.nichetoolkit.rice.jsonb.ContrastRule;
 import io.github.nichetoolkit.rice.jsonb.EqualRule;
 import io.github.nichetoolkit.rice.jsonb.RangeRule;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.lang.NonNull;
 
 import java.util.*;
 
-/**
- * <p>NameFilter</p>
- * @author Cyan (snow22314@outlook.com)
- * @version V.0.0.1
- */
+
+@Data
+@EqualsAndHashCode(callSuper = false)
 @SuppressWarnings({"WeakerAccess", "unchecked", "MixedMutabilityReturnType"})
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NameFilter<I, K> extends JsonbFilter<I, K> {
-    /** 通过名称查询数据 */
     protected String name;
     protected Set<String> names;
 
@@ -45,14 +44,6 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
         super(builder);
         this.name = builder.name;
         this.names = builder.names;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public List<String> getNames() {
@@ -87,7 +78,7 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
         }
     }
 
-    public NameFilter toNameSql(@NonNull String alias) {
+    public NameFilter<I,K> toNameSql(@NonNull String alias) {
         if (GeneralUtils.isNotEmpty(this.name)) {
             SqlBuilders.like(SQL_BUILDER, alias, this.name);
         } else if (GeneralUtils.isNotEmpty(this.names)) {
@@ -233,19 +224,19 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
         }
 
         @Override
-        public NameFilter.Builder<I, K> sorts(@NonNull Collection<RestSort> sorts) {
+        public NameFilter.Builder<I, K> sorts(@NonNull Collection<RestSort<?>> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
         }
 
         @Override
-        public NameFilter.Builder<I, K> sorts(@NonNull RestSort... sorts) {
+        public NameFilter.Builder<I, K> sorts(@NonNull RestSort<?>... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
             return this;
         }
 
         @Override
-        public NameFilter.Builder sorts(@NonNull String... sorts) {
+        public NameFilter.Builder<I, K> sorts(@NonNull String... sorts) {
             this.sorts = new HashSet<>(RestSort.build(sorts));
             return this;
         }

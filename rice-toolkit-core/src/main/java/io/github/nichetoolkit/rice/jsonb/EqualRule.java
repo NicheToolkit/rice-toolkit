@@ -7,20 +7,12 @@ import org.springframework.lang.NonNull;
 
 import java.util.Optional;
 
-/**
- * <p>EqualRule</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("WeakerAccess")
 public class EqualRule extends JsonbRule<EqualRule> {
-    /** 属性值类型 */
     protected ValueType type = ValueType.STRING;
-    /** 属性值 */
     protected String value;
-    /** 计算操作 */
     protected EqualOperation operation = EqualOperation.EQUAL_OPERATION;
-    
+
     public EqualRule() {
     }
 

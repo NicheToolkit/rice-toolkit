@@ -9,20 +9,12 @@ import org.springframework.lang.NonNull;
 
 import java.util.Optional;
 
-/**
- * <p>ContrastRule</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ContrastRule extends JsonbRule<ContrastRule> {
-    /** 属性值类型 */
     protected ValueType type = ValueType.LONG;
-    /** 属性值 */
     protected Object value;
-    /** 计算操作 */
     protected ContrastOperation operation = ContrastOperation.EQUAL_OPERATION;
 
     public ContrastRule() {

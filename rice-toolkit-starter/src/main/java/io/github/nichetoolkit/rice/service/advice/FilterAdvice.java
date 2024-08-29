@@ -5,11 +5,6 @@ import io.github.nichetoolkit.rice.error.service.ServiceUnsupportedException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import org.checkerframework.checker.units.qual.K;
 
-/**
- * <p>FilterAdvice</p>
- * @author Cyan (snow22314 @ outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("RedundantThrows")
 public interface FilterAdvice<K, I, F extends IdFilter<I, K>> {
 

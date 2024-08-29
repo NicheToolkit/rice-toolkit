@@ -6,11 +6,6 @@ import io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import org.springframework.web.method.HandlerMethod;
 
-/**
- * <p>RiceUserlogAdvice </p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 public interface RiceUserlogAdvice {
 
     default boolean supports(RestUserlog userlog, HandlerMethod handlerMethod) {

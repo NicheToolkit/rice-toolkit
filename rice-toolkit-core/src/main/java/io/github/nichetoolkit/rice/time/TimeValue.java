@@ -7,17 +7,12 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 
-/**
- * <p>TimeValue</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 public interface TimeValue<S extends TimeValue<S>> {
     String INTERVAL_REGEX = "/";
     String DURATION_START = "P";
 
     Long id();
-    /** 字符串类型 */
+
     String format();
 
     static TimeValue parse(@NonNull String timeValueText) {

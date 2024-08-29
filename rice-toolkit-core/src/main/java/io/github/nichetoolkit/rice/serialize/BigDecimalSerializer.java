@@ -13,11 +13,6 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Objects;
 
-/**
- * <p>BigDecimalSerializer</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @JsonComponent
 public class BigDecimalSerializer extends JsonSerializer<BigDecimal> implements ContextualSerializer {
     private String format = "0.00";

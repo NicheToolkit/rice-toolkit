@@ -9,21 +9,14 @@ import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
 
-/**
- * <p>OperateEntity</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OperateEntity implements Serializable {
 
-    /** 数据操作 */
     @RestOperate
     protected Integer operate;
 
-    /** 逻辑删除标记 */
     @RestLogic
     protected String logicSign;
 

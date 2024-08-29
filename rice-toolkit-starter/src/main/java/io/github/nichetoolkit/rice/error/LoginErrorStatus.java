@@ -2,11 +2,6 @@ package io.github.nichetoolkit.rice.error;
 
 import io.github.nichetoolkit.rest.RestStatus;
 
-/**
- * <p>LoginErrorStatus</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 public enum LoginErrorStatus implements RestStatus {
     LOGIN_INFO_ERROR(11201,"the info of account or password  is error"),
     LOGIN_ACCOUNT_ERROR(11202,"the account is error"),

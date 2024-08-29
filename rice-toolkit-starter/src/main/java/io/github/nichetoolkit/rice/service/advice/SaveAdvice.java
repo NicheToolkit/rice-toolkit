@@ -5,11 +5,6 @@ import io.github.nichetoolkit.rice.IdModel;
 
 import java.util.Collection;
 
-/**
- * <p>BuilderAdvice</p>
- * @author Cyan (snow22314 @ outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("RedundantThrows")
 public interface SaveAdvice<I,M extends IdModel<I>> {
 

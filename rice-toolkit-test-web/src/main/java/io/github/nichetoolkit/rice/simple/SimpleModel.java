@@ -10,11 +10,6 @@ import org.springframework.lang.NonNull;
 
 import java.util.Date;
 
-/**
- * <p>SimpleModel</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 public class SimpleModel extends RiceInfoModel<SimpleModel,SimpleEntity> implements RestTablekey {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

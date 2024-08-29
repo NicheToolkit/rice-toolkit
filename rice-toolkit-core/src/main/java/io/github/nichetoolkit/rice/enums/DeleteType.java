@@ -6,19 +6,10 @@ import io.github.nichetoolkit.rest.RestValue;
 
 import java.util.Optional;
 
-/**
- * <p>DeleteType</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 public enum DeleteType implements RestValue<Integer,String> {
-    /** 移除 逻辑删除 */
     NONE(0,"none"),
-    /** 移除 逻辑删除 */
     REMOVE(1,"remove"),
-    /** 删除 物理删除  */
     DELETE(2,"delete"),
-    /** 复制 逻辑删除 */
     OPERATE(3,"operate"),
     ;
 

@@ -6,11 +6,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * <p>RiceLoginResult</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Data
 @JsonInclude(value= JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

@@ -9,11 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-/**
- * <p>TimeIntervalSerializer</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Component
 public class TimeIntervalSerializer extends JsonSerializer<TimeInterval> {
     @Override

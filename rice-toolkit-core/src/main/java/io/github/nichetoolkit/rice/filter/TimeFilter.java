@@ -16,21 +16,14 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 
-/**
- * <p>TimeFilter</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings({"WeakerAccess", "unchecked"})
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeFilter<I, K> extends IdFilter<I, K> {
 
-    /** default like '2020-01-01 00:00:00' */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     protected Date startTime;
-    /** default like '2020-01-02 00:00:00' */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     protected Date endTime;
@@ -177,13 +170,13 @@ public class TimeFilter<I, K> extends IdFilter<I, K> {
         }
 
         @Override
-        public TimeFilter.Builder<I, K> sorts(@NonNull Collection<RestSort> sorts) {
+        public TimeFilter.Builder<I, K> sorts(@NonNull Collection<RestSort<?>> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
         }
 
         @Override
-        public TimeFilter.Builder<I, K> sorts(@NonNull RestSort... sorts) {
+        public TimeFilter.Builder<I, K> sorts(@NonNull RestSort<?>... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
             return this;
         }

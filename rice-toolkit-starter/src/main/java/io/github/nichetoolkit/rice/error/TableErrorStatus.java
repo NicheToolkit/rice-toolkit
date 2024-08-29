@@ -3,11 +3,6 @@ package io.github.nichetoolkit.rice.error;
 import io.github.nichetoolkit.rest.RestStatus;
 import lombok.Getter;
 
-/**
- * <p>TablenameErrorStatus</p>
- * @author Cyan (snow22314 @ outlook.com)
- * @version v1.0.0
- */
 @Getter
 public enum TableErrorStatus implements RestStatus {
     TABLE_UNKNOWN_ERROR(11310,"the table has unknown error!"),

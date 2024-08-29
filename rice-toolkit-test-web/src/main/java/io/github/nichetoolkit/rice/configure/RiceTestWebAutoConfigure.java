@@ -6,11 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import tk.mybatis.spring.annotation.MapperScan;
 
-/**
- * <p>RiceMybatisStarterAutoConfigure</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Slf4j
 @Configuration
 @MapperScan(basePackages = {"io.github.nichetoolkit.rice.mapper"})

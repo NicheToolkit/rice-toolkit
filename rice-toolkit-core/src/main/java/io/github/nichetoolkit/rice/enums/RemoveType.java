@@ -2,26 +2,15 @@ package io.github.nichetoolkit.rice.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.RestValue;
 
 import java.util.Optional;
 
-/**
- * <p>RemoveModel</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 public enum RemoveType implements RestValue<Integer, String> {
-    /** boolean类型 true or false删除 */
     BOOLEAN(1, "boolean"),
-    /** 状态数字 删除 */
     NUMBER(2, "number"),
-    /** 时间戳方式 now() 标记删除 */
     DATETIME(3, "datetime"),
-    /** 主键id标记 逻辑删除 */
     IDENTITY(4, "identity"),
-    /** 备份方式 逻辑删除 */
     BACKUP(5, "backup"),
     ;
 

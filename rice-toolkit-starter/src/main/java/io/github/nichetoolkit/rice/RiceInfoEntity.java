@@ -5,12 +5,7 @@ import org.springframework.lang.NonNull;
 
 import java.util.Date;
 
-/**
- * <p>RiceInfoEntity</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
-public abstract class RiceInfoEntity<E extends RiceInfoEntity<E, M>, M extends RiceInfoModel<M, E>> extends RestInfoEntity<E, M, String> {
+public abstract class RiceInfoEntity<E extends RiceInfoEntity<E, M>, M extends RiceInfoModel<M, E>> extends BaseInfoEntity<E, M, String> {
 
     public RiceInfoEntity() {
     }
@@ -27,7 +22,7 @@ public abstract class RiceInfoEntity<E extends RiceInfoEntity<E, M>, M extends R
         super(builder);
     }
 
-    public static abstract class Builder<E extends RiceInfoEntity<E, M>, M extends RiceInfoModel<M, E>> extends RestInfoEntity.Builder<E, M, String> {
+    public static abstract class Builder<E extends RiceInfoEntity<E, M>, M extends RiceInfoModel<M, E>> extends BaseInfoEntity.Builder<E, M, String> {
 
         public Builder() {
         }

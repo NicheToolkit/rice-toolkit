@@ -8,11 +8,6 @@ import org.springframework.lang.NonNull;
 
 import java.util.Optional;
 
-/**
- * <p>ModelCheckService</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("RedundantThrows")
 public interface OptionalService<K, I, M extends IdModel<I>, F extends IdFilter<I, K>> extends QueryService<K, I, M> {
 

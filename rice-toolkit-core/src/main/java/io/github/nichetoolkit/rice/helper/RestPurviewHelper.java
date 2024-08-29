@@ -16,11 +16,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * <p>RestPurviewHelper</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 public class RestPurviewHelper {
 
     public static List<String> modules(RestModule restModule) {

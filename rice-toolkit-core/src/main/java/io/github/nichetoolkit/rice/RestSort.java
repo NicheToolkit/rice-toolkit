@@ -9,11 +9,6 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * <p>Sort</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -58,7 +53,7 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof RestSort)) return false;
-        RestSort sort = (RestSort) o;
+        RestSort<?> sort = (RestSort<?>) o;
         return Objects.equals(name, sort.name);
     }
 
@@ -75,14 +70,14 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
         return "";
     }
 
-    public static List<RestSort> build(String... sorts) {
+    public static List<RestSort<?>> build(String... sorts) {
         if (GeneralUtils.isEmpty(sorts)) {
             return Collections.emptyList();
         }
         return Arrays.stream(sorts).map(RestSort::new).collect(Collectors.toList());
     }
 
-    public static List<RestSort> build(Collection<String> sorts) {
+    public static List<RestSort<?>> build(Collection<String> sorts) {
         if (GeneralUtils.isEmpty(sorts)) {
             return Collections.emptyList();
         }
@@ -92,6 +87,7 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
     public static class Builder<S extends RestSort<S>> {
         protected String name;
         protected SortType type = SortType.DESC;
+
         public Builder() {
         }
 
@@ -109,7 +105,7 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
             this.type = SortType.parseKey(type);
             return this;
         }
-        
+
         public RestSort<S> build() {
             return new RestSort<>(this);
         }

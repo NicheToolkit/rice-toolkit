@@ -9,19 +9,12 @@ import org.springframework.lang.NonNull;
 
 import java.util.Date;
 
-/**
- * <p>TimeModel</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeModel extends OperateModel {
-    /** 数据创建时间 */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     protected Date createTime;
-    /** 数据更新时间 */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     protected Date updateTime;

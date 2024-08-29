@@ -12,11 +12,6 @@ import org.springframework.lang.NonNull;
 import java.util.Date;
 import java.util.Objects;
 
-/**
- * <p>IdEntity</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class IdEntity<I> extends TimeEntity implements RestId<I> {

@@ -10,20 +10,13 @@ import org.springframework.lang.NonNull;
 
 import java.util.Date;
 
-/**
- * <p>TimeEntity</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeEntity extends OperateEntity {
-    /** 数据创建时间 */
     @RestUpdate(false)
     @RestForceInsert("now()")
     protected Date createTime;
-    /** 数据更新时间 */
     @RestForceInsert("now()")
     @RestForceUpdate("now()")
     protected Date updateTime;

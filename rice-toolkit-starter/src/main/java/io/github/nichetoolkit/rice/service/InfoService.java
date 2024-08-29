@@ -12,11 +12,6 @@ import org.springframework.lang.NonNull;
 
 import java.util.List;
 
-/**
- * <p>InfoNonBuildServer</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("RedundantThrows")
 public abstract class InfoService<K, I, M extends InfoModel<I>, E extends InfoEntity<I>, F extends IdFilter<I, K>> extends SuperService<K, I, M, E, F> {
 

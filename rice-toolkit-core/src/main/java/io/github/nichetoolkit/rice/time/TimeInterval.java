@@ -8,11 +8,6 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 
-/**
- * <p>TimeInterval</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

@@ -7,16 +7,11 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
 
-/**
- * <p>TimeInstant</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeInstant implements TimeValue<TimeInstant> {
-    
+
     private final Instant instant;
 
     public TimeInstant() {

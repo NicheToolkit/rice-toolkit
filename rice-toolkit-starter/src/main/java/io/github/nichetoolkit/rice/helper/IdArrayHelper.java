@@ -10,11 +10,6 @@ import io.github.nichetoolkit.rice.clazz.ClazzHelper;
 import java.lang.reflect.Array;
 import java.util.List;
 
-/**
- * <p>IdArrayUtils</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 public class IdArrayHelper {
 
     @SuppressWarnings("unchecked")

@@ -21,11 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>RestUserArgumentResolver 登录用户信息参数解析</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Slf4j
 @Component
 public class RiceUserArgumentResolver implements HandlerMethodArgumentResolver {

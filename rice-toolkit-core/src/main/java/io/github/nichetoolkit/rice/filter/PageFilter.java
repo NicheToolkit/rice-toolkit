@@ -14,11 +14,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * <p>PageFilter</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -35,7 +30,6 @@ public class PageFilter implements Serializable {
     protected final List<Boolean> LOAD_ARRAY = new ArrayList<>();
     protected Integer pageNum = 1;
     protected Integer pageSize = 0;
-    /** 是否直接加载最后一页 */
     protected Boolean loadLastPage = false;
 
     public PageFilter() {

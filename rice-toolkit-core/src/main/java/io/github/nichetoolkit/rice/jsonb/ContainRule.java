@@ -10,18 +10,11 @@ import org.springframework.lang.NonNull;
 
 import java.util.*;
 
-/**
- * <p>ContainRule</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ContainRule extends JsonbRule<ContainRule> {
-    /** 属性值类型 */
     protected ValueType type = ValueType.LONG;
-    /** 属性值运算范围 */
     protected Set<Object> values;
 
     public ContainRule() {

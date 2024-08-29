@@ -3,11 +3,6 @@ package io.github.nichetoolkit.rice.error;
 import io.github.nichetoolkit.rest.RestStatus;
 import lombok.Getter;
 
-/**
- * <p>UserErrorStatus</p>
- * @author Cyan (snow22314 @ outlook.com)
- * @version v1.0.0
- */
 @Getter
 public enum UserErrorStatus implements RestStatus {
     USER_INVALID_ERROR(11510,"the user is invalid"),

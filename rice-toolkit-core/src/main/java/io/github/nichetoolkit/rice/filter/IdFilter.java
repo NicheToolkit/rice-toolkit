@@ -14,11 +14,6 @@ import org.springframework.lang.NonNull;
 
 import java.util.*;
 
-/**
- * <p>IdFilter</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings({"WeakerAccess", "MixedMutabilityReturnType"})
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -40,11 +35,6 @@ public class IdFilter<I, K> extends TableFilter<K> {
         this.id = id;
     }
 
-    /**
-     * the generic paradigm of T is not Like List<T>、Set<T>
-     * It should be String、Long、Integer ...
-     * @param ids id list
-     */
     @SuppressWarnings(value = "unchecked")
     public IdFilter(@NonNull I... ids) {
         this.ids = new HashSet<>(Arrays.asList(ids));
@@ -158,13 +148,13 @@ public class IdFilter<I, K> extends TableFilter<K> {
     }
 
     @Override
-    public IdFilter<I, K> addSorts(@NonNull RestSort... sorts) {
+    public IdFilter<I, K> addSorts(@NonNull RestSort<?>... sorts) {
         super.addSorts(sorts);
         return this;
     }
 
     @Override
-    public IdFilter<I, K> addSorts(@NonNull Collection<RestSort> sorts) {
+    public IdFilter<I, K> addSorts(@NonNull Collection<RestSort<?>> sorts) {
         super.addSorts(sorts);
         return this;
     }
@@ -280,13 +270,13 @@ public class IdFilter<I, K> extends TableFilter<K> {
         }
 
         @Override
-        public IdFilter.Builder<I, K> sorts(@NonNull Collection<RestSort> sorts) {
+        public IdFilter.Builder<I, K> sorts(@NonNull Collection<RestSort<?>> sorts) {
             this.sorts = new HashSet<>(sorts);
             return this;
         }
 
         @Override
-        public IdFilter.Builder<I, K> sorts(@NonNull RestSort... sorts) {
+        public IdFilter.Builder<I, K> sorts(@NonNull RestSort<?>... sorts) {
             this.sorts = new HashSet<>(Arrays.asList(sorts));
             return this;
         }

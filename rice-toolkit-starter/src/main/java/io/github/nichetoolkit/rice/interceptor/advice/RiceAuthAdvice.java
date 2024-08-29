@@ -8,11 +8,6 @@ import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * <p>RiceAuthAdvice </p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 public interface RiceAuthAdvice {
 
     default boolean supports(RestAuth restAuth, HandlerMethod handlerMethod) {

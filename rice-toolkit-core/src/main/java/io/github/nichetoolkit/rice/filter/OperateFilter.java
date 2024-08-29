@@ -10,16 +10,10 @@ import org.springframework.lang.NonNull;
 
 import java.util.*;
 
-/**
- * <p>OperateFilter</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings({"WeakerAccess", "MixedMutabilityReturnType"})
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OperateFilter extends SortFilter {
-    /** 是否逻辑删除 */
     protected boolean isRemove;
 
     protected OperateType operate;

@@ -16,11 +16,6 @@ import lombok.EqualsAndHashCode;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * <p>RiceResponse</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @JsonInclude(value= JsonInclude.Include.NON_NULL)

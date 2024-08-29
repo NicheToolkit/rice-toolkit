@@ -16,11 +16,6 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-/**
- * <p>MEBuilderHelper</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @SuppressWarnings("MixedMutabilityReturnType")
 public class MEBuilderHelper {
 
@@ -104,7 +99,6 @@ public class MEBuilderHelper {
     }
 
 
-
     public static <I, M, E> List<M> modelList(Collection<E> entityList, FunctionActuator<E, M> function) throws RestException {
         if (GeneralUtils.isEmpty(entityList)) {
             return Collections.emptyList();
@@ -118,21 +112,6 @@ public class MEBuilderHelper {
         return new ArrayList<>(modelList);
     }
 
-    /**
-     * 通过目标id查询设置单个目标对象
-     * @param entity 源对象实体
-     * @param model 源对象模型
-     * @param targetQueryByTargetId 通过目标对象id查询单个目标对象
-     * @param entityGetTargetId 源对象实体获取目标对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param index isLoad序列
-     * @param isLoadArray LoadArray参数
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             E entity, M model, FunctionActuator<I,T> targetQueryByTargetId,
             FunctionActuator<E, I> entityGetTargetId,
@@ -149,19 +128,6 @@ public class MEBuilderHelper {
 
     }
 
-    /**
-     * 通过目标id查询设置单个目标对象
-     * @param entity 源对象实体
-     * @param model 源对象模型
-     * @param targetQueryByTargetId 通过目标对象id查询单个目标对象
-     * @param entityGetTargetId 源对象实体获取目标对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             E entity, M model, FunctionActuator<I,T> targetQueryByTargetId,
             FunctionActuator<E, I> entityGetTargetId,
@@ -174,20 +140,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id查询设置单个目标对象
-     * @param entity 源对象实体
-     * @param model 源对象模型
-     * @param targetQueryBySourceId 通过源对象id查询单个目标对象
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param index isLoad序列
-     * @param isLoadArray LoadArray参数
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             E entity, M model, FunctionActuator<I,T> targetQueryBySourceId,
             BiConsumerActuator<M, T> sourceSetTarget,
@@ -203,18 +155,6 @@ public class MEBuilderHelper {
 
     }
 
-    /**
-     * 通过源对象id查询设置单个目标对象
-     * @param entity 源对象实体
-     * @param model 源对象模型
-     * @param targetQueryBySourceId 通过源对象id查询单个目标对象
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             E entity, M model, FunctionActuator<I,T> targetQueryBySourceId,
             BiConsumerActuator<M, T> sourceSetTarget
@@ -226,21 +166,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id查询设置单个目标对象
-     * @param entity 源对象实体
-     * @param model 源对象模型
-     * @param targetQueryBySourceId 通过源对象id查询单个目标对象
-     * @param entityGetSourceId 源对象实体获取源对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param index isLoad序列
-     * @param isLoadArray LoadArray参数
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             E entity, M model, FunctionActuator<I,T> targetQueryBySourceId,
             FunctionActuator<E, I> entityGetSourceId,
@@ -256,19 +181,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id查询设置单个目标对象
-     * @param entity 源对象实体
-     * @param model 源对象模型
-     * @param targetQueryBySourceId 通过源对象id查询单个目标对象
-     * @param entityGetSourceId 源对象实体获取源对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             E entity, M model, FunctionActuator<I,T> targetQueryBySourceId,
             FunctionActuator<E, I> entityGetSourceId,
@@ -285,19 +197,6 @@ public class MEBuilderHelper {
     }
 
 
-    /**
-     * 通过目标对象id列表查询设置多个目标对象
-     * @param model 源对象模型
-     * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象列表
-     * @param sourceGetTargetIdList 源对象获取源对象id
-     * @param sourceSetTargetList 源对象设置目标对象列表
-     * @param index isLoad序列
-     * @param isLoadArray LoadArray参数
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             M model, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             FunctionActuator<M, List<I>> sourceGetTargetIdList,
@@ -313,17 +212,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过目标对象id列表查询设置多个目标对象
-     * @param model 源对象模型
-     * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象列表
-     * @param sourceGetTargetIdList 源对象获取源对象id
-     * @param sourceSetTargetList 源对象设置目标对象列表
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             M model, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             FunctionActuator<M, List<I>> sourceGetTargetIdList,
@@ -336,20 +224,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源id查询设置多个目标对象
-     * @param entity 源对象实体
-     * @param model 源对象模型
-     * @param targetListQueryBySourceId 通过源对象id查询目标对象列表
-     * @param sourceSetTargetList 源对象设置目标对象列表
-     * @param index isLoad序列
-     * @param isLoadArray LoadArray参数
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             E entity, M model, FunctionActuator<I, List<T>> targetListQueryBySourceId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
@@ -365,18 +239,6 @@ public class MEBuilderHelper {
 
     }
 
-    /**
-     * 通过源id查询设置多个目标对象
-     * @param entity 源对象实体
-     * @param model 源对象模型
-     * @param targetListQueryBySourceId 通过源对象id查询目标对象列表
-     * @param sourceSetTargetList 源对象设置目标对象列表
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             E entity, M model, FunctionActuator<I, List<T>> targetListQueryBySourceId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList
@@ -388,21 +250,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源id查询设置多个目标对象
-     * @param entity 源对象实体
-     * @param model 源对象模型
-     * @param targetListQueryBySourceId 通过源对象id查询目标对象列表
-     * @param entityGetSourceId 源对象实体获取源对象id
-     * @param sourceSetTargetList 源对象设置目标对象列表
-     * @param index isLoad序列
-     * @param isLoadArray LoadArray参数
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             E entity, M model, FunctionActuator<I, List<T>> targetListQueryBySourceId,
             FunctionActuator<E, I> entityGetSourceId,
@@ -418,19 +265,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源id查询设置多个目标对象
-     * @param entity 源对象实体
-     * @param model 源对象模型
-     * @param targetListQueryBySourceId 通过源对象id查询目标对象列表
-     * @param entityGetSourceId 源对象实体获取源对象id
-     * @param sourceSetTargetList 源对象设置目标对象列表
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             E entity, M model, FunctionActuator<I, List<T>> targetListQueryBySourceId,
             FunctionActuator<E, I> entityGetSourceId,
@@ -444,22 +278,6 @@ public class MEBuilderHelper {
     }
 
 
-    /**
-     * 通过目标对象id列表查询设置单个目标对象
-     * @param entityList 源对象实体集合
-     * @param modelList 源对象模型集合
-     * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象表
-     * @param entityGetTargetId 源对象实体获取目标对象id
-     * @param sourceGetTargetId 源对象模型获取目标对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param index isLoad序列
-     * @param isLoadArray LoadArray参数
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             Function<E,I> entityGetTargetId, FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget,
@@ -472,20 +290,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过目标对象id列表查询设置单个目标对象
-     * @param entityList 源对象实体集合
-     * @param modelList 源对象模型集合
-     * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象表
-     * @param entityGetTargetId 源对象实体获取目标对象id
-     * @param sourceGetTargetId 源对象模型获取目标对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             Function<E,I> entityGetTargetId, FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
@@ -497,23 +301,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过目标对象id列表查询设置单个目标对象
-     * @param entityList 源对象实体集合
-     * @param modelList 源对象模型集合
-     * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象表
-     * @param entityGetTargetId 源对象实体获取目标对象id
-     * @param targetGetTargetId 目标对象模型获取目标对象id
-     * @param sourceGetTargetId 源对象模型获取目标对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param index isLoad序列
-     * @param isLoadArray LoadArray参数
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             Function<E,I> entityGetTargetId, FunctionActuator<T,I> targetGetTargetId,
@@ -527,21 +314,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过目标对象id列表查询设置单个目标对象
-     * @param entityList 源对象实体集合
-     * @param modelList 源对象模型集合
-     * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象表
-     * @param entityGetTargetId 源对象实体获取目标对象id
-     * @param targetGetTargetId 目标对象模型获取目标对象id
-     * @param sourceGetTargetId 源对象模型获取目标对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             Function<E,I> entityGetTargetId, FunctionActuator<T,I> targetGetTargetId,
@@ -554,21 +326,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id列表查询设置单个目标对象
-     * @param entityList 源对象实体集合
-     * @param modelList 源对象模型集合
-     * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
-     * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param index isLoad序列
-     * @param isLoadArray LoadArray参数
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             FunctionActuator<T,I> targetGetSourceId, BiConsumerActuator<M, T> sourceSetTarget,
@@ -581,19 +338,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id列表查询设置单个目标对象
-     * @param entityList 源对象实体集合
-     * @param modelList 源对象模型集合
-     * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
-     * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             FunctionActuator<T,I> targetGetSourceId, BiConsumerActuator<M, T> sourceSetTarget
@@ -605,23 +349,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id列表查询设置单个目标对象
-     * @param entityList 源对象实体集合
-     * @param modelList 源对象模型集合
-     * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
-     * @param entityGetSourceId 源对象实体获取源对象id
-     * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param sourceGetSourceId 源对象模型获取源对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param index isLoad序列
-     * @param isLoadArray LoadArray参数
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             Function<E,I> entityGetSourceId, FunctionActuator<T,I> targetGetSourceId,
@@ -635,21 +362,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id列表查询设置单个目标对象
-     * @param entityList 源对象实体集合
-     * @param modelList 源对象模型集合
-     * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
-     * @param entityGetSourceId 源对象实体获取源对象id
-     * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param sourceGetSourceId 源对象模型获取源对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             Function<E,I> entityGetSourceId, FunctionActuator<T,I> targetGetSourceId,
@@ -662,19 +374,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过目标对象id列表查询设置多个目标对象
-     * @param modelList 源对象模型集合
-     * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象表
-     * @param sourceGetTargetIdList 源对象模型获取目标对象id列表
-     * @param sourceSetTargetList 源对象设置多个目标对象
-     * @param index isLoad序列
-     * @param isLoadArray LoadArray参数
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             FunctionActuator<M,List<I>> sourceGetTargetIdList, BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
@@ -699,17 +398,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过目标对象id列表查询设置多个目标对象
-     * @param modelList 源对象模型集合
-     * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象表
-     * @param sourceGetTargetIdList 源对象模型获取目标对象id列表
-     * @param sourceSetTargetList 源对象设置多个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             FunctionActuator<M,List<I>> sourceGetTargetIdList, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
@@ -733,21 +421,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过目标对象id列表查询设置多个目标对象
-     * @param modelList 源对象模型集合
-     * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象表
-     * @param sourceGetSourceId 源对象模型获取源对象id
-     * @param sourceGetTargetIdList 源对象模型获取目标对象id列表
-     * @param targetGetTargetId 目标对象模型获取目标对象id
-     * @param sourceSetTargetList 源对象设置多个目标对象
-     * @param index isLoad序列
-     * @param isLoadArray LoadArray参数
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             FunctionActuator<M,I> sourceGetSourceId, FunctionActuator<M,List<I>> sourceGetTargetIdList, FunctionActuator<T,I> targetGetTargetId,
@@ -773,19 +446,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过目标对象id列表查询设置多个目标对象
-     * @param modelList 源对象模型集合
-     * @param targetListQueryByTargetIdList 通过目标对象id列表查询目标对象表
-     * @param sourceGetSourceId 源对象模型获取源对象id
-     * @param sourceGetTargetIdList 源对象模型获取目标对象id列表
-     * @param targetGetTargetId 目标对象模型获取目标对象id
-     * @param sourceSetTargetList 源对象设置多个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
             FunctionActuator<M,I> sourceGetSourceId, FunctionActuator<M,List<I>> sourceGetTargetIdList, FunctionActuator<T,I> targetGetTargetId,
@@ -810,21 +470,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id列表查询设置多个目标对象
-     * @param entityList 源对象实体集合
-     * @param modelList 源对象模型集合
-     * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
-     * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param sourceSetTargetList 源对象设置多个目标对象
-     * @param index isLoad序列
-     * @param isLoadArray LoadArray参数
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>,E extends RestId<I>> void buildMultiSourceId(
             Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             FunctionActuator<T,I> targetGetSourceId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
@@ -837,22 +482,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id列表查询设置多个目标对象
-     * @param entityList 源对象实体集合
-     * @param modelList 源对象模型集合
-     * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
-     * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param sourceGetSourceId 源对象模型获取目标对象id
-     * @param sourceSetTargetList 源对象设置多个目标对象
-     * @param index isLoad序列
-     * @param isLoadArray LoadArray参数
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>,E extends RestId<I>> void buildMultiSourceId(
             Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             FunctionActuator<T,I> targetGetSourceId, FunctionActuator<M,I> sourceGetSourceId,
@@ -866,20 +495,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id列表查询设置多个目标对象
-     * @param entityList 源对象实体集合
-     * @param modelList 源对象模型集合
-     * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
-     * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param sourceGetTargetId 源对象模型获取目标对象id
-     * @param sourceSetTargetList 源对象设置多个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>,E extends RestId<I>> void buildMultiSourceId(
             Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             FunctionActuator<T,I> targetGetSourceId, FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
@@ -891,21 +506,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id列表查询设置多个目标对象
-     * @param entityList 源对象实体集合
-     * @param modelList 源对象模型集合
-     * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
-     * @param entityGetSourceId 源对象实体获取源对象id
-     * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param sourceGetTargetId 源对象模型获取目标对象id
-     * @param sourceSetTargetList 源对象设置多个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>,E extends RestId<I>> void buildMultiSourceId(
             Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             Function<E,I> entityGetSourceId, FunctionActuator<T,I> targetGetSourceId,
@@ -919,21 +519,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id列表查询设置多个目标对象
-     * @param entityList 源对象实体集合
-     * @param modelList 源对象模型集合
-     * @param targetListQueryBySourceIdList 通过源对象id列表查询目标对象表
-     * @param entityGetSourceId 源对象实体获取源对象id
-     * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param sourceGetTargetId 源对象模型获取目标对象id
-     * @param sourceSetTargetList 源对象设置多个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @param <E> 源对象实体类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>,E extends RestId<I>> void buildMultiSourceId(
             Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
             Function<E,I> entityGetSourceId, FunctionActuator<T,I> targetGetSourceId,
@@ -947,17 +532,6 @@ public class MEBuilderHelper {
     }
 
 
-    /**
-     * 通过目标对象id列表设置单个目标对象
-     * @param modelList 源对象模型集合
-     * @param targetList 目标象模型集合
-     * @param sourceGetTargetId 源对象模型获取目标对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildSingleTargetTargetId(
             Collection<M> modelList, Collection<T> targetList, FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
@@ -968,18 +542,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过目标对象id列表设置单个目标对象
-     * @param modelList 源对象模型集合
-     * @param targetList 目标象模型集合
-     * @param targetGetTargetId 目标对象模型获取目标对象id
-     * @param sourceGetTargetId 源对象模型获取目标对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildSingleTargetTargetId(
             Collection<M> modelList, Collection<T> targetList, FunctionActuator<T, I> targetGetTargetId,
             FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
@@ -991,17 +553,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id列表设置单个目标对象
-     * @param modelList 源对象模型集合
-     * @param targetList 目标象模型集合
-     * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildSingleTargetSourceId(
             Collection<M> modelList, Collection<T> targetList, FunctionActuator<T, I> targetGetSourceId,
             BiConsumerActuator<M, T> sourceSetTarget
@@ -1013,18 +564,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id列表设置单个目标对象
-     * @param modelList 源对象模型集合
-     * @param targetList 目标象模型集合
-     * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param sourceGetSourceId 源对象模型获取源对象id
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildSingleTargetSourceId(
             Collection<M> modelList, Collection<T> targetList, FunctionActuator<T, I> targetGetSourceId,
             FunctionActuator<M,I> sourceGetSourceId, BiConsumerActuator<M, T> sourceSetTarget
@@ -1036,17 +575,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过目标对象id列表设置多个目标对象
-     * @param modelList 源对象模型集合
-     * @param targetList 目标象模型集合
-     * @param sourceIdTargetIdListMap 源对象id目标象模型 ListMap集合
-     * @param sourceSetTargetList 源对象设置多个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetTargetId(
             Collection<M> modelList, Collection<T> targetList, Map<I, List<I>> sourceIdTargetIdListMap,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList
@@ -1058,19 +586,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过目标对象id列表设置多个目标对象
-     * @param modelList 源对象模型集合
-     * @param targetList 目标象模型集合
-     * @param sourceIdTargetIdListMap 源对象id目标象模型 ListMap集合
-     * @param targetGetTargetId 目标对象模型获取目标对象id
-     * @param sourceGetSourceId 源对象模型获取源对象id
-     * @param sourceSetTargetList 源对象设置多个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetTargetId(
             Collection<M> modelList, Collection<T> targetList, Map<I, List<I>> sourceIdTargetIdListMap,
             FunctionActuator<T, I> targetGetTargetId, FunctionActuator<M,I> sourceGetSourceId,
@@ -1083,17 +598,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id列表设置多个目标对象
-     * @param modelList 源对象模型集合
-     * @param targetList 目标象模型集合
-     * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param sourceSetTargetList 源对象设置多个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetSourceId(
             Collection<M> modelList, Collection<T> targetList,
             FunctionActuator<T, I> targetGetSourceId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
@@ -1105,18 +609,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 通过源对象id列表设置多个目标对象
-     * @param modelList 源对象模型集合
-     * @param targetList 目标象模型集合
-     * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param sourceGetSourceId 源对象模型获取源对象id
-     * @param sourceSetTargetList 源对象设置多个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetSourceId(
             Collection<M> modelList, Collection<T> targetList,
             FunctionActuator<T, I> targetGetSourceId, FunctionActuator<M,I> sourceGetSourceId,
@@ -1130,17 +622,6 @@ public class MEBuilderHelper {
     }
 
 
-    /**
-     * 源对象设置单个目标对象
-     * @param modelList 源对象模型集合
-     * @param getIdKey 获取对象KeyId
-     * @param keyIdTargetMap 对象KeyIdMap
-     * @param sourceSetTarget 源对象设置单个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void sourceTarget(
             Collection<M> modelList, FunctionActuator<M,I> getIdKey,
             Map<I, T> keyIdTargetMap, BiConsumerActuator<M, T> sourceSetTarget
@@ -1156,17 +637,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 源对象设置多个目标对象
-     * @param modelList 源对象模型集合
-     * @param getIdKey 获取对象KeyId
-     * @param keyIdTargetListMap 对象KeyIdListMap
-     * @param sourceSetTargetList 源对象设置多个目标对象
-     * @param <I> 对象Id类型声明
-     * @param <M> 源对象模型类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, M extends RestId<I>, T extends RestId<I>> void sourceTargetList(
             Collection<M> modelList, FunctionActuator<M,I> getIdKey,
             Map<I, List<T>> keyIdTargetListMap, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
@@ -1183,15 +653,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 目标对象列表转换目标对象id目标对象Map
-     * @param targetList 目标象模型集合
-     * @param targetMap 目标象模型Map集合
-     * @param targetGetTargetId 目标对象模型获取目标对象id
-     * @param <I> 对象Id类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, T extends RestId<I>> void targetMapTargetId(Collection<T> targetList, Map<I, T> targetMap, FunctionActuator<T, I> targetGetTargetId) throws RestException {
         for (T target : targetList) {
             if (GeneralUtils.isNotEmpty(target) && GeneralUtils.isNotEmpty(targetGetTargetId.actuate(target))) {
@@ -1200,15 +661,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 目标对象列表转换源对象id目标对象Map
-     * @param targetList 目标象模型集合
-     * @param targetMap 目标象模型Map集合
-     * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param <I> 对象Id类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, T extends RestId<I>> void targetMapSourceId(Collection<T> targetList, Map<I, T> targetMap, FunctionActuator<T, I> targetGetSourceId) throws RestException {
         for (T target : targetList) {
             if (GeneralUtils.isNotEmpty(target) && GeneralUtils.isNotEmpty(targetGetSourceId.actuate(target))) {
@@ -1217,16 +669,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 目标对象列表转换源对象id目标对象ListMap
-     * @param targetList 目标象模型集合
-     * @param sourceIdTargetListMap 源对象id目标象模型 ListMap集合
-     * @param sourceIdTargetIdListMap 源对象id目标象id ListMap集合
-     * @param targetGetTargetId 目标对象模型获取目标对象id
-     * @param <I> 对象Id类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, T extends RestId<I>> void targetListMapTargetId(Collection<T> targetList, Map<I, List<T>> sourceIdTargetListMap,Map<I, List<I>> sourceIdTargetIdListMap, FunctionActuator<T, I> targetGetTargetId) throws RestException {
         Map<I, T> targetIdTargetMap = new HashMap<>();
         targetMapTargetId(targetList,targetIdTargetMap,targetGetTargetId);
@@ -1246,15 +688,6 @@ public class MEBuilderHelper {
         }
     }
 
-    /**
-     * 目标对象列表转换源对象id目标对象ListMap
-     * @param targetList 目标象模型集合
-     * @param targetListMap 目标象模型ListMap集合
-     * @param targetGetSourceId 目标对象模型获取源对象id
-     * @param <I> 对象Id类型声明
-     * @param <T> 目标对象模型类型声明
-     * @throws RestException RestException
-     */
     public static <I, T extends RestId<I>> void targetListMapSourceId(Collection<T> targetList, Map<I, List<T>> targetListMap, FunctionActuator<T, I> targetGetSourceId) throws RestException {
         for (T target : targetList) {
             if (GeneralUtils.isNotEmpty(target) && GeneralUtils.isNotEmpty(targetGetSourceId.actuate(target))) {

@@ -16,11 +16,6 @@ import java.lang.reflect.ParameterizedType;
 import java.util.Date;
 import java.util.Set;
 
-/**
- * <p>RiceUsernoteService</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 @Slf4j
 @SuppressWarnings({"WeakerAccess","unchecked"})
 public abstract class RiceUsernoteService<T extends RiceUsernote> extends RestUsernoteService implements RiceUserlogAdvice {

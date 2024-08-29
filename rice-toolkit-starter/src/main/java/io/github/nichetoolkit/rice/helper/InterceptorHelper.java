@@ -12,11 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * <p>LoginTokenHelper</p>
- * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
- */
 public class InterceptorHelper {
     private static RiceLoginProperties LOGIN_PROPERTIES;
 
