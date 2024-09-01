@@ -4,7 +4,6 @@ import io.github.nichetoolkit.rest.error.ClassUnknownException;
 import io.github.nichetoolkit.rest.error.ClassUnsupportedException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestId;
-import io.github.nichetoolkit.rice.RestId;
 import io.github.nichetoolkit.rice.clazz.ClazzHelper;
 
 import java.lang.reflect.Array;
@@ -47,16 +46,14 @@ public class IdArrayHelper {
     public static <I,M extends RestId<I>> void idArray(M model, int index, I... idArray) throws ClassUnknownException, ClassUnsupportedException {
         if (GeneralUtils.isNotEmpty(model)) {
             /*  将model的id反向关联 */
-            if (idArray.length > index) {
-                /* idArray length默认值为1，idArray[0] = null */
-                idArray[index] = model.getId();
-            } else {
+            if (idArray.length <= index) {
                 Class<?> clazz = ClazzHelper.clazz(model);
                 I[] copyIdArray = (I[]) Array.newInstance(clazz, index + 1);
                 System.arraycopy(idArray, 0, copyIdArray, 0, idArray.length);
                 idArray = copyIdArray;
-                idArray[index] = model.getId();
             }
+            /* idArray length默认值为1，idArray[0] = null */
+            idArray[index] = model.getId();
         }
     }
 }

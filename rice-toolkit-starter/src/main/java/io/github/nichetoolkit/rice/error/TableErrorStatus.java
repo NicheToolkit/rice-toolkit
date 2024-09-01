@@ -7,7 +7,7 @@ import lombok.Getter;
 public enum TableErrorStatus implements RestStatus {
     TABLE_UNKNOWN_ERROR(11310,"the table has unknown error!"),
     TABLE_NAME_IS_NULL(11311, "the table name can not be null!"),
-    TABLE_IS_NOT_EXIST(11312, "the table structure is not exist!"),
+    TABLE_NON_EXIST(11312, "the table structure is not exist!"),
     TABLE_ALREADY_EXIST(11313, "the table structure already exists!"),
     ;
 

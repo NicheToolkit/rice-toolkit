@@ -2,7 +2,6 @@ package io.github.nichetoolkit.rice.error.table;
 
 
 import io.github.nichetoolkit.rest.error.natives.ServiceErrorException;
-import io.github.nichetoolkit.rice.error.ServiceErrorStatus;
 import io.github.nichetoolkit.rice.error.TableErrorStatus;
 
 public class TablenameIsNullException extends ServiceErrorException {

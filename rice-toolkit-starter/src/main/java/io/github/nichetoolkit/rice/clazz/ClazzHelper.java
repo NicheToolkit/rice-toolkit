@@ -4,10 +4,9 @@ import io.github.nichetoolkit.rest.error.ClassUnknownException;
 import io.github.nichetoolkit.rest.error.ClassUnrenewException;
 import io.github.nichetoolkit.rest.error.ClassUnsupportedException;
 import io.github.nichetoolkit.rest.identity.IdentityUtils;
-import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.IdModel;
-import io.github.nichetoolkit.rice.RiceIdModel;
-import io.github.nichetoolkit.rice.RiceInfoModel;
+import io.github.nichetoolkit.rice.RestIdModel;
+import io.github.nichetoolkit.rice.RestInfoModel;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -25,24 +24,24 @@ public class ClazzHelper {
     @SuppressWarnings("WeakerAccess")
     public static Type[] types(Object object) throws ClassUnknownException {
         Type genericSuperclass;
-        if (object instanceof Collection) {
-            Collection collection = (Collection) object;
-            Optional first = collection.stream().findFirst();
+        if (object instanceof Collection<?>) {
+            Collection<?> collection = (Collection<?>) object;
+            Optional<?> first = collection.stream().findFirst();
             if (first.isPresent()) {
                 genericSuperclass = first.get().getClass().getGenericSuperclass();
             } else {
                 throw new ClassUnknownException();
             }
         } else if (object instanceof Map) {
-            Map map = (Map) object;
-            Optional first = map.values().stream().findFirst();
+            Map<?,?> map = (Map<?,?>) object;
+            Optional<?> first = map.values().stream().findFirst();
             if (first.isPresent()) {
                 genericSuperclass = first.get().getClass().getGenericSuperclass();
             } else {
                 throw new ClassUnknownException();
             }
         } else if (object instanceof Iterator) {
-            Iterator iterator = (Iterator) object;
+            Iterator<?> iterator = (Iterator<?>) object;
             if (iterator.hasNext()) {
                 genericSuperclass = iterator.next().getClass().getGenericSuperclass();
             } else {
@@ -55,7 +54,7 @@ public class ClazzHelper {
             genericSuperclass =  object.getClass().getGenericSuperclass();
         }
         while (!(genericSuperclass instanceof ParameterizedType)) {
-            genericSuperclass = ((Class) genericSuperclass).getGenericSuperclass();
+            genericSuperclass = ((Class<?>) genericSuperclass).getGenericSuperclass();
             if (genericSuperclass == null) {
                 throw new ClassUnknownException();
             }
@@ -65,7 +64,7 @@ public class ClazzHelper {
     }
 
     public static Class<?> clazz(Object object) throws ClassUnknownException, ClassUnsupportedException {
-        if (object instanceof RiceIdModel || object instanceof RiceInfoModel) {
+        if (object instanceof RestIdModel || object instanceof RestInfoModel) {
             return String.class;
         } else if (object instanceof IdModel) {
             Type[] actualTypes = types(object);

@@ -128,7 +128,7 @@ public class TimeFilter<I, K> extends IdFilter<I, K> {
         }
 
         @Override
-        public TimeFilter.Builder tablekey(K tablekey) {
+        public TimeFilter.Builder<I, K> tablekey(K tablekey) {
             this.tablekey = tablekey;
             return this;
         }
@@ -182,7 +182,7 @@ public class TimeFilter<I, K> extends IdFilter<I, K> {
         }
 
         @Override
-        public TimeFilter.Builder sorts(@NonNull String... sorts) {
+        public TimeFilter.Builder<I, K> sorts(@NonNull String... sorts) {
             this.sorts = new HashSet<>(RestSort.build(sorts));
             return this;
         }

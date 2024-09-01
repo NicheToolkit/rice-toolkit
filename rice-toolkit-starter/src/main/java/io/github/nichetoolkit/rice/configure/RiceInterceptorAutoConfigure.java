@@ -1,11 +1,11 @@
 package io.github.nichetoolkit.rice.configure;
 
-import io.github.nichetoolkit.rest.RestLogKey;
+import io.github.nichetoolkit.rest.RestLoggingKey;
 import io.github.nichetoolkit.rest.configure.RestLogbackProperties;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.interceptor.RiceRequestInterceptor;
-import io.github.nichetoolkit.rice.resolver.RiceLogKeyGenerator;
-import io.github.nichetoolkit.rice.resolver.RiceUserArgumentResolver;
+import io.github.nichetoolkit.rice.interceptor.RequestHandleInterceptor;
+import io.github.nichetoolkit.rice.resolver.DefaultLoggingKeyResolver;
+import io.github.nichetoolkit.rice.resolver.DefaultUserArgumentResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Primary;
+import org.springframework.lang.NonNull;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -28,21 +29,21 @@ import java.util.List;
 @ConditionalOnProperty(value = "nichetoolkit.rice.login.enabled", havingValue = "true",matchIfMissing = true)
 public class RiceInterceptorAutoConfigure implements WebMvcConfigurer {
 
-    private final RiceUserArgumentResolver userArgumentResolver;
-    private final List<RiceRequestInterceptor> requestInterceptors;
+    private final DefaultUserArgumentResolver userArgumentResolver;
+    private final List<RequestHandleInterceptor> handleInterceptors;
     private final RiceLoginProperties loginProperties;
 
     @Autowired(required = false)
-    public RiceInterceptorAutoConfigure(RiceUserArgumentResolver userArgumentResolver,  RiceLoginProperties loginProperties) {
+    public RiceInterceptorAutoConfigure(DefaultUserArgumentResolver userArgumentResolver, RiceLoginProperties loginProperties) {
         this.userArgumentResolver = userArgumentResolver;
-        this.requestInterceptors = new ArrayList<>();
+        this.handleInterceptors = new ArrayList<>();
         this.loginProperties = loginProperties;
     }
 
     @Autowired(required = false)
-    public RiceInterceptorAutoConfigure(RiceUserArgumentResolver userArgumentResolver, List<RiceRequestInterceptor> requestInterceptors, RiceLoginProperties loginProperties) {
+    public RiceInterceptorAutoConfigure(DefaultUserArgumentResolver userArgumentResolver, List<RequestHandleInterceptor> requestInterceptors, RiceLoginProperties loginProperties) {
         this.userArgumentResolver = userArgumentResolver;
-        this.requestInterceptors = requestInterceptors;
+        this.handleInterceptors = requestInterceptors;
         this.loginProperties = loginProperties;
         log.debug("request interceptors size: {}",requestInterceptors.size());
     }
@@ -53,11 +54,11 @@ public class RiceInterceptorAutoConfigure implements WebMvcConfigurer {
     }
 
     @Override
-    public void addInterceptors(InterceptorRegistry registry) {
+    public void addInterceptors(@NonNull InterceptorRegistry registry) {
         List<String> skipUrls = loginProperties.getSkipUrls();
-        if (GeneralUtils.isNotEmpty(requestInterceptors)) {
-            for (RiceRequestInterceptor requestInterceptor : requestInterceptors) {
-                InterceptorRegistration registration = registry.addInterceptor(requestInterceptor);
+        if (GeneralUtils.isNotEmpty(handleInterceptors)) {
+            for (RequestHandleInterceptor handleInterceptor : handleInterceptors) {
+                InterceptorRegistration registration = registry.addInterceptor(handleInterceptor);
                 if (GeneralUtils.isNotEmpty(skipUrls)) {
                     for (String url : skipUrls) {
                         registration.excludePathPatterns(url);
@@ -69,8 +70,8 @@ public class RiceInterceptorAutoConfigure implements WebMvcConfigurer {
 
     @Bean
     @Primary
-    public RestLogKey restLogKey(RestLogbackProperties logbackProperties) {
-        return new RiceLogKeyGenerator(logbackProperties, loginProperties);
+    public RestLoggingKey loggingKey(RestLogbackProperties logbackProperties) {
+        return new DefaultLoggingKeyResolver(logbackProperties, loginProperties);
     }
 
 }

@@ -28,9 +28,8 @@ public abstract class InfoService<K, I, M extends InfoModel<I>, E extends InfoEn
         OptionalHelper.fieldRepeat(existByModel, JsonUtils.parseJson(model));
     }
 
-    @SuppressWarnings(value = "unchecked")
     @Override
-    public void doServiceHandle() {
+    public void applyHandle() {
         this.createActuator = (K tablekey, @NonNull M model) -> {
             if (isModelUnique()) {
                 Boolean existByModel = existByModel(tablekey, model);
@@ -51,7 +50,7 @@ public abstract class InfoService<K, I, M extends InfoModel<I>, E extends InfoEn
             }
         };
         if (super.superMapper instanceof InfoMapper) {
-            this.consumerMapper = (InfoMapper) super.superMapper;
+            this.consumerMapper = (InfoMapper<E, I>) super.superMapper;
         }
     }
 

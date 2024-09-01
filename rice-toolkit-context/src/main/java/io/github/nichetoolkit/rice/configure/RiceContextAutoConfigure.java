@@ -11,5 +11,4 @@ public class RiceContextAutoConfigure {
     public RiceContextAutoConfigure() {
         log.debug("================= rice-context-auto-config initiated ！ ===================");
     }
-
 }

@@ -68,7 +68,7 @@ public class RestPage<T> implements Serializable {
         }
     }
 
-    public static <T, K> RestPage<T> result(Long totals, Collection<T> items, com.github.pagehelper.Page page) {
+    public static <T, K> RestPage<T> result(Long totals, Collection<T> items, com.github.pagehelper.Page<?> page) {
         if (GeneralUtils.isEmpty(page)) {
             return new RestPage<>(items);
         } else {
@@ -85,7 +85,7 @@ public class RestPage<T> implements Serializable {
         }
     }
 
-    public static <T, K> RestPage<T> result(Collection<T> items, com.github.pagehelper.Page page) {
+    public static <T, K> RestPage<T> result(Collection<T> items, com.github.pagehelper.Page<?> page) {
         if (GeneralUtils.isEmpty(page)) {
             return new RestPage<>(items);
         } else {

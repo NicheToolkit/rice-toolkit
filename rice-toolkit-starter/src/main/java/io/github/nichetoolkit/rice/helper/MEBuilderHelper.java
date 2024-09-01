@@ -5,12 +5,11 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.actuator.BiConsumerActuator;
 import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
 import io.github.nichetoolkit.rest.actuator.FunctionActuator;
+import io.github.nichetoolkit.rest.holder.ApplicationContextHolder;
 import io.github.nichetoolkit.rest.util.CollectUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rest.util.PartitionUtils;
 import io.github.nichetoolkit.rice.RestId;
-import io.github.nichetoolkit.rice.RestId;
-import io.github.nichetoolkit.rice.RestId;
+import io.github.nichetoolkit.rice.configure.RiceBeanProperties;
 
 import java.util.*;
 import java.util.function.Function;
@@ -20,7 +19,8 @@ import java.util.stream.Collectors;
 public class MEBuilderHelper {
 
     public static <I, T extends RestId<I>> List<T> partition(Collection<I> targetIdList, FunctionActuator<Collection<I>, List<T>> targetListQueryByIdList) throws RestException {
-        Integer partitionSize = RiceContextHolder.beanProperties().getPartitionQuery();
+        RiceBeanProperties beanProperties = ApplicationContextHolder.getBean(RiceBeanProperties.class);
+        Integer partitionSize = beanProperties.getPartitionQuery();
         return partition(targetIdList,partitionSize,targetListQueryByIdList);
     }
 
@@ -38,7 +38,6 @@ public class MEBuilderHelper {
             return targetListQueryByIdList.actuate(targetIdSet);
         }
     }
-
 
     public static <M, E> List<E> entityList(Collection<M> modelList, ConsumerActuator<M> consumer, FunctionActuator<M, E> function) throws RestException {
         if (GeneralUtils.isEmpty(modelList)) {

@@ -291,7 +291,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
         }
 
         @Override
-        public JsonbFilter.Builder tablekey(K tablekey) {
+        public JsonbFilter.Builder<I, K> tablekey(K tablekey) {
             this.tablekey = tablekey;
             return this;
         }

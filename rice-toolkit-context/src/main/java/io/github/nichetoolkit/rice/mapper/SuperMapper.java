@@ -23,7 +23,6 @@ public interface SuperMapper<E extends IdEntity<I>,I> {
 
     Integer deleteAll(@Param("idList") Collection<I> idList);
 
-
     Integer deleteDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList);
 
     E findById(@Param("id") I id);

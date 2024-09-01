@@ -1,12 +1,28 @@
 {
   "groups": [
     {
-      "name": "nichetoolkit.rice.bean.name",
+      "name": "nichetoolkit.rice.bean",
       "sourceType": "io.github.nichetoolkit.rice.configure.RiceBeanProperties",
       "type": "io.github.nichetoolkit.rice.configure.RiceBeanProperties"
+    },
+    {
+      "name": "nichetoolkit.rice.serialize",
+      "sourceType": "io.github.nichetoolkit.rice.configure.RiceSerializeProperties",
+      "type": "io.github.nichetoolkit.rice.configure.RiceSerializeProperties"
+    },
+    {
+      "name": "nichetoolkit.rice.login",
+      "sourceType": "io.github.nichetoolkit.rice.configure.RiceLoginProperties",
+      "type": "io.github.nichetoolkit.rice.configure.RiceLoginProperties"
     }
   ],
   "properties": [
+    {
+      "name": "nichetoolkit.rice.serialize.big-decimal-format",
+      "type": "java.lang.String",
+      "sourceType": "java.lang.String",
+      "description": "serialize big decimal format."
+    },
     {
       "name": "nichetoolkit.rice.bean.model.unique-enabled",
       "type": "java.lang.Boolean",
@@ -126,6 +142,42 @@
       "sourceType": "java.lang.Integer",
       "description": "number sign value.",
       "defaultValue": "1"
+    },
+    {
+      "name": "nichetoolkit.rice.login.enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "login enabled."
+    },
+    {
+      "name": "nichetoolkit.rice.login.token-prefixes",
+      "type": "java.lang.String[]",
+      "sourceType": "java.lang.String[]",
+      "description": "login token prefixes."
+    },
+    {
+      "name": "nichetoolkit.rice.login.skip-urls",
+      "type": "java.lang.String[]",
+      "sourceType": "java.lang.String[]",
+      "description": "login skip urls."
+    },
+    {
+      "name": "nichetoolkit.rice.login.token-headers",
+      "type": "java.lang.String[]",
+      "sourceType": "java.lang.String[]",
+      "description": "login token headers."
+    },
+    {
+      "name": "nichetoolkit.rice.login.token-expiration",
+      "type": "java.lang.Integer",
+      "sourceType": "java.lang.Integer",
+      "description": "login token expiration."
+    },
+    {
+      "name": "nichetoolkit.rice.login.token-time-unit",
+      "type": "java.util.concurrent.TimeUnit",
+      "sourceType": "java.util.concurrent.TimeUnit",
+      "description": "login token time unit."
     }
   ],
   "hints": [
@@ -165,6 +217,19 @@
         {
           "value": true,
           "description": "key invade enabled open."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.rice.login.enabled",
+      "values": [
+        {
+          "value": false,
+          "description": "rice login enabled close."
+        },
+        {
+          "value": true,
+          "description": "rice invade enabled open."
         }
       ]
     }

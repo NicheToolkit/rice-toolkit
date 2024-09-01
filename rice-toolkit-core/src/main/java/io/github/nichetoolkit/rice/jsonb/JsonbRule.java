@@ -21,7 +21,7 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
         this.name = name;
     }
 
-    JsonbRule(JsonbRule.Builder builder) {
+    JsonbRule(JsonbRule.Builder<R> builder) {
         this.name = builder.name;
     }
 
@@ -58,7 +58,7 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
         public Builder() {
         }
 
-        public JsonbRule.Builder name(String name) {
+        public JsonbRule.Builder<R> name(String name) {
             this.name = name;
             return this;
         }

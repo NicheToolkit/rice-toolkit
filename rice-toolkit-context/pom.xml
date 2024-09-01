@@ -63,14 +63,23 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>io.github.nichetoolkit</groupId>
             <artifactId>rice-toolkit-core</artifactId>
         </dependency>
+
         <dependency>
             <groupId>io.github.nichetoolkit</groupId>
             <artifactId>rest-toolkit-starter</artifactId>
         </dependency>
+
     </dependencies>
 
     <repositories>
