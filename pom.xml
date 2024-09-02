@@ -138,7 +138,7 @@
         <!-- fix tomcat-embed-core:9.0.83 CVE-2024-23672 7.5 vulnerability
                                           CVE-2024-24549 6.5 vulnerability -->
         <!-- fix tomcat-embed-websocket:9.0.83 CVE-2024-23672 7.5 vulnerability -->
-        <tomcat-embed.version>9.0.86</tomcat-embed.version>
+        <tomcat.version>9.0.86</tomcat.version>
         <!-- fix okio:2.8.0 CVE-2023-3635 7.5 vulnerability       -->
         <squareup.version>3.4.0</squareup.version>
         <!-- fix postgresql:42.3.8 CVE-2024-1597 10.0 vulnerability    -->
