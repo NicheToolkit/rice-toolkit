@@ -9,25 +9,69 @@ import org.springframework.lang.NonNull;
 
 import java.util.Date;
 
+/**
+ * <code>InfoModel</code>
+ * <p>The type info model class.</p>
+ * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rice.IdModel
+ * @see io.github.nichetoolkit.rice.RestInfo
+ * @see java.lang.SuppressWarnings
+ * @see com.fasterxml.jackson.annotation.JsonInclude
+ * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
+ * @since Jdk1.8
+ */
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
+    /**
+     * <code>name</code>
+     * {@link java.lang.String} <p>the <code>name</code> field.</p>
+     * @see java.lang.String
+     */
     protected String name;
+    /**
+     * <code>description</code>
+     * {@link java.lang.String} <p>the <code>description</code> field.</p>
+     * @see java.lang.String
+     */
     protected String description;
 
+    /**
+     * <code>InfoModel</code>
+     * Instantiates a new info model.
+     */
     public InfoModel() {
     }
 
+    /**
+     * <code>InfoModel</code>
+     * Instantiates a new info model.
+     * @param id I <p>the id parameter is <code>I</code> type.</p>
+     */
     public InfoModel(I id) {
         super(id);
     }
 
+    /**
+     * <code>InfoModel</code>
+     * Instantiates a new info model.
+     * @param name        {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
+     * @param description {@link java.lang.String} <p>the description parameter is <code>String</code> type.</p>
+     * @see java.lang.String
+     */
     public InfoModel(String name, String description) {
         this.name = name;
         this.description = description;
     }
 
+    /**
+     * <code>InfoModel</code>
+     * Instantiates a new info model.
+     * @param builder {@link io.github.nichetoolkit.rice.InfoModel.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * @see io.github.nichetoolkit.rice.InfoModel.Builder
+     */
     public InfoModel(InfoModel.Builder<I> builder) {
         super(builder);
         this.name = builder.name;
@@ -59,10 +103,32 @@ public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
         return JsonUtils.parseJson(this);
     }
 
+    /**
+     * <code>Builder</code>
+     * <p>The type builder class.</p>
+     * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+     * @author Cyan (snow22314@outlook.com)
+     * @see io.github.nichetoolkit.rice.IdModel.Builder
+     * @since Jdk1.8
+     */
     public static class Builder<I> extends IdModel.Builder<I> {
+        /**
+         * <code>name</code>
+         * {@link java.lang.String} <p>the <code>name</code> field.</p>
+         * @see java.lang.String
+         */
         protected String name;
+        /**
+         * <code>description</code>
+         * {@link java.lang.String} <p>the <code>description</code> field.</p>
+         * @see java.lang.String
+         */
         protected String description;
 
+        /**
+         * <code>Builder</code>
+         * Instantiates a new builder.
+         */
         public Builder() {
         }
 
@@ -72,11 +138,25 @@ public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
             return this;
         }
 
+        /**
+         * <code>name</code>
+         * <p>the method.</p>
+         * @param name {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.InfoModel.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * @see java.lang.String
+         */
         public InfoModel.Builder<I> name(String name) {
             this.name = name;
             return this;
         }
 
+        /**
+         * <code>description</code>
+         * <p>the method.</p>
+         * @param description {@link java.lang.String} <p>the description parameter is <code>String</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.InfoModel.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * @see java.lang.String
+         */
         public InfoModel.Builder<I> description(String description) {
             this.description = description;
             return this;

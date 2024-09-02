@@ -6,12 +6,43 @@ import io.github.nichetoolkit.rest.RestValue;
 
 import java.util.Optional;
 
+/**
+ * <code>SaveType</code>
+ * <p>The type save type enumeration.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rest.RestValue
+ * @since Jdk1.8
+ */
 public enum SaveType implements RestValue<Integer,String> {
+    /**
+     * <code>NONE</code>
+     * <p>the None save type field.</p>
+     */
     NONE(1,"无操作"),
+    /**
+     * <code>CREATE</code>
+     * <p>the Create save type field.</p>
+     */
     CREATE(2,"创建"),
+    /**
+     * <code>UPDATE</code>
+     * <p>the Update save type field.</p>
+     */
     UPDATE(4,"更新"),
+    /**
+     * <code>COPY</code>
+     * <p>the Copy save type field.</p>
+     */
     COPY(8,"复制"),
+    /**
+     * <code>REMOVE</code>
+     * <p>the Remove save type field.</p>
+     */
     REMOVE(16,"移除"),
+    /**
+     * <code>DELETE</code>
+     * <p>the Delete save type field.</p>
+     */
     DELETE(32,"删除"),
     ;
 
@@ -34,12 +65,27 @@ public enum SaveType implements RestValue<Integer,String> {
         return this.value;
     }
 
+    /**
+     * <code>parseKey</code>
+     * <p>the key method.</p>
+     * @param key {@link java.lang.Integer} <p>the key parameter is <code>Integer</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.enums.SaveType} <p>the key return object is <code>SaveType</code> type.</p>
+     * @see java.lang.Integer
+     * @see com.fasterxml.jackson.annotation.JsonCreator
+     */
     @JsonCreator
     public static SaveType parseKey(Integer key) {
         SaveType typeEnum = RestValue.parseKey(SaveType.class, key);
         return Optional.ofNullable(typeEnum).orElse(SaveType.NONE);
     }
 
+    /**
+     * <code>parseValue</code>
+     * <p>the value method.</p>
+     * @param value {@link java.lang.String} <p>the value parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.enums.SaveType} <p>the value return object is <code>SaveType</code> type.</p>
+     * @see java.lang.String
+     */
     public static SaveType parseValue(String value) {
         SaveType typeEnum = RestValue.parseValue(SaveType.class, value);
         return Optional.ofNullable(typeEnum).orElse(SaveType.NONE);

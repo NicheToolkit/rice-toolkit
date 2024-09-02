@@ -27,6 +27,16 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <code>DefaultResponseInterceptor</code>
+ * <p>The type default response interceptor class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.core.annotation.Order
+ * @see org.springframework.web.bind.annotation.ControllerAdvice
+ * @since Jdk1.8
+ */
 @Slf4j
 @Order(1)
 @ControllerAdvice
@@ -34,10 +44,21 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
 
     private final List<LoginAdvice> loginAdvices;
 
+    /**
+     * <code>DefaultResponseInterceptor</code>
+     * Instantiates a new default response interceptor.
+     */
     public DefaultResponseInterceptor() {
         this.loginAdvices = new ArrayList<>();
     }
 
+    /**
+     * <code>DefaultResponseInterceptor</code>
+     * Instantiates a new default response interceptor.
+     * @param loginAdvices {@link java.util.List} <p>the login advices parameter is <code>List</code> type.</p>
+     * @see java.util.List
+     * @see org.springframework.beans.factory.annotation.Autowired
+     */
     @Autowired(required = false)
     public DefaultResponseInterceptor(List<LoginAdvice> loginAdvices) {
         this.loginAdvices = loginAdvices;

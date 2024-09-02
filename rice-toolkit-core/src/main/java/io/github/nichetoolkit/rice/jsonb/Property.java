@@ -7,22 +7,65 @@ import lombok.Builder;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * <code>Property</code>
+ * <p>The type property class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see java.io.Serializable
+ * @see lombok.Builder
+ * @see com.fasterxml.jackson.annotation.JsonInclude
+ * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
+ * @since Jdk1.8
+ */
 @Builder
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Property implements Serializable {
+    /**
+     * <code>VALUE</code>
+     * {@link java.lang.String} <p>the constant <code>VALUE</code> field.</p>
+     * @see java.lang.String
+     */
     public static final String VALUE = "value";
 
+    /**
+     * <code>name</code>
+     * {@link java.lang.String} <p>the <code>name</code> field.</p>
+     * @see java.lang.String
+     */
     protected String name;
+    /**
+     * <code>value</code>
+     * {@link java.lang.Object} <p>the <code>value</code> field.</p>
+     * @see java.lang.Object
+     */
     protected Object value;
 
+    /**
+     * <code>Property</code>
+     * Instantiates a new property.
+     */
     public Property() {
     }
 
+    /**
+     * <code>Property</code>
+     * Instantiates a new property.
+     * @param name {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
+     * @see java.lang.String
+     */
     public Property(String name) {
         this.name = name;
     }
 
+    /**
+     * <code>Property</code>
+     * Instantiates a new property.
+     * @param name  {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
+     * @param value {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     */
     public Property(String name, Object value) {
         this.name = name;
         this.value = value;
@@ -42,18 +85,42 @@ public class Property implements Serializable {
         return Objects.hash(name);
     }
 
+    /**
+     * <code>getName</code>
+     * <p>the name getter method.</p>
+     * @return {@link java.lang.String} <p>the name return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * <code>setName</code>
+     * <p>the name setter method.</p>
+     * @param name {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
+     * @see java.lang.String
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * <code>getValue</code>
+     * <p>the value getter method.</p>
+     * @return {@link java.lang.Object} <p>the value return object is <code>Object</code> type.</p>
+     * @see java.lang.Object
+     */
     public Object getValue() {
         return value;
     }
 
+    /**
+     * <code>setValue</code>
+     * <p>the value setter method.</p>
+     * @param value {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
+     * @see java.lang.Object
+     */
     public void setValue(Object value) {
         this.value = value;
     }

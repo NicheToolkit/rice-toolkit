@@ -8,9 +8,24 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * <code>PropertyHelper</code>
+ * <p>The type property helper class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see lombok.extern.slf4j.Slf4j
+ * @since Jdk1.8
+ */
 @Slf4j
 public class PropertyHelper {
 
+    /**
+     * <code>toPropertiesList</code>
+     * <p>the properties list method.</p>
+     * @param properties {@link java.lang.String} <p>the properties parameter is <code>String</code> type.</p>
+     * @return {@link java.util.List} <p>the properties list return object is <code>List</code> type.</p>
+     * @see java.lang.String
+     * @see java.util.List
+     */
     public static List<Property> toPropertiesList(String properties) {
         if (GeneralUtils.isNotEmpty(properties)) {
             Map<String, Map<String, Object>> propertiesMap = JsonUtils.parseMapMap(properties, String.class, String.class, Object.class);
@@ -22,6 +37,14 @@ public class PropertyHelper {
         }
     }
 
+    /**
+     * <code>toPropertiesJson</code>
+     * <p>the properties json method.</p>
+     * @param properties {@link java.util.Collection} <p>the properties parameter is <code>Collection</code> type.</p>
+     * @return {@link java.lang.String} <p>the properties json return object is <code>String</code> type.</p>
+     * @see java.util.Collection
+     * @see java.lang.String
+     */
     public static String toPropertiesJson(Collection<Property> properties) {
         if (GeneralUtils.isNotEmpty(properties)) {
             Map<String, Map<String, Object>> propertiesMap = properties.stream().filter(Objects::nonNull)
@@ -38,6 +61,14 @@ public class PropertyHelper {
     }
 
 
+    /**
+     * <code>toPropertiesMap</code>
+     * <p>the properties map method.</p>
+     * @param properties {@link java.util.Collection} <p>the properties parameter is <code>Collection</code> type.</p>
+     * @return {@link java.util.Map} <p>the properties map return object is <code>Map</code> type.</p>
+     * @see java.util.Collection
+     * @see java.util.Map
+     */
     public static Map<String,String> toPropertiesMap(Collection<Property> properties) {
         if (GeneralUtils.isNotEmpty(properties)) {
             return properties.stream().filter(Objects::nonNull)
@@ -55,6 +86,14 @@ public class PropertyHelper {
         }
     }
 
+    /**
+     * <code>toPropertiesMap</code>
+     * <p>the properties map method.</p>
+     * @param properties {@link java.lang.String} <p>the properties parameter is <code>String</code> type.</p>
+     * @return {@link java.util.Map} <p>the properties map return object is <code>Map</code> type.</p>
+     * @see java.lang.String
+     * @see java.util.Map
+     */
     public static Map<String,String> toPropertiesMap(String properties) {
         if (GeneralUtils.isNotEmpty(properties)) {
             Map<String, Map<String, Object>> propertiesMap = JsonUtils.parseMapMap(properties, String.class, String.class, Object.class);
@@ -71,6 +110,14 @@ public class PropertyHelper {
         }
     }
 
+    /**
+     * <code>toPropertiesList</code>
+     * <p>the properties list method.</p>
+     * @param propertiesMap {@link java.util.Map} <p>the properties map parameter is <code>Map</code> type.</p>
+     * @return {@link java.util.List} <p>the properties list return object is <code>List</code> type.</p>
+     * @see java.util.Map
+     * @see java.util.List
+     */
     public static List<Property> toPropertiesList(Map<String,String> propertiesMap) {
         if (GeneralUtils.isNotEmpty(propertiesMap)) {
             return propertiesMap.entrySet().stream().map(entry -> Property.builder().name(entry.getKey())

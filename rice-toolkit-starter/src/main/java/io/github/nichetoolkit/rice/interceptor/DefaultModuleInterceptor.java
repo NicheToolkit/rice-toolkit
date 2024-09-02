@@ -17,16 +17,37 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <code>DefaultModuleInterceptor</code>
+ * <p>The type default module interceptor class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rice.interceptor.RequestHandleInterceptor
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.stereotype.Component
+ * @see org.springframework.core.annotation.Order
+ * @since Jdk1.8
+ */
 @Slf4j
 @Component
 @Order(13)
 public class DefaultModuleInterceptor implements RequestHandleInterceptor {
     private final List<ModuleAdvice> moduleAdvices;
 
+    /**
+     * <code>DefaultModuleInterceptor</code>
+     * Instantiates a new default module interceptor.
+     */
     public DefaultModuleInterceptor() {
         this.moduleAdvices = new ArrayList<>();
     }
 
+    /**
+     * <code>DefaultModuleInterceptor</code>
+     * Instantiates a new default module interceptor.
+     * @param moduleAdvices {@link java.util.List} <p>the module advices parameter is <code>List</code> type.</p>
+     * @see java.util.List
+     * @see org.springframework.beans.factory.annotation.Autowired
+     */
     @Autowired(required = false)
     public DefaultModuleInterceptor(List<ModuleAdvice> moduleAdvices) {
         this.moduleAdvices = moduleAdvices;

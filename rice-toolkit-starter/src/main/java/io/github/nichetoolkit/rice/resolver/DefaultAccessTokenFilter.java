@@ -18,6 +18,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * <code>DefaultAccessTokenFilter</code>
+ * <p>The type default access token filter class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see org.springframework.web.filter.OncePerRequestFilter
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.stereotype.Component
+ * @see org.springframework.core.annotation.Order
+ * @since Jdk1.8
+ */
 @Slf4j
 @Component
 @Order(value = Ordered.HIGHEST_PRECEDENCE + 101)
@@ -25,11 +35,27 @@ public class DefaultAccessTokenFilter extends OncePerRequestFilter {
     private final RiceLoginProperties loginProperties;
     private RestAccessValue accessValue;
 
+    /**
+     * <code>DefaultAccessTokenFilter</code>
+     * Instantiates a new default access token filter.
+     * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     * @see org.springframework.beans.factory.annotation.Autowired
+     */
     @Autowired(required = false)
     public DefaultAccessTokenFilter(RiceLoginProperties loginProperties) {
         this.loginProperties = loginProperties;
     }
 
+    /**
+     * <code>DefaultAccessTokenFilter</code>
+     * Instantiates a new default access token filter.
+     * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
+     * @param accessValue     {@link io.github.nichetoolkit.rest.RestAccessValue} <p>the access value parameter is <code>RestAccessValue</code> type.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     * @see io.github.nichetoolkit.rest.RestAccessValue
+     * @see org.springframework.beans.factory.annotation.Autowired
+     */
     @Autowired(required = false)
     public DefaultAccessTokenFilter(RiceLoginProperties loginProperties, RestAccessValue accessValue) {
         this.loginProperties = loginProperties;

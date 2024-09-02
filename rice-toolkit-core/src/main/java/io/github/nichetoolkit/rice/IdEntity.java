@@ -12,9 +12,27 @@ import org.springframework.lang.NonNull;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * <code>IdEntity</code>
+ * <p>The type id entity class.</p>
+ * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rice.TimeEntity
+ * @see io.github.nichetoolkit.rice.RestId
+ * @see com.fasterxml.jackson.annotation.JsonInclude
+ * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
+ * @since Jdk1.8
+ */
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class IdEntity<I> extends TimeEntity implements RestId<I> {
+    /**
+     * <code>id</code>
+     * <p>the <code>id</code> field.</p>
+     * @see com.baomidou.mybatisplus.annotation.TableId
+     * @see io.mybatis.provider.Entity.Column
+     * @see io.github.nichetoolkit.mybatis.stereotype.RestIdentity
+     */
     /* 兼容mybatis-plus 3.x版本 */
     @TableId
     /* 兼容mybatis-mapper 2.x版本 */
@@ -22,13 +40,28 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
     @RestIdentity
     protected I id;
 
+    /**
+     * <code>IdEntity</code>
+     * Instantiates a new id entity.
+     */
     public IdEntity() {
     }
 
+    /**
+     * <code>IdEntity</code>
+     * Instantiates a new id entity.
+     * @param id I <p>the id parameter is <code>I</code> type.</p>
+     */
     public IdEntity(I id) {
         this.id = id;
     }
 
+    /**
+     * <code>IdEntity</code>
+     * Instantiates a new id entity.
+     * @param builder {@link io.github.nichetoolkit.rice.IdEntity.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * @see io.github.nichetoolkit.rice.IdEntity.Builder
+     */
     public IdEntity(IdEntity.Builder<I> builder) {
         super(builder);
         this.id = builder.id;
@@ -64,12 +97,34 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
         return JsonUtils.parseJson(this);
     }
 
+    /**
+     * <code>Builder</code>
+     * <p>The type builder class.</p>
+     * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+     * @author Cyan (snow22314@outlook.com)
+     * @see io.github.nichetoolkit.rice.TimeEntity.Builder
+     * @since Jdk1.8
+     */
     public static class Builder<I> extends TimeEntity.Builder {
+        /**
+         * <code>id</code>
+         * <p>the <code>id</code> field.</p>
+         */
         protected I id;
 
+        /**
+         * <code>Builder</code>
+         * Instantiates a new builder.
+         */
         public Builder() {
         }
 
+        /**
+         * <code>id</code>
+         * <p>the method.</p>
+         * @param id I <p>the id parameter is <code>I</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.IdEntity.Builder} <p>the return object is <code>Builder</code> type.</p>
+         */
         public IdEntity.Builder<I> id(I id) {
             this.id = id;
             return this;

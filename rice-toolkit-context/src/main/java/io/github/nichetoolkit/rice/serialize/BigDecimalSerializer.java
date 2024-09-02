@@ -15,12 +15,28 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Objects;
 
+/**
+ * <code>BigDecimalSerializer</code>
+ * <p>The type big decimal serializer class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see com.fasterxml.jackson.databind.JsonSerializer
+ * @see com.fasterxml.jackson.databind.ser.ContextualSerializer
+ * @see org.springframework.boot.jackson.JsonComponent
+ * @since Jdk1.8
+ */
 @JsonComponent
 public class BigDecimalSerializer extends JsonSerializer<BigDecimal> implements ContextualSerializer {
 
     private String format;
     private final RiceSerializeProperties serializeProperties;
 
+    /**
+     * <code>BigDecimalSerializer</code>
+     * Instantiates a new big decimal serializer.
+     * @param serializeProperties {@link io.github.nichetoolkit.rice.configure.RiceSerializeProperties} <p>the serialize properties parameter is <code>RiceSerializeProperties</code> type.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceSerializeProperties
+     * @see org.springframework.beans.factory.annotation.Autowired
+     */
     @Autowired(required = false)
     public BigDecimalSerializer(RiceSerializeProperties serializeProperties) {
         this.format = serializeProperties.getBigDecimalFormat();

@@ -14,7 +14,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.annotation.Annotation;
 import java.util.Optional;
 
+/**
+ * <code>RequestHandleInterceptor</code>
+ * <p>The type request handle interceptor interface.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see org.springframework.web.servlet.AsyncHandlerInterceptor
+ * @since Jdk1.8
+ */
 public interface RequestHandleInterceptor extends AsyncHandlerInterceptor {
+    /**
+     * <code>BASIC_ERROR</code>
+     * {@link java.lang.String} <p>the constant <code>BASIC_ERROR</code> field.</p>
+     * @see java.lang.String
+     */
     String BASIC_ERROR = "org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController";
 
     @Override
@@ -37,17 +49,69 @@ public interface RequestHandleInterceptor extends AsyncHandlerInterceptor {
         return true;
     }
 
+    /**
+     * <code>beforeHandle</code>
+     * <p>the handle method.</p>
+     * @param request       {@link javax.servlet.http.HttpServletRequest} <p>the request parameter is <code>HttpServletRequest</code> type.</p>
+     * @param response      {@link javax.servlet.http.HttpServletResponse} <p>the response parameter is <code>HttpServletResponse</code> type.</p>
+     * @param handlerMethod {@link org.springframework.web.method.HandlerMethod} <p>the handler method parameter is <code>HandlerMethod</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see javax.servlet.http.HttpServletRequest
+     * @see org.springframework.lang.NonNull
+     * @see javax.servlet.http.HttpServletResponse
+     * @see org.springframework.web.method.HandlerMethod
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     default void beforeHandle(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
     }
 
+    /**
+     * <code>afterHandle</code>
+     * <p>the handle method.</p>
+     * @param request       {@link javax.servlet.http.HttpServletRequest} <p>the request parameter is <code>HttpServletRequest</code> type.</p>
+     * @param response      {@link javax.servlet.http.HttpServletResponse} <p>the response parameter is <code>HttpServletResponse</code> type.</p>
+     * @param handlerMethod {@link org.springframework.web.method.HandlerMethod} <p>the handler method parameter is <code>HandlerMethod</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see javax.servlet.http.HttpServletRequest
+     * @see org.springframework.lang.NonNull
+     * @see javax.servlet.http.HttpServletResponse
+     * @see org.springframework.web.method.HandlerMethod
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     default void afterHandle(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
     }
 
 
+    /**
+     * <code>supports</code>
+     * <p>the method.</p>
+     * @param <A>            {@link java.lang.annotation.Annotation} <p>the generic parameter is <code>Annotation</code> type.</p>
+     * @param annotationType {@link java.lang.Class} <p>the annotation type parameter is <code>Class</code> type.</p>
+     * @param handlerMethod  {@link org.springframework.web.method.HandlerMethod} <p>the handler method parameter is <code>HandlerMethod</code> type.</p>
+     * @return boolean <p>the return object is <code>boolean</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.lang.annotation.Annotation
+     * @see java.lang.Class
+     * @see org.springframework.web.method.HandlerMethod
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     static <A extends Annotation> boolean supports(Class<A> annotationType, HandlerMethod handlerMethod) throws RestException {
         return handlerMethod.hasMethodAnnotation(annotationType) || GeneralUtils.isNotEmpty(handlerMethod.getBeanType().getAnnotation(annotationType));
     }
 
+    /**
+     * <code>getAnnotation</code>
+     * <p>the annotation getter method.</p>
+     * @param <A>            {@link java.lang.annotation.Annotation} <p>the generic parameter is <code>Annotation</code> type.</p>
+     * @param annotationType {@link java.lang.Class} <p>the annotation type parameter is <code>Class</code> type.</p>
+     * @param handlerMethod  {@link org.springframework.web.method.HandlerMethod} <p>the handler method parameter is <code>HandlerMethod</code> type.</p>
+     * @return A <p>the annotation return object is <code>A</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.lang.annotation.Annotation
+     * @see java.lang.Class
+     * @see org.springframework.web.method.HandlerMethod
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     static <A extends Annotation> A getAnnotation(Class<A> annotationType, HandlerMethod handlerMethod) throws RestException {
         A beanAnnotation = AnnotationUtils.getAnnotation(handlerMethod.getBeanType(), annotationType);
         A methodAnnotation = AnnotationUtils.getAnnotation(handlerMethod.getMethod(), annotationType);

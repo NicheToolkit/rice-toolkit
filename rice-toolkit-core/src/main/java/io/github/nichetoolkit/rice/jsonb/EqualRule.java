@@ -7,15 +7,53 @@ import org.springframework.lang.NonNull;
 
 import java.util.Optional;
 
+/**
+ * <code>EqualRule</code>
+ * <p>The type equal rule class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rice.jsonb.JsonbRule
+ * @see java.lang.SuppressWarnings
+ * @since Jdk1.8
+ */
 @SuppressWarnings("WeakerAccess")
 public class EqualRule extends JsonbRule<EqualRule> {
+    /**
+     * <code>type</code>
+     * {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>the <code>type</code> field.</p>
+     * @see io.github.nichetoolkit.rice.jsonb.ValueType
+     */
     protected ValueType type = ValueType.STRING;
+    /**
+     * <code>value</code>
+     * {@link java.lang.String} <p>the <code>value</code> field.</p>
+     * @see java.lang.String
+     */
     protected String value;
+    /**
+     * <code>operation</code>
+     * {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>the <code>operation</code> field.</p>
+     * @see io.github.nichetoolkit.rice.jsonb.EqualOperation
+     */
     protected EqualOperation operation = EqualOperation.EQUAL_OPERATION;
 
+    /**
+     * <code>EqualRule</code>
+     * Instantiates a new equal rule.
+     */
     public EqualRule() {
     }
 
+    /**
+     * <code>EqualRule</code>
+     * Instantiates a new equal rule.
+     * @param name      {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
+     * @param type      {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>the type parameter is <code>ValueType</code> type.</p>
+     * @param value     {@link java.lang.String} <p>the value parameter is <code>String</code> type.</p>
+     * @param operation {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>the operation parameter is <code>EqualOperation</code> type.</p>
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.rice.jsonb.ValueType
+     * @see io.github.nichetoolkit.rice.jsonb.EqualOperation
+     */
     public EqualRule(String name, ValueType type, String value, EqualOperation operation) {
         super(name);
         this.type = type;
@@ -23,6 +61,12 @@ public class EqualRule extends JsonbRule<EqualRule> {
         this.operation = operation;
     }
 
+    /**
+     * <code>EqualRule</code>
+     * Instantiates a new equal rule.
+     * @param builder {@link io.github.nichetoolkit.rice.jsonb.EqualRule.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * @see io.github.nichetoolkit.rice.jsonb.EqualRule.Builder
+     */
     public EqualRule(EqualRule.Builder builder) {
         super(builder);
         this.type = builder.type;
@@ -30,26 +74,62 @@ public class EqualRule extends JsonbRule<EqualRule> {
         this.operation = builder.operation;
     }
 
+    /**
+     * <code>getType</code>
+     * <p>the type getter method.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>the type return object is <code>ValueType</code> type.</p>
+     * @see io.github.nichetoolkit.rice.jsonb.ValueType
+     */
     public ValueType getType() {
         return type;
     }
 
+    /**
+     * <code>setType</code>
+     * <p>the type setter method.</p>
+     * @param type {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>the type parameter is <code>ValueType</code> type.</p>
+     * @see io.github.nichetoolkit.rice.jsonb.ValueType
+     */
     public void setType(ValueType type) {
         this.type = type;
     }
 
+    /**
+     * <code>getValue</code>
+     * <p>the value getter method.</p>
+     * @return {@link java.lang.String} <p>the value return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     */
     public String getValue() {
         return value;
     }
 
+    /**
+     * <code>setValue</code>
+     * <p>the value setter method.</p>
+     * @param value {@link java.lang.String} <p>the value parameter is <code>String</code> type.</p>
+     * @see java.lang.String
+     */
     public void setValue(String value) {
         this.value = value;
     }
 
+    /**
+     * <code>getOperation</code>
+     * <p>the operation getter method.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>the operation return object is <code>EqualOperation</code> type.</p>
+     * @see io.github.nichetoolkit.rice.jsonb.EqualOperation
+     */
     public EqualOperation getOperation() {
         return operation;
     }
 
+    /**
+     * <code>setOperation</code>
+     * <p>the operation setter method.</p>
+     * @param operation {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>the operation parameter is <code>EqualOperation</code> type.</p>
+     * @see io.github.nichetoolkit.rice.jsonb.EqualOperation
+     */
     public void setOperation(EqualOperation operation) {
         this.operation = operation;
     }
@@ -78,11 +158,37 @@ public class EqualRule extends JsonbRule<EqualRule> {
         return sqlBuilder.toString();
     }
 
+    /**
+     * <code>Builder</code>
+     * <p>The type builder class.</p>
+     * @author Cyan (snow22314@outlook.com)
+     * @see io.github.nichetoolkit.rice.jsonb.JsonbRule.Builder
+     * @since Jdk1.8
+     */
     public static class Builder extends JsonbRule.Builder<EqualRule> {
+        /**
+         * <code>type</code>
+         * {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>the <code>type</code> field.</p>
+         * @see io.github.nichetoolkit.rice.jsonb.ValueType
+         */
         protected ValueType type;
+        /**
+         * <code>value</code>
+         * {@link java.lang.String} <p>the <code>value</code> field.</p>
+         * @see java.lang.String
+         */
         protected String value;
+        /**
+         * <code>operation</code>
+         * {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>the <code>operation</code> field.</p>
+         * @see io.github.nichetoolkit.rice.jsonb.EqualOperation
+         */
         protected EqualOperation operation;
 
+        /**
+         * <code>Builder</code>
+         * Instantiates a new builder.
+         */
         public Builder() {
         }
 
@@ -92,26 +198,61 @@ public class EqualRule extends JsonbRule<EqualRule> {
             return this;
         }
 
+        /**
+         * <code>type</code>
+         * <p>the method.</p>
+         * @param type {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>the type parameter is <code>ValueType</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.jsonb.EqualRule.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * @see io.github.nichetoolkit.rice.jsonb.ValueType
+         */
         public EqualRule.Builder type(ValueType type) {
             this.type = type;
             return this;
         }
 
+        /**
+         * <code>type</code>
+         * <p>the method.</p>
+         * @param type {@link java.lang.Integer} <p>the type parameter is <code>Integer</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.jsonb.EqualRule.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * @see java.lang.Integer
+         */
         public EqualRule.Builder type(Integer type) {
             this.type = Optional.ofNullable(type).map(ValueType::parseKey).orElse(ValueType.LONG);
             return this;
         }
 
+        /**
+         * <code>value</code>
+         * <p>the method.</p>
+         * @param value {@link java.lang.String} <p>the value parameter is <code>String</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.jsonb.EqualRule.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * @see java.lang.String
+         */
         public EqualRule.Builder value(String value) {
             this.value = value;
             return this;
         }
 
+        /**
+         * <code>operation</code>
+         * <p>the method.</p>
+         * @param operation {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>the operation parameter is <code>EqualOperation</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.jsonb.EqualRule.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * @see io.github.nichetoolkit.rice.jsonb.EqualOperation
+         */
         public EqualRule.Builder operation(EqualOperation operation) {
             this.operation = operation;
             return this;
         }
 
+        /**
+         * <code>operation</code>
+         * <p>the method.</p>
+         * @param operation {@link java.lang.Integer} <p>the operation parameter is <code>Integer</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.jsonb.EqualRule.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * @see java.lang.Integer
+         */
         public EqualRule.Builder operation(Integer operation) {
             this.operation = Optional.ofNullable(operation).map(EqualOperation::parseKey).orElse(EqualOperation.EQUAL_OPERATION);
             return this;

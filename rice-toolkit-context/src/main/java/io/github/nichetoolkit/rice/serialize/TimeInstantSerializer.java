@@ -9,6 +9,14 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+/**
+ * <code>TimeInstantSerializer</code>
+ * <p>The type time instant serializer class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see com.fasterxml.jackson.databind.JsonSerializer
+ * @see org.springframework.stereotype.Component
+ * @since Jdk1.8
+ */
 @Component
 public class TimeInstantSerializer extends JsonSerializer<TimeInstant> {
     @Override

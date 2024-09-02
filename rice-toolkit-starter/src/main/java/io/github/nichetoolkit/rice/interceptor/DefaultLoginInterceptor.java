@@ -23,6 +23,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * <code>DefaultLoginInterceptor</code>
+ * <p>The type default login interceptor class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rice.interceptor.RequestHandleInterceptor
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.stereotype.Component
+ * @see org.springframework.core.annotation.Order
+ * @since Jdk1.8
+ */
 @Slf4j
 @Component
 @Order(10)
@@ -30,12 +40,28 @@ public class DefaultLoginInterceptor implements RequestHandleInterceptor {
     private final RiceLoginProperties loginProperties;
     private final List<LoginAdvice> loginAdvices;
 
+    /**
+     * <code>DefaultLoginInterceptor</code>
+     * Instantiates a new default login interceptor.
+     * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     * @see org.springframework.beans.factory.annotation.Autowired
+     */
     @Autowired(required = false)
     public DefaultLoginInterceptor(RiceLoginProperties loginProperties) {
         this.loginProperties = loginProperties;
         this.loginAdvices = new ArrayList<>();
     }
 
+    /**
+     * <code>DefaultLoginInterceptor</code>
+     * Instantiates a new default login interceptor.
+     * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
+     * @param loginAdvices    {@link java.util.List} <p>the login advices parameter is <code>List</code> type.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     * @see java.util.List
+     * @see org.springframework.beans.factory.annotation.Autowired
+     */
     @Autowired(required = false)
     public DefaultLoginInterceptor(RiceLoginProperties loginProperties, List<LoginAdvice> loginAdvices) {
         this.loginProperties = loginProperties;

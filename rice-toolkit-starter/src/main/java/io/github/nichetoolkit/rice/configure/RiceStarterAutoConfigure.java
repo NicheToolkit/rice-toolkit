@@ -15,6 +15,17 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * <code>RiceStarterAutoConfigure</code>
+ * <p>The type rice starter auto configure class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see org.springframework.beans.factory.InitializingBean
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.context.annotation.Configuration
+ * @see org.springframework.context.annotation.ComponentScan
+ * @see org.springframework.boot.autoconfigure.ImportAutoConfiguration
+ * @since Jdk1.8
+ */
 @Slf4j
 @Configuration
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rice"})
@@ -26,6 +37,17 @@ public class RiceStarterAutoConfigure implements InitializingBean {
 
     private final DefaultMapArgumentResolver mapArgumentResolver;
 
+    /**
+     * <code>RiceStarterAutoConfigure</code>
+     * Instantiates a new rice starter auto configure.
+     * @param loginProperties              {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
+     * @param requestMappingHandlerAdapter {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter} <p>the request mapping handler adapter parameter is <code>RequestMappingHandlerAdapter</code> type.</p>
+     * @param mapArgumentResolver          {@link io.github.nichetoolkit.rice.resolver.DefaultMapArgumentResolver} <p>the map argument resolver parameter is <code>DefaultMapArgumentResolver</code> type.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     * @see org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter
+     * @see io.github.nichetoolkit.rice.resolver.DefaultMapArgumentResolver
+     * @see org.springframework.beans.factory.annotation.Autowired
+     */
     @Autowired
     public RiceStarterAutoConfigure(RiceLoginProperties loginProperties,
                                     RequestMappingHandlerAdapter requestMappingHandlerAdapter,

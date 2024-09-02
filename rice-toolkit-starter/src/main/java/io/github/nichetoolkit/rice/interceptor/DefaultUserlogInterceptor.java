@@ -17,16 +17,37 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <code>DefaultUserlogInterceptor</code>
+ * <p>The type default userlog interceptor class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rice.interceptor.RequestHandleInterceptor
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.stereotype.Component
+ * @see org.springframework.core.annotation.Order
+ * @since Jdk1.8
+ */
 @Slf4j
 @Component
 @Order(99)
 public class DefaultUserlogInterceptor implements RequestHandleInterceptor {
     private final List<UserlogAdvice> userlogAdvices;
 
+    /**
+     * <code>DefaultUserlogInterceptor</code>
+     * Instantiates a new default userlog interceptor.
+     */
     public DefaultUserlogInterceptor() {
         this.userlogAdvices = new ArrayList<>();
     }
 
+    /**
+     * <code>DefaultUserlogInterceptor</code>
+     * Instantiates a new default userlog interceptor.
+     * @param userlogAdvices {@link java.util.List} <p>the userlog advices parameter is <code>List</code> type.</p>
+     * @see java.util.List
+     * @see org.springframework.beans.factory.annotation.Autowired
+     */
     @Autowired(required = false)
     public DefaultUserlogInterceptor(List<UserlogAdvice> userlogAdvices) {
         this.userlogAdvices = userlogAdvices;

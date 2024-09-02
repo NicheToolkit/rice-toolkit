@@ -8,6 +8,14 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+/**
+ * <code>TimeIntervalDeserializer</code>
+ * <p>The type time interval deserializer class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see com.fasterxml.jackson.databind.JsonDeserializer
+ * @see org.springframework.stereotype.Component
+ * @since Jdk1.8
+ */
 @Component
 public class TimeIntervalDeserializer extends JsonDeserializer<TimeInterval> {
     @Override

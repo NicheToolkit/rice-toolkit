@@ -11,9 +11,22 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
+/**
+ * <code>DefaultMapArgumentResolver</code>
+ * <p>The type default map argument resolver class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see org.springframework.web.method.support.HandlerMethodArgumentResolver
+ * @see org.springframework.stereotype.Component
+ * @since Jdk1.8
+ */
 @Component
 public class DefaultMapArgumentResolver implements HandlerMethodArgumentResolver {
 
+    /**
+     * <code>REST_MAP_KEY</code>
+     * {@link java.lang.String} <p>the constant <code>REST_MAP_KEY</code> field.</p>
+     * @see java.lang.String
+     */
     public static final String REST_MAP_KEY = "REST_MAP_KEY";
 
     @Override

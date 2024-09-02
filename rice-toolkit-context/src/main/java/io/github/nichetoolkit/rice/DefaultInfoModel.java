@@ -6,25 +6,74 @@ import org.springframework.lang.NonNull;
 
 import java.util.Date;
 
+/**
+ * <code>DefaultInfoModel</code>
+ * <p>The type default info model class.</p>
+ * @param <M> {@link io.github.nichetoolkit.rice.DefaultInfoModel} <p>the generic parameter is <code>DefaultInfoModel</code> type.</p>
+ * @param <E> {@link io.github.nichetoolkit.rice.DefaultInfoEntity} <p>the generic parameter is <code>DefaultInfoEntity</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rice.DefaultInfoEntity
+ * @see io.github.nichetoolkit.rice.InfoModel
+ * @see io.github.nichetoolkit.rice.RestModel
+ * @since Jdk1.8
+ */
 public abstract class DefaultInfoModel<M extends DefaultInfoModel<M, E, I>, E extends DefaultInfoEntity<E, M, I>, I> extends InfoModel<I> implements RestModel<I, E> {
 
+    /**
+     * <code>DefaultInfoModel</code>
+     * Instantiates a new default info model.
+     */
     public DefaultInfoModel() {
     }
 
+    /**
+     * <code>DefaultInfoModel</code>
+     * Instantiates a new default info model.
+     * @param id I <p>the id parameter is <code>I</code> type.</p>
+     */
     public DefaultInfoModel(I id) {
         super(id);
     }
 
+    /**
+     * <code>DefaultInfoModel</code>
+     * Instantiates a new default info model.
+     * @param name        {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
+     * @param description {@link java.lang.String} <p>the description parameter is <code>String</code> type.</p>
+     * @see java.lang.String
+     */
     public DefaultInfoModel(String name, String description) {
         super(name, description);
     }
 
+    /**
+     * <code>DefaultInfoModel</code>
+     * Instantiates a new default info model.
+     * @param builder {@link io.github.nichetoolkit.rice.DefaultInfoModel.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * @see io.github.nichetoolkit.rice.DefaultInfoModel.Builder
+     */
     public DefaultInfoModel(DefaultInfoModel.Builder<M, E, I> builder) {
         super(builder);
     }
 
+    /**
+     * <code>Builder</code>
+     * <p>The type builder class.</p>
+     * @param <M> {@link io.github.nichetoolkit.rice.DefaultInfoModel} <p>the generic parameter is <code>DefaultInfoModel</code> type.</p>
+     * @param <E> {@link io.github.nichetoolkit.rice.DefaultInfoEntity} <p>the generic parameter is <code>DefaultInfoEntity</code> type.</p>
+     * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+     * @author Cyan (snow22314@outlook.com)
+     * @see io.github.nichetoolkit.rice.DefaultInfoEntity
+     * @see io.github.nichetoolkit.rice.InfoModel.Builder
+     * @since Jdk1.8
+     */
     public static abstract class Builder<M extends DefaultInfoModel<M, E, I>, E extends DefaultInfoEntity<E, M, I>, I> extends InfoModel.Builder<I> {
 
+        /**
+         * <code>Builder</code>
+         * Instantiates a new builder.
+         */
         public Builder() {
         }
 

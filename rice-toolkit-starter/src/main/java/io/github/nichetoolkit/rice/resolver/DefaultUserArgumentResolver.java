@@ -19,16 +19,36 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <code>DefaultUserArgumentResolver</code>
+ * <p>The type default user argument resolver class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see org.springframework.web.method.support.HandlerMethodArgumentResolver
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.stereotype.Component
+ * @since Jdk1.8
+ */
 @Slf4j
 @Component
 public class DefaultUserArgumentResolver implements HandlerMethodArgumentResolver {
 
     private final List<RestUserResolver> userResolvers;
 
+    /**
+     * <code>DefaultUserArgumentResolver</code>
+     * Instantiates a new default user argument resolver.
+     */
     public DefaultUserArgumentResolver() {
         this.userResolvers = new ArrayList<>();
     }
 
+    /**
+     * <code>DefaultUserArgumentResolver</code>
+     * Instantiates a new default user argument resolver.
+     * @param userResolvers {@link java.util.List} <p>the user resolvers parameter is <code>List</code> type.</p>
+     * @see java.util.List
+     * @see org.springframework.beans.factory.annotation.Autowired
+     */
     @Autowired(required = false)
     public DefaultUserArgumentResolver(List<RestUserResolver> userResolvers) {
         this.userResolvers = userResolvers;

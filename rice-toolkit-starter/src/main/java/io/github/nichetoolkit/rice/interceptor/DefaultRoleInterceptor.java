@@ -17,16 +17,37 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <code>DefaultRoleInterceptor</code>
+ * <p>The type default role interceptor class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rice.interceptor.RequestHandleInterceptor
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.stereotype.Component
+ * @see org.springframework.core.annotation.Order
+ * @since Jdk1.8
+ */
 @Slf4j
 @Component
 @Order(14)
 public class DefaultRoleInterceptor implements RequestHandleInterceptor {
     private final List<RoleAdvice> roleAdvices;
 
+    /**
+     * <code>DefaultRoleInterceptor</code>
+     * Instantiates a new default role interceptor.
+     */
     public DefaultRoleInterceptor() {
         this.roleAdvices = new ArrayList<>();
     }
 
+    /**
+     * <code>DefaultRoleInterceptor</code>
+     * Instantiates a new default role interceptor.
+     * @param roleAdvices {@link java.util.List} <p>the role advices parameter is <code>List</code> type.</p>
+     * @see java.util.List
+     * @see org.springframework.beans.factory.annotation.Autowired
+     */
     @Autowired(required = false)
     public DefaultRoleInterceptor(List<RoleAdvice> roleAdvices) {
         this.roleAdvices = roleAdvices;
