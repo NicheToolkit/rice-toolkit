@@ -1,5 +1,6 @@
 package io.github.nichetoolkit.rice.controller;
 
+import io.github.nichetoolkit.rest.RestErrorStatus;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestResult;
 import io.github.nichetoolkit.rest.userlog.stereotype.RestNotelog;
@@ -9,7 +10,6 @@ import io.github.nichetoolkit.rice.simple.SimpleFilter;
 import io.github.nichetoolkit.rice.simple.SimpleModel;
 import io.github.nichetoolkit.rice.stereotype.RestSkip;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestSkip
@@ -19,47 +19,49 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/rice/simple")
 public class SimpleController {
 
+    private final SimpleService simpleService;
+
     @Autowired
-    private SimpleService simpleService;
+    public SimpleController(SimpleService simpleService) {
+        this.simpleService = simpleService;
+    }
 
     @GetMapping("/error")
-    public ResponseEntity<RestResult> error() throws RestException {
-        Object test = null;
-        test.toString();
-        return RestResult.ok();
+    public RestResult<?> error() throws RestException {
+        return RestResult.mistake(RestErrorStatus.MISTAKE,new NullPointerException());
     }
 
     @PostMapping("/create")
-    public ResponseEntity<RestResult<SimpleModel>> create(@RequestBody SimpleModel simpleModel) throws RestException {
-        return RestResult.ok(simpleService.create(simpleModel));
+    public RestResult<SimpleModel> create(@RequestBody SimpleModel simpleModel) throws RestException {
+        return RestResult.success(simpleService.create(simpleModel));
     }
 
     @PostMapping("/update")
-    public ResponseEntity<RestResult<SimpleModel>> update(@RequestBody SimpleModel simpleModel) throws RestException {
-        return RestResult.ok(simpleService.update(simpleModel));
+    public RestResult<SimpleModel> update(@RequestBody SimpleModel simpleModel) throws RestException {
+        return RestResult.success(simpleService.update(simpleModel));
     }
 
     @GetMapping("/query/{id}")
-    public ResponseEntity<RestResult<SimpleModel>> queryById(@PathVariable("id") String id) throws RestException {
+    public RestResult<SimpleModel> queryById(@PathVariable("id") String id) throws RestException {
         SimpleModel simpleModel = simpleService.queryById(id);
-        return RestResult.ok(simpleModel);
+        return RestResult.success(simpleModel);
     }
 
     @PostMapping("/query/filter")
-    public ResponseEntity<RestResult<RestPage<SimpleModel>>> queryByFilter(@RequestBody SimpleFilter filter) throws RestException {
+    public RestResult<RestPage<SimpleModel>> queryByFilter(@RequestBody SimpleFilter filter) throws RestException {
         RestPage<SimpleModel> restPage = simpleService.queryAllWithFilter(filter);
-        return RestResult.ok(restPage);
+        return RestResult.success(restPage);
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity deleteById(@RequestParam("id") String id) throws RestException {
+    public RestResult<?> deleteById(@RequestParam("id") String id) throws RestException {
         simpleService.deleteById(id);
-        return RestResult.ok();
+        return RestResult.success();
     }
 
     @PostMapping("/delete/filter")
-    public ResponseEntity deleteByFilter(@RequestBody SimpleFilter filter) throws RestException {
+    public RestResult<?> deleteByFilter(@RequestBody SimpleFilter filter) throws RestException {
         simpleService.deleteAllWithFilter(filter);
-        return RestResult.ok();
+        return RestResult.success();
     }
 }

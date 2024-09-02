@@ -1,10 +1,10 @@
 package io.github.nichetoolkit.rice.configure;
 
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import tk.mybatis.spring.annotation.MapperScan;
 
 @Slf4j
 @Configuration

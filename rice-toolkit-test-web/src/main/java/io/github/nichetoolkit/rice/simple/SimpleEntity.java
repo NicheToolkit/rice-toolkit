@@ -1,13 +1,13 @@
 package io.github.nichetoolkit.rice.simple;
 
-import io.github.nichetoolkit.rice.RiceInfoEntity;
+import io.github.nichetoolkit.rice.RestInfoEntity;
+import io.mybatis.provider.Entity;
 
-import javax.persistence.Table;
 import java.util.Date;
 
 
-@Table(name = "ntr_simple")
-public class SimpleEntity extends RiceInfoEntity<SimpleEntity,SimpleModel> {
+@Entity.Table(value = "ntr_simple")
+public class SimpleEntity extends RestInfoEntity<SimpleEntity,SimpleModel> {
 
     private Date time;
 

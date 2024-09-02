@@ -16,6 +16,24 @@
     </sql>
 
     <insert id="save">
+        INSERT INTO ntr_simple ( <include refid="all_column"/> )
+        VALUES (
+        #{entity.id},
+        #{entity.name},
+        #{entity.description},
+        #{entity.time},
+        now(),
+        now()
+        ) ON CONFLICT (id) DO UPDATE
+        <set>
+            "name" = CASE WHEN EXCLUDED."name" IS NOT NULL THEN EXCLUDED."name" ELSE ntr_simple."name" END,
+            "description" = CASE WHEN EXCLUDED."description" IS NOT NULL THEN EXCLUDED."description" ELSE ntr_simple."description" END,
+            "time" = CASE WHEN EXCLUDED."time" IS NOT NULL THEN EXCLUDED."time" ELSE ntr_simple."time" END,
+            update_time = now()
+        </set>
+    </insert>
+
+    <insert id="saveDynamic">
         INSERT INTO ${tablename} ( <include refid="all_column"/> )
         VALUES (
         #{entity.id},
@@ -34,6 +52,30 @@
     </insert>
 
     <update id="saveAll">
+        INSERT INTO ntr_simple (
+        <include refid="all_column"/>
+        )
+        VALUES
+        <foreach item="entity" index="index" collection="entityList" separator=",">
+            (
+            #{entity.id},
+            #{entity.name},
+            #{entity.description},
+            #{entity.time},
+            now(),
+            now()
+            )
+        </foreach>
+        ON CONFLICT (id) DO UPDATE
+        <set>
+            "name" = CASE WHEN EXCLUDED."name" IS NOT NULL THEN EXCLUDED."name" ELSE ntr_simple."name" END,
+            "description" = CASE WHEN EXCLUDED."description" IS NOT NULL THEN EXCLUDED."description" ELSE ntr_simple."description" END,
+            "time" = CASE WHEN EXCLUDED."time" IS NOT NULL THEN EXCLUDED."time" ELSE ntr_simple."time" END,
+            update_time = now()
+        </set>
+    </update>
+
+    <update id="saveDynamicAll">
         INSERT INTO ${tablename} (
         <include refid="all_column"/>
         )
@@ -58,11 +100,24 @@
     </update>
 
     <delete id="deleteById">
+        DELETE FROM ntr_simple
+        WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteDynamicById">
         DELETE FROM ${tablename}
         WHERE id = #{id}
     </delete>
 
     <delete id="deleteAll">
+        DELETE FROM ntr_simple
+        WHERE id IN
+        <foreach item="id" index="index" collection="idList" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteDynamicAll">
         DELETE FROM ${tablename}
         WHERE id IN
         <foreach item="id" index="index" collection="idList" open="(" separator="," close=")">
@@ -72,11 +127,27 @@
 
     <select id="findById" resultMap="simpleResultMap">
         SELECT<include refid="all_column"/>
+        FROM ntr_simple
+        WHERE id = #{id}
+    </select>
+
+    <select id="findDynamicById" resultMap="simpleResultMap">
+        SELECT<include refid="all_column"/>
         FROM ${tablename}
         WHERE id = #{id}
     </select>
 
     <select id="findAll" resultMap="simpleResultMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM ntr_simple
+        WHERE id IN
+        <foreach item="id" index="index" collection="idList" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="findDynamicAll" resultMap="simpleResultMap">
         SELECT
         <include refid="all_column"/>
         FROM ${tablename}
@@ -89,6 +160,16 @@
     <select id="findAllByWhere" resultMap="simpleResultMap">
         SELECT
         <include refid="all_column"/>
+        FROM ntr_simple
+        WHERE 1=1
+        <if test="whereSql!=null">
+            ${whereSql}
+        </if>
+    </select>
+
+    <select id="findDynamicAllByWhere" resultMap="simpleResultMap">
+        SELECT
+        <include refid="all_column"/>
         FROM ${tablename}
         WHERE 1=1
         <if test="whereSql!=null">
@@ -97,6 +178,14 @@
     </select>
 
     <delete id="deleteAllByWhere">
+        DELETE FROM ntr_simple
+        WHERE 1=1
+        <if test="whereSql!=null">
+            ${whereSql}
+        </if>
+    </delete>
+
+    <delete id="deleteDynamicAllByWhere">
         DELETE FROM ${tablename}
         WHERE 1=1
         <if test="whereSql!=null">
@@ -106,11 +195,24 @@
 
     <select id="findByName" resultMap="simpleResultMap">
         SELECT <include refid="all_column"/>
+        FROM ntr_simple
+        WHERE name = #{name}
+    </select>
+
+    <select id="findDynamicByName" resultMap="simpleResultMap">
+        SELECT <include refid="all_column"/>
         FROM ${tablename}
         WHERE name = #{name}
     </select>
 
     <select id="findByNameAndNotId" resultMap="simpleResultMap">
+        SELECT <include refid="all_column"/>
+        FROM ntr_simple
+        WHERE name = #{name}
+        AND id != #{id}
+    </select>
+
+    <select id="findDynamicByNameAndNotId" resultMap="simpleResultMap">
         SELECT <include refid="all_column"/>
         FROM ${tablename}
         WHERE name = #{name}

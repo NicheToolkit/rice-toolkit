@@ -1,10 +1,10 @@
 package io.github.nichetoolkit.rice.mapper;
 
-import io.github.nichetoolkit.rice.RiceInfoMapper;
+import io.github.nichetoolkit.rice.RestInfoMapper;
 import io.github.nichetoolkit.rice.simple.SimpleEntity;
+import io.mybatis.mapper.Mapper;
 import org.springframework.stereotype.Component;
-import tk.mybatis.mapper.common.Mapper;
 
 @Component
-public interface SimpleMapper extends RiceInfoMapper<SimpleEntity>, Mapper<SimpleEntity> {
+public interface SimpleMapper extends RestInfoMapper<SimpleEntity>, Mapper<SimpleEntity,String> {
 }

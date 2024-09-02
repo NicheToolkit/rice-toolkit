@@ -66,19 +66,16 @@
         <dependency>
             <groupId>io.github.nichetoolkit</groupId>
             <artifactId>mybatis-toolkit-core</artifactId>
-            <scope>provided</scope>
         </dependency>
         <!-- mybatis-plus 3.x -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-annotation</artifactId>
-            <scope>provided</scope>
         </dependency>
         <!-- mybatis-mapper 2.x -->
         <dependency>
             <groupId>io.mybatis</groupId>
             <artifactId>mybatis-provider</artifactId>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 

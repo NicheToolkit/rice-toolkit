@@ -2,7 +2,6 @@ package io.github.nichetoolkit.rice;
 
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
-import io.github.nichetoolkit.rice.configure.RiceBeanProperties;
 import io.github.nichetoolkit.rice.enums.DeleteType;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.enums.RemoveType;
@@ -11,29 +10,11 @@ import io.github.nichetoolkit.rice.jsonb.ContainRule;
 import io.github.nichetoolkit.rice.jsonb.ContrastRule;
 import io.github.nichetoolkit.rice.jsonb.EqualRule;
 import io.github.nichetoolkit.rice.jsonb.RangeRule;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.lang.NonNull;
 
 import java.util.*;
 
-public abstract class DefaultFilter<I, K> extends NameFilter<I, K> implements InitializingBean, ApplicationContextAware {
-
-    private static ApplicationContext applicationContext;
-
-    protected RiceBeanProperties beanProperties;
-
-    @Override
-    public void setApplicationContext(@NonNull ApplicationContext applicationContext) throws BeansException {
-        DefaultFilter.applicationContext = applicationContext;
-    }
-
-    @Override
-    public void afterPropertiesSet() {
-        this.beanProperties = applicationContext.getBean(RiceBeanProperties.class);
-    }
+public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
 
     public DefaultFilter() {
     }

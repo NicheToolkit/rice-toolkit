@@ -24,6 +24,7 @@ import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.enums.RemoveType;
 import io.github.nichetoolkit.rice.enums.SaveType;
 import io.github.nichetoolkit.rice.error.service.ServiceUnknownException;
+import io.github.nichetoolkit.rice.error.table.TablenameIsNullException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.filter.PageFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
@@ -1482,8 +1483,22 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             return null;
         }
         Map<K, String> tablenameMap = tablenameMapCache.get();
-        if (isDynamicTable() && GeneralUtils.isNotEmpty(tablenameMap)) {
-            return tablenameMap.get(tablekey);
+        if (GeneralUtils.isEmpty(tablenameMap)) {
+            tablenameMap = new HashMap<>();
+            tablenameMapCache.set(tablenameMap);
+        }
+        if (isDynamicTable()) {
+            String tablename = tablenameMap.get(tablekey);
+            if (GeneralUtils.isEmpty(tablename)) {
+                tablename = dynamicTablename(tablekey);
+                if (GeneralUtils.isNotEmpty(tablename)) {
+                    optionalTablename(tablename);
+                    tablenameMap.put(tablekey, tablename);
+                } else {
+                    throw new TablenameIsNullException("the tablename is null, the method of 'dynamicTablename' maybe to override it.");
+                }
+            }
+            return tablename;
         }
         return null;
     }
@@ -1537,19 +1552,17 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     }
 
     private void optionalLogicSign(@NonNull M model) throws RestException {
-        if (GeneralUtils.isEmpty(model.getLogicSign())) {
-            model.setLogicSign(removeValue());
-        }
+        model.setLogicSign(Optional.ofNullable(model.getLogicSign()).orElse(removeValue()));
         optionalName(model);
     }
 
     @SuppressWarnings(value = "unchecked")
     private void optionalDynamicTable(K tablekey, @NonNull M model) throws RestException {
         if (isDynamicTable()) {
-            Map<K, String> tableNameMap = tablenameMapCache.get();
-            if (GeneralUtils.isEmpty(tableNameMap)) {
-                tableNameMap = new HashMap<>();
-                tablenameMapCache.set(tableNameMap);
+            Map<K, String> tablenameMap = tablenameMapCache.get();
+            if (GeneralUtils.isEmpty(tablenameMap)) {
+                tablenameMap = new HashMap<>();
+                tablenameMapCache.set(tablenameMap);
             }
             if (GeneralUtils.isEmpty(tablekey) && model instanceof RestTablekey) {
                 RestTablekey<K> tablekeyModel = (RestTablekey<K>) model;
@@ -1558,14 +1571,14 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             if (GeneralUtils.isEmpty(tablekey)) {
                 return;
             }
-            String tablename = tableNameMap.get(tablekey);
+            String tablename = tablenameMap.get(tablekey);
             if (GeneralUtils.isNotEmpty(tablename)) {
                 return;
             }
             tablename = dynamicTablename(tablekey);
             if (GeneralUtils.isNotEmpty(tablename)) {
                 optionalTablename(tablename);
-                tableNameMap.put(tablekey, tablename);
+                tablenameMap.put(tablekey, tablename);
             }
         }
         optionalLogicSign(model);
