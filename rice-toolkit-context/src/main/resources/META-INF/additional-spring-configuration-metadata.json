@@ -21,189 +21,242 @@
       "name": "nichetoolkit.rice.serialize.big-decimal-format",
       "type": "java.lang.String",
       "sourceType": "java.lang.String",
-      "description": "serialize big decimal format."
+      "description": "serialize big decimal format.",
+      "defaultValue": "0.00"
     },
     {
       "name": "nichetoolkit.rice.bean.model.unique-enabled",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
-      "description": "model unique enabled."
+      "description": "the switch of unique model check on rest service saving handle.",
+      "defaultValue": false
     },
     {
       "name": "nichetoolkit.rice.bean.model.dynamic-table-enabled",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
-      "description": "model dynamic table enabled."
+      "description": "the switch of dynamic table on rest service handle.",
+      "defaultValue": false
     },
     {
       "name": "nichetoolkit.rice.bean.name.unique-enabled",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
-      "description": "name unique enabled."
+      "description": "the switch of unique name check on rest service saving handle.",
+      "defaultValue": true
     },
     {
-      "name": "nichetoolkit.rice.bean.name.nonull-enabled",
+      "name": "nichetoolkit.rice.bean.name.nonnull-enabled",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
-      "description": "name nonnull enabled."
+      "description": "the switch of nonnull name check on rest service saving handle.",
+      "defaultValue": true
     },
     {
       "name": "nichetoolkit.rice.bean.key.invade-enabled",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
-      "description": "invade key enabled."
+      "description": "the switch of invade model key on rest service saving handle.",
+      "defaultValue": false
     },
     {
       "name": "nichetoolkit.rice.bean.key.exist-enabled",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
-      "description": "exist key enabled."
+      "description": "the switch of model key exist check on rest service updating handle.",
+      "defaultValue": true
     },
     {
       "name": "nichetoolkit.rice.bean.partition.query-size",
       "type": "java.lang.Integer",
       "sourceType": "java.lang.Integer",
-      "description": "the maximum number of query segments is default 2000.",
-      "defaultValue": "2000"
+      "description": "the partition size of `in` sql usage on rest service query handle.",
+      "defaultValue": 2000
     },
     {
       "name": "nichetoolkit.rice.bean.partition.save-size",
       "type": "java.lang.Integer",
       "sourceType": "java.lang.Integer",
-      "description": "the maximum number of save segments is default 500.",
-      "defaultValue": "500"
+      "description": "the partition size of  model on rest service save handle.",
+      "defaultValue": 500
     },
     {
       "name": "nichetoolkit.rice.bean.partition.delete-size",
       "type": "java.lang.Integer",
       "sourceType": "java.lang.Integer",
-      "description": "the maximum number of delete segments is default 1000.",
-      "defaultValue": "1000"
+      "description": "`the partition size of `in` sql usage on rest service delete handle.",
+      "defaultValue": 1000
     },
     {
       "name": "nichetoolkit.rice.bean.delete.delete-model",
       "type": "io.github.nichetoolkit.rice.enums.DeleteType",
       "sourceType": "io.github.nichetoolkit.rice.enums.DeleteType",
-      "description": "delete model.",
-      "defaultValue": "NONE"
+      "description": "the delete model of data on rest service delete handle.",
+      "defaultValue": "none"
     },
     {
       "name": "nichetoolkit.rice.bean.delete.remove-model",
       "type": "io.github.nichetoolkit.rice.enums.RemoveType",
       "sourceType": "io.github.nichetoolkit.rice.enums.RemoveType",
-      "description": "remove model.",
-      "defaultValue": "NUMBER"
+      "description": "the remove model of model on rest service remove handle.",
+      "defaultValue": "number"
     },
     {
       "name": "nichetoolkit.rice.bean.delete.before-skip",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
-      "description": "before skip.",
-      "defaultValue": "true"
+      "description": "the switch of skip delete before handle on rest service delete handle.",
+      "defaultValue": true
     },
     {
       "name": "nichetoolkit.rice.bean.delete.after-skip",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
-      "description": "after skip.",
-      "defaultValue": "true"
+      "description": "the switch of skip delete after handle on rest service delete handle.",
+      "defaultValue": true
     },
     {
       "name": "nichetoolkit.rice.bean.delete.remove-index",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
-      "description": "remove index.",
-      "defaultValue": "false"
+      "description": "the switch of remove data with index sign on rest service query handle.",
+      "defaultValue": false
     },
     {
       "name": "nichetoolkit.rice.bean.delete.boolean-sign",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
-      "description": "boolean sign value.",
-      "defaultValue": "true"
+      "description": "the sign of delete data when logical remove model is `boolean`.",
+      "defaultValue": true
     },
     {
       "name": "nichetoolkit.rice.bean.delete.boolean-value",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
-      "description": "boolean sign value.",
-      "defaultValue": "false"
+      "description": "`the value of default data when logical remove model is `boolean`.",
+      "defaultValue": false
     },
     {
       "name": "nichetoolkit.rice.bean.delete.number-sign",
       "type": "java.lang.Integer",
       "sourceType": "java.lang.Integer",
-      "description": "number sign value.",
-      "defaultValue": "2"
+      "description": "the sign of delete data when logical remove model is `number`.",
+      "defaultValue": 2
     },
     {
       "name": "nichetoolkit.rice.bean.delete.number-value",
       "type": "java.lang.Integer",
       "sourceType": "java.lang.Integer",
-      "description": "number sign value.",
-      "defaultValue": "1"
+      "description": "the value of default data when logical remove model is `number`.",
+      "defaultValue": 1
     },
     {
       "name": "nichetoolkit.rice.login.enabled",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
-      "description": "login enabled."
+      "description": "the switch of login configuration.",
+      "defaultValue": false
     },
     {
       "name": "nichetoolkit.rice.login.token-prefixes",
       "type": "java.lang.String[]",
       "sourceType": "java.lang.String[]",
-      "description": "login token prefixes."
+      "description": "the token prefixes of login configuration.",
+      "defaultValue": "Bearer"
     },
     {
       "name": "nichetoolkit.rice.login.skip-urls",
       "type": "java.lang.String[]",
       "sourceType": "java.lang.String[]",
-      "description": "login skip urls."
+      "description": "the skip urls of login configuration."
     },
     {
       "name": "nichetoolkit.rice.login.token-headers",
       "type": "java.lang.String[]",
       "sourceType": "java.lang.String[]",
-      "description": "login token headers."
+      "description": "the token headers of login configuration.",
+      "defaultValue": "Authorization"
     },
     {
       "name": "nichetoolkit.rice.login.token-expiration",
       "type": "java.lang.Integer",
       "sourceType": "java.lang.Integer",
-      "description": "login token expiration."
+      "description": "the token expiration of login configuration.",
+      "defaultValue": 1800
     },
     {
       "name": "nichetoolkit.rice.login.token-time-unit",
       "type": "java.util.concurrent.TimeUnit",
       "sourceType": "java.util.concurrent.TimeUnit",
-      "description": "login token time unit."
+      "description": "the token time unit of login configuration.",
+      "defaultValue": "seconds"
+    },
+    {
+      "name": "nichetoolkit.rice.login.access-token-header",
+      "type": "java.lang.String",
+      "sourceType": "java.lang.String",
+      "description": "the access token header of login configuration.",
+      "defaultValue": "Access-Token"
+    },
+    {
+      "name": "nichetoolkit.rice.login.access-auth-header",
+      "type": "java.lang.String",
+      "sourceType": "java.lang.String",
+      "description": "the access auth header of login configuration.",
+      "defaultValue": "Access-Auth"
     }
   ],
   "hints": [
+
+    {
+      "name": "nichetoolkit.rice.bean.model.unique-enabled",
+      "values": [
+        {
+          "value": false,
+          "description": "the switch of unique model check is closed on rest service saving handle."
+        },
+        {
+          "value": true,
+          "description": "the switch of unique model check is opened on rest service saving handle."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.rice.bean.model.dynamic-table-enabled",
+      "values": [
+        {
+          "value": false,
+          "description": "the switch of dynamic table closed on rest service handle."
+        },
+        {
+          "value": true,
+          "description": "the switch of dynamic table opened on rest service handle."
+        }
+      ]
+    },
     {
       "name": "nichetoolkit.rice.bean.name.unique-enabled",
       "values": [
         {
           "value": false,
-          "description": "name unique enabled close."
+          "description": "the switch of unique name check is closed on rest service saving handle."
         },
         {
           "value": true,
-          "description": "name unique enabled open."
+          "description": "the switch of unique name check is opened on rest service saving handle."
         }
       ]
     },
     {
-      "name": "nichetoolkit.rice.bean.name.nonull-enabled",
+      "name": "nichetoolkit.rice.bean.name.nonnull-enabled",
       "values": [
         {
           "value": false,
-          "description": "name nonnull enabled close."
+          "description": "the switch of nonnull name check is closed on rest service saving handle."
         },
         {
           "value": true,
-          "description": "name nonnull enabled open."
+          "description": "the switch of nonnull name check is opened on rest service saving handle."
         }
       ]
     },
@@ -212,11 +265,63 @@
       "values": [
         {
           "value": false,
-          "description": "key invade enabled close."
+          "description": "the switch of invade model key is closed on rest service saving handle."
         },
         {
           "value": true,
-          "description": "key invade enabled open."
+          "description": "the switch of invade model key is opened on rest service saving handle."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.rice.bean.key.exist-enabled",
+      "values": [
+        {
+          "value": false,
+          "description": "the switch of model key exist check is closed on rest service updating handle."
+        },
+        {
+          "value": true,
+          "description": "the switch of model key exist check is opened on rest service updating handle."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.before-skip",
+      "values": [
+        {
+          "value": false,
+          "description": "the switch of skip delete before handle is closed on rest service delete handle."
+        },
+        {
+          "value": true,
+          "description": "the switch of skip delete before handle is opened on rest service delete handle."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.after-skip",
+      "values": [
+        {
+          "value": false,
+          "description": "the switch of skip delete after handle is closed on rest service delete handle."
+        },
+        {
+          "value": true,
+          "description": "the switch of skip delete after handle is opened on rest service delete handle."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.rice.bean.delete.remove-index",
+      "values": [
+        {
+          "value": false,
+          "description": "the switch of remove data with index sign is closed on rest service query handle."
+        },
+        {
+          "value": true,
+          "description": "the switch of remove data with index sign is opened on rest service query handle."
         }
       ]
     },
@@ -225,11 +330,11 @@
       "values": [
         {
           "value": false,
-          "description": "rice login enabled close."
+          "description": "the switch is closed of login configuration."
         },
         {
           "value": true,
-          "description": "rice invade enabled open."
+          "description": "the switch is opened of login configuration."
         }
       ]
     }
