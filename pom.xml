@@ -154,7 +154,7 @@
 
         <rest-toolkit.version>1.1.0-SNAPSHOT</rest-toolkit.version>
         <rice-toolkit.version>1.1.0-SNAPSHOT</rice-toolkit.version>
-        <mybatis-toolkit.version>1.0.1-SNAPSHOT</mybatis-toolkit.version>
+        <mybatis-toolkit.version>1.1.0-SNAPSHOT</mybatis-toolkit.version>
 
         <pagehelper.version>6.1.0</pagehelper.version>
         <pagehelper-starter.version>2.1.0</pagehelper-starter.version>
