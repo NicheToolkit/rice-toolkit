@@ -18,15 +18,6 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
 public interface FilterAdvice<K, I, F extends IdFilter<I, K>> {
 
     /**
-     * <code>applyHandle</code>
-     * <p>the handle method.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rest.RestException
-     */
-    default void applyHandle() throws RestException {
-    }
-
-    /**
      * <code>queryWhereSql</code>
      * <p>the where sql method.</p>
      * @param filter F <p>the filter parameter is <code>F</code> type.</p>

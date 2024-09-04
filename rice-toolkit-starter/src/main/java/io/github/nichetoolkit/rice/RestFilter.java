@@ -1,8 +1,8 @@
 package io.github.nichetoolkit.rice;
 
-import io.github.nichetoolkit.rice.enums.DeleteType;
+import io.github.nichetoolkit.rice.enums.DeleteMode;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.enums.RemoveType;
+import io.github.nichetoolkit.rice.enums.RemoveMode;
 import io.github.nichetoolkit.rice.jsonb.ContainRule;
 import io.github.nichetoolkit.rice.jsonb.ContrastRule;
 import io.github.nichetoolkit.rice.jsonb.EqualRule;
@@ -59,11 +59,11 @@ public abstract class RestFilter extends DefaultFilter<String,String> {
      * @see org.springframework.lang.NonNull
      */
     public RestFilter toRemoveSql(SuperService<String,String,? extends IdModel<String>,? extends IdEntity<String>,? extends RestFilter> superService, @NonNull String alias) {
-        RemoveType removeType = superService.removeModel();
+        RemoveMode removeMode = superService.removeModel();
         String removeSign = superService.removeSign();
-        Boolean removeIndex = superService.removeIndex();
+        Boolean pinpointSign = superService.pinpointSign();
         String removeValue = superService.removeValue();
-        super.toRemoveSql(removeType,removeSign,removeIndex,removeValue,alias);
+        super.toRemoveSql(removeMode,removeSign,pinpointSign,removeValue,alias);
         return this;
     }
 
@@ -78,12 +78,12 @@ public abstract class RestFilter extends DefaultFilter<String,String> {
      * @see org.springframework.lang.NonNull
      */
     public RestFilter toQuerySql(SuperService<String,String,? extends IdModel<String>,? extends IdEntity<String>,? extends RestFilter> superService, @NonNull String alias) {
-        DeleteType deleteType = superService.deleteModel();
-        RemoveType removeType = superService.removeModel();
+        DeleteMode deleteType = superService.deleteModel();
+        RemoveMode removeType = superService.removeModel();
         String removeSign = superService.removeSign();
-        Boolean removeIndex = superService.removeIndex();
+        Boolean pinpointSign = superService.pinpointSign();
         String removeValue = superService.removeValue();
-        super.toQuerySql(deleteType,removeType,removeSign,removeIndex,removeValue,alias);
+        super.toQuerySql(deleteType,removeType,removeSign,pinpointSign,removeValue,alias);
         return this;
     }
 

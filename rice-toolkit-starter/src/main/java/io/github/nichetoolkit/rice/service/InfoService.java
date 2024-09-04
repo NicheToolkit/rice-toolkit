@@ -41,7 +41,7 @@ public abstract class InfoService<K, I, M extends InfoModel<I>, E extends InfoEn
     @Override
     protected void optionalName(@NonNull M model) throws RestException {
         if (isNameNonnull()) {
-            OptionalHelper.fieldable(model.getName(), "名称不能为空！");
+            OptionalHelper.fieldable(model.getName(), "the name can not be null！");
         }
     }
 
@@ -59,7 +59,7 @@ public abstract class InfoService<K, I, M extends InfoModel<I>, E extends InfoEn
     }
 
     @Override
-    public void applyHandle() {
+    public void applyHandle() throws RestException {
         this.createActuator = (K tablekey, @NonNull M model) -> {
             if (isModelUnique()) {
                 Boolean existByModel = existByModel(tablekey, model);

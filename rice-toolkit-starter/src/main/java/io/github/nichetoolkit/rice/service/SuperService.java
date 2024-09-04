@@ -19,17 +19,17 @@ import io.github.nichetoolkit.rice.RestTablekey;
 import io.github.nichetoolkit.rice.advice.*;
 import io.github.nichetoolkit.rice.clazz.ClazzHelper;
 import io.github.nichetoolkit.rice.configure.RiceBeanProperties;
-import io.github.nichetoolkit.rice.enums.DeleteType;
+import io.github.nichetoolkit.rice.enums.DeleteMode;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.enums.RemoveType;
+import io.github.nichetoolkit.rice.enums.RemoveMode;
 import io.github.nichetoolkit.rice.enums.SaveType;
 import io.github.nichetoolkit.rice.error.service.ServiceUnknownException;
 import io.github.nichetoolkit.rice.error.table.TablenameIsNullException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
-import io.github.nichetoolkit.rice.filter.PageFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
 import io.github.nichetoolkit.rice.mapper.*;
 import io.github.nichetoolkit.rice.mapper.natives.*;
+import io.github.nichetoolkit.rice.service.extend.OptionalService;
 import io.github.nichetoolkit.rice.stereotype.RestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -57,7 +57,7 @@ import java.util.*;
  * @see io.github.nichetoolkit.rice.filter.IdFilter
  * @see org.springframework.beans.factory.InitializingBean
  * @see org.springframework.context.ApplicationContextAware
- * @see io.github.nichetoolkit.rice.service.OptionalService
+ * @see OptionalService
  * @see io.github.nichetoolkit.rice.advice.FilterAdvice
  * @see io.github.nichetoolkit.rice.advice.SaveAdvice
  * @see io.github.nichetoolkit.rice.advice.AlertAdvice
@@ -160,6 +160,14 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         }
         this.applyHandle();
     }
+
+    /**
+     * <code>applyHandle</code>
+     * <p>the handle method.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    protected abstract void applyHandle() throws RestException;
 
     /**
      * <code>entityActuator</code>
@@ -614,7 +622,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         }
         if (superMapper instanceof OperateMapper) {
             String tablename = tablename(tablekey);
-            if (DeleteType.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+            if (DeleteMode.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                     ((OperateMapper<I>) superMapper).operateDynamicById(tablename, id, operate.getKey());
                 } else {
@@ -623,7 +631,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             } else {
                 E entity = findById(id, tablename);
                 if (GeneralUtils.isNotEmpty(entity)) {
-                    if (DeleteType.OPERATE == deleteModel() && !isBeforeSkip()) {
+                    if (DeleteMode.OPERATE == deleteModel() && !isBeforeSkip()) {
                         this.beforeOperate(entity);
                     }
                     if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
@@ -631,7 +639,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                     } else {
                         ((OperateMapper<I>) superMapper).operateById(id, operate.getKey());
                     }
-                    if (DeleteType.OPERATE == deleteModel() && !isAfterSkip()) {
+                    if (DeleteMode.OPERATE == deleteModel() && !isAfterSkip()) {
                         this.afterOperate(entity);
                     }
                     this.refresh();
@@ -666,11 +674,11 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     }
 
     private void operateAdvice(List<E> entityList, OperateType operate, ConsumerActuator<OperateType> operateActuator) throws RestException {
-        if (DeleteType.OPERATE == deleteModel() && !isBeforeSkip()) {
+        if (DeleteMode.OPERATE == deleteModel() && !isBeforeSkip()) {
             this.beforeOperateAll(entityList);
         }
         operateActuator.actuate(operate);
-        if (DeleteType.OPERATE == deleteModel() && !isAfterSkip()) {
+        if (DeleteMode.OPERATE == deleteModel() && !isAfterSkip()) {
             this.afterOperateAll(entityList);
         }
         this.refresh();
@@ -705,7 +713,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         }
         if (superMapper instanceof OperateMapper) {
             String tablename = tablename(tablekey);
-            if (DeleteType.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+            if (DeleteMode.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
                 operatePartition(tablename, idList, operate);
             } else {
                 List<E> entityList = findAll(idList, tablename);
@@ -1140,7 +1148,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         String removeSign = removeSign();
         if (superMapper instanceof RemoveMapper) {
             String tablename = tablename(tablekey);
-            if (DeleteType.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+            if (DeleteMode.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                     ((RemoveMapper<I>) superMapper).removeDynamicById(tablename, id, removeSign);
                 } else {
@@ -1149,7 +1157,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             } else {
                 E entity = findById(id, tablename);
                 if (GeneralUtils.isNotEmpty(entity)) {
-                    if (DeleteType.REMOVE == deleteModel() && !isBeforeSkip()) {
+                    if (DeleteMode.REMOVE == deleteModel() && !isBeforeSkip()) {
                         this.beforeRemove(entity);
                     }
                     if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
@@ -1157,7 +1165,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                     } else {
                         ((RemoveMapper<I>) superMapper).removeById(id, removeSign);
                     }
-                    if (DeleteType.REMOVE == deleteModel() && !isAfterSkip()) {
+                    if (DeleteMode.REMOVE == deleteModel() && !isAfterSkip()) {
                         this.afterRemove(entity);
                     }
                     this.refresh();
@@ -1190,11 +1198,11 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     }
 
     private void removeAdvice(List<E> entityList, String removeSign, ConsumerActuator<String> removeActuator) throws RestException {
-        if (DeleteType.REMOVE == deleteModel() && !isBeforeSkip()) {
+        if (DeleteMode.REMOVE == deleteModel() && !isBeforeSkip()) {
             this.beforeRemoveAll(entityList);
         }
         removeActuator.actuate(removeSign);
-        if (DeleteType.REMOVE == deleteModel() && !isAfterSkip()) {
+        if (DeleteMode.REMOVE == deleteModel() && !isAfterSkip()) {
             this.afterRemoveAll(entityList);
         }
         this.refresh();
@@ -1218,7 +1226,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         String removeSign = removeSign();
         if (superMapper instanceof RemoveMapper) {
             String tablename = tablename(tablekey);
-            if (DeleteType.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+            if (DeleteMode.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
                 removePartition(tablename, idList, removeSign);
             } else {
                 List<E> entityList = findAll(idList, tablename);
@@ -1325,14 +1333,14 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         if (GeneralUtils.isEmpty(id)) {
             return;
         }
-        DeleteType deleteModel = deleteModel();
-        if (deleteModel == DeleteType.REMOVE) {
+        DeleteMode deleteModel = deleteModel();
+        if (deleteModel == DeleteMode.REMOVE) {
             removeById(tablekey, id);
-        } else if (deleteModel == DeleteType.OPERATE) {
+        } else if (deleteModel == DeleteMode.OPERATE) {
             operateById(tablekey, id, OperateType.REMOVE);
         } else {
             String tablename = tablename(tablekey);
-            if (DeleteType.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+            if (DeleteMode.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                     superMapper.deleteDynamicById(tablename, id);
                 } else {
@@ -1341,7 +1349,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             } else {
                 E entity = findById(id, tablename);
                 if (GeneralUtils.isNotEmpty(entity)) {
-                    if (DeleteType.DELETE == deleteModel() && !isBeforeSkip()) {
+                    if (DeleteMode.DELETE == deleteModel() && !isBeforeSkip()) {
                         this.beforeDelete(entity);
                     }
                     if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
@@ -1349,7 +1357,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                     } else {
                         superMapper.deleteById(id);
                     }
-                    if (DeleteType.DELETE == deleteModel() && !isAfterSkip()) {
+                    if (DeleteMode.DELETE == deleteModel() && !isAfterSkip()) {
                         this.afterDelete(entity);
                     }
                     this.refresh();
@@ -1373,11 +1381,11 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     }
 
     private void deleteAdvice(List<E> entityList, AnchorActuator deleteActuator) throws RestException {
-        if (DeleteType.DELETE == deleteModel() && !isBeforeSkip()) {
+        if (DeleteMode.DELETE == deleteModel() && !isBeforeSkip()) {
             this.beforeDeleteAll(entityList);
         }
         deleteActuator.actuate();
-        if (DeleteType.DELETE == deleteModel() && !isAfterSkip()) {
+        if (DeleteMode.DELETE == deleteModel() && !isAfterSkip()) {
             this.afterDeleteAll(entityList);
         }
         this.refresh();
@@ -1389,14 +1397,14 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
-        DeleteType deleteModel = deleteModel();
-        if (deleteModel == DeleteType.REMOVE) {
+        DeleteMode deleteModel = deleteModel();
+        if (deleteModel == DeleteMode.REMOVE) {
             removeAll(tablekey, idList);
-        } else if (deleteModel == DeleteType.OPERATE) {
+        } else if (deleteModel == DeleteMode.OPERATE) {
             operateAll(tablekey, idList, OperateType.REMOVE);
         } else {
             String tablename = tablename(tablekey);
-            if (DeleteType.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+            if (DeleteMode.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
                 deletePartition(tablename, idList);
             } else {
                 List<E> entityList = superMapper.findAll(idList);
@@ -1436,10 +1444,10 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         if (GeneralUtils.isEmpty(linkId)) {
             return;
         }
-        DeleteType deleteModel = deleteModel();
-        if (deleteModel == DeleteType.REMOVE) {
+        DeleteMode deleteModel = deleteModel();
+        if (deleteModel == DeleteMode.REMOVE) {
             removeByLinkId(tablekey, linkId);
-        } else if (deleteModel == DeleteType.OPERATE) {
+        } else if (deleteModel == DeleteMode.OPERATE) {
             operateByLinkId(tablekey, linkId, OperateType.REMOVE);
         } else if (superMapper instanceof DeleteLinkMapper) {
             String tablename = tablename(tablekey);
@@ -1484,10 +1492,10 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         if (GeneralUtils.isEmpty(linkIdList)) {
             return;
         }
-        DeleteType deleteModel = deleteModel();
-        if (deleteModel == DeleteType.REMOVE) {
+        DeleteMode deleteModel = deleteModel();
+        if (deleteModel == DeleteMode.REMOVE) {
             removeAllByLinkIds(tablekey, linkIdList);
-        } else if (deleteModel == DeleteType.OPERATE) {
+        } else if (deleteModel == DeleteMode.OPERATE) {
             operateAllByLinkIds(tablekey, linkIdList, OperateType.REMOVE);
         } else if (superMapper instanceof DeleteLinkMapper) {
             String tablename = tablename(tablekey);
@@ -1650,10 +1658,10 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                 entityList = findAllByWhere(whereSql, tablename);
             }
         } else if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-            FilterMapper<E> filterMapper = (FilterMapper<E>) superMapper;
+            FilterMapper<E,F,I,K> filterMapper = (FilterMapper<E,F,I,K>) superMapper;
             Method findMethod = null;
             try {
-                findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, PageFilter.class);
+                findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, IdFilter.class);
             } catch (NoSuchMethodException ignored) {
             }
             Method findAllByWhereMethod = findMethod;
@@ -1679,7 +1687,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     }
 
     private void deleteAllByWhere(String whereSql, String tablename, F filter) throws RestException {
-        if (DeleteType.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+        if (DeleteMode.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                 superMapper.deleteDynamicAllByWhere(tablename, whereSql);
             } else {
@@ -1712,10 +1720,10 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void deleteAllWithFilter(F filter) throws RestException {
-        DeleteType deleteModel = deleteModel();
-        if (deleteModel == DeleteType.REMOVE) {
+        DeleteMode deleteModel = deleteModel();
+        if (deleteModel == DeleteMode.REMOVE) {
             removeAllWithFilter(filter);
-        } else if (deleteModel == DeleteType.OPERATE) {
+        } else if (deleteModel == DeleteMode.OPERATE) {
             operateAllWithFilter(filter);
         } else {
             optionalDeleteFilter(filter);
@@ -1724,18 +1732,18 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             String tablename = tablename(tablekey);
             if (GeneralUtils.isNotEmpty(whereSql)) {
                 if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-                    FilterMapper<E> filterMapper = (FilterMapper<E>) superMapper;
+                    FilterMapper<E,F,I,K> filterMapper = (FilterMapper<E,F,I,K>) superMapper;
                     Method findMethod = null;
                     Method deleteMethod = null;
                     try {
-                        findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, PageFilter.class);
-                        deleteMethod = filterMapper.getClass().getMethod("deleteAllByFilterWhere", String.class, PageFilter.class);
+                        findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, IdFilter.class);
+                        deleteMethod = filterMapper.getClass().getMethod("deleteAllByFilterWhere", String.class, IdFilter.class);
                     } catch (NoSuchMethodException ignored) {
                     }
                     Method findAllByWhereMethod = findMethod;
                     Method deleteAllByWhereMethod = deleteMethod;
                     if (deleteAllByWhereMethod != null && !deleteAllByWhereMethod.isDefault()) {
-                        if (DeleteType.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+                        if (DeleteMode.DELETE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
                             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                                 filterMapper.deleteDynamicAllByFilterWhere(tablename, whereSql, filter);
                             } else {
@@ -1775,7 +1783,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             throw new UnsupportedErrorException("the mapper is not support method of 'removeAllWithFilter' with the delete model is 'REMOVE' !");
         }
         String removeSign = removeSign();
-        if (DeleteType.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+        if (DeleteMode.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                 ((RemoveMapper<I>) superMapper).removeDynamicAllByWhere(tablename, removeWhereSql, removeSign);
             } else {
@@ -1815,18 +1823,18 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         if (GeneralUtils.isNotEmpty(removeWhereSql)) {
             String removeSign = removeSign();
             if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-                FilterMapper<E> filterMapper = (FilterMapper<E>) superMapper;
+                FilterMapper<E,F,I,K> filterMapper = (FilterMapper<E,F,I,K>) superMapper;
                 Method findMethod = null;
                 Method removeMethod = null;
                 try {
-                    findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, PageFilter.class);
-                    removeMethod = filterMapper.getClass().getMethod("removeAllByFilterWhere", String.class, PageFilter.class, String.class);
+                    findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, IdFilter.class);
+                    removeMethod = filterMapper.getClass().getMethod("removeAllByFilterWhere", String.class, IdFilter.class, String.class);
                 } catch (NoSuchMethodException ignored) {
                 }
                 Method findAllByWhereMethod = findMethod;
                 Method removeAllByWhereMethod = removeMethod;
                 if (removeAllByWhereMethod != null && !removeAllByWhereMethod.isDefault()) {
-                    if (DeleteType.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+                    if (DeleteMode.REMOVE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
                         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                             filterMapper.removeDynamicAllByFilterWhere(tablename, removeWhereSql, filter, removeSign);
                         } else {
@@ -1865,7 +1873,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         if (!(superMapper instanceof OperateMapper)) {
             throw new UnsupportedErrorException("the mapper is not support method of 'operateAllWithFilter' with the delete model is 'OPERATE' !");
         }
-        if (DeleteType.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+        if (DeleteMode.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                 ((OperateMapper<I>) superMapper).operateDynamicAllByWhere(tablename, operateWhereSql, OperateType.REMOVE.getKey());
             } else {
@@ -1905,18 +1913,18 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         String tablename = tablename(tablekey);
         if (GeneralUtils.isNotEmpty(operateWhereSql)) {
             if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-                FilterMapper<E> filterMapper = (FilterMapper<E>) superMapper;
+                FilterMapper<E,F,I,K> filterMapper = (FilterMapper<E,F,I,K>) superMapper;
                 Method findMethod = null;
                 Method operateMethod = null;
                 try {
-                    findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, PageFilter.class);
-                    operateMethod = filterMapper.getClass().getMethod("operateAllByFilterWhere", String.class, PageFilter.class,Integer.class);
+                    findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, IdFilter.class);
+                    operateMethod = filterMapper.getClass().getMethod("operateAllByFilterWhere", String.class, IdFilter.class,Integer.class);
                 } catch (NoSuchMethodException ignored) {
                 }
                 Method findAllByWhereMethod = findMethod;
                 Method operateAllByWhereMethod = operateMethod;
                 if (operateAllByWhereMethod != null && !operateAllByWhereMethod.isDefault()) {
-                    if (DeleteType.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
+                    if (DeleteMode.OPERATE != deleteModel() || (isBeforeSkip() && isAfterSkip())) {
                         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                             filterMapper.operateDynamicAllByFilterWhere(tablename, operateWhereSql,filter, OperateType.REMOVE.getKey());
                         } else {
@@ -2123,20 +2131,20 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     /**
      * <code>deleteModel</code>
      * <p>the model method.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.DeleteType} <p>the model return object is <code>DeleteType</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.DeleteType
+     * @return {@link DeleteMode} <p>the model return object is <code>DeleteType</code> type.</p>
+     * @see DeleteMode
      */
-    public DeleteType deleteModel() {
+    public DeleteMode deleteModel() {
         return beanProperties.deleteModel();
     }
 
     /**
      * <code>removeModel</code>
      * <p>the model method.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.RemoveType} <p>the model return object is <code>RemoveType</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.RemoveType
+     * @return {@link RemoveMode} <p>the model return object is <code>RemoveType</code> type.</p>
+     * @see RemoveMode
      */
-    public RemoveType removeModel() {
+    public RemoveMode removeModel() {
         return beanProperties.removeModel();
     }
 
@@ -2146,8 +2154,8 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
      * @return {@link java.lang.Boolean} <p>the index return object is <code>Boolean</code> type.</p>
      * @see java.lang.Boolean
      */
-    public Boolean removeIndex() {
-        return beanProperties.removeIndex();
+    public Boolean pinpointSign() {
+        return beanProperties.pinpointSign();
     }
 
     /**
@@ -2197,7 +2205,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
      * @see java.lang.String
      */
     public String removeSign() {
-        return RemoveType.sign(removeModel(), booleanSign(), numberSign());
+        return RemoveMode.sign(removeModel(), booleanSign(), numberSign());
     }
 
     /**
@@ -2207,7 +2215,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
      * @see java.lang.String
      */
     public String removeValue() {
-        return RemoveType.value(removeModel(), booleanValue(), numberValue());
+        return RemoveMode.value(removeModel(), booleanValue(), numberValue());
     }
 
     /**

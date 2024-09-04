@@ -1,76 +1,65 @@
-package io.github.nichetoolkit.rice.service.extend;
+package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rest.RestKey;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.util.Collection;
 
 /**
- * <code>AlertService</code>
- * <p>The type alert service interface.</p>
+ * <code>RemoveService</code>
+ * <p>The type remove service interface.</p>
+ * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public interface AlertService<I> {
-
+public interface RemoveService<K,I> {
     /**
-     * <code>alertAll</code>
+     * <code>removeAll</code>
      * <p>the all method.</p>
-     * @param idList  {@link java.util.Collection} <p>the id list parameter is <code>Collection</code> type.</p>
-     * @param keyType {@link io.github.nichetoolkit.rest.RestKey} <p>the key type parameter is <code>RestKey</code> type.</p>
+     * @param idList {@link java.util.Collection} <p>the id list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.RestKey
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertAll(Collection<I> idList, RestKey<Integer> keyType) throws RestException;
+    void removeAll(Collection<I> idList) throws RestException;
 
     /**
-     * <code>alertAll</code>
+     * <code>removeAll</code>
      * <p>the all method.</p>
-     * @param tablekey {@link java.lang.String} <p>the tablekey parameter is <code>String</code> type.</p>
+     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
      * @param idList   {@link java.util.Collection} <p>the id list parameter is <code>Collection</code> type.</p>
-     * @param keyType  {@link io.github.nichetoolkit.rest.RestKey} <p>the key type parameter is <code>RestKey</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.String
      * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.RestKey
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertAll(String tablekey, Collection<I> idList, RestKey<Integer> keyType) throws RestException;
+    void removeAll(K tablekey, Collection<I> idList) throws RestException;
 
     /**
-     * <code>alertById</code>
+     * <code>removeById</code>
      * <p>the by id method.</p>
-     * @param id      I <p>the id parameter is <code>I</code> type.</p>
-     * @param keyType {@link io.github.nichetoolkit.rest.RestKey} <p>the key type parameter is <code>RestKey</code> type.</p>
+     * @param id I <p>the id parameter is <code>I</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rest.RestKey
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertById(I id, RestKey<Integer> keyType) throws RestException;
+    void removeById(I id) throws RestException;
 
     /**
-     * <code>alertById</code>
+     * <code>removeById</code>
      * <p>the by id method.</p>
-     * @param tablekey {@link java.lang.String} <p>the tablekey parameter is <code>String</code> type.</p>
+     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
      * @param id       I <p>the id parameter is <code>I</code> type.</p>
-     * @param keyType  {@link io.github.nichetoolkit.rest.RestKey} <p>the key type parameter is <code>RestKey</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.String
-     * @see io.github.nichetoolkit.rest.RestKey
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    void alertById(String tablekey, I id, RestKey<Integer> keyType) throws RestException;
+    void removeById(K tablekey, I id) throws RestException;
 }

@@ -1,4 +1,4 @@
-package io.github.nichetoolkit.rice.mapper.natives;
+package io.github.nichetoolkit.rice.mapper;
 
 import org.apache.ibatis.annotations.Param;
 

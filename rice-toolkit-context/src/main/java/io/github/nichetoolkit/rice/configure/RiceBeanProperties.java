@@ -1,7 +1,7 @@
 package io.github.nichetoolkit.rice.configure;
 
-import io.github.nichetoolkit.rice.enums.DeleteType;
-import io.github.nichetoolkit.rice.enums.RemoveType;
+import io.github.nichetoolkit.rice.enums.DeleteMode;
+import io.github.nichetoolkit.rice.enums.RemoveMode;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.stereotype.Component;
@@ -57,7 +57,7 @@ public class RiceBeanProperties {
     @NestedConfigurationProperty
     private BeanPartition partition = new BeanPartition();
     @NestedConfigurationProperty
-    private DeleteModel delete = new DeleteModel();
+    private BeanDelete delete = new BeanDelete();
 
     /**
      * <code>RiceBeanProperties</code>
@@ -278,20 +278,20 @@ public class RiceBeanProperties {
     /**
      * <code>getDelete</code>
      * <p>the delete getter method.</p>
-     * @return {@link io.github.nichetoolkit.rice.configure.RiceBeanProperties.DeleteModel} <p>the delete return object is <code>DeleteModel</code> type.</p>
-     * @see io.github.nichetoolkit.rice.configure.RiceBeanProperties.DeleteModel
+     * @return {@link io.github.nichetoolkit.rice.configure.RiceBeanProperties.BeanDelete} <p>the delete return object is <code>BeanDelete</code> type.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceBeanProperties.BeanDelete
      */
-    public DeleteModel getDelete() {
+    public BeanDelete getDelete() {
         return delete;
     }
 
     /**
      * <code>setDelete</code>
      * <p>the delete setter method.</p>
-     * @param delete {@link io.github.nichetoolkit.rice.configure.RiceBeanProperties.DeleteModel} <p>the delete parameter is <code>DeleteModel</code> type.</p>
-     * @see io.github.nichetoolkit.rice.configure.RiceBeanProperties.DeleteModel
+     * @param delete {@link io.github.nichetoolkit.rice.configure.RiceBeanProperties.BeanDelete} <p>the delete parameter is <code>BeanDelete</code> type.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceBeanProperties.BeanDelete
      */
-    public void setDelete(DeleteModel delete) {
+    public void setDelete(BeanDelete delete) {
         this.delete = delete;
     }
 
@@ -471,22 +471,22 @@ public class RiceBeanProperties {
     }
 
     /**
-     * <code>DeleteModel</code>
-     * <p>The type delete model class.</p>
+     * <code>BeanDelete</code>
+     * <p>The type bean delete class.</p>
      * @author Cyan (snow22314@outlook.com)
      * @since Jdk1.8
      */
-    public static class DeleteModel {
+    public static class BeanDelete {
 
-        private DeleteType deleteModel = DeleteType.NONE;
+        private DeleteMode deleteMode = DeleteMode.NONE;
 
-        private RemoveType removeModel = RemoveType.NUMBER;
+        private RemoveMode removeMode = RemoveMode.NUMBER;
 
         private boolean beforeSkip = true;
 
         private boolean afterSkip = true;
 
-        private boolean removeIndex = false;
+        private boolean pinpointSign = false;
 
         private boolean booleanSign = true;
 
@@ -497,30 +497,30 @@ public class RiceBeanProperties {
         private Integer numberValue = 1;
 
         /**
-         * <code>DeleteModel</code>
-         * Instantiates a new delete model.
+         * <code>BeanDelete</code>
+         * Instantiates a new bean delete.
          */
-        public DeleteModel() {
+        public BeanDelete() {
         }
 
         /**
-         * <code>getDeleteModel</code>
-         * <p>the delete model getter method.</p>
-         * @return {@link io.github.nichetoolkit.rice.enums.DeleteType} <p>the delete model return object is <code>DeleteType</code> type.</p>
-         * @see io.github.nichetoolkit.rice.enums.DeleteType
+         * <code>getDeleteMode</code>
+         * <p>the delete mode getter method.</p>
+         * @return {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>the delete mode return object is <code>DeleteMode</code> type.</p>
+         * @see io.github.nichetoolkit.rice.enums.DeleteMode
          */
-        public DeleteType getDeleteModel() {
-            return deleteModel;
+        public DeleteMode getDeleteMode() {
+            return deleteMode;
         }
 
         /**
-         * <code>setDeleteModel</code>
-         * <p>the delete model setter method.</p>
-         * @param deleteModel {@link io.github.nichetoolkit.rice.enums.DeleteType} <p>the delete model parameter is <code>DeleteType</code> type.</p>
-         * @see io.github.nichetoolkit.rice.enums.DeleteType
+         * <code>setDeleteMode</code>
+         * <p>the delete mode setter method.</p>
+         * @param deleteMode {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>the delete mode parameter is <code>DeleteMode</code> type.</p>
+         * @see io.github.nichetoolkit.rice.enums.DeleteMode
          */
-        public void setDeleteModel(DeleteType deleteModel) {
-            this.deleteModel = deleteModel;
+        public void setDeleteMode(DeleteMode deleteMode) {
+            this.deleteMode = deleteMode;
         }
 
         /**
@@ -560,41 +560,41 @@ public class RiceBeanProperties {
         }
 
         /**
-         * <code>getRemoveModel</code>
-         * <p>the remove model getter method.</p>
-         * @return {@link io.github.nichetoolkit.rice.enums.RemoveType} <p>the remove model return object is <code>RemoveType</code> type.</p>
-         * @see io.github.nichetoolkit.rice.enums.RemoveType
+         * <code>getRemoveMode</code>
+         * <p>the remove mode getter method.</p>
+         * @return {@link io.github.nichetoolkit.rice.enums.RemoveMode} <p>the remove mode return object is <code>RemoveMode</code> type.</p>
+         * @see io.github.nichetoolkit.rice.enums.RemoveMode
          */
-        public RemoveType getRemoveModel() {
-            return removeModel;
+        public RemoveMode getRemoveMode() {
+            return removeMode;
         }
 
         /**
-         * <code>setRemoveModel</code>
-         * <p>the remove model setter method.</p>
-         * @param removeModel {@link io.github.nichetoolkit.rice.enums.RemoveType} <p>the remove model parameter is <code>RemoveType</code> type.</p>
-         * @see io.github.nichetoolkit.rice.enums.RemoveType
+         * <code>setRemoveMode</code>
+         * <p>the remove mode setter method.</p>
+         * @param removeMode {@link io.github.nichetoolkit.rice.enums.RemoveMode} <p>the remove mode parameter is <code>RemoveMode</code> type.</p>
+         * @see io.github.nichetoolkit.rice.enums.RemoveMode
          */
-        public void setRemoveModel(RemoveType removeModel) {
-            this.removeModel = removeModel;
+        public void setRemoveMode(RemoveMode removeMode) {
+            this.removeMode = removeMode;
         }
 
         /**
-         * <code>isRemoveIndex</code>
-         * <p>the remove index method.</p>
-         * @return boolean <p>the remove index return object is <code>boolean</code> type.</p>
+         * <code>isPinpointSign</code>
+         * <p>the pinpoint sign method.</p>
+         * @return boolean <p>the pinpoint sign return object is <code>boolean</code> type.</p>
          */
-        public boolean isRemoveIndex() {
-            return removeIndex;
+        public boolean isPinpointSign() {
+            return pinpointSign;
         }
 
         /**
-         * <code>setRemoveIndex</code>
-         * <p>the remove index setter method.</p>
-         * @param removeIndex boolean <p>the remove index parameter is <code>boolean</code> type.</p>
+         * <code>setPinpointSign</code>
+         * <p>the pinpoint sign setter method.</p>
+         * @param pinpointSign boolean <p>the pinpoint sign parameter is <code>boolean</code> type.</p>
          */
-        public void setRemoveIndex(boolean removeIndex) {
-            this.removeIndex = removeIndex;
+        public void setPinpointSign(boolean pinpointSign) {
+            this.pinpointSign = pinpointSign;
         }
 
         /**
@@ -755,33 +755,33 @@ public class RiceBeanProperties {
     }
 
     /**
-     * <code>deleteModel</code>
-     * <p>the model method.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.DeleteType} <p>the model return object is <code>DeleteType</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.DeleteType
+     * <code>deleteMode</code>
+     * <p>the mode method.</p>
+     * @return {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>the mode return object is <code>DeleteMode</code> type.</p>
+     * @see io.github.nichetoolkit.rice.enums.DeleteMode
      */
-    public DeleteType deleteModel() {
-        return this.getDelete().getDeleteModel();
+    public DeleteMode deleteMode() {
+        return this.getDelete().getDeleteMode();
     }
 
     /**
-     * <code>removeModel</code>
-     * <p>the model method.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.RemoveType} <p>the model return object is <code>RemoveType</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.RemoveType
+     * <code>removeMode</code>
+     * <p>the mode method.</p>
+     * @return {@link io.github.nichetoolkit.rice.enums.RemoveMode} <p>the mode return object is <code>RemoveMode</code> type.</p>
+     * @see io.github.nichetoolkit.rice.enums.RemoveMode
      */
-    public RemoveType removeModel() {
-        return this.getDelete().getRemoveModel();
+    public RemoveMode removeMode() {
+        return this.getDelete().getRemoveMode();
     }
 
     /**
-     * <code>removeIndex</code>
-     * <p>the index method.</p>
-     * @return {@link java.lang.Boolean} <p>the index return object is <code>Boolean</code> type.</p>
+     * <code>pinpointSign</code>
+     * <p>the sign method.</p>
+     * @return {@link java.lang.Boolean} <p>the sign return object is <code>Boolean</code> type.</p>
      * @see java.lang.Boolean
      */
-    public Boolean removeIndex() {
-        return this.getDelete().isRemoveIndex();
+    public Boolean pinpointSign() {
+        return this.getDelete().isPinpointSign();
     }
 
     /**
@@ -831,7 +831,7 @@ public class RiceBeanProperties {
      * @see java.lang.String
      */
     public String removeSign() {
-        return RemoveType.sign(removeModel(), booleanSign(), numberSign());
+        return RemoveMode.sign(removeMode(), booleanSign(), numberSign());
     }
 
     /**
@@ -841,7 +841,7 @@ public class RiceBeanProperties {
      * @see java.lang.String
      */
     public String removeValue() {
-        return RemoveType.value(removeModel(), booleanValue(), numberValue());
+        return RemoveMode.value(removeMode(), booleanValue(), numberValue());
     }
 
 }

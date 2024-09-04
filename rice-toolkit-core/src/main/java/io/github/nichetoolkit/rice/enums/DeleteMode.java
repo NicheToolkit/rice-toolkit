@@ -13,7 +13,7 @@ import java.util.Optional;
  * @see io.github.nichetoolkit.rest.RestValue
  * @since Jdk1.8
  */
-public enum DeleteType implements RestValue<Integer,String> {
+public enum DeleteMode implements RestValue<Integer,String> {
     /**
      * <code>NONE</code>
      * <p>the None delete type field.</p>
@@ -39,7 +39,7 @@ public enum DeleteType implements RestValue<Integer,String> {
     private final Integer key;
     private final String value;
 
-    DeleteType(Integer key,String value) {
+    DeleteMode(Integer key, String value) {
         this.key = key;
         this.value = value;
     }
@@ -59,26 +59,26 @@ public enum DeleteType implements RestValue<Integer,String> {
      * <code>parseKey</code>
      * <p>the key method.</p>
      * @param key {@link java.lang.Integer} <p>the key parameter is <code>Integer</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.DeleteType} <p>the key return object is <code>DeleteType</code> type.</p>
+     * @return {@link DeleteMode} <p>the key return object is <code>DeleteType</code> type.</p>
      * @see java.lang.Integer
      * @see com.fasterxml.jackson.annotation.JsonCreator
      */
     @JsonCreator
-    public static DeleteType parseKey(Integer key) {
-        DeleteType typeEnum = RestValue.parseKey(DeleteType.class, key);
-        return Optional.ofNullable(typeEnum).orElse(DeleteType.REMOVE);
+    public static DeleteMode parseKey(Integer key) {
+        DeleteMode typeEnum = RestValue.parseKey(DeleteMode.class, key);
+        return Optional.ofNullable(typeEnum).orElse(DeleteMode.REMOVE);
     }
 
     /**
      * <code>parseValue</code>
      * <p>the value method.</p>
      * @param value {@link java.lang.String} <p>the value parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.DeleteType} <p>the value return object is <code>DeleteType</code> type.</p>
+     * @return {@link DeleteMode} <p>the value return object is <code>DeleteType</code> type.</p>
      * @see java.lang.String
      */
-    public static DeleteType parseValue(String value) {
-        DeleteType typeEnum = RestValue.parseValue(DeleteType.class, value);
-        return Optional.ofNullable(typeEnum).orElse(DeleteType.REMOVE);
+    public static DeleteMode parseValue(String value) {
+        DeleteMode typeEnum = RestValue.parseValue(DeleteMode.class, value);
+        return Optional.ofNullable(typeEnum).orElse(DeleteMode.REMOVE);
     }
 
 

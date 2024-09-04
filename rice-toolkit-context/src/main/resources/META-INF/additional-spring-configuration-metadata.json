@@ -77,7 +77,7 @@
       "name": "nichetoolkit.rice.bean.partition.save-size",
       "type": "java.lang.Integer",
       "sourceType": "java.lang.Integer",
-      "description": "the partition size of  model on rest service save handle.",
+      "description": "the partition size of model on rest service save handle.",
       "defaultValue": 500
     },
     {
@@ -88,17 +88,17 @@
       "defaultValue": 1000
     },
     {
-      "name": "nichetoolkit.rice.bean.delete.delete-model",
-      "type": "io.github.nichetoolkit.rice.enums.DeleteType",
-      "sourceType": "io.github.nichetoolkit.rice.enums.DeleteType",
-      "description": "the delete model of data on rest service delete handle.",
+      "name": "nichetoolkit.rice.bean.delete.delete-mode",
+      "type": "io.github.nichetoolkit.rice.enums.DeleteMode",
+      "sourceType": "io.github.nichetoolkit.rice.enums.DeleteMode",
+      "description": "the delete mode of data on rest service delete handle.",
       "defaultValue": "none"
     },
     {
-      "name": "nichetoolkit.rice.bean.delete.remove-model",
-      "type": "io.github.nichetoolkit.rice.enums.RemoveType",
-      "sourceType": "io.github.nichetoolkit.rice.enums.RemoveType",
-      "description": "the remove model of model on rest service remove handle.",
+      "name": "nichetoolkit.rice.bean.delete.remove-mode",
+      "type": "io.github.nichetoolkit.rice.enums.RemoveMode",
+      "sourceType": "io.github.nichetoolkit.rice.enums.RemoveMode",
+      "description": "the remove mode of data on rest service remove handle.",
       "defaultValue": "number"
     },
     {
@@ -116,10 +116,10 @@
       "defaultValue": true
     },
     {
-      "name": "nichetoolkit.rice.bean.delete.remove-index",
+      "name": "nichetoolkit.rice.bean.delete.pinpoint-sign",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
-      "description": "the switch of remove data with index sign on rest service query handle.",
+      "description": "the switch of remove data with pinpoint sign on rest service query handle.",
       "defaultValue": false
     },
     {
@@ -313,15 +313,15 @@
       ]
     },
     {
-      "name": "nichetoolkit.rice.bean.delete.remove-index",
+      "name": "nichetoolkit.rice.bean.delete.pinpoint-sign",
       "values": [
         {
           "value": false,
-          "description": "the switch of remove data with index sign is closed on rest service query handle."
+          "description": "the switch of remove data with pinpoint sign is closed on rest service query handle."
         },
         {
           "value": true,
-          "description": "the switch of remove data with index sign is opened on rest service query handle."
+          "description": "the switch of remove data with pinpoint sign is opened on rest service query handle."
         }
       ]
     },

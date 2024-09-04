@@ -2,9 +2,9 @@ package io.github.nichetoolkit.rice;
 
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
-import io.github.nichetoolkit.rice.enums.DeleteType;
+import io.github.nichetoolkit.rice.enums.DeleteMode;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.enums.RemoveType;
+import io.github.nichetoolkit.rice.enums.RemoveMode;
 import io.github.nichetoolkit.rice.filter.NameFilter;
 import io.github.nichetoolkit.rice.jsonb.ContainRule;
 import io.github.nichetoolkit.rice.jsonb.ContrastRule;
@@ -56,21 +56,21 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
     /**
      * <code>toRemoveSql</code>
      * <p>the remove sql method.</p>
-     * @param removeType  {@link io.github.nichetoolkit.rice.enums.RemoveType} <p>the remove type parameter is <code>RemoveType</code> type.</p>
-     * @param removeSign  {@link java.lang.String} <p>the remove sign parameter is <code>String</code> type.</p>
-     * @param removeIndex {@link java.lang.Boolean} <p>the remove index parameter is <code>Boolean</code> type.</p>
-     * @param removeValue {@link java.lang.String} <p>the remove value parameter is <code>String</code> type.</p>
-     * @param alias       {@link java.lang.String} <p>the alias parameter is <code>String</code> type.</p>
+     * @param removeMode   {@link io.github.nichetoolkit.rice.enums.RemoveMode} <p>the remove mode parameter is <code>RemoveMode</code> type.</p>
+     * @param removeSign   {@link java.lang.String} <p>the remove sign parameter is <code>String</code> type.</p>
+     * @param pinpointSign {@link java.lang.Boolean} <p>the pinpoint sign parameter is <code>Boolean</code> type.</p>
+     * @param removeValue  {@link java.lang.String} <p>the remove value parameter is <code>String</code> type.</p>
+     * @param alias        {@link java.lang.String} <p>the alias parameter is <code>String</code> type.</p>
      * @return {@link io.github.nichetoolkit.rice.DefaultFilter} <p>the remove sql return object is <code>DefaultFilter</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.RemoveType
+     * @see io.github.nichetoolkit.rice.enums.RemoveMode
      * @see java.lang.String
      * @see java.lang.Boolean
      * @see org.springframework.lang.NonNull
      */
-    public DefaultFilter<I, K> toRemoveSql(RemoveType removeType, String removeSign, Boolean removeIndex, String removeValue, @NonNull String alias) {
+    public DefaultFilter<I, K> toRemoveSql(RemoveMode removeMode, String removeSign, Boolean pinpointSign, String removeValue, @NonNull String alias) {
         if (GeneralUtils.isNotEmpty(removeSign)) {
-            if (removeType == RemoveType.BOOLEAN || removeType == RemoveType.NUMBER) {
-                if (removeIndex && GeneralUtils.isNotEmpty(removeValue)) {
+            if (removeMode == RemoveMode.BOOLEAN || removeMode == RemoveMode.NUMBER) {
+                if (pinpointSign && GeneralUtils.isNotEmpty(removeValue)) {
                     if (this.isRemove) {
                         SqlBuilders.equal(SQL_BUILDER, alias, removeSign);
                     } else {
@@ -83,7 +83,7 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
                         SqlBuilders.unequal(SQL_BUILDER, alias, removeSign);
                     }
                 }
-            } else if (removeType == RemoveType.DATETIME || removeType == RemoveType.IDENTITY) {
+            } else if (removeMode == RemoveMode.DATETIME || removeMode == RemoveMode.IDENTITY) {
                 if (this.isRemove) {
                     SqlBuilders.nonnull(SQL_BUILDER, alias);
                 } else {
@@ -97,24 +97,24 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
     /**
      * <code>toQuerySql</code>
      * <p>the query sql method.</p>
-     * @param deleteType  {@link io.github.nichetoolkit.rice.enums.DeleteType} <p>the delete type parameter is <code>DeleteType</code> type.</p>
-     * @param removeType  {@link io.github.nichetoolkit.rice.enums.RemoveType} <p>the remove type parameter is <code>RemoveType</code> type.</p>
-     * @param removeSign  {@link java.lang.String} <p>the remove sign parameter is <code>String</code> type.</p>
-     * @param removeIndex {@link java.lang.Boolean} <p>the remove index parameter is <code>Boolean</code> type.</p>
-     * @param removeValue {@link java.lang.String} <p>the remove value parameter is <code>String</code> type.</p>
-     * @param alias       {@link java.lang.String} <p>the alias parameter is <code>String</code> type.</p>
+     * @param deleteMode   {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>the delete mode parameter is <code>DeleteMode</code> type.</p>
+     * @param removeMode   {@link io.github.nichetoolkit.rice.enums.RemoveMode} <p>the remove mode parameter is <code>RemoveMode</code> type.</p>
+     * @param removeSign   {@link java.lang.String} <p>the remove sign parameter is <code>String</code> type.</p>
+     * @param pinpointSign {@link java.lang.Boolean} <p>the pinpoint sign parameter is <code>Boolean</code> type.</p>
+     * @param removeValue  {@link java.lang.String} <p>the remove value parameter is <code>String</code> type.</p>
+     * @param alias        {@link java.lang.String} <p>the alias parameter is <code>String</code> type.</p>
      * @return {@link io.github.nichetoolkit.rice.DefaultFilter} <p>the query sql return object is <code>DefaultFilter</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.DeleteType
-     * @see io.github.nichetoolkit.rice.enums.RemoveType
+     * @see io.github.nichetoolkit.rice.enums.DeleteMode
+     * @see io.github.nichetoolkit.rice.enums.RemoveMode
      * @see java.lang.String
      * @see java.lang.Boolean
      * @see org.springframework.lang.NonNull
      */
-    public DefaultFilter<I, K> toQuerySql(DeleteType deleteType, RemoveType removeType, String removeSign, Boolean removeIndex, String removeValue, @NonNull String alias) {
-        if (deleteType == DeleteType.OPERATE) {
+    public DefaultFilter<I, K> toQuerySql(DeleteMode deleteMode, RemoveMode removeMode, String removeSign, Boolean pinpointSign, String removeValue, @NonNull String alias) {
+        if (deleteMode == DeleteMode.OPERATE) {
             return toOperateSql(alias);
-        } else if (deleteType == DeleteType.REMOVE) {
-            return toRemoveSql(removeType,removeSign,removeIndex,removeValue, alias);
+        } else if (deleteMode == DeleteMode.REMOVE) {
+            return toRemoveSql(removeMode,removeSign,pinpointSign,removeValue, alias);
         }
         return this;
     }
