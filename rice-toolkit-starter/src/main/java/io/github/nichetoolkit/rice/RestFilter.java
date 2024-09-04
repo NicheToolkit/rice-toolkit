@@ -59,7 +59,7 @@ public abstract class RestFilter extends DefaultFilter<String,String> {
      * @see org.springframework.lang.NonNull
      */
     public RestFilter toRemoveSql(SuperService<String,String,? extends IdModel<String>,? extends IdEntity<String>,? extends RestFilter> superService, @NonNull String alias) {
-        RemoveMode removeMode = superService.removeModel();
+        RemoveMode removeMode = superService.removeMode();
         String removeSign = superService.removeSign();
         Boolean pinpointSign = superService.pinpointSign();
         String removeValue = superService.removeValue();
@@ -78,12 +78,12 @@ public abstract class RestFilter extends DefaultFilter<String,String> {
      * @see org.springframework.lang.NonNull
      */
     public RestFilter toQuerySql(SuperService<String,String,? extends IdModel<String>,? extends IdEntity<String>,? extends RestFilter> superService, @NonNull String alias) {
-        DeleteMode deleteType = superService.deleteModel();
-        RemoveMode removeType = superService.removeModel();
+        DeleteMode deleteMode = superService.deleteMode();
+        RemoveMode removeMode = superService.removeMode();
         String removeSign = superService.removeSign();
         Boolean pinpointSign = superService.pinpointSign();
         String removeValue = superService.removeValue();
-        super.toQuerySql(deleteType,removeType,removeSign,pinpointSign,removeValue,alias);
+        super.toQuerySql(deleteMode,removeMode,removeSign,pinpointSign,removeValue,alias);
         return this;
     }
 
