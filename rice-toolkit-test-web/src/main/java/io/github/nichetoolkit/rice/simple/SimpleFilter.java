@@ -11,10 +11,4 @@ import io.github.nichetoolkit.rice.RestFilter;
  * @since Jdk1.8
  */
 public class SimpleFilter extends RestFilter {
-    /**
-     * <code>SimpleFilter</code>
-     * Instantiates a new simple filter.
-     */
-    public SimpleFilter() {
-    }
 }
