@@ -36,7 +36,7 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
      * {@link io.github.nichetoolkit.rice.mapper.InfoMapper} <p>the <code>consumerMapper</code> field.</p>
      * @see io.github.nichetoolkit.rice.mapper.InfoMapper
      */
-    protected InfoMapper<E, I> consumerMapper;
+    protected InfoMapper<E, I> infoMapper;
 
     @Override
     protected void optionalName(@NonNull M model) throws RestException {
@@ -80,7 +80,7 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
             }
         };
         if (super.superMapper instanceof InfoMapper) {
-            this.consumerMapper = (InfoMapper<E, I>) super.superMapper;
+            this.infoMapper = (InfoMapper<E, I>) super.superMapper;
         }
     }
 
@@ -101,9 +101,9 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
         String tablename = tablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = consumerMapper.findDynamicByName(tablename, model.getName(), removeValue());
+            entityList = infoMapper.findDynamicByName(tablename, model.getName(), removeValue());
         } else {
-            entityList = consumerMapper.findByName(model.getName(), removeValue());
+            entityList = infoMapper.findByName(model.getName(), removeValue());
         }
         return GeneralUtils.isNotEmpty(entityList);
     }
@@ -130,9 +130,9 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
         String tablename = tablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = consumerMapper.findDynamicByNameAndNotId(tablename, model.getName(), id, removeValue());
+            entityList = infoMapper.findDynamicByNameAndNotId(tablename, model.getName(), id, removeValue());
         } else {
-            entityList = consumerMapper.findByNameAndNotId(model.getName(), id, removeValue());
+            entityList = infoMapper.findByNameAndNotId(model.getName(), id, removeValue());
         }
         return GeneralUtils.isNotEmpty(entityList);
     }
@@ -155,9 +155,9 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
         String tablename = tablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = consumerMapper.findDynamicByEntity(tablename, entity, removeValue());
+            entityList = infoMapper.findDynamicByEntity(tablename, entity, removeValue());
         } else {
-            entityList = consumerMapper.findByEntity(entity, removeValue());
+            entityList = infoMapper.findByEntity(entity, removeValue());
         }
         return GeneralUtils.isNotEmpty(entityList);
     }
@@ -184,9 +184,9 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
         String tablename = tablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = consumerMapper.findDynamicByEntityAndNotId(tablename, entity, id, removeValue());
+            entityList = infoMapper.findDynamicByEntityAndNotId(tablename, entity, id, removeValue());
         } else {
-            entityList = consumerMapper.findByEntityAndNotId(entity, id, removeValue());
+            entityList = infoMapper.findByEntityAndNotId(entity, id, removeValue());
         }
         return GeneralUtils.isNotEmpty(entityList);
     }

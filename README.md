@@ -112,8 +112,8 @@ nichetoolkit.rice.bean.key.exist-enabled=true
 nichetoolkit.rice.bean.partition.query-size=2000
 nichetoolkit.rice.bean.partition.save-size=500
 nichetoolkit.rice.bean.partition.delete-size=1000
-nichetoolkit.rice.bean.delete.delete-model=none
-nichetoolkit.rice.bean.delete.remove-model=number
+nichetoolkit.rice.bean.delete.delete-mode=none
+nichetoolkit.rice.bean.delete.remove-mode=number
 nichetoolkit.rice.bean.delete.before-skip=true
 nichetoolkit.rice.bean.delete.after-skip=true
 nichetoolkit.rice.bean.delete.pinpoint-sign=false
@@ -183,17 +183,17 @@ nichetoolkit.rice.serialize.big-decimal-format=0.00
 
 the model is used on service or controller handle.
 
-|       name       |                                    typeParams                                    |                                                        description                                                        |
-|:----------------:|:--------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------:|
-|    SaveModel     |                                                                                  |                               the model is used to keep `SaveType` and `logicSign` fields.                                |
-|   OperateModel   |                                                                                  |                                      the model is used to keep `OperateType` field.                                       |
-|    TimeModel     |                                                                                  |                              the model is used to keep `createTime` and `updateTime` field.                               |
-|     IdModel      |                                      `<I>`                                       |                         the model is used to keep `id` field，and the `id` type can be any object.                         |
-|    InfoModel     |                                      `<I>`                                       |                                the model is used to keep `name` and `description` fields.                                 |
-|  DefaultIdModel  |      `<M extends DefaultIdModel<M,E,I>,E extends DefaultIdEntity<E,M,I>,I>`      |  the children models of  `DefaultIdModel` must be implement the `toEntity()` method，and the `id` type can be any object.  |
-| DefaultInfoModel | `<M extends DefaultInfoModel<M, E, I>, E extends DefaultInfoEntity<E, M, I>, I>` | the children models of  `DefaultInfoModel` must be implement the `toEntity()` method，and the `id` type can be any object. |
-|   RestIdModel    |          `<M extends RestIdModel<M, E>, E extends RestIdEntity<E, M>>`           |  the children models of  `RestIdModel` must be implement the `toEntity()` method，and the `id` type is default `String`.   |
-|  RestInfoModel   |        `<M extends RestInfoModel<M, E>, E extends RestInfoEntity<E, M>>`         | the children models of  `RestInfoModel` must be implement the `toEntity()` method，and the `id` type is default `String`.  |
+|        name        |                          typeParams                          |                         description                          |
+| :----------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+|    `SaveModel`     |                                                              | the model is used to keep `SaveType` and `logicSign` fields. |
+|   `OperateModel`   |                                                              |        the model is used to keep `OperateType` field.        |
+|    `TimeModel`     |                                                              | the model is used to keep `createTime` and `updateTime` field. |
+|     `IdModel`      |                            `<I>`                             | the model is used to keep `id` field，and the `id` type can be any object. |
+|    `InfoModel`     |                            `<I>`                             |  the model is used to keep `name` and `description` fields.  |
+|  `DefaultIdModel`  | `<M extends DefaultIdModel<M,E,I>,E extends DefaultIdEntity<E,M,I>,I>` | the children models of  `DefaultIdModel` must be implement the `toEntity()` method，and the `id` type can be any object. |
+| `DefaultInfoModel` | `<M extends DefaultInfoModel<M, E, I>, E extends DefaultInfoEntity<E, M, I>, I>` | the children models of  `DefaultInfoModel` must be implement the `toEntity()` method，and the `id` type can be any object. |
+|   `RestIdModel`    | `<M extends RestIdModel<M, E>, E extends RestIdEntity<E, M>>` | the children models of  `RestIdModel` must be implement the `toEntity()` method，and the `id` type is default `String`. |
+|  `RestInfoModel`   | `<M extends RestInfoModel<M, E>, E extends RestInfoEntity<E, M>>` | the children models of  `RestInfoModel` must be implement the `toEntity()` method，and the `id` type is default `String`. |
 
 * examples
 
@@ -338,7 +338,7 @@ the advice is used to handle the models or entities on service.
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>DeleteAdvice</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;I,E extends IdEntity&lt;I&gt;&gt;</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;,I&gt;</code></td>
 <td><code>beforeDelete(E entity)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the advice is used to handle <code>delete</code> and <code>deleteAll</code> methods.</td>
 </tr>
@@ -353,7 +353,7 @@ the advice is used to handle the models or entities on service.
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>OperateAdvice</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;I,E extends IdEntity&lt;I&gt;&gt;</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;,I&gt;</code></td>
 <td><code>beforeOperate(E entity)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the advice is used to handle <code>operate</code> and <code>operateAll</code> methods.</td>
 </tr>
@@ -368,7 +368,7 @@ the advice is used to handle the models or entities on service.
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>RemoveAdvice</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;I,E extends IdEntity&lt;I&gt;&gt;</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;,I&gt;</code></td>
 <td><code>beforeRemove(E entity)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the advice is used to handle <code>remove</code> and <code>removeAll</code> methods.</td>
 </tr>
@@ -383,7 +383,7 @@ the advice is used to handle the models or entities on service.
 </tr>
 <tr>
 <td rowspan=8 style="vertical-align: middle;"><code>SaveAdvice</code></td>
-<td rowspan=8 style="vertical-align: middle;"><code>&lt;I,M extends IdModel&lt;I&gt;&gt;</code></td>
+<td rowspan=8 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;,I&gt;</code></td>
 <td><code>beforeCreate(M model)</code></td>
 <td rowspan=8 style="vertical-align: middle;">the advice is used to handle <code>create</code> 、<code>update</code> 、<code>save</code> and <code>saveAll</code> methods.</td>
 </tr>
@@ -410,7 +410,7 @@ the advice is used to handle the models or entities on service.
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>BuilderAdvice</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;I,M extends IdModel&lt;I&gt;, E extends IdEntity&lt;I&gt;&gt;</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;, E extends IdEntity&lt;I&gt;,I&gt;</code></td>
 <td><code>buildEntity(M model, E entity, Object... idArray)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the advice is used to handle <code>buildEntity</code> 、<code>buildEntityList</code> 、<code>buildModel</code> and <code>buildModelList</code> methods.</td>
 </tr>
@@ -426,7 +426,7 @@ the advice is used to handle the models or entities on service.
 <tr>
 <tr>
 <td rowspan=8 style="vertical-align: middle;"><code>FilterAdvice</code></td>
-<td rowspan=8 style="vertical-align: middle;"><code>&lt;K, I, F extends IdFilter&lt;I, K&gt;&gt;</code></td>
+<td rowspan=8 style="vertical-align: middle;"><code>&lt;F extends IdFilter&lt;I, K&gt;, I, K&gt;</code></td>
 <td><code>queryWhereSql(F filter)</code></td>
 <td rowspan=8 style="vertical-align: middle;">the advice is used to handle filter build <code>SQL</code>methods.</td>
 </tr>
@@ -798,7 +798,293 @@ the advice is used to handle the models or entities on service.
 
 * default service
 
+<table style="text-align: center;">
+<tr>
+<th>name</th>
+<th>typeParams</th>
+<th>methods</th>
+<th>description</th>
+</tr>
+<tr>
+<td rowspan=4 style="vertical-align: middle;"><code>AlertService</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
+<td><code>alertAll(Collection&lt;I&gt; idList, RestKey&lt;Integer&gt; keyType)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>alert</code> and <code>alertAll</code> methods.</td>
+</tr>
+<tr>
+<td><code>alertAll(String tablekey, Collection&lt;I&gt; idList, RestKey&lt;Integer&gt; keyType)</code></td>
+</tr>
+<tr>
+<td><code>alertById(I id, RestKey&lt;Integer&gt; keyType)</code></td>
+</tr>
+<tr>
+<td><code>alertById(String tablekey, I id, RestKey&lt;Integer&gt; keyType)</code></td>
+</tr>
+<tr>
+<td rowspan=4 style="vertical-align: middle;"><code>DeleteService</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;I,K&gt;</code></td>
+<td><code>deleteAll(Collection&lt;I&gt; idList)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>delete</code> and <code>deleteAll</code> methods.</td>
+</tr>
+<tr>
+<td><code>deleteAll(K tablekey, Collection&lt;I&gt; idList)</code></td>
+</tr>
+<tr>
+<td><code>deleteById(I id)</code></td>
+</tr>
+<tr>
+<td><code>deleteById(K tablekey, I id)</code></td>
+</tr>
+<tr>
+<td rowspan=4 style="vertical-align: middle;"><code>OperateService</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;I,K&gt;</code></td>
+<td><code>operateAll(Collection&lt;I&gt; idList, OperateType operateType)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>operate</code> and <code>operateAll</code> methods.</td>
+</tr>
+<tr>
+<td><code>operateAll(K tablekey, Collection&lt;I&gt; idList, OperateType operateType)</code></td>
+</tr>
+<tr>
+<td><code>operateById(I id, OperateType operateType)</code></td>
+</tr>
+<tr>
+<td><code>operateById(K tablekey, I id, OperateType operateType)</code></td>
+</tr>
+<tr>
+<td rowspan=4 style="vertical-align: middle;"><code>RemoveService</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;I,K&gt;</code></td>
+<td><code>removeAll(Collection&lt;I&gt; idList)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>remove</code> and <code>removeAll</code> methods.</td>
+</tr>
+<tr>
+<td><code>removeAll(K tablekey, Collection&lt;I&gt; idList)</code></td>
+</tr>
+<tr>
+<td><code>removeById(I id)</code></td>
+</tr>
+<tr>
+<td><code>removeById(K tablekey, I id)</code></td>
+</tr>
+<tr>
+<td rowspan=4 style="vertical-align: middle;"><code>SingleService</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;, I, K&gt;</code></td>
+<td><code>create(M model, Object... idArray)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>create</code> and <code>update</code> methods.</td>
+</tr>
+<tr>
+<td><code>create(K tablekey, M model, Object... idArray)</code></td>
+</tr>
+<tr>
+<td><code>update(M model, Object... idArray)</code></td>
+</tr>
+<tr>
+<td><code>update(K tablekey, M model, Object... idArray)</code></td>
+</tr>
+<tr>
+<td rowspan=4 style="vertical-align: middle;"><code>SaveService</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;, I, K&gt;</code></td>
+<td><code>save(M model, Object... idArray)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>save</code> and <code>saveAll</code> methods.</td>
+</tr>
+<tr>
+<td><code>save(K tablekey, M model, Object... idArray)</code></td>
+</tr>
+<tr>
+<td><code>saveAll(Collection&lt;M&gt; modelList, Object... idArray)</code></td>
+</tr>
+<tr>
+<td><code>saveAll(K tablekey, Collection&lt;M&gt; modelList, Object... idArray)</code></td>
+</tr>
+<tr>
+<td rowspan=4 style="vertical-align: middle;"><code>QueryService</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;, I, K&gt;</code></td>
+<td><code>queryAll(Collection&lt;I&gt; idList, Boolean... isLoadArray)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>query</code> and <code>queryAll</code> methods.</td>
+</tr>
+<tr>
+<td><code>queryAll(K tablekey, Collection&lt;I&gt; idList, Boolean... isLoadArray)</code></td>
+</tr>
+<tr>
+<td><code>queryById(I id, Boolean... isLoadArray)</code></td>
+</tr>
+<tr>
+<td><code>queryById(K tablekey, I id, Boolean... isLoadArray)</code></td>
+</tr>
+<tr>
+<td rowspan=4 style="vertical-align: middle;"><code>FilterService</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;, F extends IdFilter&lt;I,K&gt;,I,K&gt;</code></td>
+<td><code>queryAllWithFilter(F filter)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>queryAll</code>、<code>deleteAll</code>、<code>removeAll</code> and <code>operateAll</code> methods.</td>
+</tr>
+<tr>
+<td><code>deleteAllWithFilter(F filter)</code></td>
+</tr>
+<tr>
+<td><code>removeAllWithFilter(F filter)</code></td>
+</tr>
+<tr>
+<td><code>operateAllWithFilter(F filter)</code></td>
+</tr>
+<tr>
+<td><code>SuperService</code></td>
+<td><code>&lt;M extends IdModel&lt;I&gt;, E extends IdEntity&lt;I&gt;, F extends IdFilter&lt;I, K&gt;, I, K&gt;</code></td>
+<td></td>
+<td>the service is default super service.</td>
+</tr>
+<tr>
+<td><code>InfoService</code></td>
+<td><code>&lt;M extends InfoModel&lt;I&gt;, E extends InfoEntity&lt;I&gt;, F extends IdFilter&lt;I, K&gt;, I, K&gt;</code></td>
+<td></td>
+<td>the service is default info service.</td>
+</tr>
+</table>
 
+* extend service
+
+<table style="text-align: center;">
+<tr>
+<th>name</th>
+<th>typeParams</th>
+<th>methods</th>
+<th>description</th>
+</tr>
+<tr>
+<td rowspan=7 style="vertical-align: middle;"><code>OptionalService</code></td>
+<td rowspan=7 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;, F extends IdFilter&lt;I, K&gt;, I, K&gt;</code></td>
+<td><code>optional(@NonNull M model)</code></td>
+<td rowspan=7 style="vertical-align: middle;">the service is used to handle <code>optional</code> and <code>exist</code> methods.</td>
+</tr>
+<tr>
+<td><code>existById(I id)</code></td>
+</tr>
+<tr>
+<td><code>existById(K tablekey, I id)</code></td>
+</tr>
+<tr>
+<td><code>optionalQueryFilter(F filter)</code></td>
+</tr>
+<tr>
+<td><code>optionalDeleteFilter(F filter)</code></td>
+</tr>
+<tr>
+<td><code>optionalRemoveFilter(F filter)</code></td>
+</tr>
+<tr>
+<td><code>optionalOperateFilter(F filter)</code></td>
+</tr>
+<tr>
+<td rowspan=4 style="vertical-align: middle;"><code>OperateLinkService</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
+<td><code>operateAllByLinkIds(Collection&lt;I&gt; linkIdList, OperateType operateType)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>operate</code> and <code>operateAll</code> methods.</td>
+</tr>
+<tr>
+<td><code>operateAllByLinkIds(String tablekey, Collection&lt;I&gt; linkIdList, OperateType operateType)</code></td>
+</tr>
+<tr>
+<td><code>operateByLinkId(I linkId, OperateType operateType)</code></td>
+</tr>
+<tr>
+<td><code>operateByLinkId(String tablekey, I linkId, OperateType operateType)</code></td>
+</tr>
+<tr>
+<td rowspan=4 style="vertical-align: middle;"><code>DeleteLinkService</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
+<td><code>deleteAllByLinkIds(Collection&lt;I&gt; linkIdList)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>delete</code> and <code>deleteAll</code> methods.</td>
+</tr>
+<tr>
+<td><code>deleteAllByLinkIds(String tablekey, Collection&lt;I&gt; linkIdList)</code></td>
+</tr>
+<tr>
+<td><code>deleteByLinkId(I linkId)</code></td>
+</tr>
+<tr>
+<td><code>deleteByLinkId(String tablekey, I linkId)</code></td>
+</tr>
+<tr>
+<td rowspan=4 style="vertical-align: middle;"><code>RemoveLinkService</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;I, K&gt;</code></td>
+<td><code>removeAllByLinkIds(Collection&lt;I&gt; linkIdList)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>remove</code> and <code>removeAll</code> methods.</td>
+</tr>
+<tr>
+<td><code>removeAllByLinkIds(K tablekey, Collection&lt;I&gt; linkIdList)</code></td>
+</tr>
+<tr>
+<td><code>removeByLinkId(I linkId)</code></td>
+</tr>
+<tr>
+<td><code>removeByLinkId(K tablekey, I linkId)</code></td>
+</tr>
+<tr>
+<td rowspan=4 style="vertical-align: middle;"><code>AlertFieldService</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
+<td><code>alertFieldAll(Collection&lt;I&gt; idList, String field, RestKey&lt;Integer&gt; keyType)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>alert</code> and <code>alertAll</code> methods.</td>
+</tr>
+<tr>
+<td><code>alertFieldAll(String tablekey, Collection&lt;I&gt; idList, String field, RestKey&lt;Integer&gt; keyType)</code></td>
+</tr>
+<tr>
+<td><code>alertFieldById(I id, String field, RestKey&lt;Integer&gt; keyType)</code></td>
+</tr>
+<tr>
+<td><code>alertFieldById(String tablekey, I id, String field, RestKey&lt;Integer&gt; keyType)</code></td>
+</tr>
+<tr>
+<td rowspan=4 style="vertical-align: middle;"><code>AlertBiFieldService</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
+<td><code>alertBiFieldAll(Collection&lt;I&gt; idList, String field, String biField, RestKey&lt;Integer&gt; keyType)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>alert</code> and <code>alertAll</code> methods.</td>
+</tr>
+<tr>
+<td><code>alertBiFieldAll(String tablekey, Collection&lt;I&gt; idList, String field, String biField, RestKey&lt;Integer&gt; keyType)</code></td>
+</tr>
+<tr>
+<td><code>alertBiFieldById(I id, String field, String biField, RestKey&lt;Integer&gt; keyType)</code></td>
+</tr>
+<tr>
+<td><code>alertBiFieldById(String tablekey, I id, String field, String biField, RestKey&lt;Integer&gt; keyType)</code></td>
+</tr>
+</table>
+
+* id & info service
+
+<table style="text-align: center;">
+<tr>
+<th>name</th>
+<th>typeParams</th>
+<th>description</th>
+</tr>
+<tr>
+<td style="vertical-align: middle;"><code>DefaultIdService</code></td>
+<td style="vertical-align: middle;"><code>&lt;M extends DefaultIdModel&lt;M, E, I&gt;, E extends DefaultIdEntity&lt;E, M, I&gt;, F extends DefaultFilter&lt;I, K&gt;, I, K&gt;</code></td>
+<td style="vertical-align: middle;">the service is abstract id service, the <code>id</code> and <code>tablekey</code> type can be any object.</td>
+</tr>
+<tr>
+<td style="vertical-align: middle;"><code>DefaultInfoService</code></td>
+<td style="vertical-align: middle;"><code>&lt;M extends DefaultInfoModel&lt;M, E, I&gt;, E extends DefaultInfoEntity&lt;E, M, I&gt;, F extends DefaultFilter&lt;I, K&gt;, I, K&gt;</code></td>
+<td style="vertical-align: middle;">the service is abstract info service, the <code>id</code> and <code>tablekey</code> type can be any object.</td>
+</tr>
+<tr>
+<td style="vertical-align: middle;"><code>RestIdService</code></td>
+<td style="vertical-align: middle;"><code>&lt;M extends RestIdModel&lt;M, E&gt;, E extends RestIdEntity&lt;E, M&gt;, F extends RestFilter&gt;</code></td>
+<td style="vertical-align: middle;">the service is abstract id service, the <code>id</code> and <code>tablekey</code> type is default <code>String</code>.</td>
+</tr>
+<tr>
+<td style="vertical-align: middle;"><code>RestInfoService</code></td>
+<td style="vertical-align: middle;"><code>&lt;M extends RestInfoModel&lt;M, E&gt;, E extends RestInfoEntity&lt;E, M&gt;, F extends RestFilter&gt;</code></td>
+<td style="vertical-align: middle;">the service is abstract info service, the <code>id</code> and <code>tablekey</code> type is default <code>String</code>.</td>
+</tr>
+</table>
+
+* examples
+
+```java
+public interface SimpleService extends FilterService<SimpleModel, SimpleFilter, String, String>, SingleService<SimpleModel, String, String> {
+}
+```
 
 ## Examples
 

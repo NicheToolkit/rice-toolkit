@@ -46,18 +46,18 @@ import java.util.*;
 /**
  * <code>SuperService</code>
  * <p>The type super service class.</p>
- * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.IdModel} <p>the generic parameter is <code>IdModel</code> type.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.IdEntity} <p>the generic parameter is <code>IdEntity</code> type.</p>
  * @param <F> {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>the generic parameter is <code>IdFilter</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.IdModel
  * @see io.github.nichetoolkit.rice.IdEntity
  * @see io.github.nichetoolkit.rice.filter.IdFilter
  * @see org.springframework.beans.factory.InitializingBean
  * @see org.springframework.context.ApplicationContextAware
- * @see OptionalService
+ * @see io.github.nichetoolkit.rice.service.extend.OptionalService
  * @see io.github.nichetoolkit.rice.advice.FilterAdvice
  * @see io.github.nichetoolkit.rice.advice.SaveAdvice
  * @see io.github.nichetoolkit.rice.advice.AlertAdvice
@@ -72,7 +72,7 @@ import java.util.*;
 @Slf4j
 public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, F extends IdFilter<I, K>, I, K>
         implements InitializingBean, ApplicationContextAware, OptionalService<M, F, I, K>, FilterAdvice<F, I, K>,
-        SaveAdvice<M,I>, AlertAdvice<I>, OperateAdvice<E,I>, DeleteAdvice<E,I>, RemoveAdvice<E,I> {
+        SaveAdvice<M, I>, AlertAdvice<I>, OperateAdvice<E, I>, DeleteAdvice<E, I>, RemoveAdvice<E, I> {
 
     private static ApplicationContext applicationContext;
 
@@ -185,7 +185,7 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         E entity = this.createEntity(model);
         entity.setLogicSign(model.getLogicSign());
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
-            BuilderAdvice<I, M, E> builderAdvice = (BuilderAdvice<I, M, E>) this;
+            BuilderAdvice<M, E, I> builderAdvice = (BuilderAdvice<M, E, I>) this;
             builderAdvice.buildEntity(model, entity, idArray);
         }
         return entity;
@@ -210,7 +210,7 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
     protected List<E> entityActuator(Collection<M> modelList, ConsumerActuator<M> actuator, Object... idArray) throws RestException {
         List<E> entityList;
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
-            BuilderAdvice<I, M, E> builderAdvice = (BuilderAdvice<I, M, E>) this;
+            BuilderAdvice<M, E, I> builderAdvice = (BuilderAdvice<M, E, I>) this;
             Method entityListFindMethod = null;
             try {
                 entityListFindMethod = builderAdvice.getClass().getMethod("buildEntityList", Collection.class, List.class, Object[].class);
@@ -250,7 +250,7 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
     protected M modelActuator(E entity, Boolean... isLoadArray) throws RestException {
         M model = this.createModel(entity);
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
-            BuilderAdvice<I, M, E> builderAdvice = (BuilderAdvice<I, M, E>) this;
+            BuilderAdvice<M, E, I> builderAdvice = (BuilderAdvice<M, E, I>) this;
             builderAdvice.buildModel(entity, model, isLoadArray);
         }
         return model;
@@ -273,7 +273,7 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
     protected List<M> modelActuator(Collection<E> entityList, Boolean... isLoadArray) throws RestException {
         List<M> modelList;
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
-            BuilderAdvice<I, M, E> builderAdvice = (BuilderAdvice<I, M, E>) this;
+            BuilderAdvice<M, E, I> builderAdvice = (BuilderAdvice<M, E, I>) this;
             Method findMethod = null;
             try {
                 findMethod = builderAdvice.getClass().getMethod("buildModelList", Collection.class, List.class, Boolean[].class);
@@ -2129,29 +2129,29 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
     }
 
     /**
-     * <code>deleteModel</code>
-     * <p>the model method.</p>
-     * @return {@link DeleteMode} <p>the model return object is <code>DeleteType</code> type.</p>
-     * @see DeleteMode
+     * <code>deleteMode</code>
+     * <p>the mode method.</p>
+     * @return {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>the mode return object is <code>DeleteMode</code> type.</p>
+     * @see io.github.nichetoolkit.rice.enums.DeleteMode
      */
     public DeleteMode deleteMode() {
         return beanProperties.deleteMode();
     }
 
     /**
-     * <code>removeModel</code>
-     * <p>the model method.</p>
-     * @return {@link RemoveMode} <p>the model return object is <code>RemoveType</code> type.</p>
-     * @see RemoveMode
+     * <code>removeMode</code>
+     * <p>the mode method.</p>
+     * @return {@link io.github.nichetoolkit.rice.enums.RemoveMode} <p>the mode return object is <code>RemoveMode</code> type.</p>
+     * @see io.github.nichetoolkit.rice.enums.RemoveMode
      */
     public RemoveMode removeMode() {
         return beanProperties.removeMode();
     }
 
     /**
-     * <code>removeIndex</code>
-     * <p>the index method.</p>
-     * @return {@link java.lang.Boolean} <p>the index return object is <code>Boolean</code> type.</p>
+     * <code>pinpointSign</code>
+     * <p>the sign method.</p>
+     * @return {@link java.lang.Boolean} <p>the sign return object is <code>Boolean</code> type.</p>
      * @see java.lang.Boolean
      */
     public Boolean pinpointSign() {
