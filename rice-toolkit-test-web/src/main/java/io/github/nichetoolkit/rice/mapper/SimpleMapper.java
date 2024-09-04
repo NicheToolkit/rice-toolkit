@@ -15,5 +15,5 @@ import org.springframework.stereotype.Component;
  * @since Jdk1.8
  */
 @Component
-public interface SimpleMapper extends RestInfoMapper<SimpleEntity>, Mapper<SimpleEntity,String> {
+public interface SimpleMapper extends RestInfoMapper<SimpleEntity>, Mapper<SimpleEntity, String> {
 }

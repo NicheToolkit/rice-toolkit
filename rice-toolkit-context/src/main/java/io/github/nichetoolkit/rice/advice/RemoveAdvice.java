@@ -8,15 +8,15 @@ import java.util.Collection;
 /**
  * <code>RemoveAdvice</code>
  * <p>The type remove advice interface.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.IdEntity} <p>the generic parameter is <code>IdEntity</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.IdEntity
  * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
 @SuppressWarnings("RedundantThrows")
-public interface RemoveAdvice<I,E extends IdEntity<I>> {
+public interface RemoveAdvice<E extends IdEntity<I>, I> {
 
     /**
      * <code>beforeRemove</code>
@@ -25,7 +25,8 @@ public interface RemoveAdvice<I,E extends IdEntity<I>> {
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default void beforeRemove(E entity) throws RestException {}
+    default void beforeRemove(E entity) throws RestException {
+    }
 
     /**
      * <code>beforeRemoveAll</code>
@@ -48,7 +49,8 @@ public interface RemoveAdvice<I,E extends IdEntity<I>> {
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default void afterRemove(E entity) throws RestException {}
+    default void afterRemove(E entity) throws RestException {
+    }
 
     /**
      * <code>afterRemoveAll</code>

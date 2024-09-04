@@ -55,7 +55,7 @@ public class SimpleController {
      */
     @GetMapping("/error")
     public RestResult<?> error() throws RestException {
-        return RestResult.mistake(RestErrorStatus.MISTAKE,new NullPointerException());
+        return RestResult.mistake(RestErrorStatus.MISTAKE, new NullPointerException());
     }
 
     /**

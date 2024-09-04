@@ -9,5 +9,5 @@ package io.github.nichetoolkit.rice;
  * @see io.github.nichetoolkit.rice.DefaultInfoMapper
  * @since Jdk1.8
  */
-public interface RestInfoMapper<E extends RestInfoEntity<E,?>> extends DefaultInfoMapper<E,String> {
+public interface RestInfoMapper<E extends RestInfoEntity<E, ?>> extends DefaultInfoMapper<E, String> {
 }

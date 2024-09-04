@@ -13,5 +13,5 @@ package io.github.nichetoolkit.rice;
  * @see io.github.nichetoolkit.rice.DefaultInfoService
  * @since Jdk1.8
  */
-public abstract class RestInfoService<M extends RestInfoModel<M, E>, E extends RestInfoEntity<E, M>, F extends RestFilter> extends DefaultInfoService<String, String, M, E, F> {
+public abstract class RestInfoService<M extends RestInfoModel<M, E>, E extends RestInfoEntity<E, M>, F extends RestFilter> extends DefaultInfoService<M, E, F, String, String> {
 }

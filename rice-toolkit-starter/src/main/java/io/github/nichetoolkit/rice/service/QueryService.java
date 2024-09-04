@@ -9,15 +9,15 @@ import java.util.List;
 /**
  * <code>QueryService</code>
  * <p>The type query service interface.</p>
- * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.IdModel} <p>the generic parameter is <code>IdModel</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.IdModel
  * @see io.github.nichetoolkit.rice.service.DeleteService
  * @since Jdk1.8
  */
-public interface QueryService<K,I, M extends IdModel<I>> extends DeleteService<K,I> {
+public interface QueryService<M extends IdModel<I>, I, K> extends DeleteService<I, K> {
 
     /**
      * <code>queryAll</code>

@@ -8,8 +8,8 @@ import io.github.nichetoolkit.rice.simple.SimpleModel;
  * <p>The type simple service interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.service.FilterService
- * @see SingleService
+ * @see io.github.nichetoolkit.rice.service.SingleService
  * @since Jdk1.8
  */
-public interface SimpleService extends FilterService<String, String, SimpleModel, SimpleFilter>, SingleService<String, String, SimpleModel> {
+public interface SimpleService extends FilterService<SimpleModel, SimpleFilter, String, String>, SingleService<SimpleModel, String, String> {
 }

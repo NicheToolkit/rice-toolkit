@@ -70,9 +70,9 @@ import java.util.*;
  */
 @SuppressWarnings("RedundantThrows")
 @Slf4j
-public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntity<I>, F extends IdFilter<I, K>>
-        implements InitializingBean, ApplicationContextAware, OptionalService<K, I, M, F>, FilterAdvice<K, I, F>,
-        SaveAdvice<I, M>, AlertAdvice<I>, OperateAdvice<I, E>, DeleteAdvice<I, E>, RemoveAdvice<I, E> {
+public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, F extends IdFilter<I, K>, I, K>
+        implements InitializingBean, ApplicationContextAware, OptionalService<M, F, I, K>, FilterAdvice<F, I, K>,
+        SaveAdvice<M,I>, AlertAdvice<I>, OperateAdvice<E,I>, DeleteAdvice<E,I>, RemoveAdvice<E,I> {
 
     private static ApplicationContext applicationContext;
 
@@ -140,7 +140,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         if (GeneralUtils.isNotEmpty(service)) {
             Class<?> mapper = service.mapper();
             if (SuperMapper.class.isAssignableFrom(mapper)) {
-                this.superMapper = (SuperMapper<E,I>) applicationContext.getBean(mapper);
+                this.superMapper = (SuperMapper<E, I>) applicationContext.getBean(mapper);
             }
         } else {
             try {
@@ -185,7 +185,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         E entity = this.createEntity(model);
         entity.setLogicSign(model.getLogicSign());
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
-            BuilderAdvice<I,M,E> builderAdvice = (BuilderAdvice<I,M,E>) this;
+            BuilderAdvice<I, M, E> builderAdvice = (BuilderAdvice<I, M, E>) this;
             builderAdvice.buildEntity(model, entity, idArray);
         }
         return entity;
@@ -210,7 +210,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     protected List<E> entityActuator(Collection<M> modelList, ConsumerActuator<M> actuator, Object... idArray) throws RestException {
         List<E> entityList;
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
-            BuilderAdvice<I,M,E> builderAdvice = (BuilderAdvice<I,M,E>) this;
+            BuilderAdvice<I, M, E> builderAdvice = (BuilderAdvice<I, M, E>) this;
             Method entityListFindMethod = null;
             try {
                 entityListFindMethod = builderAdvice.getClass().getMethod("buildEntityList", Collection.class, List.class, Object[].class);
@@ -250,7 +250,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     protected M modelActuator(E entity, Boolean... isLoadArray) throws RestException {
         M model = this.createModel(entity);
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
-            BuilderAdvice<I,M,E> builderAdvice = (BuilderAdvice<I,M,E>) this;
+            BuilderAdvice<I, M, E> builderAdvice = (BuilderAdvice<I, M, E>) this;
             builderAdvice.buildModel(entity, model, isLoadArray);
         }
         return model;
@@ -273,7 +273,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
     protected List<M> modelActuator(Collection<E> entityList, Boolean... isLoadArray) throws RestException {
         List<M> modelList;
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
-            BuilderAdvice<I,M,E> builderAdvice = (BuilderAdvice<I,M,E>) this;
+            BuilderAdvice<I, M, E> builderAdvice = (BuilderAdvice<I, M, E>) this;
             Method findMethod = null;
             try {
                 findMethod = builderAdvice.getClass().getMethod("buildModelList", Collection.class, List.class, Boolean[].class);
@@ -760,7 +760,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         if (superMapper instanceof OperateLinkMapper) {
             String tablename = tablename(tablekey);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((OperateLinkMapper<I>) superMapper).operateDynamicByLinkId(tablename,linkId, operate.getKey());
+                ((OperateLinkMapper<I>) superMapper).operateDynamicByLinkId(tablename, linkId, operate.getKey());
             } else {
                 ((OperateLinkMapper<I>) superMapper).operateByLinkId(linkId, operate.getKey());
             }
@@ -1658,7 +1658,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                 entityList = findAllByWhere(whereSql, tablename);
             }
         } else if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-            FilterMapper<E,F,I,K> filterMapper = (FilterMapper<E,F,I,K>) superMapper;
+            FilterMapper<E, F, I, K> filterMapper = (FilterMapper<E, F, I, K>) superMapper;
             Method findMethod = null;
             try {
                 findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, IdFilter.class);
@@ -1732,7 +1732,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
             String tablename = tablename(tablekey);
             if (GeneralUtils.isNotEmpty(whereSql)) {
                 if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-                    FilterMapper<E,F,I,K> filterMapper = (FilterMapper<E,F,I,K>) superMapper;
+                    FilterMapper<E, F, I, K> filterMapper = (FilterMapper<E, F, I, K>) superMapper;
                     Method findMethod = null;
                     Method deleteMethod = null;
                     try {
@@ -1823,7 +1823,7 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         if (GeneralUtils.isNotEmpty(removeWhereSql)) {
             String removeSign = removeSign();
             if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-                FilterMapper<E,F,I,K> filterMapper = (FilterMapper<E,F,I,K>) superMapper;
+                FilterMapper<E, F, I, K> filterMapper = (FilterMapper<E, F, I, K>) superMapper;
                 Method findMethod = null;
                 Method removeMethod = null;
                 try {
@@ -1913,12 +1913,12 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
         String tablename = tablename(tablekey);
         if (GeneralUtils.isNotEmpty(operateWhereSql)) {
             if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-                FilterMapper<E,F,I,K> filterMapper = (FilterMapper<E,F,I,K>) superMapper;
+                FilterMapper<E, F, I, K> filterMapper = (FilterMapper<E, F, I, K>) superMapper;
                 Method findMethod = null;
                 Method operateMethod = null;
                 try {
                     findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, IdFilter.class);
-                    operateMethod = filterMapper.getClass().getMethod("operateAllByFilterWhere", String.class, IdFilter.class,Integer.class);
+                    operateMethod = filterMapper.getClass().getMethod("operateAllByFilterWhere", String.class, IdFilter.class, Integer.class);
                 } catch (NoSuchMethodException ignored) {
                 }
                 Method findAllByWhereMethod = findMethod;
@@ -1926,9 +1926,9 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                 if (operateAllByWhereMethod != null && !operateAllByWhereMethod.isDefault()) {
                     if (DeleteMode.OPERATE != deleteMode() || (isBeforeSkip() && isAfterSkip())) {
                         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                            filterMapper.operateDynamicAllByFilterWhere(tablename, operateWhereSql,filter, OperateType.REMOVE.getKey());
+                            filterMapper.operateDynamicAllByFilterWhere(tablename, operateWhereSql, filter, OperateType.REMOVE.getKey());
                         } else {
-                            filterMapper.operateAllByFilterWhere(operateWhereSql, filter,OperateType.REMOVE.getKey());
+                            filterMapper.operateAllByFilterWhere(operateWhereSql, filter, OperateType.REMOVE.getKey());
                         }
                     } else {
                         String queryWhereSql = queryWhereSql(filter);
@@ -1941,9 +1941,9 @@ public abstract class SuperService<K, I, M extends IdModel<I>, E extends IdEntit
                         if (GeneralUtils.isNotEmpty(entityList)) {
                             operateAdvice(entityList, OperateType.REMOVE, operate -> {
                                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                                    filterMapper.operateDynamicAllByFilterWhere(tablename, operateWhereSql,filter, operate.getKey());
+                                    filterMapper.operateDynamicAllByFilterWhere(tablename, operateWhereSql, filter, operate.getKey());
                                 } else {
-                                    filterMapper.operateAllByFilterWhere(operateWhereSql, filter,operate.getKey());
+                                    filterMapper.operateAllByFilterWhere(operateWhereSql, filter, operate.getKey());
                                 }
                             });
                         }

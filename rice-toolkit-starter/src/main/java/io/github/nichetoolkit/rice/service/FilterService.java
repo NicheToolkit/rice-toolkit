@@ -18,7 +18,7 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
  * @see io.github.nichetoolkit.rice.service.SaveService
  * @since Jdk1.8
  */
-public interface FilterService<K,I,M extends IdModel<I>, F extends IdFilter<I,K>> extends SaveService<K,I,M> {
+public interface FilterService<M extends IdModel<I>, F extends IdFilter<I,K>,I,K> extends SaveService<M,I,K> {
     /**
      * <code>queryAllWithFilter</code>
      * <p>the all with filter method.</p>

@@ -309,7 +309,7 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
             return null;
         }
         List<IdPack> idPacks = JsonUtils.parseList(responseData, IdPack.class);
-        if (GeneralUtils.isNotEmpty(idPacks) ) {
+        if (GeneralUtils.isNotEmpty(idPacks)) {
             return idPacks.stream().map(IdPack::getId).filter(Objects::nonNull).collect(Collectors.toSet());
         }
         return null;
@@ -359,7 +359,7 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
     public static String toUrlId(String requestUrl) {
         if (GeneralUtils.isNotEmpty(requestUrl)) {
             String[] splitUrl = requestUrl.trim().split("/");
-            if (GeneralUtils.isNotEmpty(splitUrl) && GeneralUtils.isNotEmpty(splitUrl[splitUrl.length-1])) {
+            if (GeneralUtils.isNotEmpty(splitUrl) && GeneralUtils.isNotEmpty(splitUrl[splitUrl.length - 1])) {
                 return splitUrl[splitUrl.length - 1];
             }
         }
@@ -399,7 +399,7 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
                 if (!packIds.startsWith("[")) {
                     packIds = "[".concat(packIds);
                 }
-                if (packIds.endsWith(",") ){
+                if (packIds.endsWith(",")) {
                     packIds = packIds.substring(0, packIds.length() - 1);
                 }
                 if (!packIds.endsWith("]")) {
@@ -422,7 +422,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      */
     public static Set<String> toListIds(String requestBody) {
         if (GeneralUtils.isNotEmpty(requestBody)) {
-            List<String> idList = JsonUtils.parseBean(requestBody, new TypeReference<List<String>>() {});
+            List<String> idList = JsonUtils.parseBean(requestBody, new TypeReference<List<String>>() {
+            });
             if (GeneralUtils.isNotEmpty(idList)) {
                 return new HashSet<>(idList);
             }
@@ -441,7 +442,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      */
     public static Set<String> toFilterIds(String requestBody) {
         if (GeneralUtils.isNotEmpty(requestBody)) {
-            IdFilter<String,String> idFilter = JsonUtils.parseBean(requestBody, new TypeReference<IdFilter<String,String>>() {});
+            IdFilter<String, String> idFilter = JsonUtils.parseBean(requestBody, new TypeReference<IdFilter<String, String>>() {
+            });
             if (GeneralUtils.isNotEmpty(idFilter) && GeneralUtils.isNotEmpty(idFilter.toIds())) {
                 return new HashSet<>(idFilter.toIds());
             }

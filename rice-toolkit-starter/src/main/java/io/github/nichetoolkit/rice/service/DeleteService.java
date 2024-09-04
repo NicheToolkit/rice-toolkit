@@ -9,12 +9,12 @@ import java.util.Collection;
 /**
  * <code>DeleteService</code>
  * <p>The type delete service interface.</p>
- * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public interface DeleteService<K,I>{
+public interface DeleteService<I, K> {
     /**
      * <code>deleteAll</code>
      * <p>the all method.</p>

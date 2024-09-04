@@ -18,7 +18,7 @@ import java.util.List;
  * @see io.github.nichetoolkit.rice.filter.IdFilter
  * @since Jdk1.8
  */
-public interface FilterMapper<E extends IdEntity<I>,F extends IdFilter<I, K>,I,K> {
+public interface FilterMapper<E extends IdEntity<I>, F extends IdFilter<I, K>, I, K> {
 
     /**
      * <code>operateAllByFilterWhere</code>

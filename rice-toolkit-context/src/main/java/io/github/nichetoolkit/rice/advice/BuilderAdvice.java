@@ -10,9 +10,9 @@ import java.util.List;
 /**
  * <code>BuilderAdvice</code>
  * <p>The type builder advice interface.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.IdModel} <p>the generic parameter is <code>IdModel</code> type.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.IdEntity} <p>the generic parameter is <code>IdEntity</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.IdModel
  * @see io.github.nichetoolkit.rice.IdEntity
@@ -20,7 +20,7 @@ import java.util.List;
  * @since Jdk1.8
  */
 @SuppressWarnings("RedundantThrows")
-public interface BuilderAdvice <I,M extends IdModel<I>, E extends IdEntity<I>> {
+public interface BuilderAdvice<M extends IdModel<I>, E extends IdEntity<I>, I> {
 
     /**
      * <code>buildEntity</code>
@@ -32,7 +32,8 @@ public interface BuilderAdvice <I,M extends IdModel<I>, E extends IdEntity<I>> {
      * @see java.lang.Object
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default void buildEntity(M model, E entity, Object... idArray) throws RestException {}
+    default void buildEntity(M model, E entity, Object... idArray) throws RestException {
+    }
 
     /**
      * <code>buildEntityList</code>
@@ -46,7 +47,8 @@ public interface BuilderAdvice <I,M extends IdModel<I>, E extends IdEntity<I>> {
      * @see java.lang.Object
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default void buildEntityList(Collection<M> modelList, List<E> entityList, Object... idArray) throws RestException {}
+    default void buildEntityList(Collection<M> modelList, List<E> entityList, Object... idArray) throws RestException {
+    }
 
     /**
      * <code>buildModel</code>
@@ -58,7 +60,8 @@ public interface BuilderAdvice <I,M extends IdModel<I>, E extends IdEntity<I>> {
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default void buildModel(E entity, M model, Boolean... isLoadArray) throws RestException {}
+    default void buildModel(E entity, M model, Boolean... isLoadArray) throws RestException {
+    }
 
     /**
      * <code>buildModelList</code>
@@ -72,6 +75,7 @@ public interface BuilderAdvice <I,M extends IdModel<I>, E extends IdEntity<I>> {
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default void buildModelList(Collection<E> entityList, List<M> modelList, Boolean... isLoadArray) throws RestException {}
+    default void buildModelList(Collection<E> entityList, List<M> modelList, Boolean... isLoadArray) throws RestException {
+    }
 
 }

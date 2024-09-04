@@ -6,16 +6,16 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
 /**
  * <code>FilterAdvice</code>
  * <p>The type filter advice interface.</p>
- * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @param <F> {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>the generic parameter is <code>IdFilter</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.filter.IdFilter
  * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
 @SuppressWarnings("RedundantThrows")
-public interface FilterAdvice<K, I, F extends IdFilter<I, K>> {
+public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
 
     /**
      * <code>queryWhereSql</code>

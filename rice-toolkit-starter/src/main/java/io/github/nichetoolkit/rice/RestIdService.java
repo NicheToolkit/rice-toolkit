@@ -13,5 +13,5 @@ package io.github.nichetoolkit.rice;
  * @see io.github.nichetoolkit.rice.DefaultIdService
  * @since Jdk1.8
  */
-public abstract class RestIdService<M extends RestIdModel<M, E>, E extends RestIdEntity<E, M>, F extends RestFilter> extends DefaultIdService<String, String, M, E, F> {
+public abstract class RestIdService<M extends RestIdModel<M, E>, E extends RestIdEntity<E, M>, F extends RestFilter> extends DefaultIdService<M, E, F, String, String> {
 }

@@ -10,12 +10,12 @@ import java.util.Collection;
 /**
  * <code>OperateService</code>
  * <p>The type operate service interface.</p>
- * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public interface OperateService<K,I> {
+public interface OperateService<I, K> {
     /**
      * <code>operateAll</code>
      * <p>the all method.</p>

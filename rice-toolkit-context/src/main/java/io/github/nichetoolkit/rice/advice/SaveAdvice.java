@@ -8,15 +8,15 @@ import java.util.Collection;
 /**
  * <code>SaveAdvice</code>
  * <p>The type save advice interface.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.IdModel} <p>the generic parameter is <code>IdModel</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.IdModel
  * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
 @SuppressWarnings("RedundantThrows")
-public interface SaveAdvice<I,M extends IdModel<I>> {
+public interface SaveAdvice<M extends IdModel<I>, I> {
 
     /**
      * <code>beforeCreate</code>
@@ -47,7 +47,8 @@ public interface SaveAdvice<I,M extends IdModel<I>> {
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default void beforeSave(M model) throws RestException {}
+    default void beforeSave(M model) throws RestException {
+    }
 
     /**
      * <code>beforeSaveAll</code>
@@ -92,7 +93,8 @@ public interface SaveAdvice<I,M extends IdModel<I>> {
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default void afterSave(M model) throws RestException {}
+    default void afterSave(M model) throws RestException {
+    }
 
     /**
      * <code>afterSaveAll</code>

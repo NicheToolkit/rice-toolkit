@@ -11,15 +11,15 @@ import java.util.List;
 /**
  * <code>SaveService</code>
  * <p>The type save service interface.</p>
- * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.IdModel} <p>the generic parameter is <code>IdModel</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.IdModel
  * @see io.github.nichetoolkit.rice.service.QueryService
  * @since Jdk1.8
  */
-public interface SaveService<K, I, M extends IdModel<I>> extends QueryService<K,I, M> {
+public interface SaveService<M extends IdModel<I>, I, K> extends QueryService<M, I, K> {
 
     /**
      * <code>save</code>

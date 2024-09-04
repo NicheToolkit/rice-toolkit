@@ -9,12 +9,12 @@ import java.util.Collection;
 /**
  * <code>RemoveLinkService</code>
  * <p>The type remove link service interface.</p>
- * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public interface RemoveLinkService<K,I> {
+public interface RemoveLinkService<I, K> {
 
     /**
      * <code>removeAllByLinkIds</code>

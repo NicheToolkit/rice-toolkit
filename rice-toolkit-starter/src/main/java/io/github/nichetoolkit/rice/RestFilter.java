@@ -19,7 +19,7 @@ import java.util.*;
  * @see io.github.nichetoolkit.rice.DefaultFilter
  * @since Jdk1.8
  */
-public abstract class RestFilter extends DefaultFilter<String,String> {
+public abstract class RestFilter extends DefaultFilter<String, String> {
 
     /**
      * <code>RestFilter</code>
@@ -58,12 +58,12 @@ public abstract class RestFilter extends DefaultFilter<String,String> {
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
-    public RestFilter toRemoveSql(SuperService<String,String,? extends IdModel<String>,? extends IdEntity<String>,? extends RestFilter> superService, @NonNull String alias) {
+    public RestFilter toRemoveSql(SuperService<? extends IdModel<String>, ? extends IdEntity<String>, ? extends RestFilter, String, String> superService, @NonNull String alias) {
         RemoveMode removeMode = superService.removeMode();
         String removeSign = superService.removeSign();
         Boolean pinpointSign = superService.pinpointSign();
         String removeValue = superService.removeValue();
-        super.toRemoveSql(removeMode,removeSign,pinpointSign,removeValue,alias);
+        super.toRemoveSql(removeMode, removeSign, pinpointSign, removeValue, alias);
         return this;
     }
 
@@ -77,13 +77,13 @@ public abstract class RestFilter extends DefaultFilter<String,String> {
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
-    public RestFilter toQuerySql(SuperService<String,String,? extends IdModel<String>,? extends IdEntity<String>,? extends RestFilter> superService, @NonNull String alias) {
+    public RestFilter toQuerySql(SuperService<? extends IdModel<String>, ? extends IdEntity<String>, ? extends RestFilter, String, String> superService, @NonNull String alias) {
         DeleteMode deleteMode = superService.deleteMode();
         RemoveMode removeMode = superService.removeMode();
         String removeSign = superService.removeSign();
         Boolean pinpointSign = superService.pinpointSign();
         String removeValue = superService.removeValue();
-        super.toQuerySql(deleteMode,removeMode,removeSign,pinpointSign,removeValue,alias);
+        super.toQuerySql(deleteMode, removeMode, removeSign, pinpointSign, removeValue, alias);
         return this;
     }
 
@@ -102,7 +102,7 @@ public abstract class RestFilter extends DefaultFilter<String,String> {
 
     @Override
     public RestFilter toJsonbSql(@NonNull String alias, String variable) {
-        super.toJsonbSql(alias,variable);
+        super.toJsonbSql(alias, variable);
         return this;
     }
 
@@ -131,7 +131,7 @@ public abstract class RestFilter extends DefaultFilter<String,String> {
      * @see io.github.nichetoolkit.rice.DefaultFilter.Builder
      * @since Jdk1.8
      */
-    public static abstract class Builder extends DefaultFilter.Builder<String,String> {
+    public static abstract class Builder extends DefaultFilter.Builder<String, String> {
 
         /**
          * <code>Builder</code>

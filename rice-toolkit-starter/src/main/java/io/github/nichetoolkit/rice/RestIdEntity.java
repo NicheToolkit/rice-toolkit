@@ -11,7 +11,7 @@ package io.github.nichetoolkit.rice;
  * @see io.github.nichetoolkit.rice.DefaultIdEntity
  * @since Jdk1.8
  */
-public abstract class RestIdEntity<E extends RestIdEntity<E,M>,M extends RestIdModel<M,E>> extends DefaultIdEntity<E,M,String> {
+public abstract class RestIdEntity<E extends RestIdEntity<E, M>, M extends RestIdModel<M, E>> extends DefaultIdEntity<E, M, String> {
 
     /**
      * <code>RestIdEntity</code>
@@ -36,7 +36,7 @@ public abstract class RestIdEntity<E extends RestIdEntity<E,M>,M extends RestIdM
      * @param builder {@link io.github.nichetoolkit.rice.RestIdEntity.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestIdEntity.Builder
      */
-    public RestIdEntity(Builder<E,M> builder) {
+    public RestIdEntity(Builder<E, M> builder) {
         super(builder);
     }
 
@@ -50,7 +50,7 @@ public abstract class RestIdEntity<E extends RestIdEntity<E,M>,M extends RestIdM
      * @see io.github.nichetoolkit.rice.DefaultIdEntity.Builder
      * @since Jdk1.8
      */
-    public static abstract class Builder<E extends RestIdEntity<E,M>,M extends RestIdModel<M,E>> extends DefaultIdEntity.Builder<E,M,String> {
+    public static abstract class Builder<E extends RestIdEntity<E, M>, M extends RestIdModel<M, E>> extends DefaultIdEntity.Builder<E, M, String> {
 
         /**
          * <code>Builder</code>
@@ -60,12 +60,12 @@ public abstract class RestIdEntity<E extends RestIdEntity<E,M>,M extends RestIdM
         }
 
         @Override
-        public RestIdEntity.Builder<E,M> id(String id) {
+        public RestIdEntity.Builder<E, M> id(String id) {
             this.id = id;
             return this;
         }
 
         @Override
-        public abstract RestIdEntity<E,M> build();
+        public abstract RestIdEntity<E, M> build();
     }
 }

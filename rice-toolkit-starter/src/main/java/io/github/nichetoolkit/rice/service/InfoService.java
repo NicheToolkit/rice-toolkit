@@ -15,11 +15,11 @@ import java.util.List;
 /**
  * <code>InfoService</code>
  * <p>The type info service class.</p>
- * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.InfoModel} <p>the generic parameter is <code>InfoModel</code> type.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.InfoEntity} <p>the generic parameter is <code>InfoEntity</code> type.</p>
  * @param <F> {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>the generic parameter is <code>IdFilter</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.InfoModel
  * @see io.github.nichetoolkit.rice.InfoEntity
@@ -29,7 +29,7 @@ import java.util.List;
  * @since Jdk1.8
  */
 @SuppressWarnings("RedundantThrows")
-public abstract class InfoService<K, I, M extends InfoModel<I>, E extends InfoEntity<I>, F extends IdFilter<I, K>> extends SuperService<K, I, M, E, F> {
+public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I>, F extends IdFilter<I, K>, I, K> extends SuperService<M, E, F, I, K> {
 
     /**
      * <code>consumerMapper</code>

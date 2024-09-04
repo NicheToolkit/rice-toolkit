@@ -23,7 +23,7 @@ import java.util.Optional;
  * @since Jdk1.8
  */
 @SuppressWarnings("RedundantThrows")
-public interface OptionalService<K, I, M extends IdModel<I>, F extends IdFilter<I, K>> extends QueryService<K, I, M> {
+public interface OptionalService<M extends IdModel<I>, F extends IdFilter<I, K>, I, K> extends QueryService<M, I, K> {
 
     /**
      * <code>optional</code>

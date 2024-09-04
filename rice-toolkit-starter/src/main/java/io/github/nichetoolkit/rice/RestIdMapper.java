@@ -9,5 +9,5 @@ package io.github.nichetoolkit.rice;
  * @see io.github.nichetoolkit.rice.DefaultIdMapper
  * @since Jdk1.8
  */
-public interface RestIdMapper<E extends RestIdEntity<E,?>> extends DefaultIdMapper<E,String> {
+public interface RestIdMapper<E extends RestIdEntity<E, ?>> extends DefaultIdMapper<E, String> {
 }
