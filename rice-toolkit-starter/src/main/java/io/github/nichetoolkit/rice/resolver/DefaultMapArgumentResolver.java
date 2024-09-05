@@ -1,7 +1,7 @@
 package io.github.nichetoolkit.rice.resolver;
 
 import io.github.nichetoolkit.rice.RestMap;
-import io.github.nichetoolkit.rice.stereotype.RestUser;
+import io.github.nichetoolkit.rice.stereotype.login.RestUser;
 import org.springframework.core.MethodParameter;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;

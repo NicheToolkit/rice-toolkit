@@ -1,4 +1,4 @@
-package io.github.nichetoolkit.rice.stereotype;
+package io.github.nichetoolkit.rice.stereotype.login;
 
 import org.springframework.stereotype.Indexed;
 
