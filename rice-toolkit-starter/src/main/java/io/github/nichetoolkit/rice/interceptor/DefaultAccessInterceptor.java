@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.advice.annotation.AccessAdvice;
-import io.github.nichetoolkit.rice.stereotype.RestAccess;
+import io.github.nichetoolkit.rice.stereotype.login.RestAccess;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;

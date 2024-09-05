@@ -1,12 +1,12 @@
-package io.github.nichetoolkit.rice.stereotype;
+package io.github.nichetoolkit.rice.stereotype.login;
 
 import org.springframework.stereotype.Indexed;
 
 import java.lang.annotation.*;
 
 /**
- * <code>RestSkip</code>
- * <p>The type rest skip interface.</p>
+ * <code>RestAccess</code>
+ * <p>The type rest access interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.lang.annotation.Annotation
  * @see java.lang.annotation.Target
@@ -19,5 +19,12 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Indexed
-public  @interface RestSkip {
+public @interface RestAccess {
+    /**
+     * <code>name</code>
+     * <p>the method.</p>
+     * @return {@link java.lang.String} <p>the return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     */
+    String name() default "Rest-Access";
 }

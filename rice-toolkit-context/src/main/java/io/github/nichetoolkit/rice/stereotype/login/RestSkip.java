@@ -1,12 +1,12 @@
-package io.github.nichetoolkit.rice.stereotype;
+package io.github.nichetoolkit.rice.stereotype.login;
 
 import org.springframework.stereotype.Indexed;
 
 import java.lang.annotation.*;
 
 /**
- * <code>RestCheck</code>
- * <p>The type rest check interface.</p>
+ * <code>RestSkip</code>
+ * <p>The type rest skip interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.lang.annotation.Annotation
  * @see java.lang.annotation.Target
@@ -15,16 +15,9 @@ import java.lang.annotation.*;
  * @see org.springframework.stereotype.Indexed
  * @since Jdk1.8
  */
-@Target({ElementType.METHOD})
+@Target({ElementType.METHOD,ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Indexed
-public @interface RestCheck {
-    /**
-     * <code>prefixes</code>
-     * <p>the method.</p>
-     * @return {@link java.lang.String} <p>the return object is <code>String</code> type.</p>
-     * @see java.lang.String
-     */
-    String[] prefixes() default {};
+public  @interface RestSkip {
 }

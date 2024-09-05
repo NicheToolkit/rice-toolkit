@@ -8,7 +8,7 @@ import io.github.nichetoolkit.rice.error.service.ServiceUnauthorizedException;
 import io.github.nichetoolkit.rice.error.TokenPrefixInvalidException;
 import io.github.nichetoolkit.rice.advice.LoginAdvice;
 import io.github.nichetoolkit.rice.helper.PurviewHelper;
-import io.github.nichetoolkit.rice.stereotype.RestCheck;
+import io.github.nichetoolkit.rice.stereotype.login.RestCheck;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
