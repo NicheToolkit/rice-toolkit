@@ -24,6 +24,11 @@
 > [Maven](https://maven.apache.org/) 3.6.3+\
 > [JDK](https://www.oracle.com/java/technologies/downloads/#java8) 1.8
 
+## Wiki Reference
+
+[Wiki Reference](https://github.com/NicheToolkit/rice-toolkit/wiki): https://github.com/NicheToolkit/rice-toolkit/wiki
+
+
 ## Instructions
 
 ### Maven Usages
