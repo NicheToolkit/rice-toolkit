@@ -1,4 +1,4 @@
-## [Rice-Toolkit](https://github.com/NicheToolkit/rice-toolkit) rice开发工具组
+## [Rice-Toolkit](https://github.com/NicheToolkit/rice-toolkit)
 
 [![GitHub License](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/NicheToolkit/rice-toolkit/blob/master/LICENSE)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.nichetoolkit/rice-toolkit-starter)](https://central.sonatype.com/search?smo=true&q=rice-toolkit-starter&namespace=io.github.nichetoolkit)
@@ -1086,7 +1086,7 @@ public interface SimpleService extends FilterService<SimpleModel, SimpleFilter, 
 }
 ```
 
-## Examples
+## Test Example
 
 [rice-toolkit-test-web](https://github.com/NicheToolkit/rice-toolkit/tree/master/rice-toolkit-test-web)
 
@@ -1096,12 +1096,12 @@ public interface SimpleService extends FilterService<SimpleModel, SimpleFilter, 
 
 ## Dependencies
 
-[rest-toolkit](https://github.com/NicheToolkit/rest-toolkit)
+[Rest-toolkit](https://github.com/NicheToolkit/rest-toolkit)
+
+[Mybatis-toolkit](https://github.com/NicheToolkit/mybatis-toolkit)
 
 [Spring Boot](https://github.com/spring-projects/spring-boot)
 
 [Lombok](https://github.com/projectlombok/lombok)
 
 [PageHelper](https://github.com/pagehelper/Mybatis-PageHelper)
-
-[Postgresql](https://www.postgresql.org/)
