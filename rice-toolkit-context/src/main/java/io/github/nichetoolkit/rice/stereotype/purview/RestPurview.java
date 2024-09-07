@@ -1,10 +1,15 @@
 package io.github.nichetoolkit.rice.stereotype.purview;
 
-import io.github.nichetoolkit.rice.stereotype.value.RestPurviewValue;
+import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.stereotype.StereoValue;
+import io.github.nichetoolkit.rest.stream.RestStream;
+import io.github.nichetoolkit.rest.util.OptionalUtils;
 import org.springframework.core.annotation.AliasFor;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Indexed;
 
 import java.lang.annotation.*;
+import java.util.*;
 
 /**
  * <code>RestPurview</code>
@@ -15,22 +20,41 @@ import java.lang.annotation.*;
  * @see java.lang.annotation.Retention
  * @see java.lang.annotation.Documented
  * @see org.springframework.stereotype.Indexed
+ * @see io.github.nichetoolkit.rice.stereotype.purview.RestPermission
  * @since Jdk1.8
  */
 @Target({ElementType.METHOD,ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Indexed
+@RestPermission
 public @interface RestPurview {
 
     /**
-     * <code>purview</code>
+     * <code>key</code>
      * <p>the method.</p>
-     * @return long <p>the return object is <code>long</code> type.</p>
+     * @return {@link java.lang.String} <p>the return object is <code>String</code> type.</p>
+     * @see java.lang.String
      * @see org.springframework.core.annotation.AliasFor
      */
-    @AliasFor("value")
-    long purview() default 0L;
+    @AliasFor(
+            annotation = RestPermission.class,
+            attribute = "key"
+    )
+    String key() default "";
+
+    /**
+     * <code>keys</code>
+     * <p>the method.</p>
+     * @return {@link java.lang.String} <p>the return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     * @see org.springframework.core.annotation.AliasFor
+     */
+    @AliasFor(
+            annotation = RestPermission.class,
+            attribute = "keys"
+    )
+    String[] keys() default {};
 
     /**
      * <code>value</code>
@@ -38,22 +62,48 @@ public @interface RestPurview {
      * @return long <p>the return object is <code>long</code> type.</p>
      * @see org.springframework.core.annotation.AliasFor
      */
-    @AliasFor("purview")
+    @AliasFor(
+            annotation = RestPermission.class,
+            attribute = "value"
+    )
     long value() default 0L;
-
-    /**
-     * <code>purviews</code>
-     * <p>the method.</p>
-     * @return long <p>the return object is <code>long</code> type.</p>
-     */
-    long[] purviews() default {};
 
     /**
      * <code>values</code>
      * <p>the method.</p>
-     * @return {@link io.github.nichetoolkit.rice.stereotype.value.RestPurviewValue} <p>the return object is <code>RestPurviewValue</code> type.</p>
-     * @see io.github.nichetoolkit.rice.stereotype.value.RestPurviewValue
+     * @return long <p>the return object is <code>long</code> type.</p>
+     * @see org.springframework.core.annotation.AliasFor
      */
-    RestPurviewValue[] values() default {};
+    @AliasFor(
+            annotation = RestPermission.class,
+            attribute = "values"
+    )
+    long[] values() default {};
+
+    /**
+     * <code>purview</code>
+     * <p>the method.</p>
+     * @return {@link io.github.nichetoolkit.rest.stereotype.StereoValue} <p>the return object is <code>StereoValue</code> type.</p>
+     * @see io.github.nichetoolkit.rest.stereotype.StereoValue
+     * @see org.springframework.core.annotation.AliasFor
+     */
+    @AliasFor(
+            annotation = RestPermission.class,
+            attribute = "permission"
+    )
+    StereoValue purview() default @StereoValue;
+
+    /**
+     * <code>purviews</code>
+     * <p>the method.</p>
+     * @return {@link io.github.nichetoolkit.rest.stereotype.StereoValue} <p>the return object is <code>StereoValue</code> type.</p>
+     * @see io.github.nichetoolkit.rest.stereotype.StereoValue
+     * @see org.springframework.core.annotation.AliasFor
+     */
+    @AliasFor(
+            annotation = RestPermission.class,
+            attribute = "permissions"
+    )
+    StereoValue[] purviews() default {};
 
 }

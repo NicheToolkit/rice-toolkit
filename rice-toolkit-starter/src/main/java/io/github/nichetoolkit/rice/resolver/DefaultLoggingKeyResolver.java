@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.RestLoggingKeyGenerator;
 import io.github.nichetoolkit.rest.configure.RestLogbackProperties;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
-import io.github.nichetoolkit.rice.helper.PurviewHelper;
+import io.github.nichetoolkit.rice.helper.HttpRequestHelper;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -35,7 +35,7 @@ public class DefaultLoggingKeyResolver extends RestLoggingKeyGenerator {
     @Override
     public String doAccessTokenHandle(RestHttpRequest httpRequest) {
         if (loginProperties.getEnabled()) {
-            return PurviewHelper.resolveToken(httpRequest);
+            return HttpRequestHelper.resolveToken(httpRequest);
         }
         return null;
     }

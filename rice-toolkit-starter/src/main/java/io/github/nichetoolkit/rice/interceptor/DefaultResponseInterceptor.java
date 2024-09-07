@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestMap;
-import io.github.nichetoolkit.rice.advice.LoginAdvice;
+import io.github.nichetoolkit.rice.advice.annotation.LoginAdvice;
 import io.github.nichetoolkit.rice.resolver.DefaultMapArgumentResolver;
 import io.github.nichetoolkit.rice.stereotype.login.RestAuth;
 import io.github.nichetoolkit.rice.stereotype.login.RestLogin;

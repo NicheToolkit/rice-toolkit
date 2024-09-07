@@ -6,8 +6,8 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
 import io.github.nichetoolkit.rice.error.service.ServiceUnauthorizedException;
 import io.github.nichetoolkit.rice.error.TokenPrefixInvalidException;
-import io.github.nichetoolkit.rice.advice.LoginAdvice;
-import io.github.nichetoolkit.rice.helper.PurviewHelper;
+import io.github.nichetoolkit.rice.advice.annotation.LoginAdvice;
+import io.github.nichetoolkit.rice.helper.HttpRequestHelper;
 import io.github.nichetoolkit.rice.stereotype.login.RestCheck;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,7 +99,7 @@ public class DefaultLoginInterceptor implements RequestHandleInterceptor {
         if (tokenHeaders.isEmpty()) {
             return;
         }
-        List<String> tokenList = PurviewHelper.resolveToken(httpRequest, tokenHeaders,false);
+        List<String> tokenList = HttpRequestHelper.resolveTokens(httpRequest, tokenHeaders,false);
         if (tokenList.isEmpty()) {
             return;
         }

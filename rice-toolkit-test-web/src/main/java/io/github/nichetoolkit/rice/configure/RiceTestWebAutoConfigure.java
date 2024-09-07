@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @MapperScan(basePackages = {"io.github.nichetoolkit.rice.mapper"})
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rice"})
-@ImportAutoConfiguration(value = {DatasourceAutoConfigure.class})
+@ImportAutoConfiguration(value = {DatasourceAutoConfigure.class, RedisAutoConfigure.class})
 public class RiceTestWebAutoConfigure {
     /**
      * <code>RiceTestWebAutoConfigure</code>

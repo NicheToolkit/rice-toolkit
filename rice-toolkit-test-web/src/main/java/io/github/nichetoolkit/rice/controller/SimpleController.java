@@ -5,10 +5,12 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestResult;
 import io.github.nichetoolkit.rest.userlog.stereotype.RestNotelog;
 import io.github.nichetoolkit.rice.RestPage;
+import io.github.nichetoolkit.rice.enums.RoleType;
 import io.github.nichetoolkit.rice.service.SimpleService;
 import io.github.nichetoolkit.rice.simple.SimpleFilter;
 import io.github.nichetoolkit.rice.simple.SimpleModel;
-import io.github.nichetoolkit.rice.stereotype.RestSkip;
+import io.github.nichetoolkit.rice.stereotype.login.RestSkip;
+import io.github.nichetoolkit.rice.stereotype.purview.RestRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * <code>SimpleController</code>
  * <p>The type simple controller class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.stereotype.RestSkip
+ * @see io.github.nichetoolkit.rice.stereotype.login.RestSkip
  * @see org.springframework.web.bind.annotation.CrossOrigin
  * @see io.github.nichetoolkit.rest.userlog.stereotype.RestNotelog
  * @see org.springframework.web.bind.annotation.RestController
@@ -53,6 +55,10 @@ public class SimpleController {
      * @see org.springframework.web.bind.annotation.GetMapping
      * @see io.github.nichetoolkit.rest.RestException
      */
+    @RestRole(roles = {
+            RoleType.A,
+
+    })
     @GetMapping("/error")
     public RestResult<?> error() throws RestException {
         return RestResult.mistake(RestErrorStatus.MISTAKE, new NullPointerException());

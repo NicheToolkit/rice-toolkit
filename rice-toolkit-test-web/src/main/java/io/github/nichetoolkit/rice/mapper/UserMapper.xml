@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="io.github.nichetoolkit.rice.mapper.SimpleMapper">
-    <resultMap type="io.github.nichetoolkit.rice.simple.SimpleEntity" id="simpleResultMap">
+<mapper namespace="io.github.nichetoolkit.rice.mapper.UserMapper">
+    <resultMap type="io.github.nichetoolkit.rice.simple.UserEntity" id="userResultMap">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="description" column="description"/>
-        <result property="time" column="time"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
         <result property="logicSign" column="logic_sign"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
     <sql id="all_column">
-        id, "name", "description", "time", "logic_sign", create_time, update_time
+        id, "name", "description", "username", "password", "logic_sign", create_time, update_time
     </sql>
 
     <insert id="save">
-        INSERT INTO ntr_simple ( <include refid="all_column"/> )
+        INSERT INTO ntr_user ( <include refid="all_column"/> )
         VALUES (
         #{entity.id},
         #{entity.name},
         #{entity.description},
-        #{entity.time},
+        #{entity.username},
+        #{entity.password},
         #{entity.logicSign},
         now(),
         now()
         ) ON CONFLICT (id) DO UPDATE
         <set>
-            "name" = CASE WHEN EXCLUDED."name" IS NOT NULL THEN EXCLUDED."name" ELSE ntr_simple."name" END,
-            "description" = CASE WHEN EXCLUDED."description" IS NOT NULL THEN EXCLUDED."description" ELSE ntr_simple."description" END,
-            "time" = CASE WHEN EXCLUDED."time" IS NOT NULL THEN EXCLUDED."time" ELSE ntr_simple."time" END,
+            "name" = CASE WHEN EXCLUDED."name" IS NOT NULL THEN EXCLUDED."name" ELSE ntr_user."name" END,
+            "description" = CASE WHEN EXCLUDED."description" IS NOT NULL THEN EXCLUDED."description" ELSE ntr_user."description" END,
+            "username" = CASE WHEN EXCLUDED."username" IS NOT NULL THEN EXCLUDED."username" ELSE ntr_user."username" END,
+            "password" = CASE WHEN EXCLUDED."password" IS NOT NULL THEN EXCLUDED."password" ELSE ntr_user."password" END,
             update_time = now()
         </set>
     </insert>
 
     <update id="saveAll">
-        INSERT INTO ntr_simple (
+        INSERT INTO ntr_user (
         <include refid="all_column"/>
         )
         VALUES
@@ -45,7 +48,8 @@
             #{entity.id},
             #{entity.name},
             #{entity.description},
-            #{entity.time},
+            #{entity.username},
+            #{entity.password},
             #{entity.logicSign},
             now(),
             now()
@@ -53,46 +57,47 @@
         </foreach>
         ON CONFLICT (id) DO UPDATE
         <set>
-            "name" = CASE WHEN EXCLUDED."name" IS NOT NULL THEN EXCLUDED."name" ELSE ntr_simple."name" END,
-            "description" = CASE WHEN EXCLUDED."description" IS NOT NULL THEN EXCLUDED."description" ELSE ntr_simple."description" END,
-            "time" = CASE WHEN EXCLUDED."time" IS NOT NULL THEN EXCLUDED."time" ELSE ntr_simple."time" END,
+            "name" = CASE WHEN EXCLUDED."name" IS NOT NULL THEN EXCLUDED."name" ELSE ntr_user."name" END,
+            "description" = CASE WHEN EXCLUDED."description" IS NOT NULL THEN EXCLUDED."description" ELSE ntr_user."description" END,
+            "username" = CASE WHEN EXCLUDED."username" IS NOT NULL THEN EXCLUDED."username" ELSE ntr_user."username" END,
+            "password" = CASE WHEN EXCLUDED."password" IS NOT NULL THEN EXCLUDED."password" ELSE ntr_user."password" END,
             update_time = now()
         </set>
     </update>
 
     <delete id="deleteById">
-        DELETE FROM ntr_simple
+        DELETE FROM ntr_user
         WHERE id = #{id}
     </delete>
 
     <delete id="deleteAll">
-        DELETE FROM ntr_simple
+        DELETE FROM ntr_user
         WHERE id IN
         <foreach item="id" index="index" collection="idList" open="(" separator="," close=")">
             #{id}
         </foreach>
     </delete>
 
-    <select id="findById" resultMap="simpleResultMap">
+    <select id="findById" resultMap="userResultMap">
         SELECT<include refid="all_column"/>
-        FROM ntr_simple
+        FROM ntr_user
         WHERE id = #{id}
     </select>
 
-    <select id="findAll" resultMap="simpleResultMap">
+    <select id="findAll" resultMap="userResultMap">
         SELECT
         <include refid="all_column"/>
-        FROM ntr_simple
+        FROM ntr_user
         WHERE id IN
         <foreach item="id" index="index" collection="idList" open="(" separator="," close=")">
             #{id}
         </foreach>
     </select>
 
-    <select id="findAllByWhere" resultMap="simpleResultMap">
+    <select id="findAllByWhere" resultMap="userResultMap">
         SELECT
         <include refid="all_column"/>
-        FROM ntr_simple
+        FROM ntr_user
         WHERE 1=1
         <if test="whereSql!=null">
             ${whereSql}
@@ -100,22 +105,22 @@
     </select>
 
     <delete id="deleteAllByWhere">
-        DELETE FROM ntr_simple
+        DELETE FROM ntr_user
         WHERE 1=1
         <if test="whereSql!=null">
             ${whereSql}
         </if>
     </delete>
 
-    <select id="findByName" resultMap="simpleResultMap">
+    <select id="findByName" resultMap="userResultMap">
         SELECT <include refid="all_column"/>
-        FROM ntr_simple
+        FROM ntr_user
         WHERE name = #{name}
     </select>
 
-    <select id="findByNameAndNotId" resultMap="simpleResultMap">
+    <select id="findByNameAndNotId" resultMap="userResultMap">
         SELECT <include refid="all_column"/>
-        FROM ntr_simple
+        FROM ntr_user
         WHERE name = #{name}
         AND id != #{id}
     </select>

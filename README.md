@@ -471,7 +471,7 @@ the advice is used to handle the models or entities on service.
   
       @Override
       public String queryWhereSql(SimpleFilter filter) throws RestException {
-          return filter.toTimeSql("time").addSorts("id").toSql();
+          return filter.toTimeSql("create_time").toNameSql("name").toQuerySql(this, "logic_sign").addSorts("id").toIdSql().toSql();
       }
   }
   ```
@@ -1090,6 +1090,12 @@ the advice is used to handle the models or entities on service.
 public interface SimpleService extends FilterService<SimpleModel, SimpleFilter, String, String>, SingleService<SimpleModel, String, String> {
 }
 ```
+
+### Stereotype & Annotation
+
+* default annotation
+
+
 
 ## Test Example
 

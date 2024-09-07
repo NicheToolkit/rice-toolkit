@@ -1,9 +1,8 @@
 package io.github.nichetoolkit.rice.stereotype.purview;
 
-import io.github.nichetoolkit.rice.stereotype.value.RestRoleValue;
+import io.github.nichetoolkit.rest.stereotype.StereoValue;
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Indexed;
-
 import java.lang.annotation.*;
 
 /**
@@ -21,39 +20,76 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Indexed
+@RestPermission
 public @interface RestRole {
 
     /**
-     * <code>role</code>
+     * <code>key</code>
      * <p>the method.</p>
-     * @return long <p>the return object is <code>long</code> type.</p>
-     * @see org.springframework.core.annotation.AliasFor
+     * @return {@link java.lang.String} <p>the return object is <code>String</code> type.</p>
+     * @see java.lang.String
      */
-    @AliasFor("value")
-    long role() default 0L;
+    @AliasFor(
+            annotation = RestPermission.class,
+            attribute = "key"
+    )
+    String key() default "";
+
+    /**
+     * <code>keys</code>
+     * <p>the method.</p>
+     * @return {@link java.lang.String} <p>the return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     */
+    @AliasFor(
+            annotation = RestPermission.class,
+            attribute = "keys"
+    )
+    String[] keys() default {};
 
     /**
      * <code>value</code>
      * <p>the method.</p>
      * @return long <p>the return object is <code>long</code> type.</p>
-     * @see org.springframework.core.annotation.AliasFor
      */
-    @AliasFor("role")
+    @AliasFor(
+            annotation = RestPermission.class,
+            attribute = "value"
+    )
     long value() default 0L;
-
-    /**
-     * <code>roles</code>
-     * <p>the method.</p>
-     * @return long <p>the return object is <code>long</code> type.</p>
-     */
-    long[] roles() default {};
 
     /**
      * <code>values</code>
      * <p>the method.</p>
-     * @return {@link io.github.nichetoolkit.rice.stereotype.value.RestRoleValue} <p>the return object is <code>RestRoleValue</code> type.</p>
-     * @see io.github.nichetoolkit.rice.stereotype.value.RestRoleValue
+     * @return long <p>the return object is <code>long</code> type.</p>
      */
-    RestRoleValue[] values() default {};
+    @AliasFor(
+            annotation = RestPermission.class,
+            attribute = "values"
+    )
+    long[] values() default {};
 
+    /**
+     * <code>role</code>
+     * <p>the method.</p>
+     * @return {@link io.github.nichetoolkit.rest.stereotype.StereoValue} <p>the return object is <code>StereoValue</code> type.</p>
+     * @see io.github.nichetoolkit.rest.stereotype.StereoValue
+     */
+    @AliasFor(
+            annotation = RestPermission.class,
+            attribute = "permission"
+    )
+    StereoValue role() default @StereoValue;
+
+    /**
+     * <code>roles</code>
+     * <p>the method.</p>
+     * @return {@link io.github.nichetoolkit.rest.stereotype.StereoValue} <p>the return object is <code>StereoValue</code> type.</p>
+     * @see io.github.nichetoolkit.rest.stereotype.StereoValue
+     */
+    @AliasFor(
+            annotation = RestPermission.class,
+            attribute = "permissions"
+    )
+    StereoValue[] roles() default {};
 }

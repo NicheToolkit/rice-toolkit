@@ -1,4 +1,4 @@
-package io.github.nichetoolkit.rice.advice;
+package io.github.nichetoolkit.rice.advice.annotation;
 
 import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.RestException;
@@ -6,7 +6,7 @@ import io.github.nichetoolkit.rest.RestResult;
 import io.github.nichetoolkit.rice.RestMap;
 import io.github.nichetoolkit.rice.constant.LoginConstants;
 import io.github.nichetoolkit.rice.error.TokenPermissionException;
-import io.github.nichetoolkit.rice.helper.PurviewHelper;
+import io.github.nichetoolkit.rice.helper.HttpRequestHelper;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.method.HandlerMethod;
 
@@ -161,7 +161,7 @@ public interface LoginAdvice {
         if (headerTokens.isEmpty()) {
             return true;
         }
-        List<String> tokenList = PurviewHelper.resolveToken(request, headerTokens, false);
+        List<String> tokenList = HttpRequestHelper.resolveTokens(request, headerTokens, false);
         if (tokenList.isEmpty()) {
            throw new TokenPermissionException("the token permission denied");
         }

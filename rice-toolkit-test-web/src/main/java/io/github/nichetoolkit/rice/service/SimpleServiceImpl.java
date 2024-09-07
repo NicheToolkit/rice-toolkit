@@ -23,13 +23,7 @@ import java.util.Optional;
  * @since Jdk1.8
  */
 @Service
-//@RestService(mapper= SimpleMapper.class)
 public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity, SimpleFilter> implements SimpleService {
-
-    @Override
-    protected String dynamicTablename(@NonNull String tablekey) throws RestException {
-        return "ntr_simple".concat(tablekey);
-    }
 
     @Override
     protected void optionalInit(@NonNull SimpleModel model) throws RestException {
@@ -38,6 +32,6 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 
     @Override
     public String queryWhereSql(SimpleFilter filter) throws RestException {
-        return filter.toTimeSql("time").addSorts("id").toSql();
+        return filter.toTimeSql("create_time").toNameSql("name").toQuerySql(this, "logic_sign").addSorts("id").toIdSql().toSql();
     }
 }

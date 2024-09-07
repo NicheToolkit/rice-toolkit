@@ -18,7 +18,7 @@ import java.util.Date;
  * @see io.github.nichetoolkit.rice.RestTablekey
  * @since Jdk1.8
  */
-public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> implements RestTablekey<String> {
+public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date time;
@@ -78,11 +78,6 @@ public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> implem
         entity.setName(this.getName());
         entity.setDescription(this.getDescription());
         return entity;
-    }
-
-    @Override
-    public String getTablekey() {
-        return "_dynamic";
     }
 
     /**
