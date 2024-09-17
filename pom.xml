@@ -11,7 +11,7 @@
         <module>rice-toolkit-core</module>
         <module>rice-toolkit-context</module>
         <module>rice-toolkit-starter</module>
-<!--        <module>rice-toolkit-test-web</module>-->
+<!--        <module>rice-toolkit-example</module>-->
     </modules>
 
     <name>rice-toolkit-parent</name>
@@ -162,6 +162,7 @@
 
         <mybatis-plus.version>3.5.7</mybatis-plus.version>
         <mybatis-mapper.version>2.2.4</mybatis-mapper.version>
+        <redisson.version>3.17.1</redisson.version>
 
     </properties>
 
@@ -242,6 +243,12 @@
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis-spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
             </dependency>
 
             <!-- fix CVE  vulnerability  -->

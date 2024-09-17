@@ -65,7 +65,7 @@ public class DefaultAnnotationInterceptor implements RequestHandleInterceptor {
             RestHttpRequest httpRequest = RestHttpRequest.getHttpRequest(request);
             defaultAdvices.sort(DefaultAdvice::compareTo);
             for (DefaultAdvice<?> defaultAdvice : defaultAdvices) {
-                log.debug("advice type: {}", defaultAdvice.getClass().getName());
+                log.debug("advice           type: {}", defaultAdvice.getClass().getName());
                 adviceHandle(defaultAdvice, httpRequest, response, handlerMethod);
             }
         }

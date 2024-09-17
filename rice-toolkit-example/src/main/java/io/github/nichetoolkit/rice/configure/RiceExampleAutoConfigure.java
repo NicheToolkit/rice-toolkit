@@ -21,13 +21,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @MapperScan(basePackages = {"io.github.nichetoolkit.rice.mapper"})
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rice"})
-@ImportAutoConfiguration(value = {DatasourceAutoConfigure.class, RedisAutoConfigure.class})
-public class RiceTestWebAutoConfigure {
+@ImportAutoConfiguration(value = {DatasourceAutoConfigure.class, RedisTemplateAutoConfigure.class})
+public class RiceExampleAutoConfigure {
     /**
      * <code>RiceTestWebAutoConfigure</code>
-     * Instantiates a new rice test web auto configure.
+     * Instantiates a new rice example auto configure.
      */
-    public RiceTestWebAutoConfigure() {
-        log.debug("================= rice-toolkit-test-web initiated ！ ===================");
+    public RiceExampleAutoConfigure() {
+        log.debug("the auto configuration for [rice-example] initiated");
     }
 }

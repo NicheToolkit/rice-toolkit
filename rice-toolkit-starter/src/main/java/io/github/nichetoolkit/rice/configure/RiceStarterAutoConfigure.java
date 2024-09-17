@@ -56,7 +56,7 @@ public class RiceStarterAutoConfigure implements InitializingBean {
         this.loginProperties = loginProperties;
         this.requestMappingHandlerAdapter = requestMappingHandlerAdapter;
         this.mapArgumentResolver = mapArgumentResolver;
-        log.debug("================= login-auto-config initiated ！ ===================");
+        log.debug("the auto configuration for [rice-starter] initiated");
     }
 
     @Override

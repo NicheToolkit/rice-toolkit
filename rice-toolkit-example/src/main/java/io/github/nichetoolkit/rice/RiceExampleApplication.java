@@ -7,8 +7,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * <code>RiceTestApplication</code>
- * <p>The type rice test application class.</p>
+ * <code>RiceExampleApplication</code>
+ * <p>The type rice example application class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * @see org.springframework.boot.autoconfigure.SpringBootApplication
@@ -17,7 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = "io.github.nichetoolkit")
-public class RiceTestApplication extends SpringBootServletInitializer {
+public class RiceExampleApplication extends SpringBootServletInitializer {
 
     /**
      * <code>main</code>
@@ -26,12 +26,12 @@ public class RiceTestApplication extends SpringBootServletInitializer {
      * @see java.lang.String
      */
     public static void main(String[] args) {
-        SpringApplication.run(RiceTestApplication.class, args);
+        SpringApplication.run(RiceExampleApplication.class, args);
     }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(RiceTestApplication.class);
+        return application.sources(RiceExampleApplication.class);
     }
 
 }

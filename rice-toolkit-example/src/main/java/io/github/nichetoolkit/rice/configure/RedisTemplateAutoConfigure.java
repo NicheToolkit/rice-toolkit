@@ -8,13 +8,34 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+/**
+ * <code>RedisTemplateAutoConfigure</code>
+ * <p>The type redis template auto configure class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.context.annotation.Configuration
+ * @since Jdk1.8
+ */
 @Slf4j
 @Configuration
-public class RedisAutoConfigure {
-    public RedisAutoConfigure() {
-        log.debug("================= redis-auto-configure initiated ！ ===================");
+public class RedisTemplateAutoConfigure {
+    /**
+     * <code>RedisTemplateAutoConfigure</code>
+     * Instantiates a new redis template auto configure.
+     */
+    public RedisTemplateAutoConfigure() {
+        log.debug("the auto configuration for [redis-template] initiated");
     }
 
+    /**
+     * <code>redisTemplate</code>
+     * <p>the template method.</p>
+     * @param connectionFactory {@link org.springframework.data.redis.connection.RedisConnectionFactory} <p>the connection factory parameter is <code>RedisConnectionFactory</code> type.</p>
+     * @return {@link org.springframework.data.redis.core.RedisTemplate} <p>the template return object is <code>RedisTemplate</code> type.</p>
+     * @see org.springframework.data.redis.connection.RedisConnectionFactory
+     * @see org.springframework.data.redis.core.RedisTemplate
+     * @see org.springframework.context.annotation.Bean
+     */
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();

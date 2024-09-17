@@ -38,16 +38,16 @@ public class LoginController {
 
     /**
      * <code>loginService</code>
-     * {@link LoginService} <p>the <code>loginService</code> field.</p>
-     * @see LoginService
+     * {@link io.github.nichetoolkit.rice.service.LoginService} <p>the <code>loginService</code> field.</p>
+     * @see io.github.nichetoolkit.rice.service.LoginService
      */
     private final LoginService loginService;
 
     /**
      * <code>LoginController</code>
      * Instantiates a new login controller.
-     * @param loginService {@link LoginService} <p>the login service parameter is <code>LoginService</code> type.</p>
-     * @see LoginService
+     * @param loginService {@link io.github.nichetoolkit.rice.service.LoginService} <p>the login service parameter is <code>LoginService</code> type.</p>
+     * @see io.github.nichetoolkit.rice.service.LoginService
      * @see org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired
@@ -154,7 +154,7 @@ public class LoginController {
      * @see io.github.nichetoolkit.rest.RestException
      */
     @GetMapping("/test")
-    @RestPurview(keys = {PurviewType.PURVIEW_2_KEY})
+    @RestPurview(purview = PurviewType.PURVIEW_1)
     @RestUserlog(loggingType = LoggingType.TEST, userlog = "purview test")
     public RestResult<?> testPurview() throws RestException {
         return RestResult.success("the purview test successfully");

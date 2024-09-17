@@ -77,7 +77,6 @@ public class RiceInterceptorAutoConfigure implements WebMvcConfigurer {
         this.userArgumentResolver = userArgumentResolver;
         this.handleInterceptors = requestInterceptors;
         this.loginProperties = loginProperties;
-        log.debug("request interceptors size: {}",requestInterceptors.size());
     }
 
     @Override

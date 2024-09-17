@@ -1,7 +1,6 @@
 package io.github.nichetoolkit.rice.purview;
 
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rest.stereotype.StereoValue;
 import io.github.nichetoolkit.rest.stream.RestStream;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
 import org.springframework.lang.NonNull;
@@ -60,18 +59,18 @@ public @interface RestPurview {
     /**
      * <code>purview</code>
      * <p>the method.</p>
-     * @return {@link io.github.nichetoolkit.rest.stereotype.StereoValue} <p>the return object is <code>StereoValue</code> type.</p>
-     * @see io.github.nichetoolkit.rest.stereotype.StereoValue
+     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>the return object is <code>PurviewType</code> type.</p>
+     * @see io.github.nichetoolkit.rice.purview.PurviewType
      */
-    StereoValue purview() default @StereoValue;
+    PurviewType purview() default PurviewType.PURVIEW_ALL;
 
     /**
      * <code>purviews</code>
      * <p>the method.</p>
-     * @return {@link io.github.nichetoolkit.rest.stereotype.StereoValue} <p>the return object is <code>StereoValue</code> type.</p>
-     * @see io.github.nichetoolkit.rest.stereotype.StereoValue
+     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>the return object is <code>PurviewType</code> type.</p>
+     * @see io.github.nichetoolkit.rice.purview.PurviewType
      */
-    StereoValue[] purviews() default {};
+    PurviewType[] purviews() default {};
 
     /**
      * <code>Purview</code>
@@ -84,38 +83,38 @@ public @interface RestPurview {
         /**
          * <code>keys</code>
          * <p>the method.</p>
-         * @param permission {@link RestPurview} <p>the permission parameter is <code>RestPurview</code> type.</p>
+         * @param purview {@link io.github.nichetoolkit.rice.purview.RestPurview} <p>the purview parameter is <code>RestPurview</code> type.</p>
          * @return {@link java.util.List} <p>the return object is <code>List</code> type.</p>
          * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
          * @see org.springframework.lang.NonNull
          * @see java.util.List
          * @see io.github.nichetoolkit.rest.RestException
          */
-        public static List<String> keys(@NonNull RestPurview permission) throws RestException {
+        public static List<String> keys(@NonNull RestPurview purview) throws RestException {
             Set<String> keySet = new HashSet<>();
-            OptionalUtils.ofEmptyable(permission.key()).ifEmptyPresent(keySet::add);
-            OptionalUtils.ofEmptyable(permission.keys()).ifEmptyPresent(keys -> keySet.addAll(Arrays.asList(keys)));
-            OptionalUtils.ofNullable(permission.purview()).nullFlatMap(value -> OptionalUtils.ofEmptyable(value.key())).emptyMap(keySet::add);
-            OptionalUtils.ofNullable(permission.purviews()).ifNullPresent(values -> RestStream.stream(values).forEach(value -> OptionalUtils.ofNullable(value).nullFlatMap(module -> OptionalUtils.ofEmptyable(module.key())).emptyMap(keySet::add)));
+            OptionalUtils.ofEmptyable(purview.key()).ifEmptyPresent(keySet::add);
+            OptionalUtils.ofEmptyable(purview.keys()).ifEmptyPresent(keys -> keySet.addAll(Arrays.asList(keys)));
+            OptionalUtils.ofNullable(purview.purview()).nullFlatMap(value -> OptionalUtils.ofEmptyable(value.getKey())).emptyMap(keySet::add);
+            OptionalUtils.ofNullable(purview.purviews()).ifNullPresent(values -> RestStream.stream(values).forEach(value -> OptionalUtils.ofNullable(value).nullFlatMap(module -> OptionalUtils.ofEmptyable(module.getKey())).emptyMap(keySet::add)));
             return new ArrayList<>(keySet);
         }
 
         /**
          * <code>values</code>
          * <p>the method.</p>
-         * @param permission {@link RestPurview} <p>the permission parameter is <code>RestPurview</code> type.</p>
+         * @param purview {@link io.github.nichetoolkit.rice.purview.RestPurview} <p>the purview parameter is <code>RestPurview</code> type.</p>
          * @return {@link java.util.List} <p>the return object is <code>List</code> type.</p>
          * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
          * @see org.springframework.lang.NonNull
          * @see java.util.List
          * @see io.github.nichetoolkit.rest.RestException
          */
-        public static List<Long> values(@NonNull RestPurview permission) throws RestException {
+        public static List<Long> values(@NonNull RestPurview purview) throws RestException {
             Set<Long> valueSet = new HashSet<>();
-            OptionalUtils.ofEmptyable(permission.value()).ifEmptyPresent(valueSet::add);
-            OptionalUtils.ofEmptyable(permission.values()).ifEmptyPresent(values -> Arrays.stream(values).forEach(valueSet::add));
-            OptionalUtils.ofNullable(permission.purview()).nullFlatMap(value -> OptionalUtils.ofEmptyable(value.value())).emptyMap(valueSet::add);
-            OptionalUtils.ofNullable(permission.purviews()).ifNullPresent(values -> RestStream.stream(values).forEach(value -> OptionalUtils.ofNullable(value).nullFlatMap(module -> OptionalUtils.ofEmptyable(module.value())).emptyMap(valueSet::add)));
+            OptionalUtils.ofEmptyable(purview.value()).ifEmptyPresent(valueSet::add);
+            OptionalUtils.ofEmptyable(purview.values()).ifEmptyPresent(values -> Arrays.stream(values).forEach(valueSet::add));
+            OptionalUtils.ofNullable(purview.purview()).nullFlatMap(value -> OptionalUtils.ofEmptyable(value.getValue())).emptyMap(valueSet::add);
+            OptionalUtils.ofNullable(purview.purviews()).ifNullPresent(values -> RestStream.stream(values).forEach(value -> OptionalUtils.ofNullable(value).nullFlatMap(module -> OptionalUtils.ofEmptyable(module.getValue())).emptyMap(valueSet::add)));
             return new ArrayList<>(valueSet);
         }
 

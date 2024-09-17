@@ -36,7 +36,7 @@ public class DatasourceAutoConfigure {
      * Instantiates a new datasource auto configure.
      */
     public DatasourceAutoConfigure() {
-        log.debug("================= datasource-auto-configure initiated ！ ===================");
+        log.debug("the auto configuration for [datasource] initiated");
     }
 
     /**

@@ -11,7 +11,6 @@ import io.github.nichetoolkit.rest.userlog.RestUsernotePack;
 import io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog;
 import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.DefaultAdvice;
 import io.github.nichetoolkit.rice.RestUserInfo;
 import io.github.nichetoolkit.rice.advice.UserlogAdvice;
 import io.github.nichetoolkit.rice.RestUsernoteModel;
@@ -22,7 +21,6 @@ import org.springframework.lang.NonNull;
 import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.ParameterizedType;
 import java.util.Set;
 
 /**
@@ -39,7 +37,7 @@ import java.util.Set;
  */
 @Slf4j
 @SuppressWarnings({"WeakerAccess", "unchecked"})
-public abstract class RestUsernoteService<T extends RestUsernoteModel<?, ?>> implements UserlogAdvice, RestUsernoteAdvice {
+public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> implements UserlogAdvice, RestUsernoteAdvice {
     /**
      * <code>usernote</code>
      * {@link io.github.nichetoolkit.rice.RestUsernoteModel} <p>the <code>usernote</code> field.</p>
@@ -51,7 +49,7 @@ public abstract class RestUsernoteService<T extends RestUsernoteModel<?, ?>> imp
      * <code>RestUsernoteService</code>
      * Instantiates a new rest usernote service.
      */
-    public RestUsernoteService() {
+    public DefaultUsernoteService() {
         this.usernote = new RestUsernoteModel<>();
     }
 
@@ -65,7 +63,7 @@ public abstract class RestUsernoteService<T extends RestUsernoteModel<?, ?>> imp
     @SuppressWarnings(value = "unchecked")
     private Class<T> childClass() {
         return (Class<T>) RestGenericTypeResolver.resolveClass(RestGenericTypeResolver.resolveType(
-                RestUsernoteService.class.getTypeParameters()[0], getClass(), RestUsernoteService.class));
+                DefaultUsernoteService.class.getTypeParameters()[0], getClass(), DefaultUsernoteService.class));
     }
 
     @Override
