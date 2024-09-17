@@ -13,10 +13,10 @@ import java.util.Optional;
 
 /**
  * <code>UserServiceImpl</code>
- * <p>The type simple service class.</p>
+ * <p>The type user service class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see RestInfoService
- * @see Service
+ * @see io.github.nichetoolkit.rice.RestInfoService
+ * @see org.springframework.stereotype.Service
  * @since Jdk1.8
  */
 @Service

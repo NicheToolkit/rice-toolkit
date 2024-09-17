@@ -23,16 +23,16 @@ public class UserResolver implements RestUserResolver {
 
     /**
      * <code>tokenService</code>
-     * {@link TokenService} <p>the <code>tokenService</code> field.</p>
-     * @see TokenService
+     * {@link io.github.nichetoolkit.rice.service.TokenService} <p>the <code>tokenService</code> field.</p>
+     * @see io.github.nichetoolkit.rice.service.TokenService
      */
     private final TokenService tokenService;
 
     /**
      * <code>UserResolver</code>
      * Instantiates a new user resolver.
-     * @param tokenService {@link TokenService} <p>the token service parameter is <code>TokenService</code> type.</p>
-     * @see TokenService
+     * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>the token service parameter is <code>TokenService</code> type.</p>
+     * @see io.github.nichetoolkit.rice.service.TokenService
      * @see org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired

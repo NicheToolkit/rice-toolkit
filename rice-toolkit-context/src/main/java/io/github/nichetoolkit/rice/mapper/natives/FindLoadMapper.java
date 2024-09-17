@@ -7,8 +7,8 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * <code>LoadMapper</code>
- * <p>The type load mapper interface.</p>
+ * <code>FindLoadMapper</code>
+ * <p>The type find load mapper interface.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.IdEntity} <p>the generic parameter is <code>IdEntity</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
@@ -17,23 +17,23 @@ import java.util.List;
  */
 public interface FindLoadMapper<E extends IdEntity<I>, I> {
     /**
-     * <code>findByLoadId</code>
-     * <p>the by load id method.</p>
+     * <code>findByIdLoad</code>
+     * <p>the by id load method.</p>
      * @param id         I <p>the id parameter is <code>I</code> type.</p>
      * @param loadParams {@link java.lang.Boolean} <p>the load params parameter is <code>Boolean</code> type.</p>
-     * @return E <p>the by load id return object is <code>E</code> type.</p>
+     * @return E <p>the by id load return object is <code>E</code> type.</p>
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Boolean
      */
     E findByIdLoad(@Param("id") I id, @Param("loadParams") Boolean... loadParams);
 
     /**
-     * <code>findDynamicByLoadId</code>
-     * <p>the dynamic by load id method.</p>
+     * <code>findDynamicByIdLoad</code>
+     * <p>the dynamic by id load method.</p>
      * @param tablename  {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
      * @param id         I <p>the id parameter is <code>I</code> type.</p>
      * @param loadParams {@link java.lang.Boolean} <p>the load params parameter is <code>Boolean</code> type.</p>
-     * @return E <p>the dynamic by load id return object is <code>E</code> type.</p>
+     * @return E <p>the dynamic by id load return object is <code>E</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Boolean

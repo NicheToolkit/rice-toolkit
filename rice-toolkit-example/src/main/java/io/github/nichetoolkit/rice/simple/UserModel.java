@@ -59,7 +59,7 @@ public class UserModel extends RestInfoModel<UserModel, UserEntity> implements R
     /**
      * <code>purviewType</code>
      * {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>the <code>purviewType</code> field.</p>
-     * @see PurviewType
+     * @see io.github.nichetoolkit.rice.purview.PurviewType
      */
     private PurviewType purviewType;
 
@@ -110,10 +110,22 @@ public class UserModel extends RestInfoModel<UserModel, UserEntity> implements R
         this.password = password;
     }
 
+    /**
+     * <code>getPurviewType</code>
+     * <p>the purview type getter method.</p>
+     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>the purview type return object is <code>PurviewType</code> type.</p>
+     * @see io.github.nichetoolkit.rice.purview.PurviewType
+     */
     public PurviewType getPurviewType() {
         return purviewType;
     }
 
+    /**
+     * <code>setPurviewType</code>
+     * <p>the purview type setter method.</p>
+     * @param purviewType {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>the purview type parameter is <code>PurviewType</code> type.</p>
+     * @see io.github.nichetoolkit.rice.purview.PurviewType
+     */
     public void setPurviewType(PurviewType purviewType) {
         this.purviewType = purviewType;
     }

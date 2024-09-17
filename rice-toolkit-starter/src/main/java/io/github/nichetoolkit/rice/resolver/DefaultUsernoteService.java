@@ -24,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Set;
 
 /**
- * <code>RestUsernoteService</code>
- * <p>The type rest usernote service class.</p>
+ * <code>DefaultUsernoteService</code>
+ * <p>The type default usernote service class.</p>
  * @param <T> {@link io.github.nichetoolkit.rice.RestUsernoteModel} <p>the generic parameter is <code>RestUsernoteModel</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestUsernoteModel

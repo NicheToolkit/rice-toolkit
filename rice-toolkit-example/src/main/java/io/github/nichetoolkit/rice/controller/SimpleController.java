@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.*;
  * <code>SimpleController</code>
  * <p>The type simple controller class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see RestSkip
+ * @see io.github.nichetoolkit.rice.stereotype.RestSkip
  * @see org.springframework.web.bind.annotation.CrossOrigin
- * @see io.github.nichetoolkit.rest.userlog.stereotype.RestNotelog
  * @see org.springframework.web.bind.annotation.RestController
  * @see org.springframework.web.bind.annotation.RequestMapping
  * @since Jdk1.8
@@ -27,6 +26,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/rice/simple")
 public class SimpleController {
 
+    /**
+     * <code>simpleService</code>
+     * {@link io.github.nichetoolkit.rice.service.SimpleService} <p>the <code>simpleService</code> field.</p>
+     * @see io.github.nichetoolkit.rice.service.SimpleService
+     */
     private final SimpleService simpleService;
 
     /**

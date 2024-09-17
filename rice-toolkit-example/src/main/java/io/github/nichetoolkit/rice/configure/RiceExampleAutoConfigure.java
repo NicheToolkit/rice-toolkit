@@ -7,8 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * <code>RiceTestWebAutoConfigure</code>
- * <p>The type rice test web auto configure class.</p>
+ * <code>RiceExampleAutoConfigure</code>
+ * <p>The type rice example auto configure class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see lombok.extern.slf4j.Slf4j
  * @see org.springframework.context.annotation.Configuration
@@ -24,7 +24,7 @@ import org.springframework.context.annotation.Configuration;
 @ImportAutoConfiguration(value = {DatasourceAutoConfigure.class, RedisTemplateAutoConfigure.class})
 public class RiceExampleAutoConfigure {
     /**
-     * <code>RiceTestWebAutoConfigure</code>
+     * <code>RiceExampleAutoConfigure</code>
      * Instantiates a new rice example auto configure.
      */
     public RiceExampleAutoConfigure() {

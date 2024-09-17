@@ -579,10 +579,20 @@ public class RiceBeanProperties {
             this.removeMode = removeMode;
         }
 
+        /**
+         * <code>isPinpointEnabled</code>
+         * <p>the pinpoint enabled method.</p>
+         * @return boolean <p>the pinpoint enabled return object is <code>boolean</code> type.</p>
+         */
         public boolean isPinpointEnabled() {
             return pinpointEnabled;
         }
 
+        /**
+         * <code>setPinpointEnabled</code>
+         * <p>the pinpoint enabled setter method.</p>
+         * @param pinpointEnabled boolean <p>the pinpoint enabled parameter is <code>boolean</code> type.</p>
+         */
         public void setPinpointEnabled(boolean pinpointEnabled) {
             this.pinpointEnabled = pinpointEnabled;
         }
@@ -765,9 +775,9 @@ public class RiceBeanProperties {
     }
 
     /**
-     * <code>pinpointSign</code>
-     * <p>the sign method.</p>
-     * @return {@link java.lang.Boolean} <p>the sign return object is <code>Boolean</code> type.</p>
+     * <code>pinpointEnabled</code>
+     * <p>the enabled method.</p>
+     * @return {@link java.lang.Boolean} <p>the enabled return object is <code>Boolean</code> type.</p>
      * @see java.lang.Boolean
      */
     public Boolean pinpointEnabled() {

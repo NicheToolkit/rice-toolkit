@@ -2231,9 +2231,9 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
     }
 
     /**
-     * <code>pinpointSign</code>
-     * <p>the sign method.</p>
-     * @return {@link java.lang.Boolean} <p>the sign return object is <code>Boolean</code> type.</p>
+     * <code>pinpointEnabled</code>
+     * <p>the enabled method.</p>
+     * @return {@link java.lang.Boolean} <p>the enabled return object is <code>Boolean</code> type.</p>
      * @see java.lang.Boolean
      */
     public Boolean pinpointEnabled() {
@@ -2281,7 +2281,7 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
     }
 
     /**
-     * <code>removeSign</code>
+     * <code>logicSign</code>
      * <p>the sign method.</p>
      * @return {@link java.lang.String} <p>the sign return object is <code>String</code> type.</p>
      * @see java.lang.String
@@ -2291,7 +2291,7 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
     }
 
     /**
-     * <code>removeValue</code>
+     * <code>logicValue</code>
      * <p>the value method.</p>
      * @return {@link java.lang.String} <p>the value return object is <code>String</code> type.</p>
      * @see java.lang.String

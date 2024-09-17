@@ -7,21 +7,42 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * <p>LoginRequest</p>
+ * <code>LoginRequest</code>
+ * <p>The type login request class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
+ * @see java.io.Serializable
+ * @see lombok.Data
+ * @see com.fasterxml.jackson.annotation.JsonInclude
+ * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
+ * @since Jdk1.8
  */
 @Data
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LoginRequest implements Serializable {
-    /** 访问令牌 */
+    /**
+     * <code>token</code>
+     * {@link java.lang.String} <p>the <code>token</code> field.</p>
+     * @see java.lang.String
+     */
     private String token;
-    /** 用户账户 */
+    /**
+     * <code>account</code>
+     * {@link java.lang.String} <p>the <code>account</code> field.</p>
+     * @see java.lang.String
+     */
     private String account;
-    /** 用户密码 */
+    /**
+     * <code>password</code>
+     * {@link java.lang.String} <p>the <code>password</code> field.</p>
+     * @see java.lang.String
+     */
     private String password;
 
+    /**
+     * <code>LoginRequest</code>
+     * Instantiates a new login request.
+     */
     public LoginRequest() {
     }
 }

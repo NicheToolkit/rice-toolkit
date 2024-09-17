@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * <code>UsernoteService</code>
  * <p>The type usernote service class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see DefaultUsernoteService
+ * @see io.github.nichetoolkit.rice.resolver.DefaultUsernoteService
  * @see lombok.extern.slf4j.Slf4j
  * @see org.springframework.stereotype.Service
  * @since Jdk1.8

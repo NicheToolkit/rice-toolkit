@@ -137,8 +137,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
     protected String userlog;
     /**
      * <code>loggingKey</code>
-     * {@link java.lang.Integer} <p>the <code>loggingKey</code> field.</p>
-     * @see java.lang.Integer
+     * {@link java.lang.String} <p>the <code>loggingKey</code> field.</p>
+     * @see java.lang.String
      */
     protected String loggingKey;
     /**
@@ -570,8 +570,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
         protected String userlog;
         /**
          * <code>loggingKey</code>
-         * {@link java.lang.Integer} <p>the <code>loggingKey</code> field.</p>
-         * @see java.lang.Integer
+         * {@link java.lang.String} <p>the <code>loggingKey</code> field.</p>
+         * @see java.lang.String
          */
         protected String loggingKey;
         /**
@@ -851,9 +851,9 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
         /**
          * <code>loggingKey</code>
          * <p>the key method.</p>
-         * @param loggingKey {@link java.lang.Integer} <p>the logging key parameter is <code>Integer</code> type.</p>
+         * @param loggingKey {@link java.lang.String} <p>the logging key parameter is <code>String</code> type.</p>
          * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>the key return object is <code>Builder</code> type.</p>
-         * @see java.lang.Integer
+         * @see java.lang.String
          */
         public RestUsernoteModel.Builder<M, E> loggingKey(String loggingKey) {
             this.loggingKey = loggingKey;
@@ -887,9 +887,9 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
         /**
          * <code>loggingType</code>
          * <p>the type method.</p>
-         * @param loggingType {@link java.lang.Integer} <p>the logging type parameter is <code>Integer</code> type.</p>
+         * @param loggingType {@link java.lang.String} <p>the logging type parameter is <code>String</code> type.</p>
          * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>the type return object is <code>Builder</code> type.</p>
-         * @see java.lang.Integer
+         * @see java.lang.String
          */
         public RestUsernoteModel.Builder<M, E> loggingType(String loggingType) {
             this.loggingType = LoggingType.parseKey(loggingType);

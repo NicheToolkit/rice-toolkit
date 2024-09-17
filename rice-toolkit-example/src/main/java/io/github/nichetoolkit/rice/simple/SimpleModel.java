@@ -15,10 +15,16 @@ import java.util.Date;
  * <p>The type simple model class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestInfoModel
- * @see io.github.nichetoolkit.rice.RestTablekey
  * @since Jdk1.8
  */
 public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> {
+    /**
+     * <code>time</code>
+     * {@link java.util.Date} <p>the <code>time</code> field.</p>
+     * @see java.util.Date
+     * @see org.springframework.format.annotation.DateTimeFormat
+     * @see com.fasterxml.jackson.annotation.JsonFormat
+     */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date time;

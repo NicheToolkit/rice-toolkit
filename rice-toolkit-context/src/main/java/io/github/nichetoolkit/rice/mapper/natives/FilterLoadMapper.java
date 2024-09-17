@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * <code>LoadFilterMapper</code>
- * <p>The type load filter mapper interface.</p>
+ * <code>FilterLoadMapper</code>
+ * <p>The type filter load mapper interface.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.IdEntity} <p>the generic parameter is <code>IdEntity</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
