@@ -8,10 +8,10 @@ import io.github.nichetoolkit.rest.actuator.BiConsumerActuator;
 import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
 import io.github.nichetoolkit.rest.error.data.DataQueryException;
 import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
-import io.github.nichetoolkit.rest.helper.OptionalHelper;
 import io.github.nichetoolkit.rest.helper.PartitionHelper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
+import io.github.nichetoolkit.rest.util.OptionalUtils;
 import io.github.nichetoolkit.rice.IdEntity;
 import io.github.nichetoolkit.rice.IdModel;
 import io.github.nichetoolkit.rice.RestPage;
@@ -74,6 +74,11 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         implements InitializingBean, ApplicationContextAware, OptionalService<M, F, I, K>, FilterAdvice<F, I, K>,
         SaveAdvice<M, I>, AlertAdvice<I>, OperateAdvice<E, I>, DeleteAdvice<E, I>, RemoveAdvice<E, I> {
 
+    /**
+     * <code>applicationContext</code>
+     * {@link org.springframework.context.ApplicationContext} <p>the constant <code>applicationContext</code> field.</p>
+     * @see org.springframework.context.ApplicationContext
+     */
     private static ApplicationContext applicationContext;
 
     /**
@@ -97,6 +102,11 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
      */
     protected SuperMapper<E, I> superMapper;
 
+    /**
+     * <code>simpleName</code>
+     * {@link java.lang.String} <p>the <code>simpleName</code> field.</p>
+     * @see java.lang.String
+     */
     private String simpleName;
 
     /**
@@ -106,8 +116,18 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
      */
     protected RiceBeanProperties beanProperties;
 
+    /**
+     * <code>queryFilterCache</code>
+     * {@link java.lang.ThreadLocal} <p>the <code>queryFilterCache</code> field.</p>
+     * @see java.lang.ThreadLocal
+     */
     private final ThreadLocal<F> queryFilterCache = new ThreadLocal<>();
 
+    /**
+     * <code>tablenameMapCache</code>
+     * {@link java.lang.ThreadLocal} <p>the <code>tablenameMapCache</code> field.</p>
+     * @see java.lang.ThreadLocal
+     */
     private final ThreadLocal<Map<K, String>> tablenameMapCache = new ThreadLocal<>();
 
     @Override
@@ -349,6 +369,18 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         return this.tablenameMapCache.get();
     }
 
+    /**
+     * <code>single</code>
+     * <p>the method.</p>
+     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
+     * @param model    M <p>the model parameter is <code>M</code> type.</p>
+     * @param idArray  {@link java.lang.Object} <p>the id array parameter is <code>Object</code> type.</p>
+     * @return {@link java.lang.Integer} <p>the return object is <code>Integer</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.lang.Object
+     * @see java.lang.Integer
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     private Integer single(K tablekey, M model, Object... idArray) throws RestException {
         E entity = entityActuator(model, idArray);
         String tablename = tablename(tablekey, model);
@@ -398,7 +430,7 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         this.beforeCreate(model);
         Integer result = single(tablekey, model, idArray);
         String message = "creating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
-        OptionalHelper.create(result, message, simpleName);
+        OptionalUtils.create(result, message, simpleName);
         this.afterCreate(model);
         this.refresh();
         return model;
@@ -441,7 +473,7 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         this.beforeUpdate(model);
         Integer result = single(tablekey, model, idArray);
         String message = "updating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
-        OptionalHelper.update(result, message, simpleName);
+        OptionalUtils.update(result, message, simpleName);
         this.afterUpdate(model);
         this.refresh();
         return model;
@@ -484,7 +516,7 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         this.beforeSave(model);
         Integer result = single(tablekey, model, idArray);
         String message = "saving method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
-        OptionalHelper.save(result, message, simpleName);
+        OptionalUtils.save(result, message, simpleName);
         this.afterSave(model);
         this.refresh();
         return model;
@@ -571,7 +603,7 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         }
         Boolean comparer = modelList.size() == result;
         String message = "saveAll method has error with " + simpleName + ": " + JsonUtils.parseJson(modelList);
-        OptionalHelper.saveAll(comparer, message, simpleName);
+        OptionalUtils.saveAll(comparer, message, simpleName);
         this.afterSaveAll(modelList);
         this.refresh();
         return new ArrayList<>(modelList);
@@ -592,6 +624,16 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         operateById(null, id, operate);
     }
 
+    /**
+     * <code>findById</code>
+     * <p>the by id method.</p>
+     * @param id        I <p>the id parameter is <code>I</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
+     * @return E <p>the by id return object is <code>E</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     private E findById(I id, String tablename) throws RestException {
         E entity;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
@@ -664,6 +706,19 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         operateAll(null, idList, operate);
     }
 
+    /**
+     * <code>operatePartition</code>
+     * <p>the partition method.</p>
+     * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
+     * @param idList    {@link java.util.Collection} <p>the id list parameter is <code>Collection</code> type.</p>
+     * @param operate   {@link io.github.nichetoolkit.rice.enums.OperateType} <p>the operate parameter is <code>OperateType</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.lang.String
+     * @see java.util.Collection
+     * @see io.github.nichetoolkit.rice.enums.OperateType
+     * @see java.lang.SuppressWarnings
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     @SuppressWarnings(value = "unchecked")
     private void operatePartition(String tablename, Collection<I> idList, OperateType operate) throws RestException {
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
@@ -673,6 +728,18 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         }
     }
 
+    /**
+     * <code>operateAdvice</code>
+     * <p>the advice method.</p>
+     * @param entityList      {@link java.util.List} <p>the entity list parameter is <code>List</code> type.</p>
+     * @param operate         {@link io.github.nichetoolkit.rice.enums.OperateType} <p>the operate parameter is <code>OperateType</code> type.</p>
+     * @param operateActuator {@link io.github.nichetoolkit.rest.actuator.ConsumerActuator} <p>the operate actuator parameter is <code>ConsumerActuator</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.util.List
+     * @see io.github.nichetoolkit.rice.enums.OperateType
+     * @see io.github.nichetoolkit.rest.actuator.ConsumerActuator
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     private void operateAdvice(List<E> entityList, OperateType operate, ConsumerActuator<OperateType> operateActuator) throws RestException {
         if (DeleteMode.OPERATE == deleteMode() && !isBeforeSkip()) {
             this.beforeOperateAll(entityList);
@@ -684,6 +751,18 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         this.refresh();
     }
 
+    /**
+     * <code>findAll</code>
+     * <p>the all method.</p>
+     * @param idList    {@link java.util.Collection} <p>the id list parameter is <code>Collection</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
+     * @return {@link java.util.List} <p>the all return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.util.Collection
+     * @see java.lang.String
+     * @see java.util.List
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     private List<E> findAll(Collection<I> idList, String tablename) throws RestException {
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
@@ -1011,112 +1090,6 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
     }
 
     /**
-     * <code>alertBiFieldById</code>
-     * <p>the bi field by id method.</p>
-     * @param id      I <p>the id parameter is <code>I</code> type.</p>
-     * @param field   {@link java.lang.String} <p>the field parameter is <code>String</code> type.</p>
-     * @param biField {@link java.lang.String} <p>the bi field parameter is <code>String</code> type.</p>
-     * @param keyType {@link io.github.nichetoolkit.rest.RestKey} <p>the key type parameter is <code>RestKey</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.String
-     * @see io.github.nichetoolkit.rest.RestKey
-     * @see org.springframework.transaction.annotation.Transactional
-     * @see io.github.nichetoolkit.rest.RestException
-     */
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertBiFieldById(I id, String field, String biField, RestKey<Integer> keyType) throws RestException {
-        alertBiFieldById(null, id, field, biField, keyType);
-    }
-
-    /**
-     * <code>alertBiFieldById</code>
-     * <p>the bi field by id method.</p>
-     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
-     * @param id       I <p>the id parameter is <code>I</code> type.</p>
-     * @param field    {@link java.lang.String} <p>the field parameter is <code>String</code> type.</p>
-     * @param biField  {@link java.lang.String} <p>the bi field parameter is <code>String</code> type.</p>
-     * @param keyType  {@link io.github.nichetoolkit.rest.RestKey} <p>the key type parameter is <code>RestKey</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.String
-     * @see io.github.nichetoolkit.rest.RestKey
-     * @see java.lang.SuppressWarnings
-     * @see org.springframework.transaction.annotation.Transactional
-     * @see io.github.nichetoolkit.rest.RestException
-     */
-    @SuppressWarnings(value = "unchecked")
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertBiFieldById(K tablekey, I id, String field, String biField, RestKey<Integer> keyType) throws RestException {
-        if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(keyType)) {
-            return;
-        }
-        if (superMapper instanceof AlertBiFieldMapper) {
-            String tablename = tablename(tablekey);
-            this.beforeAlert(id);
-            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((AlertBiFieldMapper<I>) superMapper).alertDynamicBiFieldById(tablename, id, field, biField, keyType.getKey());
-            } else {
-                ((AlertBiFieldMapper<I>) superMapper).alertBiFieldById(id, field, biField, keyType.getKey());
-            }
-            this.afterAlert(id);
-            this.refresh();
-        }
-    }
-
-    /**
-     * <code>alertBiFieldAll</code>
-     * <p>the bi field all method.</p>
-     * @param idList  {@link java.util.Collection} <p>the id list parameter is <code>Collection</code> type.</p>
-     * @param field   {@link java.lang.String} <p>the field parameter is <code>String</code> type.</p>
-     * @param biField {@link java.lang.String} <p>the bi field parameter is <code>String</code> type.</p>
-     * @param keyType {@link io.github.nichetoolkit.rest.RestKey} <p>the key type parameter is <code>RestKey</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see java.util.Collection
-     * @see java.lang.String
-     * @see io.github.nichetoolkit.rest.RestKey
-     * @see org.springframework.transaction.annotation.Transactional
-     * @see io.github.nichetoolkit.rest.RestException
-     */
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertBiFieldAll(Collection<I> idList, String field, String biField, RestKey<Integer> keyType) throws RestException {
-        alertBiFieldAll(null, idList, field, biField, keyType);
-    }
-
-    /**
-     * <code>alertBiFieldAll</code>
-     * <p>the bi field all method.</p>
-     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
-     * @param idList   {@link java.util.Collection} <p>the id list parameter is <code>Collection</code> type.</p>
-     * @param field    {@link java.lang.String} <p>the field parameter is <code>String</code> type.</p>
-     * @param biField  {@link java.lang.String} <p>the bi field parameter is <code>String</code> type.</p>
-     * @param keyType  {@link io.github.nichetoolkit.rest.RestKey} <p>the key type parameter is <code>RestKey</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see java.util.Collection
-     * @see java.lang.String
-     * @see io.github.nichetoolkit.rest.RestKey
-     * @see java.lang.SuppressWarnings
-     * @see org.springframework.transaction.annotation.Transactional
-     * @see io.github.nichetoolkit.rest.RestException
-     */
-    @SuppressWarnings(value = "unchecked")
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void alertBiFieldAll(K tablekey, Collection<I> idList, String field, String biField, RestKey<Integer> keyType) throws RestException {
-        if (GeneralUtils.isEmpty(idList)) {
-            return;
-        }
-        if (superMapper instanceof AlertBiFieldMapper) {
-            String tablename = tablename(tablekey);
-            this.beforeAlertAll(idList);
-            if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                PartitionHelper.partition(idList, this.deletePartition(), ids -> ((AlertBiFieldMapper<I>) superMapper).alertDynamicBiFieldAll(tablename, ids, field, biField, keyType.getKey()));
-            } else {
-                PartitionHelper.partition(idList, this.deletePartition(), ids -> ((AlertBiFieldMapper<I>) superMapper).alertBiFieldAll(ids, field, biField, keyType.getKey()));
-            }
-            this.afterAlertAll(idList);
-            this.refresh();
-        }
-    }
-
-    /**
      * <code>removeById</code>
      * <p>the by id method.</p>
      * @param id I <p>the id parameter is <code>I</code> type.</p>
@@ -1145,14 +1118,14 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         if (GeneralUtils.isEmpty(id)) {
             return;
         }
-        String removeSign = removeSign();
+        String logicSign = logicSign();
         if (superMapper instanceof RemoveMapper) {
             String tablename = tablename(tablekey);
             if (DeleteMode.REMOVE != deleteMode() || (isBeforeSkip() && isAfterSkip())) {
                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    ((RemoveMapper<I>) superMapper).removeDynamicById(tablename, id, removeSign);
+                    ((RemoveMapper<I>) superMapper).removeDynamicById(tablename, id, logicSign);
                 } else {
-                    ((RemoveMapper<I>) superMapper).removeById(id, removeSign);
+                    ((RemoveMapper<I>) superMapper).removeById(id, logicSign);
                 }
             } else {
                 E entity = findById(id, tablename);
@@ -1161,9 +1134,9 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
                         this.beforeRemove(entity);
                     }
                     if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                        ((RemoveMapper<I>) superMapper).removeDynamicById(tablename, id, removeSign);
+                        ((RemoveMapper<I>) superMapper).removeDynamicById(tablename, id, logicSign);
                     } else {
-                        ((RemoveMapper<I>) superMapper).removeById(id, removeSign);
+                        ((RemoveMapper<I>) superMapper).removeById(id, logicSign);
                     }
                     if (DeleteMode.REMOVE == deleteMode() && !isAfterSkip()) {
                         this.afterRemove(entity);
@@ -1188,20 +1161,44 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         removeAll(null, idList);
     }
 
+    /**
+     * <code>removePartition</code>
+     * <p>the partition method.</p>
+     * @param tablename  {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
+     * @param idList     {@link java.util.Collection} <p>the id list parameter is <code>Collection</code> type.</p>
+     * @param logicSign {@link java.lang.String} <p>the remove sign parameter is <code>String</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.lang.String
+     * @see java.util.Collection
+     * @see java.lang.SuppressWarnings
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     @SuppressWarnings(value = "unchecked")
-    private void removePartition(String tablename, Collection<I> idList, String removeSign) throws RestException {
+    private void removePartition(String tablename, Collection<I> idList, String logicSign) throws RestException {
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-            PartitionHelper.delete(idList, this.deletePartition(), ids -> ((RemoveMapper<I>) superMapper).removeDynamicAll(tablename, ids, removeSign));
+            PartitionHelper.delete(idList, this.deletePartition(), ids -> ((RemoveMapper<I>) superMapper).removeDynamicAll(tablename, ids, logicSign));
         } else {
-            PartitionHelper.delete(idList, this.deletePartition(), ids -> ((RemoveMapper<I>) superMapper).removeAll(ids, removeSign));
+            PartitionHelper.delete(idList, this.deletePartition(), ids -> ((RemoveMapper<I>) superMapper).removeAll(ids, logicSign));
         }
     }
 
-    private void removeAdvice(List<E> entityList, String removeSign, ConsumerActuator<String> removeActuator) throws RestException {
+    /**
+     * <code>removeAdvice</code>
+     * <p>the advice method.</p>
+     * @param entityList     {@link java.util.List} <p>the entity list parameter is <code>List</code> type.</p>
+     * @param logicSign     {@link java.lang.String} <p>the remove sign parameter is <code>String</code> type.</p>
+     * @param removeActuator {@link io.github.nichetoolkit.rest.actuator.ConsumerActuator} <p>the remove actuator parameter is <code>ConsumerActuator</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.util.List
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.rest.actuator.ConsumerActuator
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    private void removeAdvice(List<E> entityList, String logicSign, ConsumerActuator<String> removeActuator) throws RestException {
         if (DeleteMode.REMOVE == deleteMode() && !isBeforeSkip()) {
             this.beforeRemoveAll(entityList);
         }
-        removeActuator.actuate(removeSign);
+        removeActuator.actuate(logicSign);
         if (DeleteMode.REMOVE == deleteMode() && !isAfterSkip()) {
             this.afterRemoveAll(entityList);
         }
@@ -1223,15 +1220,15 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
-        String removeSign = removeSign();
+        String logicSign = logicSign();
         if (superMapper instanceof RemoveMapper) {
             String tablename = tablename(tablekey);
             if (DeleteMode.REMOVE != deleteMode() || (isBeforeSkip() && isAfterSkip())) {
-                removePartition(tablename, idList, removeSign);
+                removePartition(tablename, idList, logicSign);
             } else {
                 List<E> entityList = findAll(idList, tablename);
                 if (GeneralUtils.isNotEmpty(entityList)) {
-                    removeAdvice(entityList, removeSign, sign -> removePartition(tablename, idList, sign));
+                    removeAdvice(entityList, logicSign, sign -> removePartition(tablename, idList, sign));
                 }
             }
         }
@@ -1266,13 +1263,13 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         if (GeneralUtils.isEmpty(linkId)) {
             return;
         }
-        String removeSign = removeSign();
+        String logicSign = logicSign();
         if (superMapper instanceof RemoveLinkMapper) {
             String tablename = tablename(tablekey);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((RemoveLinkMapper<I>) superMapper).removeDynamicByLinkId(tablename, linkId, removeSign);
+                ((RemoveLinkMapper<I>) superMapper).removeDynamicByLinkId(tablename, linkId, logicSign);
             } else {
-                ((RemoveLinkMapper<I>) superMapper).removeByLinkId(linkId, removeSign);
+                ((RemoveLinkMapper<I>) superMapper).removeByLinkId(linkId, logicSign);
             }
             this.refresh();
         }
@@ -1309,13 +1306,13 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         if (GeneralUtils.isEmpty(linkIdList)) {
             return;
         }
-        String removeSign = removeSign();
+        String logicSign = logicSign();
         if (superMapper instanceof RemoveLinkMapper) {
             String tablename = tablename(tablekey);
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                PartitionHelper.partition(linkIdList, this.deletePartition(), linkIds -> ((RemoveLinkMapper<I>) superMapper).removeDynamicAllByLinkIds(tablename, linkIds, removeSign));
+                PartitionHelper.partition(linkIdList, this.deletePartition(), linkIds -> ((RemoveLinkMapper<I>) superMapper).removeDynamicAllByLinkIds(tablename, linkIds, logicSign));
             } else {
-                PartitionHelper.partition(linkIdList, this.deletePartition(), linkIds -> ((RemoveLinkMapper<I>) superMapper).removeAllByLinkIds(linkIds, removeSign));
+                PartitionHelper.partition(linkIdList, this.deletePartition(), linkIds -> ((RemoveLinkMapper<I>) superMapper).removeAllByLinkIds(linkIds, logicSign));
             }
             this.refresh();
         }
@@ -1372,6 +1369,16 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         deleteAll(null, idList);
     }
 
+    /**
+     * <code>deletePartition</code>
+     * <p>the partition method.</p>
+     * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
+     * @param idList    {@link java.util.Collection} <p>the id list parameter is <code>Collection</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.lang.String
+     * @see java.util.Collection
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     private void deletePartition(String tablename, Collection<I> idList) throws RestException {
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
             PartitionHelper.delete(idList, this.deletePartition(), ids -> superMapper.deleteDynamicAll(tablename, ids));
@@ -1380,6 +1387,16 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         }
     }
 
+    /**
+     * <code>deleteAdvice</code>
+     * <p>the advice method.</p>
+     * @param entityList     {@link java.util.List} <p>the entity list parameter is <code>List</code> type.</p>
+     * @param deleteActuator {@link io.github.nichetoolkit.rest.actuator.AnchorActuator} <p>the delete actuator parameter is <code>AnchorActuator</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.util.List
+     * @see io.github.nichetoolkit.rest.actuator.AnchorActuator
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     private void deleteAdvice(List<E> entityList, AnchorActuator deleteActuator) throws RestException {
         if (DeleteMode.DELETE == deleteMode() && !isBeforeSkip()) {
             this.beforeDeleteAll(entityList);
@@ -1521,20 +1538,20 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         }
         E entity;
         String tablename = tablename(tablekey);
-        if (isLoadArray.length > 0 && LoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            LoadMapper<E, I> loadMapper = (LoadMapper<E, I>) superMapper;
+        if (isLoadArray.length > 0 && FindLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
+            FindLoadMapper<E, I> loadMapper = (FindLoadMapper<E, I>) superMapper;
             Method findMethod = null;
             try {
-                findMethod = loadMapper.getClass().getMethod("findByLoadId", id.getClass(), Boolean[].class);
+                findMethod = loadMapper.getClass().getMethod("findByIdLoad", id.getClass(), Boolean[].class);
             } catch (NoSuchMethodException ignored) {
             }
             Method queryByIdMethod = findMethod;
             /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
             if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    entity = loadMapper.findDynamicByLoadId(tablename, id, isLoadArray);
+                    entity = loadMapper.findDynamicByIdLoad(tablename, id, isLoadArray);
                 } else {
-                    entity = loadMapper.findByLoadId(id, isLoadArray);
+                    entity = loadMapper.findByIdLoad(id, isLoadArray);
                 }
             } else {
                 entity = findById(id, tablename);
@@ -1561,8 +1578,8 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         }
         List<E> entityList;
         String tablename = tablename(tablekey);
-        if (isLoadArray.length > 0 && LoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            LoadMapper<E, I> loadMapper = (LoadMapper<E, I>) superMapper;
+        if (isLoadArray.length > 0 && FindLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
+            FindLoadMapper<E, I> loadMapper = (FindLoadMapper<E, I>) superMapper;
             Method findMethod = null;
             try {
                 findMethod = loadMapper.getClass().getMethod("queryAllLoad", List.class, Boolean[].class);
@@ -1585,6 +1602,17 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         return modelActuator(entityList, isLoadArray);
     }
 
+    /**
+     * <code>findAllByWhere</code>
+     * <p>the all by where method.</p>
+     * @param whereSql  {@link java.lang.String} <p>the where sql parameter is <code>String</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
+     * @return {@link java.util.List} <p>the all by where return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.lang.String
+     * @see java.util.List
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     private List<E> findAllByWhere(String whereSql, String tablename) throws RestException {
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
@@ -1617,8 +1645,8 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         String tablename = tablename(tablekey);
         Page<E> page;
         List<E> entityList;
-        if (loadArray.length > 0 && LoadFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-            LoadFilterMapper<E, I> loadFilterMapper = (LoadFilterMapper<E, I>) superMapper;
+        if (loadArray.length > 0 && FilterLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
+            FilterLoadMapper<E, I> loadFilterMapper = (FilterLoadMapper<E, I>) superMapper;
             Method findMethod = null;
             try {
                 findMethod = loadFilterMapper.getClass().getMethod("findAllByLoadWhere", String.class, Boolean[].class);
@@ -1637,8 +1665,8 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
                 page = filter.toPage();
                 entityList = findAllByWhere(whereSql, tablename);
             }
-        } else if (fieldArray.length > 0 && FieldFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-            FieldFilterMapper<E, I> fieldFilterMapper = (FieldFilterMapper<E, I>) superMapper;
+        } else if (fieldArray.length > 0 && FindFieldMapper.class.isAssignableFrom(superMapper.getClass())) {
+            FindFieldMapper<E, I> fieldFilterMapper = (FindFieldMapper<E, I>) superMapper;
             Method findMethod = null;
             try {
                 findMethod = fieldFilterMapper.getClass().getMethod("findAllByFieldWhere", String.class, String[].class);
@@ -1657,8 +1685,8 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
                 page = filter.toPage();
                 entityList = findAllByWhere(whereSql, tablename);
             }
-        } else if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-            FilterMapper<E, F, I, K> filterMapper = (FilterMapper<E, F, I, K>) superMapper;
+        } else if (FindFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
+            FindFilterMapper<E, F, I, K> filterMapper = (FindFilterMapper<E, F, I, K>) superMapper;
             Method findMethod = null;
             try {
                 findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, IdFilter.class);
@@ -1686,6 +1714,16 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         return RestPage.result(modelList, page);
     }
 
+    /**
+     * <code>deleteAllByWhere</code>
+     * <p>the all by where method.</p>
+     * @param whereSql  {@link java.lang.String} <p>the where sql parameter is <code>String</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
+     * @param filter    F <p>the filter parameter is <code>F</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     private void deleteAllByWhere(String whereSql, String tablename, F filter) throws RestException {
         if (DeleteMode.DELETE != deleteMode() || (isBeforeSkip() && isAfterSkip())) {
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
@@ -1731,8 +1769,8 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
             K tablekey = tablekey(filter);
             String tablename = tablename(tablekey);
             if (GeneralUtils.isNotEmpty(whereSql)) {
-                if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-                    FilterMapper<E, F, I, K> filterMapper = (FilterMapper<E, F, I, K>) superMapper;
+                if (DeleteFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
+                    DeleteFilterMapper<E, F, I, K> filterMapper = (DeleteFilterMapper<E, F, I, K>) superMapper;
                     Method findMethod = null;
                     Method deleteMethod = null;
                     try {
@@ -1777,23 +1815,34 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         }
     }
 
+    /**
+     * <code>removeAllByWhere</code>
+     * <p>the all by where method.</p>
+     * @param removeWhereSql {@link java.lang.String} <p>the remove where sql parameter is <code>String</code> type.</p>
+     * @param tablename      {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
+     * @param filter         F <p>the filter parameter is <code>F</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.SuppressWarnings
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     @SuppressWarnings(value = "unchecked")
     private void removeAllByWhere(String removeWhereSql, String tablename, F filter) throws RestException {
         if (!(superMapper instanceof RemoveMapper)) {
             throw new UnsupportedErrorException("the mapper is not support method of 'removeAllWithFilter' with the delete model is 'REMOVE' !");
         }
-        String removeSign = removeSign();
+        String logicSign = logicSign();
         if (DeleteMode.REMOVE != deleteMode() || (isBeforeSkip() && isAfterSkip())) {
             if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((RemoveMapper<I>) superMapper).removeDynamicAllByWhere(tablename, removeWhereSql, removeSign);
+                ((RemoveMapper<I>) superMapper).removeDynamicAllByWhere(tablename, removeWhereSql, logicSign);
             } else {
-                ((RemoveMapper<I>) superMapper).removeAllByWhere(removeWhereSql, removeSign);
+                ((RemoveMapper<I>) superMapper).removeAllByWhere(removeWhereSql, logicSign);
             }
         } else {
             String queryWhereSql = queryWhereSql(filter);
             List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
             if (GeneralUtils.isNotEmpty(entityList)) {
-                removeAdvice(entityList, removeSign, sign -> {
+                removeAdvice(entityList, logicSign, sign -> {
                     if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                         ((RemoveMapper<I>) superMapper).removeDynamicAllByWhere(tablename, removeWhereSql, sign);
                     } else {
@@ -1821,9 +1870,9 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         K tablekey = tablekey(filter);
         String tablename = tablename(tablekey);
         if (GeneralUtils.isNotEmpty(removeWhereSql)) {
-            String removeSign = removeSign();
-            if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-                FilterMapper<E, F, I, K> filterMapper = (FilterMapper<E, F, I, K>) superMapper;
+            String logicSign = logicSign();
+            if (RemoveFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
+                RemoveFilterMapper<E, F, I, K> filterMapper = (RemoveFilterMapper<E, F, I, K>) superMapper;
                 Method findMethod = null;
                 Method removeMethod = null;
                 try {
@@ -1836,9 +1885,9 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
                 if (removeAllByWhereMethod != null && !removeAllByWhereMethod.isDefault()) {
                     if (DeleteMode.REMOVE != deleteMode() || (isBeforeSkip() && isAfterSkip())) {
                         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
-                            filterMapper.removeDynamicAllByFilterWhere(tablename, removeWhereSql, filter, removeSign);
+                            filterMapper.removeDynamicAllByFilterWhere(tablename, removeWhereSql, filter, logicSign);
                         } else {
-                            filterMapper.removeAllByFilterWhere(removeWhereSql, filter, removeSign);
+                            filterMapper.removeAllByFilterWhere(removeWhereSql, filter, logicSign);
                         }
                     } else {
                         String queryWhereSql = queryWhereSql(filter);
@@ -1849,7 +1898,7 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
                             entityList = superMapper.findAllByWhere(queryWhereSql);
                         }
                         if (GeneralUtils.isNotEmpty(entityList)) {
-                            removeAdvice(entityList, removeSign, sign -> {
+                            removeAdvice(entityList, logicSign, sign -> {
                                 if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
                                     filterMapper.removeDynamicAllByFilterWhere(tablename, removeWhereSql, filter, sign);
                                 } else {
@@ -1868,6 +1917,17 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         }
     }
 
+    /**
+     * <code>operateAllByWhere</code>
+     * <p>the all by where method.</p>
+     * @param operateWhereSql {@link java.lang.String} <p>the operate where sql parameter is <code>String</code> type.</p>
+     * @param tablename       {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
+     * @param filter          F <p>the filter parameter is <code>F</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.SuppressWarnings
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     @SuppressWarnings(value = "unchecked")
     private void operateAllByWhere(String operateWhereSql, String tablename, F filter) throws RestException {
         if (!(superMapper instanceof OperateMapper)) {
@@ -1912,8 +1972,8 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         K tablekey = tablekey(filter);
         String tablename = tablename(tablekey);
         if (GeneralUtils.isNotEmpty(operateWhereSql)) {
-            if (FilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-                FilterMapper<E, F, I, K> filterMapper = (FilterMapper<E, F, I, K>) superMapper;
+            if (OperateFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
+                OperateFilterMapper<E, F, I, K> filterMapper = (OperateFilterMapper<E, F, I, K>) superMapper;
                 Method findMethod = null;
                 Method operateMethod = null;
                 try {
@@ -1957,6 +2017,11 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         }
     }
 
+    /**
+     * <code>DEFAULT_CREATE_ACTUATOR</code>
+     * {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>the <code>DEFAULT_CREATE_ACTUATOR</code> field.</p>
+     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     */
     private final BiConsumerActuator<K, M> DEFAULT_CREATE_ACTUATOR = (K tablekey, @NonNull M model) -> {
         model.setId(ClazzHelper.generate(model));
         optionalInit(model);
@@ -1969,6 +2034,12 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         }
     };
 
+    /**
+     * <code>DEFAULT_UPDATE_ACTUATOR</code>
+     * {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>the <code>DEFAULT_UPDATE_ACTUATOR</code> field.</p>
+     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see java.lang.SuppressWarnings
+     */
     @SuppressWarnings(value = "unchecked")
     private final BiConsumerActuator<K, M> DEFAULT_UPDATE_ACTUATOR = (K tablekey, @NonNull M model) -> {
         if (isIdExist()) {
@@ -1979,7 +2050,7 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
                 exist = existById(model.getId());
             }
             String message = "the data no found，id: " + model.getId();
-            OptionalHelper.falseable(exist, message, "id", DataQueryException::new);
+            OptionalUtils.falseable(exist, message, "id", DataQueryException::new);
         }
         optional(model);
         if (updateActuator != null) {
@@ -1990,6 +2061,12 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         }
     };
 
+    /**
+     * <code>DEFAULT_SAVE_ACTUATOR</code>
+     * {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>the <code>DEFAULT_SAVE_ACTUATOR</code> field.</p>
+     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see java.lang.SuppressWarnings
+     */
     @SuppressWarnings(value = "unchecked")
     private final BiConsumerActuator<K, M> DEFAULT_SAVE_ACTUATOR = (K tablekey, @NonNull M model) -> {
         if (isIdExist()) {
@@ -2003,7 +2080,7 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
                 invadeActuator().actuate(tablekey, model);
             } else {
                 String message = "the data no found，id: " + model.getId();
-                OptionalHelper.falseable(exist, message, "id", DataQueryException::new);
+                OptionalUtils.falseable(exist, message, "id", DataQueryException::new);
                 optional(model);
                 if (updateActuator != null) {
                     updateActuator.actuate(tablekey, model);
@@ -2017,6 +2094,11 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         }
     };
 
+    /**
+     * <code>DEFAULT_INVADE_ACTUATOR</code>
+     * {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>the <code>DEFAULT_INVADE_ACTUATOR</code> field.</p>
+     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     */
     private final BiConsumerActuator<K, M> DEFAULT_INVADE_ACTUATOR = (K tablekey, @NonNull M model) -> {
         optionalInit(model);
         optional(model);
@@ -2154,8 +2236,8 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
      * @return {@link java.lang.Boolean} <p>the sign return object is <code>Boolean</code> type.</p>
      * @see java.lang.Boolean
      */
-    public Boolean pinpointSign() {
-        return beanProperties.pinpointSign();
+    public Boolean pinpointEnabled() {
+        return beanProperties.pinpointEnabled();
     }
 
     /**
@@ -2204,7 +2286,7 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
      * @return {@link java.lang.String} <p>the sign return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
-    public String removeSign() {
+    public String logicSign() {
         return RemoveMode.sign(removeMode(), booleanSign(), numberSign());
     }
 
@@ -2214,7 +2296,7 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
      * @return {@link java.lang.String} <p>the value return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
-    public String removeValue() {
+    public String logicValue() {
         return RemoveMode.value(removeMode(), booleanValue(), numberValue());
     }
 
@@ -2407,11 +2489,29 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         return null;
     }
 
+    /**
+     * <code>optionalLogicSign</code>
+     * <p>the logic sign method.</p>
+     * @param model M <p>the model parameter is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see org.springframework.lang.NonNull
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     private void optionalLogicSign(@NonNull M model) throws RestException {
-        model.setLogicSign(Optional.ofNullable(model.getLogicSign()).orElse(removeValue()));
+        model.setLogicSign(Optional.ofNullable(model.getLogicSign()).orElse(logicValue()));
         optionalName(model);
     }
 
+    /**
+     * <code>optionalDynamicTable</code>
+     * <p>the dynamic table method.</p>
+     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
+     * @param model    M <p>the model parameter is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see org.springframework.lang.NonNull
+     * @see java.lang.SuppressWarnings
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     @SuppressWarnings(value = "unchecked")
     private void optionalDynamicTable(K tablekey, @NonNull M model) throws RestException {
         if (isDynamicTable()) {
@@ -2440,6 +2540,15 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         optionalLogicSign(model);
     }
 
+    /**
+     * <code>optionalCreate</code>
+     * <p>the create method.</p>
+     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
+     * @param model    M <p>the model parameter is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see org.springframework.lang.NonNull
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     private void optionalCreate(K tablekey, @NonNull M model) throws RestException {
         optionalDynamicTable(tablekey, model);
         if (GeneralUtils.isEmpty(model.getId()) || !isIdInvade()) {
@@ -2449,12 +2558,30 @@ public abstract class SuperService<M extends IdModel<I>, E extends IdEntity<I>, 
         }
     }
 
+    /**
+     * <code>optionalUpdate</code>
+     * <p>the update method.</p>
+     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
+     * @param model    M <p>the model parameter is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see org.springframework.lang.NonNull
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     private void optionalUpdate(K tablekey, @NonNull M model) throws RestException {
-        OptionalHelper.idable(model.getId());
+        OptionalUtils.idable(model.getId());
         optionalDynamicTable(tablekey, model);
         updateActuator().actuate(tablekey, model);
     }
 
+    /**
+     * <code>optionalSave</code>
+     * <p>the save method.</p>
+     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
+     * @param model    M <p>the model parameter is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see org.springframework.lang.NonNull
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     private void optionalSave(K tablekey, @NonNull M model) throws RestException {
         optionalDynamicTable(tablekey, model);
         if (GeneralUtils.isEmpty(model.getId())) {

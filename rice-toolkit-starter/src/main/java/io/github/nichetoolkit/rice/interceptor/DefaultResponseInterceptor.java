@@ -4,12 +4,13 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestMap;
-import io.github.nichetoolkit.rice.advice.annotation.LoginAdvice;
+import io.github.nichetoolkit.rice.advice.LoginAdvice;
+import io.github.nichetoolkit.rice.constant.AdviceConstants;
 import io.github.nichetoolkit.rice.resolver.DefaultMapArgumentResolver;
-import io.github.nichetoolkit.rice.stereotype.login.RestAuth;
-import io.github.nichetoolkit.rice.stereotype.login.RestLogin;
-import io.github.nichetoolkit.rice.stereotype.login.RestLogout;
-import io.github.nichetoolkit.rice.stereotype.login.RestPending;
+import io.github.nichetoolkit.rice.stereotype.RestAuth;
+import io.github.nichetoolkit.rice.stereotype.RestLogin;
+import io.github.nichetoolkit.rice.stereotype.RestLogout;
+import io.github.nichetoolkit.rice.stereotype.RestPending;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
@@ -33,15 +34,20 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
  * @see lombok.extern.slf4j.Slf4j
- * @see org.springframework.core.annotation.Order
  * @see org.springframework.web.bind.annotation.ControllerAdvice
+ * @see org.springframework.core.annotation.Order
  * @since Jdk1.8
  */
 @Slf4j
-@Order(1)
 @ControllerAdvice
+@Order(AdviceConstants.RESPONSE_ORDER)
 public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
 
+    /**
+     * <code>loginAdvices</code>
+     * {@link java.util.List} <p>the <code>loginAdvices</code> field.</p>
+     * @see java.util.List
+     */
     private final List<LoginAdvice> loginAdvices;
 
     /**

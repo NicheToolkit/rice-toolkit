@@ -7,10 +7,11 @@ import io.github.nichetoolkit.rest.userlog.LoggingType;
 import io.github.nichetoolkit.rest.userlog.RestRequestPack;
 import io.github.nichetoolkit.rest.userlog.RestResponsePack;
 import io.github.nichetoolkit.rest.userlog.RestUsernotePack;
+import io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog;
 import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestUserInfo;
-import io.github.nichetoolkit.rice.advice.annotation.UserlogAdvice;
+import io.github.nichetoolkit.rice.advice.UserlogAdvice;
 import io.github.nichetoolkit.rice.RestUsernoteModel;
 import io.github.nichetoolkit.rice.clazz.ClazzUtils;
 import io.github.nichetoolkit.rice.pack.UserInfoPack;
@@ -18,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.web.method.HandlerMethod;
 
+import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.ParameterizedType;
 import java.util.Set;
 
@@ -27,7 +29,7 @@ import java.util.Set;
  * @param <T> {@link io.github.nichetoolkit.rice.RestUsernoteModel} <p>the generic parameter is <code>RestUsernoteModel</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestUsernoteModel
- * @see io.github.nichetoolkit.rice.advice.annotation.UserlogAdvice
+ * @see UserlogAdvice
  * @see io.github.nichetoolkit.rest.RestUsernoteAdvice
  * @see lombok.extern.slf4j.Slf4j
  * @see java.lang.SuppressWarnings
@@ -52,7 +54,7 @@ public abstract class RestUsernoteService<T extends RestUsernoteModel<?, ?>> imp
     }
 
     @Override
-    public void doUserlogHandle( RestHttpRequest httpRequest,HandlerMethod handlerMethod) throws RestException {
+    public void doAnnotationHandle(RestHttpRequest httpRequest, HttpServletResponse response, HandlerMethod handlerMethod, RestUserlog annotation) throws RestException {
         if (GeneralUtils.isEmpty(RestUserInfoHolder.getUser())) {
             RestUserInfo<?> userInfo = resolveUserInfo(httpRequest);
             RestUserInfoHolder.setUser(userInfo);

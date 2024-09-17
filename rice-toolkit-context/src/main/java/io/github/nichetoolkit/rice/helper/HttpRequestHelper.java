@@ -52,7 +52,7 @@ public class HttpRequestHelper {
 
     public static List<String> resolveTokens(HttpServletRequest request, boolean isRemovePrefix) {
         RiceLoginProperties loginProperties = ApplicationContextHolder.getBean(RiceLoginProperties.class);
-        if (GeneralUtils.isNotEmpty(loginProperties)) {
+        if (GeneralUtils.isEmpty(loginProperties)) {
             return Collections.emptyList();
         }
         List<String> tokenHeaders = loginProperties.getTokenHeaders();
@@ -61,7 +61,7 @@ public class HttpRequestHelper {
 
     public static List<String> resolveTokens(HttpServletRequest request, List<String> tokenHeaders, boolean isRemovePrefix) {
         RiceLoginProperties loginProperties = ApplicationContextHolder.getBean(RiceLoginProperties.class);
-        if (GeneralUtils.isNotEmpty(loginProperties)) {
+        if (GeneralUtils.isEmpty(loginProperties)) {
             return Collections.emptyList();
         }
         if (tokenHeaders.isEmpty()) {

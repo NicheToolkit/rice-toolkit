@@ -93,6 +93,7 @@
         SELECT
         <include refid="all_column"/>
         FROM ntr_simple
+        -- it will be optimized by the database
         WHERE 1=1
         <if test="whereSql!=null">
             ${whereSql}
@@ -101,6 +102,7 @@
 
     <delete id="deleteAllByWhere">
         DELETE FROM ntr_simple
+        -- it will be optimized by the database
         WHERE 1=1
         <if test="whereSql!=null">
             ${whereSql}
@@ -111,6 +113,9 @@
         SELECT <include refid="all_column"/>
         FROM ntr_simple
         WHERE name = #{name}
+        <if test="logicValue!=null">
+            AND logic_sign = ${logicValue}
+        </if>
     </select>
 
     <select id="findByNameAndNotId" resultMap="simpleResultMap">
@@ -118,6 +123,9 @@
         FROM ntr_simple
         WHERE name = #{name}
         AND id != #{id}
+        <if test="logicValue!=null">
+            AND logic_sign = ${logicValue}
+        </if>
     </select>
 
 </mapper>

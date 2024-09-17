@@ -1,16 +1,12 @@
 package io.github.nichetoolkit.rice.controller;
 
-import io.github.nichetoolkit.rest.RestErrorStatus;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestResult;
-import io.github.nichetoolkit.rest.userlog.stereotype.RestNotelog;
 import io.github.nichetoolkit.rice.RestPage;
-import io.github.nichetoolkit.rice.enums.RoleType;
 import io.github.nichetoolkit.rice.service.SimpleService;
 import io.github.nichetoolkit.rice.simple.SimpleFilter;
 import io.github.nichetoolkit.rice.simple.SimpleModel;
-import io.github.nichetoolkit.rice.stereotype.login.RestSkip;
-import io.github.nichetoolkit.rice.stereotype.purview.RestRole;
+import io.github.nichetoolkit.rice.stereotype.RestSkip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  * <code>SimpleController</code>
  * <p>The type simple controller class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.stereotype.login.RestSkip
+ * @see RestSkip
  * @see org.springframework.web.bind.annotation.CrossOrigin
  * @see io.github.nichetoolkit.rest.userlog.stereotype.RestNotelog
  * @see org.springframework.web.bind.annotation.RestController
@@ -27,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestSkip
 @CrossOrigin
-@RestNotelog
 @RestController
 @RequestMapping("/rice/simple")
 public class SimpleController {
@@ -44,24 +39,6 @@ public class SimpleController {
     @Autowired
     public SimpleController(SimpleService simpleService) {
         this.simpleService = simpleService;
-    }
-
-    /**
-     * <code>error</code>
-     * <p>the method.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the return object is <code>RestResult</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rest.RestResult
-     * @see org.springframework.web.bind.annotation.GetMapping
-     * @see io.github.nichetoolkit.rest.RestException
-     */
-    @RestRole(roles = {
-            RoleType.A,
-
-    })
-    @GetMapping("/error")
-    public RestResult<?> error() throws RestException {
-        return RestResult.mistake(RestErrorStatus.MISTAKE, new NullPointerException());
     }
 
     /**

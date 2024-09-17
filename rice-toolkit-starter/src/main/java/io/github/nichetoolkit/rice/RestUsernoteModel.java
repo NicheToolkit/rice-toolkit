@@ -140,7 +140,7 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * {@link java.lang.Integer} <p>the <code>loggingKey</code> field.</p>
      * @see java.lang.Integer
      */
-    protected Integer loggingKey;
+    protected String loggingKey;
     /**
      * <code>loggingValue</code>
      * {@link java.lang.String} <p>the <code>loggingValue</code> field.</p>
@@ -573,7 +573,7 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * {@link java.lang.Integer} <p>the <code>loggingKey</code> field.</p>
          * @see java.lang.Integer
          */
-        protected Integer loggingKey;
+        protected String loggingKey;
         /**
          * <code>loggingValue</code>
          * {@link java.lang.String} <p>the <code>loggingValue</code> field.</p>
@@ -855,7 +855,7 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>the key return object is <code>Builder</code> type.</p>
          * @see java.lang.Integer
          */
-        public RestUsernoteModel.Builder<M, E> loggingKey(Integer loggingKey) {
+        public RestUsernoteModel.Builder<M, E> loggingKey(String loggingKey) {
             this.loggingKey = loggingKey;
             return this;
         }
@@ -891,7 +891,7 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>the type return object is <code>Builder</code> type.</p>
          * @see java.lang.Integer
          */
-        public RestUsernoteModel.Builder<M, E> loggingType(Integer loggingType) {
+        public RestUsernoteModel.Builder<M, E> loggingType(String loggingType) {
             this.loggingType = LoggingType.parseKey(loggingType);
             return this;
         }
@@ -934,7 +934,7 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
             this.loggingType = usernote.getLoggingType();
             this.userlog = usernote.getUserlog();
             if (GeneralUtils.isEmpty(this.userlog) && GeneralUtils.isNotEmpty(this.loggingType)) {
-                this.userlog = this.loggingType.getField();
+                this.userlog = this.loggingType.getValue();
             }
             this.loggingKey = usernote.getLoggingKey();
             if (GeneralUtils.isEmpty(loggingKey) && GeneralUtils.isNotEmpty(this.loggingType)) {

@@ -2,8 +2,8 @@ package io.github.nichetoolkit.rice.interceptor;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.stereotype.login.RestSkip;
-import io.github.nichetoolkit.rice.stereotype.login.RestLogin;
+import io.github.nichetoolkit.rice.stereotype.RestSkip;
+import io.github.nichetoolkit.rice.stereotype.RestLogin;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.lang.NonNull;
 import org.springframework.web.method.HandlerMethod;

@@ -14,17 +14,17 @@ public enum LoginErrorStatus implements RestStatus {
      * <code>LOGIN_INFO_ERROR</code>
      * {@link io.github.nichetoolkit.rice.error.LoginErrorStatus} <p>the <code>LOGIN_INFO_ERROR</code> field.</p>
      */
-    LOGIN_INFO_ERROR(11201,"the info of account or password  is error"),
+    LOGIN_INFO_ERROR(11201, "The info verification of account or password is error"),
     /**
      * <code>LOGIN_ACCOUNT_ERROR</code>
      * {@link io.github.nichetoolkit.rice.error.LoginErrorStatus} <p>the <code>LOGIN_ACCOUNT_ERROR</code> field.</p>
      */
-    LOGIN_ACCOUNT_ERROR(11202,"the account is error"),
+    LOGIN_ACCOUNT_ERROR(11202, "The info verification of account is error"),
     /**
      * <code>LOGIN_PASSWORD_ERROR</code>
      * {@link io.github.nichetoolkit.rice.error.LoginErrorStatus} <p>the <code>LOGIN_PASSWORD_ERROR</code> field.</p>
      */
-    LOGIN_PASSWORD_ERROR(11203,"the password is error"),
+    LOGIN_PASSWORD_ERROR(11203, "The info verification of password is error"),
     ;
 
     private final Integer status;

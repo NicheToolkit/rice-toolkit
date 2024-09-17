@@ -23,7 +23,12 @@ import java.util.Objects;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RestLoginResult<R extends RestLoginResult<R>> implements Serializable {
 
-    private String accessToken;
+    /**
+     * <code>token</code>
+     * {@link java.lang.String} <p>the <code>token</code> field.</p>
+     * @see java.lang.String
+     */
+    private String token;
 
     /**
      * <code>RestLoginResult</code>
@@ -35,11 +40,11 @@ public class RestLoginResult<R extends RestLoginResult<R>> implements Serializab
     /**
      * <code>RestLoginResult</code>
      * Instantiates a new rest login result.
-     * @param accessToken {@link java.lang.String} <p>the access token parameter is <code>String</code> type.</p>
+     * @param token {@link java.lang.String} <p>the token parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
-    public RestLoginResult(String accessToken) {
-        this.accessToken = accessToken;
+    public RestLoginResult(String token) {
+        this.token = token;
     }
 
     @Override
@@ -47,11 +52,11 @@ public class RestLoginResult<R extends RestLoginResult<R>> implements Serializab
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RestLoginResult<?> that = (RestLoginResult<?>) o;
-        return Objects.equals(accessToken, that.accessToken);
+        return Objects.equals(token, that.token);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(accessToken);
+        return Objects.hashCode(token);
     }
 }

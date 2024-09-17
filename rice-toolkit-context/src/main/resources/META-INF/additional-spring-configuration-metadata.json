@@ -116,10 +116,10 @@
       "defaultValue": true
     },
     {
-      "name": "nichetoolkit.rice.bean.delete.pinpoint-sign",
+      "name": "nichetoolkit.rice.bean.delete.pinpoint-enabled",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
-      "description": "the switch of remove data with pinpoint sign on rest service query handle.",
+      "description": "the switch of remove data with pinpoint enabled on rest service query handle.",
       "defaultValue": false
     },
     {
@@ -313,15 +313,15 @@
       ]
     },
     {
-      "name": "nichetoolkit.rice.bean.delete.pinpoint-sign",
+      "name": "nichetoolkit.rice.bean.delete.pinpoint-enabled",
       "values": [
         {
           "value": false,
-          "description": "the switch of remove data with pinpoint sign is closed on rest service query handle."
+          "description": "the switch of remove data with pinpoint enabled is closed on rest service query handle."
         },
         {
           "value": true,
-          "description": "the switch of remove data with pinpoint sign is opened on rest service query handle."
+          "description": "the switch of remove data with pinpoint enabled is opened on rest service query handle."
         }
       ]
     },

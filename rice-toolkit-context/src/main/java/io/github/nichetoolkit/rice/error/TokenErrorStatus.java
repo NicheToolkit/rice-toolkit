@@ -17,22 +17,22 @@ public enum TokenErrorStatus implements RestStatus {
      * <code>TOKEN_INVALID_ERROR</code>
      * {@link io.github.nichetoolkit.rice.error.TokenErrorStatus} <p>the <code>TOKEN_INVALID_ERROR</code> field.</p>
      */
-    TOKEN_INVALID_ERROR(11500,"the token is invalid"),
+    TOKEN_INVALID_ERROR(11500,"The access token verification is invalid. Please log in again!"),
     /**
      * <code>TOKEN_ACCESS_ERROR</code>
      * {@link io.github.nichetoolkit.rice.error.TokenErrorStatus} <p>the <code>TOKEN_ACCESS_ERROR</code> field.</p>
      */
-    TOKEN_ACCESS_ERROR(11501,"the token access error"),
+    TOKEN_ACCESS_ERROR(11501,"The access token verification is invalid"),
     /**
      * <code>TOKEN_NO_PERMISSION</code>
      * {@link io.github.nichetoolkit.rice.error.TokenErrorStatus} <p>the <code>TOKEN_NO_PERMISSION</code> field.</p>
      */
-    TOKEN_NO_PERMISSION(11502,"the token is no permission"),
+    TOKEN_NO_PERMISSION(11502,"The access token verification is no permission"),
     /**
      * <code>TOKEN_PREFIX_INVALID</code>
      * {@link io.github.nichetoolkit.rice.error.TokenErrorStatus} <p>the <code>TOKEN_PREFIX_INVALID</code> field.</p>
      */
-    TOKEN_PREFIX_INVALID(11503,"the token prefix is invalid"),
+    TOKEN_PREFIX_INVALID(11503,"The access token prefix is invalid"),
     ;
 
     private final Integer status;

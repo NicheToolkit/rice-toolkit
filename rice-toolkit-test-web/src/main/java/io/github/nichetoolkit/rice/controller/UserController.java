@@ -9,9 +9,9 @@ import io.github.nichetoolkit.rice.RestPage;
 import io.github.nichetoolkit.rice.service.UserService;
 import io.github.nichetoolkit.rice.simple.UserFilter;
 import io.github.nichetoolkit.rice.simple.UserModel;
+import io.github.nichetoolkit.rice.stereotype.RestSkip;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @version v1.0.0
  */
 @Slf4j
+@RestSkip
 @CrossOrigin
 @RestController
 @RestNotelog("user service")

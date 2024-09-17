@@ -1,9 +1,12 @@
 package io.github.nichetoolkit.rice.simple;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rice.RestInfoModel;
 import io.github.nichetoolkit.rice.RestUserInfo;
+import io.github.nichetoolkit.rice.purview.PurviewType;
 
 /**
  * <code>UserModel</code>
@@ -11,14 +14,32 @@ import io.github.nichetoolkit.rice.RestUserInfo;
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestInfoModel
  * @see io.github.nichetoolkit.rice.RestUserInfo
+ * @see com.fasterxml.jackson.annotation.JsonInclude
+ * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
-@JsonInclude
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserModel extends RestInfoModel<UserModel, UserEntity> implements RestUserInfo<String> {
-    public static final String LOGIN_TOKEN =  "LOGIN_TOKEN";
+    /**
+     * <code>LOGIN_TOKEN</code>
+     * {@link java.lang.String} <p>the constant <code>LOGIN_TOKEN</code> field.</p>
+     * @see java.lang.String
+     */
+    public static final String LOGIN_TOKEN = "LOGIN_TOKEN";
 
+    /**
+     * <code>LOGIN_USER_ID</code>
+     * {@link java.lang.String} <p>the constant <code>LOGIN_USER_ID</code> field.</p>
+     * @see java.lang.String
+     */
     public static final String LOGIN_USER_ID = "USER_ID_";
 
+    /**
+     * <code>LOGIN_USER_INFO</code>
+     * {@link java.lang.String} <p>the constant <code>LOGIN_USER_INFO</code> field.</p>
+     * @see java.lang.String
+     */
     public static final String LOGIN_USER_INFO = "LOGIN_USER_INFO";
     /**
      * <code>username</code>
@@ -30,8 +51,17 @@ public class UserModel extends RestInfoModel<UserModel, UserEntity> implements R
      * <code>password</code>
      * {@link java.lang.String} <p>the <code>password</code> field.</p>
      * @see java.lang.String
+     * @see com.fasterxml.jackson.annotation.JsonProperty
      */
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+
+    /**
+     * <code>purviewType</code>
+     * {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>the <code>purviewType</code> field.</p>
+     * @see PurviewType
+     */
+    private PurviewType purviewType;
 
     /**
      * <code>UserModel</code>
@@ -66,19 +96,8 @@ public class UserModel extends RestInfoModel<UserModel, UserEntity> implements R
      * @return {@link java.lang.String} <p>the password return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
-    /* hide password */
     public String getPassword() {
-        return null;
-    }
-
-    /**
-     * <code>password</code>
-     * <p>the method.</p>
-     * @return {@link java.lang.String} <p>the return object is <code>String</code> type.</p>
-     * @see java.lang.String
-     */
-    public String password() {
-        return this.password;
+        return password;
     }
 
     /**
@@ -89,6 +108,14 @@ public class UserModel extends RestInfoModel<UserModel, UserEntity> implements R
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public PurviewType getPurviewType() {
+        return purviewType;
+    }
+
+    public void setPurviewType(PurviewType purviewType) {
+        this.purviewType = purviewType;
     }
 
     @Override

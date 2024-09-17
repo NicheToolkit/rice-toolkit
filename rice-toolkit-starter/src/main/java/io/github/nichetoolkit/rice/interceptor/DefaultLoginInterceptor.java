@@ -4,11 +4,12 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
+import io.github.nichetoolkit.rice.constant.AdviceConstants;
 import io.github.nichetoolkit.rice.error.service.ServiceUnauthorizedException;
 import io.github.nichetoolkit.rice.error.TokenPrefixInvalidException;
-import io.github.nichetoolkit.rice.advice.annotation.LoginAdvice;
+import io.github.nichetoolkit.rice.advice.LoginAdvice;
 import io.github.nichetoolkit.rice.helper.HttpRequestHelper;
-import io.github.nichetoolkit.rice.stereotype.login.RestCheck;
+import io.github.nichetoolkit.rice.stereotype.RestCheck;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
@@ -35,7 +36,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
-@Order(10)
+@Order(AdviceConstants.LOGIN_ORDER)
 public class DefaultLoginInterceptor implements RequestHandleInterceptor {
     private final RiceLoginProperties loginProperties;
     private final List<LoginAdvice> loginAdvices;
@@ -125,6 +126,6 @@ public class DefaultLoginInterceptor implements RequestHandleInterceptor {
                 }
             }
         }
-        throw new TokenPrefixInvalidException("the prefix of token is invalid！");
+        throw new TokenPrefixInvalidException();
     }
 }
