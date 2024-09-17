@@ -1,4 +1,4 @@
-package io.github.nichetoolkit.rice.login;
+package io.github.nichetoolkit.rice.service;
 
 import io.fusionauth.jwt.InvalidJWTException;
 import io.fusionauth.jwt.InvalidJWTSignatureException;

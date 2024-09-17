@@ -3,6 +3,7 @@ package io.github.nichetoolkit.rice.resolver;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.RestUsernoteAdvice;
+import io.github.nichetoolkit.rest.resolver.RestGenericTypeResolver;
 import io.github.nichetoolkit.rest.userlog.LoggingType;
 import io.github.nichetoolkit.rest.userlog.RestRequestPack;
 import io.github.nichetoolkit.rest.userlog.RestResponsePack;
@@ -10,6 +11,7 @@ import io.github.nichetoolkit.rest.userlog.RestUsernotePack;
 import io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog;
 import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.DefaultAdvice;
 import io.github.nichetoolkit.rice.RestUserInfo;
 import io.github.nichetoolkit.rice.advice.UserlogAdvice;
 import io.github.nichetoolkit.rice.RestUsernoteModel;
@@ -29,7 +31,7 @@ import java.util.Set;
  * @param <T> {@link io.github.nichetoolkit.rice.RestUsernoteModel} <p>the generic parameter is <code>RestUsernoteModel</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestUsernoteModel
- * @see UserlogAdvice
+ * @see io.github.nichetoolkit.rice.advice.UserlogAdvice
  * @see io.github.nichetoolkit.rest.RestUsernoteAdvice
  * @see lombok.extern.slf4j.Slf4j
  * @see java.lang.SuppressWarnings
@@ -38,6 +40,11 @@ import java.util.Set;
 @Slf4j
 @SuppressWarnings({"WeakerAccess", "unchecked"})
 public abstract class RestUsernoteService<T extends RestUsernoteModel<?, ?>> implements UserlogAdvice, RestUsernoteAdvice {
+    /**
+     * <code>usernote</code>
+     * {@link io.github.nichetoolkit.rice.RestUsernoteModel} <p>the <code>usernote</code> field.</p>
+     * @see io.github.nichetoolkit.rice.RestUsernoteModel
+     */
     private RestUsernoteModel<?, ?> usernote;
 
     /**
@@ -48,9 +55,17 @@ public abstract class RestUsernoteService<T extends RestUsernoteModel<?, ?>> imp
         this.usernote = new RestUsernoteModel<>();
     }
 
+    /**
+     * <code>childClass</code>
+     * <p>the class method.</p>
+     * @return {@link java.lang.Class} <p>the class return object is <code>Class</code> type.</p>
+     * @see java.lang.Class
+     * @see java.lang.SuppressWarnings
+     */
     @SuppressWarnings(value = "unchecked")
     private Class<T> childClass() {
-        return (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+        return (Class<T>) RestGenericTypeResolver.resolveClass(RestGenericTypeResolver.resolveType(
+                RestUsernoteService.class.getTypeParameters()[0], getClass(), RestUsernoteService.class));
     }
 
     @Override

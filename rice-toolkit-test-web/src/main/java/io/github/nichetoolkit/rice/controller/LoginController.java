@@ -1,6 +1,5 @@
 package io.github.nichetoolkit.rice.controller;
 
-import io.github.nichetoolkit.rest.RestErrorStatus;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestResult;
 import io.github.nichetoolkit.rest.userlog.LoggingType;
@@ -9,7 +8,7 @@ import io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.RestMap;
 import io.github.nichetoolkit.rice.purview.PurviewType;
-import io.github.nichetoolkit.rice.login.LoginService;
+import io.github.nichetoolkit.rice.service.LoginService;
 import io.github.nichetoolkit.rice.simple.LoginRequest;
 import io.github.nichetoolkit.rice.simple.UserModel;
 import io.github.nichetoolkit.rice.purview.RestPurview;
@@ -39,16 +38,16 @@ public class LoginController {
 
     /**
      * <code>loginService</code>
-     * {@link io.github.nichetoolkit.rice.login.LoginService} <p>the <code>loginService</code> field.</p>
-     * @see io.github.nichetoolkit.rice.login.LoginService
+     * {@link LoginService} <p>the <code>loginService</code> field.</p>
+     * @see LoginService
      */
     private final LoginService loginService;
 
     /**
      * <code>LoginController</code>
      * Instantiates a new login controller.
-     * @param loginService {@link io.github.nichetoolkit.rice.login.LoginService} <p>the login service parameter is <code>LoginService</code> type.</p>
-     * @see io.github.nichetoolkit.rice.login.LoginService
+     * @param loginService {@link LoginService} <p>the login service parameter is <code>LoginService</code> type.</p>
+     * @see LoginService
      * @see org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired
@@ -67,7 +66,7 @@ public class LoginController {
      * @see io.github.nichetoolkit.rice.simple.LoginRequest
      * @see org.springframework.web.bind.annotation.RequestBody
      * @see io.github.nichetoolkit.rest.RestResult
-     * @see RestLogin
+     * @see io.github.nichetoolkit.rice.stereotype.RestLogin
      * @see org.springframework.web.bind.annotation.PostMapping
      * @see io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog
      * @see io.github.nichetoolkit.rest.RestException
@@ -91,7 +90,7 @@ public class LoginController {
      * @see io.github.nichetoolkit.rice.simple.LoginRequest
      * @see org.springframework.web.bind.annotation.RequestBody
      * @see io.github.nichetoolkit.rest.RestResult
-     * @see RestLogin
+     * @see io.github.nichetoolkit.rice.stereotype.RestLogin
      * @see org.springframework.web.bind.annotation.PostMapping
      * @see io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog
      * @see io.github.nichetoolkit.rest.RestException
@@ -111,7 +110,7 @@ public class LoginController {
      * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the return object is <code>RestResult</code> type.</p>
      * @throws Exception {@link java.lang.Exception} <p>the exception is <code>Exception</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.UserModel
-     * @see RestUser
+     * @see io.github.nichetoolkit.rice.stereotype.RestUser
      * @see io.github.nichetoolkit.rest.RestResult
      * @see org.springframework.web.bind.annotation.GetMapping
      * @see io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog
@@ -131,7 +130,7 @@ public class LoginController {
      * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the return object is <code>RestResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.UserModel
-     * @see RestUser
+     * @see io.github.nichetoolkit.rice.stereotype.RestUser
      * @see io.github.nichetoolkit.rest.RestResult
      * @see org.springframework.web.bind.annotation.GetMapping
      * @see io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog
@@ -144,18 +143,21 @@ public class LoginController {
     }
 
     /**
-     * <code>error</code>
-     * <p>the method.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the return object is <code>RestResult</code> type.</p>
+     * <code>testPurview</code>
+     * <p>the purview method.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the purview return object is <code>RestResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestResult
      * @see org.springframework.web.bind.annotation.GetMapping
+     * @see io.github.nichetoolkit.rice.purview.RestPurview
+     * @see io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog
      * @see io.github.nichetoolkit.rest.RestException
      */
-    @GetMapping("/error")
+    @GetMapping("/test")
     @RestPurview(keys = {PurviewType.PURVIEW_2_KEY})
-    public RestResult<?> error() throws RestException {
-        return RestResult.mistake(RestErrorStatus.MISTAKE, new NullPointerException());
+    @RestUserlog(loggingType = LoggingType.TEST, userlog = "purview test")
+    public RestResult<?> testPurview() throws RestException {
+        return RestResult.success("the purview test successfully");
     }
 
     /**

@@ -7,7 +7,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
 import io.github.nichetoolkit.rice.DefaultAdvice;
 import io.github.nichetoolkit.rice.error.TokenPermissionException;
-import io.github.nichetoolkit.rice.login.TokenService;
+import io.github.nichetoolkit.rice.service.TokenService;
 import io.github.nichetoolkit.rice.simple.UserModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

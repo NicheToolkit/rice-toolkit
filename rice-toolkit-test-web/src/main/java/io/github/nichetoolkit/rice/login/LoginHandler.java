@@ -11,6 +11,7 @@ import io.github.nichetoolkit.rest.util.OptionalUtils;
 import io.github.nichetoolkit.rice.RestMap;
 import io.github.nichetoolkit.rice.advice.LoginAdvice;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
+import io.github.nichetoolkit.rice.service.TokenService;
 import io.github.nichetoolkit.rice.simple.LoginResult;
 import io.github.nichetoolkit.rice.simple.UserModel;
 import io.github.nichetoolkit.rice.stereotype.RestLogin;
@@ -54,8 +55,8 @@ public class LoginHandler implements LoginAdvice {
 
     /**
      * <code>tokenService</code>
-     * {@link io.github.nichetoolkit.rice.login.TokenService} <p>the <code>tokenService</code> field.</p>
-     * @see io.github.nichetoolkit.rice.login.TokenService
+     * {@link TokenService} <p>the <code>tokenService</code> field.</p>
+     * @see TokenService
      */
     private final TokenService tokenService;
 
@@ -64,10 +65,10 @@ public class LoginHandler implements LoginAdvice {
      * Instantiates a new login handler.
      * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
      * @param redisTemplate   {@link org.springframework.data.redis.core.StringRedisTemplate} <p>the redis template parameter is <code>StringRedisTemplate</code> type.</p>
-     * @param tokenService    {@link io.github.nichetoolkit.rice.login.TokenService} <p>the token service parameter is <code>TokenService</code> type.</p>
+     * @param tokenService    {@link TokenService} <p>the token service parameter is <code>TokenService</code> type.</p>
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      * @see org.springframework.data.redis.core.StringRedisTemplate
-     * @see io.github.nichetoolkit.rice.login.TokenService
+     * @see TokenService
      * @see org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired

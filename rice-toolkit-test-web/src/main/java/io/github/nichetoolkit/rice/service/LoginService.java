@@ -1,4 +1,4 @@
-package io.github.nichetoolkit.rice.login;
+package io.github.nichetoolkit.rice.service;
 
 
 import io.github.nichetoolkit.rest.RestException;
@@ -8,7 +8,6 @@ import io.github.nichetoolkit.rest.worker.sha.ShaWorker;
 import io.github.nichetoolkit.rice.error.LoginInfoException;
 import io.github.nichetoolkit.rice.error.LoginPasswordException;
 import io.github.nichetoolkit.rice.error.TokenInvalidException;
-import io.github.nichetoolkit.rice.service.UserService;
 import io.github.nichetoolkit.rice.simple.LoginRequest;
 import io.github.nichetoolkit.rice.simple.UserModel;
 import lombok.extern.slf4j.Slf4j;

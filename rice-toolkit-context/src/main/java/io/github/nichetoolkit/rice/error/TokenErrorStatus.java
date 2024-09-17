@@ -17,7 +17,7 @@ public enum TokenErrorStatus implements RestStatus {
      * <code>TOKEN_INVALID_ERROR</code>
      * {@link io.github.nichetoolkit.rice.error.TokenErrorStatus} <p>the <code>TOKEN_INVALID_ERROR</code> field.</p>
      */
-    TOKEN_INVALID_ERROR(11500,"The access token verification is invalid. Please log in again!"),
+    TOKEN_INVALID_ERROR(11500,"The access token verification is invalid. Please login again!"),
     /**
      * <code>TOKEN_ACCESS_ERROR</code>
      * {@link io.github.nichetoolkit.rice.error.TokenErrorStatus} <p>the <code>TOKEN_ACCESS_ERROR</code> field.</p>

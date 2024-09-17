@@ -3,6 +3,7 @@ package io.github.nichetoolkit.rice.login;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rice.resolver.RestUserResolver;
+import io.github.nichetoolkit.rice.service.TokenService;
 import io.github.nichetoolkit.rice.simple.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
@@ -22,16 +23,16 @@ public class UserResolver implements RestUserResolver {
 
     /**
      * <code>tokenService</code>
-     * {@link io.github.nichetoolkit.rice.login.TokenService} <p>the <code>tokenService</code> field.</p>
-     * @see io.github.nichetoolkit.rice.login.TokenService
+     * {@link TokenService} <p>the <code>tokenService</code> field.</p>
+     * @see TokenService
      */
     private final TokenService tokenService;
 
     /**
      * <code>UserResolver</code>
      * Instantiates a new user resolver.
-     * @param tokenService {@link io.github.nichetoolkit.rice.login.TokenService} <p>the token service parameter is <code>TokenService</code> type.</p>
-     * @see io.github.nichetoolkit.rice.login.TokenService
+     * @param tokenService {@link TokenService} <p>the token service parameter is <code>TokenService</code> type.</p>
+     * @see TokenService
      * @see org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired
