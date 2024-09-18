@@ -5,8 +5,8 @@ import org.springframework.stereotype.Indexed;
 import java.lang.annotation.*;
 
 /**
- * <code>RestPending</code>
- * <p>The type rest pending interface.</p>
+ * <code>RestPended</code>
+ * <p>The type rest pended interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.lang.annotation.Annotation
  * @see java.lang.annotation.Target
@@ -19,7 +19,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Indexed
-public @interface RestPending {
+public @interface RestPended {
 
     /**
      * <code>type</code>

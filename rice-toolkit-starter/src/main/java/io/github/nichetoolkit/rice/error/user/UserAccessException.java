@@ -1,7 +1,6 @@
 package io.github.nichetoolkit.rice.error.user;
 
 import io.github.nichetoolkit.rest.error.natives.TokenErrorException;
-import io.github.nichetoolkit.rice.error.TokenErrorStatus;
 import io.github.nichetoolkit.rice.error.UserErrorStatus;
 
 /**

@@ -16,7 +16,7 @@ import io.github.nichetoolkit.rice.helper.HttpRequestHelper;
 import io.github.nichetoolkit.rice.simple.LoginResult;
 import io.github.nichetoolkit.rice.simple.UserModel;
 import io.github.nichetoolkit.rice.stereotype.RestLogin;
-import io.github.nichetoolkit.rice.stereotype.RestPending;
+import io.github.nichetoolkit.rice.stereotype.RestPended;
 import io.micrometer.core.instrument.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +62,7 @@ public class TokenService implements RestTokenResolver<UserModel, LoginResult> {
 
     @Override
     public String resolveToken(RestMap restMap, Object login, LoginResult loginResult) throws RestException {
-        if (!(login instanceof RestLogin) && !(login instanceof RestPending)) {
+        if (!(login instanceof RestLogin) && !(login instanceof RestPended)) {
             return null;
         }
         if ((login instanceof RestLogin)) {
@@ -71,8 +71,8 @@ public class TokenService implements RestTokenResolver<UserModel, LoginResult> {
                 loginResult.setToken(null);
             }
         }
-        if ((login instanceof RestPending)) {
-            if (((RestPending) login).update()) {
+        if ((login instanceof RestPended)) {
+            if (((RestPended) login).update()) {
                 redisTemplate.delete(UserModel.LOGIN_TOKEN);
                 loginResult.setToken(null);
             }

@@ -2,7 +2,6 @@ package io.github.nichetoolkit.rice.simple;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.github.nichetoolkit.rice.RestInfoModel;
-import io.github.nichetoolkit.rice.RestTablekey;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.enums.SaveType;
 import org.springframework.format.annotation.DateTimeFormat;

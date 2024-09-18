@@ -10,7 +10,7 @@ import io.github.nichetoolkit.rice.resolver.DefaultMapArgumentResolver;
 import io.github.nichetoolkit.rice.stereotype.RestAuth;
 import io.github.nichetoolkit.rice.stereotype.RestLogin;
 import io.github.nichetoolkit.rice.stereotype.RestLogout;
-import io.github.nichetoolkit.rice.stereotype.RestPending;
+import io.github.nichetoolkit.rice.stereotype.RestPended;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
@@ -99,9 +99,9 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
             restLogin = httpRequest.getMethodAnnotation(RestLogin.class);
         }
         /* 预登录接口注解 */
-        RestPending restPending = AnnotationUtils.getAnnotation(returnType.getAnnotatedElement(), RestPending.class);
-        if (GeneralUtils.isEmpty(restPending) && GeneralUtils.isNotEmpty(httpRequest)) {
-            restPending = httpRequest.getMethodAnnotation(RestPending.class);
+        RestPended restPended = AnnotationUtils.getAnnotation(returnType.getAnnotatedElement(), RestPended.class);
+        if (GeneralUtils.isEmpty(restPended) && GeneralUtils.isNotEmpty(httpRequest)) {
+            restPended = httpRequest.getMethodAnnotation(RestPended.class);
         }
         /* 授权码接口注解 */
         RestAuth restAuth = AnnotationUtils.getAnnotation(returnType.getAnnotatedElement(), RestAuth.class);
@@ -124,11 +124,11 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
                         }
                         continue;
                     }
-                    if (GeneralUtils.isNotEmpty(restPending)) {
+                    if (GeneralUtils.isNotEmpty(restPended)) {
                         /* 预登录接口拦截 */
-                        Object pendingResult = loginAdvice.doPendingHandle(httpRequest, body, returnType, restMap);
-                        if (GeneralUtils.isNotEmpty(pendingResult)) {
-                            return pendingResult;
+                        Object pendedResult = loginAdvice.doPendingHandle(httpRequest, body, returnType, restMap);
+                        if (GeneralUtils.isNotEmpty(pendedResult)) {
+                            return pendedResult;
                         }
                         continue;
                     }
