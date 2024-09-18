@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RestNotelog("user service")
-@RequestMapping("/user")
+@RequestMapping("/rest/user")
 public class UserController {
 
     /**

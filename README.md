@@ -28,7 +28,6 @@
 
 [Wiki Reference](https://github.com/NicheToolkit/rice-toolkit/wiki): https://github.com/NicheToolkit/rice-toolkit/wiki
 
-
 ## Instructions
 
 ### Maven Usages
@@ -96,10 +95,10 @@
 |     `partition.save-size`     |  `Integer`   |    `500`     |                                      the partition size of  model on rest service save handle.                                      |
 |    `partition.delete-size`    |  `Integer`   |    `1000`    |          the partition size of `in` sql usage on rest service delete handle.(the size of sql param: in (p1,p2,p3...p1000))          |
 |     `delete.delete-mode`      | `DeleteMode` |    `none`    |                   the delete mode of data on rest service delete handle.(the logical delete implementation mode)                    |
-|     `delete.remove-mode`      | `RemoveMode` |   `number`   |                   the remove mode of data on rest service remove handle.(the logical remove implementation mode)                   |
+|     `delete.remove-mode`      | `RemoveMode` |   `number`   |                   the remove mode of data on rest service remove handle.(the logical remove implementation mode)                    |
 |     `delete.before-skip`      |  `Boolean`   |    `true`    |                               the switch of skip delete before handle on rest service delete handle.                                |
 |      `delete.after-skip`      |  `Boolean`   |    `true`    |                                the switch of skip delete after handle on rest service delete handle.                                |
-|     `delete.pinpoint-sign`     |  `Boolean`   |   `false`    |                               the switch of remove data with pinpoint sign on rest service query handle.                               |
+|   `delete.pinpoint-enabled`   |  `Boolean`   |   `false`    |                             the switch of remove data with pinpoint sign on rest service query handle.                              |
 |     `delete.boolean-sign`     |  `Boolean`   |    `true`    |                                   the sign of delete data when logical remove model is `boolean`.                                   |
 |    `delete.boolean-value`     |  `Boolean`   |   `false`    |                                  the value of default data when logical remove model is `boolean`.                                  |
 |     `delete.number-sign`      |  `Integer`   |     `2`      |                                   the sign of delete data when logical remove model is `number`.                                    |
@@ -121,7 +120,7 @@ nichetoolkit.rice.bean.delete.delete-mode=none
 nichetoolkit.rice.bean.delete.remove-mode=number
 nichetoolkit.rice.bean.delete.before-skip=true
 nichetoolkit.rice.bean.delete.after-skip=true
-nichetoolkit.rice.bean.delete.pinpoint-sign=false
+nichetoolkit.rice.bean.delete.pinpoint-enabled=true
 nichetoolkit.rice.bean.delete.boolean-sign=true
 nichetoolkit.rice.bean.delete.boolean-value=false
 nichetoolkit.rice.bean.delete.number-sign=2
@@ -188,17 +187,17 @@ nichetoolkit.rice.serialize.big-decimal-format=0.00
 
 the model is used on service or controller handle.
 
-|        name        |                          typeParams                          |                         description                          |
-| :----------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-|    `SaveModel`     |                                                              | the model is used to keep `SaveType` and `logicSign` fields. |
-|   `OperateModel`   |                                                              |        the model is used to keep `OperateType` field.        |
-|    `TimeModel`     |                                                              | the model is used to keep `createTime` and `updateTime` field. |
-|     `IdModel`      |                            `<I>`                             | the model is used to keep `id` field，and the `id` type can be any object. |
-|    `InfoModel`     |                            `<I>`                             |  the model is used to keep `name` and `description` fields.  |
-|  `DefaultIdModel`  | `<M extends DefaultIdModel<M,E,I>,E extends DefaultIdEntity<E,M,I>,I>` | the children models of  `DefaultIdModel` must be implement the `toEntity()` method，and the `id` type can be any object. |
+|        name        |                                    typeParams                                    |                                                        description                                                        |
+|:------------------:|:--------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------:|
+|    `SaveModel`     |                                                                                  |                               the model is used to keep `SaveType` and `logicSign` fields.                                |
+|   `OperateModel`   |                                                                                  |                                      the model is used to keep `OperateType` field.                                       |
+|    `TimeModel`     |                                                                                  |                              the model is used to keep `createTime` and `updateTime` field.                               |
+|     `IdModel`      |                                      `<I>`                                       |                         the model is used to keep `id` field，and the `id` type can be any object.                         |
+|    `InfoModel`     |                                      `<I>`                                       |                                the model is used to keep `name` and `description` fields.                                 |
+|  `DefaultIdModel`  |      `<M extends DefaultIdModel<M,E,I>,E extends DefaultIdEntity<E,M,I>,I>`      |  the children models of  `DefaultIdModel` must be implement the `toEntity()` method，and the `id` type can be any object.  |
 | `DefaultInfoModel` | `<M extends DefaultInfoModel<M, E, I>, E extends DefaultInfoEntity<E, M, I>, I>` | the children models of  `DefaultInfoModel` must be implement the `toEntity()` method，and the `id` type can be any object. |
-|   `RestIdModel`    | `<M extends RestIdModel<M, E>, E extends RestIdEntity<E, M>>` | the children models of  `RestIdModel` must be implement the `toEntity()` method，and the `id` type is default `String`. |
-|  `RestInfoModel`   | `<M extends RestInfoModel<M, E>, E extends RestInfoEntity<E, M>>` | the children models of  `RestInfoModel` must be implement the `toEntity()` method，and the `id` type is default `String`. |
+|   `RestIdModel`    |          `<M extends RestIdModel<M, E>, E extends RestIdEntity<E, M>>`           |  the children models of  `RestIdModel` must be implement the `toEntity()` method，and the `id` type is default `String`.   |
+|  `RestInfoModel`   |        `<M extends RestInfoModel<M, E>, E extends RestInfoEntity<E, M>>`         | the children models of  `RestInfoModel` must be implement the `toEntity()` method，and the `id` type is default `String`.  |
 
 * examples
 
@@ -460,25 +459,27 @@ the advice is used to handle the models or entities on service.
 </table>
 * examples
 
-  ```java
-  @Service
-  public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity, SimpleFilter> implements SimpleService {
-  
-      @Override
-      protected void optionalInit(@NonNull SimpleModel model) throws RestException {
-          model.setTime(Optional.ofNullable(model.getTime()).orElse(new Date()));
-      }
-  
-      @Override
-      public String queryWhereSql(SimpleFilter filter) throws RestException {
-          return filter.toTimeSql("create_time").toNameSql("name").toQuerySql(this, "logic_sign").addSorts("id").toIdSql().toSql();
-      }
-  }
-  ```
+```java
+
+@Service
+public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity, SimpleFilter> implements SimpleService {
+
+    @Override
+    protected void optionalInit(@NonNull SimpleModel model) throws RestException {
+        model.setTime(Optional.ofNullable(model.getTime()).orElse(new Date()));
+    }
+
+    @Override
+    public String queryWhereSql(SimpleFilter filter) throws RestException {
+        return filter.toTimeSql("create_time").toNameSql("name").toQuerySql(this, "logic_sign").addSorts("id").toIdSql().toSql();
+    }
+}
+```
 
 #### Mapper
 
 * default mapper
+
 <table style="text-align: center;">
 <tr>
 <th>name</th>
@@ -546,23 +547,23 @@ the advice is used to handle the models or entities on service.
 <tr>
 <td rowspan=6 style="vertical-align: middle;"><code>RemoveMapper</code></td>
 <td rowspan=6 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
-<td><code>removeById(@Param("id") I id, @Param("sign") String sign)</code></td>
+<td><code>removeById(@Param("id") I id, @Param("logicSign") String logicSign)</code></td>
 <td rowspan=6 style="vertical-align: middle;">the mapper is used to handle <code>remove</code> and <code>removeAll</code> methods.</td>
 </tr>
 <tr>
-<td><code>removeDynamicById(@Param("tablename") String tablename, @Param("id") I id, @Param("sign") String sign)</code></td>
+<td><code>removeDynamicById(@Param("tablename") String tablename, @Param("id") I id, @Param("logicSign") String logicSign)</code></td>
 </tr>
 <tr>
-<td><code>removeAll(@Param("idList") Collection&lt;I&gt; idList, @Param("sign") String sign)</code></td>
+<td><code>removeAll(@Param("idList") Collection&lt;I&gt; idList, @Param("logicSign") String logicSign)</code></td>
 </tr>
 <tr>
-<td><code>removeDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection&lt;I&gt; idList, @Param("sign") String sign)</code></td>
+<td><code>removeDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection&lt;I&gt; idList, @Param("logicSign") String logicSign)</code></td>
 </tr>
 <tr>
-<td><code>removeAllByWhere(@Param("whereSql") String whereSql, @Param("sign") String sign)</code></td>
+<td><code>removeAllByWhere(@Param("whereSql") String whereSql, @Param("logicSign") String logicSign)</code></td>
 </tr>
 <tr>
-<td><code>removeDynamicAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql,@Param("sign") String sign)</code></td>
+<td><code>removeDynamicAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql,@Param("logicSign") String logicSign)</code></td>
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>SaveMapper</code></td>
@@ -609,29 +610,29 @@ the advice is used to handle the models or entities on service.
 <tr>
 <td rowspan=8 style="vertical-align: middle;"><code>InfoMapper</code></td>
 <td rowspan=8 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;,I&gt;</code></td>
-<td><code>findByName(@Param("name") String name, @Param("sign") String sign)</code></td>
+<td><code>findByName(@Param("name") String name, @Param("logicSign") String logicSign)</code></td>
 <td rowspan=8 style="vertical-align: middle;">the mapper is used to handle <code>find</code> and <code>findAll</code> methods.</td>
 </tr>
 <tr>
-<td><code>findDynamicByName(@Param("tablename") String tablename, @Param("name") String name, @Param("sign") String sign)</code></td>
+<td><code>findDynamicByName(@Param("tablename") String tablename, @Param("name") String name, @Param("logicSign") String logicSign)</code></td>
 </tr>
 <tr>
-<td><code>findByNameAndNotId(@Param("name") String name, @Param("id") I id, @Param("sign") String sign)</code></td>
+<td><code>findByNameAndNotId(@Param("name") String name, @Param("id") I id, @Param("logicSign") String logicSign)</code></td>
 </tr>
 <tr>
-<td><code>findDynamicByNameAndNotId(@Param("tablename") String tablename, @Param("name") String name, @Param("id") I id, @Param("sign") String sign)</code></td>
+<td><code>findDynamicByNameAndNotId(@Param("tablename") String tablename, @Param("name") String name, @Param("id") I id, @Param("logicSign") String logicSign)</code></td>
 </tr>
 <tr>
-<td><code>findByEntity(@Param("entity") E entity, @Param("sign") String sign)</code></td>
+<td><code>findByEntity(@Param("entity") E entity, @Param("logicSign") String logicSign)</code></td>
 </tr>
 <tr>
-<td><code>findDynamicByEntity(@Param("tablename") String tablename, @Param("entity") E entity, @Param("sign") String sign)</code></td>
+<td><code>findDynamicByEntity(@Param("tablename") String tablename, @Param("entity") E entity, @Param("logicSign") String logicSign)</code></td>
 </tr>
 <tr>
-<td><code>findByEntityAndNotId(@Param("entity") E entity, @Param("id") I id, @Param("sign") String sign)</code></td>
+<td><code>findByEntityAndNotId(@Param("entity") E entity, @Param("id") I id, @Param("logicSign") String logicSign)</code></td>
 </tr>
 <tr>
-<td><code>findDynamicByEntityAndNotId(@Param("tablename") String tablename, @Param("entity") E entity, @Param("id") I id, @Param("sign") String sign)</code></td>
+<td><code>findDynamicByEntityAndNotId(@Param("tablename") String tablename, @Param("entity") E entity, @Param("id") I id, @Param("logicSign") String logicSign)</code></td>
 </tr>
 </table>
 
@@ -677,17 +678,17 @@ the advice is used to handle the models or entities on service.
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>RemoveLinkMapper</code></td>
 <td rowspan=4 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
-<td><code>removeByLinkId(@Param("linkId") I linkId, @Param("sign") String sign)</code></td>
+<td><code>removeByLinkId(@Param("linkId") I linkId, @Param("logicSign") String logicSign)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>remove</code> and <code>removeAll</code> methods.</td>
 </tr>
 <tr>
-<td><code>removeDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") I linkId, @Param("sign") String sign)</code></td>
+<td><code>removeDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") I linkId, @Param("logicSign") String logicSign)</code></td>
 </tr>
 <tr>
-<td><code>removeAllByLinkIds(@Param("linkIdList") Collection&lt;I&gt; linkIdList, @Param("sign") String sign)</code></td>
+<td><code>removeAllByLinkIds(@Param("linkIdList") Collection&lt;I&gt; linkIdList, @Param("logicSign") String logicSign)</code></td>
 </tr>
 <tr>
-<td><code>removeDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection&lt;I&gt; linkIdList, @Param("sign") String sign)</code></td>
+<td><code>removeDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection&lt;I&gt; linkIdList, @Param("logicSign") String logicSign)</code></td>
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>AlertFieldMapper</code></td>
@@ -704,21 +705,6 @@ the advice is used to handle the models or entities on service.
 <tr>
 <td><code>alertDynamicFieldAll(@Param("tablename") String tablename, @Param("idList") Collection&lt;I&gt; idList, @Param("field") String field, @Param("key") Integer key)</code></td>
 </tr>
-<tr>
-<td rowspan=4 style="vertical-align: middle;"><code>AlertBiFieldMapper</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
-<td><code>alertBiFieldById(@Param("id") I id, @Param("field") String field, @Param("biField") String biField, @Param("key") Integer key)</code></td>
-<td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>alert</code> and <code>alertAll</code> methods.</td>
-</tr>
-<tr>
-<td><code>alertDynamicBiFieldById(@Param("tablename") String tablename, @Param("id") I id, @Param("field") String field, @Param("biField") String biField, @Param("key") Integer key)</code></td>
-</tr>
-<tr>
-<td><code>alertBiFieldAll(@Param("idList") Collection&lt;I&gt; idList, @Param("field") String field, @Param("biField") String biField, @Param("key") Integer key)</code></td>
-</tr>
-<tr>
-<td><code>alertDynamicBiFieldAll(@Param("tablename") String tablename, @Param("idList") Collection&lt;I&gt; idList, @Param("field") String field, @Param("biField") String biField, @Param("key") Integer key)</code></td>
-</tr>
 </table>
 
 * native mapper
@@ -731,13 +717,13 @@ the advice is used to handle the models or entities on service.
 <th>description</th>
 </tr>
 <tr>
-<td rowspan=4 style="vertical-align: middle;"><code>LoadMapper</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>FindLoadMapper</code></td>
 <td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;, I&gt;</code></td>
-<td><code>findByLoadId(@Param("id") I id, @Param("loadParams") Boolean... loadParams)</code></td>
+<td><code>findByIdLoad(@Param("id") I id, @Param("loadParams") Boolean... loadParams)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>find</code> and <code>findAll</code> methods.</td>
 </tr>
 <tr>
-<td><code>findDynamicByLoadId(@Param("tablename") String tablename, @Param("id") I id, @Param("loadParams") Boolean... loadParams)</code></td>
+<td><code>findDynamicByIdLoad(@Param("tablename") String tablename, @Param("id") I id, @Param("loadParams") Boolean... loadParams)</code></td>
 </tr>
 <tr>
 <td><code>findAllLoad(@Param("idList") Collection&lt;I&gt; idList, @Param("loadParams") Boolean... loadParams)</code></td>
@@ -746,7 +732,7 @@ the advice is used to handle the models or entities on service.
 <td><code>findDynamicAllLoad(@Param("tablename") String tablename, @Param("idList") Collection&lt;I&gt; idList, @Param("loadParams") Boolean... loadParams)</code></td>
 </tr>
 <tr>
-<td rowspan=2 style="vertical-align: middle;"><code>LoadFilterMapper</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>FilterLoadMapper</code></td>
 <td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;, I&gt;</code></td>
 <td><code>findAllByLoadWhere(@Param("whereSql") String whereSql, @Param("loadParams") Boolean... loadParams)</code></td>
 <td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>findAll</code> methods.</td>
@@ -755,34 +741,52 @@ the advice is used to handle the models or entities on service.
 <td><code>findDynamicAllByLoadWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("loadParams") Boolean... loadParams)</code></td>
 </tr>
 <tr>
-<td rowspan=8 style="vertical-align: middle;"><code>FilterMapper</code></td>
-<td rowspan=8 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;,F extends IdFilter&lt;I, K&gt;,I,K&gt;</code></td>
-<td><code>operateAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("operate") Integer operate)</code></td>
-<td rowspan=8 style="vertical-align: middle;">the mapper is used to handle <code>operateAll</code>、<code>removeAll</code>、<code>findAll</code> and <code>deleteAll</code> methods.</td>
+<td rowspan=2 style="vertical-align: middle;"><code>NameLoadMapper</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;, I&gt;</code></td>
+<td><code>findByNameLoad(@Param("name") String name,@Param("logicValue") String logicValue, @Param("loadParams") Boolean... loadParams)</code></td>
+<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>find</code> methods.</td>
 </tr>
 <tr>
-<td><code>operateDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("operate") Integer operate)</code></td>
+<td><code>findDynamicByNameLoad(@Param("tablename") String tablename, @Param("name") String name, @Param("logicValue") String logicValue, @Param("loadParams") Boolean... loadParams)</code></td>
 </tr>
 <tr>
-<td><code>removeAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("sign") String sign)</code></td>
-</tr>
-<tr>
-<td><code>removeDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("sign") String sign)</code></td>
-</tr>
-<tr>
+<td rowspan=2 style="vertical-align: middle;"><code>FindFilterMapper</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
 <td><code>findAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter)</code></td>
+<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>findAll</code> methods.</td>
 </tr>
 <tr>
 <td><code>findDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter)</code></td>
 </tr>
 <tr>
+<td rowspan=2 style="vertical-align: middle;"><code>DeleteFilterMapper</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
 <td><code>deleteAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter)</code></td>
+<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>deleteAll</code> methods.</td>
 </tr>
 <tr>
 <td><code>deleteDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter)</code></td>
 </tr>
 <tr>
-<td rowspan=2 style="vertical-align: middle;"><code>FieldFilterMapper</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>RemoveFilterMapper</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
+<td><code>removeAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("logicSign") String logicSign)</code></td>
+<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>removeAll</code> methods.</td>
+</tr>
+<tr>
+<td><code>removeDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("logicSign") String logicSign)</code></td>
+</tr>
+<tr>
+<td rowspan=2 style="vertical-align: middle;"><code>OperateFilterMapper</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
+<td><code>operateAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("operate") Integer operate)</code></td>
+<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>removeAll</code> methods.</td>
+</tr>
+<tr>
+<td><code>operateDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("operate") Integer operate)</code></td>
+</tr>
+<tr>
+<td rowspan=2 style="vertical-align: middle;"><code>FindFieldMapper</code></td>
 <td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;, I&gt;</code></td>
 <td><code>findAllByFieldWhere(@Param("whereSql") String whereSql, @Param("fieldParams") String... fieldParams)</code></td>
 <td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>findAll</code> methods.</td>
@@ -794,11 +798,13 @@ the advice is used to handle the models or entities on service.
 
 * examples
 
-  ```java
-  @Component
-  public interface SimpleMapper extends RestInfoMapper<SimpleEntity>, Mapper<SimpleEntity,String> {
-  }
-  ```
+```java
+
+@Component
+public interface SimpleMapper extends RestInfoMapper<SimpleEntity>, Mapper<SimpleEntity, String> {
+}
+```
+
 #### Service
 
 * default service
@@ -869,6 +875,15 @@ the advice is used to handle the models or entities on service.
 </tr>
 <tr>
 <td><code>removeById(K tablekey, I id)</code></td>
+</tr>
+<tr>
+<td rowspan=2 style="vertical-align: middle;"><code>NameService</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;, I, K&gt;</code></td>
+<td><code>queryByName(String name, Boolean... isLoadArray)</code></td>
+<td rowspan=2 style="vertical-align: middle;">the service is used to handle <code>query</code>  methods.</td>
+</tr>
+<tr>
+<td><code>queryByName(K tablekey, String name, Boolean... isLoadArray)</code></td>
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>SingleService</code></td>
@@ -1037,21 +1052,6 @@ the advice is used to handle the models or entities on service.
 <tr>
 <td><code>alertFieldById(String tablekey, I id, String field, RestKey&lt;Integer&gt; keyType)</code></td>
 </tr>
-<tr>
-<td rowspan=4 style="vertical-align: middle;"><code>AlertBiFieldService</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
-<td><code>alertBiFieldAll(Collection&lt;I&gt; idList, String field, String biField, RestKey&lt;Integer&gt; keyType)</code></td>
-<td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>alert</code> and <code>alertAll</code> methods.</td>
-</tr>
-<tr>
-<td><code>alertBiFieldAll(String tablekey, Collection&lt;I&gt; idList, String field, String biField, RestKey&lt;Integer&gt; keyType)</code></td>
-</tr>
-<tr>
-<td><code>alertBiFieldById(I id, String field, String biField, RestKey&lt;Integer&gt; keyType)</code></td>
-</tr>
-<tr>
-<td><code>alertBiFieldById(String tablekey, I id, String field, String biField, RestKey&lt;Integer&gt; keyType)</code></td>
-</tr>
 </table>
 
 * id & info service
@@ -1095,11 +1095,92 @@ public interface SimpleService extends FilterService<SimpleModel, SimpleFilter, 
 
 * default annotation
 
+|  annotation   |                 target                  |                                               description                                                |
+|:-------------:|:---------------------------------------:|:--------------------------------------------------------------------------------------------------------:|
+| `RestService` |           `ElementType.TYPE`            |                      the annotation is used to annotate subclass of super service.                       |
+|  `RestSkip`   | `ElementType.METHOD`、`ElementType.TYPE` |   the annotation is used to annotate `controller ` or `method` that need to skip login related handle.   |
+|  `RestLogin`  |          `ElementType.METHOD`           | the annotation is used to annotate `method` that need to generate authentication information for login.  |
+|  `RestCheck`  |          `ElementType.METHOD`           |         the annotation is used to annotate `method` that need to check token prefixes for login.         |
+|  `RestAuth`   |          `ElementType.METHOD`           |           the annotation is used to annotate `method` that need to check  auth code for login.           |
+| `RestPended`  |          `ElementType.METHOD`           | the annotation is used to annotate `method` that need to precheck  authentication information for login. |
+| `RestLogout`  |          `ElementType.METHOD`           |               the annotation is used to annotate `method` that need to discard for login.                |
+|  `RestUser`   |         `ElementType.PARAMETER`         |      the annotation is used to annotate `parameter` that need to inject user information of login.       |
+
+* examples
+
+```java
+
+@Slf4j
+@CrossOrigin
+@RestController
+@RestNotelog(loggingKey = "login", notelog = "login controller log")
+@RequestMapping("/rest")
+public class LoginController {
+
+    private final LoginService loginService;
+
+    @Autowired
+    public LoginController(LoginService loginService) {
+        this.loginService = loginService;
+    }
+
+    @RestLogin
+    @PostMapping("/login/password")
+    @RestUserlog(loggingType = LoggingType.USER_LOGIN, userlog = "password login")
+    public RestResult<UserModel> loginWithPassword(RestMap restMap, @RequestBody LoginRequest loginRequest) throws RestException {
+        UserModel user = loginService.loginWithPassword(loginRequest);
+        return buildLoginResult(restMap, user);
+    }
+
+    @GetMapping("/logout")
+    @RestUserlog(loggingType = LoggingType.USER_LOGOUT, userlog = "user logout")
+    public RestResult<?> logout() throws Exception {
+        return RestResult.success();
+    }
+
+    private RestResult<UserModel> buildLoginResult(RestMap restMap, UserModel user) {
+        restMap.put(UserModel.LOGIN_USER_INFO, JsonUtils.parseJson(user));
+        restMap.put(UserModel.LOGIN_USER_ID, user.getId());
+        return RestResult.success(user);
+    }
+
+}
+
+```
+* http request
+
+```http request
+
+POST http://localhost:8080/rest/login/password
+Content-Type: application/json
+
+{
+  "account": "testUser",
+  "password": "123456"
+}
+
+> {% client.global.set("auth_token", response.body.data.token); %}
+
+###
+
+GET http://localhost:8080/rest/info
+Authorization: Bearer {{auth_token}}
+
+###
+
+GET http://localhost:8080/rest/logout
+Authorization: Bearer {{auth_token}}
+
+###
+```
+
+### Custom Permissions
+
 
 
 ## Test Example
 
-[rice-toolkit-test-web](https://github.com/NicheToolkit/rice-toolkit/tree/master/rice-toolkit-test-web)
+[rice-toolkit-example](https://github.com/NicheToolkit/rice-toolkit/tree/master/rice-toolkit-example)
 
 ## License
 
@@ -1108,8 +1189,6 @@ public interface SimpleService extends FilterService<SimpleModel, SimpleFilter, 
 ## Dependencies
 
 [Rest-toolkit](https://github.com/NicheToolkit/rest-toolkit)
-
-[Mybatis-toolkit](https://github.com/NicheToolkit/mybatis-toolkit)
 
 [Spring Boot](https://github.com/spring-projects/spring-boot)
 

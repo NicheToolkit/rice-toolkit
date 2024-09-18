@@ -57,17 +57,17 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
     @Override
     public void doAnnotationHandle(RestHttpRequest request, HttpServletResponse response, HandlerMethod handlerMethod, RestPurview purview) throws RestException {
         UserModel userModel = tokenService.resolveUserInfo(request);
-        /* 用户权限可自定义实现 这里只做演示 */
+        /* custom user purview */
         userModel.setPurviewType(PurviewType.PURVIEW_1);
-        /* 自定义key模式 */
-        purviewKeys(userModel,RestPurview.Purview.keys(purview));
-        /* 自定义value模式 */
-//        purviewValues(userModel,RestPurview.Purview.values(purview));
+        /* custom key mode check*/
+        purviewKeysCheck(userModel,RestPurview.Purview.keys(purview));
+        /* custom value mode check*/
+        purviewValuesCheck(userModel,RestPurview.Purview.values(purview));
     }
 
     /**
-     * <code>purviewKeys</code>
-     * <p>the keys method.</p>
+     * <code>purviewKeysCheck</code>
+     * <p>the keys check method.</p>
      * @param userModel   {@link io.github.nichetoolkit.rice.simple.UserModel} <p>the user model parameter is <code>UserModel</code> type.</p>
      * @param purviewKeys {@link java.util.List} <p>the purview keys parameter is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
@@ -75,10 +75,9 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    private void purviewKeys(UserModel userModel,List<String> purviewKeys) throws RestException {
+    private void purviewKeysCheck(UserModel userModel,List<String> purviewKeys) throws RestException {
         PurviewType purviewType = userModel.getPurviewType();
         if (GeneralUtils.isNotEmpty(purviewKeys)) {
-            /* 用户权限为空时，校验不通过 */
             OptionalUtils.ofEmptyable(purviewType).emptyElseThrow(TokenPermissionException::new);
             String purviewTypeKey = purviewType.getKey();
             OptionalUtils.falseable(purviewKeys.contains(purviewTypeKey),TokenPermissionException::new);
@@ -86,8 +85,8 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
     }
 
     /**
-     * <code>purviewValues</code>
-     * <p>the values method.</p>
+     * <code>purviewValuesCheck</code>
+     * <p>the values check method.</p>
      * @param userModel     {@link io.github.nichetoolkit.rice.simple.UserModel} <p>the user model parameter is <code>UserModel</code> type.</p>
      * @param purviewValues {@link java.util.List} <p>the purview values parameter is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
@@ -95,10 +94,9 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    private void purviewValues(UserModel userModel,List<Long> purviewValues) throws RestException {
+    private void purviewValuesCheck(UserModel userModel,List<Long> purviewValues) throws RestException {
         PurviewType purviewType = userModel.getPurviewType();
         if (GeneralUtils.isNotEmpty(purviewValues)) {
-            /* 用户权限为空时，校验不通过 */
             OptionalUtils.ofEmptyable(purviewType).emptyElseThrow(TokenPermissionException::new);
             Long annexValue = RestReckon.annexValue(purviewValues);
             Long value = purviewType.getValue();

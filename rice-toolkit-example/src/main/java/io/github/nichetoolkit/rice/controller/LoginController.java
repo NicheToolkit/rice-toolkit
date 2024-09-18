@@ -7,12 +7,11 @@ import io.github.nichetoolkit.rest.userlog.stereotype.RestNotelog;
 import io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.RestMap;
-import io.github.nichetoolkit.rice.purview.PurviewType;
 import io.github.nichetoolkit.rice.service.LoginService;
 import io.github.nichetoolkit.rice.simple.LoginRequest;
 import io.github.nichetoolkit.rice.simple.UserModel;
-import io.github.nichetoolkit.rice.purview.RestPurview;
 import io.github.nichetoolkit.rice.stereotype.RestLogin;
+import io.github.nichetoolkit.rice.stereotype.RestLogout;
 import io.github.nichetoolkit.rice.stereotype.RestUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,20 +105,18 @@ public class LoginController {
     /**
      * <code>logout</code>
      * <p>the method.</p>
-     * @param user {@link io.github.nichetoolkit.rice.simple.UserModel} <p>the user parameter is <code>UserModel</code> type.</p>
      * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the return object is <code>RestResult</code> type.</p>
      * @throws Exception {@link java.lang.Exception} <p>the exception is <code>Exception</code> type.</p>
-     * @see io.github.nichetoolkit.rice.simple.UserModel
-     * @see io.github.nichetoolkit.rice.stereotype.RestUser
      * @see io.github.nichetoolkit.rest.RestResult
+     * @see io.github.nichetoolkit.rice.stereotype.RestLogout
      * @see org.springframework.web.bind.annotation.GetMapping
      * @see io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog
      * @see java.lang.Exception
      */
+    @RestLogout
     @GetMapping("/logout")
     @RestUserlog(loggingType = LoggingType.USER_LOGOUT, userlog = "user logout")
-    public RestResult<?> logout(@RestUser UserModel user) throws Exception {
-        loginService.logoutWithUserId(user.getId());
+    public RestResult<?> logout() throws Exception {
         return RestResult.success();
     }
 
@@ -140,24 +137,6 @@ public class LoginController {
     @RestUserlog(loggingType = LoggingType.USER, userlog = "user info")
     public RestResult<UserModel> info(@RestUser UserModel user) throws RestException {
         return RestResult.success(user);
-    }
-
-    /**
-     * <code>testPurview</code>
-     * <p>the purview method.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the purview return object is <code>RestResult</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rest.RestResult
-     * @see org.springframework.web.bind.annotation.GetMapping
-     * @see io.github.nichetoolkit.rice.purview.RestPurview
-     * @see io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog
-     * @see io.github.nichetoolkit.rest.RestException
-     */
-    @GetMapping("/test")
-    @RestPurview(purview = PurviewType.PURVIEW_1)
-    @RestUserlog(loggingType = LoggingType.TEST, userlog = "purview test")
-    public RestResult<?> testPurview() throws RestException {
-        return RestResult.success("the purview test successfully");
     }
 
     /**

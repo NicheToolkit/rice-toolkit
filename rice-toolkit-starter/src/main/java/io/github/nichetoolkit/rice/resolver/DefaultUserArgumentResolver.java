@@ -75,7 +75,7 @@ public class DefaultUserArgumentResolver implements HandlerMethodArgumentResolve
                 }
             }
         } else {
-            log.warn("the user resolver can not found 'UserAdvice'");
+            log.warn("the user resolver can not found");
         }
         return null;
     }

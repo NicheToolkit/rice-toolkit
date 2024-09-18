@@ -31,12 +31,6 @@ import java.util.Optional;
 public class LoginService {
 
     /**
-     * <code>redisTemplate</code>
-     * {@link org.springframework.data.redis.core.StringRedisTemplate} <p>the <code>redisTemplate</code> field.</p>
-     * @see org.springframework.data.redis.core.StringRedisTemplate
-     */
-    private final StringRedisTemplate redisTemplate;
-    /**
      * <code>userService</code>
      * {@link io.github.nichetoolkit.rice.service.UserService} <p>the <code>userService</code> field.</p>
      * @see io.github.nichetoolkit.rice.service.UserService
@@ -52,17 +46,14 @@ public class LoginService {
     /**
      * <code>LoginService</code>
      * Instantiates a new login service.
-     * @param redisTemplate {@link org.springframework.data.redis.core.StringRedisTemplate} <p>the redis template parameter is <code>StringRedisTemplate</code> type.</p>
-     * @param userService   {@link io.github.nichetoolkit.rice.service.UserService} <p>the user service parameter is <code>UserService</code> type.</p>
-     * @param tokenService  {@link io.github.nichetoolkit.rice.service.TokenService} <p>the token service parameter is <code>TokenService</code> type.</p>
-     * @see org.springframework.data.redis.core.StringRedisTemplate
+     * @param userService  {@link io.github.nichetoolkit.rice.service.UserService} <p>the user service parameter is <code>UserService</code> type.</p>
+     * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>the token service parameter is <code>TokenService</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.UserService
      * @see io.github.nichetoolkit.rice.service.TokenService
      * @see org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired
-    public LoginService(StringRedisTemplate redisTemplate, UserService userService, TokenService tokenService) {
-        this.redisTemplate = redisTemplate;
+    public LoginService(UserService userService, TokenService tokenService) {
         this.userService = userService;
         this.tokenService = tokenService;
     }
@@ -110,22 +101,6 @@ public class LoginService {
             OptionalUtils.falseable(encryptPassword.equals(localPassword), LoginPasswordException::new);
         }
         return localUser;
-    }
-
-
-    /**
-     * <code>logoutWithUserId</code>
-     * <p>the with user id method.</p>
-     * @param userId {@link java.lang.String} <p>the user id parameter is <code>String</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.String
-     * @see io.github.nichetoolkit.rest.RestException
-     */
-    public void logoutWithUserId(String userId) throws RestException {
-        Object accessToken = redisTemplate.opsForValue().get(UserModel.LOGIN_TOKEN + userId);
-        if (GeneralUtils.isNotEmpty(accessToken)) {
-            redisTemplate.delete(UserModel.LOGIN_TOKEN + userId);
-        }
     }
 
 }
