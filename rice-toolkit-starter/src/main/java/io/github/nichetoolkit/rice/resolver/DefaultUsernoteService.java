@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice.resolver;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.RestUsernoteAdvice;
-import io.github.nichetoolkit.rest.resolver.RestGenericTypeResolver;
+import io.github.nichetoolkit.rest.reflect.GenericTypeResolver;
 import io.github.nichetoolkit.rest.userlog.LoggingType;
 import io.github.nichetoolkit.rest.userlog.RestRequestPack;
 import io.github.nichetoolkit.rest.userlog.RestResponsePack;
@@ -62,7 +62,7 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
      */
     @SuppressWarnings(value = "unchecked")
     private Class<T> childClass() {
-        return (Class<T>) RestGenericTypeResolver.resolveClass(RestGenericTypeResolver.resolveType(
+        return (Class<T>) GenericTypeResolver.resolveClass(GenericTypeResolver.resolveType(
                 DefaultUsernoteService.class.getTypeParameters()[0], getClass(), DefaultUsernoteService.class));
     }
 

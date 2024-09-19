@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
-import io.github.nichetoolkit.rest.resolver.RestGenericTypeResolver;
+import io.github.nichetoolkit.rest.reflect.GenericTypeResolver;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import org.springframework.web.method.HandlerMethod;
 
@@ -57,7 +57,7 @@ public interface DefaultAdvice<A extends Annotation> extends Comparable<DefaultA
      */
     @SuppressWarnings(value = "unchecked")
     default Class<A> clazz() {
-        return (Class<A>) RestGenericTypeResolver.resolveClass(RestGenericTypeResolver.resolveType(
+        return (Class<A>) GenericTypeResolver.resolveClass(GenericTypeResolver.resolveType(
                 DefaultAdvice.class.getTypeParameters()[0], getClass(), DefaultAdvice.class));
     }
 
