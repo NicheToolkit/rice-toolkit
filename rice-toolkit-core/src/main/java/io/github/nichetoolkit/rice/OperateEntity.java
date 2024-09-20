@@ -2,9 +2,9 @@ package io.github.nichetoolkit.rice;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.github.nichetoolkit.mybatis.stereotype.column.RestLogicKey;
+import io.github.nichetoolkit.mybatis.stereotype.column.RestOperateKey;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.mybatis.stereotype.column.RestLogic;
-import io.github.nichetoolkit.mybatis.stereotype.column.RestOperate;
 import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
@@ -28,18 +28,18 @@ public class OperateEntity implements Serializable {
      * <code>operate</code>
      * {@link java.lang.Integer} <p>the <code>operate</code> field.</p>
      * @see java.lang.Integer
-     * @see io.github.nichetoolkit.mybatis.stereotype.column.RestOperate
+     * @see io.github.nichetoolkit.mybatis.stereotype.column.RestOperateKey
      */
-    @RestOperate
+    @RestOperateKey
     protected Integer operate;
 
     /**
      * <code>logicSign</code>
      * {@link java.lang.String} <p>the <code>logicSign</code> field.</p>
      * @see java.lang.String
-     * @see io.github.nichetoolkit.mybatis.stereotype.column.RestLogic
+     * @see io.github.nichetoolkit.mybatis.stereotype.column.RestLogicKey
      */
-    @RestLogic
+    @RestLogicKey
     protected String logicSign;
 
     /**
