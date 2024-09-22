@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.purview;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
+import io.github.nichetoolkit.rest.RestOptional;
 import io.github.nichetoolkit.rest.RestReckon;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
@@ -78,7 +79,7 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
     private void purviewKeysCheck(UserModel userModel,List<String> purviewKeys) throws RestException {
         PurviewType purviewType = userModel.getPurviewType();
         if (GeneralUtils.isNotEmpty(purviewKeys)) {
-            OptionalUtils.ofEmptyable(purviewType).emptyElseThrow(TokenPermissionException::new);
+            RestOptional.ofEmptyable(purviewType).emptyElseThrow(TokenPermissionException::new);
             String purviewTypeKey = purviewType.getKey();
             OptionalUtils.falseable(purviewKeys.contains(purviewTypeKey),TokenPermissionException::new);
         }
@@ -97,7 +98,7 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
     private void purviewValuesCheck(UserModel userModel,List<Long> purviewValues) throws RestException {
         PurviewType purviewType = userModel.getPurviewType();
         if (GeneralUtils.isNotEmpty(purviewValues)) {
-            OptionalUtils.ofEmptyable(purviewType).emptyElseThrow(TokenPermissionException::new);
+            RestOptional.ofEmptyable(purviewType).emptyElseThrow(TokenPermissionException::new);
             Long annexValue = RestReckon.annexValue(purviewValues);
             Long value = purviewType.getValue();
             OptionalUtils.falseable(RestReckon.reachValue(annexValue,value),TokenPermissionException::new);

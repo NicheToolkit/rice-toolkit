@@ -133,7 +133,7 @@ public class UserModel extends RestInfoModel<UserModel, UserEntity> implements R
     @Override
     public UserEntity toEntity() {
         UserEntity entity = new UserEntity();
-        BeanUtils.copyNonullProperties(this, entity);
+        BeanUtils.copyNonnullProperties(this, entity);
         return entity;
     }
 }

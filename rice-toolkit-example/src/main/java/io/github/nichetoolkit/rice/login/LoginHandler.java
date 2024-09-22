@@ -1,10 +1,7 @@
 package io.github.nichetoolkit.rice.login;
 
 
-import io.github.nichetoolkit.rest.RestErrorStatus;
-import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rest.RestHttpRequest;
-import io.github.nichetoolkit.rest.RestResult;
+import io.github.nichetoolkit.rest.*;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
@@ -113,7 +110,7 @@ public class LoginHandler implements LoginAdvice {
     @Override
     public void doLogoutHandle(RestHttpRequest request, Object body, MethodParameter returnType, RestMap restMap) throws RestException {
         UserModel userModel = tokenService.resolveUserInfo(request);
-        OptionalUtils.ofNullable(userModel).ifEmptyPresent(user ->{
+        RestOptional.ofNullable(userModel).ifEmptyPresent(user ->{
             String userId = user.getId();
             Object accessToken = redisTemplate.opsForValue().get(UserModel.LOGIN_TOKEN + userId);
             if (GeneralUtils.isNotEmpty(accessToken)) {

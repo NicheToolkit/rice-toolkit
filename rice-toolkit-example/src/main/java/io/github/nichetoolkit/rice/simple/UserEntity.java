@@ -89,7 +89,7 @@ public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
     @Override
     public UserModel toModel() {
         UserModel model = new UserModel();
-        BeanUtils.copyNonullProperties(this, model);
+        BeanUtils.copyNonnullProperties(this, model);
         return model;
     }
 }

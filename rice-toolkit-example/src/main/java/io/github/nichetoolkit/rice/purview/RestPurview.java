@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.purview;
 
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.RestOptional;
 import io.github.nichetoolkit.rest.stream.RestStream;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
 import org.springframework.lang.NonNull;
@@ -92,10 +93,10 @@ public @interface RestPurview {
          */
         public static List<String> keys(@NonNull RestPurview purview) throws RestException {
             Set<String> keySet = new HashSet<>();
-            OptionalUtils.ofEmptyable(purview.key()).ifEmptyPresent(keySet::add);
-            OptionalUtils.ofEmptyable(purview.keys()).ifEmptyPresent(keys -> keySet.addAll(Arrays.asList(keys)));
-            OptionalUtils.ofNullable(purview.purview()).nullFlatMap(value -> OptionalUtils.ofEmptyable(value.getKey())).emptyMap(keySet::add);
-            OptionalUtils.ofNullable(purview.purviews()).ifNullPresent(values -> RestStream.stream(values).forEach(value -> OptionalUtils.ofNullable(value).nullFlatMap(module -> OptionalUtils.ofEmptyable(module.getKey())).emptyMap(keySet::add)));
+            RestOptional.ofEmptyable(purview.key()).ifEmptyPresent(keySet::add);
+            RestOptional.ofEmptyable(purview.keys()).ifEmptyPresent(keys -> keySet.addAll(Arrays.asList(keys)));
+            RestOptional.ofNullable(purview.purview()).nullFlatMap(value -> RestOptional.ofEmptyable(value.getKey())).emptyMap(keySet::add);
+            RestOptional.ofNullable(purview.purviews()).ifNullPresent(values -> RestStream.stream(values).forEach(value -> RestOptional.ofNullable(value).nullFlatMap(module -> RestOptional.ofEmptyable(module.getKey())).emptyMap(keySet::add)));
             return new ArrayList<>(keySet);
         }
 
@@ -111,10 +112,10 @@ public @interface RestPurview {
          */
         public static List<Long> values(@NonNull RestPurview purview) throws RestException {
             Set<Long> valueSet = new HashSet<>();
-            OptionalUtils.ofEmptyable(purview.value()).ifEmptyPresent(valueSet::add);
-            OptionalUtils.ofEmptyable(purview.values()).ifEmptyPresent(values -> Arrays.stream(values).forEach(valueSet::add));
-            OptionalUtils.ofNullable(purview.purview()).nullFlatMap(value -> OptionalUtils.ofEmptyable(value.getValue())).emptyMap(valueSet::add);
-            OptionalUtils.ofNullable(purview.purviews()).ifNullPresent(values -> RestStream.stream(values).forEach(value -> OptionalUtils.ofNullable(value).nullFlatMap(module -> OptionalUtils.ofEmptyable(module.getValue())).emptyMap(valueSet::add)));
+            RestOptional.ofEmptyable(purview.value()).ifEmptyPresent(valueSet::add);
+            RestOptional.ofEmptyable(purview.values()).ifEmptyPresent(values -> Arrays.stream(values).forEach(valueSet::add));
+            RestOptional.ofNullable(purview.purview()).nullFlatMap(value -> RestOptional.ofEmptyable(value.getValue())).emptyMap(valueSet::add);
+            RestOptional.ofNullable(purview.purviews()).ifNullPresent(values -> RestStream.stream(values).forEach(value -> RestOptional.ofNullable(value).nullFlatMap(module -> RestOptional.ofEmptyable(module.getValue())).emptyMap(valueSet::add)));
             return new ArrayList<>(valueSet);
         }
 
