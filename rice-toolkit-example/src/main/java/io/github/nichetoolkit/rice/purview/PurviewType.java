@@ -14,7 +14,7 @@ import java.util.Optional;
  * @see io.github.nichetoolkit.rest.RestReckon
  * @since Jdk1.8
  */
-public enum PurviewType implements RestReckon {
+public enum PurviewType implements RestReckon<Long> {
     /**
      * <code>PURVIEW_ALL</code>
      * <p>the Purview all purview type field.</p>
