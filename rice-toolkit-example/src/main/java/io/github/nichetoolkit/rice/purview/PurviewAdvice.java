@@ -95,13 +95,13 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    private void purviewValuesCheck(UserModel userModel,List<Long> purviewValues) throws RestException {
+    private void purviewValuesCheck(UserModel userModel,List<Number> purviewValues) throws RestException {
         PurviewType purviewType = userModel.getPurviewType();
         if (GeneralUtils.isNotEmpty(purviewValues)) {
             RestOptional.ofEmptyable(purviewType).emptyElseThrow(TokenPermissionException::new);
-            Long annexValue = RestReckon.annexValue(purviewValues);
-            Long value = purviewType.getValue();
-            OptionalUtils.falseable(RestReckon.reachValue(annexValue,value),TokenPermissionException::new);
+            Number annexValue = RestReckon.annexNumber(purviewValues);
+            Number value = purviewType.getValue();
+            OptionalUtils.falseable(RestReckon.reachNumber(annexValue,value),TokenPermissionException::new);
         }
     }
 }

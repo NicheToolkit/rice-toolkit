@@ -3,7 +3,6 @@ package io.github.nichetoolkit.rice.purview;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestOptional;
 import io.github.nichetoolkit.rest.stream.RestStream;
-import io.github.nichetoolkit.rest.util.OptionalUtils;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Indexed;
 
@@ -110,8 +109,8 @@ public @interface RestPurview {
          * @see java.util.List
          * @see io.github.nichetoolkit.rest.RestException
          */
-        public static List<Long> values(@NonNull RestPurview purview) throws RestException {
-            Set<Long> valueSet = new HashSet<>();
+        public static List<Number> values(@NonNull RestPurview purview) throws RestException {
+            Set<Number> valueSet = new HashSet<>();
             RestOptional.ofEmptyable(purview.value()).ifEmptyPresent(valueSet::add);
             RestOptional.ofEmptyable(purview.values()).ifEmptyPresent(values -> Arrays.stream(values).forEach(valueSet::add));
             RestOptional.ofNullable(purview.purview()).nullFlatMap(value -> RestOptional.ofEmptyable(value.getValue())).emptyMap(valueSet::add);
