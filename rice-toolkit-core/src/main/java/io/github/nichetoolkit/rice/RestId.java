@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.rice;
 
+import java.io.Serializable;
+
 /**
  * <code>RestId</code>
  * <p>The type rest id interface.</p>
@@ -9,7 +11,7 @@ package io.github.nichetoolkit.rice;
  * @since Jdk1.8
  */
 @SuppressWarnings("WeakerAccess")
-public interface RestId<I> {
+public interface RestId<I> extends Serializable {
 
     /**
      * <code>getId</code>

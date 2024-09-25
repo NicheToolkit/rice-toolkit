@@ -1,12 +1,10 @@
 package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rest.helper.PartitionHelper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
-import io.github.nichetoolkit.rice.InfoEntity;
-import io.github.nichetoolkit.rice.InfoModel;
+import io.github.nichetoolkit.rice.RestInfo;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.mapper.InfoMapper;
 import io.github.nichetoolkit.rice.mapper.natives.FindLoadMapper;
@@ -14,7 +12,6 @@ import io.github.nichetoolkit.rice.mapper.natives.NameLoadMapper;
 import org.springframework.lang.NonNull;
 
 import java.lang.reflect.Method;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,7 +32,7 @@ import java.util.List;
  * @since Jdk1.8
  */
 @SuppressWarnings("RedundantThrows")
-public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I>, F extends IdFilter<I, K>, I, K> extends SuperService<M, E, F, I, K> {
+public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, F extends IdFilter<I, K>, I, K> extends SuperService<M, E, F, I, K> {
 
     /**
      * <code>infoMapper</code>
@@ -47,7 +44,7 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
     @Override
     protected void optionalName(@NonNull M model) throws RestException {
         if (isNameNonnull()) {
-            OptionalUtils.fieldable(model.getName(), "the name can not be null！");
+            OptionalUtils.ofFieldNull(model.getName(), "the name can not be null！");
         }
     }
 
@@ -61,18 +58,18 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
      * @see io.github.nichetoolkit.rest.RestException
      */
     protected void fieldRepeat(Boolean existByModel, M model) throws RestException {
-        OptionalUtils.fieldRepeat(existByModel, JsonUtils.parseJson(model));
+        OptionalUtils.ofFieldRepeat(existByModel, JsonUtils.parseJson(model));
     }
 
     @Override
-    public void applyHandle() throws RestException {
+    protected void applyHandle() throws RestException {
         this.createActuator = (K tablekey, @NonNull M model) -> {
             if (isModelUnique()) {
                 Boolean existByModel = existByModel(tablekey, model);
                 fieldRepeat(existByModel, model);
             } else if (isNameUnique()) {
                 Boolean existByName = existByName(tablekey, model);
-                OptionalUtils.nameRepeat(existByName, model.getName());
+                OptionalUtils.ofNameRepeat(existByName, model.getName());
             }
 
         };
@@ -82,7 +79,7 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
                 fieldRepeat(existByModel, model);
             } else if (isNameUnique()) {
                 Boolean existByName = existByNameAndNotId(tablekey, model, model.getId());
-                OptionalUtils.nameRepeat(existByName, model.getName());
+                OptionalUtils.ofNameRepeat(existByName, model.getName());
             }
         };
         if (super.superMapper instanceof InfoMapper) {
@@ -100,11 +97,11 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    protected Boolean existByName(K tablekey, M model) throws RestException {
+    private Boolean existByName(K tablekey, M model) throws RestException {
         if (GeneralUtils.isEmpty(model.getName())) {
             return false;
         }
-        String tablename = tablename(tablekey, model);
+        String tablename = resolveTablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
             entityList = infoMapper.findDynamicByName(tablename, model.getName(), logicValue());
@@ -126,14 +123,14 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    protected Boolean existByNameAndNotId(K tablekey, M model, I id) throws RestException {
+    private Boolean existByNameAndNotId(K tablekey, M model, I id) throws RestException {
         if (GeneralUtils.isEmpty(model.getName())) {
             return false;
         }
         if (GeneralUtils.isEmpty(id)) {
             return existByName(tablekey, model);
         }
-        String tablename = tablename(tablekey, model);
+        String tablename = resolveTablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
             entityList = infoMapper.findDynamicByNameAndNotId(tablename, model.getName(), id, logicValue());
@@ -153,12 +150,12 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    protected Boolean existByModel(K tablekey, M model) throws RestException {
+    private Boolean existByModel(K tablekey, M model) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return false;
         }
         E entity = this.createEntity(model);
-        String tablename = tablename(tablekey, model);
+        String tablename = resolveTablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
             entityList = infoMapper.findDynamicByEntity(tablename, entity, logicValue());
@@ -179,7 +176,7 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    protected Boolean existByModelAndNotId(K tablekey, M model, I id) throws RestException {
+    private Boolean existByModelAndNotId(K tablekey, M model, I id) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return false;
         }
@@ -187,7 +184,7 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
             return existByModel(tablekey, model);
         }
         E entity = this.createEntity(model);
-        String tablename = tablename(tablekey, model);
+        String tablename = resolveTablename(tablekey, model);
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {
             entityList = infoMapper.findDynamicByEntityAndNotId(tablename, entity, id, logicValue());
@@ -254,7 +251,7 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
             return null;
         }
         List<E> entityList;
-        String tablename = tablename(tablekey);
+        String tablename = resolveTablename(tablekey);
         if (isLoadArray.length > 0 && FindLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
             NameLoadMapper<E, I> loadMapper = (NameLoadMapper<E, I>) superMapper;
             Method findMethod = null;
@@ -279,7 +276,7 @@ public abstract class InfoService<M extends InfoModel<I>, E extends InfoEntity<I
         if (GeneralUtils.isEmpty(entityList)) {
             return Collections.emptyList();
         }
-        return modelActuator(entityList, isLoadArray);
+        return mutateEntityList(entityList,entity -> {}, isLoadArray);
     }
 
 }

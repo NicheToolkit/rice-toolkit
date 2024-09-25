@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.IdModel;
+import io.github.nichetoolkit.rice.RestId;
 import io.github.nichetoolkit.rice.RestPage;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 
@@ -18,7 +19,7 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
  * @see io.github.nichetoolkit.rice.service.SaveService
  * @since Jdk1.8
  */
-public interface FilterService<M extends IdModel<I>, F extends IdFilter<I,K>,I,K> extends SaveService<M,I,K> {
+public interface FilterService<M extends RestId<I>, F extends IdFilter<I,K>,I,K> extends SaveService<M,I,K> {
     /**
      * <code>queryAllWithFilter</code>
      * <p>the all with filter method.</p>

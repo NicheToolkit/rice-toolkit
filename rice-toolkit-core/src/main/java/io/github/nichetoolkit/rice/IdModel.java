@@ -55,6 +55,7 @@ public class IdModel<I> extends TimeModel implements RestId<I>{
      * @see io.github.nichetoolkit.rice.IdModel.Builder
      */
     public IdModel(IdModel.Builder<I> builder) {
+        super(builder);
         this.id = builder.id;
     }
 
@@ -85,6 +86,11 @@ public class IdModel<I> extends TimeModel implements RestId<I>{
     @Override
     public String toString() {
         return JsonUtils.parseJson(this);
+    }
+
+
+    public static <I> IdModel.Builder<I> ofId() {
+        return new IdModel.Builder<>();
     }
 
     /**
@@ -157,10 +163,17 @@ public class IdModel<I> extends TimeModel implements RestId<I>{
         }
 
         @Override
+        public IdModel.Builder<I> logic(String logic) {
+            this.logic = logic;
+            return this;
+        }
+
+        @Override
         public IdModel.Builder<I> save(SaveType save) {
             this.save = save;
             return this;
         }
+
         @Override
         public IdModel.Builder<I> save(Integer save) {
             this.save = SaveType.parseKey(save);

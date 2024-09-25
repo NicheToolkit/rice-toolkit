@@ -126,12 +126,6 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
         public Builder() {
         }
 
-        @Override
-        public InfoEntity.Builder<I> id(I id) {
-            this.id = id;
-            return this;
-        }
-
         /**
          * <code>name</code>
          * <p>the method.</p>
@@ -153,6 +147,12 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
          */
         public InfoEntity.Builder<I> description(String description) {
             this.description = description;
+            return this;
+        }
+
+        @Override
+        public InfoEntity.Builder<I> id(I id) {
+            this.id = id;
             return this;
         }
 
@@ -181,8 +181,8 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
         }
 
         @Override
-        public InfoEntity.Builder<I> logicSign(String logicSign) {
-            this.logicSign = logicSign;
+        public InfoEntity.Builder<I> logic(String logic) {
+            this.logic = logic;
             return this;
         }
 

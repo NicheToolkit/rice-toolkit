@@ -75,12 +75,6 @@ public abstract class RestInfoEntity<E extends RestInfoEntity<E, M>, M extends R
         }
 
         @Override
-        public RestInfoEntity.Builder<E, M> id(String id) {
-            this.id = id;
-            return this;
-        }
-
-        @Override
         public RestInfoEntity.Builder<E, M> name(String name) {
             this.name = name;
             return this;
@@ -89,6 +83,12 @@ public abstract class RestInfoEntity<E extends RestInfoEntity<E, M>, M extends R
         @Override
         public RestInfoEntity.Builder<E, M> description(String description) {
             this.description = description;
+            return this;
+        }
+
+        @Override
+        public RestInfoEntity.Builder<E, M> id(String id) {
+            this.id = id;
             return this;
         }
 
@@ -117,8 +117,8 @@ public abstract class RestInfoEntity<E extends RestInfoEntity<E, M>, M extends R
         }
 
         @Override
-        public RestInfoEntity.Builder<E, M> logicSign(String logicSign) {
-            this.logicSign = logicSign;
+        public RestInfoEntity.Builder<E, M> logic(String logic) {
+            this.logic = logic;
             return this;
         }
 

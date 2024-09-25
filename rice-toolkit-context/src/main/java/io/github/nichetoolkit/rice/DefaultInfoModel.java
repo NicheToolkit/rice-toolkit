@@ -78,12 +78,6 @@ public abstract class DefaultInfoModel<M extends DefaultInfoModel<M, E, I>, E ex
         }
 
         @Override
-        public DefaultInfoModel.Builder<M, E, I> id(I id) {
-            this.id = id;
-            return this;
-        }
-
-        @Override
         public DefaultInfoModel.Builder<M, E, I> name(String name) {
             this.name = name;
             return this;
@@ -92,6 +86,12 @@ public abstract class DefaultInfoModel<M extends DefaultInfoModel<M, E, I>, E ex
         @Override
         public DefaultInfoModel.Builder<M, E, I> description(String description) {
             this.description = description;
+            return this;
+        }
+
+        @Override
+        public DefaultInfoModel.Builder<M, E, I> id(I id) {
+            this.id = id;
             return this;
         }
 
@@ -128,6 +128,12 @@ public abstract class DefaultInfoModel<M extends DefaultInfoModel<M, E, I>, E ex
         @Override
         public DefaultInfoModel.Builder<M, E, I> operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
+            return this;
+        }
+
+        @Override
+        public DefaultInfoModel.Builder<M, E, I> logic(String logic) {
+            this.logic = logic;
             return this;
         }
 

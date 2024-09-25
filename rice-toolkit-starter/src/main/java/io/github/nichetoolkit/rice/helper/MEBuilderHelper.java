@@ -43,7 +43,7 @@ public class MEBuilderHelper {
     public static <I, T extends RestId<I>> List<T> partition(Collection<I> targetIdList, FunctionActuator<Collection<I>, List<T>> targetListQueryByIdList) throws RestException {
         RiceBeanProperties beanProperties = ApplicationContextHolder.getBean(RiceBeanProperties.class);
         Integer partitionSize = beanProperties.getPartitionQuery();
-        return partition(targetIdList,partitionSize,targetListQueryByIdList);
+        return partition(targetIdList, partitionSize, targetListQueryByIdList);
     }
 
     /**
@@ -63,11 +63,11 @@ public class MEBuilderHelper {
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public static <I, T extends RestId<I>> List<T> partition(Collection<I> targetIdList, Integer partition,  FunctionActuator<Collection<I>, List<T>> targetListQueryByIdList) throws RestException {
+    public static <I, T extends RestId<I>> List<T> partition(Collection<I> targetIdList, Integer partition, FunctionActuator<Collection<I>, List<T>> targetListQueryByIdList) throws RestException {
         Set<I> targetIdSet = new HashSet<>(targetIdList);
         if (GeneralUtils.isNotEmpty(partition) && targetIdList.size() > partition) {
             Set<T> targetList = new LinkedHashSet<>();
-            List<List<I>> partitionList =  Lists.partition(new ArrayList<>(targetIdSet), partition);
+            List<List<I>> partitionList = Lists.partition(new ArrayList<>(targetIdSet), partition);
             for (List<I> partitions : partitionList) {
                 List<T> targets = targetListQueryByIdList.actuate(partitions);
                 targetList.addAll(targets);
@@ -196,7 +196,6 @@ public class MEBuilderHelper {
         return new ArrayList<>(entityList);
     }
 
-
     /**
      * <code>modelList</code>
      * <p>the list method.</p>
@@ -219,6 +218,38 @@ public class MEBuilderHelper {
         Set<M> modelList = new LinkedHashSet<>();
         for (E entity : entityList) {
             if (entity != null) {
+                modelList.add(function.actuate(entity));
+            }
+        }
+        return new ArrayList<>(modelList);
+    }
+
+
+    /**
+     * <code>modelList</code>
+     * <p>the list method.</p>
+     * @param <I>        {@link java.lang.Object} <p>the parameter can be of any type.</p>
+     * @param <M>        {@link java.lang.Object} <p>the parameter can be of any type.</p>
+     * @param <E>        {@link java.lang.Object} <p>the parameter can be of any type.</p>
+     * @param entityList {@link java.util.Collection} <p>the entity list parameter is <code>Collection</code> type.</p>
+     * @param consumer   {@link io.github.nichetoolkit.rest.actuator.ConsumerActuator} <p>the consumer parameter is <code>ConsumerActuator</code> type.</p>
+     * @param function   {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>the function parameter is <code>FunctionActuator</code> type.</p>
+     * @return {@link java.util.List} <p>the list return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * @see java.util.Collection
+     * @see io.github.nichetoolkit.rest.actuator.ConsumerActuator
+     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see java.util.List
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    public static <I, M, E> List<M> modelList(Collection<E> entityList, ConsumerActuator<E> consumer, FunctionActuator<E, M> function) throws RestException {
+        if (GeneralUtils.isEmpty(entityList)) {
+            return Collections.emptyList();
+        }
+        Set<M> modelList = new LinkedHashSet<>();
+        for (E entity : entityList) {
+            if (entity != null) {
+                consumer.actuate(entity);
                 modelList.add(function.actuate(entity));
             }
         }
@@ -248,7 +279,7 @@ public class MEBuilderHelper {
      * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
-            E entity, M model, FunctionActuator<I,T> targetQueryByTargetId,
+            E entity, M model, FunctionActuator<I, T> targetQueryByTargetId,
             FunctionActuator<E, I> entityGetTargetId,
             BiConsumerActuator<M, T> sourceSetTarget,
             Integer index, Boolean... isLoadArray
@@ -257,7 +288,7 @@ public class MEBuilderHelper {
         if (GeneralUtils.isNotEmpty(targetId) && isLoadArray.length > index && isLoadArray[index]) {
             T target = targetQueryByTargetId.actuate(targetId);
             if (GeneralUtils.isNotEmpty(target)) {
-                sourceSetTarget.actuate(model,target);
+                sourceSetTarget.actuate(model, target);
             }
         }
 
@@ -282,14 +313,14 @@ public class MEBuilderHelper {
      * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
-            E entity, M model, FunctionActuator<I,T> targetQueryByTargetId,
+            E entity, M model, FunctionActuator<I, T> targetQueryByTargetId,
             FunctionActuator<E, I> entityGetTargetId,
             BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
         I targetId = entityGetTargetId.actuate(entity);
         T target = targetQueryByTargetId.actuate(targetId);
         if (GeneralUtils.isNotEmpty(target)) {
-            sourceSetTarget.actuate(model,target);
+            sourceSetTarget.actuate(model, target);
         }
     }
 
@@ -315,7 +346,7 @@ public class MEBuilderHelper {
      * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
-            E entity, M model, FunctionActuator<I,T> targetQueryBySourceId,
+            E entity, M model, FunctionActuator<I, T> targetQueryBySourceId,
             BiConsumerActuator<M, T> sourceSetTarget,
             Integer index, Boolean... isLoadArray
     ) throws RestException {
@@ -323,7 +354,7 @@ public class MEBuilderHelper {
         if (GeneralUtils.isNotEmpty(sourceId) && isLoadArray.length > index && isLoadArray[index]) {
             T target = targetQueryBySourceId.actuate(sourceId);
             if (GeneralUtils.isNotEmpty(target)) {
-                sourceSetTarget.actuate(model,target);
+                sourceSetTarget.actuate(model, target);
             }
         }
 
@@ -347,13 +378,13 @@ public class MEBuilderHelper {
      * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
-            E entity, M model, FunctionActuator<I,T> targetQueryBySourceId,
+            E entity, M model, FunctionActuator<I, T> targetQueryBySourceId,
             BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
         I sourceId = entity.getId();
         T target = targetQueryBySourceId.actuate(sourceId);
         if (GeneralUtils.isNotEmpty(target)) {
-            sourceSetTarget.actuate(model,target);
+            sourceSetTarget.actuate(model, target);
         }
     }
 
@@ -380,7 +411,7 @@ public class MEBuilderHelper {
      * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
-            E entity, M model, FunctionActuator<I,T> targetQueryBySourceId,
+            E entity, M model, FunctionActuator<I, T> targetQueryBySourceId,
             FunctionActuator<E, I> entityGetSourceId,
             BiConsumerActuator<M, T> sourceSetTarget,
             Integer index, Boolean... isLoadArray
@@ -389,7 +420,7 @@ public class MEBuilderHelper {
         if (GeneralUtils.isNotEmpty(sourceId) && isLoadArray.length > index && isLoadArray[index]) {
             T target = targetQueryBySourceId.actuate(sourceId);
             if (GeneralUtils.isNotEmpty(target)) {
-                sourceSetTarget.actuate(model,target);
+                sourceSetTarget.actuate(model, target);
             }
         }
     }
@@ -413,7 +444,7 @@ public class MEBuilderHelper {
      * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
-            E entity, M model, FunctionActuator<I,T> targetQueryBySourceId,
+            E entity, M model, FunctionActuator<I, T> targetQueryBySourceId,
             FunctionActuator<E, I> entityGetSourceId,
             BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
@@ -421,7 +452,7 @@ public class MEBuilderHelper {
         if (GeneralUtils.isNotEmpty(sourceId)) {
             T target = targetQueryBySourceId.actuate(sourceId);
             if (GeneralUtils.isNotEmpty(target)) {
-                sourceSetTarget.actuate(model,target);
+                sourceSetTarget.actuate(model, target);
             }
         }
 
@@ -456,9 +487,9 @@ public class MEBuilderHelper {
     ) throws RestException {
         List<I> targetIdList = sourceGetTargetIdList.actuate(model);
         if (GeneralUtils.isNotEmpty(targetIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = partition(targetIdList,targetListQueryByTargetIdList);
+            List<T> targetList = partition(targetIdList, targetListQueryByTargetIdList);
             if (GeneralUtils.isNotEmpty(targetList)) {
-                sourceSetTargetList.actuate(model,targetList);
+                sourceSetTargetList.actuate(model, targetList);
             }
         }
     }
@@ -485,9 +516,9 @@ public class MEBuilderHelper {
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList
     ) throws RestException {
         List<I> targetIdList = sourceGetTargetIdList.actuate(model);
-        List<T> targetList = partition(targetIdList,targetListQueryByTargetIdList);
+        List<T> targetList = partition(targetIdList, targetListQueryByTargetIdList);
         if (GeneralUtils.isNotEmpty(targetList)) {
-            sourceSetTargetList.actuate(model,targetList);
+            sourceSetTargetList.actuate(model, targetList);
         }
     }
 
@@ -521,7 +552,7 @@ public class MEBuilderHelper {
         if (GeneralUtils.isNotEmpty(sourceId) && isLoadArray.length > index && isLoadArray[index]) {
             List<T> targetList = targetListQueryBySourceId.actuate(sourceId);
             if (GeneralUtils.isNotEmpty(targetList)) {
-                sourceSetTargetList.actuate(model,targetList);
+                sourceSetTargetList.actuate(model, targetList);
             }
         }
 
@@ -551,7 +582,7 @@ public class MEBuilderHelper {
         I sourceId = entity.getId();
         List<T> targetList = targetListQueryBySourceId.actuate(sourceId);
         if (GeneralUtils.isNotEmpty(targetList)) {
-            sourceSetTargetList.actuate(model,targetList);
+            sourceSetTargetList.actuate(model, targetList);
         }
     }
 
@@ -587,7 +618,7 @@ public class MEBuilderHelper {
         if (GeneralUtils.isNotEmpty(sourceId) && isLoadArray.length > index && isLoadArray[index]) {
             List<T> targetList = targetListQueryBySourceId.actuate(sourceId);
             if (GeneralUtils.isNotEmpty(targetList)) {
-                sourceSetTargetList.actuate(model,targetList);
+                sourceSetTargetList.actuate(model, targetList);
             }
         }
     }
@@ -618,7 +649,7 @@ public class MEBuilderHelper {
         I sourceId = entityGetSourceId.actuate(entity);
         List<T> targetList = targetListQueryBySourceId.actuate(sourceId);
         if (GeneralUtils.isNotEmpty(targetList)) {
-            sourceSetTargetList.actuate(model,targetList);
+            sourceSetTargetList.actuate(model, targetList);
         }
     }
 
@@ -650,13 +681,13 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
-            Function<E,I> entityGetTargetId, FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget,
+            Function<E, I> entityGetTargetId, FunctionActuator<M, I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget,
             Integer index, Boolean... isLoadArray
     ) throws RestException {
         List<I> targetIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetTargetId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(targetIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = partition(targetIdList,targetListQueryByTargetIdList);
-            buildSingleTargetTargetId(modelList,targetList,sourceGetTargetId,sourceSetTarget);
+            List<T> targetList = partition(targetIdList, targetListQueryByTargetIdList);
+            buildSingleTargetTargetId(modelList, targetList, sourceGetTargetId, sourceSetTarget);
         }
     }
 
@@ -683,12 +714,12 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
-            Function<E,I> entityGetTargetId, FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
+            Function<E, I> entityGetTargetId, FunctionActuator<M, I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
         List<I> targetIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetTargetId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(targetIdList)) {
-            List<T> targetList = partition(targetIdList,targetListQueryByTargetIdList);
-            buildSingleTargetTargetId(modelList,targetList,sourceGetTargetId,sourceSetTarget);
+            List<T> targetList = partition(targetIdList, targetListQueryByTargetIdList);
+            buildSingleTargetTargetId(modelList, targetList, sourceGetTargetId, sourceSetTarget);
         }
     }
 
@@ -720,14 +751,14 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
-            Function<E,I> entityGetTargetId, FunctionActuator<T,I> targetGetTargetId,
-            FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget,
+            Function<E, I> entityGetTargetId, FunctionActuator<T, I> targetGetTargetId,
+            FunctionActuator<M, I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget,
             Integer index, Boolean... isLoadArray
     ) throws RestException {
         List<I> targetIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetTargetId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(targetIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = partition(targetIdList,targetListQueryByTargetIdList);
-            buildSingleTargetTargetId(modelList,targetList,targetGetTargetId,sourceGetTargetId,sourceSetTarget);
+            List<T> targetList = partition(targetIdList, targetListQueryByTargetIdList);
+            buildSingleTargetTargetId(modelList, targetList, targetGetTargetId, sourceGetTargetId, sourceSetTarget);
         }
     }
 
@@ -755,13 +786,13 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
-            Function<E,I> entityGetTargetId, FunctionActuator<T,I> targetGetTargetId,
-            FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
+            Function<E, I> entityGetTargetId, FunctionActuator<T, I> targetGetTargetId,
+            FunctionActuator<M, I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
         List<I> targetIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetTargetId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(targetIdList)) {
-            List<T> targetList = partition(targetIdList,targetListQueryByTargetIdList);
-            buildSingleTargetTargetId(modelList,targetList,targetGetTargetId,sourceGetTargetId,sourceSetTarget);
+            List<T> targetList = partition(targetIdList, targetListQueryByTargetIdList);
+            buildSingleTargetTargetId(modelList, targetList, targetGetTargetId, sourceGetTargetId, sourceSetTarget);
         }
     }
 
@@ -790,13 +821,13 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
-            FunctionActuator<T,I> targetGetSourceId, BiConsumerActuator<M, T> sourceSetTarget,
+            FunctionActuator<T, I> targetGetSourceId, BiConsumerActuator<M, T> sourceSetTarget,
             Integer index, Boolean... isLoadArray
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(RestId::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
-            buildSingleTargetSourceId(modelList,targetList,targetGetSourceId,sourceSetTarget);
+            List<T> targetList = partition(sourceIdList, targetListQueryBySourceIdList);
+            buildSingleTargetSourceId(modelList, targetList, targetGetSourceId, sourceSetTarget);
         }
     }
 
@@ -821,12 +852,12 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
-            FunctionActuator<T,I> targetGetSourceId, BiConsumerActuator<M, T> sourceSetTarget
+            FunctionActuator<T, I> targetGetSourceId, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(RestId::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList)) {
-            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
-            buildSingleTargetSourceId(modelList,targetList,targetGetSourceId,sourceSetTarget);
+            List<T> targetList = partition(sourceIdList, targetListQueryBySourceIdList);
+            buildSingleTargetSourceId(modelList, targetList, targetGetSourceId, sourceSetTarget);
         }
     }
 
@@ -858,14 +889,14 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
-            Function<E,I> entityGetSourceId, FunctionActuator<T,I> targetGetSourceId,
-            FunctionActuator<M,I> sourceGetSourceId, BiConsumerActuator<M, T> sourceSetTarget,
+            Function<E, I> entityGetSourceId, FunctionActuator<T, I> targetGetSourceId,
+            FunctionActuator<M, I> sourceGetSourceId, BiConsumerActuator<M, T> sourceSetTarget,
             Integer index, Boolean... isLoadArray
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetSourceId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
-            buildSingleTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetSourceId,sourceSetTarget);
+            List<T> targetList = partition(sourceIdList, targetListQueryBySourceIdList);
+            buildSingleTargetSourceId(modelList, targetList, targetGetSourceId, sourceGetSourceId, sourceSetTarget);
         }
     }
 
@@ -893,13 +924,13 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
-            Function<E,I> entityGetSourceId, FunctionActuator<T,I> targetGetSourceId,
-            FunctionActuator<M,I> sourceGetSourceId, BiConsumerActuator<M, T> sourceSetTarget
+            Function<E, I> entityGetSourceId, FunctionActuator<T, I> targetGetSourceId,
+            FunctionActuator<M, I> sourceGetSourceId, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetSourceId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList)) {
-            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
-            buildSingleTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetSourceId,sourceSetTarget);
+            List<T> targetList = partition(sourceIdList, targetListQueryBySourceIdList);
+            buildSingleTargetSourceId(modelList, targetList, targetGetSourceId, sourceGetSourceId, sourceSetTarget);
         }
     }
 
@@ -926,7 +957,7 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
-            FunctionActuator<M,List<I>> sourceGetTargetIdList, BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
+            FunctionActuator<M, List<I>> sourceGetTargetIdList, BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
             Integer index, Boolean... isLoadArray
     ) throws RestException {
         Map<I, List<I>> sourceIdTargetIdListMap = new HashMap<>();
@@ -937,14 +968,14 @@ public class MEBuilderHelper {
                 List<I> idList = sourceGetTargetIdList.actuate(model);
                 if (GeneralUtils.isNotEmpty(idList)) {
                     targetIdList.addAll(idList);
-                    sourceIdTargetIdListMap.putIfAbsent(sourceId,idList);
+                    sourceIdTargetIdListMap.putIfAbsent(sourceId, idList);
                 }
             }
         }
         Set<I> targetIdSet = new HashSet<>(targetIdList);
         if (GeneralUtils.isNotEmpty(targetIdSet) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = partition(targetIdSet,targetListQueryByTargetIdList);
-            buildMultiTargetTargetId(modelList,targetList,sourceIdTargetIdListMap,sourceSetTargetList);
+            List<T> targetList = partition(targetIdSet, targetListQueryByTargetIdList);
+            buildMultiTargetTargetId(modelList, targetList, sourceIdTargetIdListMap, sourceSetTargetList);
         }
     }
 
@@ -967,7 +998,7 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
-            FunctionActuator<M,List<I>> sourceGetTargetIdList, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
+            FunctionActuator<M, List<I>> sourceGetTargetIdList, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
     ) throws RestException {
         Map<I, List<I>> sourceIdTargetIdListMap = new HashMap<>();
         List<I> targetIdList = new ArrayList<>();
@@ -977,14 +1008,14 @@ public class MEBuilderHelper {
                 List<I> idList = sourceGetTargetIdList.actuate(model);
                 if (GeneralUtils.isNotEmpty(idList)) {
                     targetIdList.addAll(idList);
-                    sourceIdTargetIdListMap.putIfAbsent(sourceId,idList);
+                    sourceIdTargetIdListMap.putIfAbsent(sourceId, idList);
                 }
             }
         }
         Set<I> targetIdSet = new HashSet<>(targetIdList);
         if (GeneralUtils.isNotEmpty(targetIdSet)) {
-            List<T> targetList = partition(targetIdSet,targetListQueryByTargetIdList);
-            buildMultiTargetTargetId(modelList,targetList,sourceIdTargetIdListMap,sourceSetTargetList);
+            List<T> targetList = partition(targetIdSet, targetListQueryByTargetIdList);
+            buildMultiTargetTargetId(modelList, targetList, sourceIdTargetIdListMap, sourceSetTargetList);
         }
     }
 
@@ -1013,7 +1044,7 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
-            FunctionActuator<M,I> sourceGetSourceId, FunctionActuator<M,List<I>> sourceGetTargetIdList, FunctionActuator<T,I> targetGetTargetId,
+            FunctionActuator<M, I> sourceGetSourceId, FunctionActuator<M, List<I>> sourceGetTargetIdList, FunctionActuator<T, I> targetGetTargetId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
             Integer index, Boolean... isLoadArray
     ) throws RestException {
@@ -1025,14 +1056,14 @@ public class MEBuilderHelper {
                 List<I> idList = sourceGetTargetIdList.actuate(model);
                 if (GeneralUtils.isNotEmpty(idList)) {
                     targetIdList.addAll(idList);
-                    sourceIdTargetIdListMap.putIfAbsent(sourceId,idList);
+                    sourceIdTargetIdListMap.putIfAbsent(sourceId, idList);
                 }
             }
         }
         Set<I> targetIdSet = new HashSet<>(targetIdList);
         if (GeneralUtils.isNotEmpty(targetIdSet) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = partition(targetIdSet,targetListQueryByTargetIdList);
-            buildMultiTargetTargetId(modelList,targetList,sourceIdTargetIdListMap,targetGetTargetId,sourceGetSourceId,sourceSetTargetList);
+            List<T> targetList = partition(targetIdSet, targetListQueryByTargetIdList);
+            buildMultiTargetTargetId(modelList, targetList, sourceIdTargetIdListMap, targetGetTargetId, sourceGetSourceId, sourceSetTargetList);
         }
     }
 
@@ -1057,7 +1088,7 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
-            FunctionActuator<M,I> sourceGetSourceId, FunctionActuator<M,List<I>> sourceGetTargetIdList, FunctionActuator<T,I> targetGetTargetId,
+            FunctionActuator<M, I> sourceGetSourceId, FunctionActuator<M, List<I>> sourceGetTargetIdList, FunctionActuator<T, I> targetGetTargetId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList
     ) throws RestException {
         Map<I, List<I>> sourceIdTargetIdListMap = new HashMap<>();
@@ -1068,14 +1099,14 @@ public class MEBuilderHelper {
                 List<I> idList = sourceGetTargetIdList.actuate(model);
                 if (GeneralUtils.isNotEmpty(idList)) {
                     targetIdList.addAll(idList);
-                    sourceIdTargetIdListMap.putIfAbsent(sourceId,idList);
+                    sourceIdTargetIdListMap.putIfAbsent(sourceId, idList);
                 }
             }
         }
         Set<I> targetIdSet = new HashSet<>(targetIdList);
         if (GeneralUtils.isNotEmpty(targetIdSet)) {
-            List<T> targetList = partition(targetIdSet,targetListQueryByTargetIdList);
-            buildMultiTargetTargetId(modelList,targetList,sourceIdTargetIdListMap,targetGetTargetId,sourceGetSourceId,sourceSetTargetList);
+            List<T> targetList = partition(targetIdSet, targetListQueryByTargetIdList);
+            buildMultiTargetTargetId(modelList, targetList, sourceIdTargetIdListMap, targetGetTargetId, sourceGetSourceId, sourceSetTargetList);
         }
     }
 
@@ -1102,15 +1133,15 @@ public class MEBuilderHelper {
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public static <I, M extends RestId<I>, T extends RestId<I>,E extends RestId<I>> void buildMultiSourceId(
-            Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
-            FunctionActuator<T,I> targetGetSourceId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
+            Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
+            FunctionActuator<T, I> targetGetSourceId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
             Integer index, Boolean... isLoadArray
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(RestId::getId).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
-            buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceSetTargetList);
+            List<T> targetList = partition(sourceIdList, targetListQueryBySourceIdList);
+            buildMultiTargetSourceId(modelList, targetList, targetGetSourceId, sourceSetTargetList);
         }
     }
 
@@ -1138,16 +1169,16 @@ public class MEBuilderHelper {
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public static <I, M extends RestId<I>, T extends RestId<I>,E extends RestId<I>> void buildMultiSourceId(
-            Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
-            FunctionActuator<T,I> targetGetSourceId, FunctionActuator<M,I> sourceGetSourceId,
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
+            Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
+            FunctionActuator<T, I> targetGetSourceId, FunctionActuator<M, I> sourceGetSourceId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
             Integer index, Boolean... isLoadArray
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(RestId::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
-            buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetSourceId,sourceSetTargetList);
+            List<T> targetList = partition(sourceIdList, targetListQueryBySourceIdList);
+            buildMultiTargetSourceId(modelList, targetList, targetGetSourceId, sourceGetSourceId, sourceSetTargetList);
         }
     }
 
@@ -1171,14 +1202,14 @@ public class MEBuilderHelper {
      * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public static <I, M extends RestId<I>, T extends RestId<I>,E extends RestId<I>> void buildMultiSourceId(
-            Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
-            FunctionActuator<T,I> targetGetSourceId, FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
+            Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
+            FunctionActuator<T, I> targetGetSourceId, FunctionActuator<M, I> sourceGetTargetId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(RestId::getId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList)) {
-            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
-            buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetTargetId,sourceSetTargetList);
+            List<T> targetList = partition(sourceIdList, targetListQueryBySourceIdList);
+            buildMultiTargetSourceId(modelList, targetList, targetGetSourceId, sourceGetTargetId, sourceSetTargetList);
         }
     }
 
@@ -1208,16 +1239,16 @@ public class MEBuilderHelper {
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public static <I, M extends RestId<I>, T extends RestId<I>,E extends RestId<I>> void buildMultiSourceId(
-            Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
-            Function<E,I> entityGetSourceId, FunctionActuator<T,I> targetGetSourceId,
-            FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
+            Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
+            Function<E, I> entityGetSourceId, FunctionActuator<T, I> targetGetSourceId,
+            FunctionActuator<M, I> sourceGetTargetId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList,
             Integer index, Boolean... isLoadArray
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetSourceId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList) && isLoadArray.length > index && isLoadArray[index]) {
-            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
-            buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetTargetId,sourceSetTargetList);
+            List<T> targetList = partition(sourceIdList, targetListQueryBySourceIdList);
+            buildMultiTargetSourceId(modelList, targetList, targetGetSourceId, sourceGetTargetId, sourceSetTargetList);
         }
     }
 
@@ -1243,15 +1274,15 @@ public class MEBuilderHelper {
      * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public static <I, M extends RestId<I>, T extends RestId<I>,E extends RestId<I>> void buildMultiSourceId(
-            Collection<E> entityList,Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
-            Function<E,I> entityGetSourceId, FunctionActuator<T,I> targetGetSourceId,
-            FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
+    public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
+            Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
+            Function<E, I> entityGetSourceId, FunctionActuator<T, I> targetGetSourceId,
+            FunctionActuator<M, I> sourceGetTargetId, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
     ) throws RestException {
         List<I> sourceIdList = entityList.stream().filter(GeneralUtils::isNotEmpty).map(entityGetSourceId).filter(GeneralUtils::isNotEmpty).distinct().collect(Collectors.toList());
         if (GeneralUtils.isNotEmpty(sourceIdList)) {
-            List<T> targetList = partition(sourceIdList,targetListQueryBySourceIdList);
-            buildMultiTargetSourceId(modelList,targetList,targetGetSourceId,sourceGetTargetId,sourceSetTargetList);
+            List<T> targetList = partition(sourceIdList, targetListQueryBySourceIdList);
+            buildMultiTargetSourceId(modelList, targetList, targetGetSourceId, sourceGetTargetId, sourceSetTargetList);
         }
     }
 
@@ -1274,12 +1305,12 @@ public class MEBuilderHelper {
      * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildSingleTargetTargetId(
-            Collection<M> modelList, Collection<T> targetList, FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
+            Collection<M> modelList, Collection<T> targetList, FunctionActuator<M, I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
         if (GeneralUtils.isNotEmpty(targetList)) {
             Map<I, T> targetIdTargetMap = new HashMap<>();
-            targetMapTargetId(targetList,targetIdTargetMap,RestId::getId);
-            sourceTarget(modelList,sourceGetTargetId,targetIdTargetMap,sourceSetTarget);
+            targetMapTargetId(targetList, targetIdTargetMap, RestId::getId);
+            sourceTarget(modelList, sourceGetTargetId, targetIdTargetMap, sourceSetTarget);
         }
     }
 
@@ -1303,12 +1334,12 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildSingleTargetTargetId(
             Collection<M> modelList, Collection<T> targetList, FunctionActuator<T, I> targetGetTargetId,
-            FunctionActuator<M,I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
+            FunctionActuator<M, I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
         if (GeneralUtils.isNotEmpty(targetList)) {
             Map<I, T> targetIdTargetMap = new HashMap<>();
-            targetMapTargetId(targetList,targetIdTargetMap,targetGetTargetId);
-            sourceTarget(modelList,sourceGetTargetId,targetIdTargetMap,sourceSetTarget);
+            targetMapTargetId(targetList, targetIdTargetMap, targetGetTargetId);
+            sourceTarget(modelList, sourceGetTargetId, targetIdTargetMap, sourceSetTarget);
         }
     }
 
@@ -1335,8 +1366,8 @@ public class MEBuilderHelper {
     ) throws RestException {
         if (GeneralUtils.isNotEmpty(targetList)) {
             Map<I, T> sourceIdTargetMap = new HashMap<>();
-            targetMapSourceId(targetList,sourceIdTargetMap,targetGetSourceId);
-            sourceTarget(modelList,RestId::getId,sourceIdTargetMap,sourceSetTarget);
+            targetMapSourceId(targetList, sourceIdTargetMap, targetGetSourceId);
+            sourceTarget(modelList, RestId::getId, sourceIdTargetMap, sourceSetTarget);
         }
     }
 
@@ -1360,12 +1391,12 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildSingleTargetSourceId(
             Collection<M> modelList, Collection<T> targetList, FunctionActuator<T, I> targetGetSourceId,
-            FunctionActuator<M,I> sourceGetSourceId, BiConsumerActuator<M, T> sourceSetTarget
+            FunctionActuator<M, I> sourceGetSourceId, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
         if (GeneralUtils.isNotEmpty(targetList)) {
             Map<I, T> sourceIdTargetMap = new HashMap<>();
-            targetMapSourceId(targetList,sourceIdTargetMap,targetGetSourceId);
-            sourceTarget(modelList,sourceGetSourceId,sourceIdTargetMap,sourceSetTarget);
+            targetMapSourceId(targetList, sourceIdTargetMap, targetGetSourceId);
+            sourceTarget(modelList, sourceGetSourceId, sourceIdTargetMap, sourceSetTarget);
         }
     }
 
@@ -1392,8 +1423,8 @@ public class MEBuilderHelper {
     ) throws RestException {
         if (GeneralUtils.isNotEmpty(targetList)) {
             Map<I, List<T>> sourceIdTargetListMap = new HashMap<>();
-            targetListMapTargetId(targetList,sourceIdTargetListMap,sourceIdTargetIdListMap,RestId::getId);
-            sourceTargetList(modelList,RestId::getId,sourceIdTargetListMap,sourceSetTargetList);
+            targetListMapTargetId(targetList, sourceIdTargetListMap, sourceIdTargetIdListMap, RestId::getId);
+            sourceTargetList(modelList, RestId::getId, sourceIdTargetListMap, sourceSetTargetList);
         }
     }
 
@@ -1419,13 +1450,13 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetTargetId(
             Collection<M> modelList, Collection<T> targetList, Map<I, List<I>> sourceIdTargetIdListMap,
-            FunctionActuator<T, I> targetGetTargetId, FunctionActuator<M,I> sourceGetSourceId,
+            FunctionActuator<T, I> targetGetTargetId, FunctionActuator<M, I> sourceGetSourceId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList
     ) throws RestException {
         if (GeneralUtils.isNotEmpty(targetList)) {
             Map<I, List<T>> sourceIdTargetListMap = new HashMap<>();
-            targetListMapTargetId(targetList,sourceIdTargetListMap,sourceIdTargetIdListMap,targetGetTargetId);
-            sourceTargetList(modelList,sourceGetSourceId,sourceIdTargetListMap,sourceSetTargetList);
+            targetListMapTargetId(targetList, sourceIdTargetListMap, sourceIdTargetIdListMap, targetGetTargetId);
+            sourceTargetList(modelList, sourceGetSourceId, sourceIdTargetListMap, sourceSetTargetList);
         }
     }
 
@@ -1452,8 +1483,8 @@ public class MEBuilderHelper {
     ) throws RestException {
         if (GeneralUtils.isNotEmpty(targetList)) {
             Map<I, List<T>> sourceIdTargetListMap = new HashMap<>();
-            targetListMapSourceId(targetList,sourceIdTargetListMap,targetGetSourceId);
-            sourceTargetList(modelList,RestId::getId,sourceIdTargetListMap,sourceSetTargetList);
+            targetListMapSourceId(targetList, sourceIdTargetListMap, targetGetSourceId);
+            sourceTargetList(modelList, RestId::getId, sourceIdTargetListMap, sourceSetTargetList);
         }
     }
 
@@ -1477,13 +1508,13 @@ public class MEBuilderHelper {
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetSourceId(
             Collection<M> modelList, Collection<T> targetList,
-            FunctionActuator<T, I> targetGetSourceId, FunctionActuator<M,I> sourceGetSourceId,
+            FunctionActuator<T, I> targetGetSourceId, FunctionActuator<M, I> sourceGetSourceId,
             BiConsumerActuator<M, Collection<T>> sourceSetTargetList
     ) throws RestException {
         if (GeneralUtils.isNotEmpty(targetList)) {
             Map<I, List<T>> sourceIdTargetListMap = new HashMap<>();
-            targetListMapSourceId(targetList,sourceIdTargetListMap,targetGetSourceId);
-            sourceTargetList(modelList,sourceGetSourceId,sourceIdTargetListMap,sourceSetTargetList);
+            targetListMapSourceId(targetList, sourceIdTargetListMap, targetGetSourceId);
+            sourceTargetList(modelList, sourceGetSourceId, sourceIdTargetListMap, sourceSetTargetList);
         }
     }
 
@@ -1507,7 +1538,7 @@ public class MEBuilderHelper {
      * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void sourceTarget(
-            Collection<M> modelList, FunctionActuator<M,I> getIdKey,
+            Collection<M> modelList, FunctionActuator<M, I> getIdKey,
             Map<I, T> keyIdTargetMap, BiConsumerActuator<M, T> sourceSetTarget
     ) throws RestException {
         for (M model : modelList) {
@@ -1540,7 +1571,7 @@ public class MEBuilderHelper {
      * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void sourceTargetList(
-            Collection<M> modelList, FunctionActuator<M,I> getIdKey,
+            Collection<M> modelList, FunctionActuator<M, I> getIdKey,
             Map<I, List<T>> keyIdTargetListMap, BiConsumerActuator<M, Collection<T>> sourceSetTargetList
     ) throws RestException {
         for (M model : modelList) {
@@ -1617,9 +1648,9 @@ public class MEBuilderHelper {
      * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public static <I, T extends RestId<I>> void targetListMapTargetId(Collection<T> targetList, Map<I, List<T>> sourceIdTargetListMap,Map<I, List<I>> sourceIdTargetIdListMap, FunctionActuator<T, I> targetGetTargetId) throws RestException {
+    public static <I, T extends RestId<I>> void targetListMapTargetId(Collection<T> targetList, Map<I, List<T>> sourceIdTargetListMap, Map<I, List<I>> sourceIdTargetIdListMap, FunctionActuator<T, I> targetGetTargetId) throws RestException {
         Map<I, T> targetIdTargetMap = new HashMap<>();
-        targetMapTargetId(targetList,targetIdTargetMap,targetGetTargetId);
+        targetMapTargetId(targetList, targetIdTargetMap, targetGetTargetId);
         for (Map.Entry<I, List<I>> entry : sourceIdTargetIdListMap.entrySet()) {
             I sourceId = entry.getKey();
             List<I> targetIdList = entry.getValue();
@@ -1631,7 +1662,7 @@ public class MEBuilderHelper {
                         targets.add(target);
                     }
                 }
-                sourceIdTargetListMap.putIfAbsent(sourceId,targets);
+                sourceIdTargetListMap.putIfAbsent(sourceId, targets);
             }
         }
     }
@@ -1655,7 +1686,7 @@ public class MEBuilderHelper {
         for (T target : targetList) {
             if (GeneralUtils.isNotEmpty(target) && GeneralUtils.isNotEmpty(targetGetSourceId.actuate(target))) {
                 I sourceId = targetGetSourceId.actuate(target);
-                CollectUtils.collect(sourceId,target,targetListMap);
+                CollectUtils.collect(sourceId, target, targetListMap);
             }
         }
     }

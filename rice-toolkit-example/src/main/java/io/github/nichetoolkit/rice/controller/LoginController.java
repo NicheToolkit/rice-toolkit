@@ -6,7 +6,7 @@ import io.github.nichetoolkit.rest.userlog.LoggingType;
 import io.github.nichetoolkit.rest.userlog.stereotype.RestNotelog;
 import io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog;
 import io.github.nichetoolkit.rest.util.JsonUtils;
-import io.github.nichetoolkit.rice.RestMap;
+import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.service.LoginService;
 import io.github.nichetoolkit.rice.simple.LoginRequest;
 import io.github.nichetoolkit.rice.simple.UserModel;
@@ -57,11 +57,11 @@ public class LoginController {
     /**
      * <code>loginWithPassword</code>
      * <p>the with password method.</p>
-     * @param restMap      {@link io.github.nichetoolkit.rice.RestMap} <p>the rest map parameter is <code>RestMap</code> type.</p>
+     * @param restMap      {@link TokenContext} <p>the rest map parameter is <code>RestMap</code> type.</p>
      * @param loginRequest {@link io.github.nichetoolkit.rice.simple.LoginRequest} <p>the login request parameter is <code>LoginRequest</code> type.</p>
      * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the with password return object is <code>RestResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestMap
+     * @see TokenContext
      * @see io.github.nichetoolkit.rice.simple.LoginRequest
      * @see org.springframework.web.bind.annotation.RequestBody
      * @see io.github.nichetoolkit.rest.RestResult
@@ -73,7 +73,7 @@ public class LoginController {
     @RestLogin
     @PostMapping("/login/password")
     @RestUserlog(loggingType = LoggingType.USER_LOGIN, userlog = "password login")
-    public RestResult<UserModel> loginWithPassword(RestMap restMap, @RequestBody LoginRequest loginRequest) throws RestException {
+    public RestResult<UserModel> loginWithPassword(TokenContext restMap, @RequestBody LoginRequest loginRequest) throws RestException {
         UserModel user = loginService.loginWithPassword(loginRequest);
         return buildLoginResult(restMap, user);
     }
@@ -81,11 +81,11 @@ public class LoginController {
     /**
      * <code>loginWithAccessToken</code>
      * <p>the with access token method.</p>
-     * @param restMap      {@link io.github.nichetoolkit.rice.RestMap} <p>the rest map parameter is <code>RestMap</code> type.</p>
+     * @param restMap      {@link TokenContext} <p>the rest map parameter is <code>RestMap</code> type.</p>
      * @param loginRequest {@link io.github.nichetoolkit.rice.simple.LoginRequest} <p>the login request parameter is <code>LoginRequest</code> type.</p>
      * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the with access token return object is <code>RestResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestMap
+     * @see TokenContext
      * @see io.github.nichetoolkit.rice.simple.LoginRequest
      * @see org.springframework.web.bind.annotation.RequestBody
      * @see io.github.nichetoolkit.rest.RestResult
@@ -97,7 +97,7 @@ public class LoginController {
     @RestLogin
     @PostMapping("/login/token")
     @RestUserlog(loggingType = LoggingType.USER_LOGIN, userlog = "token login")
-    public RestResult<UserModel> loginWithAccessToken(RestMap restMap, @RequestBody LoginRequest loginRequest) throws RestException {
+    public RestResult<UserModel> loginWithAccessToken(TokenContext restMap, @RequestBody LoginRequest loginRequest) throws RestException {
         UserModel user = loginService.loginWithToken(loginRequest);
         return buildLoginResult(restMap, user);
     }
@@ -142,14 +142,14 @@ public class LoginController {
     /**
      * <code>buildLoginResult</code>
      * <p>the login result method.</p>
-     * @param restMap {@link io.github.nichetoolkit.rice.RestMap} <p>the rest map parameter is <code>RestMap</code> type.</p>
+     * @param restMap {@link TokenContext} <p>the rest map parameter is <code>RestMap</code> type.</p>
      * @param user    {@link io.github.nichetoolkit.rice.simple.UserModel} <p>the user parameter is <code>UserModel</code> type.</p>
      * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the login result return object is <code>RestResult</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestMap
+     * @see TokenContext
      * @see io.github.nichetoolkit.rice.simple.UserModel
      * @see io.github.nichetoolkit.rest.RestResult
      */
-    private RestResult<UserModel> buildLoginResult(RestMap restMap, UserModel user) {
+    private RestResult<UserModel> buildLoginResult(TokenContext restMap, UserModel user) {
         restMap.put(UserModel.LOGIN_USER_INFO, JsonUtils.parseJson(user));
         restMap.put(UserModel.LOGIN_USER_ID, user.getId());
         return RestResult.success(user);

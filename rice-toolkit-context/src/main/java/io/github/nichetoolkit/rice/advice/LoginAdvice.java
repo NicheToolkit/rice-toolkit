@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestResult;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
-import io.github.nichetoolkit.rice.RestMap;
+import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.constant.LoginConstants;
 import io.github.nichetoolkit.rice.error.TokenPermissionException;
 import io.github.nichetoolkit.rice.helper.HttpRequestHelper;
@@ -28,16 +28,16 @@ public interface LoginAdvice {
      * @param request    {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>the request parameter is <code>RestHttpRequest</code> type.</p>
      * @param body       {@link java.lang.Object} <p>the body parameter is <code>Object</code> type.</p>
      * @param returnType {@link org.springframework.core.MethodParameter} <p>the return type parameter is <code>MethodParameter</code> type.</p>
-     * @param restMap    {@link io.github.nichetoolkit.rice.RestMap} <p>the rest map parameter is <code>RestMap</code> type.</p>
+     * @param restMap    {@link TokenContext} <p>the rest map parameter is <code>RestMap</code> type.</p>
      * @return {@link java.lang.Object} <p>the auth handle return object is <code>Object</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestHttpRequest
      * @see java.lang.Object
      * @see org.springframework.core.MethodParameter
-     * @see io.github.nichetoolkit.rice.RestMap
+     * @see TokenContext
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default Object doAuthHandle(RestHttpRequest request, Object body, MethodParameter returnType, RestMap restMap) throws RestException {
+    default Object doAuthHandle(RestHttpRequest request, Object body, MethodParameter returnType, TokenContext restMap) throws RestException {
         return null;
     }
 
@@ -47,16 +47,16 @@ public interface LoginAdvice {
      * @param request    {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>the request parameter is <code>RestHttpRequest</code> type.</p>
      * @param body       {@link java.lang.Object} <p>the body parameter is <code>Object</code> type.</p>
      * @param returnType {@link org.springframework.core.MethodParameter} <p>the return type parameter is <code>MethodParameter</code> type.</p>
-     * @param restMap    {@link io.github.nichetoolkit.rice.RestMap} <p>the rest map parameter is <code>RestMap</code> type.</p>
+     * @param restMap    {@link TokenContext} <p>the rest map parameter is <code>RestMap</code> type.</p>
      * @return {@link java.lang.Object} <p>the pending handle return object is <code>Object</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestHttpRequest
      * @see java.lang.Object
      * @see org.springframework.core.MethodParameter
-     * @see io.github.nichetoolkit.rice.RestMap
+     * @see TokenContext
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default Object doPendingHandle(RestHttpRequest request, Object body, MethodParameter returnType, RestMap restMap) throws RestException {
+    default Object doPendingHandle(RestHttpRequest request, Object body, MethodParameter returnType, TokenContext restMap) throws RestException {
         return null;
     }
 
@@ -66,16 +66,16 @@ public interface LoginAdvice {
      * @param request    {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>the request parameter is <code>RestHttpRequest</code> type.</p>
      * @param body       {@link java.lang.Object} <p>the body parameter is <code>Object</code> type.</p>
      * @param returnType {@link org.springframework.core.MethodParameter} <p>the return type parameter is <code>MethodParameter</code> type.</p>
-     * @param restMap    {@link io.github.nichetoolkit.rice.RestMap} <p>the rest map parameter is <code>RestMap</code> type.</p>
+     * @param restMap    {@link TokenContext} <p>the rest map parameter is <code>RestMap</code> type.</p>
      * @return {@link java.lang.Object} <p>the login handle return object is <code>Object</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestHttpRequest
      * @see java.lang.Object
      * @see org.springframework.core.MethodParameter
-     * @see io.github.nichetoolkit.rice.RestMap
+     * @see TokenContext
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default Object doLoginHandle(RestHttpRequest request, Object body, MethodParameter returnType, RestMap restMap) throws RestException {
+    default Object doLoginHandle(RestHttpRequest request, Object body, MethodParameter returnType, TokenContext restMap) throws RestException {
         return null;
     }
 
@@ -85,15 +85,15 @@ public interface LoginAdvice {
      * @param request    {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>the request parameter is <code>RestHttpRequest</code> type.</p>
      * @param body       {@link java.lang.Object} <p>the body parameter is <code>Object</code> type.</p>
      * @param returnType {@link org.springframework.core.MethodParameter} <p>the return type parameter is <code>MethodParameter</code> type.</p>
-     * @param restMap    {@link io.github.nichetoolkit.rice.RestMap} <p>the rest map parameter is <code>RestMap</code> type.</p>
+     * @param restMap    {@link TokenContext} <p>the rest map parameter is <code>RestMap</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestHttpRequest
      * @see java.lang.Object
      * @see org.springframework.core.MethodParameter
-     * @see io.github.nichetoolkit.rice.RestMap
+     * @see TokenContext
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default void doLogoutHandle(RestHttpRequest request, Object body, MethodParameter returnType, RestMap restMap) throws RestException {
+    default void doLogoutHandle(RestHttpRequest request, Object body, MethodParameter returnType, TokenContext restMap) throws RestException {
     }
 
 
@@ -121,16 +121,16 @@ public interface LoginAdvice {
      * @param request    {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>the request parameter is <code>RestHttpRequest</code> type.</p>
      * @param body       {@link java.lang.Object} <p>the body parameter is <code>Object</code> type.</p>
      * @param returnType {@link org.springframework.core.MethodParameter} <p>the return type parameter is <code>MethodParameter</code> type.</p>
-     * @param restMap    {@link io.github.nichetoolkit.rice.RestMap} <p>the rest map parameter is <code>RestMap</code> type.</p>
+     * @param restMap    {@link TokenContext} <p>the rest map parameter is <code>RestMap</code> type.</p>
      * @return {@link java.lang.Object} <p>the handle return object is <code>Object</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestHttpRequest
      * @see java.lang.Object
      * @see org.springframework.core.MethodParameter
-     * @see io.github.nichetoolkit.rice.RestMap
+     * @see TokenContext
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default Object afterHandle(RestHttpRequest request, Object body, MethodParameter returnType, RestMap restMap) throws RestException {
+    default Object afterHandle(RestHttpRequest request, Object body, MethodParameter returnType, TokenContext restMap) throws RestException {
         return null;
     }
 
@@ -163,7 +163,7 @@ public interface LoginAdvice {
             return true;
         }
         List<String> tokenList = HttpRequestHelper.resolveTokens(request, headerTokens, false);
-        OptionalUtils.ofEmptyable(tokenList).emptyElseThrow(TokenPermissionException::new);
+        OptionalUtils.ofEmpty(headerTokens,TokenPermissionException::new);
         return true;
     }
 

@@ -76,12 +76,6 @@ public abstract class RestInfoModel<M extends RestInfoModel<M, E>, E extends Res
         }
 
         @Override
-        public RestInfoModel.Builder<M, E> id(String id) {
-            this.id = id;
-            return this;
-        }
-
-        @Override
         public RestInfoModel.Builder<M, E> name(String name) {
             this.name = name;
             return this;
@@ -90,6 +84,12 @@ public abstract class RestInfoModel<M extends RestInfoModel<M, E>, E extends Res
         @Override
         public RestInfoModel.Builder<M, E> description(String description) {
             this.description = description;
+            return this;
+        }
+
+        @Override
+        public RestInfoModel.Builder<M, E> id(String id) {
+            this.id = id;
             return this;
         }
 
@@ -126,6 +126,12 @@ public abstract class RestInfoModel<M extends RestInfoModel<M, E>, E extends Res
         @Override
         public RestInfoModel.Builder<M, E> operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
+            return this;
+        }
+
+        @Override
+        public RestInfoModel.Builder<M, E> logic(String logic) {
+            this.logic = logic;
             return this;
         }
 

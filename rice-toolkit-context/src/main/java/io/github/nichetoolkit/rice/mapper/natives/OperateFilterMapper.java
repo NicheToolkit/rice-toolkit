@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.mapper.natives;
 
 import io.github.nichetoolkit.rice.IdEntity;
+import io.github.nichetoolkit.rice.RestId;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import org.apache.ibatis.annotations.Param;
 
@@ -17,7 +18,7 @@ import org.apache.ibatis.annotations.Param;
  * @see io.github.nichetoolkit.rice.mapper.natives.FindFilterMapper
  * @since Jdk1.8
  */
-public interface OperateFilterMapper<E extends IdEntity<I>, F extends IdFilter<I, K>, I, K> extends FindFilterMapper<E, F, I, K> {
+public interface OperateFilterMapper<E extends RestId<I>, F extends IdFilter<I, K>, I, K> extends FindFilterMapper<E, F, I, K> {
 
     /**
      * <code>operateAllByFilterWhere</code>

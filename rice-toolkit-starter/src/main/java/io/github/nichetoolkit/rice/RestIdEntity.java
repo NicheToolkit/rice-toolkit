@@ -1,6 +1,11 @@
 package io.github.nichetoolkit.rice;
 
 
+import io.github.nichetoolkit.rice.enums.OperateType;
+import org.springframework.lang.NonNull;
+
+import java.util.Date;
+
 /**
  * <code>RestIdEntity</code>
  * <p>The type rest id entity class.</p>
@@ -62,6 +67,36 @@ public abstract class RestIdEntity<E extends RestIdEntity<E, M>, M extends RestI
         @Override
         public RestIdEntity.Builder<E, M> id(String id) {
             this.id = id;
+            return this;
+        }
+
+        @Override
+        public RestIdEntity.Builder<E, M> createTime(Date createTime) {
+            this.createTime = createTime;
+            return this;
+        }
+
+        @Override
+        public RestIdEntity.Builder<E, M> updateTime(Date updateTime) {
+            this.updateTime = updateTime;
+            return this;
+        }
+
+        @Override
+        public RestIdEntity.Builder<E, M> operate(Integer operate) {
+            this.operate = operate;
+            return this;
+        }
+
+        @Override
+        public RestIdEntity.Builder<E, M> operate(@NonNull OperateType operate) {
+            this.operate = operate.getKey();
+            return this;
+        }
+
+        @Override
+        public RestIdEntity.Builder<E, M> logic(String logic) {
+            this.logic = logic;
             return this;
         }
 

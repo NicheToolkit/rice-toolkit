@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.advice;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.IdEntity;
+import io.github.nichetoolkit.rice.RestId;
 
 import java.util.Collection;
 
@@ -16,7 +17,7 @@ import java.util.Collection;
  * @since Jdk1.8
  */
 @SuppressWarnings("RedundantThrows")
-public interface OperateAdvice<E extends IdEntity<I>, I> {
+public interface OperateAdvice<E extends RestId<I>, I> {
 
     /**
      * <code>beforeOperate</code>

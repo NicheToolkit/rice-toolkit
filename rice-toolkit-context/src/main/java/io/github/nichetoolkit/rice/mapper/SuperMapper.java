@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.mapper;
 
 import io.github.nichetoolkit.rice.IdEntity;
+import io.github.nichetoolkit.rice.RestId;
 
 /**
  * <code>SuperMapper</code>
@@ -16,5 +17,5 @@ import io.github.nichetoolkit.rice.IdEntity;
  * @since Jdk1.8
  */
 @SuppressWarnings("UnusedReturnValue")
-public interface SuperMapper<E extends IdEntity<I>, I> extends SaveMapper<E, I>, FindMapper<E, I>, DeleteMapper<I> {
+public interface SuperMapper<E extends RestId<I>, I> extends SaveMapper<E, I>, FindMapper<E, I>, DeleteMapper<I> {
 }

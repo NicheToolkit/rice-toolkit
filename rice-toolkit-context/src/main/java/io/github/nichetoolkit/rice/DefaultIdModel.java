@@ -108,10 +108,17 @@ public abstract class DefaultIdModel<M extends DefaultIdModel<M,E,I>,E extends D
         }
 
         @Override
+        public DefaultIdModel.Builder<M,E,I> logic(String logic) {
+            this.logic = logic;
+            return this;
+        }
+
+        @Override
         public DefaultIdModel.Builder<M,E,I> save(SaveType save) {
             this.save = save;
             return this;
         }
+
         @Override
         public DefaultIdModel.Builder<M,E,I> save(Integer save) {
             this.save = SaveType.parseKey(save);

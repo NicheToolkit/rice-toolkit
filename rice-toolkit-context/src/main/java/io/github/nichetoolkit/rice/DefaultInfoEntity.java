@@ -77,12 +77,6 @@ public abstract class DefaultInfoEntity<E extends DefaultInfoEntity<E,M,I>,M ext
         }
 
         @Override
-        public DefaultInfoEntity.Builder<E,M,I> id(I id) {
-            this.id = id;
-            return this;
-        }
-
-        @Override
         public DefaultInfoEntity.Builder<E,M,I> name(String name) {
             this.name = name;
             return this;
@@ -91,6 +85,12 @@ public abstract class DefaultInfoEntity<E extends DefaultInfoEntity<E,M,I>,M ext
         @Override
         public DefaultInfoEntity.Builder<E,M,I> description(String description) {
             this.description = description;
+            return this;
+        }
+
+        @Override
+        public DefaultInfoEntity.Builder<E,M,I> id(I id) {
+            this.id = id;
             return this;
         }
 
@@ -119,8 +119,8 @@ public abstract class DefaultInfoEntity<E extends DefaultInfoEntity<E,M,I>,M ext
         }
 
         @Override
-        public DefaultInfoEntity.Builder<E,M,I> logicSign(String logicSign) {
-            this.logicSign = logicSign;
+        public DefaultInfoEntity.Builder<E,M,I> logic(String logic) {
+            this.logic = logic;
             return this;
         }
 

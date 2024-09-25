@@ -4,7 +4,6 @@ import io.github.nichetoolkit.rest.error.ClassUnknownException;
 import io.github.nichetoolkit.rest.error.ClassUnsupportedException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestId;
-import io.github.nichetoolkit.rice.clazz.ClazzHelper;
 
 import java.lang.reflect.Array;
 import java.util.List;
@@ -109,7 +108,7 @@ public class IdArrayHelper {
         if (GeneralUtils.isNotEmpty(model)) {
             /*  将model的id反向关联 */
             if (idArray.length <= index) {
-                Class<?> clazz = ClazzHelper.clazz(model);
+                Class<?> clazz = ModelHelper.clazzOfModel(model);
                 I[] copyIdArray = (I[]) Array.newInstance(clazz, index + 1);
                 System.arraycopy(idArray, 0, copyIdArray, 0, idArray.length);
                 idArray = copyIdArray;

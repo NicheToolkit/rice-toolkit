@@ -2,6 +2,8 @@ package io.github.nichetoolkit.rice;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.io.Serializable;
+
 /**
  * <code>RestTablekey</code>
  * <p>The type rest tablekey interface.</p>
@@ -9,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public interface RestTablekey<K> {
+public interface RestTablekey<K> extends Serializable {
 
     /**
      * <code>getTablekey</code>

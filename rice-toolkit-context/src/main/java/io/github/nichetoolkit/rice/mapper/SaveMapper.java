@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.mapper;
 
 import io.github.nichetoolkit.rice.IdEntity;
+import io.github.nichetoolkit.rice.RestId;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Collection;
@@ -16,7 +17,7 @@ import java.util.Collection;
  * @since Jdk1.8
  */
 @SuppressWarnings("UnusedReturnValue")
-public interface SaveMapper<E extends IdEntity<I>,I> {
+public interface SaveMapper<E extends RestId<I>,I> {
 
     /**
      * <code>save</code>

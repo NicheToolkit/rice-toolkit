@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.IdModel;
+import io.github.nichetoolkit.rice.RestId;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
  * @see io.github.nichetoolkit.rice.service.DeleteService
  * @since Jdk1.8
  */
-public interface QueryService<M extends IdModel<I>, I, K> extends DeleteService<I, K> {
+public interface QueryService<M extends RestId<I>, I, K> extends DeleteService<I, K> {
 
     /**
      * <code>queryAll</code>

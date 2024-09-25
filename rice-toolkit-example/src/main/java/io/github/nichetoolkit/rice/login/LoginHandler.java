@@ -5,7 +5,7 @@ import io.github.nichetoolkit.rest.*;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
-import io.github.nichetoolkit.rice.RestMap;
+import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.advice.LoginAdvice;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
 import io.github.nichetoolkit.rice.service.TokenService;
@@ -77,7 +77,7 @@ public class LoginHandler implements LoginAdvice {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Object doLoginHandle(RestHttpRequest httpRequest, Object body, MethodParameter returnType, RestMap restMap) throws RestException {
+    public Object doLoginHandle(RestHttpRequest httpRequest, Object body, MethodParameter returnType, TokenContext restMap) throws RestException {
         if (doResponseHandle(body)) {
             return null;
         }
@@ -108,7 +108,7 @@ public class LoginHandler implements LoginAdvice {
     }
 
     @Override
-    public void doLogoutHandle(RestHttpRequest request, Object body, MethodParameter returnType, RestMap restMap) throws RestException {
+    public void doLogoutHandle(RestHttpRequest request, Object body, MethodParameter returnType, TokenContext restMap) throws RestException {
         UserModel userModel = tokenService.resolveUserInfo(request);
         RestOptional.ofNullable(userModel).ifEmptyPresent(user ->{
             String userId = user.getId();
@@ -128,7 +128,7 @@ public class LoginHandler implements LoginAdvice {
             return false;
         }
         UserModel user = tokenService.resolveUserInfo(httpRequest);
-        OptionalUtils.nullable(user, TokenPermissionException::new);
+        OptionalUtils.ofNull(user, TokenPermissionException::new);
         return true;
     }
 

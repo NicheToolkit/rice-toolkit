@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice.resolver;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.RestUsernoteAdvice;
-import io.github.nichetoolkit.rest.reflect.GenericTypeResolver;
+import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
 import io.github.nichetoolkit.rest.userlog.LoggingType;
 import io.github.nichetoolkit.rest.userlog.RestRequestPack;
 import io.github.nichetoolkit.rest.userlog.RestResponsePack;
@@ -14,7 +14,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestUserInfo;
 import io.github.nichetoolkit.rice.advice.UserlogAdvice;
 import io.github.nichetoolkit.rice.RestUsernoteModel;
-import io.github.nichetoolkit.rice.clazz.ClazzUtils;
+import io.github.nichetoolkit.rice.helper.ModelUtils;
 import io.github.nichetoolkit.rice.pack.UserInfoPack;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
@@ -62,7 +62,7 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
      */
     @SuppressWarnings(value = "unchecked")
     private Class<T> childClass() {
-        return (Class<T>) GenericTypeResolver.resolveClass(GenericTypeResolver.resolveType(
+        return (Class<T>) RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
                 DefaultUsernoteService.class.getTypeParameters()[0], getClass(), DefaultUsernoteService.class));
     }
 
@@ -77,15 +77,15 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
     @Override
     public void doUsernoteHandle(@NonNull RestRequestPack request, @NonNull RestResponsePack response, @NonNull RestUsernotePack usernote) {
         try {
-            this.usernote = RestUsernoteModel.createBuilder()
+            this.usernote = RestUsernoteModel.ofUsernote()
                     .usernote(usernote).request(request)
                     .response(response).build();
             doTargetIdsHandle(request, response);
             doUserInfoHandle(response);
             if (GeneralUtils.isNotEmpty(this.usernote)) {
-                T childUsernote = ClazzUtils.renew(childClass());
+                T childUsernote = ModelUtils.newInstance(childClass());
                 if (GeneralUtils.isNotEmpty(childUsernote)) {
-                    BeanUtils.copyNonullProperties(this.usernote, childUsernote);
+                    BeanUtils.copyNonnullProperties(this.usernote, childUsernote);
                     childUsernote.setTargetIds(this.usernote.getTargetIds());
                     doUsernoteHandle(childUsernote);
                 }

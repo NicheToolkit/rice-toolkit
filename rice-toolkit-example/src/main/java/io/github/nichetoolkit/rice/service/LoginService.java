@@ -12,7 +12,6 @@ import io.github.nichetoolkit.rice.simple.LoginRequest;
 import io.github.nichetoolkit.rice.simple.UserModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -73,7 +72,7 @@ public class LoginService {
         String token = loginRequest.getToken();
         UserModel localUser = tokenService.resolveUserInfo(token);
         String userId = localUser.getId();
-        OptionalUtils.falseable(GeneralUtils.isNotEmpty(userId), TokenInvalidException::new);
+        OptionalUtils.ofFalse(GeneralUtils.isNotEmpty(userId), TokenInvalidException::new);
         return localUser;
     }
 
@@ -90,15 +89,15 @@ public class LoginService {
     public UserModel loginWithPassword(LoginRequest loginRequest) throws RestException {
         String account = loginRequest.getAccount();
         String password = loginRequest.getPassword();
-        OptionalUtils.falseable(GeneralUtils.isNotEmpty(account) && GeneralUtils.isNotEmpty(password), LoginInfoException::new);
+        OptionalUtils.ofFalse(GeneralUtils.isNotEmpty(account) && GeneralUtils.isNotEmpty(password), LoginInfoException::new);
         List<UserModel> modelList = userService.queryByName(account);
-        OptionalUtils.falseable(GeneralUtils.isNotEmpty(modelList), LoginInfoException::new);
+        OptionalUtils.ofFalse(GeneralUtils.isNotEmpty(modelList), LoginInfoException::new);
         Optional<UserModel> firstOptional = modelList.stream().findFirst();
         UserModel localUser = firstOptional.orElseThrow(LoginInfoException::new);
         String localPassword = localUser.getPassword();
         if (GeneralUtils.isNotEmpty(localPassword)) {
             String encryptPassword = ShaWorker.encrypts(password);
-            OptionalUtils.falseable(encryptPassword.equals(localPassword), LoginPasswordException::new);
+            OptionalUtils.ofFalse(encryptPassword.equals(localPassword), LoginPasswordException::new);
         }
         return localUser;
     }

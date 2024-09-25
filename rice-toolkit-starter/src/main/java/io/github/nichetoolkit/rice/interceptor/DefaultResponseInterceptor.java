@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice.interceptor;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.RestMap;
+import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.advice.LoginAdvice;
 import io.github.nichetoolkit.rice.constant.AdviceConstants;
 import io.github.nichetoolkit.rice.resolver.DefaultMapArgumentResolver;
@@ -77,16 +77,16 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object body, @NonNull MethodParameter returnType,@NonNull MediaType selectedContentType,@NonNull Class selectedConverterType,@NonNull ServerHttpRequest request,@NonNull ServerHttpResponse response) {
-        RestMap restMap = null;
+        TokenContext restMap = null;
         RestHttpRequest httpRequest = null;
         /* 将请求中的模型数据容器取出来 */
         if (request instanceof ServletServerHttpRequest) {
             HttpServletRequest httpServletRequest = ((ServletServerHttpRequest) request).getServletRequest();
             httpRequest = RestHttpRequest.getHttpRequest(httpServletRequest);
-            restMap = (RestMap) httpServletRequest.getAttribute(DefaultMapArgumentResolver.REST_MAP_KEY);
+            restMap = (TokenContext) httpServletRequest.getAttribute(DefaultMapArgumentResolver.REST_MAP_KEY);
         }
         if (GeneralUtils.isEmpty(restMap)) {
-            restMap = new RestMap();
+            restMap = new TokenContext();
         }
         /* 登出接口注解 */
         RestLogout restLogout = AnnotationUtils.getAnnotation(returnType.getAnnotatedElement(), RestLogout.class);

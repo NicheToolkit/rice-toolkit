@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.mapper.natives;
 
 import io.github.nichetoolkit.rice.IdEntity;
+import io.github.nichetoolkit.rice.RestId;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,7 +19,7 @@ import java.util.List;
  * @see io.github.nichetoolkit.rice.filter.IdFilter
  * @since Jdk1.8
  */
-public interface FindFilterMapper<E extends IdEntity<I>, F extends IdFilter<I, K>, I, K> {
+public interface FindFilterMapper<E extends RestId<I>, F extends IdFilter<I, K>, I, K> {
     /**
      * <code>findAllByFilterWhere</code>
      * <p>the all by filter where method.</p>

@@ -171,8 +171,8 @@ public class TimeEntity extends OperateEntity {
         }
 
         @Override
-        public TimeEntity.Builder logicSign(String logicSign) {
-            this.logicSign = logicSign;
+        public TimeEntity.Builder logic(String logic) {
+            this.logic = logic;
             return this;
         }
 

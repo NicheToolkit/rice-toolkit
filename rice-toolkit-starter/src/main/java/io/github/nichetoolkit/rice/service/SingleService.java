@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.IdModel;
+import io.github.nichetoolkit.rice.RestId;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
@@ -16,7 +17,7 @@ import java.sql.SQLException;
  * @see io.github.nichetoolkit.rice.IdModel
  * @since Jdk1.8
  */
-public interface SingleService<M extends IdModel<I>, I, K> {
+public interface SingleService<M extends RestId<I>, I, K> {
     /**
      * <code>create</code>
      * <p>the method.</p>

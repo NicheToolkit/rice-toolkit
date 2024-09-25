@@ -451,17 +451,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
         return null;
     }
 
-    /**
-     * <code>createBuilder</code>
-     * <p>the builder method.</p>
-     * @param <M> {@link io.github.nichetoolkit.rice.RestIdModel} <p>the generic parameter is <code>RestIdModel</code> type.</p>
-     * @param <E> {@link io.github.nichetoolkit.rice.RestIdEntity} <p>the generic parameter is <code>RestIdEntity</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>the builder return object is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestIdModel
-     * @see io.github.nichetoolkit.rice.RestIdEntity
-     * @see io.github.nichetoolkit.rice.RestUsernoteModel.Builder
-     */
-    public static <M extends RestIdModel<M, E>, E extends RestIdEntity<E, M>> RestUsernoteModel.Builder<M, E> createBuilder() {
+
+    public static <M extends RestIdModel<M, E>, E extends RestIdEntity<E, M>> RestUsernoteModel.Builder<M,E> ofUsernote() {
         return new RestUsernoteModel.Builder<>();
     }
 
@@ -639,6 +630,12 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
         @Override
         public RestUsernoteModel.Builder<M, E> operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
+            return this;
+        }
+
+        @Override
+        public RestUsernoteModel.Builder<M, E> logic(String logic) {
+            this.logic = logic;
             return this;
         }
 

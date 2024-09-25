@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.IdModel;
+import io.github.nichetoolkit.rice.RestId;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ import java.util.List;
  * @see io.github.nichetoolkit.rice.service.QueryService
  * @since Jdk1.8
  */
-public interface SaveService<M extends IdModel<I>, I, K> extends QueryService<M, I, K> {
+public interface SaveService<M extends RestId<I>, I, K> extends QueryService<M, I, K> {
 
     /**
      * <code>save</code>

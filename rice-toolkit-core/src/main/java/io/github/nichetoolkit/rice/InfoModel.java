@@ -103,6 +103,10 @@ public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
         return JsonUtils.parseJson(this);
     }
 
+    public static <I> InfoModel.Builder<I> ofInfo() {
+        return new InfoModel.Builder<>();
+    }
+
     /**
      * <code>Builder</code>
      * <p>The type builder class.</p>
@@ -132,12 +136,6 @@ public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
         public Builder() {
         }
 
-        @Override
-        public InfoModel.Builder<I> id(I id) {
-            this.id = id;
-            return this;
-        }
-
         /**
          * <code>name</code>
          * <p>the method.</p>
@@ -159,6 +157,12 @@ public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
          */
         public InfoModel.Builder<I> description(String description) {
             this.description = description;
+            return this;
+        }
+
+        @Override
+        public InfoModel.Builder<I> id(I id) {
+            this.id = id;
             return this;
         }
 
@@ -195,6 +199,12 @@ public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
         @Override
         public InfoModel.Builder<I> operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
+            return this;
+        }
+
+        @Override
+        public InfoModel.Builder<I> logic(String logic) {
+            this.logic = logic;
             return this;
         }
 

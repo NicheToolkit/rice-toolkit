@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import io.github.nichetoolkit.rice.enums.SaveType;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
@@ -101,6 +102,10 @@ public class TimeModel extends OperateModel {
         this.updateTime = updateTime;
     }
 
+    public static TimeModel.Builder ofTime() {
+        return new TimeModel.Builder();
+    }
+
     /**
      * <code>Builder</code>
      * <p>The type builder class.</p>
@@ -179,6 +184,7 @@ public class TimeModel extends OperateModel {
             return this;
         }
 
+
         @Override
         public TimeModel.Builder operate(OperateType operate) {
             this.operate = operate;
@@ -188,6 +194,24 @@ public class TimeModel extends OperateModel {
         @Override
         public TimeModel.Builder operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
+            return this;
+        }
+
+        @Override
+        public TimeModel.Builder logic(String logic) {
+            this.logic = logic;
+            return this;
+        }
+
+        @Override
+        public TimeModel.Builder save(SaveType save) {
+            this.save = save;
+            return this;
+        }
+
+        @Override
+        public TimeModel.Builder save(Integer save) {
+            this.save = SaveType.parseKey(save);
             return this;
         }
 

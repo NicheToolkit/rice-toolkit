@@ -66,6 +66,7 @@ public abstract class DefaultIdEntity<E extends DefaultIdEntity<E,M,I>, M extend
         public Builder() {
         }
 
+        @Override
         public DefaultIdEntity.Builder<E,M,I> id(I id) {
             this.id = id;
             return this;
@@ -96,8 +97,8 @@ public abstract class DefaultIdEntity<E extends DefaultIdEntity<E,M,I>, M extend
         }
 
         @Override
-        public DefaultIdEntity.Builder<E,M,I> logicSign(String logicSign) {
-            this.logicSign = logicSign;
+        public DefaultIdEntity.Builder<E,M,I> logic(String logic) {
+            this.logic = logic;
             return this;
         }
 

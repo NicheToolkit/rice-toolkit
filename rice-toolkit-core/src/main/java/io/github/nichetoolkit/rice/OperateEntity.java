@@ -2,12 +2,9 @@ package io.github.nichetoolkit.rice;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.nichetoolkit.mybatis.stereotype.column.RestLogicKey;
 import io.github.nichetoolkit.mybatis.stereotype.column.RestOperateKey;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import org.springframework.lang.NonNull;
-
-import java.io.Serializable;
 
 /**
  * <code>OperateEntity</code>
@@ -22,7 +19,7 @@ import java.io.Serializable;
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OperateEntity implements Serializable {
+public class OperateEntity extends LogicEntity implements RestOperate<Integer> {
 
     /**
      * <code>operate</code>
@@ -32,15 +29,6 @@ public class OperateEntity implements Serializable {
      */
     @RestOperateKey
     protected Integer operate;
-
-    /**
-     * <code>logicSign</code>
-     * {@link java.lang.String} <p>the <code>logicSign</code> field.</p>
-     * @see java.lang.String
-     * @see io.github.nichetoolkit.mybatis.stereotype.column.RestLogicKey
-     */
-    @RestLogicKey
-    protected String logicSign;
 
     /**
      * <code>OperateEntity</code>
@@ -56,8 +44,8 @@ public class OperateEntity implements Serializable {
      * @see io.github.nichetoolkit.rice.OperateEntity.Builder
      */
     public OperateEntity(OperateEntity.Builder builder) {
+        super(builder);
         this.operate = builder.operate;
-        this.logicSign = builder.logicSign;
     }
 
     /**
@@ -66,6 +54,7 @@ public class OperateEntity implements Serializable {
      * @return {@link java.lang.Integer} <p>the operate return object is <code>Integer</code> type.</p>
      * @see java.lang.Integer
      */
+    @Override
     public Integer getOperate() {
         return operate;
     }
@@ -76,28 +65,9 @@ public class OperateEntity implements Serializable {
      * @param operate {@link java.lang.Integer} <p>the operate parameter is <code>Integer</code> type.</p>
      * @see java.lang.Integer
      */
+    @Override
     public void setOperate(Integer operate) {
         this.operate = operate;
-    }
-
-    /**
-     * <code>getLogicSign</code>
-     * <p>the logic sign getter method.</p>
-     * @return {@link java.lang.String} <p>the logic sign return object is <code>String</code> type.</p>
-     * @see java.lang.String
-     */
-    public String getLogicSign() {
-        return logicSign;
-    }
-
-    /**
-     * <code>setLogicSign</code>
-     * <p>the logic sign setter method.</p>
-     * @param logicSign {@link java.lang.String} <p>the logic sign parameter is <code>String</code> type.</p>
-     * @see java.lang.String
-     */
-    public void setLogicSign(String logicSign) {
-        this.logicSign = logicSign;
     }
 
     /**
@@ -108,19 +78,13 @@ public class OperateEntity implements Serializable {
      * @since Jdk1.8
      */
     @SuppressWarnings("WeakerAccess")
-    public static class Builder {
+    public static class Builder extends LogicEntity.Builder {
         /**
          * <code>operate</code>
          * {@link java.lang.Integer} <p>the <code>operate</code> field.</p>
          * @see java.lang.Integer
          */
         protected Integer operate;
-        /**
-         * <code>logicSign</code>
-         * {@link java.lang.String} <p>the <code>logicSign</code> field.</p>
-         * @see java.lang.String
-         */
-        protected String logicSign;
 
         /**
          * <code>Builder</code>
@@ -154,15 +118,9 @@ public class OperateEntity implements Serializable {
             return this;
         }
 
-        /**
-         * <code>logicSign</code>
-         * <p>the sign method.</p>
-         * @param logicSign {@link java.lang.String} <p>the logic sign parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.OperateEntity.Builder} <p>the sign return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
-         */
-        public OperateEntity.Builder logicSign(String logicSign) {
-            this.logicSign = logicSign;
+        @Override
+        public OperateEntity.Builder logic(String logic) {
+            this.logic = logic;
             return this;
         }
 
@@ -171,6 +129,7 @@ public class OperateEntity implements Serializable {
          * <p>the method.</p>
          * @return {@link io.github.nichetoolkit.rice.OperateEntity} <p>the return object is <code>OperateEntity</code> type.</p>
          */
+        @Override
         public OperateEntity build() {
             return new OperateEntity(this);
         }

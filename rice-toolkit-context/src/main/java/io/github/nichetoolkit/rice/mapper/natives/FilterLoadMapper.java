@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.mapper.natives;
 
 import io.github.nichetoolkit.rice.IdEntity;
+import io.github.nichetoolkit.rice.RestId;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * @see io.github.nichetoolkit.rice.IdEntity
  * @since Jdk1.8
  */
-public interface FilterLoadMapper<E extends IdEntity<I>, I> {
+public interface FilterLoadMapper<E extends RestId<I>, I> {
 
     /**
      * <code>findAllByLoadWhere</code>

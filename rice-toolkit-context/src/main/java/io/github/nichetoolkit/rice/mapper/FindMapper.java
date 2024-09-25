@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.mapper;
 
 import io.github.nichetoolkit.rice.IdEntity;
+import io.github.nichetoolkit.rice.RestId;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Collection;
@@ -17,7 +18,7 @@ import java.util.List;
  * @since Jdk1.8
  */
 @SuppressWarnings("UnusedReturnValue")
-public interface FindMapper<E extends IdEntity<I>,I> {
+public interface FindMapper<E extends RestId<I>,I> {
     /**
      * <code>findById</code>
      * <p>the by id method.</p>

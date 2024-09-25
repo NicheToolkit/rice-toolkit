@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.service.extend;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.IdModel;
+import io.github.nichetoolkit.rice.RestId;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.service.QueryService;
 import org.springframework.lang.NonNull;
@@ -23,7 +24,7 @@ import java.util.Optional;
  * @since Jdk1.8
  */
 @SuppressWarnings("RedundantThrows")
-public interface OptionalService<M extends IdModel<I>, F extends IdFilter<I, K>, I, K> extends QueryService<M, I, K> {
+public interface OptionalService<M extends RestId<I>, F extends IdFilter<I, K>, I, K> extends QueryService<M, I, K> {
 
     /**
      * <code>optional</code>
@@ -69,7 +70,6 @@ public interface OptionalService<M extends IdModel<I>, F extends IdFilter<I, K>,
      * @see io.github.nichetoolkit.rest.RestException
      */
     default void optionalQueryFilter(F filter) throws RestException {
-
     }
 
     /**
@@ -80,7 +80,6 @@ public interface OptionalService<M extends IdModel<I>, F extends IdFilter<I, K>,
      * @see io.github.nichetoolkit.rest.RestException
      */
     default void optionalDeleteFilter(F filter) throws RestException {
-
     }
 
     /**

@@ -1,6 +1,6 @@
 package io.github.nichetoolkit.rice.resolver;
 
-import io.github.nichetoolkit.rice.RestMap;
+import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.stereotype.RestUser;
 import org.springframework.core.MethodParameter;
 import org.springframework.lang.NonNull;
@@ -32,15 +32,15 @@ public class DefaultMapArgumentResolver implements HandlerMethodArgumentResolver
     @Override
     public boolean supportsParameter(@NonNull MethodParameter parameter) {
         /* 加了RestUser注解的不做处理 */
-        return parameter.getParameterType().equals(RestMap.class) && !parameter.hasParameterAnnotation(RestUser.class);
+        return parameter.getParameterType().equals(TokenContext.class) && !parameter.hasParameterAnnotation(RestUser.class);
     }
 
     @Override
     public Object resolveArgument(@NonNull MethodParameter parameter, ModelAndViewContainer mavContainer, @NonNull NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
         Object object = webRequest.getAttribute(REST_MAP_KEY, RequestAttributes.SCOPE_REQUEST);
-        if (!(object instanceof RestMap)) {
+        if (!(object instanceof TokenContext)) {
             /* 创建RestMap实例并加入到请求中 */
-            object = new RestMap();
+            object = new TokenContext();
             webRequest.setAttribute(REST_MAP_KEY, object, RequestAttributes.SCOPE_REQUEST);
         }
         return object;

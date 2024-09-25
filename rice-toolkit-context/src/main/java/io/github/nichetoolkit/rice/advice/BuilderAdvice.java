@@ -3,6 +3,7 @@ package io.github.nichetoolkit.rice.advice;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.IdEntity;
 import io.github.nichetoolkit.rice.IdModel;
+import io.github.nichetoolkit.rice.RestId;
 
 import java.util.Collection;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
  * @since Jdk1.8
  */
 @SuppressWarnings("RedundantThrows")
-public interface BuilderAdvice<M extends IdModel<I>, E extends IdEntity<I>, I> {
+public interface BuilderAdvice<M extends RestId<I>, E extends RestId<I>, I> {
 
     /**
      * <code>buildEntity</code>
