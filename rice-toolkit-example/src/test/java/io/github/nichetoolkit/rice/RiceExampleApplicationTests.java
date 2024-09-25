@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
- * <code>RiceToolkitTestWebApplicationTests</code>
- * <p>The type rice toolkit test web application tests class.</p>
+ * <code>RiceExampleApplicationTests</code>
+ * <p>The type rice example application tests class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.boot.test.context.SpringBootTest
  * @since Jdk1.8

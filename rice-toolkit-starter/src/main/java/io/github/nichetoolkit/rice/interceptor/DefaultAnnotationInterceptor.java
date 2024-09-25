@@ -32,11 +32,6 @@ import java.util.List;
 @Component
 @Order(AdviceConstants.ANNOTATION_ORDER)
 public class DefaultAnnotationInterceptor implements RequestHandleInterceptor {
-    /**
-     * <code>defaultAdvices</code>
-     * {@link java.util.List} <p>the <code>defaultAdvices</code> field.</p>
-     * @see java.util.List
-     */
     private final List<DefaultAdvice<? extends Annotation>> defaultAdvices;
 
     /**

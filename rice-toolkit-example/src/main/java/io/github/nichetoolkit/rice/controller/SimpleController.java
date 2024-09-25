@@ -26,11 +26,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/rice/simple")
 public class SimpleController {
 
-    /**
-     * <code>simpleService</code>
-     * {@link io.github.nichetoolkit.rice.service.SimpleService} <p>the <code>simpleService</code> field.</p>
-     * @see io.github.nichetoolkit.rice.service.SimpleService
-     */
     private final SimpleService simpleService;
 
     /**

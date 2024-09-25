@@ -36,25 +36,10 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class LoginHandler implements LoginAdvice {
 
-    /**
-     * <code>loginProperties</code>
-     * {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the <code>loginProperties</code> field.</p>
-     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
-     */
     private final RiceLoginProperties loginProperties;
 
-    /**
-     * <code>redisTemplate</code>
-     * {@link org.springframework.data.redis.core.StringRedisTemplate} <p>the <code>redisTemplate</code> field.</p>
-     * @see org.springframework.data.redis.core.StringRedisTemplate
-     */
     private final StringRedisTemplate redisTemplate;
 
-    /**
-     * <code>tokenService</code>
-     * {@link io.github.nichetoolkit.rice.service.TokenService} <p>the <code>tokenService</code> field.</p>
-     * @see io.github.nichetoolkit.rice.service.TokenService
-     */
     private final TokenService tokenService;
 
     /**

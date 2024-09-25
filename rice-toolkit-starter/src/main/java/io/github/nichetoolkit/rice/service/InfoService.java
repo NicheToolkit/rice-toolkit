@@ -18,14 +18,13 @@ import java.util.List;
 /**
  * <code>InfoService</code>
  * <p>The type info service class.</p>
- * @param <M> {@link io.github.nichetoolkit.rice.InfoModel} <p>the generic parameter is <code>InfoModel</code> type.</p>
- * @param <E> {@link io.github.nichetoolkit.rice.InfoEntity} <p>the generic parameter is <code>InfoEntity</code> type.</p>
+ * @param <M> {@link io.github.nichetoolkit.rice.RestInfo} <p>the generic parameter is <code>RestInfo</code> type.</p>
+ * @param <E> {@link io.github.nichetoolkit.rice.RestInfo} <p>the generic parameter is <code>RestInfo</code> type.</p>
  * @param <F> {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>the generic parameter is <code>IdFilter</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.InfoModel
- * @see io.github.nichetoolkit.rice.InfoEntity
+ * @see io.github.nichetoolkit.rice.RestInfo
  * @see io.github.nichetoolkit.rice.filter.IdFilter
  * @see io.github.nichetoolkit.rice.service.SuperService
  * @see java.lang.SuppressWarnings
@@ -87,16 +86,6 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
         }
     }
 
-    /**
-     * <code>existByName</code>
-     * <p>the by name method.</p>
-     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
-     * @param model    M <p>the model parameter is <code>M</code> type.</p>
-     * @return {@link java.lang.Boolean} <p>the by name return object is <code>Boolean</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
-     */
     private Boolean existByName(K tablekey, M model) throws RestException {
         if (GeneralUtils.isEmpty(model.getName())) {
             return false;
@@ -112,17 +101,6 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
     }
 
 
-    /**
-     * <code>existByNameAndNotId</code>
-     * <p>the by name and not id method.</p>
-     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
-     * @param model    M <p>the model parameter is <code>M</code> type.</p>
-     * @param id       I <p>the id parameter is <code>I</code> type.</p>
-     * @return {@link java.lang.Boolean} <p>the by name and not id return object is <code>Boolean</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
-     */
     private Boolean existByNameAndNotId(K tablekey, M model, I id) throws RestException {
         if (GeneralUtils.isEmpty(model.getName())) {
             return false;
@@ -140,16 +118,6 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
         return GeneralUtils.isNotEmpty(entityList);
     }
 
-    /**
-     * <code>existByModel</code>
-     * <p>the by model method.</p>
-     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
-     * @param model    M <p>the model parameter is <code>M</code> type.</p>
-     * @return {@link java.lang.Boolean} <p>the by model return object is <code>Boolean</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
-     */
     private Boolean existByModel(K tablekey, M model) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return false;
@@ -165,17 +133,6 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
         return GeneralUtils.isNotEmpty(entityList);
     }
 
-    /**
-     * <code>existByModelAndNotId</code>
-     * <p>the by model and not id method.</p>
-     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
-     * @param model    M <p>the model parameter is <code>M</code> type.</p>
-     * @param id       I <p>the id parameter is <code>I</code> type.</p>
-     * @return {@link java.lang.Boolean} <p>the by model and not id return object is <code>Boolean</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
-     */
     private Boolean existByModelAndNotId(K tablekey, M model, I id) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return false;
@@ -194,17 +151,6 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
         return GeneralUtils.isNotEmpty(entityList);
     }
 
-    /**
-     * <code>findByName</code>
-     * <p>the by name method.</p>
-     * @param name      {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
-     * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
-     * @return {@link java.util.List} <p>the by name return object is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.String
-     * @see java.util.List
-     * @see io.github.nichetoolkit.rest.RestException
-     */
     private List<E> findByName(String name, String tablename) throws RestException {
         List<E> entityList;
         if (isDynamicTable() && GeneralUtils.isNotEmpty(tablename)) {

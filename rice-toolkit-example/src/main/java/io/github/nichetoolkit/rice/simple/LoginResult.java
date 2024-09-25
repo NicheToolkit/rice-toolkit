@@ -10,17 +10,7 @@ import io.github.nichetoolkit.rice.RestLoginResult;
  * @since Jdk1.8
  */
 public class LoginResult extends RestLoginResult<LoginResult> {
-    /**
-     * <code>userId</code>
-     * {@link java.lang.String} <p>the <code>userId</code> field.</p>
-     * @see java.lang.String
-     */
     private String userId;
-    /**
-     * <code>user</code>
-     * {@link io.github.nichetoolkit.rice.simple.UserModel} <p>the <code>user</code> field.</p>
-     * @see io.github.nichetoolkit.rice.simple.UserModel
-     */
     private UserModel user;
 
     /**

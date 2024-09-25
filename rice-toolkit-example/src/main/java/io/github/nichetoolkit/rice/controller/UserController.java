@@ -34,11 +34,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/rest/user")
 public class UserController {
 
-    /**
-     * <code>userService</code>
-     * {@link io.github.nichetoolkit.rice.service.UserService} <p>the <code>userService</code> field.</p>
-     * @see io.github.nichetoolkit.rice.service.UserService
-     */
     private final UserService userService;
 
     /**

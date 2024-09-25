@@ -14,18 +14,13 @@ import org.springframework.stereotype.Component;
  * <code>UserResolver</code>
  * <p>The type user resolver class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see RestUserResolver
+ * @see io.github.nichetoolkit.rice.RestUserResolver
  * @see org.springframework.stereotype.Component
  * @since Jdk1.8
  */
 @Component
 public class UserResolver implements RestUserResolver {
 
-    /**
-     * <code>tokenService</code>
-     * {@link io.github.nichetoolkit.rice.service.TokenService} <p>the <code>tokenService</code> field.</p>
-     * @see io.github.nichetoolkit.rice.service.TokenService
-     */
     private final TokenService tokenService;
 
     /**

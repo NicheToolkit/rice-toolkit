@@ -41,26 +41,10 @@ public class UserModel extends RestInfoModel<UserModel, UserEntity> implements R
      * @see java.lang.String
      */
     public static final String LOGIN_USER_INFO = "LOGIN_USER_INFO";
-    /**
-     * <code>username</code>
-     * {@link java.lang.String} <p>the <code>username</code> field.</p>
-     * @see java.lang.String
-     */
     private String username;
-    /**
-     * <code>password</code>
-     * {@link java.lang.String} <p>the <code>password</code> field.</p>
-     * @see java.lang.String
-     * @see com.fasterxml.jackson.annotation.JsonProperty
-     */
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    /**
-     * <code>purviewType</code>
-     * {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>the <code>purviewType</code> field.</p>
-     * @see io.github.nichetoolkit.rice.purview.PurviewType
-     */
     private PurviewType purviewType;
 
     /**

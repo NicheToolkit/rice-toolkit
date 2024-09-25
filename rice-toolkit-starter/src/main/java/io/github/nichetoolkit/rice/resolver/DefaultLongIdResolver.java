@@ -7,9 +7,12 @@ import io.github.nichetoolkit.rice.RestIdResolver;
 import org.springframework.stereotype.Component;
 
 /**
- * <p>DefaultStringIdResolver</p>
+ * <code>DefaultLongIdResolver</code>
+ * <p>The type default long id resolver class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
+ * @see io.github.nichetoolkit.rice.RestIdResolver
+ * @see org.springframework.stereotype.Component
+ * @since Jdk1.8
  */
 @Component
 public class DefaultLongIdResolver implements RestIdResolver<Long> {

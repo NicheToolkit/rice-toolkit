@@ -7,6 +7,7 @@ import java.io.Serializable;
  * <p>The type rest id interface.</p>
  * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
+ * @see java.io.Serializable
  * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */

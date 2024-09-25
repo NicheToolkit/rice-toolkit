@@ -9,12 +9,11 @@ import java.util.List;
 /**
  * <code>BuilderAdvice</code>
  * <p>The type builder advice interface.</p>
- * @param <M> {@link io.github.nichetoolkit.rice.IdModel} <p>the generic parameter is <code>IdModel</code> type.</p>
- * @param <E> {@link io.github.nichetoolkit.rice.IdEntity} <p>the generic parameter is <code>IdEntity</code> type.</p>
+ * @param <M> {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
+ * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.IdModel
- * @see io.github.nichetoolkit.rice.IdEntity
+ * @see io.github.nichetoolkit.rice.RestId
  * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */

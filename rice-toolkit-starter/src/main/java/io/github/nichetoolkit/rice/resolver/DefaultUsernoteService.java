@@ -38,28 +38,16 @@ import java.util.Set;
 @Slf4j
 @SuppressWarnings({"WeakerAccess", "unchecked"})
 public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> implements UserlogAdvice, RestUsernoteAdvice {
-    /**
-     * <code>usernote</code>
-     * {@link io.github.nichetoolkit.rice.RestUsernoteModel} <p>the <code>usernote</code> field.</p>
-     * @see io.github.nichetoolkit.rice.RestUsernoteModel
-     */
     private RestUsernoteModel<?, ?> usernote;
 
     /**
-     * <code>RestUsernoteService</code>
-     * Instantiates a new rest usernote service.
+     * <code>DefaultUsernoteService</code>
+     * Instantiates a new default usernote service.
      */
     public DefaultUsernoteService() {
         this.usernote = new RestUsernoteModel<>();
     }
 
-    /**
-     * <code>childClass</code>
-     * <p>the class method.</p>
-     * @return {@link java.lang.Class} <p>the class return object is <code>Class</code> type.</p>
-     * @see java.lang.Class
-     * @see java.lang.SuppressWarnings
-     */
     @SuppressWarnings(value = "unchecked")
     private Class<T> childClass() {
         return (Class<T>) RestGenericTypes.resolveClass(RestGenericTypes.resolveType(

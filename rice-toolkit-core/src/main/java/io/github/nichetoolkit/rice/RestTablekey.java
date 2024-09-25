@@ -9,6 +9,7 @@ import java.io.Serializable;
  * <p>The type rest tablekey interface.</p>
  * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
+ * @see java.io.Serializable
  * @since Jdk1.8
  */
 public interface RestTablekey<K> extends Serializable {

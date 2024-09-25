@@ -452,6 +452,16 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
     }
 
 
+    /**
+     * <code>ofUsernote</code>
+     * <p>the usernote method.</p>
+     * @param <M> {@link io.github.nichetoolkit.rice.RestIdModel} <p>the generic parameter is <code>RestIdModel</code> type.</p>
+     * @param <E> {@link io.github.nichetoolkit.rice.RestIdEntity} <p>the generic parameter is <code>RestIdEntity</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>the usernote return object is <code>Builder</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestIdModel
+     * @see io.github.nichetoolkit.rice.RestIdEntity
+     * @see io.github.nichetoolkit.rice.RestUsernoteModel.Builder
+     */
     public static <M extends RestIdModel<M, E>, E extends RestIdEntity<E, M>> RestUsernoteModel.Builder<M,E> ofUsernote() {
         return new RestUsernoteModel.Builder<>();
     }

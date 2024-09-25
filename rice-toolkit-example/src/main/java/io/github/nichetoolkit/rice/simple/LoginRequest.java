@@ -20,23 +20,8 @@ import java.io.Serializable;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LoginRequest implements Serializable {
-    /**
-     * <code>token</code>
-     * {@link java.lang.String} <p>the <code>token</code> field.</p>
-     * @see java.lang.String
-     */
     private String token;
-    /**
-     * <code>account</code>
-     * {@link java.lang.String} <p>the <code>account</code> field.</p>
-     * @see java.lang.String
-     */
     private String account;
-    /**
-     * <code>password</code>
-     * {@link java.lang.String} <p>the <code>password</code> field.</p>
-     * @see java.lang.String
-     */
     private String password;
 
     /**

@@ -43,11 +43,6 @@ import java.util.List;
 @Order(AdviceConstants.RESPONSE_ORDER)
 public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
 
-    /**
-     * <code>loginAdvices</code>
-     * {@link java.util.List} <p>the <code>loginAdvices</code> field.</p>
-     * @see java.util.List
-     */
     private final List<LoginAdvice> loginAdvices;
 
     /**

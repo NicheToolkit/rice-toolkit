@@ -89,6 +89,13 @@ public class IdModel<I> extends TimeModel implements RestId<I>{
     }
 
 
+    /**
+     * <code>ofId</code>
+     * <p>the id method.</p>
+     * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+     * @return {@link io.github.nichetoolkit.rice.IdModel.Builder} <p>the id return object is <code>Builder</code> type.</p>
+     * @see io.github.nichetoolkit.rice.IdModel.Builder
+     */
     public static <I> IdModel.Builder<I> ofId() {
         return new IdModel.Builder<>();
     }

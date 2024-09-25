@@ -37,28 +37,10 @@ public enum PurviewType implements RestReckon<Long> {
     PURVIEW_3("purview3", 4L),
     ;
 
-    /**
-     * <code>key</code>
-     * {@link java.lang.String} <p>the <code>key</code> field.</p>
-     * @see java.lang.String
-     */
     private final String key;
 
-    /**
-     * <code>value</code>
-     * {@link java.lang.Long} <p>the <code>value</code> field.</p>
-     * @see java.lang.Long
-     */
     private final Long value;
 
-    /**
-     * <code>PurviewType</code>
-     * Instantiates a new purview type.
-     * @param key   {@link java.lang.String} <p>the key parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Long} <p>the value parameter is <code>Long</code> type.</p>
-     * @see java.lang.String
-     * @see java.lang.Long
-     */
     PurviewType(String key, Long value) {
         this.key = key;
         this.value = value;

@@ -23,11 +23,6 @@ import java.util.Objects;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RestLoginResult<R extends RestLoginResult<R>> implements Serializable {
 
-    /**
-     * <code>token</code>
-     * {@link java.lang.String} <p>the <code>token</code> field.</p>
-     * @see java.lang.String
-     */
     private String token;
 
     /**

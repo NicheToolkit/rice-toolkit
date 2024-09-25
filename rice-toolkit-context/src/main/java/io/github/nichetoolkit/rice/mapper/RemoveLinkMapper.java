@@ -17,8 +17,8 @@ public interface RemoveLinkMapper<I> extends RemoveMapper<I> {
     /**
      * <code>removeByLinkId</code>
      * <p>the by link id method.</p>
-     * @param linkId    I <p>the link id parameter is <code>I</code> type.</p>
-     * @param logic {@link java.lang.String} <p>the logic sign parameter is <code>String</code> type.</p>
+     * @param linkId I <p>the link id parameter is <code>I</code> type.</p>
+     * @param logic  {@link java.lang.String} <p>the logic parameter is <code>String</code> type.</p>
      * @return {@link java.lang.Integer} <p>the by link id return object is <code>Integer</code> type.</p>
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.String
@@ -31,7 +31,7 @@ public interface RemoveLinkMapper<I> extends RemoveMapper<I> {
      * <p>the dynamic by link id method.</p>
      * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
      * @param linkId    I <p>the link id parameter is <code>I</code> type.</p>
-     * @param logic {@link java.lang.String} <p>the logic sign parameter is <code>String</code> type.</p>
+     * @param logic     {@link java.lang.String} <p>the logic parameter is <code>String</code> type.</p>
      * @return {@link java.lang.Integer} <p>the dynamic by link id return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
@@ -43,7 +43,7 @@ public interface RemoveLinkMapper<I> extends RemoveMapper<I> {
      * <code>removeAllByLinkIds</code>
      * <p>the all by link ids method.</p>
      * @param linkIdList {@link java.util.Collection} <p>the link id list parameter is <code>Collection</code> type.</p>
-     * @param logic  {@link java.lang.String} <p>the logic sign parameter is <code>String</code> type.</p>
+     * @param logic      {@link java.lang.String} <p>the logic parameter is <code>String</code> type.</p>
      * @return {@link java.lang.Integer} <p>the all by link ids return object is <code>Integer</code> type.</p>
      * @see java.util.Collection
      * @see org.apache.ibatis.annotations.Param
@@ -57,7 +57,7 @@ public interface RemoveLinkMapper<I> extends RemoveMapper<I> {
      * <p>the dynamic all by link ids method.</p>
      * @param tablename  {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>the link id list parameter is <code>Collection</code> type.</p>
-     * @param logic  {@link java.lang.String} <p>the logic sign parameter is <code>String</code> type.</p>
+     * @param logic      {@link java.lang.String} <p>the logic parameter is <code>String</code> type.</p>
      * @return {@link java.lang.Integer} <p>the dynamic all by link ids return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param

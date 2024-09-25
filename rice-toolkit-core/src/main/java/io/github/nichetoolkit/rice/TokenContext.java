@@ -12,18 +12,8 @@ import java.util.Optional;
  */
 public class TokenContext extends LinkedHashMap<String, Object> {
 
-    /**
-     * <code>AUTH_KEY</code>
-     * {@link java.lang.String} <p>the constant <code>AUTH_KEY</code> field.</p>
-     * @see java.lang.String
-     */
     private static final String AUTH_KEY = "_AUTH_KEY_";
 
-    /**
-     * <code>TOKEN_KEY</code>
-     * {@link java.lang.String} <p>the constant <code>TOKEN_KEY</code> field.</p>
-     * @see java.lang.String
-     */
     private static final String TOKEN_KEY = "_TOKEN_KEY_";
 
     /**

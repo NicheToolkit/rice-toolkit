@@ -8,10 +8,10 @@ import java.util.List;
 /**
  * <code>NameLoadMapper</code>
  * <p>The type name load mapper interface.</p>
- * @param <E> {@link io.github.nichetoolkit.rice.IdEntity} <p>the generic parameter is <code>IdEntity</code> type.</p>
+ * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.IdEntity
+ * @see io.github.nichetoolkit.rice.RestId
  * @since Jdk1.8
  */
 public interface NameLoadMapper<E extends RestId<I>, I> {
@@ -19,7 +19,7 @@ public interface NameLoadMapper<E extends RestId<I>, I> {
      * <code>findByNameLoad</code>
      * <p>the by name load method.</p>
      * @param name       {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
-     * @param logic {@link java.lang.String} <p>the logic value parameter is <code>String</code> type.</p>
+     * @param logic      {@link java.lang.String} <p>the logic parameter is <code>String</code> type.</p>
      * @param loadParams {@link java.lang.Boolean} <p>the load params parameter is <code>Boolean</code> type.</p>
      * @return {@link java.util.List} <p>the by name load return object is <code>List</code> type.</p>
      * @see java.lang.String
@@ -34,7 +34,7 @@ public interface NameLoadMapper<E extends RestId<I>, I> {
      * <p>the dynamic by name load method.</p>
      * @param tablename  {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
      * @param name       {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
-     * @param logic {@link java.lang.String} <p>the logic value parameter is <code>String</code> type.</p>
+     * @param logic      {@link java.lang.String} <p>the logic parameter is <code>String</code> type.</p>
      * @param loadParams {@link java.lang.Boolean} <p>the load params parameter is <code>Boolean</code> type.</p>
      * @return {@link java.util.List} <p>the dynamic by name load return object is <code>List</code> type.</p>
      * @see java.lang.String

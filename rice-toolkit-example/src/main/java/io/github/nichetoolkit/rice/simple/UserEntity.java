@@ -14,17 +14,7 @@ import io.mybatis.provider.Entity;
  */
 @Entity.Table(value = "ntr_user")
 public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
-    /**
-     * <code>username</code>
-     * {@link java.lang.String} <p>the <code>username</code> field.</p>
-     * @see java.lang.String
-     */
     private String username;
-    /**
-     * <code>password</code>
-     * {@link java.lang.String} <p>the <code>password</code> field.</p>
-     * @see java.lang.String
-     */
     private String password;
 
     /**

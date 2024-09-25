@@ -19,12 +19,12 @@ public interface RestTokenResolver<U extends RestUserInfo<?>, R extends RestLogi
     /**
      * <code>resolveToken</code>
      * <p>the token method.</p>
-     * @param restMap     {@link TokenContext} <p>the rest map parameter is <code>RestMap</code> type.</p>
+     * @param restMap     {@link io.github.nichetoolkit.rice.TokenContext} <p>the rest map parameter is <code>TokenContext</code> type.</p>
      * @param login       {@link java.lang.Object} <p>the login parameter is <code>Object</code> type.</p>
      * @param loginResult R <p>the login result parameter is <code>R</code> type.</p>
      * @return {@link java.lang.String} <p>the token return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see TokenContext
+     * @see io.github.nichetoolkit.rice.TokenContext
      * @see java.lang.Object
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestException

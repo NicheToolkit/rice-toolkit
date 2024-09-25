@@ -29,17 +29,7 @@ import java.util.Optional;
 @Service
 public class LoginService {
 
-    /**
-     * <code>userService</code>
-     * {@link io.github.nichetoolkit.rice.service.UserService} <p>the <code>userService</code> field.</p>
-     * @see io.github.nichetoolkit.rice.service.UserService
-     */
     private final UserService userService;
-    /**
-     * <code>tokenService</code>
-     * {@link io.github.nichetoolkit.rice.service.TokenService} <p>the <code>tokenService</code> field.</p>
-     * @see io.github.nichetoolkit.rice.service.TokenService
-     */
     private final TokenService tokenService;
 
     /**

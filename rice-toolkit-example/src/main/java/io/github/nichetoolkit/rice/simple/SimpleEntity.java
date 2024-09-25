@@ -17,11 +17,6 @@ import java.util.Date;
 @Entity.Table(value = "ntr_simple")
 public class SimpleEntity extends RestInfoEntity<SimpleEntity, SimpleModel> {
 
-    /**
-     * <code>time</code>
-     * {@link java.util.Date} <p>the <code>time</code> field.</p>
-     * @see java.util.Date
-     */
     private Date time;
 
     /**

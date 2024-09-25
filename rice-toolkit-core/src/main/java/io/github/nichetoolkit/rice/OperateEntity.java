@@ -10,7 +10,8 @@ import org.springframework.lang.NonNull;
  * <code>OperateEntity</code>
  * <p>The type operate entity class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see java.io.Serializable
+ * @see io.github.nichetoolkit.rice.LogicEntity
+ * @see io.github.nichetoolkit.rice.RestOperate
  * @see java.lang.SuppressWarnings
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
@@ -48,23 +49,11 @@ public class OperateEntity extends LogicEntity implements RestOperate<Integer> {
         this.operate = builder.operate;
     }
 
-    /**
-     * <code>getOperate</code>
-     * <p>the operate getter method.</p>
-     * @return {@link java.lang.Integer} <p>the operate return object is <code>Integer</code> type.</p>
-     * @see java.lang.Integer
-     */
     @Override
     public Integer getOperate() {
         return operate;
     }
 
-    /**
-     * <code>setOperate</code>
-     * <p>the operate setter method.</p>
-     * @param operate {@link java.lang.Integer} <p>the operate parameter is <code>Integer</code> type.</p>
-     * @see java.lang.Integer
-     */
     @Override
     public void setOperate(Integer operate) {
         this.operate = operate;
@@ -74,6 +63,7 @@ public class OperateEntity extends LogicEntity implements RestOperate<Integer> {
      * <code>Builder</code>
      * <p>The type builder class.</p>
      * @author Cyan (snow22314@outlook.com)
+     * @see io.github.nichetoolkit.rice.LogicEntity.Builder
      * @see java.lang.SuppressWarnings
      * @since Jdk1.8
      */
@@ -124,11 +114,6 @@ public class OperateEntity extends LogicEntity implements RestOperate<Integer> {
             return this;
         }
 
-        /**
-         * <code>build</code>
-         * <p>the method.</p>
-         * @return {@link io.github.nichetoolkit.rice.OperateEntity} <p>the return object is <code>OperateEntity</code> type.</p>
-         */
         @Override
         public OperateEntity build() {
             return new OperateEntity(this);

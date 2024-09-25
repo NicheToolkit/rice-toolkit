@@ -103,6 +103,13 @@ public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
         return JsonUtils.parseJson(this);
     }
 
+    /**
+     * <code>ofInfo</code>
+     * <p>the info method.</p>
+     * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+     * @return {@link io.github.nichetoolkit.rice.InfoModel.Builder} <p>the info return object is <code>Builder</code> type.</p>
+     * @see io.github.nichetoolkit.rice.InfoModel.Builder
+     */
     public static <I> InfoModel.Builder<I> ofInfo() {
         return new InfoModel.Builder<>();
     }

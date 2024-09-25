@@ -102,6 +102,12 @@ public class TimeModel extends OperateModel {
         this.updateTime = updateTime;
     }
 
+    /**
+     * <code>ofTime</code>
+     * <p>the time method.</p>
+     * @return {@link io.github.nichetoolkit.rice.TimeModel.Builder} <p>the time return object is <code>Builder</code> type.</p>
+     * @see io.github.nichetoolkit.rice.TimeModel.Builder
+     */
     public static TimeModel.Builder ofTime() {
         return new TimeModel.Builder();
     }

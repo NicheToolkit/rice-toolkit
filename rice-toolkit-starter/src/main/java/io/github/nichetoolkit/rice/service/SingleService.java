@@ -9,11 +9,11 @@ import java.sql.SQLException;
 /**
  * <code>SingleService</code>
  * <p>The type single service interface.</p>
- * @param <M> {@link io.github.nichetoolkit.rice.IdModel} <p>the generic parameter is <code>IdModel</code> type.</p>
+ * @param <M> {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.IdModel
+ * @see io.github.nichetoolkit.rice.RestId
  * @since Jdk1.8
  */
 public interface SingleService<M extends RestId<I>, I, K> {

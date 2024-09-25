@@ -31,11 +31,6 @@ import java.util.List;
 @Component
 public class PurviewAdvice implements DefaultAdvice<RestPurview> {
 
-    /**
-     * <code>tokenService</code>
-     * {@link io.github.nichetoolkit.rice.service.TokenService} <p>the <code>tokenService</code> field.</p>
-     * @see io.github.nichetoolkit.rice.service.TokenService
-     */
     private final TokenService tokenService;
 
     /**
@@ -66,16 +61,6 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
         purviewValuesCheck(userModel,RestPurview.Purview.values(purview));
     }
 
-    /**
-     * <code>purviewKeysCheck</code>
-     * <p>the keys check method.</p>
-     * @param userModel   {@link io.github.nichetoolkit.rice.simple.UserModel} <p>the user model parameter is <code>UserModel</code> type.</p>
-     * @param purviewKeys {@link java.util.List} <p>the purview keys parameter is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.simple.UserModel
-     * @see java.util.List
-     * @see io.github.nichetoolkit.rest.RestException
-     */
     private void purviewKeysCheck(UserModel userModel,List<String> purviewKeys) throws RestException {
         PurviewType purviewType = userModel.getPurviewType();
         if (GeneralUtils.isNotEmpty(purviewKeys)) {
@@ -85,16 +70,6 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
         }
     }
 
-    /**
-     * <code>purviewValuesCheck</code>
-     * <p>the values check method.</p>
-     * @param userModel     {@link io.github.nichetoolkit.rice.simple.UserModel} <p>the user model parameter is <code>UserModel</code> type.</p>
-     * @param purviewValues {@link java.util.List} <p>the purview values parameter is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.simple.UserModel
-     * @see java.util.List
-     * @see io.github.nichetoolkit.rest.RestException
-     */
     private void purviewValuesCheck(UserModel userModel,List<Long> purviewValues) throws RestException {
         PurviewType purviewType = userModel.getPurviewType();
         if (GeneralUtils.isNotEmpty(purviewValues)) {
