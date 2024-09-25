@@ -145,9 +145,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                     String lowerMapperName = lowerBeanName.concat("Mapper");
                     this.superMapper = applicationContext.getBean(lowerMapperName, SuperMapper.class);
                 } catch (BeansException exception1) {
-                    String message = "the service and mapper name must be like 'xxxService'/'xxxServiceImpl' and 'xxxMapper'";
-                    log.error(message);
-                    throw new ServiceUnknownException(SuperMapper.class.getName(), this.getClass().getName(), message, exception1);
+                    log.warn("the service and mapper name must be like 'xxxService'/'xxxServiceImpl' and 'xxxMapper'");
+                    throw new ServiceUnknownException(SuperMapper.class.getName(), this.getClass().getName(), exception1.getMessage(), exception1);
                 }
             }
         }
