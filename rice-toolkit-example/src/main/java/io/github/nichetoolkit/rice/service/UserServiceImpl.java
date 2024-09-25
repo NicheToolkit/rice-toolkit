@@ -5,11 +5,7 @@ import io.github.nichetoolkit.rice.RestInfoService;
 import io.github.nichetoolkit.rice.simple.UserEntity;
 import io.github.nichetoolkit.rice.simple.UserFilter;
 import io.github.nichetoolkit.rice.simple.UserModel;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
-import java.util.Optional;
 
 /**
  * <code>UserServiceImpl</code>

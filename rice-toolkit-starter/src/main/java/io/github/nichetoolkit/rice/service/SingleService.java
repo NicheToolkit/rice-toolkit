@@ -1,7 +1,6 @@
 package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rice.IdModel;
 import io.github.nichetoolkit.rice.RestId;
 import org.springframework.transaction.annotation.Transactional;
 

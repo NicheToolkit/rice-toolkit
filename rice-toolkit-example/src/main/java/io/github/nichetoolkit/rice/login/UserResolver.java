@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.login;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
-import io.github.nichetoolkit.rice.resolver.RestUserResolver;
+import io.github.nichetoolkit.rice.RestUserResolver;
 import io.github.nichetoolkit.rice.service.TokenService;
 import io.github.nichetoolkit.rice.simple.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * <code>UserResolver</code>
  * <p>The type user resolver class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.resolver.RestUserResolver
+ * @see RestUserResolver
  * @see org.springframework.stereotype.Component
  * @since Jdk1.8
  */

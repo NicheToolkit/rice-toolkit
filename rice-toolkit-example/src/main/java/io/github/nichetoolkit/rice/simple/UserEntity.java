@@ -2,7 +2,6 @@ package io.github.nichetoolkit.rice.simple;
 
 import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rice.RestInfoEntity;
-import io.github.nichetoolkit.rice.RestUserInfo;
 import io.mybatis.provider.Entity;
 
 /**
