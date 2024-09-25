@@ -20,6 +20,6 @@ public class UserServiceImpl extends RestInfoService<UserModel, UserEntity, User
 
     @Override
     public String queryWhereSql(UserFilter filter) throws RestException {
-        return filter.toTimeSql("create_time").toNameSql("name").toQuerySql(this, "logic_sign").toIdSql().addSorts("id").toSql();
+        return filter.toTimeSql("create_time").toNameSql("name").toQuerySql(this, "logic").toIdSql().addSorts("id").toSql();
     }
 }

@@ -17,7 +17,7 @@ import java.util.Collection;
  * @since Jdk1.8
  */
 @SuppressWarnings("RedundantThrows")
-public interface TablenameAdvice<M extends RestId<I>,I, K> {
+public interface TablenameAdvice<M extends RestId<I>, I, K> {
 
     /**
      * <code>resolveTablename</code>

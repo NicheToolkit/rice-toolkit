@@ -189,7 +189,8 @@ the model is used on service or controller handle.
 
 |        name        |                                    typeParams                                    |                                                        description                                                        |
 |:------------------:|:--------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------:|
-|    `SaveModel`     |                                                                                  |                               the model is used to keep `SaveType` and `logicSign` fields.                                |
+|    `SaveModel`     |                                                                                  |                                        the model is used to keep `SaveType` field.                                        |
+|    `LogicModel`    |                                                                                  |                                         the model is used to keep `logic` field.                                          |
 |   `OperateModel`   |                                                                                  |                                      the model is used to keep `OperateType` field.                                       |
 |    `TimeModel`     |                                                                                  |                              the model is used to keep `createTime` and `updateTime` field.                               |
 |     `IdModel`      |                                      `<I>`                                       |                         the model is used to keep `id` field，and the `id` type can be any object.                         |
@@ -240,16 +241,17 @@ public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> {
 
 the entity is used to keep fields on mapper handle.
 
-|       name        |                                 typeParams                                 |                                                         description                                                         |
-|:-----------------:|:--------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------:|
-|   OperateEntity   |                                                                            |                                the entity is used to keep `operate` and `logicSign` fields.                                 |
-|    TimeEntity     |                                                                            |                              the entity is used to keep `createTime` and `updateTime` fields.                               |
-|     IdEntity      |                                   `<I>`                                    |                         the entity is used to keep `id` field，and the `id` type can be any object.                          |
-|    InfoEntity     |                                   `<I>`                                    |                                 the entity is used to keep `name` and `description` fields.                                 |
-|  DefaultIdEntity  |  `<E extends DefaultIdEntity<E,M,I>, M extends DefaultIdModel<M,E,I>,I>`   |  the children entities of  `DefaultIdEntity` must be implement the `toModel()` method，and the `id` type can be any object.  |
-| DefaultInfoEntity | `<E extends DefaultInfoEntity<E,M,I>,M extends DefaultInfoModel<M,E,I>,I>` | the children entities of  `DefaultInfoEntity` must be implement the `toModel()` method，and the `id` type can be any object. |
-|   RestIdEntity    |         `<E extends RestIdEntity<E,M>,M extends RestIdModel<M,E>>`         |  the children entities of  `RestIdEntity` must be implement the `toModel()` method，and the `id` type is default `String`.   |
-|  RestInfoEntity   |     `<E extends RestInfoEntity<E, M>, M extends RestInfoModel<M, E>>`      | the children entities of  `RestInfoEntity` must be implement the `toModel()` method，and the `id` type is default `String`.  |
+|        name         |                                 typeParams                                 |                                                         description                                                         |
+|:-------------------:|:--------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------:|
+|    `LogicEntity`    |                                                                            |                                          the entity is used to keep `logic` field.                                          |
+|   `OperateEntity`   |                                                                            |                                         the entity is used to keep `operate` field.                                         |
+|    `TimeEntity`     |                                                                            |                              the entity is used to keep `createTime` and `updateTime` fields.                               |
+|     `IdEntity`      |                                   `<I>`                                    |                         the entity is used to keep `id` field，and the `id` type can be any object.                          |
+|    `InfoEntity`     |                                   `<I>`                                    |                                 the entity is used to keep `name` and `description` fields.                                 |
+|  `DefaultIdEntity`  |  `<E extends DefaultIdEntity<E,M,I>, M extends DefaultIdModel<M,E,I>,I>`   |  the children entities of  `DefaultIdEntity` must be implement the `toModel()` method，and the `id` type can be any object.  |
+| `DefaultInfoEntity` | `<E extends DefaultInfoEntity<E,M,I>,M extends DefaultInfoModel<M,E,I>,I>` | the children entities of  `DefaultInfoEntity` must be implement the `toModel()` method，and the `id` type can be any object. |
+|   `RestIdEntity`    |         `<E extends RestIdEntity<E,M>,M extends RestIdModel<M,E>>`         |  the children entities of  `RestIdEntity` must be implement the `toModel()` method，and the `id` type is default `String`.   |
+|  `RestInfoEntity`   |     `<E extends RestInfoEntity<E, M>, M extends RestInfoModel<M, E>>`      | the children entities of  `RestInfoEntity` must be implement the `toModel()` method，and the `id` type is default `String`.  |
 
 * examples
 
@@ -292,18 +294,18 @@ public class SimpleEntity extends RestInfoEntity<SimpleEntity, SimpleModel> {
 
 the filter is used to receive query fields on service or controller handle.
 
-|     name      | typeParams |                                                                                             description                                                                                              |
-|:-------------:|:----------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|  PageFilter   |            |                                the filter is used to receive `pageNum` and `pageSize` fields.(the `loadLastPage` is used to load the last page data of query handle)                                 |
-|  SortFilter   |            |                                                the filter is used to receive `sorts` field.(the `RestSort` is used to sort the data of query handle)                                                 |
-| OperateFilter |            |                                 the filter is used to receive `operate` and `operates` fields.(the `remove` is used to load the logical delete data of query handle)                                 |
-|  TableFilter  |   `<K>`    |                 the filter is used to receive `tablekey` field，and the `tablekey` type can be any object.(the `tablekey` is used to load the data of query handle on dynamic table )                 |
-|   IdFilter    |  `<I, K>`  |                                                       the filter is used to receive `id` and `ids` fields.and the `id` type can be any object.                                                       |
-|  TimeFilter   |  `<I, K>`  |                                                                   the filter is used to receive `startTime` and `endTime` fields.                                                                    |
-|  JsonbFilter  |  `<I, K>`  | the filter is used to receive `contrasts`、`ranges`、`equals`  and `contains` fields.(the `ContrastRule`、`RangeRule`、`EqualRule` and `ContainRule` is used to filter the `jsonb` data of query handle) |
-|  NameFilter   |  `<I, K>`  |                                                                       the filter is used to receive `name` and `names` fields.                                                                       |
-| DefaultFilter |  `<I, K>`  |                                              the children filters of  `DefaultFilter` can build `SQL` with `toRemoveSql()` and `toQuerySql()` methods.                                               |
-|  RestFilter   |            |                                                                           the `id` and `tablekey`type is default `String`.                                                                           |
+|      name       | typeParams |                                                                                             description                                                                                              |
+|:---------------:|:----------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|  `PageFilter`   |            |                                the filter is used to receive `pageNum` and `pageSize` fields.(the `loadLastPage` is used to load the last page data of query handle)                                 |
+|  `SortFilter`   |            |                                                the filter is used to receive `sorts` field.(the `RestSort` is used to sort the data of query handle)                                                 |
+| `OperateFilter` |            |                                 the filter is used to receive `operate` and `operates` fields.(the `remove` is used to load the logical delete data of query handle)                                 |
+|  `TableFilter`  |   `<K>`    |                 the filter is used to receive `tablekey` field，and the `tablekey` type can be any object.(the `tablekey` is used to load the data of query handle on dynamic table )                 |
+|   `IdFilter`    |  `<I, K>`  |                                                       the filter is used to receive `id` and `ids` fields.and the `id` type can be any object.                                                       |
+|  `TimeFilter`   |  `<I, K>`  |                                                                   the filter is used to receive `startTime` and `endTime` fields.                                                                    |
+|  `JsonbFilter`  |  `<I, K>`  | the filter is used to receive `contrasts`、`ranges`、`equals`  and `contains` fields.(the `ContrastRule`、`RangeRule`、`EqualRule` and `ContainRule` is used to filter the `jsonb` data of query handle) |
+|  `NameFilter`   |  `<I, K>`  |                                                                       the filter is used to receive `name` and `names` fields.                                                                       |
+| `DefaultFilter` |  `<I, K>`  |                                              the children filters of  `DefaultFilter` can build `SQL` with `toRemoveSql()` and `toQuerySql()` methods.                                               |
+|  `RestFilter`   |            |                                                                           the `id` and `tablekey`type is default `String`.                                                                           |
 
 * examples
 
@@ -342,7 +344,7 @@ the advice is used to handle the models or entities on service.
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>DeleteAdvice</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;,I&gt;</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;,I&gt;</code></td>
 <td><code>beforeDelete(E entity)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the advice is used to handle <code>delete</code> and <code>deleteAll</code> methods.</td>
 </tr>
@@ -357,7 +359,7 @@ the advice is used to handle the models or entities on service.
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>OperateAdvice</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;,I&gt;</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;,I&gt;</code></td>
 <td><code>beforeOperate(E entity)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the advice is used to handle <code>operate</code> and <code>operateAll</code> methods.</td>
 </tr>
@@ -372,7 +374,7 @@ the advice is used to handle the models or entities on service.
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>RemoveAdvice</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;,I&gt;</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;,I&gt;</code></td>
 <td><code>beforeRemove(E entity)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the advice is used to handle <code>remove</code> and <code>removeAll</code> methods.</td>
 </tr>
@@ -387,7 +389,7 @@ the advice is used to handle the models or entities on service.
 </tr>
 <tr>
 <td rowspan=8 style="vertical-align: middle;"><code>SaveAdvice</code></td>
-<td rowspan=8 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;,I&gt;</code></td>
+<td rowspan=8 style="vertical-align: middle;"><code>&lt;M extends RestId&lt;I&gt;,I&gt;</code></td>
 <td><code>beforeCreate(M model)</code></td>
 <td rowspan=8 style="vertical-align: middle;">the advice is used to handle <code>create</code> 、<code>update</code> 、<code>save</code> and <code>saveAll</code> methods.</td>
 </tr>
@@ -414,7 +416,7 @@ the advice is used to handle the models or entities on service.
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>BuilderAdvice</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;, E extends IdEntity&lt;I&gt;,I&gt;</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends RestId&lt;I&gt;, E extends RestId&lt;I&gt;,I&gt;</code></td>
 <td><code>buildEntity(M model, E entity, Object... idArray)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the advice is used to handle <code>buildEntity</code> 、<code>buildEntityList</code> 、<code>buildModel</code> and <code>buildModelList</code> methods.</td>
 </tr>
@@ -428,6 +430,32 @@ the advice is used to handle the models or entities on service.
 <td><code>buildModelList(Collection&lt;E&gt; entityList, List&lt;M&gt; modelList, Boolean... isLoadArray)</code></td>
 </tr>
 <tr>
+<td rowspan=4 style="vertical-align: middle;"><code>MutateAdvice</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends RestId&lt;I&gt;, E extends RestId&lt;I&gt;,I&gt;</code></td>
+<td><code>mutateEntity(E entity, Boolean... isLoadArray)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the advice is used to handle <code>mutateEntity</code> 、<code>mutateEntityList</code> 、<code>mutateModel</code> and <code>mutateModelList</code> methods.</td>
+</tr>
+<tr>
+<td><code>mutateEntityList(List&lt;E&gt; entityList, ConsumerActuator&lt;E&gt; actuator, Boolean... isLoadArray)</code></td>
+</tr>
+<tr>
+<td><code>mutateModel(M model, Object... idArray)</code></td>
+</tr>
+<tr>
+<td><code>mutateModelList(List&lt;M&gt; modelList, ConsumerActuator&lt;M&gt; actuator, Object... idArray)</code></td>
+</tr>
+<tr>
+<td rowspan=3 style="vertical-align: middle;"><code>TablenameAdvice</code></td>
+<td rowspan=3 style="vertical-align: middle;"><code>&lt;M extends RestId&lt;I&gt;, I, K&gt;</code></td>
+<td><code>resolveTablename(K tablekey)</code></td>
+<td rowspan=3 style="vertical-align: middle;">the advice is used to handle <code>resolveTablename</code> method.</td>
+</tr>
+<tr>
+<td><code>resolveTablename(K tablekey, M model)</code></td>
+</tr>
+<tr>
+<td><code>resolveTablename(K tablekey, Collection&lt;M&gt; modelList)</code></td>
+</tr>
 <tr>
 <td rowspan=8 style="vertical-align: middle;"><code>FilterAdvice</code></td>
 <td rowspan=8 style="vertical-align: middle;"><code>&lt;F extends IdFilter&lt;I, K&gt;, I, K&gt;</code></td>
@@ -471,7 +499,7 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 
     @Override
     public String queryWhereSql(SimpleFilter filter) throws RestException {
-        return filter.toTimeSql("create_time").toNameSql("name").toQuerySql(this, "logic_sign").addSorts("id").toIdSql().toSql();
+        return filter.toTimeSql("create_time").toNameSql("name").toQuerySql(this, "logic").addSorts("id").toIdSql().toSql();
     }
 }
 ```
@@ -547,27 +575,27 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 <tr>
 <td rowspan=6 style="vertical-align: middle;"><code>RemoveMapper</code></td>
 <td rowspan=6 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
-<td><code>removeById(@Param("id") I id, @Param("logicSign") String logicSign)</code></td>
+<td><code>removeById(@Param("id") I id, @Param("logic") String logic)</code></td>
 <td rowspan=6 style="vertical-align: middle;">the mapper is used to handle <code>remove</code> and <code>removeAll</code> methods.</td>
 </tr>
 <tr>
-<td><code>removeDynamicById(@Param("tablename") String tablename, @Param("id") I id, @Param("logicSign") String logicSign)</code></td>
+<td><code>removeDynamicById(@Param("tablename") String tablename, @Param("id") I id, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
-<td><code>removeAll(@Param("idList") Collection&lt;I&gt; idList, @Param("logicSign") String logicSign)</code></td>
+<td><code>removeAll(@Param("idList") Collection&lt;I&gt; idList, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
-<td><code>removeDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection&lt;I&gt; idList, @Param("logicSign") String logicSign)</code></td>
+<td><code>removeDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection&lt;I&gt; idList, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
-<td><code>removeAllByWhere(@Param("whereSql") String whereSql, @Param("logicSign") String logicSign)</code></td>
+<td><code>removeAllByWhere(@Param("whereSql") String whereSql, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
-<td><code>removeDynamicAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql,@Param("logicSign") String logicSign)</code></td>
+<td><code>removeDynamicAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql,@Param("logic") String logic)</code></td>
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>SaveMapper</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;,I&gt;</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;,I&gt;</code></td>
 <td><code>save(@Param("entity") E entity)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>save</code> and <code>saveAll</code> methods.</td>
 </tr>
@@ -582,7 +610,7 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 </tr>
 <tr>
 <td rowspan=6 style="vertical-align: middle;"><code>FindMapper</code></td>
-<td rowspan=6 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;,I&gt;</code></td>
+<td rowspan=6 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;,I&gt;</code></td>
 <td><code>findById(@Param("id") I id)</code></td>
 <td rowspan=6 style="vertical-align: middle;">the mapper is used to handle <code>find</code> and <code>findAll</code> methods.</td>
 </tr>
@@ -603,36 +631,36 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 </tr>
 <tr>
 <td style="vertical-align: middle;"><code>SuperMapper</code></td>
-<td style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;,I&gt;</code></td>
+<td style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;,I&gt;</code></td>
 <td></td>
 <td style="vertical-align: middle;">the mapper is default super mapper.</td>
 </tr>
 <tr>
 <td rowspan=8 style="vertical-align: middle;"><code>InfoMapper</code></td>
-<td rowspan=8 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;,I&gt;</code></td>
-<td><code>findByName(@Param("name") String name, @Param("logicSign") String logicSign)</code></td>
+<td rowspan=8 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;,I&gt;</code></td>
+<td><code>findByName(@Param("name") String name, @Param("logic") String logic)</code></td>
 <td rowspan=8 style="vertical-align: middle;">the mapper is used to handle <code>find</code> and <code>findAll</code> methods.</td>
 </tr>
 <tr>
-<td><code>findDynamicByName(@Param("tablename") String tablename, @Param("name") String name, @Param("logicSign") String logicSign)</code></td>
+<td><code>findDynamicByName(@Param("tablename") String tablename, @Param("name") String name, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
-<td><code>findByNameAndNotId(@Param("name") String name, @Param("id") I id, @Param("logicSign") String logicSign)</code></td>
+<td><code>findByNameAndNotId(@Param("name") String name, @Param("id") I id, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
-<td><code>findDynamicByNameAndNotId(@Param("tablename") String tablename, @Param("name") String name, @Param("id") I id, @Param("logicSign") String logicSign)</code></td>
+<td><code>findDynamicByNameAndNotId(@Param("tablename") String tablename, @Param("name") String name, @Param("id") I id, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
-<td><code>findByEntity(@Param("entity") E entity, @Param("logicSign") String logicSign)</code></td>
+<td><code>findByEntity(@Param("entity") E entity, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
-<td><code>findDynamicByEntity(@Param("tablename") String tablename, @Param("entity") E entity, @Param("logicSign") String logicSign)</code></td>
+<td><code>findDynamicByEntity(@Param("tablename") String tablename, @Param("entity") E entity, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
-<td><code>findByEntityAndNotId(@Param("entity") E entity, @Param("id") I id, @Param("logicSign") String logicSign)</code></td>
+<td><code>findByEntityAndNotId(@Param("entity") E entity, @Param("id") I id, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
-<td><code>findDynamicByEntityAndNotId(@Param("tablename") String tablename, @Param("entity") E entity, @Param("id") I id, @Param("logicSign") String logicSign)</code></td>
+<td><code>findDynamicByEntityAndNotId(@Param("tablename") String tablename, @Param("entity") E entity, @Param("id") I id, @Param("logic") String logic)</code></td>
 </tr>
 </table>
 
@@ -678,17 +706,17 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>RemoveLinkMapper</code></td>
 <td rowspan=4 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
-<td><code>removeByLinkId(@Param("linkId") I linkId, @Param("logicSign") String logicSign)</code></td>
+<td><code>removeByLinkId(@Param("linkId") I linkId, @Param("logic") String logic)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>remove</code> and <code>removeAll</code> methods.</td>
 </tr>
 <tr>
-<td><code>removeDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") I linkId, @Param("logicSign") String logicSign)</code></td>
+<td><code>removeDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") I linkId, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
-<td><code>removeAllByLinkIds(@Param("linkIdList") Collection&lt;I&gt; linkIdList, @Param("logicSign") String logicSign)</code></td>
+<td><code>removeAllByLinkIds(@Param("linkIdList") Collection&lt;I&gt; linkIdList, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
-<td><code>removeDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection&lt;I&gt; linkIdList, @Param("logicSign") String logicSign)</code></td>
+<td><code>removeDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection&lt;I&gt; linkIdList, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>AlertFieldMapper</code></td>
@@ -718,7 +746,7 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>FindLoadMapper</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;, I&gt;</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;, I&gt;</code></td>
 <td><code>findByIdLoad(@Param("id") I id, @Param("loadParams") Boolean... loadParams)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>find</code> and <code>findAll</code> methods.</td>
 </tr>
@@ -733,7 +761,7 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 </tr>
 <tr>
 <td rowspan=2 style="vertical-align: middle;"><code>FilterLoadMapper</code></td>
-<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;, I&gt;</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;, I&gt;</code></td>
 <td><code>findAllByLoadWhere(@Param("whereSql") String whereSql, @Param("loadParams") Boolean... loadParams)</code></td>
 <td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>findAll</code> methods.</td>
 </tr>
@@ -742,16 +770,16 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 </tr>
 <tr>
 <td rowspan=2 style="vertical-align: middle;"><code>NameLoadMapper</code></td>
-<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;, I&gt;</code></td>
-<td><code>findByNameLoad(@Param("name") String name,@Param("logicValue") String logicValue, @Param("loadParams") Boolean... loadParams)</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;, I&gt;</code></td>
+<td><code>findByNameLoad(@Param("name") String name,@Param("logic") String logic, @Param("loadParams") Boolean... loadParams)</code></td>
 <td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>find</code> methods.</td>
 </tr>
 <tr>
-<td><code>findDynamicByNameLoad(@Param("tablename") String tablename, @Param("name") String name, @Param("logicValue") String logicValue, @Param("loadParams") Boolean... loadParams)</code></td>
+<td><code>findDynamicByNameLoad(@Param("tablename") String tablename, @Param("name") String name, @Param("logic") String logic, @Param("loadParams") Boolean... loadParams)</code></td>
 </tr>
 <tr>
 <td rowspan=2 style="vertical-align: middle;"><code>FindFilterMapper</code></td>
-<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
 <td><code>findAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter)</code></td>
 <td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>findAll</code> methods.</td>
 </tr>
@@ -760,7 +788,7 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 </tr>
 <tr>
 <td rowspan=2 style="vertical-align: middle;"><code>DeleteFilterMapper</code></td>
-<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
 <td><code>deleteAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter)</code></td>
 <td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>deleteAll</code> methods.</td>
 </tr>
@@ -769,16 +797,16 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 </tr>
 <tr>
 <td rowspan=2 style="vertical-align: middle;"><code>RemoveFilterMapper</code></td>
-<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
-<td><code>removeAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("logicSign") String logicSign)</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
+<td><code>removeAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("logic") String logic)</code></td>
 <td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>removeAll</code> methods.</td>
 </tr>
 <tr>
-<td><code>removeDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("logicSign") String logicSign)</code></td>
+<td><code>removeDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
 <td rowspan=2 style="vertical-align: middle;"><code>OperateFilterMapper</code></td>
-<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
 <td><code>operateAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("operate") Integer operate)</code></td>
 <td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>removeAll</code> methods.</td>
 </tr>
@@ -787,7 +815,7 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 </tr>
 <tr>
 <td rowspan=2 style="vertical-align: middle;"><code>FindFieldMapper</code></td>
-<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends IdEntity&lt;I&gt;, I&gt;</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;, I&gt;</code></td>
 <td><code>findAllByFieldWhere(@Param("whereSql") String whereSql, @Param("fieldParams") String... fieldParams)</code></td>
 <td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>findAll</code> methods.</td>
 </tr>
@@ -878,7 +906,7 @@ public interface SimpleMapper extends RestInfoMapper<SimpleEntity>, Mapper<Simpl
 </tr>
 <tr>
 <td rowspan=2 style="vertical-align: middle;"><code>NameService</code></td>
-<td rowspan=2 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;, I, K&gt;</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>&lt;M extends RestId&lt;I&gt;, I, K&gt;</code></td>
 <td><code>queryByName(String name, Boolean... isLoadArray)</code></td>
 <td rowspan=2 style="vertical-align: middle;">the service is used to handle <code>query</code>  methods.</td>
 </tr>
@@ -887,7 +915,7 @@ public interface SimpleMapper extends RestInfoMapper<SimpleEntity>, Mapper<Simpl
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>SingleService</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;, I, K&gt;</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends RestId&lt;I&gt;, I, K&gt;</code></td>
 <td><code>create(M model, Object... idArray)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>create</code> and <code>update</code> methods.</td>
 </tr>
@@ -902,7 +930,7 @@ public interface SimpleMapper extends RestInfoMapper<SimpleEntity>, Mapper<Simpl
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>SaveService</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;, I, K&gt;</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends RestId&lt;I&gt;, I, K&gt;</code></td>
 <td><code>save(M model, Object... idArray)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>save</code> and <code>saveAll</code> methods.</td>
 </tr>
@@ -917,7 +945,7 @@ public interface SimpleMapper extends RestInfoMapper<SimpleEntity>, Mapper<Simpl
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>QueryService</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;, I, K&gt;</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends RestId&lt;I&gt;, I, K&gt;</code></td>
 <td><code>queryAll(Collection&lt;I&gt; idList, Boolean... isLoadArray)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>query</code> and <code>queryAll</code> methods.</td>
 </tr>
@@ -932,7 +960,7 @@ public interface SimpleMapper extends RestInfoMapper<SimpleEntity>, Mapper<Simpl
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>FilterService</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;, F extends IdFilter&lt;I,K&gt;,I,K&gt;</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;M extends RestId&lt;I&gt;, F extends IdFilter&lt;I,K&gt;,I,K&gt;</code></td>
 <td><code>queryAllWithFilter(F filter)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the service is used to handle <code>queryAll</code>、<code>deleteAll</code>、<code>removeAll</code> and <code>operateAll</code> methods.</td>
 </tr>
@@ -947,7 +975,7 @@ public interface SimpleMapper extends RestInfoMapper<SimpleEntity>, Mapper<Simpl
 </tr>
 <tr>
 <td><code>SuperService</code></td>
-<td><code>&lt;M extends IdModel&lt;I&gt;, E extends IdEntity&lt;I&gt;, F extends IdFilter&lt;I, K&gt;, I, K&gt;</code></td>
+<td><code>&lt;M extends RestId&lt;I&gt;, E extends RestId&lt;I&gt;, F extends IdFilter&lt;I, K&gt;, I, K&gt;</code></td>
 <td></td>
 <td>the service is default super service.</td>
 </tr>
@@ -970,7 +998,7 @@ public interface SimpleMapper extends RestInfoMapper<SimpleEntity>, Mapper<Simpl
 </tr>
 <tr>
 <td rowspan=7 style="vertical-align: middle;"><code>OptionalService</code></td>
-<td rowspan=7 style="vertical-align: middle;"><code>&lt;M extends IdModel&lt;I&gt;, F extends IdFilter&lt;I, K&gt;, I, K&gt;</code></td>
+<td rowspan=7 style="vertical-align: middle;"><code>&lt;M extends RestId&lt;I&gt;, F extends IdFilter&lt;I, K&gt;, I, K&gt;</code></td>
 <td><code>optional(@NonNull M model)</code></td>
 <td rowspan=7 style="vertical-align: middle;">the service is used to handle <code>optional</code> and <code>exist</code> methods.</td>
 </tr>
@@ -1091,6 +1119,21 @@ public interface SimpleService extends FilterService<SimpleModel, SimpleFilter, 
 }
 ```
 
+### Custom Identity Resolver Usages
+
+* identity for `String` type Resolver examples
+
+```java
+@Component
+public class DefaultStringIdResolver implements RestIdResolver<String> {
+
+    @Override
+    public <M extends RestId<String>> String resolveId(M model) throws RestException {
+        return IdentityUtils.generateString();
+    }
+}
+```
+
 ### Stereotype & Annotation
 
 * default annotation
@@ -1147,6 +1190,7 @@ public class LoginController {
 }
 
 ```
+
 * http request
 
 ```http request
@@ -1159,7 +1203,9 @@ Content-Type: application/json
   "password": "123456"
 }
 
-> {% client.global.set("auth_token", response.body.data.token); %}
+> {%
+client.global.set("auth_token", response.body.data.token);
+%}
 
 ###
 
@@ -1179,6 +1225,7 @@ Authorization: Bearer {{auth_token}}
 * custom `RestPurview` annotation
 
 ```java
+
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
@@ -1217,13 +1264,14 @@ public @interface RestPurview {
             return new ArrayList<>(valueSet);
         }
 
-    }   
+    }
 }
 ```
 
 * custom `PurviewAdvice`  advice
 
 ```java
+
 @Slf4j
 @Component
 public class PurviewAdvice implements DefaultAdvice<RestPurview> {
@@ -1246,27 +1294,27 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
         /* custom user purview */
         userModel.setPurviewType(PurviewType.PURVIEW_1);
         /* custom key mode check*/
-        purviewKeysCheck(userModel,RestPurview.Purview.keys(purview));
+        purviewKeysCheck(userModel, RestPurview.Purview.keys(purview));
         /* custom value mode check*/
-        purviewValuesCheck(userModel,RestPurview.Purview.values(purview));
+        purviewValuesCheck(userModel, RestPurview.Purview.values(purview));
     }
 
-    private void purviewKeysCheck(UserModel userModel,List<String> purviewKeys) throws RestException {
+    private void purviewKeysCheck(UserModel userModel, List<String> purviewKeys) throws RestException {
         PurviewType purviewType = userModel.getPurviewType();
         if (GeneralUtils.isNotEmpty(purviewKeys)) {
             OptionalUtils.ofEmptyable(purviewType).emptyElseThrow(TokenPermissionException::new);
             String purviewTypeKey = purviewType.getKey();
-            OptionalUtils.falseable(purviewKeys.contains(purviewTypeKey),TokenPermissionException::new);
+            OptionalUtils.falseable(purviewKeys.contains(purviewTypeKey), TokenPermissionException::new);
         }
     }
 
-    private void purviewValuesCheck(UserModel userModel,List<Long> purviewValues) throws RestException {
+    private void purviewValuesCheck(UserModel userModel, List<Long> purviewValues) throws RestException {
         PurviewType purviewType = userModel.getPurviewType();
         if (GeneralUtils.isNotEmpty(purviewValues)) {
             OptionalUtils.ofEmptyable(purviewType).emptyElseThrow(TokenPermissionException::new);
             Long annexValue = RestReckon.annexValue(purviewValues);
             Long value = purviewType.getValue();
-            OptionalUtils.falseable(RestReckon.reachValue(annexValue,value),TokenPermissionException::new);
+            OptionalUtils.falseable(RestReckon.reachValue(annexValue, value), TokenPermissionException::new);
         }
     }
 }
@@ -1275,6 +1323,7 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
 * controller `RestPurview` usages
 
 ```java
+
 @Slf4j
 @CrossOrigin
 @RestController
@@ -1288,7 +1337,7 @@ public class PurviewController {
     public RestResult<?> test() throws RestException {
         return RestResult.success("the purview test successfully");
     }
-    
+
 }
 ```
 
