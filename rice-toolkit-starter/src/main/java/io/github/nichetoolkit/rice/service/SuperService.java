@@ -65,8 +65,9 @@ import java.util.*;
  * @see Slf4j
  * @since Jdk1.8
  */
-@SuppressWarnings("RedundantThrows")
+
 @Slf4j
+@SuppressWarnings("RedundantThrows")
 public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F extends IdFilter<I, K>, I, K>
         implements InitializingBean, ApplicationContextAware, OptionalService<M, F, I, K>, FilterAdvice<F, I, K>, TablenameAdvice<M, I, K>,
         SaveAdvice<M, I>, AlertAdvice<I>, OperateAdvice<E, I>, DeleteAdvice<E, I>, RemoveAdvice<E, I>, MutateAdvice<M, E, I> {
@@ -77,27 +78,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see ApplicationContext
      */
     private static ApplicationContext applicationContext;
-
-    /**
-     * <code>createActuator</code>
-     * {@link BiConsumerActuator} <p>the <code>createActuator</code> field.</p>
-     * @see BiConsumerActuator
-     */
-    protected BiConsumerActuator<K, M> createActuator;
-
-    /**
-     * <code>updateActuator</code>
-     * {@link BiConsumerActuator} <p>the <code>updateActuator</code> field.</p>
-     * @see BiConsumerActuator
-     */
-    protected BiConsumerActuator<K, M> updateActuator;
-
-    /**
-     * <code>superMapper</code>
-     * {@link SuperMapper} <p>the <code>superMapper</code> field.</p>
-     * @see SuperMapper
-     */
-    protected SuperMapper<E, I> superMapper;
 
     /**
      * <code>simpleName</code>
@@ -127,13 +107,34 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      */
     private final ThreadLocal<Map<K, String>> tablenameMapCache = new ThreadLocal<>();
 
+    /**
+     * <code>createActuator</code>
+     * {@link BiConsumerActuator} <p>the <code>createActuator</code> field.</p>
+     * @see BiConsumerActuator
+     */
+    protected BiConsumerActuator<K, M> createActuator;
+
+    /**
+     * <code>updateActuator</code>
+     * {@link BiConsumerActuator} <p>the <code>updateActuator</code> field.</p>
+     * @see BiConsumerActuator
+     */
+    protected BiConsumerActuator<K, M> updateActuator;
+
+    /**
+     * <code>superMapper</code>
+     * {@link SuperMapper} <p>the <code>superMapper</code> field.</p>
+     * @see SuperMapper
+     */
+    protected SuperMapper<E, I> superMapper;
+
     @Override
     public void setApplicationContext(@NonNull ApplicationContext applicationContext) throws BeansException {
         SuperService.applicationContext = applicationContext;
     }
 
-    @SuppressWarnings(value = "unchecked")
     @Override
+    @SuppressWarnings("unchecked")
     public void afterPropertiesSet() throws Exception {
         this.beanProperties = applicationContext.getBean(RiceBeanProperties.class);
         if (GeneralUtils.isEmpty(beanProperties)) {
@@ -860,7 +861,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see BiConsumerActuator
      */
     private final BiConsumerActuator<K, M> DEFAULT_CREATE_ACTUATOR = (K tablekey, @NonNull M model) -> {
-//        model.setId(ModelHelper.generate(model));
+        RestIdResolver.resolveModel(model);
         optionalInit(model);
         optional(model);
         if (createActuator != null) {
@@ -1255,7 +1256,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see RestException
      */
     protected abstract M createModel(E entity) throws RestException;
-
 
     /**
      * <code>applyHandle</code>

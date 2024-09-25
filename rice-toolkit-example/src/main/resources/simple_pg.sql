@@ -5,7 +5,7 @@ CREATE TABLE "public"."ntr_simple" (
   "name" VARCHAR(128) COLLATE "pg_catalog"."default",
   "description" VARCHAR(256) COLLATE "pg_catalog"."default",
   "time" TIMESTAMPTZ,
-  "logic_sign"       INT4,
+  "logic"       INT4,
   "create_time" TIMESTAMPTZ,
   "update_time" TIMESTAMPTZ
 );
@@ -17,6 +17,6 @@ CREATE INDEX "IDX_NTR_SIMPLE_TIME" ON "public"."ntr_simple" USING btree (
   "time" "pg_catalog"."timestamptz_ops" ASC NULLS LAST
 );
 
-CREATE INDEX if NOT EXISTS "IDX_NTR_SIMPLE_LOGIC_SIGN" ON "public"."ntr_simple" USING BTREE (
-   "logic_sign" "pg_catalog"."int4_ops" ASC NULLS LAST
+CREATE INDEX if NOT EXISTS "IDX_NTR_SIMPLE_LOGIC" ON "public"."ntr_simple" USING BTREE (
+   "logic" "pg_catalog"."int4_ops" ASC NULLS LAST
 );

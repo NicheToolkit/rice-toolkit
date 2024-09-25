@@ -7,13 +7,13 @@
         <result property="name" column="name"/>
         <result property="description" column="description"/>
         <result property="time" column="time"/>
-        <result property="logicSign" column="logic_sign"/>
+        <result property="logic" column="logic"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
     <sql id="all_column">
-        id, "name", "description", "time", "logic_sign", create_time, update_time
+        id, "name", "description", "time", "logic", create_time, update_time
     </sql>
 
     <insert id="save">
@@ -23,7 +23,7 @@
         #{entity.name},
         #{entity.description},
         #{entity.time},
-        #{entity.logicSign},
+        #{entity.logic},
         now(),
         now()
         ) ON CONFLICT (id) DO UPDATE
@@ -46,7 +46,7 @@
             #{entity.name},
             #{entity.description},
             #{entity.time},
-            #{entity.logicSign},
+            #{entity.logic},
             now(),
             now()
             )
@@ -95,7 +95,7 @@
         FROM ntr_simple
         -- it will be optimized by the database
         WHERE 1=1
-        <if test="whereSql!=null">
+        <if test="whereSql!=null and logic !=''">
             ${whereSql}
         </if>
     </select>
@@ -104,7 +104,7 @@
         DELETE FROM ntr_simple
         -- it will be optimized by the database
         WHERE 1=1
-        <if test="whereSql!=null">
+        <if test="whereSql!=null and logic !=''">
             ${whereSql}
         </if>
     </delete>
@@ -113,8 +113,8 @@
         SELECT <include refid="all_column"/>
         FROM ntr_simple
         WHERE name = #{name}
-        <if test="logicValue!=null">
-            AND logic_sign = ${logicValue}
+        <if test="logic!=null and logic !=''">
+            AND logic = ${logic}
         </if>
     </select>
 
@@ -123,8 +123,8 @@
         FROM ntr_simple
         WHERE name = #{name}
         AND id != #{id}
-        <if test="logicValue!=null">
-            AND logic_sign = ${logicValue}
+        <if test="logic!=null and logic !=''">
+            AND logic = ${logic}
         </if>
     </select>
 

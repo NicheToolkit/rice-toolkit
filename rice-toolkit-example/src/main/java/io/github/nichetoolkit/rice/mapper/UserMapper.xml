@@ -8,13 +8,13 @@
         <result property="description" column="description"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
-        <result property="logicSign" column="logic_sign"/>
+        <result property="logic" column="logic"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
     <sql id="all_column">
-        id, "name", "description", "username", "password", "logic_sign", create_time, update_time
+        id, "name", "description", "username", "password", "logic", create_time, update_time
     </sql>
 
     <insert id="save">
@@ -25,7 +25,7 @@
         #{entity.description},
         #{entity.username},
         #{entity.password},
-        #{entity.logicSign},
+        #{entity.logic},
         now(),
         now()
         ) ON CONFLICT (id) DO UPDATE
@@ -50,7 +50,7 @@
             #{entity.description},
             #{entity.username},
             #{entity.password},
-            #{entity.logicSign},
+            #{entity.logic},
             now(),
             now()
             )
@@ -118,8 +118,8 @@
         SELECT <include refid="all_column"/>
         FROM ntr_user
         WHERE name = #{name}
-        <if test="logicValue!=null">
-            AND logic_sign = ${logicValue}
+        <if test="logic!=null">
+            AND logic = ${logic}
         </if>
     </select>
 
@@ -128,8 +128,8 @@
         FROM ntr_user
         WHERE name = #{name}
         AND id != #{id}
-        <if test="logicValue!=null">
-            AND logic_sign = ${logicValue}
+        <if test="logic!=null">
+            AND logic = ${logic}
         </if>
     </select>
 

@@ -1,7 +1,6 @@
 package io.github.nichetoolkit.rice;
 
 import io.github.nichetoolkit.rest.identity.IdentityUtils;
-import io.github.nichetoolkit.rest.identity.worker.IdentityWorker;
 import io.github.nichetoolkit.rest.worker.sha.ShaWorker;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @since Jdk1.8
  */
 @SpringBootTest
-class RiceToolkitTestWebApplicationTests {
+public class RiceExampleApplicationTests {
 
     /**
      * <code>contextLoads</code>
