@@ -24,7 +24,7 @@ public class RedisTemplateAutoConfigure {
      * Instantiates a new redis template auto configure.
      */
     public RedisTemplateAutoConfigure() {
-        log.debug("the auto configuration for [redis-template] initiated");
+        log.debug("The auto configuration for [redis-template] initiated");
     }
 
     /**

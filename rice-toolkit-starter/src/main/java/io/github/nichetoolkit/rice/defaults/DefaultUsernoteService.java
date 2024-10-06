@@ -1,4 +1,4 @@
-package io.github.nichetoolkit.rice.resolver;
+package io.github.nichetoolkit.rice.defaults;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;

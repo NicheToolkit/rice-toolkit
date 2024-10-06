@@ -56,11 +56,11 @@ public class DefaultAnnotationInterceptor implements RequestHandleInterceptor {
 
     @Override
     public void afterHandle(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, HandlerMethod handlerMethod) throws RestException {
-        if (GeneralUtils.isNotEmpty(defaultAdvices)) {
+        if (GeneralUtils.isNotEmpty(this.defaultAdvices)) {
             RestHttpRequest httpRequest = RestHttpRequest.getHttpRequest(request);
-            defaultAdvices.sort(DefaultAdvice::compareTo);
-            for (DefaultAdvice<?> defaultAdvice : defaultAdvices) {
-                log.debug("advice           type: {}", defaultAdvice.getClass().getName());
+            this.defaultAdvices.sort(DefaultAdvice::compareTo);
+            for (DefaultAdvice<?> defaultAdvice : this.defaultAdvices) {
+                log.debug("The advice       type: {}", defaultAdvice.getClass().getName());
                 adviceHandle(defaultAdvice, httpRequest, response, handlerMethod);
             }
         }

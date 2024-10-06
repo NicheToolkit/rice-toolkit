@@ -19,7 +19,7 @@ public interface RestTokenResolver<U extends RestUserInfo<?>, R extends RestLogi
     /**
      * <code>resolveToken</code>
      * <p>the token method.</p>
-     * @param restMap     {@link io.github.nichetoolkit.rice.TokenContext} <p>the rest map parameter is <code>TokenContext</code> type.</p>
+     * @param context     {@link io.github.nichetoolkit.rice.TokenContext} <p>the rest map parameter is <code>TokenContext</code> type.</p>
      * @param login       {@link java.lang.Object} <p>the login parameter is <code>Object</code> type.</p>
      * @param loginResult R <p>the login result parameter is <code>R</code> type.</p>
      * @return {@link java.lang.String} <p>the token return object is <code>String</code> type.</p>
@@ -29,7 +29,7 @@ public interface RestTokenResolver<U extends RestUserInfo<?>, R extends RestLogi
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestException
      */
-    String resolveToken(TokenContext restMap, Object login, R loginResult) throws RestException;
+    String resolveToken(TokenContext context, Object login, R loginResult) throws RestException;
 
     /**
      * <code>resolveUserInfo</code>

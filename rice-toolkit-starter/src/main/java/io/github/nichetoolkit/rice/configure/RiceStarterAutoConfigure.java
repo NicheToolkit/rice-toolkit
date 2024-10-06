@@ -1,7 +1,7 @@
 package io.github.nichetoolkit.rice.configure;
 
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.resolver.DefaultMapArgumentResolver;
+import io.github.nichetoolkit.rice.defaults.DefaultMapArgumentResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ import java.util.List;
 @Slf4j
 @Configuration
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rice"})
-@ImportAutoConfiguration(value = {RiceInterceptorAutoConfigure.class})
+@ImportAutoConfiguration(value = {RiceLoginAutoConfigure.class})
 public class RiceStarterAutoConfigure implements InitializingBean {
     private final RiceLoginProperties loginProperties;
 
@@ -42,10 +42,10 @@ public class RiceStarterAutoConfigure implements InitializingBean {
      * Instantiates a new rice starter auto configure.
      * @param loginProperties              {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
      * @param requestMappingHandlerAdapter {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter} <p>the request mapping handler adapter parameter is <code>RequestMappingHandlerAdapter</code> type.</p>
-     * @param mapArgumentResolver          {@link io.github.nichetoolkit.rice.resolver.DefaultMapArgumentResolver} <p>the map argument resolver parameter is <code>DefaultMapArgumentResolver</code> type.</p>
+     * @param mapArgumentResolver          {@link io.github.nichetoolkit.rice.defaults.DefaultMapArgumentResolver} <p>the map argument resolver parameter is <code>DefaultMapArgumentResolver</code> type.</p>
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      * @see org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter
-     * @see io.github.nichetoolkit.rice.resolver.DefaultMapArgumentResolver
+     * @see io.github.nichetoolkit.rice.defaults.DefaultMapArgumentResolver
      * @see org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired
@@ -56,7 +56,7 @@ public class RiceStarterAutoConfigure implements InitializingBean {
         this.loginProperties = loginProperties;
         this.requestMappingHandlerAdapter = requestMappingHandlerAdapter;
         this.mapArgumentResolver = mapArgumentResolver;
-        log.debug("the auto configuration for [rice-starter] initiated");
+        log.debug("The auto configuration for [rice-starter] initiated");
     }
 
     @Override

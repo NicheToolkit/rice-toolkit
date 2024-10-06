@@ -1,4 +1,4 @@
-package io.github.nichetoolkit.rice.resolver;
+package io.github.nichetoolkit.rice.defaults;
 
 import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.stereotype.RestUser;
@@ -27,7 +27,7 @@ public class DefaultMapArgumentResolver implements HandlerMethodArgumentResolver
      * {@link java.lang.String} <p>the constant <code>REST_MAP_KEY</code> field.</p>
      * @see java.lang.String
      */
-    public static final String REST_MAP_KEY = "REST_MAP_KEY";
+    public static final String TOKEN_CONTEXT_KEY = "TOKEN_CONTEXT_KEY";
 
     @Override
     public boolean supportsParameter(@NonNull MethodParameter parameter) {
@@ -37,11 +37,11 @@ public class DefaultMapArgumentResolver implements HandlerMethodArgumentResolver
 
     @Override
     public Object resolveArgument(@NonNull MethodParameter parameter, ModelAndViewContainer mavContainer, @NonNull NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        Object object = webRequest.getAttribute(REST_MAP_KEY, RequestAttributes.SCOPE_REQUEST);
+        Object object = webRequest.getAttribute(TOKEN_CONTEXT_KEY, RequestAttributes.SCOPE_REQUEST);
         if (!(object instanceof TokenContext)) {
             /* 创建RestMap实例并加入到请求中 */
             object = new TokenContext();
-            webRequest.setAttribute(REST_MAP_KEY, object, RequestAttributes.SCOPE_REQUEST);
+            webRequest.setAttribute(TOKEN_CONTEXT_KEY, object, RequestAttributes.SCOPE_REQUEST);
         }
         return object;
     }

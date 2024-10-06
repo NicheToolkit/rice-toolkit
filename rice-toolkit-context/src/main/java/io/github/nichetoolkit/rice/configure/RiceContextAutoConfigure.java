@@ -22,6 +22,6 @@ public class RiceContextAutoConfigure {
      * Instantiates a new rice context auto configure.
      */
     public RiceContextAutoConfigure() {
-        log.debug("the auto configuration for [rice-context] initiated");
+        log.debug("The auto configuration for [rice-context] initiated");
     }
 }

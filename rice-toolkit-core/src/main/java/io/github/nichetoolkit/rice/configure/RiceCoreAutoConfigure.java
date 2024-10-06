@@ -22,6 +22,6 @@ public class RiceCoreAutoConfigure {
      * Instantiates a new rice core auto configure.
      */
     public RiceCoreAutoConfigure() {
-        log.debug("the auto configuration for [rice-core] initiated");
+        log.debug("The auto configuration for [rice-core] initiated");
     }
 }

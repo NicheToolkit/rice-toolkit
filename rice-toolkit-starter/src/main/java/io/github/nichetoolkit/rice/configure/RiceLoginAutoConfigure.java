@@ -4,8 +4,8 @@ import io.github.nichetoolkit.rest.RestLoggingKey;
 import io.github.nichetoolkit.rest.configure.RestLogbackProperties;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.interceptor.RequestHandleInterceptor;
-import io.github.nichetoolkit.rice.resolver.DefaultLoggingKeyResolver;
-import io.github.nichetoolkit.rice.resolver.DefaultUserArgumentResolver;
+import io.github.nichetoolkit.rice.defaults.DefaultLoggingKeyResolver;
+import io.github.nichetoolkit.rice.defaults.DefaultUserArgumentResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -39,7 +39,7 @@ import java.util.List;
 @SuppressWarnings("SameNameButDifferent")
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rest"})
 @ConditionalOnProperty(value = "nichetoolkit.rice.login.enabled", havingValue = "true",matchIfMissing = true)
-public class RiceInterceptorAutoConfigure implements WebMvcConfigurer {
+public class RiceLoginAutoConfigure implements WebMvcConfigurer {
 
     private final DefaultUserArgumentResolver userArgumentResolver;
     private final List<RequestHandleInterceptor> handleInterceptors;
@@ -48,14 +48,14 @@ public class RiceInterceptorAutoConfigure implements WebMvcConfigurer {
     /**
      * <code>RiceInterceptorAutoConfigure</code>
      * Instantiates a new rice interceptor auto configure.
-     * @param userArgumentResolver {@link io.github.nichetoolkit.rice.resolver.DefaultUserArgumentResolver} <p>the user argument resolver parameter is <code>DefaultUserArgumentResolver</code> type.</p>
+     * @param userArgumentResolver {@link io.github.nichetoolkit.rice.defaults.DefaultUserArgumentResolver} <p>the user argument resolver parameter is <code>DefaultUserArgumentResolver</code> type.</p>
      * @param loginProperties      {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
-     * @see io.github.nichetoolkit.rice.resolver.DefaultUserArgumentResolver
+     * @see io.github.nichetoolkit.rice.defaults.DefaultUserArgumentResolver
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      * @see org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired(required = false)
-    public RiceInterceptorAutoConfigure(DefaultUserArgumentResolver userArgumentResolver, RiceLoginProperties loginProperties) {
+    public RiceLoginAutoConfigure(DefaultUserArgumentResolver userArgumentResolver, RiceLoginProperties loginProperties) {
         this.userArgumentResolver = userArgumentResolver;
         this.handleInterceptors = new ArrayList<>();
         this.loginProperties = loginProperties;
@@ -64,16 +64,16 @@ public class RiceInterceptorAutoConfigure implements WebMvcConfigurer {
     /**
      * <code>RiceInterceptorAutoConfigure</code>
      * Instantiates a new rice interceptor auto configure.
-     * @param userArgumentResolver {@link io.github.nichetoolkit.rice.resolver.DefaultUserArgumentResolver} <p>the user argument resolver parameter is <code>DefaultUserArgumentResolver</code> type.</p>
+     * @param userArgumentResolver {@link io.github.nichetoolkit.rice.defaults.DefaultUserArgumentResolver} <p>the user argument resolver parameter is <code>DefaultUserArgumentResolver</code> type.</p>
      * @param requestInterceptors  {@link java.util.List} <p>the request interceptors parameter is <code>List</code> type.</p>
      * @param loginProperties      {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
-     * @see io.github.nichetoolkit.rice.resolver.DefaultUserArgumentResolver
+     * @see io.github.nichetoolkit.rice.defaults.DefaultUserArgumentResolver
      * @see java.util.List
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      * @see org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired(required = false)
-    public RiceInterceptorAutoConfigure(DefaultUserArgumentResolver userArgumentResolver, List<RequestHandleInterceptor> requestInterceptors, RiceLoginProperties loginProperties) {
+    public RiceLoginAutoConfigure(DefaultUserArgumentResolver userArgumentResolver, List<RequestHandleInterceptor> requestInterceptors, RiceLoginProperties loginProperties) {
         this.userArgumentResolver = userArgumentResolver;
         this.handleInterceptors = requestInterceptors;
         this.loginProperties = loginProperties;

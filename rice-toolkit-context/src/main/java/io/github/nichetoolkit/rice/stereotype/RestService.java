@@ -41,5 +41,5 @@ public @interface RestService {
      * @return {@link java.lang.Class} <p>the return object is <code>Class</code> type.</p>
      * @see java.lang.Class
      */
-    Class<? extends SuperMapper> mapper() default SuperMapper.class;
+    Class<? extends SuperMapper> mapperType() default SuperMapper.class;
 }

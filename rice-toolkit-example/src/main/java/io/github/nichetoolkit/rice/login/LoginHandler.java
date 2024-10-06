@@ -62,7 +62,7 @@ public class LoginHandler implements LoginAdvice {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Object doLoginHandle(RestHttpRequest httpRequest, Object body, MethodParameter returnType, TokenContext restMap) throws RestException {
+    public Object doLoginHandle(RestHttpRequest httpRequest, Object body, MethodParameter returnType, TokenContext context) throws RestException {
         if (doResponseHandle(body)) {
             return null;
         }
@@ -77,15 +77,15 @@ public class LoginHandler implements LoginAdvice {
         RestLogin restLogin = returnType.getMethodAnnotation(RestLogin.class);
         String token;
         if (GeneralUtils.isNotEmpty(restLogin)) {
-            String userId = String.valueOf(restMap.get(UserModel.LOGIN_USER_ID));
+            String userId = String.valueOf(context.get(UserModel.LOGIN_USER_ID));
             loginResult.setUserId(userId);
 
-            String userJson = String.valueOf(restMap.get(UserModel.LOGIN_USER_INFO));
-            restMap.remove(UserModel.LOGIN_USER_INFO);
+            String userJson = String.valueOf(context.get(UserModel.LOGIN_USER_INFO));
+            context.remove(UserModel.LOGIN_USER_INFO);
             UserModel user = JsonUtils.parseBean(userJson, UserModel.class);
 
             loginResult.setUser(user);
-            token = tokenService.resolveToken(restMap, restLogin, loginResult);
+            token = tokenService.resolveToken(context, restLogin, loginResult);
             redisTemplate.opsForValue().set(UserModel.LOGIN_TOKEN + userId, userJson, loginProperties.getTokenExpiration(), loginProperties.getTokenTimeUnit());
             loginResult.setToken(token);
         }
@@ -93,7 +93,7 @@ public class LoginHandler implements LoginAdvice {
     }
 
     @Override
-    public void doLogoutHandle(RestHttpRequest request, Object body, MethodParameter returnType, TokenContext restMap) throws RestException {
+    public void doLogoutHandle(RestHttpRequest request, Object body, MethodParameter returnType, TokenContext context) throws RestException {
         UserModel userModel = tokenService.resolveUserInfo(request);
         RestOptional.ofNullable(userModel).ifEmptyPresent(user ->{
             String userId = user.getId();

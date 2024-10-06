@@ -32,7 +32,7 @@ public class ModelHelper {
      * @see io.github.nichetoolkit.rest.error.ClassUnknownException
      * @see io.github.nichetoolkit.rest.error.ClassUnsupportedException
      */
-    public static Class<?> clazzOfModel(Object model) throws ClassUnknownException, ClassUnsupportedException {
+    public static Class<?> genericType(Object model) throws ClassUnknownException, ClassUnsupportedException {
         if (model instanceof RestIdModel || model instanceof RestInfoModel) {
             return String.class;
         } else if (model instanceof IdModel) {
@@ -128,7 +128,7 @@ public class ModelHelper {
      */
     @SuppressWarnings(value = "unchecked")
     public static <I> I generate(RestId<I> model) throws ClassUnsupportedException, ClassUnknownException {
-        Class<?> clazz = clazzOfModel(model);
+        Class<?> clazz = genericType(model);
         Long id = IdentityUtils.generateLong();
         if (String.class.equals(clazz)) {
             return (I) String.valueOf(id);

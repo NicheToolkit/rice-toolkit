@@ -17,8 +17,8 @@ import java.util.*;
 /**
  * <code>DefaultFilter</code>
  * <p>The type default filter class.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
- * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.filter.NameFilter
  * @since Jdk1.8
@@ -27,15 +27,15 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
 
     /**
      * <code>DefaultFilter</code>
-     * Instantiates a new default filter.
+     * <p>Instantiates a new default filter.</p>
      */
     public DefaultFilter() {
     }
 
     /**
      * <code>DefaultFilter</code>
-     * Instantiates a new default filter.
-     * @param ids I <p>the ids parameter is <code>I</code> type.</p>
+     * <p>Instantiates a new default filter.</p>
+     * @param ids I <p>The ids parameter is <code>I</code> type.</p>
      * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings(value = "unchecked")
@@ -45,8 +45,8 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
 
     /**
      * <code>DefaultFilter</code>
-     * Instantiates a new default filter.
-     * @param builder {@link io.github.nichetoolkit.rice.DefaultFilter.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * <p>Instantiates a new default filter.</p>
+     * @param builder {@link io.github.nichetoolkit.rice.DefaultFilter.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.DefaultFilter.Builder
      */
     public DefaultFilter(DefaultFilter.Builder<I, K> builder) {
@@ -55,22 +55,22 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
 
     /**
      * <code>toRemoveSql</code>
-     * <p>the remove sql method.</p>
-     * @param removeMode      {@link io.github.nichetoolkit.rice.enums.RemoveMode} <p>the remove mode parameter is <code>RemoveMode</code> type.</p>
-     * @param logicSign       {@link java.lang.String} <p>the logic sign parameter is <code>String</code> type.</p>
-     * @param pinpointEnabled {@link java.lang.Boolean} <p>the pinpoint enabled parameter is <code>Boolean</code> type.</p>
-     * @param logicValue      {@link java.lang.String} <p>the logic value parameter is <code>String</code> type.</p>
-     * @param alias           {@link java.lang.String} <p>the alias parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.DefaultFilter} <p>the remove sql return object is <code>DefaultFilter</code> type.</p>
+     * <p>The remove sql method.</p>
+     * @param removeMode    {@link io.github.nichetoolkit.rice.enums.RemoveMode} <p>The remove mode parameter is <code>RemoveMode</code> type.</p>
+     * @param logicSign     {@link java.lang.String} <p>The logic sign parameter is <code>String</code> type.</p>
+     * @param accurateJudge {@link java.lang.Boolean} <p>The accurate judge parameter is <code>Boolean</code> type.</p>
+     * @param logicValue    {@link java.lang.String} <p>The logic value parameter is <code>String</code> type.</p>
+     * @param alias         {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.DefaultFilter} <p>The remove sql return object is <code>DefaultFilter</code> type.</p>
      * @see io.github.nichetoolkit.rice.enums.RemoveMode
      * @see java.lang.String
      * @see java.lang.Boolean
      * @see org.springframework.lang.NonNull
      */
-    public DefaultFilter<I, K> toRemoveSql(RemoveMode removeMode, String logicSign, Boolean pinpointEnabled, String logicValue, @NonNull String alias) {
+    public DefaultFilter<I, K> toRemoveSql(RemoveMode removeMode, String logicSign, Boolean accurateJudge, String logicValue, @NonNull String alias) {
         if (GeneralUtils.isNotEmpty(logicSign)) {
             if (removeMode == RemoveMode.BOOLEAN || removeMode == RemoveMode.NUMBER) {
-                if (pinpointEnabled && GeneralUtils.isNotEmpty(logicValue)) {
+                if (accurateJudge && GeneralUtils.isNotEmpty(logicValue)) {
                     if (this.isRemove) {
                         SqlBuilders.equal(SQL_BUILDER, alias, logicSign);
                     } else {
@@ -96,25 +96,25 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
 
     /**
      * <code>toQuerySql</code>
-     * <p>the query sql method.</p>
-     * @param deleteMode      {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>the delete mode parameter is <code>DeleteMode</code> type.</p>
-     * @param removeMode      {@link io.github.nichetoolkit.rice.enums.RemoveMode} <p>the remove mode parameter is <code>RemoveMode</code> type.</p>
-     * @param logicSign       {@link java.lang.String} <p>the logic sign parameter is <code>String</code> type.</p>
-     * @param pinpointEnabled {@link java.lang.Boolean} <p>the pinpoint enabled parameter is <code>Boolean</code> type.</p>
-     * @param logicValue      {@link java.lang.String} <p>the logic value parameter is <code>String</code> type.</p>
-     * @param alias           {@link java.lang.String} <p>the alias parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.DefaultFilter} <p>the query sql return object is <code>DefaultFilter</code> type.</p>
+     * <p>The query sql method.</p>
+     * @param deleteMode    {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>The delete mode parameter is <code>DeleteMode</code> type.</p>
+     * @param removeMode    {@link io.github.nichetoolkit.rice.enums.RemoveMode} <p>The remove mode parameter is <code>RemoveMode</code> type.</p>
+     * @param logicSign     {@link java.lang.String} <p>The logic sign parameter is <code>String</code> type.</p>
+     * @param accurateJudge {@link java.lang.Boolean} <p>The accurate judge parameter is <code>Boolean</code> type.</p>
+     * @param logicValue    {@link java.lang.String} <p>The logic value parameter is <code>String</code> type.</p>
+     * @param alias         {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.DefaultFilter} <p>The query sql return object is <code>DefaultFilter</code> type.</p>
      * @see io.github.nichetoolkit.rice.enums.DeleteMode
      * @see io.github.nichetoolkit.rice.enums.RemoveMode
      * @see java.lang.String
      * @see java.lang.Boolean
      * @see org.springframework.lang.NonNull
      */
-    public DefaultFilter<I, K> toQuerySql(DeleteMode deleteMode, RemoveMode removeMode, String logicSign, Boolean pinpointEnabled, String logicValue, @NonNull String alias) {
+    public DefaultFilter<I, K> toQuerySql(DeleteMode deleteMode, RemoveMode removeMode, String logicSign, Boolean accurateJudge, String logicValue, @NonNull String alias) {
         if (deleteMode == DeleteMode.OPERATE) {
             return toOperateSql(alias);
         } else if (deleteMode == DeleteMode.REMOVE) {
-            return toRemoveSql(removeMode,logicSign,pinpointEnabled,logicValue, alias);
+            return toRemoveSql(removeMode,logicSign,accurateJudge,logicValue, alias);
         }
         return this;
     }
@@ -158,8 +158,8 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
     /**
      * <code>Builder</code>
      * <p>The type builder class.</p>
-     * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+     * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rice.filter.NameFilter.Builder
      * @since Jdk1.8
@@ -168,7 +168,7 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
 
         /**
          * <code>Builder</code>
-         * Instantiates a new builder.
+         * <p>Instantiates a new builder.</p>
          */
         public Builder() {
         }

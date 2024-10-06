@@ -28,6 +28,6 @@ public class RiceExampleAutoConfigure {
      * Instantiates a new rice example auto configure.
      */
     public RiceExampleAutoConfigure() {
-        log.debug("the auto configuration for [rice-example] initiated");
+        log.debug("The auto configuration for [rice-example] initiated");
     }
 }

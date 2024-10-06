@@ -5,11 +5,10 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.actuator.BiConsumerActuator;
 import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
 import io.github.nichetoolkit.rest.actuator.FunctionActuator;
-import io.github.nichetoolkit.rest.holder.ApplicationContextHolder;
 import io.github.nichetoolkit.rest.util.CollectUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestId;
-import io.github.nichetoolkit.rice.configure.RiceBeanProperties;
+import io.github.nichetoolkit.rice.service.ServiceHolder;
 
 import java.util.*;
 import java.util.function.Function;
@@ -41,9 +40,7 @@ public class MEBuilderHelper {
      * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, T extends RestId<I>> List<T> partition(Collection<I> targetIdList, FunctionActuator<Collection<I>, List<T>> targetListQueryByIdList) throws RestException {
-        RiceBeanProperties beanProperties = ApplicationContextHolder.getBean(RiceBeanProperties.class);
-        Integer partitionSize = beanProperties.getPartitionQuery();
-        return partition(targetIdList, partitionSize, targetListQueryByIdList);
+        return partition(targetIdList, ServiceHolder.partitionOfQuery(), targetListQueryByIdList);
     }
 
     /**

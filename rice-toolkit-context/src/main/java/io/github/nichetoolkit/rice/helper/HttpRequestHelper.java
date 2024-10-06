@@ -1,6 +1,6 @@
 package io.github.nichetoolkit.rice.helper;
 
-import io.github.nichetoolkit.rest.holder.ApplicationContextHolder;
+import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
 
@@ -41,7 +41,7 @@ public class HttpRequestHelper {
      * @see java.lang.String
      */
     public static String resolveAccessToken(HttpServletRequest request) {
-        RiceLoginProperties loginProperties = ApplicationContextHolder.getBean(RiceLoginProperties.class);
+        RiceLoginProperties loginProperties = BeanUtils.beanOfType(RiceLoginProperties.class);
         if (GeneralUtils.isNotEmpty(loginProperties)) {
             return null;
         }
@@ -65,7 +65,7 @@ public class HttpRequestHelper {
      * @see java.lang.String
      */
     public static String resolveAccessAuth(HttpServletRequest request) {
-        RiceLoginProperties loginProperties = ApplicationContextHolder.getBean(RiceLoginProperties.class);
+        RiceLoginProperties loginProperties = BeanUtils.beanOfType(RiceLoginProperties.class);
         if (GeneralUtils.isNotEmpty(loginProperties)) {
             return null;
         }
@@ -90,7 +90,7 @@ public class HttpRequestHelper {
      * @see java.util.List
      */
     public static List<String> resolveTokens(HttpServletRequest request, boolean isRemovePrefix) {
-        RiceLoginProperties loginProperties = ApplicationContextHolder.getBean(RiceLoginProperties.class);
+        RiceLoginProperties loginProperties = BeanUtils.beanOfType(RiceLoginProperties.class);
         if (GeneralUtils.isEmpty(loginProperties)) {
             return Collections.emptyList();
         }
@@ -109,7 +109,7 @@ public class HttpRequestHelper {
      * @see java.util.List
      */
     public static List<String> resolveTokens(HttpServletRequest request, List<String> tokenHeaders, boolean isRemovePrefix) {
-        RiceLoginProperties loginProperties = ApplicationContextHolder.getBean(RiceLoginProperties.class);
+        RiceLoginProperties loginProperties = BeanUtils.beanOfType(RiceLoginProperties.class);
         if (GeneralUtils.isEmpty(loginProperties)) {
             return Collections.emptyList();
         }

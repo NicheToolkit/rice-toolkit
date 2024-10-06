@@ -6,7 +6,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.advice.LoginAdvice;
 import io.github.nichetoolkit.rice.constant.AdviceConstants;
-import io.github.nichetoolkit.rice.resolver.DefaultMapArgumentResolver;
+import io.github.nichetoolkit.rice.defaults.DefaultMapArgumentResolver;
 import io.github.nichetoolkit.rice.stereotype.RestAuth;
 import io.github.nichetoolkit.rice.stereotype.RestLogin;
 import io.github.nichetoolkit.rice.stereotype.RestLogout;
@@ -72,16 +72,16 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object body, @NonNull MethodParameter returnType,@NonNull MediaType selectedContentType,@NonNull Class selectedConverterType,@NonNull ServerHttpRequest request,@NonNull ServerHttpResponse response) {
-        TokenContext restMap = null;
+        TokenContext context = null;
         RestHttpRequest httpRequest = null;
         /* 将请求中的模型数据容器取出来 */
         if (request instanceof ServletServerHttpRequest) {
             HttpServletRequest httpServletRequest = ((ServletServerHttpRequest) request).getServletRequest();
             httpRequest = RestHttpRequest.getHttpRequest(httpServletRequest);
-            restMap = (TokenContext) httpServletRequest.getAttribute(DefaultMapArgumentResolver.REST_MAP_KEY);
+            context = (TokenContext) httpServletRequest.getAttribute(DefaultMapArgumentResolver.TOKEN_CONTEXT_KEY);
         }
-        if (GeneralUtils.isEmpty(restMap)) {
-            restMap = new TokenContext();
+        if (GeneralUtils.isEmpty(context)) {
+            context = new TokenContext();
         }
         /* 登出接口注解 */
         RestLogout restLogout = AnnotationUtils.getAnnotation(returnType.getAnnotatedElement(), RestLogout.class);
@@ -108,12 +108,12 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
                 try {
                     if (GeneralUtils.isNotEmpty(restLogout)) {
                         /* 登出接口拦截 */
-                        loginAdvice.doLogoutHandle(httpRequest, body, returnType, restMap);
+                        loginAdvice.doLogoutHandle(httpRequest, body, returnType, context);
                         continue;
                     }
                     if (GeneralUtils.isNotEmpty(restLogin)) {
                         /* 登录接口拦截 */
-                        Object loginResult = loginAdvice.doLoginHandle(httpRequest, body, returnType, restMap);
+                        Object loginResult = loginAdvice.doLoginHandle(httpRequest, body, returnType, context);
                         if (GeneralUtils.isNotEmpty(loginResult)) {
                             return loginResult;
                         }
@@ -121,7 +121,7 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
                     }
                     if (GeneralUtils.isNotEmpty(restPended)) {
                         /* 预登录接口拦截 */
-                        Object pendedResult = loginAdvice.doPendingHandle(httpRequest, body, returnType, restMap);
+                        Object pendedResult = loginAdvice.doPendingHandle(httpRequest, body, returnType, context);
                         if (GeneralUtils.isNotEmpty(pendedResult)) {
                             return pendedResult;
                         }
@@ -130,14 +130,14 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
                     /* 拦截创建授权码接口一定要放在拦截登录接口后面 */
                     if (GeneralUtils.isNotEmpty(restAuth)) {
                         /* 授权码接口拦截 */
-                        Object authResult = loginAdvice.doAuthHandle(httpRequest, body, returnType, restMap);
+                        Object authResult = loginAdvice.doAuthHandle(httpRequest, body, returnType, context);
                         if (GeneralUtils.isNotEmpty(authResult)) {
                             return authResult;
                         }
                         continue;
                     }
                     /* 拦截除了登录、登出、创建授权码接口之外的接口响应 */
-                    Object handleResult = loginAdvice.afterHandle(httpRequest, body, returnType, restMap);
+                    Object handleResult = loginAdvice.afterHandle(httpRequest, body, returnType, context);
                     if (GeneralUtils.isNotEmpty(handleResult)) {
                         return handleResult;
                     }

@@ -162,7 +162,7 @@
 
         <mybatis-plus.version>3.5.7</mybatis-plus.version>
         <mybatis-mapper.version>2.2.4</mybatis-mapper.version>
-        <redisson.version>3.17.1</redisson.version>
+        <redisson.version>3.27.2</redisson.version>
 
     </properties>
 

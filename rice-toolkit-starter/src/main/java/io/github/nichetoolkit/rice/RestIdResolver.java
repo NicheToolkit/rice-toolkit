@@ -5,7 +5,7 @@ import io.github.nichetoolkit.rest.RestOptional;
 import io.github.nichetoolkit.rest.error.supply.ResourceNotFoundException;
 import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
 import io.github.nichetoolkit.rest.stream.RestStream;
-import io.github.nichetoolkit.rest.util.ContextUtils;
+import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
 import io.github.nichetoolkit.rice.helper.ModelHelper;
 import org.springframework.beans.factory.InitializingBean;
@@ -29,7 +29,7 @@ public interface RestIdResolver<I> extends InitializingBean {
 
     @Override
     default void afterPropertiesSet() throws Exception {
-        CachingIdClass.caching(this.getClass());
+        Instance.caching(this.getClass());
     }
 
     /**
@@ -38,8 +38,8 @@ public interface RestIdResolver<I> extends InitializingBean {
      * @return {@link java.lang.Class} <p>the return object is <code>Class</code> type.</p>
      * @see java.lang.Class
      */
-    default Class<I> clazz() {
-        return (Class<I>) CachingIdClass.clazzOfId(getClass());
+    default Class<I> idType() {
+        return (Class<I>) Instance.idType(getClass());
     }
 
     /**
@@ -64,15 +64,15 @@ public interface RestIdResolver<I> extends InitializingBean {
      * @see io.github.nichetoolkit.rest.RestException
      */
     static <M extends RestId<I>,I> I resolveModel(M model) throws RestException {
-        Class<?> clazzOfId = ModelHelper.clazzOfModel(model);
-        List<RestIdResolver> resolverBeans = ContextUtils.getBeans(RestIdResolver.class);
+        Class<?> idType = ModelHelper.genericType(model);
+        List<RestIdResolver> resolverBeans = BeanUtils.beansOfType(RestIdResolver.class);
         OptionalUtils.ofEmpty(resolverBeans,"the bean of 'RestIdResolver' type is not found!", ResourceNotFoundException::new);
-        Map<Class, List<RestIdResolver>> idOfResolverMap = resolverBeans.stream().collect(Collectors.groupingBy(RestIdResolver::clazz));
-        List<RestIdResolver> restIdResolvers = idOfResolverMap.get(clazzOfId);
+        Map<Class, List<RestIdResolver>> resolvers= resolverBeans.stream().collect(Collectors.groupingBy(RestIdResolver::idType));
+        List<RestIdResolver> restIdResolvers = resolvers.get(idType);
         OptionalUtils.ofEmpty(restIdResolvers,"the bean of 'RestIdResolver' type for <I> is not found!", ResourceNotFoundException::new);
-        RestOptional<RestIdResolver> anyOptional = RestStream.stream(restIdResolvers).findAny();
-        OptionalUtils.ofNull(anyOptional,"the bean of 'RestIdResolver' type for <I> is not found!", ResourceNotFoundException::new);
-        RestIdResolver<I> restIdResolver = (RestIdResolver<I>) anyOptional.get();
+        RestOptional<RestIdResolver> anyResolver = RestStream.stream(restIdResolvers).findAny();
+        OptionalUtils.ofNull(anyResolver,"the bean of 'RestIdResolver' type for <I> is not found!", ResourceNotFoundException::new);
+        RestIdResolver<I> restIdResolver = (RestIdResolver<I>) anyResolver.get();
         I id = restIdResolver.resolveId(model);
         model.setId(id);
         return id;
@@ -84,23 +84,23 @@ public interface RestIdResolver<I> extends InitializingBean {
      * @author Cyan (snow22314@outlook.com)
      * @since Jdk1.8
      */
-    class CachingIdClass {
+    class Instance {
         /**
          * <code>CLASS_MAP</code>
          * {@link java.util.Map} <p>the <code>CLASS_MAP</code> field.</p>
          * @see java.util.Map
          */
-        static Map<Class<?>, Class<?>> CLASS_MAP = new ConcurrentHashMap<>();
+        static Map<Class<?>, Class<?>> RESOLVERS = new ConcurrentHashMap<>();
 
-        private static Class<?> clazzOfId(Class<? extends RestIdResolver> clazzOfResolver) {
-            return CLASS_MAP.get(clazzOfResolver);
+        private static Class<?> idType(Class<? extends RestIdResolver> resolverType) {
+            return RESOLVERS.get(resolverType);
         }
 
-        private static void caching(Class<? extends RestIdResolver> clazzOfResolver) {
+        private static void caching(Class<? extends RestIdResolver> resolverType) {
             Class<?> clazzOfId = RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
-                    RestIdResolver.class.getTypeParameters()[0], clazzOfResolver, RestIdResolver.class));
-            if (!CLASS_MAP.containsKey(clazzOfResolver)) {
-                CLASS_MAP.put(clazzOfResolver, clazzOfId);
+                    RestIdResolver.class.getTypeParameters()[0], resolverType, RestIdResolver.class));
+            if (!RESOLVERS.containsKey(resolverType)) {
+                RESOLVERS.put(resolverType, clazzOfId);
             }
         }
     }

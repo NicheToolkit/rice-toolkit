@@ -5,7 +5,7 @@ import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.RestUserInfo;
 import io.github.nichetoolkit.rice.RestUsernoteModel;
-import io.github.nichetoolkit.rice.resolver.DefaultUsernoteService;
+import io.github.nichetoolkit.rice.defaults.DefaultUsernoteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * <code>UsernoteService</code>
  * <p>The type usernote service class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.resolver.DefaultUsernoteService
+ * @see io.github.nichetoolkit.rice.defaults.DefaultUsernoteService
  * @see lombok.extern.slf4j.Slf4j
  * @see org.springframework.stereotype.Service
  * @since Jdk1.8

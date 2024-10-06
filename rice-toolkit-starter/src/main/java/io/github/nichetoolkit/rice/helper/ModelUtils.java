@@ -27,9 +27,9 @@ public class ModelUtils {
      * @see java.lang.Object
      * @see java.lang.Class
      */
-    public static Class<?> clazzOfModel(Object object) {
+    public static Class<?> genericType(Object object) {
         try {
-            return ModelHelper.clazzOfModel(object);
+            return ModelHelper.genericType(object);
         } catch (ClassUnknownException | ClassUnsupportedException exception) {
             GeneralUtils.printStackTrace(exception,false);
             log.error("the class type of <I> is unknown",exception);

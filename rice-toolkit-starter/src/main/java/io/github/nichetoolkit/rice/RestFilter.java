@@ -60,10 +60,10 @@ public abstract class RestFilter extends DefaultFilter<String, String> {
      */
     public RestFilter toRemoveSql(SuperService<? extends IdModel<String>, ? extends IdEntity<String>, ? extends RestFilter, String, String> superService, @NonNull String alias) {
         RemoveMode removeMode = superService.removeMode();
-        String logicSign = superService.logicSign();
-        Boolean pinpointEnabled = superService.pinpointEnabled();
-        String logicValue = superService.logicValue();
-        super.toRemoveSql(removeMode, logicSign, pinpointEnabled, logicValue, alias);
+        String logicSign = superService.signOfLogic();
+        Boolean accurateJudge = superService.judgeOfAccurate();
+        String logicValue = superService.valueOfLogic();
+        super.toRemoveSql(removeMode, logicSign, accurateJudge, logicValue, alias);
         return this;
     }
 
@@ -80,10 +80,10 @@ public abstract class RestFilter extends DefaultFilter<String, String> {
     public RestFilter toQuerySql(SuperService<? extends IdModel<String>, ? extends IdEntity<String>, ? extends RestFilter, String, String> superService, @NonNull String alias) {
         DeleteMode deleteMode = superService.deleteMode();
         RemoveMode removeMode = superService.removeMode();
-        String logicSign = superService.logicSign();
-        Boolean pinpointEnabled = superService.pinpointEnabled();
-        String logicValue = superService.logicValue();
-        super.toQuerySql(deleteMode, removeMode, logicSign, pinpointEnabled, logicValue, alias);
+        String logicSign = superService.signOfLogic();
+        Boolean accurateJudge = superService.judgeOfAccurate();
+        String logicValue = superService.valueOfLogic();
+        super.toQuerySql(deleteMode, removeMode, logicSign, accurateJudge, logicValue, alias);
         return this;
     }
 
