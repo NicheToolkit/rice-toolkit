@@ -22,8 +22,8 @@ public class SqlBuilders {
 
     /**
      * <code>newSqlBuilder</code>
-     * <p>the sql builder method.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder return object is <code>SqlBuilder</code> type.</p>
+     * <p>The sql builder method.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder return object is <code>SqlBuilder</code> type.</p>
      */
     public static SqlBuilder newSqlBuilder() {
         return new SqlBuilder();
@@ -31,9 +31,9 @@ public class SqlBuilders {
 
     /**
      * <code>newSqlBuilder</code>
-     * <p>the sql builder method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder return object is <code>SqlBuilder</code> type.</p>
+     * <p>The sql builder method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      */
     public static SqlBuilder newSqlBuilder(StringBuilder sqlBuilder) {
@@ -42,9 +42,9 @@ public class SqlBuilders {
 
     /**
      * <code>newSqlBuilder</code>
-     * <p>the sql builder method.</p>
-     * @param capacity int <p>the capacity parameter is <code>int</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder return object is <code>SqlBuilder</code> type.</p>
+     * <p>The sql builder method.</p>
+     * @param capacity int <p>The capacity parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder return object is <code>SqlBuilder</code> type.</p>
      */
     public static SqlBuilder newSqlBuilder(int capacity) {
         return new SqlBuilder(capacity);
@@ -52,9 +52,9 @@ public class SqlBuilders {
 
     /**
      * <code>newSqlBuilder</code>
-     * <p>the sql builder method.</p>
-     * @param str {@link java.lang.String} <p>the str parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder return object is <code>SqlBuilder</code> type.</p>
+     * <p>The sql builder method.</p>
+     * @param str {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      */
     public static SqlBuilder newSqlBuilder(String str) {
@@ -63,9 +63,9 @@ public class SqlBuilders {
 
     /**
      * <code>newSqlBuilder</code>
-     * <p>the sql builder method.</p>
-     * @param seq {@link java.lang.CharSequence} <p>the seq parameter is <code>CharSequence</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder return object is <code>SqlBuilder</code> type.</p>
+     * <p>The sql builder method.</p>
+     * @param seq {@link java.lang.CharSequence} <p>The seq parameter is <code>CharSequence</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.CharSequence
      */
     public static SqlBuilder newSqlBuilder(CharSequence seq) {
@@ -74,11 +74,11 @@ public class SqlBuilders {
 
     /**
      * <code>nonin</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param values     {@link java.util.Collection} <p>the values parameter is <code>Collection</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param values     {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.util.Collection
      */
@@ -88,10 +88,10 @@ public class SqlBuilders {
 
     /**
      * <code>nonin</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param values     {@link java.util.Collection} <p>the values parameter is <code>Collection</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param values     {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
      * @see java.lang.String
      * @see java.util.Collection
      */
@@ -101,11 +101,11 @@ public class SqlBuilders {
 
     /**
      * <code>in</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param values     {@link java.util.Collection} <p>the values parameter is <code>Collection</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param values     {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.util.Collection
      */
@@ -115,10 +115,10 @@ public class SqlBuilders {
 
     /**
      * <code>in</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param values     {@link java.util.Collection} <p>the values parameter is <code>Collection</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param values     {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
      * @see java.lang.String
      * @see java.util.Collection
      */
@@ -128,12 +128,12 @@ public class SqlBuilders {
 
     /**
      * <code>range</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param beginValue {@link java.lang.Object} <p>the begin value parameter is <code>Object</code> type.</p>
-     * @param endValue   {@link java.lang.Object} <p>the end value parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.lang.Object
      */
@@ -143,11 +143,11 @@ public class SqlBuilders {
 
     /**
      * <code>range</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param beginValue {@link java.lang.Object} <p>the begin value parameter is <code>Object</code> type.</p>
-     * @param endValue   {@link java.lang.Object} <p>the end value parameter is <code>Object</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      */
@@ -157,12 +157,12 @@ public class SqlBuilders {
 
     /**
      * <code>scope</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @param minTarget  {@link java.lang.String} <p>the min target parameter is <code>String</code> type.</p>
-     * @param maxTarget  {@link java.lang.String} <p>the max target parameter is <code>String</code> type.</p>
-     * @param value      {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param minTarget  {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
+     * @param maxTarget  {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.lang.Object
      */
@@ -172,11 +172,11 @@ public class SqlBuilders {
 
     /**
      * <code>scope</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param minTarget  {@link java.lang.String} <p>the min target parameter is <code>String</code> type.</p>
-     * @param maxTarget  {@link java.lang.String} <p>the max target parameter is <code>String</code> type.</p>
-     * @param value      {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param minTarget  {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
+     * @param maxTarget  {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      */
@@ -186,12 +186,12 @@ public class SqlBuilders {
 
     /**
      * <code>both</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param beginValue {@link java.lang.Object} <p>the begin value parameter is <code>Object</code> type.</p>
-     * @param endValue   {@link java.lang.Object} <p>the end value parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.lang.Object
      */
@@ -201,11 +201,11 @@ public class SqlBuilders {
 
     /**
      * <code>both</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param beginValue {@link java.lang.Object} <p>the begin value parameter is <code>Object</code> type.</p>
-     * @param endValue   {@link java.lang.Object} <p>the end value parameter is <code>Object</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      */
@@ -215,11 +215,11 @@ public class SqlBuilders {
 
     /**
      * <code>like</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param value      {@link java.lang.String} <p>the value parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      */
     public static SqlBuilder like(StringBuilder sqlBuilder, String target, String value) {
@@ -228,10 +228,10 @@ public class SqlBuilders {
 
     /**
      * <code>like</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param value      {@link java.lang.String} <p>the value parameter is <code>String</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public static void like(SqlBuilder sqlBuilder, String target, String value) {
@@ -240,11 +240,11 @@ public class SqlBuilders {
 
     /**
      * <code>like</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @param targets    {@link java.util.Collection} <p>the targets parameter is <code>Collection</code> type.</p>
-     * @param value      {@link java.lang.String} <p>the value parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param targets    {@link java.util.Collection} <p>The targets parameter is <code>Collection</code> type.</p>
+     * @param value      {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.util.Collection
      */
@@ -254,10 +254,10 @@ public class SqlBuilders {
 
     /**
      * <code>like</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param targets    {@link java.util.Collection} <p>the targets parameter is <code>Collection</code> type.</p>
-     * @param value      {@link java.lang.String} <p>the value parameter is <code>String</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param targets    {@link java.util.Collection} <p>The targets parameter is <code>Collection</code> type.</p>
+     * @param value      {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
      * @see java.util.Collection
      * @see java.lang.String
      */
@@ -267,11 +267,11 @@ public class SqlBuilders {
 
     /**
      * <code>equal</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param value      {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.lang.Object
      */
@@ -281,10 +281,10 @@ public class SqlBuilders {
 
     /**
      * <code>equal</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param value      {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      */
@@ -294,11 +294,11 @@ public class SqlBuilders {
 
     /**
      * <code>unequal</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param value      {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.lang.Object
      */
@@ -308,10 +308,10 @@ public class SqlBuilders {
 
     /**
      * <code>unequal</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param value      {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      */
@@ -321,10 +321,10 @@ public class SqlBuilders {
 
     /**
      * <code>isnull</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      */
     public static SqlBuilder isnull(StringBuilder sqlBuilder, String target) {
@@ -333,9 +333,9 @@ public class SqlBuilders {
 
     /**
      * <code>isnull</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public static void isnull(SqlBuilder sqlBuilder, String target) {
@@ -344,10 +344,10 @@ public class SqlBuilders {
 
     /**
      * <code>nonnull</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      */
     public static SqlBuilder nonnull(StringBuilder sqlBuilder, String target) {
@@ -356,9 +356,9 @@ public class SqlBuilders {
 
     /**
      * <code>nonnull</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public static void nonnull(SqlBuilder sqlBuilder, String target) {
@@ -367,10 +367,10 @@ public class SqlBuilders {
 
     /**
      * <code>append</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @param sql        {@link java.lang.String} <p>the sql parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param sql        {@link java.lang.String} <p>The sql parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      */
     public static SqlBuilder append(StringBuilder sqlBuilder, String sql) {
@@ -379,9 +379,9 @@ public class SqlBuilders {
 
     /**
      * <code>append</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param sql        {@link java.lang.String} <p>the sql parameter is <code>String</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param sql        {@link java.lang.String} <p>The sql parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public static void append(SqlBuilder sqlBuilder, String sql) {
@@ -390,11 +390,11 @@ public class SqlBuilders {
 
     /**
      * <code>sort</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @param name       {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
-     * @param type       {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>the type parameter is <code>SortType</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param name       {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+     * @param type       {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The type parameter is <code>SortType</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see io.github.nichetoolkit.mybatis.enums.SortType
      */
@@ -404,10 +404,10 @@ public class SqlBuilders {
 
     /**
      * <code>sort</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param name       {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
-     * @param type       {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>the type parameter is <code>SortType</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param name       {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+     * @param type       {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The type parameter is <code>SortType</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.mybatis.enums.SortType
      */
@@ -417,10 +417,10 @@ public class SqlBuilders {
 
     /**
      * <code>sort</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @param sorts      {@link io.github.nichetoolkit.rice.RestSort} <p>the sorts parameter is <code>RestSort</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param sorts      {@link io.github.nichetoolkit.rice.RestSort} <p>The sorts parameter is <code>RestSort</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see io.github.nichetoolkit.rice.RestSort
      */
@@ -430,9 +430,9 @@ public class SqlBuilders {
 
     /**
      * <code>sort</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param sorts      {@link io.github.nichetoolkit.rice.RestSort} <p>the sorts parameter is <code>RestSort</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param sorts      {@link io.github.nichetoolkit.rice.RestSort} <p>The sorts parameter is <code>RestSort</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestSort
      */
     public static void sort(SqlBuilder sqlBuilder, RestSort<?>... sorts) {
@@ -441,10 +441,10 @@ public class SqlBuilders {
 
     /**
      * <code>sort</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @param filter     {@link io.github.nichetoolkit.rice.filter.SortFilter} <p>the filter parameter is <code>SortFilter</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param filter     {@link io.github.nichetoolkit.rice.filter.SortFilter} <p>The filter parameter is <code>SortFilter</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see io.github.nichetoolkit.rice.filter.SortFilter
      */
@@ -454,9 +454,9 @@ public class SqlBuilders {
 
     /**
      * <code>sort</code>
-     * <p>the method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param filter     {@link io.github.nichetoolkit.rice.filter.SortFilter} <p>the filter parameter is <code>SortFilter</code> type.</p>
+     * <p>The method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param filter     {@link io.github.nichetoolkit.rice.filter.SortFilter} <p>The filter parameter is <code>SortFilter</code> type.</p>
      * @see io.github.nichetoolkit.rice.filter.SortFilter
      */
     public static void sort(SqlBuilder sqlBuilder, SortFilter filter) {
@@ -465,11 +465,11 @@ public class SqlBuilders {
 
     /**
      * <code>page</code>
-     * <p>the method.</p>
-     * @param <T>  {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @param page {@link java.lang.Integer} <p>the page parameter is <code>Integer</code> type.</p>
-     * @param size {@link java.lang.Integer} <p>the size parameter is <code>Integer</code> type.</p>
-     * @return {@link com.github.pagehelper.Page} <p>the return object is <code>Page</code> type.</p>
+     * <p>The method.</p>
+     * @param <T>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param page {@link java.lang.Integer} <p>The page parameter is <code>Integer</code> type.</p>
+     * @param size {@link java.lang.Integer} <p>The size parameter is <code>Integer</code> type.</p>
+     * @return {@link com.github.pagehelper.Page} <p>The return object is <code>Page</code> type.</p>
      * @see java.lang.Integer
      * @see com.github.pagehelper.Page
      */
@@ -482,10 +482,10 @@ public class SqlBuilders {
 
     /**
      * <code>page</code>
-     * <p>the method.</p>
-     * @param <T>    {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @param filter {@link io.github.nichetoolkit.rice.filter.PageFilter} <p>the filter parameter is <code>PageFilter</code> type.</p>
-     * @return {@link com.github.pagehelper.Page} <p>the return object is <code>Page</code> type.</p>
+     * <p>The method.</p>
+     * @param <T>    {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param filter {@link io.github.nichetoolkit.rice.filter.PageFilter} <p>The filter parameter is <code>PageFilter</code> type.</p>
+     * @return {@link com.github.pagehelper.Page} <p>The return object is <code>Page</code> type.</p>
      * @see io.github.nichetoolkit.rice.filter.PageFilter
      * @see com.github.pagehelper.Page
      */

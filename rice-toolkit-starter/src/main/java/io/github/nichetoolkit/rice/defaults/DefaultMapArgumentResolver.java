@@ -23,8 +23,8 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 public class DefaultMapArgumentResolver implements HandlerMethodArgumentResolver {
 
     /**
-     * <code>REST_MAP_KEY</code>
-     * {@link java.lang.String} <p>the constant <code>REST_MAP_KEY</code> field.</p>
+     * <code>TOKEN_CONTEXT_KEY</code>
+     * {@link java.lang.String} <p>The constant <code>TOKEN_CONTEXT_KEY</code> field.</p>
      * @see java.lang.String
      */
     public static final String TOKEN_CONTEXT_KEY = "TOKEN_CONTEXT_KEY";

@@ -14,7 +14,7 @@ import java.util.HashSet;
 /**
  * <code>TableFilter</code>
  * <p>The type table filter class.</p>
- * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.filter.OperateFilter
  * @see java.lang.SuppressWarnings
@@ -28,21 +28,21 @@ import java.util.HashSet;
 public class TableFilter<K> extends OperateFilter {
     /**
      * <code>tablekey</code>
-     * <p>the <code>tablekey</code> field.</p>
+     * <p>The <code>tablekey</code> field.</p>
      */
     protected K tablekey;
 
     /**
      * <code>TableFilter</code>
-     * Instantiates a new table filter.
+     * <p>Instantiates a new table filter.</p>
      */
     public TableFilter() {
     }
 
     /**
      * <code>TableFilter</code>
-     * Instantiates a new table filter.
-     * @param builder {@link io.github.nichetoolkit.rice.filter.TableFilter.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * <p>Instantiates a new table filter.</p>
+     * @param builder {@link io.github.nichetoolkit.rice.filter.TableFilter.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.filter.TableFilter.Builder
      */
     public TableFilter(TableFilter.Builder<K> builder) {
@@ -52,8 +52,8 @@ public class TableFilter<K> extends OperateFilter {
 
     /**
      * <code>getTablekey</code>
-     * <p>the tablekey getter method.</p>
-     * @return K <p>the tablekey return object is <code>K</code> type.</p>
+     * <p>The tablekey getter method.</p>
+     * @return K <p>The tablekey return object is <code>K</code> type.</p>
      */
     public K getTablekey() {
         return tablekey;
@@ -61,8 +61,8 @@ public class TableFilter<K> extends OperateFilter {
 
     /**
      * <code>setTablekey</code>
-     * <p>the tablekey setter method.</p>
-     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
+     * <p>The tablekey setter method.</p>
+     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
      */
     public void setTablekey(K tablekey) {
         this.tablekey = tablekey;
@@ -70,8 +70,8 @@ public class TableFilter<K> extends OperateFilter {
 
     /**
      * <code>toTablekey</code>
-     * <p>the tablekey method.</p>
-     * @return K <p>the tablekey return object is <code>K</code> type.</p>
+     * <p>The tablekey method.</p>
+     * @return K <p>The tablekey return object is <code>K</code> type.</p>
      */
     public K toTablekey() {
         return this.tablekey;
@@ -80,7 +80,7 @@ public class TableFilter<K> extends OperateFilter {
     /**
      * <code>Builder</code>
      * <p>The type builder class.</p>
-     * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+     * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rice.filter.OperateFilter.Builder
      * @since Jdk1.8
@@ -88,22 +88,22 @@ public class TableFilter<K> extends OperateFilter {
     public static class Builder<K> extends OperateFilter.Builder {
         /**
          * <code>tablekey</code>
-         * <p>the <code>tablekey</code> field.</p>
+         * <p>The <code>tablekey</code> field.</p>
          */
         protected K tablekey;
 
         /**
          * <code>Builder</code>
-         * Instantiates a new builder.
+         * <p>Instantiates a new builder.</p>
          */
         public Builder() {
         }
 
         /**
          * <code>tablekey</code>
-         * <p>the method.</p>
-         * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.TableFilter.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * <p>The method.</p>
+         * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.TableFilter.Builder} <p>The return object is <code>Builder</code> type.</p>
          */
         public TableFilter.Builder<K> tablekey(K tablekey) {
             this.tablekey = tablekey;

@@ -15,7 +15,7 @@ public class TablenameIsNullException extends ServiceErrorException {
 
     /**
      * <code>TablenameIsNullException</code>
-     * Instantiates a new tablename is null exception.
+     * <p>Instantiates a new tablename is null exception.</p>
      */
     public TablenameIsNullException() {
         super(TableErrorStatus.TABLE_NAME_IS_NULL);
@@ -23,8 +23,8 @@ public class TablenameIsNullException extends ServiceErrorException {
 
     /**
      * <code>TablenameIsNullException</code>
-     * Instantiates a new tablename is null exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new tablename is null exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public TablenameIsNullException(String error) {

@@ -13,7 +13,7 @@ import io.github.nichetoolkit.rice.error.ServiceErrorStatus;
 public class ServiceUnimplementedException extends ServiceErrorException {
     /**
      * <code>ServiceUnimplementedException</code>
-     * Instantiates a new service unimplemented exception.
+     * <p>Instantiates a new service unimplemented exception.</p>
      */
     public ServiceUnimplementedException() {
         super(ServiceErrorStatus.SERVICE_UNIMPLEMENTED_ERROR);
@@ -21,8 +21,8 @@ public class ServiceUnimplementedException extends ServiceErrorException {
 
     /**
      * <code>ServiceUnimplementedException</code>
-     * Instantiates a new service unimplemented exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new service unimplemented exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public ServiceUnimplementedException(String error) {
@@ -31,9 +31,9 @@ public class ServiceUnimplementedException extends ServiceErrorException {
 
     /**
      * <code>ServiceUnimplementedException</code>
-     * Instantiates a new service unimplemented exception.
-     * @param resource {@link java.lang.String} <p>the resource parameter is <code>String</code> type.</p>
-     * @param error    {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new service unimplemented exception.</p>
+     * @param resource {@link java.lang.String} <p>The resource parameter is <code>String</code> type.</p>
+     * @param error    {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public ServiceUnimplementedException(String resource, String error) {
@@ -42,10 +42,10 @@ public class ServiceUnimplementedException extends ServiceErrorException {
 
     /**
      * <code>ServiceUnimplementedException</code>
-     * Instantiates a new service unimplemented exception.
-     * @param resource {@link java.lang.String} <p>the resource parameter is <code>String</code> type.</p>
-     * @param service  {@link java.lang.String} <p>the service parameter is <code>String</code> type.</p>
-     * @param error    {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new service unimplemented exception.</p>
+     * @param resource {@link java.lang.String} <p>The resource parameter is <code>String</code> type.</p>
+     * @param service  {@link java.lang.String} <p>The service parameter is <code>String</code> type.</p>
+     * @param error    {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public ServiceUnimplementedException(String resource, String service, String error) {

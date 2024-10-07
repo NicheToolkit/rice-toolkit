@@ -26,12 +26,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/rice/simple")
 public class SimpleController {
 
+    /**
+     * <code>simpleService</code>
+     * {@link io.github.nichetoolkit.rice.service.SimpleService} <p>The <code>simpleService</code> field.</p>
+     * @see io.github.nichetoolkit.rice.service.SimpleService
+     */
     private final SimpleService simpleService;
 
     /**
      * <code>SimpleController</code>
-     * Instantiates a new simple controller.
-     * @param simpleService {@link io.github.nichetoolkit.rice.service.SimpleService} <p>the simple service parameter is <code>SimpleService</code> type.</p>
+     * <p>Instantiates a new simple controller.</p>
+     * @param simpleService {@link io.github.nichetoolkit.rice.service.SimpleService} <p>The simple service parameter is <code>SimpleService</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.SimpleService
      * @see org.springframework.beans.factory.annotation.Autowired
      */
@@ -42,10 +47,10 @@ public class SimpleController {
 
     /**
      * <code>create</code>
-     * <p>the method.</p>
-     * @param simpleModel {@link io.github.nichetoolkit.rice.simple.SimpleModel} <p>the simple model parameter is <code>SimpleModel</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the return object is <code>RestResult</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The method.</p>
+     * @param simpleModel {@link io.github.nichetoolkit.rice.simple.SimpleModel} <p>The simple model parameter is <code>SimpleModel</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The return object is <code>RestResult</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.SimpleModel
      * @see org.springframework.web.bind.annotation.RequestBody
      * @see io.github.nichetoolkit.rest.RestResult
@@ -59,10 +64,10 @@ public class SimpleController {
 
     /**
      * <code>update</code>
-     * <p>the method.</p>
-     * @param simpleModel {@link io.github.nichetoolkit.rice.simple.SimpleModel} <p>the simple model parameter is <code>SimpleModel</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the return object is <code>RestResult</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The method.</p>
+     * @param simpleModel {@link io.github.nichetoolkit.rice.simple.SimpleModel} <p>The simple model parameter is <code>SimpleModel</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The return object is <code>RestResult</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.SimpleModel
      * @see org.springframework.web.bind.annotation.RequestBody
      * @see io.github.nichetoolkit.rest.RestResult
@@ -76,10 +81,10 @@ public class SimpleController {
 
     /**
      * <code>queryById</code>
-     * <p>the by id method.</p>
-     * @param id {@link java.lang.String} <p>the id parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the by id return object is <code>RestResult</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The by id method.</p>
+     * @param id {@link java.lang.String} <p>The id parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The by id return object is <code>RestResult</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.web.bind.annotation.PathVariable
      * @see io.github.nichetoolkit.rest.RestResult
@@ -94,10 +99,10 @@ public class SimpleController {
 
     /**
      * <code>queryByFilter</code>
-     * <p>the by filter method.</p>
-     * @param filter {@link io.github.nichetoolkit.rice.simple.SimpleFilter} <p>the filter parameter is <code>SimpleFilter</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the by filter return object is <code>RestResult</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The by filter method.</p>
+     * @param filter {@link io.github.nichetoolkit.rice.simple.SimpleFilter} <p>The filter parameter is <code>SimpleFilter</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The by filter return object is <code>RestResult</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.SimpleFilter
      * @see org.springframework.web.bind.annotation.RequestBody
      * @see io.github.nichetoolkit.rest.RestResult
@@ -112,10 +117,10 @@ public class SimpleController {
 
     /**
      * <code>deleteById</code>
-     * <p>the by id method.</p>
-     * @param id {@link java.lang.String} <p>the id parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the by id return object is <code>RestResult</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The by id method.</p>
+     * @param id {@link java.lang.String} <p>The id parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The by id return object is <code>RestResult</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.web.bind.annotation.RequestParam
      * @see io.github.nichetoolkit.rest.RestResult
@@ -130,10 +135,10 @@ public class SimpleController {
 
     /**
      * <code>deleteByFilter</code>
-     * <p>the by filter method.</p>
-     * @param filter {@link io.github.nichetoolkit.rice.simple.SimpleFilter} <p>the filter parameter is <code>SimpleFilter</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the by filter return object is <code>RestResult</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The by filter method.</p>
+     * @param filter {@link io.github.nichetoolkit.rice.simple.SimpleFilter} <p>The filter parameter is <code>SimpleFilter</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The by filter return object is <code>RestResult</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.SimpleFilter
      * @see org.springframework.web.bind.annotation.RequestBody
      * @see io.github.nichetoolkit.rest.RestResult

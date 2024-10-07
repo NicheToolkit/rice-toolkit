@@ -7,10 +7,10 @@ import org.apache.ibatis.annotations.Param;
 /**
  * <code>OperateFilterMapper</code>
  * <p>The type operate filter mapper interface.</p>
- * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
- * @param <F> {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>the generic parameter is <code>IdFilter</code> type.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
- * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+ * @param <F> {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The generic parameter is <code>IdFilter</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestId
  * @see io.github.nichetoolkit.rice.filter.IdFilter
@@ -21,11 +21,11 @@ public interface OperateFilterMapper<E extends RestId<I>, F extends IdFilter<I, 
 
     /**
      * <code>operateAllByFilterWhere</code>
-     * <p>the all by filter where method.</p>
-     * @param whereSql {@link java.lang.String} <p>the where sql parameter is <code>String</code> type.</p>
-     * @param filter   F <p>the filter parameter is <code>F</code> type.</p>
-     * @param operate  {@link java.lang.Integer} <p>the operate parameter is <code>Integer</code> type.</p>
-     * @return {@link java.lang.Integer} <p>the all by filter where return object is <code>Integer</code> type.</p>
+     * <p>The all by filter where method.</p>
+     * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param filter   F <p>The filter parameter is <code>F</code> type.</p>
+     * @param operate  {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The all by filter where return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
@@ -34,12 +34,12 @@ public interface OperateFilterMapper<E extends RestId<I>, F extends IdFilter<I, 
 
     /**
      * <code>operateDynamicAllByFilterWhere</code>
-     * <p>the dynamic all by filter where method.</p>
-     * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
-     * @param whereSql  {@link java.lang.String} <p>the where sql parameter is <code>String</code> type.</p>
-     * @param filter    F <p>the filter parameter is <code>F</code> type.</p>
-     * @param operate   {@link java.lang.Integer} <p>the operate parameter is <code>Integer</code> type.</p>
-     * @return {@link java.lang.Integer} <p>the dynamic all by filter where return object is <code>Integer</code> type.</p>
+     * <p>The dynamic all by filter where method.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param filter    F <p>The filter parameter is <code>F</code> type.</p>
+     * @param operate   {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The dynamic all by filter where return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer

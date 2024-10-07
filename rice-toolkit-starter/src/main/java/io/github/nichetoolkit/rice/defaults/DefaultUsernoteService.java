@@ -26,7 +26,7 @@ import java.util.Set;
 /**
  * <code>DefaultUsernoteService</code>
  * <p>The type default usernote service class.</p>
- * @param <T> {@link io.github.nichetoolkit.rice.RestUsernoteModel} <p>the generic parameter is <code>RestUsernoteModel</code> type.</p>
+ * @param <T> {@link io.github.nichetoolkit.rice.RestUsernoteModel} <p>The generic parameter is <code>RestUsernoteModel</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestUsernoteModel
  * @see io.github.nichetoolkit.rice.advice.UserlogAdvice
@@ -38,16 +38,28 @@ import java.util.Set;
 @Slf4j
 @SuppressWarnings({"WeakerAccess", "unchecked"})
 public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> implements UserlogAdvice, RestUsernoteAdvice {
+    /**
+     * <code>usernote</code>
+     * {@link io.github.nichetoolkit.rice.RestUsernoteModel} <p>The <code>usernote</code> field.</p>
+     * @see io.github.nichetoolkit.rice.RestUsernoteModel
+     */
     private RestUsernoteModel<?, ?> usernote;
 
     /**
      * <code>DefaultUsernoteService</code>
-     * Instantiates a new default usernote service.
+     * <p>Instantiates a new default usernote service.</p>
      */
     public DefaultUsernoteService() {
         this.usernote = new RestUsernoteModel<>();
     }
 
+    /**
+     * <code>childClass</code>
+     * <p>The class method.</p>
+     * @return {@link java.lang.Class} <p>The class return object is <code>Class</code> type.</p>
+     * @see java.lang.Class
+     * @see java.lang.SuppressWarnings
+     */
     @SuppressWarnings(value = "unchecked")
     private Class<T> childClass() {
         return (Class<T>) RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
@@ -88,10 +100,10 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
 
     /**
      * <code>resolveUserInfo</code>
-     * <p>the user info method.</p>
-     * @param httpRequest {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>the http request parameter is <code>RestHttpRequest</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestUserInfo} <p>the user info return object is <code>RestUserInfo</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The user info method.</p>
+     * @param httpRequest {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>The http request parameter is <code>RestHttpRequest</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.RestUserInfo} <p>The user info return object is <code>RestUserInfo</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestHttpRequest
      * @see io.github.nichetoolkit.rice.RestUserInfo
      * @see io.github.nichetoolkit.rest.RestException
@@ -100,17 +112,17 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
 
     /**
      * <code>doUsernoteHandle</code>
-     * <p>the usernote handle method.</p>
-     * @param usernote T <p>the usernote parameter is <code>T</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The usernote handle method.</p>
+     * @param usernote T <p>The usernote parameter is <code>T</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
     public abstract void doUsernoteHandle(T usernote) throws RestException;
 
     /**
      * <code>doUserInfoHandle</code>
-     * <p>the user info handle method.</p>
-     * @param response {@link io.github.nichetoolkit.rest.userlog.RestResponsePack} <p>the response parameter is <code>RestResponsePack</code> type.</p>
+     * <p>The user info handle method.</p>
+     * @param response {@link io.github.nichetoolkit.rest.userlog.RestResponsePack} <p>The response parameter is <code>RestResponsePack</code> type.</p>
      * @see io.github.nichetoolkit.rest.userlog.RestResponsePack
      */
     protected void doUserInfoHandle(RestResponsePack response) {
@@ -146,9 +158,9 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
 
     /**
      * <code>doTargetIdsHandle</code>
-     * <p>the target ids handle method.</p>
-     * @param request  {@link io.github.nichetoolkit.rest.userlog.RestRequestPack} <p>the request parameter is <code>RestRequestPack</code> type.</p>
-     * @param response {@link io.github.nichetoolkit.rest.userlog.RestResponsePack} <p>the response parameter is <code>RestResponsePack</code> type.</p>
+     * <p>The target ids handle method.</p>
+     * @param request  {@link io.github.nichetoolkit.rest.userlog.RestRequestPack} <p>The request parameter is <code>RestRequestPack</code> type.</p>
+     * @param response {@link io.github.nichetoolkit.rest.userlog.RestResponsePack} <p>The response parameter is <code>RestResponsePack</code> type.</p>
      * @see io.github.nichetoolkit.rest.userlog.RestRequestPack
      * @see io.github.nichetoolkit.rest.userlog.RestResponsePack
      */

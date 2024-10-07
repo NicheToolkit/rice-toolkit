@@ -22,22 +22,37 @@ import java.util.Date;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeInterval implements TimeValue {
+    /**
+     * <code>start</code>
+     * {@link java.time.Instant} <p>The <code>start</code> field.</p>
+     * @see java.time.Instant
+     */
     private Instant start;
+    /**
+     * <code>end</code>
+     * {@link java.time.Instant} <p>The <code>end</code> field.</p>
+     * @see java.time.Instant
+     */
     private Instant end;
+    /**
+     * <code>duration</code>
+     * {@link java.time.Duration} <p>The <code>duration</code> field.</p>
+     * @see java.time.Duration
+     */
     private Duration duration;
 
     /**
      * <code>TimeInterval</code>
-     * Instantiates a new time interval.
+     * <p>Instantiates a new time interval.</p>
      */
     public TimeInterval() {
     }
 
     /**
      * <code>TimeInterval</code>
-     * Instantiates a new time interval.
-     * @param start {@link java.lang.Long} <p>the start parameter is <code>Long</code> type.</p>
-     * @param end   {@link java.lang.Long} <p>the end parameter is <code>Long</code> type.</p>
+     * <p>Instantiates a new time interval.</p>
+     * @param start {@link java.lang.Long} <p>The start parameter is <code>Long</code> type.</p>
+     * @param end   {@link java.lang.Long} <p>The end parameter is <code>Long</code> type.</p>
      * @see java.lang.Long
      */
     public TimeInterval(Long start, Long end) {
@@ -48,9 +63,9 @@ public class TimeInterval implements TimeValue {
 
     /**
      * <code>TimeInterval</code>
-     * Instantiates a new time interval.
-     * @param start {@link java.util.Date} <p>the start parameter is <code>Date</code> type.</p>
-     * @param end   {@link java.util.Date} <p>the end parameter is <code>Date</code> type.</p>
+     * <p>Instantiates a new time interval.</p>
+     * @param start {@link java.util.Date} <p>The start parameter is <code>Date</code> type.</p>
+     * @param end   {@link java.util.Date} <p>The end parameter is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public TimeInterval(Date start, Date end) {
@@ -61,9 +76,9 @@ public class TimeInterval implements TimeValue {
 
     /**
      * <code>TimeInterval</code>
-     * Instantiates a new time interval.
-     * @param start {@link java.time.Instant} <p>the start parameter is <code>Instant</code> type.</p>
-     * @param end   {@link java.time.Instant} <p>the end parameter is <code>Instant</code> type.</p>
+     * <p>Instantiates a new time interval.</p>
+     * @param start {@link java.time.Instant} <p>The start parameter is <code>Instant</code> type.</p>
+     * @param end   {@link java.time.Instant} <p>The end parameter is <code>Instant</code> type.</p>
      * @see java.time.Instant
      */
     public TimeInterval(Instant start, Instant end) {
@@ -74,10 +89,10 @@ public class TimeInterval implements TimeValue {
 
     /**
      * <code>TimeInterval</code>
-     * Instantiates a new time interval.
-     * @param start    {@link java.time.Instant} <p>the start parameter is <code>Instant</code> type.</p>
-     * @param end      {@link java.time.Instant} <p>the end parameter is <code>Instant</code> type.</p>
-     * @param duration {@link java.time.Duration} <p>the duration parameter is <code>Duration</code> type.</p>
+     * <p>Instantiates a new time interval.</p>
+     * @param start    {@link java.time.Instant} <p>The start parameter is <code>Instant</code> type.</p>
+     * @param end      {@link java.time.Instant} <p>The end parameter is <code>Instant</code> type.</p>
+     * @param duration {@link java.time.Duration} <p>The duration parameter is <code>Duration</code> type.</p>
      * @see java.time.Instant
      * @see java.time.Duration
      */
@@ -89,8 +104,8 @@ public class TimeInterval implements TimeValue {
 
     /**
      * <code>now</code>
-     * <p>the method.</p>
-     * @return {@link io.github.nichetoolkit.rice.time.TimeInterval} <p>the return object is <code>TimeInterval</code> type.</p>
+     * <p>The method.</p>
+     * @return {@link io.github.nichetoolkit.rice.time.TimeInterval} <p>The return object is <code>TimeInterval</code> type.</p>
      */
     public static TimeInterval now() {
         return create(TimeInstant.now(), TimeInstant.now());
@@ -98,10 +113,10 @@ public class TimeInterval implements TimeValue {
 
     /**
      * <code>create</code>
-     * <p>the method.</p>
-     * @param start {@link java.lang.Long} <p>the start parameter is <code>Long</code> type.</p>
-     * @param end   {@link java.lang.Long} <p>the end parameter is <code>Long</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.time.TimeInterval} <p>the return object is <code>TimeInterval</code> type.</p>
+     * <p>The method.</p>
+     * @param start {@link java.lang.Long} <p>The start parameter is <code>Long</code> type.</p>
+     * @param end   {@link java.lang.Long} <p>The end parameter is <code>Long</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.time.TimeInterval} <p>The return object is <code>TimeInterval</code> type.</p>
      * @see java.lang.Long
      */
     public static TimeInterval create(Long start, Long end) {
@@ -110,10 +125,10 @@ public class TimeInterval implements TimeValue {
 
     /**
      * <code>create</code>
-     * <p>the method.</p>
-     * @param start {@link java.util.Date} <p>the start parameter is <code>Date</code> type.</p>
-     * @param end   {@link java.util.Date} <p>the end parameter is <code>Date</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.time.TimeInterval} <p>the return object is <code>TimeInterval</code> type.</p>
+     * <p>The method.</p>
+     * @param start {@link java.util.Date} <p>The start parameter is <code>Date</code> type.</p>
+     * @param end   {@link java.util.Date} <p>The end parameter is <code>Date</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.time.TimeInterval} <p>The return object is <code>TimeInterval</code> type.</p>
      * @see java.util.Date
      */
     public static TimeInterval create(Date start, Date end) {
@@ -123,10 +138,10 @@ public class TimeInterval implements TimeValue {
 
     /**
      * <code>create</code>
-     * <p>the method.</p>
-     * @param start {@link java.time.Instant} <p>the start parameter is <code>Instant</code> type.</p>
-     * @param end   {@link java.time.Instant} <p>the end parameter is <code>Instant</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.time.TimeInterval} <p>the return object is <code>TimeInterval</code> type.</p>
+     * <p>The method.</p>
+     * @param start {@link java.time.Instant} <p>The start parameter is <code>Instant</code> type.</p>
+     * @param end   {@link java.time.Instant} <p>The end parameter is <code>Instant</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.time.TimeInterval} <p>The return object is <code>TimeInterval</code> type.</p>
      * @see java.time.Instant
      */
     public static TimeInterval create(Instant start, Instant end) {
@@ -135,10 +150,10 @@ public class TimeInterval implements TimeValue {
 
     /**
      * <code>create</code>
-     * <p>the method.</p>
-     * @param start {@link io.github.nichetoolkit.rice.time.TimeInstant} <p>the start parameter is <code>TimeInstant</code> type.</p>
-     * @param end   {@link io.github.nichetoolkit.rice.time.TimeInstant} <p>the end parameter is <code>TimeInstant</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.time.TimeInterval} <p>the return object is <code>TimeInterval</code> type.</p>
+     * <p>The method.</p>
+     * @param start {@link io.github.nichetoolkit.rice.time.TimeInstant} <p>The start parameter is <code>TimeInstant</code> type.</p>
+     * @param end   {@link io.github.nichetoolkit.rice.time.TimeInstant} <p>The end parameter is <code>TimeInstant</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.time.TimeInterval} <p>The return object is <code>TimeInterval</code> type.</p>
      * @see io.github.nichetoolkit.rice.time.TimeInstant
      */
     public static TimeInterval create(TimeInstant start, TimeInstant end) {
@@ -147,9 +162,9 @@ public class TimeInterval implements TimeValue {
 
     /**
      * <code>parse</code>
-     * <p>the method.</p>
-     * @param value {@link java.lang.String} <p>the value parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.time.TimeInterval} <p>the return object is <code>TimeInterval</code> type.</p>
+     * <p>The method.</p>
+     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.time.TimeInterval} <p>The return object is <code>TimeInterval</code> type.</p>
      * @see java.lang.String
      */
     public static TimeInterval parse(String value) {
@@ -175,8 +190,8 @@ public class TimeInterval implements TimeValue {
 
     /**
      * <code>getStart</code>
-     * <p>the start getter method.</p>
-     * @return {@link java.time.Instant} <p>the start return object is <code>Instant</code> type.</p>
+     * <p>The start getter method.</p>
+     * @return {@link java.time.Instant} <p>The start return object is <code>Instant</code> type.</p>
      * @see java.time.Instant
      */
     public Instant getStart() {
@@ -185,8 +200,8 @@ public class TimeInterval implements TimeValue {
 
     /**
      * <code>setStart</code>
-     * <p>the start setter method.</p>
-     * @param start {@link java.time.Instant} <p>the start parameter is <code>Instant</code> type.</p>
+     * <p>The start setter method.</p>
+     * @param start {@link java.time.Instant} <p>The start parameter is <code>Instant</code> type.</p>
      * @see java.time.Instant
      */
     public void setStart(Instant start) {
@@ -195,8 +210,8 @@ public class TimeInterval implements TimeValue {
 
     /**
      * <code>getEnd</code>
-     * <p>the end getter method.</p>
-     * @return {@link java.time.Instant} <p>the end return object is <code>Instant</code> type.</p>
+     * <p>The end getter method.</p>
+     * @return {@link java.time.Instant} <p>The end return object is <code>Instant</code> type.</p>
      * @see java.time.Instant
      */
     public Instant getEnd() {
@@ -205,8 +220,8 @@ public class TimeInterval implements TimeValue {
 
     /**
      * <code>setEnd</code>
-     * <p>the end setter method.</p>
-     * @param end {@link java.time.Instant} <p>the end parameter is <code>Instant</code> type.</p>
+     * <p>The end setter method.</p>
+     * @param end {@link java.time.Instant} <p>The end parameter is <code>Instant</code> type.</p>
      * @see java.time.Instant
      */
     public void setEnd(Instant end) {
@@ -215,8 +230,8 @@ public class TimeInterval implements TimeValue {
 
     /**
      * <code>getDuration</code>
-     * <p>the duration getter method.</p>
-     * @return {@link java.time.Duration} <p>the duration return object is <code>Duration</code> type.</p>
+     * <p>The duration getter method.</p>
+     * @return {@link java.time.Duration} <p>The duration return object is <code>Duration</code> type.</p>
      * @see java.time.Duration
      */
     public Duration getDuration() {
@@ -225,8 +240,8 @@ public class TimeInterval implements TimeValue {
 
     /**
      * <code>setDuration</code>
-     * <p>the duration setter method.</p>
-     * @param duration {@link java.time.Duration} <p>the duration parameter is <code>Duration</code> type.</p>
+     * <p>The duration setter method.</p>
+     * @param duration {@link java.time.Duration} <p>The duration parameter is <code>Duration</code> type.</p>
      * @see java.time.Duration
      */
     public void setDuration(Duration duration) {

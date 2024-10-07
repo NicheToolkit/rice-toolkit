@@ -7,17 +7,17 @@ import java.util.Collection;
 /**
  * <code>OperateMapper</code>
  * <p>The type operate mapper interface.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
 public interface OperateMapper<I> {
     /**
      * <code>operateById</code>
-     * <p>the by id method.</p>
-     * @param id      I <p>the id parameter is <code>I</code> type.</p>
-     * @param operate {@link java.lang.Integer} <p>the operate parameter is <code>Integer</code> type.</p>
-     * @return {@link java.lang.Integer} <p>the by id return object is <code>Integer</code> type.</p>
+     * <p>The by id method.</p>
+     * @param id      I <p>The id parameter is <code>I</code> type.</p>
+     * @param operate {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The by id return object is <code>Integer</code> type.</p>
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
@@ -25,11 +25,11 @@ public interface OperateMapper<I> {
 
     /**
      * <code>operateDynamicById</code>
-     * <p>the dynamic by id method.</p>
-     * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
-     * @param id        I <p>the id parameter is <code>I</code> type.</p>
-     * @param operate   {@link java.lang.Integer} <p>the operate parameter is <code>Integer</code> type.</p>
-     * @return {@link java.lang.Integer} <p>the dynamic by id return object is <code>Integer</code> type.</p>
+     * <p>The dynamic by id method.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param id        I <p>The id parameter is <code>I</code> type.</p>
+     * @param operate   {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The dynamic by id return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
@@ -38,10 +38,10 @@ public interface OperateMapper<I> {
 
     /**
      * <code>operateAll</code>
-     * <p>the all method.</p>
-     * @param idList  {@link java.util.Collection} <p>the id list parameter is <code>Collection</code> type.</p>
-     * @param operate {@link java.lang.Integer} <p>the operate parameter is <code>Integer</code> type.</p>
-     * @return {@link java.lang.Integer} <p>the all return object is <code>Integer</code> type.</p>
+     * <p>The all method.</p>
+     * @param idList  {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @param operate {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The all return object is <code>Integer</code> type.</p>
      * @see java.util.Collection
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
@@ -50,11 +50,11 @@ public interface OperateMapper<I> {
 
     /**
      * <code>operateDynamicAll</code>
-     * <p>the dynamic all method.</p>
-     * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
-     * @param idList    {@link java.util.Collection} <p>the id list parameter is <code>Collection</code> type.</p>
-     * @param operate   {@link java.lang.Integer} <p>the operate parameter is <code>Integer</code> type.</p>
-     * @return {@link java.lang.Integer} <p>the dynamic all return object is <code>Integer</code> type.</p>
+     * <p>The dynamic all method.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param idList    {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @param operate   {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The dynamic all return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.util.Collection
@@ -64,10 +64,10 @@ public interface OperateMapper<I> {
 
     /**
      * <code>operateAllByWhere</code>
-     * <p>the all by where method.</p>
-     * @param whereSql {@link java.lang.String} <p>the where sql parameter is <code>String</code> type.</p>
-     * @param operate  {@link java.lang.Integer} <p>the operate parameter is <code>Integer</code> type.</p>
-     * @return {@link java.lang.Integer} <p>the all by where return object is <code>Integer</code> type.</p>
+     * <p>The all by where method.</p>
+     * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param operate  {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The all by where return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
@@ -76,11 +76,11 @@ public interface OperateMapper<I> {
 
     /**
      * <code>operateDynamicAllByWhere</code>
-     * <p>the dynamic all by where method.</p>
-     * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
-     * @param whereSql  {@link java.lang.String} <p>the where sql parameter is <code>String</code> type.</p>
-     * @param operate   {@link java.lang.Integer} <p>the operate parameter is <code>Integer</code> type.</p>
-     * @return {@link java.lang.Integer} <p>the dynamic all by where return object is <code>Integer</code> type.</p>
+     * <p>The dynamic all by where method.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param operate   {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The dynamic all by where return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer

@@ -21,12 +21,12 @@ import java.lang.reflect.InvocationTargetException;
 public class ModelHelper {
 
     /**
-     * <code>clazzOfModel</code>
-     * <p>the of model method.</p>
-     * @param model {@link java.lang.Object} <p>the model parameter is <code>Object</code> type.</p>
-     * @return {@link java.lang.Class} <p>the of model return object is <code>Class</code> type.</p>
-     * @throws ClassUnknownException     {@link io.github.nichetoolkit.rest.error.ClassUnknownException} <p>the class unknown exception is <code>ClassUnknownException</code> type.</p>
-     * @throws ClassUnsupportedException {@link io.github.nichetoolkit.rest.error.ClassUnsupportedException} <p>the class unsupported exception is <code>ClassUnsupportedException</code> type.</p>
+     * <code>genericType</code>
+     * <p>The type method.</p>
+     * @param model {@link java.lang.Object} <p>The model parameter is <code>Object</code> type.</p>
+     * @return {@link java.lang.Class} <p>The type return object is <code>Class</code> type.</p>
+     * @throws ClassUnknownException     {@link io.github.nichetoolkit.rest.error.ClassUnknownException} <p>The class unknown exception is <code>ClassUnknownException</code> type.</p>
+     * @throws ClassUnsupportedException {@link io.github.nichetoolkit.rest.error.ClassUnsupportedException} <p>The class unsupported exception is <code>ClassUnsupportedException</code> type.</p>
      * @see java.lang.Object
      * @see java.lang.Class
      * @see io.github.nichetoolkit.rest.error.ClassUnknownException
@@ -48,11 +48,11 @@ public class ModelHelper {
 
     /**
      * <code>newInstance</code>
-     * <p>the instance method.</p>
-     * @param <T>   {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @param clazz {@link java.lang.Class} <p>the clazz parameter is <code>Class</code> type.</p>
-     * @return T <p>the instance return object is <code>T</code> type.</p>
-     * @throws ClassUnrenewException {@link io.github.nichetoolkit.rest.error.ClassUnrenewException} <p>the class unrenew exception is <code>ClassUnrenewException</code> type.</p>
+     * <p>The instance method.</p>
+     * @param <T>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param clazz {@link java.lang.Class} <p>The clazz parameter is <code>Class</code> type.</p>
+     * @return T <p>The instance return object is <code>T</code> type.</p>
+     * @throws ClassUnrenewException {@link io.github.nichetoolkit.rest.error.ClassUnrenewException} <p>The class unrenew exception is <code>ClassUnrenewException</code> type.</p>
      * @see java.lang.Class
      * @see io.github.nichetoolkit.rest.error.ClassUnrenewException
      */
@@ -68,12 +68,12 @@ public class ModelHelper {
 
     /**
      * <code>newInstance</code>
-     * <p>the instance method.</p>
-     * @param <T>   {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @param clazz {@link java.lang.reflect.Constructor} <p>the clazz parameter is <code>Constructor</code> type.</p>
-     * @param args  {@link java.lang.Object} <p>the args parameter is <code>Object</code> type.</p>
-     * @return T <p>the instance return object is <code>T</code> type.</p>
-     * @throws ClassUnrenewException {@link io.github.nichetoolkit.rest.error.ClassUnrenewException} <p>the class unrenew exception is <code>ClassUnrenewException</code> type.</p>
+     * <p>The instance method.</p>
+     * @param <T>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param clazz {@link java.lang.reflect.Constructor} <p>The clazz parameter is <code>Constructor</code> type.</p>
+     * @param args  {@link java.lang.Object} <p>The args parameter is <code>Object</code> type.</p>
+     * @return T <p>The instance return object is <code>T</code> type.</p>
+     * @throws ClassUnrenewException {@link io.github.nichetoolkit.rest.error.ClassUnrenewException} <p>The class unrenew exception is <code>ClassUnrenewException</code> type.</p>
      * @see java.lang.reflect.Constructor
      * @see java.lang.Object
      * @see io.github.nichetoolkit.rest.error.ClassUnrenewException
@@ -91,13 +91,13 @@ public class ModelHelper {
 
     /**
      * <code>supper</code>
-     * <p>the method.</p>
-     * @param <S>    P <p>the generic parameter is <code>P</code> type.</p>
-     * @param <P>    {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @param parent P <p>the parent parameter is <code>P</code> type.</p>
-     * @param clazz  {@link java.lang.Class} <p>the clazz parameter is <code>Class</code> type.</p>
-     * @return S <p>the return object is <code>S</code> type.</p>
-     * @throws ClassUnknownException {@link io.github.nichetoolkit.rest.error.ClassUnknownException} <p>the class unknown exception is <code>ClassUnknownException</code> type.</p>
+     * <p>The method.</p>
+     * @param <S>    P <p>The generic parameter is <code>P</code> type.</p>
+     * @param <P>    {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param parent P <p>The parent parameter is <code>P</code> type.</p>
+     * @param clazz  {@link java.lang.Class} <p>The clazz parameter is <code>Class</code> type.</p>
+     * @return S <p>The return object is <code>S</code> type.</p>
+     * @throws ClassUnknownException {@link io.github.nichetoolkit.rest.error.ClassUnknownException} <p>The class unknown exception is <code>ClassUnknownException</code> type.</p>
      * @see P
      * @see java.lang.Class
      * @see java.lang.SuppressWarnings
@@ -115,12 +115,12 @@ public class ModelHelper {
 
     /**
      * <code>generate</code>
-     * <p>the method.</p>
-     * @param <I>   {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @param model {@link io.github.nichetoolkit.rice.RestId} <p>the model parameter is <code>RestId</code> type.</p>
-     * @return I <p>the return object is <code>I</code> type.</p>
-     * @throws ClassUnsupportedException {@link io.github.nichetoolkit.rest.error.ClassUnsupportedException} <p>the class unsupported exception is <code>ClassUnsupportedException</code> type.</p>
-     * @throws ClassUnknownException     {@link io.github.nichetoolkit.rest.error.ClassUnknownException} <p>the class unknown exception is <code>ClassUnknownException</code> type.</p>
+     * <p>The method.</p>
+     * @param <I>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param model {@link io.github.nichetoolkit.rice.RestId} <p>The model parameter is <code>RestId</code> type.</p>
+     * @return I <p>The return object is <code>I</code> type.</p>
+     * @throws ClassUnsupportedException {@link io.github.nichetoolkit.rest.error.ClassUnsupportedException} <p>The class unsupported exception is <code>ClassUnsupportedException</code> type.</p>
+     * @throws ClassUnknownException     {@link io.github.nichetoolkit.rest.error.ClassUnknownException} <p>The class unknown exception is <code>ClassUnknownException</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestId
      * @see java.lang.SuppressWarnings
      * @see io.github.nichetoolkit.rest.error.ClassUnsupportedException

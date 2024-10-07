@@ -23,12 +23,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class UsernoteService extends DefaultUsernoteService<RestUsernoteModel<?, ?>> {
 
+    /**
+     * <code>tokenService</code>
+     * {@link io.github.nichetoolkit.rice.service.TokenService} <p>The <code>tokenService</code> field.</p>
+     * @see io.github.nichetoolkit.rice.service.TokenService
+     */
     private final TokenService tokenService;
 
     /**
      * <code>UsernoteService</code>
-     * Instantiates a new usernote service.
-     * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>the token service parameter is <code>TokenService</code> type.</p>
+     * <p>Instantiates a new usernote service.</p>
+     * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>The token service parameter is <code>TokenService</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.TokenService
      * @see org.springframework.beans.factory.annotation.Autowired
      */

@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * <code>RestTablekey</code>
  * <p>The type rest tablekey interface.</p>
- * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.io.Serializable
  * @since Jdk1.8
@@ -16,8 +16,8 @@ public interface RestTablekey<K> extends Serializable {
 
     /**
      * <code>getTablekey</code>
-     * <p>the tablekey getter method.</p>
-     * @return K <p>the tablekey return object is <code>K</code> type.</p>
+     * <p>The tablekey getter method.</p>
+     * @return K <p>The tablekey return object is <code>K</code> type.</p>
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore

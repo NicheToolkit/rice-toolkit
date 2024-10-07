@@ -17,21 +17,28 @@ import java.util.Date;
  * @since Jdk1.8
  */
 public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> {
+    /**
+     * <code>time</code>
+     * {@link java.util.Date} <p>The <code>time</code> field.</p>
+     * @see java.util.Date
+     * @see org.springframework.format.annotation.DateTimeFormat
+     * @see com.fasterxml.jackson.annotation.JsonFormat
+     */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date time;
 
     /**
      * <code>SimpleModel</code>
-     * Instantiates a new simple model.
+     * <p>Instantiates a new simple model.</p>
      */
     public SimpleModel() {
     }
 
     /**
      * <code>SimpleModel</code>
-     * Instantiates a new simple model.
-     * @param id {@link java.lang.String} <p>the id parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new simple model.</p>
+     * @param id {@link java.lang.String} <p>The id parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public SimpleModel(String id) {
@@ -40,8 +47,8 @@ public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> {
 
     /**
      * <code>SimpleModel</code>
-     * Instantiates a new simple model.
-     * @param builder {@link io.github.nichetoolkit.rice.simple.SimpleModel.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * <p>Instantiates a new simple model.</p>
+     * @param builder {@link io.github.nichetoolkit.rice.simple.SimpleModel.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.SimpleModel.Builder
      */
     public SimpleModel(Builder builder) {
@@ -51,8 +58,8 @@ public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> {
 
     /**
      * <code>getTime</code>
-     * <p>the time getter method.</p>
-     * @return {@link java.util.Date} <p>the time return object is <code>Date</code> type.</p>
+     * <p>The time getter method.</p>
+     * @return {@link java.util.Date} <p>The time return object is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public Date getTime() {
@@ -61,8 +68,8 @@ public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> {
 
     /**
      * <code>setTime</code>
-     * <p>the time setter method.</p>
-     * @param time {@link java.util.Date} <p>the time parameter is <code>Date</code> type.</p>
+     * <p>The time setter method.</p>
+     * @param time {@link java.util.Date} <p>The time parameter is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public void setTime(Date time) {
@@ -88,23 +95,23 @@ public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> {
     public static class Builder extends RestInfoModel.Builder<SimpleModel, SimpleEntity> {
         /**
          * <code>time</code>
-         * {@link java.util.Date} <p>the <code>time</code> field.</p>
+         * {@link java.util.Date} <p>The <code>time</code> field.</p>
          * @see java.util.Date
          */
         protected Date time;
 
         /**
          * <code>Builder</code>
-         * Instantiates a new builder.
+         * <p>Instantiates a new builder.</p>
          */
         public Builder() {
         }
 
         /**
          * <code>time</code>
-         * <p>the method.</p>
-         * @param time {@link java.lang.Long} <p>the time parameter is <code>Long</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.simple.SimpleModel.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * <p>The method.</p>
+         * @param time {@link java.lang.Long} <p>The time parameter is <code>Long</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.simple.SimpleModel.Builder} <p>The return object is <code>Builder</code> type.</p>
          * @see java.lang.Long
          */
         public SimpleModel.Builder time(Long time) {
@@ -114,9 +121,9 @@ public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> {
 
         /**
          * <code>time</code>
-         * <p>the method.</p>
-         * @param time {@link java.util.Date} <p>the time parameter is <code>Date</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.simple.SimpleModel.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * <p>The method.</p>
+         * @param time {@link java.util.Date} <p>The time parameter is <code>Date</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.simple.SimpleModel.Builder} <p>The return object is <code>Builder</code> type.</p>
          * @see java.util.Date
          */
         public SimpleModel.Builder time(Date time) {

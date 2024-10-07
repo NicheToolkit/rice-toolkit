@@ -17,9 +17,9 @@ public class HttpRequestHelper {
 
     /**
      * <code>resolveToken</code>
-     * <p>the token method.</p>
-     * @param request {@link javax.servlet.http.HttpServletRequest} <p>the request parameter is <code>HttpServletRequest</code> type.</p>
-     * @return {@link java.lang.String} <p>the token return object is <code>String</code> type.</p>
+     * <p>The token method.</p>
+     * @param request {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @return {@link java.lang.String} <p>The token return object is <code>String</code> type.</p>
      * @see javax.servlet.http.HttpServletRequest
      * @see java.lang.String
      */
@@ -34,9 +34,9 @@ public class HttpRequestHelper {
 
     /**
      * <code>resolveAccessToken</code>
-     * <p>the access token method.</p>
-     * @param request {@link javax.servlet.http.HttpServletRequest} <p>the request parameter is <code>HttpServletRequest</code> type.</p>
-     * @return {@link java.lang.String} <p>the access token return object is <code>String</code> type.</p>
+     * <p>The access token method.</p>
+     * @param request {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @return {@link java.lang.String} <p>The access token return object is <code>String</code> type.</p>
      * @see javax.servlet.http.HttpServletRequest
      * @see java.lang.String
      */
@@ -58,9 +58,9 @@ public class HttpRequestHelper {
 
     /**
      * <code>resolveAccessAuth</code>
-     * <p>the access auth method.</p>
-     * @param request {@link javax.servlet.http.HttpServletRequest} <p>the request parameter is <code>HttpServletRequest</code> type.</p>
-     * @return {@link java.lang.String} <p>the access auth return object is <code>String</code> type.</p>
+     * <p>The access auth method.</p>
+     * @param request {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @return {@link java.lang.String} <p>The access auth return object is <code>String</code> type.</p>
      * @see javax.servlet.http.HttpServletRequest
      * @see java.lang.String
      */
@@ -82,10 +82,10 @@ public class HttpRequestHelper {
 
     /**
      * <code>resolveTokens</code>
-     * <p>the tokens method.</p>
-     * @param request        {@link javax.servlet.http.HttpServletRequest} <p>the request parameter is <code>HttpServletRequest</code> type.</p>
-     * @param isRemovePrefix boolean <p>the is remove prefix parameter is <code>boolean</code> type.</p>
-     * @return {@link java.util.List} <p>the tokens return object is <code>List</code> type.</p>
+     * <p>The tokens method.</p>
+     * @param request        {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @param isRemovePrefix boolean <p>The is remove prefix parameter is <code>boolean</code> type.</p>
+     * @return {@link java.util.List} <p>The tokens return object is <code>List</code> type.</p>
      * @see javax.servlet.http.HttpServletRequest
      * @see java.util.List
      */
@@ -100,11 +100,11 @@ public class HttpRequestHelper {
 
     /**
      * <code>resolveTokens</code>
-     * <p>the tokens method.</p>
-     * @param request        {@link javax.servlet.http.HttpServletRequest} <p>the request parameter is <code>HttpServletRequest</code> type.</p>
-     * @param tokenHeaders   {@link java.util.List} <p>the token headers parameter is <code>List</code> type.</p>
-     * @param isRemovePrefix boolean <p>the is remove prefix parameter is <code>boolean</code> type.</p>
-     * @return {@link java.util.List} <p>the tokens return object is <code>List</code> type.</p>
+     * <p>The tokens method.</p>
+     * @param request        {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @param tokenHeaders   {@link java.util.List} <p>The token headers parameter is <code>List</code> type.</p>
+     * @param isRemovePrefix boolean <p>The is remove prefix parameter is <code>boolean</code> type.</p>
+     * @return {@link java.util.List} <p>The tokens return object is <code>List</code> type.</p>
      * @see javax.servlet.http.HttpServletRequest
      * @see java.util.List
      */
@@ -122,12 +122,12 @@ public class HttpRequestHelper {
 
     /**
      * <code>resolveHeaders</code>
-     * <p>the headers method.</p>
-     * @param request        {@link javax.servlet.http.HttpServletRequest} <p>the request parameter is <code>HttpServletRequest</code> type.</p>
-     * @param headers        {@link java.util.Collection} <p>the headers parameter is <code>Collection</code> type.</p>
-     * @param prefixes       {@link java.util.Collection} <p>the prefixes parameter is <code>Collection</code> type.</p>
-     * @param isRemovePrefix boolean <p>the is remove prefix parameter is <code>boolean</code> type.</p>
-     * @return {@link java.util.List} <p>the headers return object is <code>List</code> type.</p>
+     * <p>The headers method.</p>
+     * @param request        {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @param headers        {@link java.util.Collection} <p>The headers parameter is <code>Collection</code> type.</p>
+     * @param prefixes       {@link java.util.Collection} <p>The prefixes parameter is <code>Collection</code> type.</p>
+     * @param isRemovePrefix boolean <p>The is remove prefix parameter is <code>boolean</code> type.</p>
+     * @return {@link java.util.List} <p>The headers return object is <code>List</code> type.</p>
      * @see javax.servlet.http.HttpServletRequest
      * @see java.util.Collection
      * @see java.util.List
@@ -158,10 +158,10 @@ public class HttpRequestHelper {
 
     /**
      * <code>resolveAttributes</code>
-     * <p>the attributes method.</p>
-     * @param request    {@link javax.servlet.http.HttpServletRequest} <p>the request parameter is <code>HttpServletRequest</code> type.</p>
-     * @param attributes {@link java.util.Collection} <p>the attributes parameter is <code>Collection</code> type.</p>
-     * @return {@link java.util.List} <p>the attributes return object is <code>List</code> type.</p>
+     * <p>The attributes method.</p>
+     * @param request    {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @param attributes {@link java.util.Collection} <p>The attributes parameter is <code>Collection</code> type.</p>
+     * @return {@link java.util.List} <p>The attributes return object is <code>List</code> type.</p>
      * @see javax.servlet.http.HttpServletRequest
      * @see java.util.Collection
      * @see java.util.List

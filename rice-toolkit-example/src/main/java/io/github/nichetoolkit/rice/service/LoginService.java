@@ -29,14 +29,24 @@ import java.util.Optional;
 @Service
 public class LoginService {
 
+    /**
+     * <code>userService</code>
+     * {@link io.github.nichetoolkit.rice.service.UserService} <p>The <code>userService</code> field.</p>
+     * @see io.github.nichetoolkit.rice.service.UserService
+     */
     private final UserService userService;
+    /**
+     * <code>tokenService</code>
+     * {@link io.github.nichetoolkit.rice.service.TokenService} <p>The <code>tokenService</code> field.</p>
+     * @see io.github.nichetoolkit.rice.service.TokenService
+     */
     private final TokenService tokenService;
 
     /**
      * <code>LoginService</code>
-     * Instantiates a new login service.
-     * @param userService  {@link io.github.nichetoolkit.rice.service.UserService} <p>the user service parameter is <code>UserService</code> type.</p>
-     * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>the token service parameter is <code>TokenService</code> type.</p>
+     * <p>Instantiates a new login service.</p>
+     * @param userService  {@link io.github.nichetoolkit.rice.service.UserService} <p>The user service parameter is <code>UserService</code> type.</p>
+     * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>The token service parameter is <code>TokenService</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.UserService
      * @see io.github.nichetoolkit.rice.service.TokenService
      * @see org.springframework.beans.factory.annotation.Autowired
@@ -50,10 +60,10 @@ public class LoginService {
 
     /**
      * <code>loginWithToken</code>
-     * <p>the with token method.</p>
-     * @param loginRequest {@link io.github.nichetoolkit.rice.simple.LoginRequest} <p>the login request parameter is <code>LoginRequest</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.simple.UserModel} <p>the with token return object is <code>UserModel</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The with token method.</p>
+     * @param loginRequest {@link io.github.nichetoolkit.rice.simple.LoginRequest} <p>The login request parameter is <code>LoginRequest</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The with token return object is <code>UserModel</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.LoginRequest
      * @see io.github.nichetoolkit.rice.simple.UserModel
      * @see io.github.nichetoolkit.rest.RestException
@@ -68,10 +78,10 @@ public class LoginService {
 
     /**
      * <code>loginWithPassword</code>
-     * <p>the with password method.</p>
-     * @param loginRequest {@link io.github.nichetoolkit.rice.simple.LoginRequest} <p>the login request parameter is <code>LoginRequest</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.simple.UserModel} <p>the with password return object is <code>UserModel</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The with password method.</p>
+     * @param loginRequest {@link io.github.nichetoolkit.rice.simple.LoginRequest} <p>The login request parameter is <code>LoginRequest</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The with password return object is <code>UserModel</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.LoginRequest
      * @see io.github.nichetoolkit.rice.simple.UserModel
      * @see io.github.nichetoolkit.rest.RestException

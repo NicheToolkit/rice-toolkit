@@ -22,22 +22,22 @@ import java.io.Serializable;
 public class IdPack implements Serializable {
     /**
      * <code>id</code>
-     * {@link java.lang.String} <p>the <code>id</code> field.</p>
+     * {@link java.lang.String} <p>The <code>id</code> field.</p>
      * @see java.lang.String
      */
     protected String id;
 
     /**
      * <code>IdPack</code>
-     * Instantiates a new id pack.
+     * <p>Instantiates a new id pack.</p>
      */
     public IdPack() {
     }
 
     /**
      * <code>IdPack</code>
-     * Instantiates a new id pack.
-     * @param id {@link java.lang.String} <p>the id parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new id pack.</p>
+     * @param id {@link java.lang.String} <p>The id parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public IdPack(String id) {

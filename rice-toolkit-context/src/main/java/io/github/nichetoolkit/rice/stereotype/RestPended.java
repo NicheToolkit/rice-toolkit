@@ -23,16 +23,16 @@ public @interface RestPended {
 
     /**
      * <code>type</code>
-     * <p>the method.</p>
-     * @return {@link java.lang.String} <p>the return object is <code>String</code> type.</p>
+     * <p>The method.</p>
+     * @return {@link java.lang.String} <p>The return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     String type() default "";
 
     /**
      * <code>update</code>
-     * <p>the method.</p>
-     * @return boolean <p>the return object is <code>boolean</code> type.</p>
+     * <p>The method.</p>
+     * @return boolean <p>The return object is <code>boolean</code> type.</p>
      */
     boolean update() default false;
 }

@@ -9,10 +9,10 @@ import java.util.List;
 /**
  * <code>FindFilterMapper</code>
  * <p>The type find filter mapper interface.</p>
- * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
- * @param <F> {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>the generic parameter is <code>IdFilter</code> type.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
- * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+ * @param <F> {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The generic parameter is <code>IdFilter</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestId
  * @see io.github.nichetoolkit.rice.filter.IdFilter
@@ -21,10 +21,10 @@ import java.util.List;
 public interface FindFilterMapper<E extends RestId<I>, F extends IdFilter<I, K>, I, K> {
     /**
      * <code>findAllByFilterWhere</code>
-     * <p>the all by filter where method.</p>
-     * @param whereSql {@link java.lang.String} <p>the where sql parameter is <code>String</code> type.</p>
-     * @param filter   F <p>the filter parameter is <code>F</code> type.</p>
-     * @return {@link java.util.List} <p>the all by filter where return object is <code>List</code> type.</p>
+     * <p>The all by filter where method.</p>
+     * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param filter   F <p>The filter parameter is <code>F</code> type.</p>
+     * @return {@link java.util.List} <p>The all by filter where return object is <code>List</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.util.List
@@ -33,11 +33,11 @@ public interface FindFilterMapper<E extends RestId<I>, F extends IdFilter<I, K>,
 
     /**
      * <code>findDynamicAllByFilterWhere</code>
-     * <p>the dynamic all by filter where method.</p>
-     * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
-     * @param whereSql  {@link java.lang.String} <p>the where sql parameter is <code>String</code> type.</p>
-     * @param filter    F <p>the filter parameter is <code>F</code> type.</p>
-     * @return {@link java.util.List} <p>the dynamic all by filter where return object is <code>List</code> type.</p>
+     * <p>The dynamic all by filter where method.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param filter    F <p>The filter parameter is <code>F</code> type.</p>
+     * @return {@link java.util.List} <p>The dynamic all by filter where return object is <code>List</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.util.List

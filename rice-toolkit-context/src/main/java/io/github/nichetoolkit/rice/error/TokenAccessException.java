@@ -13,7 +13,7 @@ public class TokenAccessException extends TokenErrorException {
 
     /**
      * <code>TokenAccessException</code>
-     * Instantiates a new token access exception.
+     * <p>Instantiates a new token access exception.</p>
      */
     public TokenAccessException() {
         super(TokenErrorStatus.TOKEN_ACCESS_ERROR);
@@ -21,8 +21,8 @@ public class TokenAccessException extends TokenErrorException {
 
     /**
      * <code>TokenAccessException</code>
-     * Instantiates a new token access exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new token access exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public TokenAccessException(String error) {
@@ -31,9 +31,9 @@ public class TokenAccessException extends TokenErrorException {
 
     /**
      * <code>TokenAccessException</code>
-     * Instantiates a new token access exception.
-     * @param service {@link java.lang.String} <p>the service parameter is <code>String</code> type.</p>
-     * @param error   {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new token access exception.</p>
+     * @param service {@link java.lang.String} <p>The service parameter is <code>String</code> type.</p>
+     * @param error   {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public TokenAccessException(String service, String error) {

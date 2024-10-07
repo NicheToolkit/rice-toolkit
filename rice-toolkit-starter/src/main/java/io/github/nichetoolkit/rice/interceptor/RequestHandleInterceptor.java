@@ -24,7 +24,7 @@ import java.util.Optional;
 public interface RequestHandleInterceptor extends AsyncHandlerInterceptor {
     /**
      * <code>BASIC_ERROR</code>
-     * {@link java.lang.String} <p>the constant <code>BASIC_ERROR</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>BASIC_ERROR</code> field.</p>
      * @see java.lang.String
      */
     String BASIC_ERROR = "org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController";
@@ -51,11 +51,11 @@ public interface RequestHandleInterceptor extends AsyncHandlerInterceptor {
 
     /**
      * <code>beforeHandle</code>
-     * <p>the handle method.</p>
-     * @param request       {@link javax.servlet.http.HttpServletRequest} <p>the request parameter is <code>HttpServletRequest</code> type.</p>
-     * @param response      {@link javax.servlet.http.HttpServletResponse} <p>the response parameter is <code>HttpServletResponse</code> type.</p>
-     * @param handlerMethod {@link org.springframework.web.method.HandlerMethod} <p>the handler method parameter is <code>HandlerMethod</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The handle method.</p>
+     * @param request       {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @param response      {@link javax.servlet.http.HttpServletResponse} <p>The response parameter is <code>HttpServletResponse</code> type.</p>
+     * @param handlerMethod {@link org.springframework.web.method.HandlerMethod} <p>The handler method parameter is <code>HandlerMethod</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see javax.servlet.http.HttpServletRequest
      * @see org.springframework.lang.NonNull
      * @see javax.servlet.http.HttpServletResponse
@@ -67,11 +67,11 @@ public interface RequestHandleInterceptor extends AsyncHandlerInterceptor {
 
     /**
      * <code>afterHandle</code>
-     * <p>the handle method.</p>
-     * @param request       {@link javax.servlet.http.HttpServletRequest} <p>the request parameter is <code>HttpServletRequest</code> type.</p>
-     * @param response      {@link javax.servlet.http.HttpServletResponse} <p>the response parameter is <code>HttpServletResponse</code> type.</p>
-     * @param handlerMethod {@link org.springframework.web.method.HandlerMethod} <p>the handler method parameter is <code>HandlerMethod</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The handle method.</p>
+     * @param request       {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @param response      {@link javax.servlet.http.HttpServletResponse} <p>The response parameter is <code>HttpServletResponse</code> type.</p>
+     * @param handlerMethod {@link org.springframework.web.method.HandlerMethod} <p>The handler method parameter is <code>HandlerMethod</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see javax.servlet.http.HttpServletRequest
      * @see org.springframework.lang.NonNull
      * @see javax.servlet.http.HttpServletResponse
@@ -84,12 +84,12 @@ public interface RequestHandleInterceptor extends AsyncHandlerInterceptor {
 
     /**
      * <code>supports</code>
-     * <p>the method.</p>
-     * @param <A>            {@link java.lang.annotation.Annotation} <p>the generic parameter is <code>Annotation</code> type.</p>
-     * @param annotationType {@link java.lang.Class} <p>the annotation type parameter is <code>Class</code> type.</p>
-     * @param handlerMethod  {@link org.springframework.web.method.HandlerMethod} <p>the handler method parameter is <code>HandlerMethod</code> type.</p>
-     * @return boolean <p>the return object is <code>boolean</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The method.</p>
+     * @param <A>            {@link java.lang.annotation.Annotation} <p>The generic parameter is <code>Annotation</code> type.</p>
+     * @param annotationType {@link java.lang.Class} <p>The annotation type parameter is <code>Class</code> type.</p>
+     * @param handlerMethod  {@link org.springframework.web.method.HandlerMethod} <p>The handler method parameter is <code>HandlerMethod</code> type.</p>
+     * @return boolean <p>The return object is <code>boolean</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.annotation.Annotation
      * @see java.lang.Class
      * @see org.springframework.web.method.HandlerMethod
@@ -101,12 +101,12 @@ public interface RequestHandleInterceptor extends AsyncHandlerInterceptor {
 
     /**
      * <code>getAnnotation</code>
-     * <p>the annotation getter method.</p>
-     * @param <A>            {@link java.lang.annotation.Annotation} <p>the generic parameter is <code>Annotation</code> type.</p>
-     * @param annotationType {@link java.lang.Class} <p>the annotation type parameter is <code>Class</code> type.</p>
-     * @param handlerMethod  {@link org.springframework.web.method.HandlerMethod} <p>the handler method parameter is <code>HandlerMethod</code> type.</p>
-     * @return A <p>the annotation return object is <code>A</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The annotation getter method.</p>
+     * @param <A>            {@link java.lang.annotation.Annotation} <p>The generic parameter is <code>Annotation</code> type.</p>
+     * @param annotationType {@link java.lang.Class} <p>The annotation type parameter is <code>Class</code> type.</p>
+     * @param handlerMethod  {@link org.springframework.web.method.HandlerMethod} <p>The handler method parameter is <code>HandlerMethod</code> type.</p>
+     * @return A <p>The annotation return object is <code>A</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.annotation.Annotation
      * @see java.lang.Class
      * @see org.springframework.web.method.HandlerMethod

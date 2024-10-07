@@ -24,7 +24,7 @@ import java.util.Date;
 public class TimeModel extends OperateModel {
     /**
      * <code>createTime</code>
-     * {@link java.util.Date} <p>the <code>createTime</code> field.</p>
+     * {@link java.util.Date} <p>The <code>createTime</code> field.</p>
      * @see java.util.Date
      * @see org.springframework.format.annotation.DateTimeFormat
      * @see com.fasterxml.jackson.annotation.JsonFormat
@@ -34,7 +34,7 @@ public class TimeModel extends OperateModel {
     protected Date createTime;
     /**
      * <code>updateTime</code>
-     * {@link java.util.Date} <p>the <code>updateTime</code> field.</p>
+     * {@link java.util.Date} <p>The <code>updateTime</code> field.</p>
      * @see java.util.Date
      * @see org.springframework.format.annotation.DateTimeFormat
      * @see com.fasterxml.jackson.annotation.JsonFormat
@@ -45,15 +45,15 @@ public class TimeModel extends OperateModel {
 
     /**
      * <code>TimeModel</code>
-     * Instantiates a new time model.
+     * <p>Instantiates a new time model.</p>
      */
     public TimeModel() {
     }
 
     /**
      * <code>TimeModel</code>
-     * Instantiates a new time model.
-     * @param builder {@link io.github.nichetoolkit.rice.TimeModel.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * <p>Instantiates a new time model.</p>
+     * @param builder {@link io.github.nichetoolkit.rice.TimeModel.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.TimeModel.Builder
      */
     public TimeModel(TimeModel.Builder builder) {
@@ -64,8 +64,8 @@ public class TimeModel extends OperateModel {
 
     /**
      * <code>getCreateTime</code>
-     * <p>the create time getter method.</p>
-     * @return {@link java.util.Date} <p>the create time return object is <code>Date</code> type.</p>
+     * <p>The create time getter method.</p>
+     * @return {@link java.util.Date} <p>The create time return object is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public Date getCreateTime() {
@@ -74,8 +74,8 @@ public class TimeModel extends OperateModel {
 
     /**
      * <code>setCreateTime</code>
-     * <p>the create time setter method.</p>
-     * @param createTime {@link java.util.Date} <p>the create time parameter is <code>Date</code> type.</p>
+     * <p>The create time setter method.</p>
+     * @param createTime {@link java.util.Date} <p>The create time parameter is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public void setCreateTime(Date createTime) {
@@ -84,8 +84,8 @@ public class TimeModel extends OperateModel {
 
     /**
      * <code>getUpdateTime</code>
-     * <p>the update time getter method.</p>
-     * @return {@link java.util.Date} <p>the update time return object is <code>Date</code> type.</p>
+     * <p>The update time getter method.</p>
+     * @return {@link java.util.Date} <p>The update time return object is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public Date getUpdateTime() {
@@ -94,8 +94,8 @@ public class TimeModel extends OperateModel {
 
     /**
      * <code>setUpdateTime</code>
-     * <p>the update time setter method.</p>
-     * @param updateTime {@link java.util.Date} <p>the update time parameter is <code>Date</code> type.</p>
+     * <p>The update time setter method.</p>
+     * @param updateTime {@link java.util.Date} <p>The update time parameter is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public void setUpdateTime(Date updateTime) {
@@ -104,8 +104,8 @@ public class TimeModel extends OperateModel {
 
     /**
      * <code>ofTime</code>
-     * <p>the time method.</p>
-     * @return {@link io.github.nichetoolkit.rice.TimeModel.Builder} <p>the time return object is <code>Builder</code> type.</p>
+     * <p>The time method.</p>
+     * @return {@link io.github.nichetoolkit.rice.TimeModel.Builder} <p>The time return object is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.TimeModel.Builder
      */
     public static TimeModel.Builder ofTime() {
@@ -122,29 +122,29 @@ public class TimeModel extends OperateModel {
     public static class Builder extends OperateModel.Builder{
         /**
          * <code>createTime</code>
-         * {@link java.util.Date} <p>the <code>createTime</code> field.</p>
+         * {@link java.util.Date} <p>The <code>createTime</code> field.</p>
          * @see java.util.Date
          */
         protected Date createTime;
         /**
          * <code>updateTime</code>
-         * {@link java.util.Date} <p>the <code>updateTime</code> field.</p>
+         * {@link java.util.Date} <p>The <code>updateTime</code> field.</p>
          * @see java.util.Date
          */
         protected Date updateTime;
 
         /**
          * <code>Builder</code>
-         * Instantiates a new builder.
+         * <p>Instantiates a new builder.</p>
          */
         public Builder() {
         }
 
         /**
          * <code>createTime</code>
-         * <p>the time method.</p>
-         * @param createTime {@link java.util.Date} <p>the create time parameter is <code>Date</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.TimeModel.Builder} <p>the time return object is <code>Builder</code> type.</p>
+         * <p>The time method.</p>
+         * @param createTime {@link java.util.Date} <p>The create time parameter is <code>Date</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.TimeModel.Builder} <p>The time return object is <code>Builder</code> type.</p>
          * @see java.util.Date
          */
         public TimeModel.Builder createTime(Date createTime) {
@@ -154,9 +154,9 @@ public class TimeModel extends OperateModel {
 
         /**
          * <code>createTime</code>
-         * <p>the time method.</p>
-         * @param createTime {@link java.lang.Long} <p>the create time parameter is <code>Long</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.TimeModel.Builder} <p>the time return object is <code>Builder</code> type.</p>
+         * <p>The time method.</p>
+         * @param createTime {@link java.lang.Long} <p>The create time parameter is <code>Long</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.TimeModel.Builder} <p>The time return object is <code>Builder</code> type.</p>
          * @see java.lang.Long
          * @see org.springframework.lang.NonNull
          */
@@ -167,9 +167,9 @@ public class TimeModel extends OperateModel {
 
         /**
          * <code>updateTime</code>
-         * <p>the time method.</p>
-         * @param updateTime {@link java.util.Date} <p>the update time parameter is <code>Date</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.TimeModel.Builder} <p>the time return object is <code>Builder</code> type.</p>
+         * <p>The time method.</p>
+         * @param updateTime {@link java.util.Date} <p>The update time parameter is <code>Date</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.TimeModel.Builder} <p>The time return object is <code>Builder</code> type.</p>
          * @see java.util.Date
          */
         public TimeModel.Builder updateTime(Date updateTime) {
@@ -179,9 +179,9 @@ public class TimeModel extends OperateModel {
 
         /**
          * <code>updateTime</code>
-         * <p>the time method.</p>
-         * @param updateTime {@link java.lang.Long} <p>the update time parameter is <code>Long</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.TimeModel.Builder} <p>the time return object is <code>Builder</code> type.</p>
+         * <p>The time method.</p>
+         * @param updateTime {@link java.lang.Long} <p>The update time parameter is <code>Long</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.TimeModel.Builder} <p>The time return object is <code>Builder</code> type.</p>
          * @see java.lang.Long
          * @see org.springframework.lang.NonNull
          */

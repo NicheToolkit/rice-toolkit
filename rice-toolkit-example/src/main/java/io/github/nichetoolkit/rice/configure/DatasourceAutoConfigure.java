@@ -33,7 +33,7 @@ import javax.sql.DataSource;
 public class DatasourceAutoConfigure {
     /**
      * <code>DatasourceAutoConfigure</code>
-     * Instantiates a new datasource auto configure.
+     * <p>Instantiates a new datasource auto configure.</p>
      */
     public DatasourceAutoConfigure() {
         log.debug("The auto configuration for [datasource] initiated");
@@ -41,8 +41,8 @@ public class DatasourceAutoConfigure {
 
     /**
      * <code>dataSource</code>
-     * <p>the source method.</p>
-     * @return {@link com.zaxxer.hikari.HikariDataSource} <p>the source return object is <code>HikariDataSource</code> type.</p>
+     * <p>The source method.</p>
+     * @return {@link com.zaxxer.hikari.HikariDataSource} <p>The source return object is <code>HikariDataSource</code> type.</p>
      * @see com.zaxxer.hikari.HikariDataSource
      * @see org.springframework.context.annotation.Primary
      * @see org.springframework.context.annotation.Bean
@@ -59,10 +59,10 @@ public class DatasourceAutoConfigure {
 
     /**
      * <code>sqlSessionFactory</code>
-     * <p>the session factory method.</p>
-     * @param dataSource {@link javax.sql.DataSource} <p>the data source parameter is <code>DataSource</code> type.</p>
-     * @return {@link org.apache.ibatis.session.SqlSessionFactory} <p>the session factory return object is <code>SqlSessionFactory</code> type.</p>
-     * @throws Exception {@link java.lang.Exception} <p>the exception is <code>Exception</code> type.</p>
+     * <p>The session factory method.</p>
+     * @param dataSource {@link javax.sql.DataSource} <p>The data source parameter is <code>DataSource</code> type.</p>
+     * @return {@link org.apache.ibatis.session.SqlSessionFactory} <p>The session factory return object is <code>SqlSessionFactory</code> type.</p>
+     * @throws Exception {@link java.lang.Exception} <p>The exception is <code>Exception</code> type.</p>
      * @see javax.sql.DataSource
      * @see org.springframework.beans.factory.annotation.Qualifier
      * @see org.apache.ibatis.session.SqlSessionFactory
@@ -79,9 +79,9 @@ public class DatasourceAutoConfigure {
 
     /**
      * <code>transactionManager</code>
-     * <p>the manager method.</p>
-     * @param dataSource {@link javax.sql.DataSource} <p>the data source parameter is <code>DataSource</code> type.</p>
-     * @return {@link org.springframework.jdbc.datasource.DataSourceTransactionManager} <p>the manager return object is <code>DataSourceTransactionManager</code> type.</p>
+     * <p>The manager method.</p>
+     * @param dataSource {@link javax.sql.DataSource} <p>The data source parameter is <code>DataSource</code> type.</p>
+     * @return {@link org.springframework.jdbc.datasource.DataSourceTransactionManager} <p>The manager return object is <code>DataSourceTransactionManager</code> type.</p>
      * @see javax.sql.DataSource
      * @see org.springframework.beans.factory.annotation.Qualifier
      * @see org.springframework.jdbc.datasource.DataSourceTransactionManager
@@ -94,9 +94,9 @@ public class DatasourceAutoConfigure {
 
     /**
      * <code>sqlSessionTemplate</code>
-     * <p>the session template method.</p>
-     * @param sqlSessionFactory {@link org.apache.ibatis.session.SqlSessionFactory} <p>the sql session factory parameter is <code>SqlSessionFactory</code> type.</p>
-     * @return {@link org.mybatis.spring.SqlSessionTemplate} <p>the session template return object is <code>SqlSessionTemplate</code> type.</p>
+     * <p>The session template method.</p>
+     * @param sqlSessionFactory {@link org.apache.ibatis.session.SqlSessionFactory} <p>The sql session factory parameter is <code>SqlSessionFactory</code> type.</p>
+     * @return {@link org.mybatis.spring.SqlSessionTemplate} <p>The session template return object is <code>SqlSessionTemplate</code> type.</p>
      * @see org.apache.ibatis.session.SqlSessionFactory
      * @see org.springframework.beans.factory.annotation.Qualifier
      * @see org.mybatis.spring.SqlSessionTemplate

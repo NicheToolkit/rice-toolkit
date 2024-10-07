@@ -18,13 +18,13 @@ public class IdArrayHelper {
 
     /**
      * <code>id</code>
-     * <p>the method.</p>
-     * @param <I>     {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @param <M>     {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
-     * @param model   M <p>the model parameter is <code>M</code> type.</p>
-     * @param index   int <p>the index parameter is <code>int</code> type.</p>
-     * @param idArray I <p>the id array parameter is <code>I</code> type.</p>
-     * @return I <p>the return object is <code>I</code> type.</p>
+     * <p>The method.</p>
+     * @param <I>     {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>     {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param model   M <p>The model parameter is <code>M</code> type.</p>
+     * @param index   int <p>The index parameter is <code>int</code> type.</p>
+     * @param idArray I <p>The id array parameter is <code>I</code> type.</p>
+     * @return I <p>The return object is <code>I</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestId
      * @see java.lang.SuppressWarnings
      */
@@ -42,13 +42,13 @@ public class IdArrayHelper {
 
     /**
      * <code>id</code>
-     * <p>the method.</p>
-     * @param <I>     {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @param <M>     {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
-     * @param models  {@link java.util.List} <p>the models parameter is <code>List</code> type.</p>
-     * @param index   int <p>the index parameter is <code>int</code> type.</p>
-     * @param idArray I <p>the id array parameter is <code>I</code> type.</p>
-     * @return I <p>the return object is <code>I</code> type.</p>
+     * <p>The method.</p>
+     * @param <I>     {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>     {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param models  {@link java.util.List} <p>The models parameter is <code>List</code> type.</p>
+     * @param index   int <p>The index parameter is <code>int</code> type.</p>
+     * @param idArray I <p>The id array parameter is <code>I</code> type.</p>
+     * @return I <p>The return object is <code>I</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestId
      * @see java.util.List
      * @see java.lang.SuppressWarnings
@@ -65,14 +65,14 @@ public class IdArrayHelper {
 
     /**
      * <code>idArray</code>
-     * <p>the array method.</p>
-     * @param <I>     {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @param <M>     {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
-     * @param models  {@link java.util.List} <p>the models parameter is <code>List</code> type.</p>
-     * @param index   int <p>the index parameter is <code>int</code> type.</p>
-     * @param idArray I <p>the id array parameter is <code>I</code> type.</p>
-     * @throws ClassUnknownException     {@link io.github.nichetoolkit.rest.error.ClassUnknownException} <p>the class unknown exception is <code>ClassUnknownException</code> type.</p>
-     * @throws ClassUnsupportedException {@link io.github.nichetoolkit.rest.error.ClassUnsupportedException} <p>the class unsupported exception is <code>ClassUnsupportedException</code> type.</p>
+     * <p>The array method.</p>
+     * @param <I>     {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>     {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param models  {@link java.util.List} <p>The models parameter is <code>List</code> type.</p>
+     * @param index   int <p>The index parameter is <code>int</code> type.</p>
+     * @param idArray I <p>The id array parameter is <code>I</code> type.</p>
+     * @throws ClassUnknownException     {@link io.github.nichetoolkit.rest.error.ClassUnknownException} <p>The class unknown exception is <code>ClassUnknownException</code> type.</p>
+     * @throws ClassUnsupportedException {@link io.github.nichetoolkit.rest.error.ClassUnsupportedException} <p>The class unsupported exception is <code>ClassUnsupportedException</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestId
      * @see java.util.List
      * @see java.lang.SuppressWarnings
@@ -90,14 +90,14 @@ public class IdArrayHelper {
 
     /**
      * <code>idArray</code>
-     * <p>the array method.</p>
-     * @param <I>     {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @param <M>     {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
-     * @param model   M <p>the model parameter is <code>M</code> type.</p>
-     * @param index   int <p>the index parameter is <code>int</code> type.</p>
-     * @param idArray I <p>the id array parameter is <code>I</code> type.</p>
-     * @throws ClassUnknownException     {@link io.github.nichetoolkit.rest.error.ClassUnknownException} <p>the class unknown exception is <code>ClassUnknownException</code> type.</p>
-     * @throws ClassUnsupportedException {@link io.github.nichetoolkit.rest.error.ClassUnsupportedException} <p>the class unsupported exception is <code>ClassUnsupportedException</code> type.</p>
+     * <p>The array method.</p>
+     * @param <I>     {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>     {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param model   M <p>The model parameter is <code>M</code> type.</p>
+     * @param index   int <p>The index parameter is <code>int</code> type.</p>
+     * @param idArray I <p>The id array parameter is <code>I</code> type.</p>
+     * @throws ClassUnknownException     {@link io.github.nichetoolkit.rest.error.ClassUnknownException} <p>The class unknown exception is <code>ClassUnknownException</code> type.</p>
+     * @throws ClassUnsupportedException {@link io.github.nichetoolkit.rest.error.ClassUnsupportedException} <p>The class unsupported exception is <code>ClassUnsupportedException</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestId
      * @see java.lang.SuppressWarnings
      * @see io.github.nichetoolkit.rest.error.ClassUnknownException

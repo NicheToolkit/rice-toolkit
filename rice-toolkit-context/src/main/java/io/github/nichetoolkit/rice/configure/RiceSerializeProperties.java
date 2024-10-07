@@ -17,5 +17,10 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "nichetoolkit.rice.serialize")
 public class RiceSerializeProperties {
+   /**
+    * <code>bigDecimalFormat</code>
+    * {@link java.lang.String} <p>The <code>bigDecimalFormat</code> field.</p>
+    * @see java.lang.String
+    */
    private String bigDecimalFormat = "0.00";
 }

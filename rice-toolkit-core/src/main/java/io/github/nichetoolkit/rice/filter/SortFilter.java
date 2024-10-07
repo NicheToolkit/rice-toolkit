@@ -27,7 +27,7 @@ import java.util.*;
 public class SortFilter extends PageFilter {
     /**
      * <code>SORT_REGEX</code>
-     * {@link java.lang.String} <p>the constant <code>SORT_REGEX</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>SORT_REGEX</code> field.</p>
      * @see java.lang.String
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
@@ -35,7 +35,7 @@ public class SortFilter extends PageFilter {
     public static final String SORT_REGEX = ",";
     /**
      * <code>SORT_ORDER</code>
-     * {@link java.lang.String} <p>the constant <code>SORT_ORDER</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>SORT_ORDER</code> field.</p>
      * @see java.lang.String
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
@@ -44,14 +44,14 @@ public class SortFilter extends PageFilter {
 
     /**
      * <code>sorts</code>
-     * {@link java.util.Set} <p>the <code>sorts</code> field.</p>
+     * {@link java.util.Set} <p>The <code>sorts</code> field.</p>
      * @see java.util.Set
      */
     protected Set<RestSort<?>> sorts;
 
     /**
      * <code>isSort</code>
-     * <p>the <code>isSort</code> field.</p>
+     * <p>The <code>isSort</code> field.</p>
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
@@ -59,15 +59,15 @@ public class SortFilter extends PageFilter {
 
     /**
      * <code>SortFilter</code>
-     * Instantiates a new sort filter.
+     * <p>Instantiates a new sort filter.</p>
      */
     public SortFilter() {
     }
 
     /**
      * <code>SortFilter</code>
-     * Instantiates a new sort filter.
-     * @param sorts {@link io.github.nichetoolkit.rice.RestSort} <p>the sorts parameter is <code>RestSort</code> type.</p>
+     * <p>Instantiates a new sort filter.</p>
+     * @param sorts {@link io.github.nichetoolkit.rice.RestSort} <p>The sorts parameter is <code>RestSort</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestSort
      * @see org.springframework.lang.NonNull
      */
@@ -77,8 +77,8 @@ public class SortFilter extends PageFilter {
 
     /**
      * <code>SortFilter</code>
-     * Instantiates a new sort filter.
-     * @param sorts {@link java.lang.String} <p>the sorts parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new sort filter.</p>
+     * @param sorts {@link java.lang.String} <p>The sorts parameter is <code>String</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
@@ -88,8 +88,8 @@ public class SortFilter extends PageFilter {
 
     /**
      * <code>SortFilter</code>
-     * Instantiates a new sort filter.
-     * @param sorts {@link java.util.Collection} <p>the sorts parameter is <code>Collection</code> type.</p>
+     * <p>Instantiates a new sort filter.</p>
+     * @param sorts {@link java.util.Collection} <p>The sorts parameter is <code>Collection</code> type.</p>
      * @see java.util.Collection
      * @see org.springframework.lang.NonNull
      */
@@ -99,8 +99,8 @@ public class SortFilter extends PageFilter {
 
     /**
      * <code>SortFilter</code>
-     * Instantiates a new sort filter.
-     * @param builder {@link io.github.nichetoolkit.rice.filter.SortFilter.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * <p>Instantiates a new sort filter.</p>
+     * @param builder {@link io.github.nichetoolkit.rice.filter.SortFilter.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.filter.SortFilter.Builder
      */
     public SortFilter(SortFilter.Builder builder) {
@@ -110,8 +110,8 @@ public class SortFilter extends PageFilter {
 
     /**
      * <code>getSorts</code>
-     * <p>the sorts getter method.</p>
-     * @return {@link java.util.List} <p>the sorts return object is <code>List</code> type.</p>
+     * <p>The sorts getter method.</p>
+     * @return {@link java.util.List} <p>The sorts return object is <code>List</code> type.</p>
      * @see java.util.List
      */
     public List<RestSort<?>> getSorts() {
@@ -123,8 +123,8 @@ public class SortFilter extends PageFilter {
 
     /**
      * <code>isSort</code>
-     * <p>the sort method.</p>
-     * @return boolean <p>the sort return object is <code>boolean</code> type.</p>
+     * <p>The sort method.</p>
+     * @return boolean <p>The sort return object is <code>boolean</code> type.</p>
      */
     public boolean isSort() {
         return isSort;
@@ -132,8 +132,8 @@ public class SortFilter extends PageFilter {
 
     /**
      * <code>setSort</code>
-     * <p>the sort setter method.</p>
-     * @param sort boolean <p>the sort parameter is <code>boolean</code> type.</p>
+     * <p>The sort setter method.</p>
+     * @param sort boolean <p>The sort parameter is <code>boolean</code> type.</p>
      */
     public void setSort(boolean sort) {
         isSort = sort;
@@ -141,8 +141,8 @@ public class SortFilter extends PageFilter {
 
     /**
      * <code>setSorts</code>
-     * <p>the sorts setter method.</p>
-     * @param sorts {@link java.lang.String} <p>the sorts parameter is <code>String</code> type.</p>
+     * <p>The sorts setter method.</p>
+     * @param sorts {@link java.lang.String} <p>The sorts parameter is <code>String</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
@@ -152,8 +152,8 @@ public class SortFilter extends PageFilter {
 
     /**
      * <code>setSorts</code>
-     * <p>the sorts setter method.</p>
-     * @param sorts {@link io.github.nichetoolkit.rice.RestSort} <p>the sorts parameter is <code>RestSort</code> type.</p>
+     * <p>The sorts setter method.</p>
+     * @param sorts {@link io.github.nichetoolkit.rice.RestSort} <p>The sorts parameter is <code>RestSort</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestSort
      * @see org.springframework.lang.NonNull
      */
@@ -163,8 +163,8 @@ public class SortFilter extends PageFilter {
 
     /**
      * <code>setSorts</code>
-     * <p>the sorts setter method.</p>
-     * @param sorts {@link java.util.Collection} <p>the sorts parameter is <code>Collection</code> type.</p>
+     * <p>The sorts setter method.</p>
+     * @param sorts {@link java.util.Collection} <p>The sorts parameter is <code>Collection</code> type.</p>
      * @see java.util.Collection
      * @see org.springframework.lang.NonNull
      * @see com.fasterxml.jackson.annotation.JsonSetter
@@ -176,9 +176,9 @@ public class SortFilter extends PageFilter {
 
     /**
      * <code>addSorts</code>
-     * <p>the sorts method.</p>
-     * @param sorts {@link java.lang.String} <p>the sorts parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.SortFilter} <p>the sorts return object is <code>SortFilter</code> type.</p>
+     * <p>The sorts method.</p>
+     * @param sorts {@link java.lang.String} <p>The sorts parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.filter.SortFilter} <p>The sorts return object is <code>SortFilter</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
@@ -193,9 +193,9 @@ public class SortFilter extends PageFilter {
 
     /**
      * <code>addSorts</code>
-     * <p>the sorts method.</p>
-     * @param sorts {@link io.github.nichetoolkit.rice.RestSort} <p>the sorts parameter is <code>RestSort</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.SortFilter} <p>the sorts return object is <code>SortFilter</code> type.</p>
+     * <p>The sorts method.</p>
+     * @param sorts {@link io.github.nichetoolkit.rice.RestSort} <p>The sorts parameter is <code>RestSort</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.filter.SortFilter} <p>The sorts return object is <code>SortFilter</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestSort
      * @see org.springframework.lang.NonNull
      */
@@ -210,9 +210,9 @@ public class SortFilter extends PageFilter {
 
     /**
      * <code>addSorts</code>
-     * <p>the sorts method.</p>
-     * @param sorts {@link java.util.Collection} <p>the sorts parameter is <code>Collection</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.SortFilter} <p>the sorts return object is <code>SortFilter</code> type.</p>
+     * <p>The sorts method.</p>
+     * @param sorts {@link java.util.Collection} <p>The sorts parameter is <code>Collection</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.filter.SortFilter} <p>The sorts return object is <code>SortFilter</code> type.</p>
      * @see java.util.Collection
      * @see org.springframework.lang.NonNull
      */
@@ -227,8 +227,8 @@ public class SortFilter extends PageFilter {
 
     /**
      * <code>toSort</code>
-     * <p>the sort method.</p>
-     * @return {@link java.lang.String} <p>the sort return object is <code>String</code> type.</p>
+     * <p>The sort method.</p>
+     * @return {@link java.lang.String} <p>The sort return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String toSort() {
@@ -252,23 +252,23 @@ public class SortFilter extends PageFilter {
     public static class Builder extends PageFilter.Builder {
         /**
          * <code>sorts</code>
-         * {@link java.util.Set} <p>the <code>sorts</code> field.</p>
+         * {@link java.util.Set} <p>The <code>sorts</code> field.</p>
          * @see java.util.Set
          */
         protected Set<RestSort<?>> sorts;
 
         /**
          * <code>Builder</code>
-         * Instantiates a new builder.
+         * <p>Instantiates a new builder.</p>
          */
         public Builder() {
         }
 
         /**
          * <code>sorts</code>
-         * <p>the method.</p>
-         * @param sorts {@link java.util.Collection} <p>the sorts parameter is <code>Collection</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.SortFilter.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * <p>The method.</p>
+         * @param sorts {@link java.util.Collection} <p>The sorts parameter is <code>Collection</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.SortFilter.Builder} <p>The return object is <code>Builder</code> type.</p>
          * @see java.util.Collection
          * @see org.springframework.lang.NonNull
          */
@@ -279,9 +279,9 @@ public class SortFilter extends PageFilter {
 
         /**
          * <code>sorts</code>
-         * <p>the method.</p>
-         * @param sorts {@link io.github.nichetoolkit.rice.RestSort} <p>the sorts parameter is <code>RestSort</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.SortFilter.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * <p>The method.</p>
+         * @param sorts {@link io.github.nichetoolkit.rice.RestSort} <p>The sorts parameter is <code>RestSort</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.SortFilter.Builder} <p>The return object is <code>Builder</code> type.</p>
          * @see io.github.nichetoolkit.rice.RestSort
          * @see org.springframework.lang.NonNull
          */
@@ -292,9 +292,9 @@ public class SortFilter extends PageFilter {
 
         /**
          * <code>sorts</code>
-         * <p>the method.</p>
-         * @param sorts {@link java.lang.String} <p>the sorts parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.SortFilter.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * <p>The method.</p>
+         * @param sorts {@link java.lang.String} <p>The sorts parameter is <code>String</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.SortFilter.Builder} <p>The return object is <code>Builder</code> type.</p>
          * @see java.lang.String
          * @see org.springframework.lang.NonNull
          */

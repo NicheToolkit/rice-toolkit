@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * <code>InfoEntity</code>
  * <p>The type info entity class.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.IdEntity
  * @see io.github.nichetoolkit.rice.RestInfo
@@ -24,7 +24,7 @@ import java.util.Date;
 public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
     /**
      * <code>name</code>
-     * {@link java.lang.String} <p>the <code>name</code> field.</p>
+     * {@link java.lang.String} <p>The <code>name</code> field.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.mybatis.stereotype.column.RestUniqueKey
      */
@@ -32,22 +32,22 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
     protected String name;
     /**
      * <code>description</code>
-     * {@link java.lang.String} <p>the <code>description</code> field.</p>
+     * {@link java.lang.String} <p>The <code>description</code> field.</p>
      * @see java.lang.String
      */
     protected String description;
 
     /**
      * <code>InfoEntity</code>
-     * Instantiates a new info entity.
+     * <p>Instantiates a new info entity.</p>
      */
     public InfoEntity() {
     }
 
     /**
      * <code>InfoEntity</code>
-     * Instantiates a new info entity.
-     * @param id I <p>the id parameter is <code>I</code> type.</p>
+     * <p>Instantiates a new info entity.</p>
+     * @param id I <p>The id parameter is <code>I</code> type.</p>
      */
     public InfoEntity(I id) {
         super(id);
@@ -55,9 +55,9 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
 
     /**
      * <code>InfoEntity</code>
-     * Instantiates a new info entity.
-     * @param id   I <p>the id parameter is <code>I</code> type.</p>
-     * @param name {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new info entity.</p>
+     * @param id   I <p>The id parameter is <code>I</code> type.</p>
+     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public InfoEntity(I id, String name) {
@@ -67,8 +67,8 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
 
     /**
      * <code>InfoEntity</code>
-     * Instantiates a new info entity.
-     * @param builder {@link io.github.nichetoolkit.rice.InfoEntity.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * <p>Instantiates a new info entity.</p>
+     * @param builder {@link io.github.nichetoolkit.rice.InfoEntity.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.InfoEntity.Builder
      */
     public InfoEntity(InfoEntity.Builder<I> builder) {
@@ -100,7 +100,7 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
     /**
      * <code>Builder</code>
      * <p>The type builder class.</p>
-     * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+     * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rice.IdEntity.Builder
      * @since Jdk1.8
@@ -108,29 +108,29 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
     public static class Builder<I> extends IdEntity.Builder<I> {
         /**
          * <code>name</code>
-         * {@link java.lang.String} <p>the <code>name</code> field.</p>
+         * {@link java.lang.String} <p>The <code>name</code> field.</p>
          * @see java.lang.String
          */
         protected String name;
         /**
          * <code>description</code>
-         * {@link java.lang.String} <p>the <code>description</code> field.</p>
+         * {@link java.lang.String} <p>The <code>description</code> field.</p>
          * @see java.lang.String
          */
         protected String description;
 
         /**
          * <code>Builder</code>
-         * Instantiates a new builder.
+         * <p>Instantiates a new builder.</p>
          */
         public Builder() {
         }
 
         /**
          * <code>name</code>
-         * <p>the method.</p>
-         * @param name {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.InfoEntity.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * <p>The method.</p>
+         * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.InfoEntity.Builder} <p>The return object is <code>Builder</code> type.</p>
          * @see java.lang.String
          */
         public InfoEntity.Builder<I> name(String name) {
@@ -140,9 +140,9 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
 
         /**
          * <code>description</code>
-         * <p>the method.</p>
-         * @param description {@link java.lang.String} <p>the description parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.InfoEntity.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * <p>The method.</p>
+         * @param description {@link java.lang.String} <p>The description parameter is <code>String</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.InfoEntity.Builder} <p>The return object is <code>Builder</code> type.</p>
          * @see java.lang.String
          */
         public InfoEntity.Builder<I> description(String description) {

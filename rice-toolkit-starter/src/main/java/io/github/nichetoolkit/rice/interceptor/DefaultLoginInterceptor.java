@@ -38,13 +38,23 @@ import java.util.List;
 @Component
 @Order(AdviceConstants.LOGIN_ORDER)
 public class DefaultLoginInterceptor implements RequestHandleInterceptor {
+    /**
+     * <code>loginProperties</code>
+     * {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The <code>loginProperties</code> field.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     */
     private final RiceLoginProperties loginProperties;
+    /**
+     * <code>loginAdvices</code>
+     * {@link java.util.List} <p>The <code>loginAdvices</code> field.</p>
+     * @see java.util.List
+     */
     private final List<LoginAdvice> loginAdvices;
 
     /**
      * <code>DefaultLoginInterceptor</code>
-     * Instantiates a new default login interceptor.
-     * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
+     * <p>Instantiates a new default login interceptor.</p>
+     * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      * @see org.springframework.beans.factory.annotation.Autowired
      */
@@ -56,9 +66,9 @@ public class DefaultLoginInterceptor implements RequestHandleInterceptor {
 
     /**
      * <code>DefaultLoginInterceptor</code>
-     * Instantiates a new default login interceptor.
-     * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
-     * @param loginAdvices    {@link java.util.List} <p>the login advices parameter is <code>List</code> type.</p>
+     * <p>Instantiates a new default login interceptor.</p>
+     * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
+     * @param loginAdvices    {@link java.util.List} <p>The login advices parameter is <code>List</code> type.</p>
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      * @see java.util.List
      * @see org.springframework.beans.factory.annotation.Autowired
@@ -95,6 +105,16 @@ public class DefaultLoginInterceptor implements RequestHandleInterceptor {
         }
     }
 
+    /**
+     * <code>checkTokenPrefix</code>
+     * <p>The token prefix method.</p>
+     * @param restCheck   {@link io.github.nichetoolkit.rice.stereotype.RestCheck} <p>The rest check parameter is <code>RestCheck</code> type.</p>
+     * @param httpRequest {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>The http request parameter is <code>RestHttpRequest</code> type.</p>
+     * @throws TokenPrefixInvalidException {@link io.github.nichetoolkit.rice.error.TokenPrefixInvalidException} <p>The token prefix invalid exception is <code>TokenPrefixInvalidException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.stereotype.RestCheck
+     * @see io.github.nichetoolkit.rest.RestHttpRequest
+     * @see io.github.nichetoolkit.rice.error.TokenPrefixInvalidException
+     */
     private void checkTokenPrefix(RestCheck restCheck, RestHttpRequest httpRequest) throws TokenPrefixInvalidException {
         List<String> tokenHeaders = loginProperties.getTokenHeaders();
         if (tokenHeaders.isEmpty()) {

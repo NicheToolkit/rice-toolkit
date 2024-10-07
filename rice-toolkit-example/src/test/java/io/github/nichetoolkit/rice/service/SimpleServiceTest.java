@@ -18,13 +18,18 @@ import java.util.Date;
  */
 class SimpleServiceTest extends RiceExampleApplicationTests {
 
+    /**
+     * <code>simpleService</code>
+     * {@link io.github.nichetoolkit.rice.service.SimpleService} <p>The <code>simpleService</code> field.</p>
+     * @see org.springframework.beans.factory.annotation.Autowired
+     */
     @Autowired
     private SimpleService simpleService;
 
     /**
      * <code>create</code>
-     * <p>the method.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The method.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see org.junit.jupiter.api.Test
      * @see io.github.nichetoolkit.rest.RestException
      */

@@ -32,13 +32,23 @@ import java.io.IOException;
 @Component
 @Order(value = Ordered.HIGHEST_PRECEDENCE + 101)
 public class DefaultAccessTokenFilter extends OncePerRequestFilter {
+    /**
+     * <code>loginProperties</code>
+     * {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The <code>loginProperties</code> field.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     */
     private final RiceLoginProperties loginProperties;
+    /**
+     * <code>accessValue</code>
+     * {@link io.github.nichetoolkit.rest.RestAccessValue} <p>The <code>accessValue</code> field.</p>
+     * @see io.github.nichetoolkit.rest.RestAccessValue
+     */
     private RestAccessValue accessValue;
 
     /**
      * <code>DefaultAccessTokenFilter</code>
-     * Instantiates a new default access token filter.
-     * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
+     * <p>Instantiates a new default access token filter.</p>
+     * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      * @see org.springframework.beans.factory.annotation.Autowired
      */
@@ -49,9 +59,9 @@ public class DefaultAccessTokenFilter extends OncePerRequestFilter {
 
     /**
      * <code>DefaultAccessTokenFilter</code>
-     * Instantiates a new default access token filter.
-     * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
-     * @param accessValue     {@link io.github.nichetoolkit.rest.RestAccessValue} <p>the access value parameter is <code>RestAccessValue</code> type.</p>
+     * <p>Instantiates a new default access token filter.</p>
+     * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
+     * @param accessValue     {@link io.github.nichetoolkit.rest.RestAccessValue} <p>The access value parameter is <code>RestAccessValue</code> type.</p>
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      * @see io.github.nichetoolkit.rest.RestAccessValue
      * @see org.springframework.beans.factory.annotation.Autowired

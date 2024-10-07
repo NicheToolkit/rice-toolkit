@@ -10,20 +10,30 @@ import io.github.nichetoolkit.rice.RestLoginResult;
  * @since Jdk1.8
  */
 public class LoginResult extends RestLoginResult<LoginResult> {
+    /**
+     * <code>userId</code>
+     * {@link java.lang.String} <p>The <code>userId</code> field.</p>
+     * @see java.lang.String
+     */
     private String userId;
+    /**
+     * <code>user</code>
+     * {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The <code>user</code> field.</p>
+     * @see io.github.nichetoolkit.rice.simple.UserModel
+     */
     private UserModel user;
 
     /**
      * <code>LoginResult</code>
-     * Instantiates a new login result.
+     * <p>Instantiates a new login result.</p>
      */
     public LoginResult() {
     }
 
     /**
      * <code>LoginResult</code>
-     * Instantiates a new login result.
-     * @param accessToken {@link java.lang.String} <p>the access token parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new login result.</p>
+     * @param accessToken {@link java.lang.String} <p>The access token parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public LoginResult(String accessToken) {
@@ -32,8 +42,8 @@ public class LoginResult extends RestLoginResult<LoginResult> {
 
     /**
      * <code>getUserId</code>
-     * <p>the user id getter method.</p>
-     * @return {@link java.lang.String} <p>the user id return object is <code>String</code> type.</p>
+     * <p>The user id getter method.</p>
+     * @return {@link java.lang.String} <p>The user id return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getUserId() {
@@ -42,8 +52,8 @@ public class LoginResult extends RestLoginResult<LoginResult> {
 
     /**
      * <code>setUserId</code>
-     * <p>the user id setter method.</p>
-     * @param userId {@link java.lang.String} <p>the user id parameter is <code>String</code> type.</p>
+     * <p>The user id setter method.</p>
+     * @param userId {@link java.lang.String} <p>The user id parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public void setUserId(String userId) {
@@ -52,8 +62,8 @@ public class LoginResult extends RestLoginResult<LoginResult> {
 
     /**
      * <code>getUser</code>
-     * <p>the user getter method.</p>
-     * @return {@link io.github.nichetoolkit.rice.simple.UserModel} <p>the user return object is <code>UserModel</code> type.</p>
+     * <p>The user getter method.</p>
+     * @return {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user return object is <code>UserModel</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.UserModel
      */
     public UserModel getUser() {
@@ -62,8 +72,8 @@ public class LoginResult extends RestLoginResult<LoginResult> {
 
     /**
      * <code>setUser</code>
-     * <p>the user setter method.</p>
-     * @param user {@link io.github.nichetoolkit.rice.simple.UserModel} <p>the user parameter is <code>UserModel</code> type.</p>
+     * <p>The user setter method.</p>
+     * @param user {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user parameter is <code>UserModel</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.UserModel
      */
     public void setUser(UserModel user) {

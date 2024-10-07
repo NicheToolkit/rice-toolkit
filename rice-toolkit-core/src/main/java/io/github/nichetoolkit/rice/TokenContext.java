@@ -12,14 +12,24 @@ import java.util.Optional;
  */
 public class TokenContext extends LinkedHashMap<String, Object> {
 
+    /**
+     * <code>AUTH_KEY</code>
+     * {@link java.lang.String} <p>The constant <code>AUTH_KEY</code> field.</p>
+     * @see java.lang.String
+     */
     private static final String AUTH_KEY = "_AUTH_KEY_";
 
+    /**
+     * <code>TOKEN_KEY</code>
+     * {@link java.lang.String} <p>The constant <code>TOKEN_KEY</code> field.</p>
+     * @see java.lang.String
+     */
     private static final String TOKEN_KEY = "_TOKEN_KEY_";
 
     /**
      * <code>setAuth</code>
-     * <p>the auth setter method.</p>
-     * @param auth {@link java.lang.String} <p>the auth parameter is <code>String</code> type.</p>
+     * <p>The auth setter method.</p>
+     * @param auth {@link java.lang.String} <p>The auth parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public void setAuth(String auth) {
@@ -28,8 +38,8 @@ public class TokenContext extends LinkedHashMap<String, Object> {
 
     /**
      * <code>getAuth</code>
-     * <p>the auth getter method.</p>
-     * @return {@link java.lang.String} <p>the auth return object is <code>String</code> type.</p>
+     * <p>The auth getter method.</p>
+     * @return {@link java.lang.String} <p>The auth return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getAuth() {
@@ -39,8 +49,8 @@ public class TokenContext extends LinkedHashMap<String, Object> {
 
     /**
      * <code>setToken</code>
-     * <p>the token setter method.</p>
-     * @param token {@link java.lang.String} <p>the token parameter is <code>String</code> type.</p>
+     * <p>The token setter method.</p>
+     * @param token {@link java.lang.String} <p>The token parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public void setToken(String token) {
@@ -49,8 +59,8 @@ public class TokenContext extends LinkedHashMap<String, Object> {
 
     /**
      * <code>getToken</code>
-     * <p>the token getter method.</p>
-     * @return {@link java.lang.String} <p>the token return object is <code>String</code> type.</p>
+     * <p>The token getter method.</p>
+     * @return {@link java.lang.String} <p>The token return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getToken() {

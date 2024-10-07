@@ -8,8 +8,8 @@ import java.util.Date;
 /**
  * <code>RestInfoEntity</code>
  * <p>The type rest info entity class.</p>
- * @param <E> {@link io.github.nichetoolkit.rice.RestInfoEntity} <p>the generic parameter is <code>RestInfoEntity</code> type.</p>
- * @param <M> {@link io.github.nichetoolkit.rice.RestInfoModel} <p>the generic parameter is <code>RestInfoModel</code> type.</p>
+ * @param <E> {@link io.github.nichetoolkit.rice.RestInfoEntity} <p>The generic parameter is <code>RestInfoEntity</code> type.</p>
+ * @param <M> {@link io.github.nichetoolkit.rice.RestInfoModel} <p>The generic parameter is <code>RestInfoModel</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestInfoModel
  * @see io.github.nichetoolkit.rice.DefaultInfoEntity
@@ -19,15 +19,15 @@ public abstract class RestInfoEntity<E extends RestInfoEntity<E, M>, M extends R
 
     /**
      * <code>RestInfoEntity</code>
-     * Instantiates a new rest info entity.
+     * <p>Instantiates a new rest info entity.</p>
      */
     public RestInfoEntity() {
     }
 
     /**
      * <code>RestInfoEntity</code>
-     * Instantiates a new rest info entity.
-     * @param id {@link java.lang.String} <p>the id parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new rest info entity.</p>
+     * @param id {@link java.lang.String} <p>The id parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public RestInfoEntity(String id) {
@@ -36,9 +36,9 @@ public abstract class RestInfoEntity<E extends RestInfoEntity<E, M>, M extends R
 
     /**
      * <code>RestInfoEntity</code>
-     * Instantiates a new rest info entity.
-     * @param id   {@link java.lang.String} <p>the id parameter is <code>String</code> type.</p>
-     * @param name {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new rest info entity.</p>
+     * @param id   {@link java.lang.String} <p>The id parameter is <code>String</code> type.</p>
+     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public RestInfoEntity(String id, String name) {
@@ -47,8 +47,8 @@ public abstract class RestInfoEntity<E extends RestInfoEntity<E, M>, M extends R
 
     /**
      * <code>RestInfoEntity</code>
-     * Instantiates a new rest info entity.
-     * @param builder {@link io.github.nichetoolkit.rice.RestInfoEntity.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * <p>Instantiates a new rest info entity.</p>
+     * @param builder {@link io.github.nichetoolkit.rice.RestInfoEntity.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestInfoEntity.Builder
      */
     public RestInfoEntity(Builder<E, M> builder) {
@@ -58,8 +58,8 @@ public abstract class RestInfoEntity<E extends RestInfoEntity<E, M>, M extends R
     /**
      * <code>Builder</code>
      * <p>The type builder class.</p>
-     * @param <E> {@link io.github.nichetoolkit.rice.RestInfoEntity} <p>the generic parameter is <code>RestInfoEntity</code> type.</p>
-     * @param <M> {@link io.github.nichetoolkit.rice.RestInfoModel} <p>the generic parameter is <code>RestInfoModel</code> type.</p>
+     * @param <E> {@link io.github.nichetoolkit.rice.RestInfoEntity} <p>The generic parameter is <code>RestInfoEntity</code> type.</p>
+     * @param <M> {@link io.github.nichetoolkit.rice.RestInfoModel} <p>The generic parameter is <code>RestInfoModel</code> type.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rice.RestInfoModel
      * @see io.github.nichetoolkit.rice.DefaultInfoEntity.Builder
@@ -69,7 +69,7 @@ public abstract class RestInfoEntity<E extends RestInfoEntity<E, M>, M extends R
 
         /**
          * <code>Builder</code>
-         * Instantiates a new builder.
+         * <p>Instantiates a new builder.</p>
          */
         public Builder() {
         }

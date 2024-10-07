@@ -23,7 +23,7 @@ public class LogicModel extends SaveModel implements RestLogic {
 
     /**
      * <code>logic</code>
-     * {@link java.lang.String} <p>the <code>logic</code> field.</p>
+     * {@link java.lang.String} <p>The <code>logic</code> field.</p>
      * @see java.lang.String
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
@@ -32,15 +32,15 @@ public class LogicModel extends SaveModel implements RestLogic {
 
     /**
      * <code>LogicModel</code>
-     * Instantiates a new logic model.
+     * <p>Instantiates a new logic model.</p>
      */
     public LogicModel() {
     }
 
     /**
      * <code>LogicModel</code>
-     * Instantiates a new logic model.
-     * @param builder {@link io.github.nichetoolkit.rice.LogicModel.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * <p>Instantiates a new logic model.</p>
+     * @param builder {@link io.github.nichetoolkit.rice.LogicModel.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.LogicModel.Builder
      */
     public LogicModel(LogicModel.Builder builder) {
@@ -61,8 +61,8 @@ public class LogicModel extends SaveModel implements RestLogic {
 
     /**
      * <code>ofLogic</code>
-     * <p>the logic method.</p>
-     * @return {@link io.github.nichetoolkit.rice.LogicModel.Builder} <p>the logic return object is <code>Builder</code> type.</p>
+     * <p>The logic method.</p>
+     * @return {@link io.github.nichetoolkit.rice.LogicModel.Builder} <p>The logic return object is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.LogicModel.Builder
      */
     public static LogicModel.Builder ofLogic() {
@@ -79,23 +79,23 @@ public class LogicModel extends SaveModel implements RestLogic {
     public static class Builder extends SaveModel.Builder {
         /**
          * <code>logic</code>
-         * {@link java.lang.String} <p>the <code>logic</code> field.</p>
+         * {@link java.lang.String} <p>The <code>logic</code> field.</p>
          * @see java.lang.String
          */
         protected String logic;
 
         /**
          * <code>Builder</code>
-         * Instantiates a new builder.
+         * <p>Instantiates a new builder.</p>
          */
         public Builder() {
         }
 
         /**
          * <code>logic</code>
-         * <p>the method.</p>
-         * @param logic {@link java.lang.String} <p>the logic parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.LogicModel.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * <p>The method.</p>
+         * @param logic {@link java.lang.String} <p>The logic parameter is <code>String</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.LogicModel.Builder} <p>The return object is <code>Builder</code> type.</p>
          * @see java.lang.String
          */
         public LogicModel.Builder logic(String logic) {

@@ -12,7 +12,7 @@ import io.github.nichetoolkit.rest.error.natives.LoginErrorException;
 public class LoginAccountException extends LoginErrorException {
     /**
      * <code>LoginAccountException</code>
-     * Instantiates a new login account exception.
+     * <p>Instantiates a new login account exception.</p>
      */
     public LoginAccountException() {
         super(LoginErrorStatus.LOGIN_ACCOUNT_ERROR);
@@ -20,8 +20,8 @@ public class LoginAccountException extends LoginErrorException {
 
     /**
      * <code>LoginAccountException</code>
-     * Instantiates a new login account exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new login account exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public LoginAccountException(String error) {
@@ -30,9 +30,9 @@ public class LoginAccountException extends LoginErrorException {
 
     /**
      * <code>LoginAccountException</code>
-     * Instantiates a new login account exception.
-     * @param service {@link java.lang.String} <p>the service parameter is <code>String</code> type.</p>
-     * @param error   {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new login account exception.</p>
+     * @param service {@link java.lang.String} <p>The service parameter is <code>String</code> type.</p>
+     * @param error   {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public LoginAccountException(String service, String error) {

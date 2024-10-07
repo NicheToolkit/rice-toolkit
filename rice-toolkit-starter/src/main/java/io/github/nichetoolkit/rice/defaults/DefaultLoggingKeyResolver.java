@@ -17,13 +17,18 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class DefaultLoggingKeyResolver extends RestLoggingKeyGenerator {
+    /**
+     * <code>loginProperties</code>
+     * {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The <code>loginProperties</code> field.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     */
     private final RiceLoginProperties loginProperties;
 
     /**
      * <code>DefaultLoggingKeyResolver</code>
-     * Instantiates a new default logging key resolver.
-     * @param logbackProperties {@link io.github.nichetoolkit.rest.configure.RestLogbackProperties} <p>the logback properties parameter is <code>RestLogbackProperties</code> type.</p>
-     * @param loginProperties   {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
+     * <p>Instantiates a new default logging key resolver.</p>
+     * @param logbackProperties {@link io.github.nichetoolkit.rest.configure.RestLogbackProperties} <p>The logback properties parameter is <code>RestLogbackProperties</code> type.</p>
+     * @param loginProperties   {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
      * @see io.github.nichetoolkit.rest.configure.RestLogbackProperties
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      */

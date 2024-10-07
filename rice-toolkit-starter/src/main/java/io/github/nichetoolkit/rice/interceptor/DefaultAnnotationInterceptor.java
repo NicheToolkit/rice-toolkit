@@ -32,11 +32,16 @@ import java.util.List;
 @Component
 @Order(AdviceConstants.ANNOTATION_ORDER)
 public class DefaultAnnotationInterceptor implements RequestHandleInterceptor {
+    /**
+     * <code>defaultAdvices</code>
+     * {@link java.util.List} <p>The <code>defaultAdvices</code> field.</p>
+     * @see java.util.List
+     */
     private final List<DefaultAdvice<? extends Annotation>> defaultAdvices;
 
     /**
      * <code>DefaultAnnotationInterceptor</code>
-     * Instantiates a new default annotation interceptor.
+     * <p>Instantiates a new default annotation interceptor.</p>
      */
     public DefaultAnnotationInterceptor() {
         this.defaultAdvices = new ArrayList<>();
@@ -44,8 +49,8 @@ public class DefaultAnnotationInterceptor implements RequestHandleInterceptor {
 
     /**
      * <code>DefaultAnnotationInterceptor</code>
-     * Instantiates a new default annotation interceptor.
-     * @param defaultAdvices {@link java.util.List} <p>the default advices parameter is <code>List</code> type.</p>
+     * <p>Instantiates a new default annotation interceptor.</p>
+     * @param defaultAdvices {@link java.util.List} <p>The default advices parameter is <code>List</code> type.</p>
      * @see java.util.List
      * @see org.springframework.beans.factory.annotation.Autowired
      */
@@ -69,13 +74,13 @@ public class DefaultAnnotationInterceptor implements RequestHandleInterceptor {
 
     /**
      * <code>adviceHandle</code>
-     * <p>the handle method.</p>
-     * @param <A>           {@link java.lang.annotation.Annotation} <p>the generic parameter is <code>Annotation</code> type.</p>
-     * @param defaultAdvice {@link io.github.nichetoolkit.rice.DefaultAdvice} <p>the default advice parameter is <code>DefaultAdvice</code> type.</p>
-     * @param httpRequest   {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>the http request parameter is <code>RestHttpRequest</code> type.</p>
-     * @param response      {@link javax.servlet.http.HttpServletResponse} <p>the response parameter is <code>HttpServletResponse</code> type.</p>
-     * @param handlerMethod {@link org.springframework.web.method.HandlerMethod} <p>the handler method parameter is <code>HandlerMethod</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The handle method.</p>
+     * @param <A>           {@link java.lang.annotation.Annotation} <p>The generic parameter is <code>Annotation</code> type.</p>
+     * @param defaultAdvice {@link io.github.nichetoolkit.rice.DefaultAdvice} <p>The default advice parameter is <code>DefaultAdvice</code> type.</p>
+     * @param httpRequest   {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>The http request parameter is <code>RestHttpRequest</code> type.</p>
+     * @param response      {@link javax.servlet.http.HttpServletResponse} <p>The response parameter is <code>HttpServletResponse</code> type.</p>
+     * @param handlerMethod {@link org.springframework.web.method.HandlerMethod} <p>The handler method parameter is <code>HandlerMethod</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.annotation.Annotation
      * @see io.github.nichetoolkit.rice.DefaultAdvice
      * @see io.github.nichetoolkit.rest.RestHttpRequest

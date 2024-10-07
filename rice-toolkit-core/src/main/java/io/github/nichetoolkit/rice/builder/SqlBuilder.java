@@ -23,16 +23,21 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>EMPTY</code>
-     * {@link java.lang.String} <p>the constant <code>EMPTY</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>EMPTY</code> field.</p>
      * @see java.lang.String
      */
     public static final String EMPTY = "";
 
+    /**
+     * <code>sqlBuilder</code>
+     * {@link java.lang.StringBuilder} <p>The <code>sqlBuilder</code> field.</p>
+     * @see java.lang.StringBuilder
+     */
     private final StringBuilder sqlBuilder;
 
     /**
      * <code>SqlBuilder</code>
-     * Instantiates a new sql builder.
+     * <p>Instantiates a new sql builder.</p>
      */
     public SqlBuilder() {
         this.sqlBuilder = new StringBuilder();
@@ -40,8 +45,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>SqlBuilder</code>
-     * Instantiates a new sql builder.
-     * @param sqlBuilder {@link java.lang.StringBuilder} <p>the sql builder parameter is <code>StringBuilder</code> type.</p>
+     * <p>Instantiates a new sql builder.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      */
     public SqlBuilder(StringBuilder sqlBuilder) {
@@ -50,8 +55,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>SqlBuilder</code>
-     * Instantiates a new sql builder.
-     * @param capacity int <p>the capacity parameter is <code>int</code> type.</p>
+     * <p>Instantiates a new sql builder.</p>
+     * @param capacity int <p>The capacity parameter is <code>int</code> type.</p>
      */
     public SqlBuilder(int capacity) {
         this.sqlBuilder = new StringBuilder(capacity);
@@ -59,9 +64,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>SqlBuilder</code>
-     * Instantiates a new sql builder.
-     * @param str {@link java.lang.String} <p>the str parameter is <code>String</code> type.</p>
-     * @throws RuntimeException {@link java.lang.RuntimeException} <p>the runtime exception is <code>RuntimeException</code> type.</p>
+     * <p>Instantiates a new sql builder.</p>
+     * @param str {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
+     * @throws RuntimeException {@link java.lang.RuntimeException} <p>The runtime exception is <code>RuntimeException</code> type.</p>
      * @see java.lang.String
      * @see java.lang.RuntimeException
      */
@@ -71,8 +76,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>SqlBuilder</code>
-     * Instantiates a new sql builder.
-     * @param seq {@link java.lang.CharSequence} <p>the seq parameter is <code>CharSequence</code> type.</p>
+     * <p>Instantiates a new sql builder.</p>
+     * @param seq {@link java.lang.CharSequence} <p>The seq parameter is <code>CharSequence</code> type.</p>
      * @see java.lang.CharSequence
      */
     public SqlBuilder(CharSequence seq) {
@@ -81,8 +86,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>clear</code>
-     * <p>the method.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder clear() {
         this.sqlBuilder.delete(0, this.sqlBuilder.length());
@@ -91,9 +96,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>append</code>
-     * <p>the method.</p>
-     * @param obj {@link java.lang.Object} <p>the obj parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param obj {@link java.lang.Object} <p>The obj parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.Object
      */
     public SqlBuilder append(Object obj) {
@@ -102,9 +107,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>append</code>
-     * <p>the method.</p>
-     * @param str {@link java.lang.String} <p>the str parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param str {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      */
     public SqlBuilder append(String str) {
@@ -114,9 +119,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>append</code>
-     * <p>the method.</p>
-     * @param sb {@link java.lang.StringBuffer} <p>the sb parameter is <code>StringBuffer</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param sb {@link java.lang.StringBuffer} <p>The sb parameter is <code>StringBuffer</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuffer
      */
     public SqlBuilder append(StringBuffer sb) {
@@ -126,9 +131,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>append</code>
-     * <p>the method.</p>
-     * @param s {@link java.lang.CharSequence} <p>the s parameter is <code>CharSequence</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param s {@link java.lang.CharSequence} <p>The s parameter is <code>CharSequence</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.CharSequence
      */
     public SqlBuilder append(CharSequence s) {
@@ -138,11 +143,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>append</code>
-     * <p>the method.</p>
-     * @param s     {@link java.lang.CharSequence} <p>the s parameter is <code>CharSequence</code> type.</p>
-     * @param start int <p>the start parameter is <code>int</code> type.</p>
-     * @param end   int <p>the end parameter is <code>int</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param s     {@link java.lang.CharSequence} <p>The s parameter is <code>CharSequence</code> type.</p>
+     * @param start int <p>The start parameter is <code>int</code> type.</p>
+     * @param end   int <p>The end parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.CharSequence
      */
     public SqlBuilder append(CharSequence s, int start, int end) {
@@ -152,9 +157,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>append</code>
-     * <p>the method.</p>
-     * @param str char <p>the str parameter is <code>char</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param str char <p>The str parameter is <code>char</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(char[] str) {
         sqlBuilder.append(str);
@@ -164,11 +169,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>append</code>
-     * <p>the method.</p>
-     * @param str    char <p>the str parameter is <code>char</code> type.</p>
-     * @param offset int <p>the offset parameter is <code>int</code> type.</p>
-     * @param len    int <p>the len parameter is <code>int</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param str    char <p>The str parameter is <code>char</code> type.</p>
+     * @param offset int <p>The offset parameter is <code>int</code> type.</p>
+     * @param len    int <p>The len parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(char[] str, int offset, int len) {
         sqlBuilder.append(str, offset, len);
@@ -178,9 +183,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>append</code>
-     * <p>the method.</p>
-     * @param b boolean <p>the b parameter is <code>boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param b boolean <p>The b parameter is <code>boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(boolean b) {
         sqlBuilder.append(b);
@@ -190,9 +195,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>append</code>
-     * <p>the method.</p>
-     * @param c char <p>the c parameter is <code>char</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param c char <p>The c parameter is <code>char</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(char c) {
         sqlBuilder.append(c);
@@ -202,9 +207,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>append</code>
-     * <p>the method.</p>
-     * @param i int <p>the parameter is <code>int</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param i int <p>The parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(int i) {
         sqlBuilder.append(i);
@@ -214,9 +219,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>append</code>
-     * <p>the method.</p>
-     * @param lng long <p>the lng parameter is <code>long</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param lng long <p>The lng parameter is <code>long</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(long lng) {
         sqlBuilder.append(lng);
@@ -226,9 +231,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>append</code>
-     * <p>the method.</p>
-     * @param f float <p>the f parameter is <code>float</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param f float <p>The f parameter is <code>float</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(float f) {
         sqlBuilder.append(f);
@@ -237,9 +242,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>append</code>
-     * <p>the method.</p>
-     * @param d double <p>the d parameter is <code>double</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param d double <p>The d parameter is <code>double</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(double d) {
         sqlBuilder.append(d);
@@ -248,9 +253,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>appendCodePoint</code>
-     * <p>the code point method.</p>
-     * @param codePoint int <p>the code point parameter is <code>int</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the code point return object is <code>SqlBuilder</code> type.</p>
+     * <p>The code point method.</p>
+     * @param codePoint int <p>The code point parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The code point return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder appendCodePoint(int codePoint) {
         sqlBuilder.appendCodePoint(codePoint);
@@ -259,10 +264,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>delete</code>
-     * <p>the method.</p>
-     * @param start int <p>the start parameter is <code>int</code> type.</p>
-     * @param end   int <p>the end parameter is <code>int</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param start int <p>The start parameter is <code>int</code> type.</p>
+     * @param end   int <p>The end parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder delete(int start, int end) {
         sqlBuilder.delete(start, end);
@@ -271,9 +276,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>deleteCharAt</code>
-     * <p>the char at method.</p>
-     * @param index int <p>the index parameter is <code>int</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the char at return object is <code>SqlBuilder</code> type.</p>
+     * <p>The char at method.</p>
+     * @param index int <p>The index parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The char at return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder deleteCharAt(int index) {
         sqlBuilder.deleteCharAt(index);
@@ -282,11 +287,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>replace</code>
-     * <p>the method.</p>
-     * @param start int <p>the start parameter is <code>int</code> type.</p>
-     * @param end   int <p>the end parameter is <code>int</code> type.</p>
-     * @param str   {@link java.lang.String} <p>the str parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param start int <p>The start parameter is <code>int</code> type.</p>
+     * @param end   int <p>The end parameter is <code>int</code> type.</p>
+     * @param str   {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      */
     public SqlBuilder replace(int start, int end, String str) {
@@ -296,12 +301,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>insert</code>
-     * <p>the method.</p>
-     * @param index  int <p>the index parameter is <code>int</code> type.</p>
-     * @param str    char <p>the str parameter is <code>char</code> type.</p>
-     * @param offset int <p>the offset parameter is <code>int</code> type.</p>
-     * @param len    int <p>the len parameter is <code>int</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param index  int <p>The index parameter is <code>int</code> type.</p>
+     * @param str    char <p>The str parameter is <code>char</code> type.</p>
+     * @param offset int <p>The offset parameter is <code>int</code> type.</p>
+     * @param len    int <p>The len parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int index, char[] str, int offset,
                              int len) {
@@ -311,10 +316,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>insert</code>
-     * <p>the method.</p>
-     * @param offset int <p>the offset parameter is <code>int</code> type.</p>
-     * @param obj    {@link java.lang.Object} <p>the obj parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param offset int <p>The offset parameter is <code>int</code> type.</p>
+     * @param obj    {@link java.lang.Object} <p>The obj parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.Object
      */
     public SqlBuilder insert(int offset, Object obj) {
@@ -324,10 +329,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>insert</code>
-     * <p>the method.</p>
-     * @param offset int <p>the offset parameter is <code>int</code> type.</p>
-     * @param str    {@link java.lang.String} <p>the str parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param offset int <p>The offset parameter is <code>int</code> type.</p>
+     * @param str    {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      */
     public SqlBuilder insert(int offset, String str) {
@@ -337,10 +342,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>insert</code>
-     * <p>the method.</p>
-     * @param offset int <p>the offset parameter is <code>int</code> type.</p>
-     * @param str    char <p>the str parameter is <code>char</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param offset int <p>The offset parameter is <code>int</code> type.</p>
+     * @param str    char <p>The str parameter is <code>char</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int offset, char[] str) {
         sqlBuilder.insert(offset, str);
@@ -349,10 +354,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>insert</code>
-     * <p>the method.</p>
-     * @param dstOffset int <p>the dst offset parameter is <code>int</code> type.</p>
-     * @param s         {@link java.lang.CharSequence} <p>the s parameter is <code>CharSequence</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param dstOffset int <p>The dst offset parameter is <code>int</code> type.</p>
+     * @param s         {@link java.lang.CharSequence} <p>The s parameter is <code>CharSequence</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.CharSequence
      */
     public SqlBuilder insert(int dstOffset, CharSequence s) {
@@ -362,12 +367,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>insert</code>
-     * <p>the method.</p>
-     * @param dstOffset int <p>the dst offset parameter is <code>int</code> type.</p>
-     * @param s         {@link java.lang.CharSequence} <p>the s parameter is <code>CharSequence</code> type.</p>
-     * @param start     int <p>the start parameter is <code>int</code> type.</p>
-     * @param end       int <p>the end parameter is <code>int</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param dstOffset int <p>The dst offset parameter is <code>int</code> type.</p>
+     * @param s         {@link java.lang.CharSequence} <p>The s parameter is <code>CharSequence</code> type.</p>
+     * @param start     int <p>The start parameter is <code>int</code> type.</p>
+     * @param end       int <p>The end parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.CharSequence
      */
     public SqlBuilder insert(int dstOffset, CharSequence s,
@@ -378,10 +383,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>insert</code>
-     * <p>the method.</p>
-     * @param offset int <p>the offset parameter is <code>int</code> type.</p>
-     * @param b      boolean <p>the b parameter is <code>boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param offset int <p>The offset parameter is <code>int</code> type.</p>
+     * @param b      boolean <p>The b parameter is <code>boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int offset, boolean b) {
         sqlBuilder.insert(offset, b);
@@ -390,10 +395,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>insert</code>
-     * <p>the method.</p>
-     * @param offset int <p>the offset parameter is <code>int</code> type.</p>
-     * @param c      char <p>the c parameter is <code>char</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param offset int <p>The offset parameter is <code>int</code> type.</p>
+     * @param c      char <p>The c parameter is <code>char</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int offset, char c) {
         sqlBuilder.insert(offset, c);
@@ -402,10 +407,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>insert</code>
-     * <p>the method.</p>
-     * @param offset int <p>the offset parameter is <code>int</code> type.</p>
-     * @param i      int <p>the parameter is <code>int</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param offset int <p>The offset parameter is <code>int</code> type.</p>
+     * @param i      int <p>The parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int offset, int i) {
         sqlBuilder.insert(offset, i);
@@ -414,10 +419,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>insert</code>
-     * <p>the method.</p>
-     * @param offset int <p>the offset parameter is <code>int</code> type.</p>
-     * @param l      long <p>the l parameter is <code>long</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param offset int <p>The offset parameter is <code>int</code> type.</p>
+     * @param l      long <p>The l parameter is <code>long</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int offset, long l) {
         sqlBuilder.insert(offset, l);
@@ -426,10 +431,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>insert</code>
-     * <p>the method.</p>
-     * @param offset int <p>the offset parameter is <code>int</code> type.</p>
-     * @param f      float <p>the f parameter is <code>float</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param offset int <p>The offset parameter is <code>int</code> type.</p>
+     * @param f      float <p>The f parameter is <code>float</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int offset, float f) {
         sqlBuilder.insert(offset, f);
@@ -438,10 +443,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>insert</code>
-     * <p>the method.</p>
-     * @param offset int <p>the offset parameter is <code>int</code> type.</p>
-     * @param d      double <p>the d parameter is <code>double</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param offset int <p>The offset parameter is <code>int</code> type.</p>
+     * @param d      double <p>The d parameter is <code>double</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int offset, double d) {
         sqlBuilder.insert(offset, d);
@@ -451,9 +456,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>indexOf</code>
-     * <p>the of method.</p>
-     * @param str {@link java.lang.String} <p>the str parameter is <code>String</code> type.</p>
-     * @return int <p>the of return object is <code>int</code> type.</p>
+     * <p>The of method.</p>
+     * @param str {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
+     * @return int <p>The of return object is <code>int</code> type.</p>
      * @see java.lang.String
      */
     public int indexOf(String str) {
@@ -463,10 +468,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>indexOf</code>
-     * <p>the of method.</p>
-     * @param str       {@link java.lang.String} <p>the str parameter is <code>String</code> type.</p>
-     * @param fromIndex int <p>the from index parameter is <code>int</code> type.</p>
-     * @return int <p>the of return object is <code>int</code> type.</p>
+     * <p>The of method.</p>
+     * @param str       {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
+     * @param fromIndex int <p>The from index parameter is <code>int</code> type.</p>
+     * @return int <p>The of return object is <code>int</code> type.</p>
      * @see java.lang.String
      */
     public int indexOf(String str, int fromIndex) {
@@ -476,9 +481,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>lastIndexOf</code>
-     * <p>the index of method.</p>
-     * @param str {@link java.lang.String} <p>the str parameter is <code>String</code> type.</p>
-     * @return int <p>the index of return object is <code>int</code> type.</p>
+     * <p>The index of method.</p>
+     * @param str {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
+     * @return int <p>The index of return object is <code>int</code> type.</p>
      * @see java.lang.String
      */
     public int lastIndexOf(String str) {
@@ -488,10 +493,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>lastIndexOf</code>
-     * <p>the index of method.</p>
-     * @param str       {@link java.lang.String} <p>the str parameter is <code>String</code> type.</p>
-     * @param fromIndex int <p>the from index parameter is <code>int</code> type.</p>
-     * @return int <p>the index of return object is <code>int</code> type.</p>
+     * <p>The index of method.</p>
+     * @param str       {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
+     * @param fromIndex int <p>The from index parameter is <code>int</code> type.</p>
+     * @return int <p>The index of return object is <code>int</code> type.</p>
      * @see java.lang.String
      */
     public int lastIndexOf(String str, int fromIndex) {
@@ -501,8 +506,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>reverse</code>
-     * <p>the method.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder reverse() {
         sqlBuilder.reverse();
@@ -536,8 +541,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>getSqlBuilder</code>
-     * <p>the sql builder getter method.</p>
-     * @return {@link java.lang.StringBuilder} <p>the sql builder return object is <code>StringBuilder</code> type.</p>
+     * <p>The sql builder getter method.</p>
+     * @return {@link java.lang.StringBuilder} <p>The sql builder return object is <code>StringBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      */
     public StringBuilder getSqlBuilder() {
@@ -547,10 +552,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>nu</code>
-     * <p>the method.</p>
-     * @param target  {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Boolean
      */
@@ -564,10 +569,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>nnu</code>
-     * <p>the method.</p>
-     * @param target  {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Boolean
      */
@@ -581,11 +586,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>eq</code>
-     * <p>the method.</p>
-     * @param target  {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param value   {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -605,11 +610,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>neq</code>
-     * <p>the method.</p>
-     * @param target  {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param value   {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -629,11 +634,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>lk</code>
-     * <p>the method.</p>
-     * @param targets {@link java.util.Collection} <p>the targets parameter is <code>Collection</code> type.</p>
-     * @param value   {@link java.lang.String} <p>the value parameter is <code>String</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param targets {@link java.util.Collection} <p>The targets parameter is <code>Collection</code> type.</p>
+     * @param value   {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.util.Collection
      * @see java.lang.String
      * @see java.lang.Boolean
@@ -650,11 +655,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>lk</code>
-     * <p>the method.</p>
-     * @param target  {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param value   {@link java.lang.String} <p>the value parameter is <code>String</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Boolean
      */
@@ -668,10 +673,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>ain</code>
-     * <p>the method.</p>
-     * @param target {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param values {@link java.util.Collection} <p>the values parameter is <code>Collection</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param values {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.util.Collection
      */
@@ -681,10 +686,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>oin</code>
-     * <p>the method.</p>
-     * @param target {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param values {@link java.util.Collection} <p>the values parameter is <code>Collection</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param values {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.util.Collection
      */
@@ -694,11 +699,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>nin</code>
-     * <p>the method.</p>
-     * @param target  {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param values  {@link java.util.Collection} <p>the values parameter is <code>Collection</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param values  {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
+     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.util.Collection
      * @see java.lang.Boolean
@@ -721,11 +726,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>in</code>
-     * <p>the method.</p>
-     * @param target  {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param values  {@link java.util.Collection} <p>the values parameter is <code>Collection</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param values  {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
+     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.util.Collection
      * @see java.lang.Boolean
@@ -748,11 +753,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>rb</code>
-     * <p>the method.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param beginValue {@link java.lang.Object} <p>the begin value parameter is <code>Object</code> type.</p>
-     * @param endValue   {@link java.lang.Object} <p>the end value parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      */
@@ -766,11 +771,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>sb</code>
-     * <p>the method.</p>
-     * @param minTarget {@link java.lang.String} <p>the min target parameter is <code>String</code> type.</p>
-     * @param maxTarget {@link java.lang.String} <p>the max target parameter is <code>String</code> type.</p>
-     * @param value     {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
+     * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      */
@@ -784,11 +789,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>reb</code>
-     * <p>the method.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param beginValue {@link java.lang.Object} <p>the begin value parameter is <code>Object</code> type.</p>
-     * @param endValue   {@link java.lang.Object} <p>the end value parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      */
@@ -802,11 +807,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>seb</code>
-     * <p>the method.</p>
-     * @param minTarget {@link java.lang.String} <p>the min target parameter is <code>String</code> type.</p>
-     * @param maxTarget {@link java.lang.String} <p>the max target parameter is <code>String</code> type.</p>
-     * @param value     {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
+     * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      */
@@ -820,12 +825,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>reo</code>
-     * <p>the method.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param beginValue {@link java.lang.Object} <p>the begin value parameter is <code>Object</code> type.</p>
-     * @param endValue   {@link java.lang.Object} <p>the end value parameter is <code>Object</code> type.</p>
-     * @param andOfOr    {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -843,12 +848,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>seo</code>
-     * <p>the method.</p>
-     * @param minTarget {@link java.lang.String} <p>the min target parameter is <code>String</code> type.</p>
-     * @param maxTarget {@link java.lang.String} <p>the max target parameter is <code>String</code> type.</p>
-     * @param value     {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @param andOfOr   {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
+     * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr   {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -866,12 +871,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>ro</code>
-     * <p>the method.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param beginValue {@link java.lang.Object} <p>the begin value parameter is <code>Object</code> type.</p>
-     * @param endValue   {@link java.lang.Object} <p>the end value parameter is <code>Object</code> type.</p>
-     * @param andOfOr    {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -889,12 +894,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>so</code>
-     * <p>the method.</p>
-     * @param minTarget {@link java.lang.String} <p>the min target parameter is <code>String</code> type.</p>
-     * @param maxTarget {@link java.lang.String} <p>the max target parameter is <code>String</code> type.</p>
-     * @param value     {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @param andOfOr   {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
+     * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr   {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -912,12 +917,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>ra</code>
-     * <p>the method.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param beginValue {@link java.lang.Object} <p>the begin value parameter is <code>Object</code> type.</p>
-     * @param endValue   {@link java.lang.Object} <p>the end value parameter is <code>Object</code> type.</p>
-     * @param andOfOr    {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -935,12 +940,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>sa</code>
-     * <p>the method.</p>
-     * @param minTarget {@link java.lang.String} <p>the min target parameter is <code>String</code> type.</p>
-     * @param maxTarget {@link java.lang.String} <p>the max target parameter is <code>String</code> type.</p>
-     * @param value     {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @param andOfOr   {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
+     * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr   {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -958,12 +963,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>rea</code>
-     * <p>the method.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param beginValue {@link java.lang.Object} <p>the begin value parameter is <code>Object</code> type.</p>
-     * @param endValue   {@link java.lang.Object} <p>the end value parameter is <code>Object</code> type.</p>
-     * @param andOfOr    {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -981,12 +986,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>sea</code>
-     * <p>the method.</p>
-     * @param minTarget {@link java.lang.String} <p>the min target parameter is <code>String</code> type.</p>
-     * @param maxTarget {@link java.lang.String} <p>the max target parameter is <code>String</code> type.</p>
-     * @param value     {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @param andOfOr   {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
+     * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr   {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -1004,12 +1009,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>r</code>
-     * <p>the method.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param beginValue {@link java.lang.Object} <p>the begin value parameter is <code>Object</code> type.</p>
-     * @param endValue   {@link java.lang.Object} <p>the end value parameter is <code>Object</code> type.</p>
-     * @param andOfOr    {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -1022,12 +1027,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>s</code>
-     * <p>the method.</p>
-     * @param minTarget {@link java.lang.String} <p>the min target parameter is <code>String</code> type.</p>
-     * @param maxTarget {@link java.lang.String} <p>the max target parameter is <code>String</code> type.</p>
-     * @param value     {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @param andOfOr   {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
+     * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr   {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -1040,12 +1045,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>re</code>
-     * <p>the method.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param beginValue {@link java.lang.Object} <p>the begin value parameter is <code>Object</code> type.</p>
-     * @param endValue   {@link java.lang.Object} <p>the end value parameter is <code>Object</code> type.</p>
-     * @param andOfOr    {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -1058,12 +1063,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>se</code>
-     * <p>the method.</p>
-     * @param minTarget {@link java.lang.String} <p>the min target parameter is <code>String</code> type.</p>
-     * @param maxTarget {@link java.lang.String} <p>the max target parameter is <code>String</code> type.</p>
-     * @param value     {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @param andOfOr   {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
+     * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr   {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -1076,13 +1081,13 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>rs</code>
-     * <p>the method.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param beginValue {@link java.lang.Object} <p>the begin value parameter is <code>Object</code> type.</p>
-     * @param endValue   {@link java.lang.Object} <p>the end value parameter is <code>Object</code> type.</p>
-     * @param andOfOr    {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @param beginOfEnd {@link java.lang.Boolean} <p>the begin of end parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @param beginOfEnd {@link java.lang.Boolean} <p>The begin of end parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -1102,13 +1107,13 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>ss</code>
-     * <p>the method.</p>
-     * @param minTarget  {@link java.lang.String} <p>the min target parameter is <code>String</code> type.</p>
-     * @param maxTarget  {@link java.lang.String} <p>the max target parameter is <code>String</code> type.</p>
-     * @param value      {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @param andOfOr    {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @param beginOfEnd {@link java.lang.Boolean} <p>the begin of end parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param minTarget  {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
+     * @param maxTarget  {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @param beginOfEnd {@link java.lang.Boolean} <p>The begin of end parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -1128,11 +1133,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>gt</code>
-     * <p>the method.</p>
-     * @param target  {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param value   {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -1148,11 +1153,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>lt</code>
-     * <p>the method.</p>
-     * @param target  {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param value   {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -1169,11 +1174,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>gte</code>
-     * <p>the method.</p>
-     * @param target  {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param value   {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -1189,11 +1194,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>lte</code>
-     * <p>the method.</p>
-     * @param target  {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param value   {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      * @see java.lang.Boolean
@@ -1209,9 +1214,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>value</code>
-     * <p>the method.</p>
-     * @param value {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.Object
      */
     public SqlBuilder value(Object value) {
@@ -1221,10 +1226,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>value</code>
-     * <p>the method.</p>
-     * @param value       {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @param commaOfNone {@link java.lang.Boolean} <p>the comma of none parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param value       {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param commaOfNone {@link java.lang.Boolean} <p>The comma of none parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.Object
      * @see java.lang.Boolean
      */
@@ -1249,10 +1254,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>value</code>
-     * <p>the method.</p>
-     * @param value  {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @param symbol {@link java.lang.String} <p>the symbol parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @param value  {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param symbol {@link java.lang.String} <p>The symbol parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.Object
      * @see java.lang.String
      */
@@ -1272,9 +1277,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>andOfOr</code>
-     * <p>the of or method.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>the and of or parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the of or return object is <code>SqlBuilder</code> type.</p>
+     * <p>The of or method.</p>
+     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The of or return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.Boolean
      */
     public SqlBuilder andOfOr(Boolean andOfOr) {
@@ -1290,8 +1295,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>and</code>
-     * <p>the method.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder and() {
         this.append(" AND ");
@@ -1300,8 +1305,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
     /**
      * <code>or</code>
-     * <p>the method.</p>
-     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>the return object is <code>SqlBuilder</code> type.</p>
+     * <p>The method.</p>
+     * @return {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder or() {
         this.append(" OR ");

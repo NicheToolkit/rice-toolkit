@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <code>RiceInterceptorAutoConfigure</code>
- * <p>The type rice interceptor auto configure class.</p>
+ * <code>RiceLoginAutoConfigure</code>
+ * <p>The type rice login auto configure class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.web.servlet.config.annotation.WebMvcConfigurer
  * @see lombok.extern.slf4j.Slf4j
@@ -41,15 +41,30 @@ import java.util.List;
 @ConditionalOnProperty(value = "nichetoolkit.rice.login.enabled", havingValue = "true",matchIfMissing = true)
 public class RiceLoginAutoConfigure implements WebMvcConfigurer {
 
+    /**
+     * <code>userArgumentResolver</code>
+     * {@link io.github.nichetoolkit.rice.defaults.DefaultUserArgumentResolver} <p>The <code>userArgumentResolver</code> field.</p>
+     * @see io.github.nichetoolkit.rice.defaults.DefaultUserArgumentResolver
+     */
     private final DefaultUserArgumentResolver userArgumentResolver;
+    /**
+     * <code>handleInterceptors</code>
+     * {@link java.util.List} <p>The <code>handleInterceptors</code> field.</p>
+     * @see java.util.List
+     */
     private final List<RequestHandleInterceptor> handleInterceptors;
+    /**
+     * <code>loginProperties</code>
+     * {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The <code>loginProperties</code> field.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     */
     private final RiceLoginProperties loginProperties;
 
     /**
-     * <code>RiceInterceptorAutoConfigure</code>
-     * Instantiates a new rice interceptor auto configure.
-     * @param userArgumentResolver {@link io.github.nichetoolkit.rice.defaults.DefaultUserArgumentResolver} <p>the user argument resolver parameter is <code>DefaultUserArgumentResolver</code> type.</p>
-     * @param loginProperties      {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
+     * <code>RiceLoginAutoConfigure</code>
+     * <p>Instantiates a new rice login auto configure.</p>
+     * @param userArgumentResolver {@link io.github.nichetoolkit.rice.defaults.DefaultUserArgumentResolver} <p>The user argument resolver parameter is <code>DefaultUserArgumentResolver</code> type.</p>
+     * @param loginProperties      {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
      * @see io.github.nichetoolkit.rice.defaults.DefaultUserArgumentResolver
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      * @see org.springframework.beans.factory.annotation.Autowired
@@ -62,11 +77,11 @@ public class RiceLoginAutoConfigure implements WebMvcConfigurer {
     }
 
     /**
-     * <code>RiceInterceptorAutoConfigure</code>
-     * Instantiates a new rice interceptor auto configure.
-     * @param userArgumentResolver {@link io.github.nichetoolkit.rice.defaults.DefaultUserArgumentResolver} <p>the user argument resolver parameter is <code>DefaultUserArgumentResolver</code> type.</p>
-     * @param requestInterceptors  {@link java.util.List} <p>the request interceptors parameter is <code>List</code> type.</p>
-     * @param loginProperties      {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
+     * <code>RiceLoginAutoConfigure</code>
+     * <p>Instantiates a new rice login auto configure.</p>
+     * @param userArgumentResolver {@link io.github.nichetoolkit.rice.defaults.DefaultUserArgumentResolver} <p>The user argument resolver parameter is <code>DefaultUserArgumentResolver</code> type.</p>
+     * @param requestInterceptors  {@link java.util.List} <p>The request interceptors parameter is <code>List</code> type.</p>
+     * @param loginProperties      {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
      * @see io.github.nichetoolkit.rice.defaults.DefaultUserArgumentResolver
      * @see java.util.List
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
@@ -101,9 +116,9 @@ public class RiceLoginAutoConfigure implements WebMvcConfigurer {
 
     /**
      * <code>loggingKey</code>
-     * <p>the key method.</p>
-     * @param logbackProperties {@link io.github.nichetoolkit.rest.configure.RestLogbackProperties} <p>the logback properties parameter is <code>RestLogbackProperties</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestLoggingKey} <p>the key return object is <code>RestLoggingKey</code> type.</p>
+     * <p>The key method.</p>
+     * @param logbackProperties {@link io.github.nichetoolkit.rest.configure.RestLogbackProperties} <p>The logback properties parameter is <code>RestLogbackProperties</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestLoggingKey} <p>The key return object is <code>RestLoggingKey</code> type.</p>
      * @see io.github.nichetoolkit.rest.configure.RestLogbackProperties
      * @see io.github.nichetoolkit.rest.RestLoggingKey
      * @see org.springframework.context.annotation.Bean

@@ -13,7 +13,7 @@ import io.github.nichetoolkit.rice.error.ServiceErrorStatus;
 public class ServiceUnsupportedException extends ServiceErrorException {
     /**
      * <code>ServiceUnsupportedException</code>
-     * Instantiates a new service unsupported exception.
+     * <p>Instantiates a new service unsupported exception.</p>
      */
     public ServiceUnsupportedException() {
         super(ServiceErrorStatus.SERVICE_UNSUPPORTED_ERROR);
@@ -21,8 +21,8 @@ public class ServiceUnsupportedException extends ServiceErrorException {
 
     /**
      * <code>ServiceUnsupportedException</code>
-     * Instantiates a new service unsupported exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new service unsupported exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public ServiceUnsupportedException(String error) {
@@ -31,9 +31,9 @@ public class ServiceUnsupportedException extends ServiceErrorException {
 
     /**
      * <code>ServiceUnsupportedException</code>
-     * Instantiates a new service unsupported exception.
-     * @param service {@link java.lang.String} <p>the service parameter is <code>String</code> type.</p>
-     * @param error   {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new service unsupported exception.</p>
+     * @param service {@link java.lang.String} <p>The service parameter is <code>String</code> type.</p>
+     * @param error   {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public ServiceUnsupportedException(String service, String error) {
@@ -42,10 +42,10 @@ public class ServiceUnsupportedException extends ServiceErrorException {
 
     /**
      * <code>ServiceUnsupportedException</code>
-     * Instantiates a new service unsupported exception.
-     * @param resource {@link java.lang.String} <p>the resource parameter is <code>String</code> type.</p>
-     * @param service  {@link java.lang.String} <p>the service parameter is <code>String</code> type.</p>
-     * @param error    {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new service unsupported exception.</p>
+     * @param resource {@link java.lang.String} <p>The resource parameter is <code>String</code> type.</p>
+     * @param service  {@link java.lang.String} <p>The service parameter is <code>String</code> type.</p>
+     * @param error    {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public ServiceUnsupportedException(String resource, String service, String error) {

@@ -8,8 +8,8 @@ import java.util.Collection;
 /**
  * <code>SaveAdvice</code>
  * <p>The type save advice interface.</p>
- * @param <M> {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <M> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestId
  * @see java.lang.SuppressWarnings
@@ -20,9 +20,9 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>beforeCreate</code>
-     * <p>the create method.</p>
-     * @param model M <p>the model parameter is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The create method.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
     default void beforeCreate(M model) throws RestException {
@@ -31,9 +31,9 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>beforeUpdate</code>
-     * <p>the update method.</p>
-     * @param model M <p>the model parameter is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The update method.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
     default void beforeUpdate(M model) throws RestException {
@@ -42,9 +42,9 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>beforeSave</code>
-     * <p>the save method.</p>
-     * @param model M <p>the model parameter is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The save method.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
     default void beforeSave(M model) throws RestException {
@@ -52,9 +52,9 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>beforeSaveAll</code>
-     * <p>the save all method.</p>
-     * @param modelList {@link java.util.Collection} <p>the model list parameter is <code>Collection</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The save all method.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestException
      */
@@ -66,9 +66,9 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>afterCreate</code>
-     * <p>the create method.</p>
-     * @param model M <p>the model parameter is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The create method.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
     default void afterCreate(M model) throws RestException {
@@ -77,9 +77,9 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>afterUpdate</code>
-     * <p>the update method.</p>
-     * @param model M <p>the model parameter is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The update method.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
     default void afterUpdate(M model) throws RestException {
@@ -88,9 +88,9 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>afterSave</code>
-     * <p>the save method.</p>
-     * @param model M <p>the model parameter is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The save method.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
     default void afterSave(M model) throws RestException {
@@ -98,9 +98,9 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>afterSaveAll</code>
-     * <p>the save all method.</p>
-     * @param modelList {@link java.util.Collection} <p>the model list parameter is <code>Collection</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The save all method.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestException
      */

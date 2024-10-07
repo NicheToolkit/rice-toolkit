@@ -23,35 +23,35 @@ import java.util.Objects;
 public class Property implements Serializable {
     /**
      * <code>VALUE</code>
-     * {@link java.lang.String} <p>the constant <code>VALUE</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>VALUE</code> field.</p>
      * @see java.lang.String
      */
     public static final String VALUE = "value";
 
     /**
      * <code>name</code>
-     * {@link java.lang.String} <p>the <code>name</code> field.</p>
+     * {@link java.lang.String} <p>The <code>name</code> field.</p>
      * @see java.lang.String
      */
     protected String name;
     /**
      * <code>value</code>
-     * {@link java.lang.Object} <p>the <code>value</code> field.</p>
+     * {@link java.lang.Object} <p>The <code>value</code> field.</p>
      * @see java.lang.Object
      */
     protected Object value;
 
     /**
      * <code>Property</code>
-     * Instantiates a new property.
+     * <p>Instantiates a new property.</p>
      */
     public Property() {
     }
 
     /**
      * <code>Property</code>
-     * Instantiates a new property.
-     * @param name {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new property.</p>
+     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public Property(String name) {
@@ -60,9 +60,9 @@ public class Property implements Serializable {
 
     /**
      * <code>Property</code>
-     * Instantiates a new property.
-     * @param name  {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
+     * <p>Instantiates a new property.</p>
+     * @param name  {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      */
@@ -87,8 +87,8 @@ public class Property implements Serializable {
 
     /**
      * <code>getName</code>
-     * <p>the name getter method.</p>
-     * @return {@link java.lang.String} <p>the name return object is <code>String</code> type.</p>
+     * <p>The name getter method.</p>
+     * @return {@link java.lang.String} <p>The name return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getName() {
@@ -97,8 +97,8 @@ public class Property implements Serializable {
 
     /**
      * <code>setName</code>
-     * <p>the name setter method.</p>
-     * @param name {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
+     * <p>The name setter method.</p>
+     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public void setName(String name) {
@@ -107,8 +107,8 @@ public class Property implements Serializable {
 
     /**
      * <code>getValue</code>
-     * <p>the value getter method.</p>
-     * @return {@link java.lang.Object} <p>the value return object is <code>Object</code> type.</p>
+     * <p>The value getter method.</p>
+     * @return {@link java.lang.Object} <p>The value return object is <code>Object</code> type.</p>
      * @see java.lang.Object
      */
     public Object getValue() {
@@ -117,8 +117,8 @@ public class Property implements Serializable {
 
     /**
      * <code>setValue</code>
-     * <p>the value setter method.</p>
-     * @param value {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
+     * <p>The value setter method.</p>
+     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @see java.lang.Object
      */
     public void setValue(Object value) {

@@ -17,7 +17,7 @@ public class RiceExampleApplicationTests {
 
     /**
      * <code>contextLoads</code>
-     * <p>the loads method.</p>
+     * <p>The loads method.</p>
      * @see org.junit.jupiter.api.Test
      */
     @Test

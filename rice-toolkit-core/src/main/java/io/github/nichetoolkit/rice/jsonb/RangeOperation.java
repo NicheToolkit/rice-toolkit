@@ -18,49 +18,73 @@ import java.util.Optional;
 public enum RangeOperation implements RestField {
     /**
      * <code>GREATER_EQUAL_LESS_EQUAL_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>the <code>GREATER_EQUAL_LESS_EQUAL_OPERATION</code> field.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_EQUAL_LESS_EQUAL_OPERATION</code> field.</p>
      */
     GREATER_EQUAL_LESS_EQUAL_OPERATION(1, "大于等于且小于等于","(target >= start and target <= end)"),
     /**
      * <code>GREATER_EQUAL_LESS_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>the <code>GREATER_EQUAL_LESS_OPERATION</code> field.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_EQUAL_LESS_OPERATION</code> field.</p>
      */
     GREATER_EQUAL_LESS_OPERATION(2, "大于等于且小于","(target >= start and target < end)"),
     /**
      * <code>GREATER_LESS_EQUAL_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>the <code>GREATER_LESS_EQUAL_OPERATION</code> field.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_LESS_EQUAL_OPERATION</code> field.</p>
      */
     GREATER_LESS_EQUAL_OPERATION(3, "大于且小于等于","(target > start and target <= end)"),
     /**
      * <code>GREATER_LESS_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>the <code>GREATER_LESS_OPERATION</code> field.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_LESS_OPERATION</code> field.</p>
      */
     GREATER_LESS_OPERATION(4, "大于且小于","(target > start and target < end)"),
     ;
 
+    /**
+     * <code>key</code>
+     * {@link java.lang.Integer} <p>The <code>key</code> field.</p>
+     * @see java.lang.Integer
+     */
     private final Integer key;
+    /**
+     * <code>value</code>
+     * {@link java.lang.String} <p>The <code>value</code> field.</p>
+     * @see java.lang.String
+     */
     private final String value;
+    /**
+     * <code>field</code>
+     * {@link java.lang.String} <p>The <code>field</code> field.</p>
+     * @see java.lang.String
+     */
     private final String field;
 
     /**
      * <code>TARGET</code>
-     * {@link java.lang.String} <p>the constant <code>TARGET</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>TARGET</code> field.</p>
      * @see java.lang.String
      */
     public static final String TARGET = "target";
     /**
      * <code>START</code>
-     * {@link java.lang.String} <p>the constant <code>START</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>START</code> field.</p>
      * @see java.lang.String
      */
     public static final String START = "start";
     /**
      * <code>END</code>
-     * {@link java.lang.String} <p>the constant <code>END</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>END</code> field.</p>
      * @see java.lang.String
      */
     public static final String END = "end";
 
+    /**
+     * <code>RangeOperation</code>
+     * <p>Instantiates a new range operation.</p>
+     * @param key   {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
+     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @param field {@link java.lang.String} <p>The field parameter is <code>String</code> type.</p>
+     * @see java.lang.Integer
+     * @see java.lang.String
+     */
     RangeOperation(Integer key, String value, String field) {
         this.key = key;
         this.value = value;
@@ -85,11 +109,11 @@ public enum RangeOperation implements RestField {
 
     /**
      * <code>translateSql</code>
-     * <p>the sql method.</p>
-     * @param target     {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param startValue {@link java.lang.Object} <p>the start value parameter is <code>Object</code> type.</p>
-     * @param endValue   {@link java.lang.Object} <p>the end value parameter is <code>Object</code> type.</p>
-     * @return {@link java.lang.String} <p>the sql return object is <code>String</code> type.</p>
+     * <p>The sql method.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param startValue {@link java.lang.Object} <p>The start value parameter is <code>Object</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @return {@link java.lang.String} <p>The sql return object is <code>String</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      */
@@ -101,9 +125,9 @@ public enum RangeOperation implements RestField {
 
     /**
      * <code>parseKey</code>
-     * <p>the key method.</p>
-     * @param key {@link java.lang.Integer} <p>the key parameter is <code>Integer</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>the key return object is <code>RangeOperation</code> type.</p>
+     * <p>The key method.</p>
+     * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The key return object is <code>RangeOperation</code> type.</p>
      * @see java.lang.Integer
      * @see org.springframework.lang.NonNull
      * @see com.fasterxml.jackson.annotation.JsonCreator
@@ -116,9 +140,9 @@ public enum RangeOperation implements RestField {
 
     /**
      * <code>parseValue</code>
-     * <p>the value method.</p>
-     * @param value {@link java.lang.String} <p>the value parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>the value return object is <code>RangeOperation</code> type.</p>
+     * <p>The value method.</p>
+     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The value return object is <code>RangeOperation</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
@@ -129,9 +153,9 @@ public enum RangeOperation implements RestField {
 
     /**
      * <code>parseField</code>
-     * <p>the field method.</p>
-     * @param field {@link java.lang.String} <p>the field parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>the field return object is <code>RangeOperation</code> type.</p>
+     * <p>The field method.</p>
+     * @param field {@link java.lang.String} <p>The field parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The field return object is <code>RangeOperation</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */

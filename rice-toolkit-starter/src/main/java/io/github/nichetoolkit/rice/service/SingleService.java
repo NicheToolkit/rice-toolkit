@@ -9,9 +9,9 @@ import java.sql.SQLException;
 /**
  * <code>SingleService</code>
  * <p>The type single service interface.</p>
- * @param <M> {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
- * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <M> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestId
  * @since Jdk1.8
@@ -19,11 +19,11 @@ import java.sql.SQLException;
 public interface SingleService<M extends RestId<I>, I, K> {
     /**
      * <code>create</code>
-     * <p>the method.</p>
-     * @param model   M <p>the model parameter is <code>M</code> type.</p>
-     * @param idArray {@link java.lang.Object} <p>the id array parameter is <code>Object</code> type.</p>
-     * @return M <p>the return object is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The method.</p>
+     * @param model   M <p>The model parameter is <code>M</code> type.</p>
+     * @param idArray {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
+     * @return M <p>The return object is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Object
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
@@ -33,12 +33,12 @@ public interface SingleService<M extends RestId<I>, I, K> {
 
     /**
      * <code>create</code>
-     * <p>the method.</p>
-     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
-     * @param model    M <p>the model parameter is <code>M</code> type.</p>
-     * @param idArray  {@link java.lang.Object} <p>the id array parameter is <code>Object</code> type.</p>
-     * @return M <p>the return object is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The method.</p>
+     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param model    M <p>The model parameter is <code>M</code> type.</p>
+     * @param idArray  {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
+     * @return M <p>The return object is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Object
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
@@ -48,11 +48,11 @@ public interface SingleService<M extends RestId<I>, I, K> {
 
     /**
      * <code>update</code>
-     * <p>the method.</p>
-     * @param model   M <p>the model parameter is <code>M</code> type.</p>
-     * @param idArray {@link java.lang.Object} <p>the id array parameter is <code>Object</code> type.</p>
-     * @return M <p>the return object is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The method.</p>
+     * @param model   M <p>The model parameter is <code>M</code> type.</p>
+     * @param idArray {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
+     * @return M <p>The return object is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Object
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
@@ -62,12 +62,12 @@ public interface SingleService<M extends RestId<I>, I, K> {
 
     /**
      * <code>update</code>
-     * <p>the method.</p>
-     * @param tablekey K <p>the tablekey parameter is <code>K</code> type.</p>
-     * @param model    M <p>the model parameter is <code>M</code> type.</p>
-     * @param idArray  {@link java.lang.Object} <p>the id array parameter is <code>Object</code> type.</p>
-     * @return M <p>the return object is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The method.</p>
+     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param model    M <p>The model parameter is <code>M</code> type.</p>
+     * @param idArray  {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
+     * @return M <p>The return object is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Object
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException

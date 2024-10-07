@@ -31,18 +31,33 @@ import java.util.List;
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rice"})
 @ImportAutoConfiguration(value = {RiceLoginAutoConfigure.class})
 public class RiceStarterAutoConfigure implements InitializingBean {
+    /**
+     * <code>loginProperties</code>
+     * {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The <code>loginProperties</code> field.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     */
     private final RiceLoginProperties loginProperties;
 
+    /**
+     * <code>requestMappingHandlerAdapter</code>
+     * {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter} <p>The <code>requestMappingHandlerAdapter</code> field.</p>
+     * @see org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter
+     */
     private final RequestMappingHandlerAdapter requestMappingHandlerAdapter;
 
+    /**
+     * <code>mapArgumentResolver</code>
+     * {@link io.github.nichetoolkit.rice.defaults.DefaultMapArgumentResolver} <p>The <code>mapArgumentResolver</code> field.</p>
+     * @see io.github.nichetoolkit.rice.defaults.DefaultMapArgumentResolver
+     */
     private final DefaultMapArgumentResolver mapArgumentResolver;
 
     /**
      * <code>RiceStarterAutoConfigure</code>
-     * Instantiates a new rice starter auto configure.
-     * @param loginProperties              {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
-     * @param requestMappingHandlerAdapter {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter} <p>the request mapping handler adapter parameter is <code>RequestMappingHandlerAdapter</code> type.</p>
-     * @param mapArgumentResolver          {@link io.github.nichetoolkit.rice.defaults.DefaultMapArgumentResolver} <p>the map argument resolver parameter is <code>DefaultMapArgumentResolver</code> type.</p>
+     * <p>Instantiates a new rice starter auto configure.</p>
+     * @param loginProperties              {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
+     * @param requestMappingHandlerAdapter {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter} <p>The request mapping handler adapter parameter is <code>RequestMappingHandlerAdapter</code> type.</p>
+     * @param mapArgumentResolver          {@link io.github.nichetoolkit.rice.defaults.DefaultMapArgumentResolver} <p>The map argument resolver parameter is <code>DefaultMapArgumentResolver</code> type.</p>
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      * @see org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter
      * @see io.github.nichetoolkit.rice.defaults.DefaultMapArgumentResolver
@@ -66,6 +81,10 @@ public class RiceStarterAutoConfigure implements InitializingBean {
         }
     }
 
+    /**
+     * <code>resolveArgumentResolver</code>
+     * <p>The argument resolver method.</p>
+     */
     private void resolveArgumentResolver() {
         List<HandlerMethodArgumentResolver> customArgumentResolvers = new LinkedList<>();
         List<HandlerMethodArgumentResolver> argumentResolvers = requestMappingHandlerAdapter.getArgumentResolvers();

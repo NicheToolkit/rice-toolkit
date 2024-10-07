@@ -14,7 +14,7 @@ public class UserPermissionException extends TokenErrorException {
 
     /**
      * <code>UserPermissionException</code>
-     * Instantiates a new user permission exception.
+     * <p>Instantiates a new user permission exception.</p>
      */
     public UserPermissionException() {
         super(UserErrorStatus.USER_NO_PERMISSION);
@@ -22,8 +22,8 @@ public class UserPermissionException extends TokenErrorException {
 
     /**
      * <code>UserPermissionException</code>
-     * Instantiates a new user permission exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new user permission exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public UserPermissionException(String error) {
@@ -32,9 +32,9 @@ public class UserPermissionException extends TokenErrorException {
 
     /**
      * <code>UserPermissionException</code>
-     * Instantiates a new user permission exception.
-     * @param permission {@link java.lang.String} <p>the permission parameter is <code>String</code> type.</p>
-     * @param error      {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new user permission exception.</p>
+     * @param permission {@link java.lang.String} <p>The permission parameter is <code>String</code> type.</p>
+     * @param error      {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public UserPermissionException(String permission, String error) {

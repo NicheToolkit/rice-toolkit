@@ -15,7 +15,7 @@ public class ServiceAnnotationException extends ServiceErrorException {
 
     /**
      * <code>ServiceAnnotationException</code>
-     * Instantiates a new service annotation exception.
+     * <p>Instantiates a new service annotation exception.</p>
      */
     public ServiceAnnotationException() {
         super(ServiceErrorStatus.SERVICE_ANNOTATION_ERROR);
@@ -23,8 +23,8 @@ public class ServiceAnnotationException extends ServiceErrorException {
 
     /**
      * <code>ServiceAnnotationException</code>
-     * Instantiates a new service annotation exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new service annotation exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public ServiceAnnotationException(String error) {
@@ -33,9 +33,9 @@ public class ServiceAnnotationException extends ServiceErrorException {
 
     /**
      * <code>ServiceAnnotationException</code>
-     * Instantiates a new service annotation exception.
-     * @param service {@link java.lang.String} <p>the service parameter is <code>String</code> type.</p>
-     * @param error   {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new service annotation exception.</p>
+     * @param service {@link java.lang.String} <p>The service parameter is <code>String</code> type.</p>
+     * @param error   {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public ServiceAnnotationException(String service, String error) {

@@ -21,7 +21,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 public class RedisTemplateAutoConfigure {
     /**
      * <code>RedisTemplateAutoConfigure</code>
-     * Instantiates a new redis template auto configure.
+     * <p>Instantiates a new redis template auto configure.</p>
      */
     public RedisTemplateAutoConfigure() {
         log.debug("The auto configuration for [redis-template] initiated");
@@ -29,9 +29,9 @@ public class RedisTemplateAutoConfigure {
 
     /**
      * <code>redisTemplate</code>
-     * <p>the template method.</p>
-     * @param connectionFactory {@link org.springframework.data.redis.connection.RedisConnectionFactory} <p>the connection factory parameter is <code>RedisConnectionFactory</code> type.</p>
-     * @return {@link org.springframework.data.redis.core.RedisTemplate} <p>the template return object is <code>RedisTemplate</code> type.</p>
+     * <p>The template method.</p>
+     * @param connectionFactory {@link org.springframework.data.redis.connection.RedisConnectionFactory} <p>The connection factory parameter is <code>RedisConnectionFactory</code> type.</p>
+     * @return {@link org.springframework.data.redis.core.RedisTemplate} <p>The template return object is <code>RedisTemplate</code> type.</p>
      * @see org.springframework.data.redis.connection.RedisConnectionFactory
      * @see org.springframework.data.redis.core.RedisTemplate
      * @see org.springframework.context.annotation.Bean

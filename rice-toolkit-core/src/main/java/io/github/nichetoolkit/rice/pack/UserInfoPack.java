@@ -26,7 +26,7 @@ import lombok.EqualsAndHashCode;
 public class UserInfoPack extends InfoModel<String> implements RestUserInfo<String> {
     /**
      * <code>username</code>
-     * {@link java.lang.String} <p>the <code>username</code> field.</p>
+     * {@link java.lang.String} <p>The <code>username</code> field.</p>
      * @see java.lang.String
      */
     protected String username;

@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
 public class RiceContextAutoConfigure {
     /**
      * <code>RiceContextAutoConfigure</code>
-     * Instantiates a new rice context auto configure.
+     * <p>Instantiates a new rice context auto configure.</p>
      */
     public RiceContextAutoConfigure() {
         log.debug("The auto configuration for [rice-context] initiated");

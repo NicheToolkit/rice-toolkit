@@ -17,30 +17,48 @@ import java.util.Optional;
 public enum PurviewType implements RestReckon<Long> {
     /**
      * <code>PURVIEW_ALL</code>
-     * <p>the Purview all purview type field.</p>
+     * <p>The purview all purview type field.</p>
      */
     PURVIEW_ALL("purview_all", 0L),
     /**
      * <code>PURVIEW_1</code>
-     * <p>the Purview 1 purview type field.</p>
+     * <p>The purview 1 purview type field.</p>
      */
     PURVIEW_1("purview1", 1L),
     /**
      * <code>PURVIEW_2</code>
-     * <p>the Purview 2 purview type field.</p>
+     * <p>The purview 2 purview type field.</p>
      */
     PURVIEW_2("purview2", 2L),
     /**
      * <code>PURVIEW_3</code>
-     * <p>the Purview 3 purview type field.</p>
+     * <p>The purview 3 purview type field.</p>
      */
     PURVIEW_3("purview3", 4L),
     ;
 
+    /**
+     * <code>key</code>
+     * {@link java.lang.String} <p>The <code>key</code> field.</p>
+     * @see java.lang.String
+     */
     private final String key;
 
+    /**
+     * <code>value</code>
+     * {@link java.lang.Long} <p>The <code>value</code> field.</p>
+     * @see java.lang.Long
+     */
     private final Long value;
 
+    /**
+     * <code>PurviewType</code>
+     * <p>Instantiates a new purview type.</p>
+     * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+     * @param value {@link java.lang.Long} <p>The value parameter is <code>Long</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Long
+     */
     PurviewType(String key, Long value) {
         this.key = key;
         this.value = value;
@@ -59,9 +77,9 @@ public enum PurviewType implements RestReckon<Long> {
 
     /**
      * <code>parseKey</code>
-     * <p>the key method.</p>
-     * @param key {@link java.lang.String} <p>the key parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>the key return object is <code>PurviewType</code> type.</p>
+     * <p>The key method.</p>
+     * @param key {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>The key return object is <code>PurviewType</code> type.</p>
      * @see java.lang.String
      * @see com.fasterxml.jackson.annotation.JsonCreator
      */
@@ -73,9 +91,9 @@ public enum PurviewType implements RestReckon<Long> {
 
     /**
      * <code>parseValue</code>
-     * <p>the value method.</p>
-     * @param value {@link java.lang.Long} <p>the value parameter is <code>Long</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>the value return object is <code>PurviewType</code> type.</p>
+     * <p>The value method.</p>
+     * @param value {@link java.lang.Long} <p>The value parameter is <code>Long</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>The value return object is <code>PurviewType</code> type.</p>
      * @see java.lang.Long
      */
     public static PurviewType parseValue(Long value) {

@@ -17,19 +17,24 @@ import java.util.Date;
 @Entity.Table(value = "ntr_simple")
 public class SimpleEntity extends RestInfoEntity<SimpleEntity, SimpleModel> {
 
+    /**
+     * <code>time</code>
+     * {@link java.util.Date} <p>The <code>time</code> field.</p>
+     * @see java.util.Date
+     */
     private Date time;
 
     /**
      * <code>SimpleEntity</code>
-     * Instantiates a new simple entity.
+     * <p>Instantiates a new simple entity.</p>
      */
     public SimpleEntity() {
     }
 
     /**
      * <code>SimpleEntity</code>
-     * Instantiates a new simple entity.
-     * @param id {@link java.lang.String} <p>the id parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new simple entity.</p>
+     * @param id {@link java.lang.String} <p>The id parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public SimpleEntity(String id) {
@@ -38,8 +43,8 @@ public class SimpleEntity extends RestInfoEntity<SimpleEntity, SimpleModel> {
 
     /**
      * <code>getTime</code>
-     * <p>the time getter method.</p>
-     * @return {@link java.util.Date} <p>the time return object is <code>Date</code> type.</p>
+     * <p>The time getter method.</p>
+     * @return {@link java.util.Date} <p>The time return object is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public Date getTime() {
@@ -48,8 +53,8 @@ public class SimpleEntity extends RestInfoEntity<SimpleEntity, SimpleModel> {
 
     /**
      * <code>setTime</code>
-     * <p>the time setter method.</p>
-     * @param time {@link java.util.Date} <p>the time parameter is <code>Date</code> type.</p>
+     * <p>The time setter method.</p>
+     * @param time {@link java.util.Date} <p>The time parameter is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public void setTime(Date time) {

@@ -30,7 +30,7 @@ import java.util.List;
 public class PageFilter implements Serializable {
     /**
      * <code>PAGE_REGEX</code>
-     * {@link java.lang.String} <p>the constant <code>PAGE_REGEX</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>PAGE_REGEX</code> field.</p>
      * @see java.lang.String
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
@@ -38,7 +38,7 @@ public class PageFilter implements Serializable {
     public static final String PAGE_REGEX = "_";
     /**
      * <code>PAGE_LIMIT</code>
-     * {@link java.lang.String} <p>the constant <code>PAGE_LIMIT</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>PAGE_LIMIT</code> field.</p>
      * @see java.lang.String
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
@@ -46,7 +46,7 @@ public class PageFilter implements Serializable {
     public static final String PAGE_LIMIT = "LIMIT";
     /**
      * <code>PAGE_OFFSET</code>
-     * {@link java.lang.String} <p>the constant <code>PAGE_OFFSET</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>PAGE_OFFSET</code> field.</p>
      * @see java.lang.String
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
@@ -54,7 +54,7 @@ public class PageFilter implements Serializable {
     public static final String PAGE_OFFSET = "OFFSET";
     /**
      * <code>FIELD_ARRAY</code>
-     * {@link java.util.List} <p>the <code>FIELD_ARRAY</code> field.</p>
+     * {@link java.util.List} <p>The <code>FIELD_ARRAY</code> field.</p>
      * @see java.util.List
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
@@ -62,7 +62,7 @@ public class PageFilter implements Serializable {
     protected final List<String> FIELD_ARRAY = new ArrayList<>();
     /**
      * <code>LOAD_ARRAY</code>
-     * {@link java.util.List} <p>the <code>LOAD_ARRAY</code> field.</p>
+     * {@link java.util.List} <p>The <code>LOAD_ARRAY</code> field.</p>
      * @see java.util.List
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
@@ -70,35 +70,35 @@ public class PageFilter implements Serializable {
     protected final List<Boolean> LOAD_ARRAY = new ArrayList<>();
     /**
      * <code>pageNum</code>
-     * {@link java.lang.Integer} <p>the <code>pageNum</code> field.</p>
+     * {@link java.lang.Integer} <p>The <code>pageNum</code> field.</p>
      * @see java.lang.Integer
      */
     protected Integer pageNum = 1;
     /**
      * <code>pageSize</code>
-     * {@link java.lang.Integer} <p>the <code>pageSize</code> field.</p>
+     * {@link java.lang.Integer} <p>The <code>pageSize</code> field.</p>
      * @see java.lang.Integer
      */
     protected Integer pageSize = 0;
     /**
      * <code>loadLastPage</code>
-     * {@link java.lang.Boolean} <p>the <code>loadLastPage</code> field.</p>
+     * {@link java.lang.Boolean} <p>The <code>loadLastPage</code> field.</p>
      * @see java.lang.Boolean
      */
     protected Boolean loadLastPage = false;
 
     /**
      * <code>PageFilter</code>
-     * Instantiates a new page filter.
+     * <p>Instantiates a new page filter.</p>
      */
     public PageFilter() {
     }
 
     /**
      * <code>PageFilter</code>
-     * Instantiates a new page filter.
-     * @param pageNum  {@link java.lang.Integer} <p>the page num parameter is <code>Integer</code> type.</p>
-     * @param pageSize {@link java.lang.Integer} <p>the page size parameter is <code>Integer</code> type.</p>
+     * <p>Instantiates a new page filter.</p>
+     * @param pageNum  {@link java.lang.Integer} <p>The page num parameter is <code>Integer</code> type.</p>
+     * @param pageSize {@link java.lang.Integer} <p>The page size parameter is <code>Integer</code> type.</p>
      * @see java.lang.Integer
      */
     public PageFilter(Integer pageNum, Integer pageSize) {
@@ -108,8 +108,8 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>PageFilter</code>
-     * Instantiates a new page filter.
-     * @param builder {@link io.github.nichetoolkit.rice.filter.PageFilter.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * <p>Instantiates a new page filter.</p>
+     * @param builder {@link io.github.nichetoolkit.rice.filter.PageFilter.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.filter.PageFilter.Builder
      */
     public PageFilter(PageFilter.Builder builder) {
@@ -119,8 +119,8 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>getPageNum</code>
-     * <p>the page num getter method.</p>
-     * @return {@link java.lang.Integer} <p>the page num return object is <code>Integer</code> type.</p>
+     * <p>The page num getter method.</p>
+     * @return {@link java.lang.Integer} <p>The page num return object is <code>Integer</code> type.</p>
      * @see java.lang.Integer
      */
     public Integer getPageNum() {
@@ -129,8 +129,8 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>setPageNum</code>
-     * <p>the page num setter method.</p>
-     * @param pageNum {@link java.lang.Integer} <p>the page num parameter is <code>Integer</code> type.</p>
+     * <p>The page num setter method.</p>
+     * @param pageNum {@link java.lang.Integer} <p>The page num parameter is <code>Integer</code> type.</p>
      * @see java.lang.Integer
      */
     public void setPageNum(Integer pageNum) {
@@ -145,8 +145,8 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>getPageSize</code>
-     * <p>the page size getter method.</p>
-     * @return {@link java.lang.Integer} <p>the page size return object is <code>Integer</code> type.</p>
+     * <p>The page size getter method.</p>
+     * @return {@link java.lang.Integer} <p>The page size return object is <code>Integer</code> type.</p>
      * @see java.lang.Integer
      */
     public Integer getPageSize() {
@@ -155,8 +155,8 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>setPageSize</code>
-     * <p>the page size setter method.</p>
-     * @param pageSize {@link java.lang.Integer} <p>the page size parameter is <code>Integer</code> type.</p>
+     * <p>The page size setter method.</p>
+     * @param pageSize {@link java.lang.Integer} <p>The page size parameter is <code>Integer</code> type.</p>
      * @see java.lang.Integer
      */
     public void setPageSize(Integer pageSize) {
@@ -165,8 +165,8 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>getLoadLastPage</code>
-     * <p>the load last page getter method.</p>
-     * @return {@link java.lang.Boolean} <p>the load last page return object is <code>Boolean</code> type.</p>
+     * <p>The load last page getter method.</p>
+     * @return {@link java.lang.Boolean} <p>The load last page return object is <code>Boolean</code> type.</p>
      * @see java.lang.Boolean
      */
     public Boolean getLoadLastPage() {
@@ -175,8 +175,8 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>setLoadLastPage</code>
-     * <p>the load last page setter method.</p>
-     * @param loadLastPage {@link java.lang.Boolean} <p>the load last page parameter is <code>Boolean</code> type.</p>
+     * <p>The load last page setter method.</p>
+     * @param loadLastPage {@link java.lang.Boolean} <p>The load last page parameter is <code>Boolean</code> type.</p>
      * @see java.lang.Boolean
      */
     public void setLoadLastPage(Boolean loadLastPage) {
@@ -191,8 +191,8 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>toPageSql</code>
-     * <p>the page sql method.</p>
-     * @return {@link java.lang.String} <p>the page sql return object is <code>String</code> type.</p>
+     * <p>The page sql method.</p>
+     * @return {@link java.lang.String} <p>The page sql return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String toPageSql() {
@@ -202,9 +202,9 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>toPage</code>
-     * <p>the page method.</p>
-     * @param <T> {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @return {@link com.github.pagehelper.Page} <p>the page return object is <code>Page</code> type.</p>
+     * <p>The page method.</p>
+     * @param <T> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @return {@link com.github.pagehelper.Page} <p>The page return object is <code>Page</code> type.</p>
      * @see com.github.pagehelper.Page
      */
     public <T> Page<T> toPage() {
@@ -221,8 +221,8 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>toLoadArray</code>
-     * <p>the load array method.</p>
-     * @return {@link java.lang.Boolean} <p>the load array return object is <code>Boolean</code> type.</p>
+     * <p>The load array method.</p>
+     * @return {@link java.lang.Boolean} <p>The load array return object is <code>Boolean</code> type.</p>
      * @see java.lang.Boolean
      */
     public Boolean[] toLoadArray() {
@@ -233,9 +233,9 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>toLoadArray</code>
-     * <p>the load array method.</p>
-     * @param isLoads {@link java.lang.Boolean} <p>the is loads parameter is <code>Boolean</code> type.</p>
-     * @return {@link java.lang.Boolean} <p>the load array return object is <code>Boolean</code> type.</p>
+     * <p>The load array method.</p>
+     * @param isLoads {@link java.lang.Boolean} <p>The is loads parameter is <code>Boolean</code> type.</p>
+     * @return {@link java.lang.Boolean} <p>The load array return object is <code>Boolean</code> type.</p>
      * @see java.lang.Boolean
      * @see org.springframework.lang.NonNull
      */
@@ -246,8 +246,8 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>toFieldArray</code>
-     * <p>the field array method.</p>
-     * @return {@link java.lang.String} <p>the field array return object is <code>String</code> type.</p>
+     * <p>The field array method.</p>
+     * @return {@link java.lang.String} <p>The field array return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String[] toFieldArray() {
@@ -258,9 +258,9 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>toFieldArray</code>
-     * <p>the field array method.</p>
-     * @param fields {@link java.lang.String} <p>the fields parameter is <code>String</code> type.</p>
-     * @return {@link java.lang.String} <p>the field array return object is <code>String</code> type.</p>
+     * <p>The field array method.</p>
+     * @param fields {@link java.lang.String} <p>The fields parameter is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The field array return object is <code>String</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
@@ -271,8 +271,8 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>addLoadArray</code>
-     * <p>the load array method.</p>
-     * @param isLoads {@link java.lang.Boolean} <p>the is loads parameter is <code>Boolean</code> type.</p>
+     * <p>The load array method.</p>
+     * @param isLoads {@link java.lang.Boolean} <p>The is loads parameter is <code>Boolean</code> type.</p>
      * @see java.lang.Boolean
      * @see org.springframework.lang.NonNull
      */
@@ -282,8 +282,8 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>addFieldArray</code>
-     * <p>the field array method.</p>
-     * @param fields {@link java.lang.String} <p>the fields parameter is <code>String</code> type.</p>
+     * <p>The field array method.</p>
+     * @param fields {@link java.lang.String} <p>The fields parameter is <code>String</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
@@ -293,8 +293,8 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>name</code>
-     * <p>the method.</p>
-     * @return {@link java.lang.String} <p>the return object is <code>String</code> type.</p>
+     * <p>The method.</p>
+     * @return {@link java.lang.String} <p>The return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String name() {
@@ -303,8 +303,8 @@ public class PageFilter implements Serializable {
 
     /**
      * <code>toKey</code>
-     * <p>the key method.</p>
-     * @return {@link java.lang.String} <p>the key return object is <code>String</code> type.</p>
+     * <p>The key method.</p>
+     * @return {@link java.lang.String} <p>The key return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String toKey() {
@@ -320,29 +320,29 @@ public class PageFilter implements Serializable {
     public static class Builder {
         /**
          * <code>pageNum</code>
-         * {@link java.lang.Integer} <p>the <code>pageNum</code> field.</p>
+         * {@link java.lang.Integer} <p>The <code>pageNum</code> field.</p>
          * @see java.lang.Integer
          */
         protected Integer pageNum;
         /**
          * <code>pageSize</code>
-         * {@link java.lang.Integer} <p>the <code>pageSize</code> field.</p>
+         * {@link java.lang.Integer} <p>The <code>pageSize</code> field.</p>
          * @see java.lang.Integer
          */
         protected Integer pageSize;
 
         /**
          * <code>Builder</code>
-         * Instantiates a new builder.
+         * <p>Instantiates a new builder.</p>
          */
         public Builder() {
         }
 
         /**
          * <code>pageNum</code>
-         * <p>the num method.</p>
-         * @param pageNum {@link java.lang.Integer} <p>the page num parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.PageFilter.Builder} <p>the num return object is <code>Builder</code> type.</p>
+         * <p>The num method.</p>
+         * @param pageNum {@link java.lang.Integer} <p>The page num parameter is <code>Integer</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.PageFilter.Builder} <p>The num return object is <code>Builder</code> type.</p>
          * @see java.lang.Integer
          */
         public PageFilter.Builder pageNum(Integer pageNum) {
@@ -352,9 +352,9 @@ public class PageFilter implements Serializable {
 
         /**
          * <code>pageSize</code>
-         * <p>the size method.</p>
-         * @param pageSize {@link java.lang.Integer} <p>the page size parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.PageFilter.Builder} <p>the size return object is <code>Builder</code> type.</p>
+         * <p>The size method.</p>
+         * @param pageSize {@link java.lang.Integer} <p>The page size parameter is <code>Integer</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.PageFilter.Builder} <p>The size return object is <code>Builder</code> type.</p>
          * @see java.lang.Integer
          */
         public PageFilter.Builder pageSize(Integer pageSize) {
@@ -364,8 +364,8 @@ public class PageFilter implements Serializable {
 
         /**
          * <code>build</code>
-         * <p>the method.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.PageFilter} <p>the return object is <code>PageFilter</code> type.</p>
+         * <p>The method.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.PageFilter} <p>The return object is <code>PageFilter</code> type.</p>
          */
         public PageFilter build() {
             return new PageFilter(this);

@@ -14,7 +14,7 @@ public class ServiceRealizationException extends ServiceErrorException {
 
     /**
      * <code>ServiceRealizationException</code>
-     * Instantiates a new service realization exception.
+     * <p>Instantiates a new service realization exception.</p>
      */
     public ServiceRealizationException() {
         super(ServiceErrorStatus.SERVICE_REALIZATION_ERROR);
@@ -22,8 +22,8 @@ public class ServiceRealizationException extends ServiceErrorException {
 
     /**
      * <code>ServiceRealizationException</code>
-     * Instantiates a new service realization exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new service realization exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public ServiceRealizationException(String error) {
@@ -32,9 +32,9 @@ public class ServiceRealizationException extends ServiceErrorException {
 
     /**
      * <code>ServiceRealizationException</code>
-     * Instantiates a new service realization exception.
-     * @param service {@link java.lang.String} <p>the service parameter is <code>String</code> type.</p>
-     * @param error   {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new service realization exception.</p>
+     * @param service {@link java.lang.String} <p>The service parameter is <code>String</code> type.</p>
+     * @param error   {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public ServiceRealizationException(String service, String error) {

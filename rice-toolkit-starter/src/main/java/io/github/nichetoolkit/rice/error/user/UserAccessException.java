@@ -14,7 +14,7 @@ public class UserAccessException extends TokenErrorException {
 
     /**
      * <code>UserAccessException</code>
-     * Instantiates a new user access exception.
+     * <p>Instantiates a new user access exception.</p>
      */
     public UserAccessException() {
         super(UserErrorStatus.USER_ACCESS_ERROR);
@@ -22,8 +22,8 @@ public class UserAccessException extends TokenErrorException {
 
     /**
      * <code>UserAccessException</code>
-     * Instantiates a new user access exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new user access exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public UserAccessException(String error) {
@@ -32,9 +32,9 @@ public class UserAccessException extends TokenErrorException {
 
     /**
      * <code>UserAccessException</code>
-     * Instantiates a new user access exception.
-     * @param service {@link java.lang.String} <p>the service parameter is <code>String</code> type.</p>
-     * @param error   {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new user access exception.</p>
+     * @param service {@link java.lang.String} <p>The service parameter is <code>String</code> type.</p>
+     * @param error   {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public UserAccessException(String service, String error) {

@@ -30,9 +30,9 @@ public class PurviewController {
 
     /**
      * <code>test</code>
-     * <p>the method.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>the return object is <code>RestResult</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The method.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The return object is <code>RestResult</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestResult
      * @see org.springframework.web.bind.annotation.GetMapping
      * @see io.github.nichetoolkit.rice.purview.RestPurview

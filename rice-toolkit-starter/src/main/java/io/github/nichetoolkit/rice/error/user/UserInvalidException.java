@@ -14,7 +14,7 @@ public class UserInvalidException extends TokenErrorException {
 
     /**
      * <code>UserInvalidException</code>
-     * Instantiates a new user invalid exception.
+     * <p>Instantiates a new user invalid exception.</p>
      */
     public UserInvalidException() {
         super(UserErrorStatus.USER_INVALID_ERROR);
@@ -22,8 +22,8 @@ public class UserInvalidException extends TokenErrorException {
 
     /**
      * <code>UserInvalidException</code>
-     * Instantiates a new user invalid exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new user invalid exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public UserInvalidException(String error) {
@@ -32,9 +32,9 @@ public class UserInvalidException extends TokenErrorException {
 
     /**
      * <code>UserInvalidException</code>
-     * Instantiates a new user invalid exception.
-     * @param user  {@link java.lang.String} <p>the user parameter is <code>String</code> type.</p>
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new user invalid exception.</p>
+     * @param user  {@link java.lang.String} <p>The user parameter is <code>String</code> type.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public UserInvalidException(String user, String error) {

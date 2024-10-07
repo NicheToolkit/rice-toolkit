@@ -22,7 +22,7 @@ import java.io.Serializable;
 public class UserLoginPack implements Serializable {
     /**
      * <code>user</code>
-     * {@link io.github.nichetoolkit.rice.pack.UserInfoPack} <p>the <code>user</code> field.</p>
+     * {@link io.github.nichetoolkit.rice.pack.UserInfoPack} <p>The <code>user</code> field.</p>
      * @see io.github.nichetoolkit.rice.pack.UserInfoPack
      */
     protected UserInfoPack user;

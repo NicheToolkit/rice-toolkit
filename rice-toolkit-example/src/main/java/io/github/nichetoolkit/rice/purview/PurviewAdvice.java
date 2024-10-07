@@ -31,12 +31,17 @@ import java.util.List;
 @Component
 public class PurviewAdvice implements DefaultAdvice<RestPurview> {
 
+    /**
+     * <code>tokenService</code>
+     * {@link io.github.nichetoolkit.rice.service.TokenService} <p>The <code>tokenService</code> field.</p>
+     * @see io.github.nichetoolkit.rice.service.TokenService
+     */
     private final TokenService tokenService;
 
     /**
      * <code>PurviewAdvice</code>
-     * Instantiates a new purview advice.
-     * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>the token service parameter is <code>TokenService</code> type.</p>
+     * <p>Instantiates a new purview advice.</p>
+     * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>The token service parameter is <code>TokenService</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.TokenService
      * @see org.springframework.beans.factory.annotation.Autowired
      */
@@ -61,6 +66,16 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
         purviewValuesCheck(userModel,RestPurview.Purview.values(purview));
     }
 
+    /**
+     * <code>purviewKeysCheck</code>
+     * <p>The keys check method.</p>
+     * @param userModel   {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user model parameter is <code>UserModel</code> type.</p>
+     * @param purviewKeys {@link java.util.List} <p>The purview keys parameter is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.simple.UserModel
+     * @see java.util.List
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     private void purviewKeysCheck(UserModel userModel,List<String> purviewKeys) throws RestException {
         PurviewType purviewType = userModel.getPurviewType();
         if (GeneralUtils.isNotEmpty(purviewKeys)) {
@@ -70,6 +85,16 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
         }
     }
 
+    /**
+     * <code>purviewValuesCheck</code>
+     * <p>The values check method.</p>
+     * @param userModel     {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user model parameter is <code>UserModel</code> type.</p>
+     * @param purviewValues {@link java.util.List} <p>The purview values parameter is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.simple.UserModel
+     * @see java.util.List
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     private void purviewValuesCheck(UserModel userModel,List<Long> purviewValues) throws RestException {
         PurviewType purviewType = userModel.getPurviewType();
         if (GeneralUtils.isNotEmpty(purviewValues)) {

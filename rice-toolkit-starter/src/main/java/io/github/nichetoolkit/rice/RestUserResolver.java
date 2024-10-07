@@ -17,9 +17,9 @@ public interface RestUserResolver {
 
     /**
      * <code>supports</code>
-     * <p>the method.</p>
-     * @param parameter {@link org.springframework.core.MethodParameter} <p>the parameter parameter is <code>MethodParameter</code> type.</p>
-     * @return boolean <p>the return object is <code>boolean</code> type.</p>
+     * <p>The method.</p>
+     * @param parameter {@link org.springframework.core.MethodParameter} <p>The parameter parameter is <code>MethodParameter</code> type.</p>
+     * @return boolean <p>The return object is <code>boolean</code> type.</p>
      * @see org.springframework.core.MethodParameter
      */
     default boolean supports(MethodParameter parameter) {
@@ -29,11 +29,11 @@ public interface RestUserResolver {
 
     /**
      * <code>resolveUser</code>
-     * <p>the user method.</p>
-     * @param parameter   {@link org.springframework.core.MethodParameter} <p>the parameter parameter is <code>MethodParameter</code> type.</p>
-     * @param httpRequest {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>the http request parameter is <code>RestHttpRequest</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestUserInfo} <p>the user return object is <code>RestUserInfo</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The user method.</p>
+     * @param parameter   {@link org.springframework.core.MethodParameter} <p>The parameter parameter is <code>MethodParameter</code> type.</p>
+     * @param httpRequest {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>The http request parameter is <code>RestHttpRequest</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.RestUserInfo} <p>The user return object is <code>RestUserInfo</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see org.springframework.core.MethodParameter
      * @see io.github.nichetoolkit.rest.RestHttpRequest
      * @see io.github.nichetoolkit.rice.RestUserInfo

@@ -21,7 +21,7 @@ public class LogicEntity implements RestLogic {
 
     /**
      * <code>logic</code>
-     * {@link java.lang.String} <p>the <code>logic</code> field.</p>
+     * {@link java.lang.String} <p>The <code>logic</code> field.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.mybatis.stereotype.column.RestLogicKey
      */
@@ -30,15 +30,15 @@ public class LogicEntity implements RestLogic {
 
     /**
      * <code>LogicEntity</code>
-     * Instantiates a new logic entity.
+     * <p>Instantiates a new logic entity.</p>
      */
     public LogicEntity() {
     }
 
     /**
      * <code>LogicEntity</code>
-     * Instantiates a new logic entity.
-     * @param builder {@link io.github.nichetoolkit.rice.LogicEntity.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * <p>Instantiates a new logic entity.</p>
+     * @param builder {@link io.github.nichetoolkit.rice.LogicEntity.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.LogicEntity.Builder
      */
     public LogicEntity(LogicEntity.Builder builder) {
@@ -66,23 +66,23 @@ public class LogicEntity implements RestLogic {
     public static class Builder {
         /**
          * <code>logic</code>
-         * {@link java.lang.String} <p>the <code>logic</code> field.</p>
+         * {@link java.lang.String} <p>The <code>logic</code> field.</p>
          * @see java.lang.String
          */
         protected String logic;
 
         /**
          * <code>Builder</code>
-         * Instantiates a new builder.
+         * <p>Instantiates a new builder.</p>
          */
         public Builder() {
         }
 
         /**
          * <code>logic</code>
-         * <p>the method.</p>
-         * @param logic {@link java.lang.String} <p>the logic parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.LogicEntity.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * <p>The method.</p>
+         * @param logic {@link java.lang.String} <p>The logic parameter is <code>String</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.LogicEntity.Builder} <p>The return object is <code>Builder</code> type.</p>
          * @see java.lang.String
          */
         public LogicEntity.Builder logic(String logic) {
@@ -92,8 +92,8 @@ public class LogicEntity implements RestLogic {
 
         /**
          * <code>build</code>
-         * <p>the method.</p>
-         * @return {@link io.github.nichetoolkit.rice.LogicEntity} <p>the return object is <code>LogicEntity</code> type.</p>
+         * <p>The method.</p>
+         * @return {@link io.github.nichetoolkit.rice.LogicEntity} <p>The return object is <code>LogicEntity</code> type.</p>
          */
         public LogicEntity build() {
             return new LogicEntity(this);

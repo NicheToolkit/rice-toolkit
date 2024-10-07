@@ -43,11 +43,16 @@ import java.util.List;
 @Order(AdviceConstants.RESPONSE_ORDER)
 public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
 
+    /**
+     * <code>loginAdvices</code>
+     * {@link java.util.List} <p>The <code>loginAdvices</code> field.</p>
+     * @see java.util.List
+     */
     private final List<LoginAdvice> loginAdvices;
 
     /**
      * <code>DefaultResponseInterceptor</code>
-     * Instantiates a new default response interceptor.
+     * <p>Instantiates a new default response interceptor.</p>
      */
     public DefaultResponseInterceptor() {
         this.loginAdvices = new ArrayList<>();
@@ -55,8 +60,8 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
 
     /**
      * <code>DefaultResponseInterceptor</code>
-     * Instantiates a new default response interceptor.
-     * @param loginAdvices {@link java.util.List} <p>the login advices parameter is <code>List</code> type.</p>
+     * <p>Instantiates a new default response interceptor.</p>
+     * @param loginAdvices {@link java.util.List} <p>The login advices parameter is <code>List</code> type.</p>
      * @see java.util.List
      * @see org.springframework.beans.factory.annotation.Autowired
      */

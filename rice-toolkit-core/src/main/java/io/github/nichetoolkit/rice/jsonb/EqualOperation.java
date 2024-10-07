@@ -19,48 +19,72 @@ import java.util.Optional;
 public enum EqualOperation implements RestField {
     /**
      * <code>EQUAL_OPERATION</code>
-     * <p>the Equal operation equal operation field.</p>
+     * <p>The equal operation equal operation field.</p>
      */
     EQUAL_OPERATION(1, "相等","target = 'values'"),
     /**
      * <code>LEFT_LIKE_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>the <code>LEFT_LIKE_OPERATION</code> field.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>The <code>LEFT_LIKE_OPERATION</code> field.</p>
      */
     LEFT_LIKE_OPERATION(2, "左模糊","target like concat('%','values')"),
     /**
      * <code>RIGHT_LIKE_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>the <code>RIGHT_LIKE_OPERATION</code> field.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>The <code>RIGHT_LIKE_OPERATION</code> field.</p>
      */
     RIGHT_LIKE_OPERATION(3, "右模糊","target like concat('values','%')"),
     /**
      * <code>ALL_LIKE_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>the <code>ALL_LIKE_OPERATION</code> field.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>The <code>ALL_LIKE_OPERATION</code> field.</p>
      */
     ALL_LIKE_OPERATION(4, "全模糊","target like concat('%','values','%')"),
     /**
      * <code>NOT_NULL_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>the <code>NOT_NULL_OPERATION</code> field.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>The <code>NOT_NULL_OPERATION</code> field.</p>
      */
     NOT_NULL_OPERATION(5, "不为空","target is not null"),
     ;
 
+    /**
+     * <code>key</code>
+     * {@link java.lang.Integer} <p>The <code>key</code> field.</p>
+     * @see java.lang.Integer
+     */
     private final Integer key;
+    /**
+     * <code>value</code>
+     * {@link java.lang.String} <p>The <code>value</code> field.</p>
+     * @see java.lang.String
+     */
     private final String value;
+    /**
+     * <code>field</code>
+     * {@link java.lang.String} <p>The <code>field</code> field.</p>
+     * @see java.lang.String
+     */
     private final String field;
 
     /**
      * <code>TARGET</code>
-     * {@link java.lang.String} <p>the constant <code>TARGET</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>TARGET</code> field.</p>
      * @see java.lang.String
      */
     public static final String TARGET = "target";
     /**
      * <code>VALUE</code>
-     * {@link java.lang.String} <p>the constant <code>VALUE</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>VALUE</code> field.</p>
      * @see java.lang.String
      */
     public static final String VALUE = "values";
 
+    /**
+     * <code>EqualOperation</code>
+     * <p>Instantiates a new equal operation.</p>
+     * @param key   {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
+     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @param field {@link java.lang.String} <p>The field parameter is <code>String</code> type.</p>
+     * @see java.lang.Integer
+     * @see java.lang.String
+     */
     EqualOperation(Integer key, String value, String field) {
         this.key = key;
         this.value = value;
@@ -85,10 +109,10 @@ public enum EqualOperation implements RestField {
 
     /**
      * <code>translateSql</code>
-     * <p>the sql method.</p>
-     * @param target {@link java.lang.String} <p>the target parameter is <code>String</code> type.</p>
-     * @param value  {@link java.lang.Object} <p>the value parameter is <code>Object</code> type.</p>
-     * @return {@link java.lang.String} <p>the sql return object is <code>String</code> type.</p>
+     * <p>The sql method.</p>
+     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value  {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @return {@link java.lang.String} <p>The sql return object is <code>String</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      */
@@ -98,9 +122,9 @@ public enum EqualOperation implements RestField {
 
     /**
      * <code>parseKey</code>
-     * <p>the key method.</p>
-     * @param key {@link java.lang.Integer} <p>the key parameter is <code>Integer</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>the key return object is <code>EqualOperation</code> type.</p>
+     * <p>The key method.</p>
+     * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>The key return object is <code>EqualOperation</code> type.</p>
      * @see java.lang.Integer
      * @see com.fasterxml.jackson.annotation.JsonCreator
      */
@@ -112,9 +136,9 @@ public enum EqualOperation implements RestField {
 
     /**
      * <code>parseValue</code>
-     * <p>the value method.</p>
-     * @param value {@link java.lang.String} <p>the value parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>the value return object is <code>EqualOperation</code> type.</p>
+     * <p>The value method.</p>
+     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>The value return object is <code>EqualOperation</code> type.</p>
      * @see java.lang.String
      */
     public static EqualOperation parseValue(String value) {
@@ -124,9 +148,9 @@ public enum EqualOperation implements RestField {
 
     /**
      * <code>parseField</code>
-     * <p>the field method.</p>
-     * @param field {@link java.lang.String} <p>the field parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>the field return object is <code>EqualOperation</code> type.</p>
+     * <p>The field method.</p>
+     * @param field {@link java.lang.String} <p>The field parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>The field return object is <code>EqualOperation</code> type.</p>
      * @see java.lang.String
      */
     public static EqualOperation parseField(String field) {

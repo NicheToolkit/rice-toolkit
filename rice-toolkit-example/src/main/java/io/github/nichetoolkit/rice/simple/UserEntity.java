@@ -14,20 +14,30 @@ import io.mybatis.provider.Entity;
  */
 @Entity.Table(value = "ntr_user")
 public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
+    /**
+     * <code>username</code>
+     * {@link java.lang.String} <p>The <code>username</code> field.</p>
+     * @see java.lang.String
+     */
     private String username;
+    /**
+     * <code>password</code>
+     * {@link java.lang.String} <p>The <code>password</code> field.</p>
+     * @see java.lang.String
+     */
     private String password;
 
     /**
      * <code>UserEntity</code>
-     * Instantiates a new user entity.
+     * <p>Instantiates a new user entity.</p>
      */
     public UserEntity() {
     }
 
     /**
      * <code>UserEntity</code>
-     * Instantiates a new user entity.
-     * @param id {@link java.lang.String} <p>the id parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new user entity.</p>
+     * @param id {@link java.lang.String} <p>The id parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public UserEntity(String id) {
@@ -36,8 +46,8 @@ public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
 
     /**
      * <code>getUsername</code>
-     * <p>the username getter method.</p>
-     * @return {@link java.lang.String} <p>the username return object is <code>String</code> type.</p>
+     * <p>The username getter method.</p>
+     * @return {@link java.lang.String} <p>The username return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getUsername() {
@@ -46,8 +56,8 @@ public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
 
     /**
      * <code>setUsername</code>
-     * <p>the username setter method.</p>
-     * @param username {@link java.lang.String} <p>the username parameter is <code>String</code> type.</p>
+     * <p>The username setter method.</p>
+     * @param username {@link java.lang.String} <p>The username parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public void setUsername(String username) {
@@ -56,8 +66,8 @@ public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
 
     /**
      * <code>getPassword</code>
-     * <p>the password getter method.</p>
-     * @return {@link java.lang.String} <p>the password return object is <code>String</code> type.</p>
+     * <p>The password getter method.</p>
+     * @return {@link java.lang.String} <p>The password return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     /* hide password */
@@ -67,8 +77,8 @@ public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
 
     /**
      * <code>setPassword</code>
-     * <p>the password setter method.</p>
-     * @param password {@link java.lang.String} <p>the password parameter is <code>String</code> type.</p>
+     * <p>The password setter method.</p>
+     * @param password {@link java.lang.String} <p>The password parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public void setPassword(String password) {

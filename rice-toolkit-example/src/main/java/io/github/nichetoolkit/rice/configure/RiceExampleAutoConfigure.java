@@ -25,7 +25,7 @@ import org.springframework.context.annotation.Configuration;
 public class RiceExampleAutoConfigure {
     /**
      * <code>RiceExampleAutoConfigure</code>
-     * Instantiates a new rice example auto configure.
+     * <p>Instantiates a new rice example auto configure.</p>
      */
     public RiceExampleAutoConfigure() {
         log.debug("The auto configuration for [rice-example] initiated");

@@ -43,15 +43,15 @@ public class TokenService implements RestTokenResolver<UserModel, LoginResult> {
 
     /**
      * <code>redisTemplate</code>
-     * {@link org.springframework.data.redis.core.StringRedisTemplate} <p>the <code>redisTemplate</code> field.</p>
+     * {@link org.springframework.data.redis.core.StringRedisTemplate} <p>The <code>redisTemplate</code> field.</p>
      * @see org.springframework.data.redis.core.StringRedisTemplate
      */
     protected final StringRedisTemplate redisTemplate;
 
     /**
      * <code>TokenService</code>
-     * Instantiates a new token service.
-     * @param redisTemplate {@link org.springframework.data.redis.core.StringRedisTemplate} <p>the redis template parameter is <code>StringRedisTemplate</code> type.</p>
+     * <p>Instantiates a new token service.</p>
+     * @param redisTemplate {@link org.springframework.data.redis.core.StringRedisTemplate} <p>The redis template parameter is <code>StringRedisTemplate</code> type.</p>
      * @see org.springframework.data.redis.core.StringRedisTemplate
      * @see org.springframework.beans.factory.annotation.Autowired
      */

@@ -9,9 +9,9 @@ import java.util.List;
 /**
  * <code>QueryService</code>
  * <p>The type query service interface.</p>
- * @param <M> {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
- * @param <K> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <M> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestId
  * @see io.github.nichetoolkit.rice.service.DeleteService
@@ -21,11 +21,11 @@ public interface QueryService<M extends RestId<I>, I, K> extends DeleteService<I
 
     /**
      * <code>queryAll</code>
-     * <p>the all method.</p>
-     * @param idList      {@link java.util.Collection} <p>the id list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>the is load array parameter is <code>Boolean</code> type.</p>
-     * @return {@link java.util.List} <p>the all return object is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The all method.</p>
+     * @param idList      {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @return {@link java.util.List} <p>The all return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
      * @see java.lang.Boolean
      * @see java.util.List
@@ -35,12 +35,12 @@ public interface QueryService<M extends RestId<I>, I, K> extends DeleteService<I
 
     /**
      * <code>queryAll</code>
-     * <p>the all method.</p>
-     * @param tablekey    K <p>the tablekey parameter is <code>K</code> type.</p>
-     * @param idList      {@link java.util.Collection} <p>the id list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>the is load array parameter is <code>Boolean</code> type.</p>
-     * @return {@link java.util.List} <p>the all return object is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The all method.</p>
+     * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param idList      {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @return {@link java.util.List} <p>The all return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
      * @see java.lang.Boolean
      * @see java.util.List
@@ -50,11 +50,11 @@ public interface QueryService<M extends RestId<I>, I, K> extends DeleteService<I
 
     /**
      * <code>queryById</code>
-     * <p>the by id method.</p>
-     * @param id          I <p>the id parameter is <code>I</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>the is load array parameter is <code>Boolean</code> type.</p>
-     * @return M <p>the by id return object is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The by id method.</p>
+     * @param id          I <p>The id parameter is <code>I</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @return M <p>The by id return object is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
@@ -62,12 +62,12 @@ public interface QueryService<M extends RestId<I>, I, K> extends DeleteService<I
 
     /**
      * <code>queryById</code>
-     * <p>the by id method.</p>
-     * @param tablekey    K <p>the tablekey parameter is <code>K</code> type.</p>
-     * @param id          I <p>the id parameter is <code>I</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>the is load array parameter is <code>Boolean</code> type.</p>
-     * @return M <p>the by id return object is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The by id method.</p>
+     * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param id          I <p>The id parameter is <code>I</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @return M <p>The by id return object is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */

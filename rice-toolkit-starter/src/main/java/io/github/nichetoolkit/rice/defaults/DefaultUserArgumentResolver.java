@@ -33,11 +33,16 @@ import java.util.List;
 @Component
 public class DefaultUserArgumentResolver implements HandlerMethodArgumentResolver {
 
+    /**
+     * <code>userResolvers</code>
+     * {@link java.util.List} <p>The <code>userResolvers</code> field.</p>
+     * @see java.util.List
+     */
     private final List<RestUserResolver> userResolvers;
 
     /**
      * <code>DefaultUserArgumentResolver</code>
-     * Instantiates a new default user argument resolver.
+     * <p>Instantiates a new default user argument resolver.</p>
      */
     public DefaultUserArgumentResolver() {
         this.userResolvers = new ArrayList<>();
@@ -45,8 +50,8 @@ public class DefaultUserArgumentResolver implements HandlerMethodArgumentResolve
 
     /**
      * <code>DefaultUserArgumentResolver</code>
-     * Instantiates a new default user argument resolver.
-     * @param userResolvers {@link java.util.List} <p>the user resolvers parameter is <code>List</code> type.</p>
+     * <p>Instantiates a new default user argument resolver.</p>
+     * @param userResolvers {@link java.util.List} <p>The user resolvers parameter is <code>List</code> type.</p>
      * @see java.util.List
      * @see org.springframework.beans.factory.annotation.Autowired
      */

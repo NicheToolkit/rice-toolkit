@@ -15,7 +15,7 @@ public class TableAlreadyExistException extends ServiceErrorException {
 
     /**
      * <code>TableAlreadyExistException</code>
-     * Instantiates a new table already exist exception.
+     * <p>Instantiates a new table already exist exception.</p>
      */
     public TableAlreadyExistException() {
         super(TableErrorStatus.TABLE_ALREADY_EXIST);
@@ -23,8 +23,8 @@ public class TableAlreadyExistException extends ServiceErrorException {
 
     /**
      * <code>TableAlreadyExistException</code>
-     * Instantiates a new table already exist exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new table already exist exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public TableAlreadyExistException(String error) {
@@ -33,9 +33,9 @@ public class TableAlreadyExistException extends ServiceErrorException {
 
     /**
      * <code>TableAlreadyExistException</code>
-     * Instantiates a new table already exist exception.
-     * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
-     * @param error     {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new table already exist exception.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param error     {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public TableAlreadyExistException(String tablename, String error) {

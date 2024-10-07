@@ -36,18 +36,33 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class LoginHandler implements LoginAdvice {
 
+    /**
+     * <code>loginProperties</code>
+     * {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The <code>loginProperties</code> field.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     */
     private final RiceLoginProperties loginProperties;
 
+    /**
+     * <code>redisTemplate</code>
+     * {@link org.springframework.data.redis.core.StringRedisTemplate} <p>The <code>redisTemplate</code> field.</p>
+     * @see org.springframework.data.redis.core.StringRedisTemplate
+     */
     private final StringRedisTemplate redisTemplate;
 
+    /**
+     * <code>tokenService</code>
+     * {@link io.github.nichetoolkit.rice.service.TokenService} <p>The <code>tokenService</code> field.</p>
+     * @see io.github.nichetoolkit.rice.service.TokenService
+     */
     private final TokenService tokenService;
 
     /**
      * <code>LoginHandler</code>
-     * Instantiates a new login handler.
-     * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>the login properties parameter is <code>RiceLoginProperties</code> type.</p>
-     * @param redisTemplate   {@link org.springframework.data.redis.core.StringRedisTemplate} <p>the redis template parameter is <code>StringRedisTemplate</code> type.</p>
-     * @param tokenService    {@link io.github.nichetoolkit.rice.service.TokenService} <p>the token service parameter is <code>TokenService</code> type.</p>
+     * <p>Instantiates a new login handler.</p>
+     * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
+     * @param redisTemplate   {@link org.springframework.data.redis.core.StringRedisTemplate} <p>The redis template parameter is <code>StringRedisTemplate</code> type.</p>
+     * @param tokenService    {@link io.github.nichetoolkit.rice.service.TokenService} <p>The token service parameter is <code>TokenService</code> type.</p>
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      * @see org.springframework.data.redis.core.StringRedisTemplate
      * @see io.github.nichetoolkit.rice.service.TokenService

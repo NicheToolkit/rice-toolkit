@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 /**
  * <code>RestIdResolver</code>
  * <p>The type rest id resolver interface.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.beans.factory.InitializingBean
  * @see java.lang.SuppressWarnings
@@ -33,9 +33,9 @@ public interface RestIdResolver<I> extends InitializingBean {
     }
 
     /**
-     * <code>clazz</code>
-     * <p>the method.</p>
-     * @return {@link java.lang.Class} <p>the return object is <code>Class</code> type.</p>
+     * <code>idType</code>
+     * <p>The type method.</p>
+     * @return {@link java.lang.Class} <p>The type return object is <code>Class</code> type.</p>
      * @see java.lang.Class
      */
     default Class<I> idType() {
@@ -44,23 +44,23 @@ public interface RestIdResolver<I> extends InitializingBean {
 
     /**
      * <code>resolveId</code>
-     * <p>the id method.</p>
-     * @param <M>   {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
-     * @param model M <p>the model parameter is <code>M</code> type.</p>
-     * @return I <p>the id return object is <code>I</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The id method.</p>
+     * @param <M>   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
+     * @return I <p>The id return object is <code>I</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
     <M extends RestId<I>> I resolveId(M model) throws RestException;
 
     /**
      * <code>resolveModel</code>
-     * <p>the model method.</p>
-     * @param <M>   {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
-     * @param <I>   {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @param model M <p>the model parameter is <code>M</code> type.</p>
-     * @return I <p>the model return object is <code>I</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The model method.</p>
+     * @param <M>   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <I>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
+     * @return I <p>The model return object is <code>I</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
     static <M extends RestId<I>,I> I resolveModel(M model) throws RestException {
@@ -79,23 +79,36 @@ public interface RestIdResolver<I> extends InitializingBean {
     }
 
     /**
-     * <code>CachingIdClass</code>
-     * <p>The type caching id class class.</p>
+     * <code>Instance</code>
+     * <p>The type instance class.</p>
      * @author Cyan (snow22314@outlook.com)
      * @since Jdk1.8
      */
     class Instance {
         /**
-         * <code>CLASS_MAP</code>
-         * {@link java.util.Map} <p>the <code>CLASS_MAP</code> field.</p>
+         * <code>RESOLVERS</code>
+         * {@link java.util.Map} <p>The <code>RESOLVERS</code> field.</p>
          * @see java.util.Map
          */
         static Map<Class<?>, Class<?>> RESOLVERS = new ConcurrentHashMap<>();
 
+        /**
+         * <code>idType</code>
+         * <p>The type method.</p>
+         * @param resolverType {@link java.lang.Class} <p>The resolver type parameter is <code>Class</code> type.</p>
+         * @return {@link java.lang.Class} <p>The type return object is <code>Class</code> type.</p>
+         * @see java.lang.Class
+         */
         private static Class<?> idType(Class<? extends RestIdResolver> resolverType) {
             return RESOLVERS.get(resolverType);
         }
 
+        /**
+         * <code>caching</code>
+         * <p>The method.</p>
+         * @param resolverType {@link java.lang.Class} <p>The resolver type parameter is <code>Class</code> type.</p>
+         * @see java.lang.Class
+         */
         private static void caching(Class<? extends RestIdResolver> resolverType) {
             Class<?> clazzOfId = RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
                     RestIdResolver.class.getTypeParameters()[0], resolverType, RestIdResolver.class));

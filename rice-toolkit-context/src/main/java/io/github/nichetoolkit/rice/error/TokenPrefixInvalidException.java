@@ -13,7 +13,7 @@ public class TokenPrefixInvalidException extends TokenErrorException {
 
     /**
      * <code>TokenPrefixInvalidException</code>
-     * Instantiates a new token prefix invalid exception.
+     * <p>Instantiates a new token prefix invalid exception.</p>
      */
     public TokenPrefixInvalidException() {
         super(TokenErrorStatus.TOKEN_PREFIX_INVALID);
@@ -21,8 +21,8 @@ public class TokenPrefixInvalidException extends TokenErrorException {
 
     /**
      * <code>TokenPrefixInvalidException</code>
-     * Instantiates a new token prefix invalid exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new token prefix invalid exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public TokenPrefixInvalidException(String error) {
@@ -31,9 +31,9 @@ public class TokenPrefixInvalidException extends TokenErrorException {
 
     /**
      * <code>TokenPrefixInvalidException</code>
-     * Instantiates a new token prefix invalid exception.
-     * @param prefix {@link java.lang.String} <p>the prefix parameter is <code>String</code> type.</p>
-     * @param error  {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new token prefix invalid exception.</p>
+     * @param prefix {@link java.lang.String} <p>The prefix parameter is <code>String</code> type.</p>
+     * @param error  {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public TokenPrefixInvalidException(String prefix, String error) {

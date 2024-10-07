@@ -22,7 +22,7 @@ public class SaveModel implements RestSave {
 
     /**
      * <code>save</code>
-     * {@link io.github.nichetoolkit.rice.enums.SaveType} <p>the <code>save</code> field.</p>
+     * {@link io.github.nichetoolkit.rice.enums.SaveType} <p>The <code>save</code> field.</p>
      * @see io.github.nichetoolkit.rice.enums.SaveType
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
@@ -31,15 +31,15 @@ public class SaveModel implements RestSave {
 
     /**
      * <code>SaveModel</code>
-     * Instantiates a new save model.
+     * <p>Instantiates a new save model.</p>
      */
     public SaveModel() {
     }
 
     /**
      * <code>SaveModel</code>
-     * Instantiates a new save model.
-     * @param builder {@link io.github.nichetoolkit.rice.SaveModel.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * <p>Instantiates a new save model.</p>
+     * @param builder {@link io.github.nichetoolkit.rice.SaveModel.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.SaveModel.Builder
      */
     public SaveModel(SaveModel.Builder builder) {
@@ -58,8 +58,8 @@ public class SaveModel implements RestSave {
 
     /**
      * <code>isSaveNone</code>
-     * <p>the save none method.</p>
-     * @return boolean <p>the save none return object is <code>boolean</code> type.</p>
+     * <p>The save none method.</p>
+     * @return boolean <p>The save none return object is <code>boolean</code> type.</p>
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
@@ -69,8 +69,8 @@ public class SaveModel implements RestSave {
 
     /**
      * <code>isSaveCreate</code>
-     * <p>the save create method.</p>
-     * @return boolean <p>the save create return object is <code>boolean</code> type.</p>
+     * <p>The save create method.</p>
+     * @return boolean <p>The save create return object is <code>boolean</code> type.</p>
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
@@ -80,8 +80,8 @@ public class SaveModel implements RestSave {
 
     /**
      * <code>isSaveUpdate</code>
-     * <p>the save update method.</p>
-     * @return boolean <p>the save update return object is <code>boolean</code> type.</p>
+     * <p>The save update method.</p>
+     * @return boolean <p>The save update return object is <code>boolean</code> type.</p>
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
@@ -91,8 +91,8 @@ public class SaveModel implements RestSave {
 
     /**
      * <code>isSaveCopy</code>
-     * <p>the save copy method.</p>
-     * @return boolean <p>the save copy return object is <code>boolean</code> type.</p>
+     * <p>The save copy method.</p>
+     * @return boolean <p>The save copy return object is <code>boolean</code> type.</p>
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
@@ -102,8 +102,8 @@ public class SaveModel implements RestSave {
 
     /**
      * <code>isSaveRemove</code>
-     * <p>the save remove method.</p>
-     * @return boolean <p>the save remove return object is <code>boolean</code> type.</p>
+     * <p>The save remove method.</p>
+     * @return boolean <p>The save remove return object is <code>boolean</code> type.</p>
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
@@ -113,8 +113,8 @@ public class SaveModel implements RestSave {
 
     /**
      * <code>isSaveDelete</code>
-     * <p>the save delete method.</p>
-     * @return boolean <p>the save delete return object is <code>boolean</code> type.</p>
+     * <p>The save delete method.</p>
+     * @return boolean <p>The save delete return object is <code>boolean</code> type.</p>
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
@@ -124,9 +124,9 @@ public class SaveModel implements RestSave {
 
     /**
      * <code>isSaveHigher</code>
-     * <p>the save higher method.</p>
-     * @param saveType {@link io.github.nichetoolkit.rice.enums.SaveType} <p>the save type parameter is <code>SaveType</code> type.</p>
-     * @return boolean <p>the save higher return object is <code>boolean</code> type.</p>
+     * <p>The save higher method.</p>
+     * @param saveType {@link io.github.nichetoolkit.rice.enums.SaveType} <p>The save type parameter is <code>SaveType</code> type.</p>
+     * @return boolean <p>The save higher return object is <code>boolean</code> type.</p>
      * @see io.github.nichetoolkit.rice.enums.SaveType
      */
     public boolean isSaveHigher(SaveType saveType) {
@@ -135,9 +135,9 @@ public class SaveModel implements RestSave {
 
     /**
      * <code>isSaveLower</code>
-     * <p>the save lower method.</p>
-     * @param saveType {@link io.github.nichetoolkit.rice.enums.SaveType} <p>the save type parameter is <code>SaveType</code> type.</p>
-     * @return boolean <p>the save lower return object is <code>boolean</code> type.</p>
+     * <p>The save lower method.</p>
+     * @param saveType {@link io.github.nichetoolkit.rice.enums.SaveType} <p>The save type parameter is <code>SaveType</code> type.</p>
+     * @return boolean <p>The save lower return object is <code>boolean</code> type.</p>
      * @see io.github.nichetoolkit.rice.enums.SaveType
      */
     public boolean isSaveLower(SaveType saveType) {
@@ -146,8 +146,8 @@ public class SaveModel implements RestSave {
 
     /**
      * <code>ofSave</code>
-     * <p>the save method.</p>
-     * @return {@link io.github.nichetoolkit.rice.SaveModel.Builder} <p>the save return object is <code>Builder</code> type.</p>
+     * <p>The save method.</p>
+     * @return {@link io.github.nichetoolkit.rice.SaveModel.Builder} <p>The save return object is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.SaveModel.Builder
      */
     public static SaveModel.Builder ofSave() {
@@ -163,23 +163,23 @@ public class SaveModel implements RestSave {
     public static class Builder {
         /**
          * <code>save</code>
-         * {@link io.github.nichetoolkit.rice.enums.SaveType} <p>the <code>save</code> field.</p>
+         * {@link io.github.nichetoolkit.rice.enums.SaveType} <p>The <code>save</code> field.</p>
          * @see io.github.nichetoolkit.rice.enums.SaveType
          */
         protected SaveType save = SaveType.NONE;
 
         /**
          * <code>Builder</code>
-         * Instantiates a new builder.
+         * <p>Instantiates a new builder.</p>
          */
         public Builder() {
         }
 
         /**
          * <code>save</code>
-         * <p>the method.</p>
-         * @param save {@link io.github.nichetoolkit.rice.enums.SaveType} <p>the save parameter is <code>SaveType</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.SaveModel.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * <p>The method.</p>
+         * @param save {@link io.github.nichetoolkit.rice.enums.SaveType} <p>The save parameter is <code>SaveType</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.SaveModel.Builder} <p>The return object is <code>Builder</code> type.</p>
          * @see io.github.nichetoolkit.rice.enums.SaveType
          */
         public SaveModel.Builder save(SaveType save) {
@@ -189,9 +189,9 @@ public class SaveModel implements RestSave {
 
         /**
          * <code>save</code>
-         * <p>the method.</p>
-         * @param save {@link java.lang.Integer} <p>the save parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.SaveModel.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * <p>The method.</p>
+         * @param save {@link java.lang.Integer} <p>The save parameter is <code>Integer</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.SaveModel.Builder} <p>The return object is <code>Builder</code> type.</p>
          * @see java.lang.Integer
          */
         public SaveModel.Builder save(Integer save) {
@@ -201,8 +201,8 @@ public class SaveModel implements RestSave {
 
         /**
          * <code>build</code>
-         * <p>the method.</p>
-         * @return {@link io.github.nichetoolkit.rice.SaveModel} <p>the return object is <code>SaveModel</code> type.</p>
+         * <p>The method.</p>
+         * @return {@link io.github.nichetoolkit.rice.SaveModel} <p>The return object is <code>SaveModel</code> type.</p>
          */
         public SaveModel build() {
             return new SaveModel(this);

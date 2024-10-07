@@ -21,12 +21,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserResolver implements RestUserResolver {
 
+    /**
+     * <code>tokenService</code>
+     * {@link io.github.nichetoolkit.rice.service.TokenService} <p>The <code>tokenService</code> field.</p>
+     * @see io.github.nichetoolkit.rice.service.TokenService
+     */
     private final TokenService tokenService;
 
     /**
      * <code>UserResolver</code>
-     * Instantiates a new user resolver.
-     * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>the token service parameter is <code>TokenService</code> type.</p>
+     * <p>Instantiates a new user resolver.</p>
+     * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>The token service parameter is <code>TokenService</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.TokenService
      * @see org.springframework.beans.factory.annotation.Autowired
      */

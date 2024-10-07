@@ -5,8 +5,8 @@ import io.github.nichetoolkit.rice.RestId;
 /**
  * <code>SuperMapper</code>
  * <p>The type super mapper interface.</p>
- * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestId
  * @see io.github.nichetoolkit.rice.mapper.SaveMapper

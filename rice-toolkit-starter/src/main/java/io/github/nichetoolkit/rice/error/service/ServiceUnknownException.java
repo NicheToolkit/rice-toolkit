@@ -13,7 +13,7 @@ import io.github.nichetoolkit.rice.error.ServiceErrorStatus;
 public class ServiceUnknownException extends ServiceErrorException {
     /**
      * <code>ServiceUnknownException</code>
-     * Instantiates a new service unknown exception.
+     * <p>Instantiates a new service unknown exception.</p>
      */
     public ServiceUnknownException() {
         super(ServiceErrorStatus.SERVICE_UNKNOWN_ERROR);
@@ -21,8 +21,8 @@ public class ServiceUnknownException extends ServiceErrorException {
 
     /**
      * <code>ServiceUnknownException</code>
-     * Instantiates a new service unknown exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new service unknown exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public ServiceUnknownException(String error) {
@@ -31,9 +31,9 @@ public class ServiceUnknownException extends ServiceErrorException {
 
     /**
      * <code>ServiceUnknownException</code>
-     * Instantiates a new service unknown exception.
-     * @param resource {@link java.lang.String} <p>the resource parameter is <code>String</code> type.</p>
-     * @param error    {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new service unknown exception.</p>
+     * @param resource {@link java.lang.String} <p>The resource parameter is <code>String</code> type.</p>
+     * @param error    {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public ServiceUnknownException(String resource, String error) {
@@ -42,10 +42,10 @@ public class ServiceUnknownException extends ServiceErrorException {
 
     /**
      * <code>ServiceUnknownException</code>
-     * Instantiates a new service unknown exception.
-     * @param resource {@link java.lang.String} <p>the resource parameter is <code>String</code> type.</p>
-     * @param service  {@link java.lang.String} <p>the service parameter is <code>String</code> type.</p>
-     * @param error    {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new service unknown exception.</p>
+     * @param resource {@link java.lang.String} <p>The resource parameter is <code>String</code> type.</p>
+     * @param service  {@link java.lang.String} <p>The service parameter is <code>String</code> type.</p>
+     * @param error    {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public ServiceUnknownException(String resource, String service, String error) {
@@ -54,11 +54,11 @@ public class ServiceUnknownException extends ServiceErrorException {
 
     /**
      * <code>ServiceUnknownException</code>
-     * Instantiates a new service unknown exception.
-     * @param resource {@link java.lang.String} <p>the resource parameter is <code>String</code> type.</p>
-     * @param service  {@link java.lang.String} <p>the service parameter is <code>String</code> type.</p>
-     * @param error    {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
-     * @param cause    {@link java.lang.Throwable} <p>the cause parameter is <code>Throwable</code> type.</p>
+     * <p>Instantiates a new service unknown exception.</p>
+     * @param resource {@link java.lang.String} <p>The resource parameter is <code>String</code> type.</p>
+     * @param service  {@link java.lang.String} <p>The service parameter is <code>String</code> type.</p>
+     * @param error    {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
+     * @param cause    {@link java.lang.Throwable} <p>The cause parameter is <code>Throwable</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Throwable
      */

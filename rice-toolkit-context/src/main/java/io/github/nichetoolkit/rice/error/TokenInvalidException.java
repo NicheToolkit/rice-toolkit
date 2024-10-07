@@ -13,7 +13,7 @@ public class TokenInvalidException extends TokenErrorException {
 
     /**
      * <code>TokenInvalidException</code>
-     * Instantiates a new token invalid exception.
+     * <p>Instantiates a new token invalid exception.</p>
      */
     public TokenInvalidException() {
         super(TokenErrorStatus.TOKEN_INVALID_ERROR);
@@ -21,8 +21,8 @@ public class TokenInvalidException extends TokenErrorException {
 
     /**
      * <code>TokenInvalidException</code>
-     * Instantiates a new token invalid exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new token invalid exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public TokenInvalidException(String error) {
@@ -31,9 +31,9 @@ public class TokenInvalidException extends TokenErrorException {
 
     /**
      * <code>TokenInvalidException</code>
-     * Instantiates a new token invalid exception.
-     * @param token {@link java.lang.String} <p>the token parameter is <code>String</code> type.</p>
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new token invalid exception.</p>
+     * @param token {@link java.lang.String} <p>The token parameter is <code>String</code> type.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public TokenInvalidException(String token, String error) {

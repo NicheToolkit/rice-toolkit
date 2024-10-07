@@ -27,13 +27,23 @@ import java.util.Objects;
 @JsonComponent
 public class BigDecimalSerializer extends JsonSerializer<BigDecimal> implements ContextualSerializer {
 
+    /**
+     * <code>format</code>
+     * {@link java.lang.String} <p>The <code>format</code> field.</p>
+     * @see java.lang.String
+     */
     private String format;
+    /**
+     * <code>serializeProperties</code>
+     * {@link io.github.nichetoolkit.rice.configure.RiceSerializeProperties} <p>The <code>serializeProperties</code> field.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceSerializeProperties
+     */
     private final RiceSerializeProperties serializeProperties;
 
     /**
      * <code>BigDecimalSerializer</code>
-     * Instantiates a new big decimal serializer.
-     * @param serializeProperties {@link io.github.nichetoolkit.rice.configure.RiceSerializeProperties} <p>the serialize properties parameter is <code>RiceSerializeProperties</code> type.</p>
+     * <p>Instantiates a new big decimal serializer.</p>
+     * @param serializeProperties {@link io.github.nichetoolkit.rice.configure.RiceSerializeProperties} <p>The serialize properties parameter is <code>RiceSerializeProperties</code> type.</p>
      * @see io.github.nichetoolkit.rice.configure.RiceSerializeProperties
      * @see org.springframework.beans.factory.annotation.Autowired
      */

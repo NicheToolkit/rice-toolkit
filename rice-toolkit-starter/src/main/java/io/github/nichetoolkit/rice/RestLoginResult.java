@@ -10,7 +10,7 @@ import java.util.Objects;
 /**
  * <code>RestLoginResult</code>
  * <p>The type rest login result class.</p>
- * @param <R> {@link io.github.nichetoolkit.rice.RestLoginResult} <p>the generic parameter is <code>RestLoginResult</code> type.</p>
+ * @param <R> {@link io.github.nichetoolkit.rice.RestLoginResult} <p>The generic parameter is <code>RestLoginResult</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.io.Serializable
  * @see lombok.Data
@@ -23,19 +23,24 @@ import java.util.Objects;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RestLoginResult<R extends RestLoginResult<R>> implements Serializable {
 
+    /**
+     * <code>token</code>
+     * {@link java.lang.String} <p>The <code>token</code> field.</p>
+     * @see java.lang.String
+     */
     private String token;
 
     /**
      * <code>RestLoginResult</code>
-     * Instantiates a new rest login result.
+     * <p>Instantiates a new rest login result.</p>
      */
     public RestLoginResult() {
     }
 
     /**
      * <code>RestLoginResult</code>
-     * Instantiates a new rest login result.
-     * @param token {@link java.lang.String} <p>the token parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new rest login result.</p>
+     * @param token {@link java.lang.String} <p>The token parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public RestLoginResult(String token) {

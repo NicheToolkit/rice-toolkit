@@ -16,29 +16,47 @@ import java.util.Optional;
 public enum DeleteMode implements RestValue<Integer,String> {
     /**
      * <code>NONE</code>
-     * <p>the None delete mode field.</p>
+     * <p>The none delete mode field.</p>
      */
     NONE(0,"none"),
     /**
      * <code>REMOVE</code>
-     * <p>the Remove delete mode field.</p>
+     * <p>The remove delete mode field.</p>
      */
     REMOVE(1,"remove"),
     /**
      * <code>DELETE</code>
-     * <p>the Delete delete mode field.</p>
+     * <p>The delete delete mode field.</p>
      */
     DELETE(2,"delete"),
     /**
      * <code>OPERATE</code>
-     * <p>the Operate delete mode field.</p>
+     * <p>The operate delete mode field.</p>
      */
     OPERATE(3,"operate"),
     ;
 
+    /**
+     * <code>key</code>
+     * {@link java.lang.Integer} <p>The <code>key</code> field.</p>
+     * @see java.lang.Integer
+     */
     private final Integer key;
+    /**
+     * <code>value</code>
+     * {@link java.lang.String} <p>The <code>value</code> field.</p>
+     * @see java.lang.String
+     */
     private final String value;
 
+    /**
+     * <code>DeleteMode</code>
+     * <p>Instantiates a new delete mode.</p>
+     * @param key   {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
+     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @see java.lang.Integer
+     * @see java.lang.String
+     */
     DeleteMode(Integer key, String value) {
         this.key = key;
         this.value = value;
@@ -57,9 +75,9 @@ public enum DeleteMode implements RestValue<Integer,String> {
 
     /**
      * <code>parseKey</code>
-     * <p>the key method.</p>
-     * @param key {@link java.lang.Integer} <p>the key parameter is <code>Integer</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>the key return object is <code>DeleteMode</code> type.</p>
+     * <p>The key method.</p>
+     * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>The key return object is <code>DeleteMode</code> type.</p>
      * @see java.lang.Integer
      * @see com.fasterxml.jackson.annotation.JsonCreator
      */
@@ -71,9 +89,9 @@ public enum DeleteMode implements RestValue<Integer,String> {
 
     /**
      * <code>parseValue</code>
-     * <p>the value method.</p>
-     * @param value {@link java.lang.String} <p>the value parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>the value return object is <code>DeleteMode</code> type.</p>
+     * <p>The value method.</p>
+     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>The value return object is <code>DeleteMode</code> type.</p>
      * @see java.lang.String
      */
     public static DeleteMode parseValue(String value) {

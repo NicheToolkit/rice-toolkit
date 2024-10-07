@@ -15,7 +15,7 @@ public class TableNonExistException extends ServiceErrorException {
 
     /**
      * <code>TableNonExistException</code>
-     * Instantiates a new table non exist exception.
+     * <p>Instantiates a new table non exist exception.</p>
      */
     public TableNonExistException() {
         super(TableErrorStatus.TABLE_NON_EXIST);
@@ -23,8 +23,8 @@ public class TableNonExistException extends ServiceErrorException {
 
     /**
      * <code>TableNonExistException</code>
-     * Instantiates a new table non exist exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new table non exist exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public TableNonExistException(String error) {
@@ -33,9 +33,9 @@ public class TableNonExistException extends ServiceErrorException {
 
     /**
      * <code>TableNonExistException</code>
-     * Instantiates a new table non exist exception.
-     * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
-     * @param error     {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new table non exist exception.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param error     {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public TableNonExistException(String tablename, String error) {

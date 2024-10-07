@@ -15,7 +15,7 @@ public class TableUnknownException extends ServiceErrorException {
 
     /**
      * <code>TableUnknownException</code>
-     * Instantiates a new table unknown exception.
+     * <p>Instantiates a new table unknown exception.</p>
      */
     public TableUnknownException() {
         super(TableErrorStatus.TABLE_UNKNOWN_ERROR);
@@ -23,8 +23,8 @@ public class TableUnknownException extends ServiceErrorException {
 
     /**
      * <code>TableUnknownException</code>
-     * Instantiates a new table unknown exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new table unknown exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public TableUnknownException(String error) {
@@ -33,9 +33,9 @@ public class TableUnknownException extends ServiceErrorException {
 
     /**
      * <code>TableUnknownException</code>
-     * Instantiates a new table unknown exception.
-     * @param tablename {@link java.lang.String} <p>the tablename parameter is <code>String</code> type.</p>
-     * @param error     {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new table unknown exception.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param error     {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public TableUnknownException(String tablename, String error) {

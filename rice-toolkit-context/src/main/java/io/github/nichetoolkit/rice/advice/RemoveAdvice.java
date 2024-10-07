@@ -8,8 +8,8 @@ import java.util.Collection;
 /**
  * <code>RemoveAdvice</code>
  * <p>The type remove advice interface.</p>
- * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>the generic parameter is <code>RestId</code> type.</p>
- * @param <I> {@link java.lang.Object} <p>the parameter can be of any type.</p>
+ * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestId
  * @see java.lang.SuppressWarnings
@@ -20,9 +20,9 @@ public interface RemoveAdvice<E extends RestId<I>, I> {
 
     /**
      * <code>beforeRemove</code>
-     * <p>the remove method.</p>
-     * @param entity E <p>the entity parameter is <code>E</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The remove method.</p>
+     * @param entity E <p>The entity parameter is <code>E</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
     default void beforeRemove(E entity) throws RestException {
@@ -30,9 +30,9 @@ public interface RemoveAdvice<E extends RestId<I>, I> {
 
     /**
      * <code>beforeRemoveAll</code>
-     * <p>the remove all method.</p>
-     * @param entityList {@link java.util.Collection} <p>the entity list parameter is <code>Collection</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The remove all method.</p>
+     * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestException
      */
@@ -44,9 +44,9 @@ public interface RemoveAdvice<E extends RestId<I>, I> {
 
     /**
      * <code>afterRemove</code>
-     * <p>the remove method.</p>
-     * @param entity E <p>the entity parameter is <code>E</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The remove method.</p>
+     * @param entity E <p>The entity parameter is <code>E</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
     default void afterRemove(E entity) throws RestException {
@@ -54,9 +54,9 @@ public interface RemoveAdvice<E extends RestId<I>, I> {
 
     /**
      * <code>afterRemoveAll</code>
-     * <p>the remove all method.</p>
-     * @param entityList {@link java.util.Collection} <p>the entity list parameter is <code>Collection</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>the rest exception is <code>RestException</code> type.</p>
+     * <p>The remove all method.</p>
+     * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestException
      */

@@ -20,10 +20,10 @@ import java.lang.reflect.Constructor;
 public class ModelUtils {
 
     /**
-     * <code>clazzOfModel</code>
-     * <p>the of model method.</p>
-     * @param object {@link java.lang.Object} <p>the object parameter is <code>Object</code> type.</p>
-     * @return {@link java.lang.Class} <p>the of model return object is <code>Class</code> type.</p>
+     * <code>genericType</code>
+     * <p>The type method.</p>
+     * @param object {@link java.lang.Object} <p>The object parameter is <code>Object</code> type.</p>
+     * @return {@link java.lang.Class} <p>The type return object is <code>Class</code> type.</p>
      * @see java.lang.Object
      * @see java.lang.Class
      */
@@ -39,10 +39,10 @@ public class ModelUtils {
 
     /**
      * <code>newInstance</code>
-     * <p>the instance method.</p>
-     * @param <T>   {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @param clazz {@link java.lang.Class} <p>the clazz parameter is <code>Class</code> type.</p>
-     * @return T <p>the instance return object is <code>T</code> type.</p>
+     * <p>The instance method.</p>
+     * @param <T>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param clazz {@link java.lang.Class} <p>The clazz parameter is <code>Class</code> type.</p>
+     * @return T <p>The instance return object is <code>T</code> type.</p>
      * @see java.lang.Class
      */
     public static <T> T newInstance(Class<T> clazz) {
@@ -57,11 +57,11 @@ public class ModelUtils {
 
     /**
      * <code>newInstance</code>
-     * <p>the instance method.</p>
-     * @param <T>   {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @param clazz {@link java.lang.reflect.Constructor} <p>the clazz parameter is <code>Constructor</code> type.</p>
-     * @param args  {@link java.lang.Object} <p>the args parameter is <code>Object</code> type.</p>
-     * @return T <p>the instance return object is <code>T</code> type.</p>
+     * <p>The instance method.</p>
+     * @param <T>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param clazz {@link java.lang.reflect.Constructor} <p>The clazz parameter is <code>Constructor</code> type.</p>
+     * @param args  {@link java.lang.Object} <p>The args parameter is <code>Object</code> type.</p>
+     * @return T <p>The instance return object is <code>T</code> type.</p>
      * @see java.lang.reflect.Constructor
      * @see java.lang.Object
      */
@@ -77,10 +77,10 @@ public class ModelUtils {
 
     /**
      * <code>generate</code>
-     * <p>the method.</p>
-     * @param <I>   {@link java.lang.Object} <p>the parameter can be of any type.</p>
-     * @param model {@link io.github.nichetoolkit.rice.RestId} <p>the model parameter is <code>RestId</code> type.</p>
-     * @return I <p>the return object is <code>I</code> type.</p>
+     * <p>The method.</p>
+     * @param <I>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param model {@link io.github.nichetoolkit.rice.RestId} <p>The model parameter is <code>RestId</code> type.</p>
+     * @return I <p>The return object is <code>I</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestId
      */
     public static <I> I generate(RestId<I> model)  {

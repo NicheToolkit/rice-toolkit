@@ -9,12 +9,17 @@ import io.github.nichetoolkit.rice.RestUserInfo;
  * @since Jdk1.8
  */
 public class RestUserInfoHolder {
+    /**
+     * <code>REST_USER_HOLDER</code>
+     * {@link java.lang.ThreadLocal} <p>The constant <code>REST_USER_HOLDER</code> field.</p>
+     * @see java.lang.ThreadLocal
+     */
     private static final ThreadLocal<RestUserInfo<?>> REST_USER_HOLDER = new ThreadLocal<>();
 
     /**
      * <code>getUser</code>
-     * <p>the user getter method.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestUserInfo} <p>the user return object is <code>RestUserInfo</code> type.</p>
+     * <p>The user getter method.</p>
+     * @return {@link io.github.nichetoolkit.rice.RestUserInfo} <p>The user return object is <code>RestUserInfo</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestUserInfo
      */
     public static RestUserInfo<?> getUser() {
@@ -23,8 +28,8 @@ public class RestUserInfoHolder {
 
     /**
      * <code>setUser</code>
-     * <p>the user setter method.</p>
-     * @param user {@link io.github.nichetoolkit.rice.RestUserInfo} <p>the user parameter is <code>RestUserInfo</code> type.</p>
+     * <p>The user setter method.</p>
+     * @param user {@link io.github.nichetoolkit.rice.RestUserInfo} <p>The user parameter is <code>RestUserInfo</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestUserInfo
      */
     protected static void setUser(RestUserInfo<?> user) {

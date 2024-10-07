@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 /**
  * <code>RestSort</code>
  * <p>The type rest sort class.</p>
- * @param <S> {@link io.github.nichetoolkit.rice.RestSort} <p>the generic parameter is <code>RestSort</code> type.</p>
+ * @param <S> {@link io.github.nichetoolkit.rice.RestSort} <p>The generic parameter is <code>RestSort</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.io.Serializable
  * @see java.lang.SuppressWarnings
@@ -26,28 +26,28 @@ import java.util.stream.Collectors;
 public class RestSort<S extends RestSort<S>> implements Serializable {
     /**
      * <code>name</code>
-     * {@link java.lang.String} <p>the <code>name</code> field.</p>
+     * {@link java.lang.String} <p>The <code>name</code> field.</p>
      * @see java.lang.String
      */
     protected String name;
     /**
      * <code>type</code>
-     * {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>the <code>type</code> field.</p>
+     * {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The <code>type</code> field.</p>
      * @see io.github.nichetoolkit.mybatis.enums.SortType
      */
     protected SortType type = SortType.DESC;
 
     /**
      * <code>RestSort</code>
-     * Instantiates a new rest sort.
+     * <p>Instantiates a new rest sort.</p>
      */
     public RestSort() {
     }
 
     /**
      * <code>RestSort</code>
-     * Instantiates a new rest sort.
-     * @param name {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new rest sort.</p>
+     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public RestSort(String name) {
@@ -56,9 +56,9 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
 
     /**
      * <code>RestSort</code>
-     * Instantiates a new rest sort.
-     * @param name {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
-     * @param type {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>the type parameter is <code>SortType</code> type.</p>
+     * <p>Instantiates a new rest sort.</p>
+     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+     * @param type {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The type parameter is <code>SortType</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.mybatis.enums.SortType
      */
@@ -69,8 +69,8 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
 
     /**
      * <code>RestSort</code>
-     * Instantiates a new rest sort.
-     * @param builder {@link io.github.nichetoolkit.rice.RestSort.Builder} <p>the builder parameter is <code>Builder</code> type.</p>
+     * <p>Instantiates a new rest sort.</p>
+     * @param builder {@link io.github.nichetoolkit.rice.RestSort.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestSort.Builder
      */
     public RestSort(RestSort.Builder<S> builder) {
@@ -80,8 +80,8 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
 
     /**
      * <code>getName</code>
-     * <p>the name getter method.</p>
-     * @return {@link java.lang.String} <p>the name return object is <code>String</code> type.</p>
+     * <p>The name getter method.</p>
+     * @return {@link java.lang.String} <p>The name return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getName() {
@@ -90,8 +90,8 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
 
     /**
      * <code>setName</code>
-     * <p>the name setter method.</p>
-     * @param name {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
+     * <p>The name setter method.</p>
+     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public void setName(String name) {
@@ -100,8 +100,8 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
 
     /**
      * <code>getType</code>
-     * <p>the type getter method.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>the type return object is <code>SortType</code> type.</p>
+     * <p>The type getter method.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The type return object is <code>SortType</code> type.</p>
      * @see io.github.nichetoolkit.mybatis.enums.SortType
      */
     public SortType getType() {
@@ -110,8 +110,8 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
 
     /**
      * <code>setType</code>
-     * <p>the type setter method.</p>
-     * @param type {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>the type parameter is <code>SortType</code> type.</p>
+     * <p>The type setter method.</p>
+     * @param type {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The type parameter is <code>SortType</code> type.</p>
      * @see io.github.nichetoolkit.mybatis.enums.SortType
      */
     public void setType(SortType type) {
@@ -141,9 +141,9 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
 
     /**
      * <code>build</code>
-     * <p>the method.</p>
-     * @param sorts {@link java.lang.String} <p>the sorts parameter is <code>String</code> type.</p>
-     * @return {@link java.util.List} <p>the return object is <code>List</code> type.</p>
+     * <p>The method.</p>
+     * @param sorts {@link java.lang.String} <p>The sorts parameter is <code>String</code> type.</p>
+     * @return {@link java.util.List} <p>The return object is <code>List</code> type.</p>
      * @see java.lang.String
      * @see java.util.List
      */
@@ -156,9 +156,9 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
 
     /**
      * <code>build</code>
-     * <p>the method.</p>
-     * @param sorts {@link java.util.Collection} <p>the sorts parameter is <code>Collection</code> type.</p>
-     * @return {@link java.util.List} <p>the return object is <code>List</code> type.</p>
+     * <p>The method.</p>
+     * @param sorts {@link java.util.Collection} <p>The sorts parameter is <code>Collection</code> type.</p>
+     * @return {@link java.util.List} <p>The return object is <code>List</code> type.</p>
      * @see java.util.Collection
      * @see java.util.List
      */
@@ -172,36 +172,36 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
     /**
      * <code>Builder</code>
      * <p>The type builder class.</p>
-     * @param <S> {@link io.github.nichetoolkit.rice.RestSort} <p>the generic parameter is <code>RestSort</code> type.</p>
+     * @param <S> {@link io.github.nichetoolkit.rice.RestSort} <p>The generic parameter is <code>RestSort</code> type.</p>
      * @author Cyan (snow22314@outlook.com)
      * @since Jdk1.8
      */
     public static class Builder<S extends RestSort<S>> {
         /**
          * <code>name</code>
-         * {@link java.lang.String} <p>the <code>name</code> field.</p>
+         * {@link java.lang.String} <p>The <code>name</code> field.</p>
          * @see java.lang.String
          */
         protected String name;
         /**
          * <code>type</code>
-         * {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>the <code>type</code> field.</p>
+         * {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The <code>type</code> field.</p>
          * @see io.github.nichetoolkit.mybatis.enums.SortType
          */
         protected SortType type = SortType.DESC;
 
         /**
          * <code>Builder</code>
-         * Instantiates a new builder.
+         * <p>Instantiates a new builder.</p>
          */
         public Builder() {
         }
 
         /**
          * <code>name</code>
-         * <p>the method.</p>
-         * @param name {@link java.lang.String} <p>the name parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestSort.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * <p>The method.</p>
+         * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.RestSort.Builder} <p>The return object is <code>Builder</code> type.</p>
          * @see java.lang.String
          */
         public RestSort.Builder<S> name(String name) {
@@ -211,9 +211,9 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
 
         /**
          * <code>type</code>
-         * <p>the method.</p>
-         * @param type {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>the type parameter is <code>SortType</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestSort.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * <p>The method.</p>
+         * @param type {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The type parameter is <code>SortType</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.RestSort.Builder} <p>The return object is <code>Builder</code> type.</p>
          * @see io.github.nichetoolkit.mybatis.enums.SortType
          */
         public RestSort.Builder<S> type(SortType type) {
@@ -223,9 +223,9 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
 
         /**
          * <code>type</code>
-         * <p>the method.</p>
-         * @param type {@link java.lang.String} <p>the type parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestSort.Builder} <p>the return object is <code>Builder</code> type.</p>
+         * <p>The method.</p>
+         * @param type {@link java.lang.String} <p>The type parameter is <code>String</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.RestSort.Builder} <p>The return object is <code>Builder</code> type.</p>
          * @see java.lang.String
          */
         public RestSort.Builder<S> type(String type) {
@@ -235,8 +235,8 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
 
         /**
          * <code>build</code>
-         * <p>the method.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestSort} <p>the return object is <code>RestSort</code> type.</p>
+         * <p>The method.</p>
+         * @return {@link io.github.nichetoolkit.rice.RestSort} <p>The return object is <code>RestSort</code> type.</p>
          */
         public RestSort<S> build() {
             return new RestSort<>(this);

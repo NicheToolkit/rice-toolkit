@@ -13,7 +13,7 @@ public class TokenPermissionException extends TokenErrorException {
 
     /**
      * <code>TokenPermissionException</code>
-     * Instantiates a new token permission exception.
+     * <p>Instantiates a new token permission exception.</p>
      */
     public TokenPermissionException() {
         super(TokenErrorStatus.TOKEN_NO_PERMISSION);
@@ -21,8 +21,8 @@ public class TokenPermissionException extends TokenErrorException {
 
     /**
      * <code>TokenPermissionException</code>
-     * Instantiates a new token permission exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new token permission exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public TokenPermissionException(String error) {
@@ -31,9 +31,9 @@ public class TokenPermissionException extends TokenErrorException {
 
     /**
      * <code>TokenPermissionException</code>
-     * Instantiates a new token permission exception.
-     * @param permission {@link java.lang.String} <p>the permission parameter is <code>String</code> type.</p>
-     * @param error      {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new token permission exception.</p>
+     * @param permission {@link java.lang.String} <p>The permission parameter is <code>String</code> type.</p>
+     * @param error      {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public TokenPermissionException(String permission, String error) {

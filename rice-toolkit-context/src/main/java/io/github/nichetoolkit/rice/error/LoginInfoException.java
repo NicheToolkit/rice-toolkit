@@ -12,7 +12,7 @@ import io.github.nichetoolkit.rest.error.natives.LoginErrorException;
 public class LoginInfoException extends LoginErrorException {
     /**
      * <code>LoginInfoException</code>
-     * Instantiates a new login info exception.
+     * <p>Instantiates a new login info exception.</p>
      */
     public LoginInfoException() {
         super(LoginErrorStatus.LOGIN_INFO_ERROR);
@@ -20,8 +20,8 @@ public class LoginInfoException extends LoginErrorException {
 
     /**
      * <code>LoginInfoException</code>
-     * Instantiates a new login info exception.
-     * @param error {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new login info exception.</p>
+     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public LoginInfoException(String error) {
@@ -30,9 +30,9 @@ public class LoginInfoException extends LoginErrorException {
 
     /**
      * <code>LoginInfoException</code>
-     * Instantiates a new login info exception.
-     * @param service {@link java.lang.String} <p>the service parameter is <code>String</code> type.</p>
-     * @param error   {@link java.lang.String} <p>the error parameter is <code>String</code> type.</p>
+     * <p>Instantiates a new login info exception.</p>
+     * @param service {@link java.lang.String} <p>The service parameter is <code>String</code> type.</p>
+     * @param error   {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public LoginInfoException(String service, String error) {
