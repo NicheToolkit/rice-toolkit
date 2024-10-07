@@ -56,6 +56,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     @Override
     public void afterPropertiesSet() throws Exception {
         ServiceHolder.initOfService();
+        ServiceHolder.initOfServiceIntend();
         this.simpleName = this.getClass().getSimpleName();
         String commonName = ServiceHolder.nameOfCommon(this.simpleName);
         String camelName = GeneralUtils.camelCase(commonName);

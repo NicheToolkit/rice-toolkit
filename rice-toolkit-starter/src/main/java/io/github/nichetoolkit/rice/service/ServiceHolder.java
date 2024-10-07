@@ -1,8 +1,11 @@
 package io.github.nichetoolkit.rice.service;
 
+import io.github.nichetoolkit.rest.holder.ApplicationContextHolder;
+import io.github.nichetoolkit.rest.holder.BeanDefinitionRegistryHolder;
 import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestId;
+import io.github.nichetoolkit.rice.RestServiceIntend;
 import io.github.nichetoolkit.rice.configure.RiceServiceProperties;
 import io.github.nichetoolkit.rice.enums.DeleteMode;
 import io.github.nichetoolkit.rice.enums.RemoveMode;
@@ -10,7 +13,10 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.mapper.SuperMapper;
 import io.github.nichetoolkit.rice.stereotype.RestService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.support.SpringFactoriesLoader;
 import org.springframework.lang.NonNull;
+
+import java.util.List;
 
 @Slf4j
 public class ServiceHolder {
@@ -22,8 +28,26 @@ public class ServiceHolder {
     private static RiceServiceProperties serviceProperties;
 
     static void initOfService() {
-        serviceProperties = BeanUtils.beanOfType(RiceServiceProperties.class);
-        log.debug("The service holder has be initiated");
+        if (GeneralUtils.isEmpty(serviceProperties)) {
+            serviceProperties = BeanUtils.beanOfType(RiceServiceProperties.class);
+            log.debug("The service holder has be initiated");
+        }
+    }
+
+    @SuppressWarnings("rawtypes")
+    static void initOfServiceIntend() {
+        List<RestServiceIntend> serviceIntends = ApplicationContextHolder.beansOfType(RestServiceIntend.class);
+        if (GeneralUtils.isEmpty(serviceIntends)) {
+            serviceIntends = SpringFactoriesLoader.loadFactories(RestServiceIntend.class, null);
+            if (GeneralUtils.isNotEmpty(serviceIntends)) {
+                for (RestServiceIntend<?> serviceIntend : serviceIntends) {
+                    String beanName = serviceIntend.beanName();
+                    Class<?> beanType = serviceIntend.beanType();
+                    BeanDefinitionRegistryHolder.registerBeanDefinition(beanName, beanType);
+                }
+                log.debug("There are {} service intend beans has be initiated.", serviceIntends.size());
+            }
+        }
     }
 
     static String nameOfCommon(String simpleName) {
