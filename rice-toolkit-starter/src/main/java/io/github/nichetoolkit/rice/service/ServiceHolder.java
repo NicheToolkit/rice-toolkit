@@ -94,6 +94,7 @@ public class ServiceHolder {
             Class<? extends RestServiceIntend> beanType = serviceIntend.beanType();
             serviceIntend = BeanDefinitionRegistryHolder.registerRootBeanDefinition(serviceIntend.beanName(), serviceIntend.beanType(), serviceIntend.beanScope());
             ListableBeanFactoryHolder.autowireBeanProperties(serviceIntend);
+            serviceIntend.afterAutowirePropertiesSet();
         }
         log.debug("There are {} service intend beans has be initiated.", serviceIntends.size());
     }

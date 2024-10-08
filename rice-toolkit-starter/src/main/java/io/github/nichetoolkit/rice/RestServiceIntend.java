@@ -20,6 +20,13 @@ public interface RestServiceIntend<B extends RestServiceIntend<B>> extends Initi
     
     @Override
     default void afterPropertiesSet() throws Exception {
+    }
+
+    /**
+     * <code>afterAutowirePropertiesSet</code>
+     * <p>The autowire properties set method.</p>
+     */
+    default void afterAutowirePropertiesSet() {
         LoggerUtils.debug("The service intend bean of [{}] type for named '{}' has be initiated.", beanType().getName(), beanName());
     }
 
