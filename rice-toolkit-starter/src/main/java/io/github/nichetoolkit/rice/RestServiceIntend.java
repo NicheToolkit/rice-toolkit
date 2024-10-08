@@ -5,6 +5,7 @@ import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.LoggerUtils;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.config.BeanDefinition;
 
 /**
  * <code>RestServiceIntend</code>
@@ -16,9 +17,20 @@ import org.springframework.beans.factory.InitializingBean;
  */
 public interface RestServiceIntend<B extends RestServiceIntend<B>> extends InitializingBean {
 
+    
     @Override
     default void afterPropertiesSet() throws Exception {
         LoggerUtils.debug("The service intend bean of [{}] type for named '{}' has be initiated.", beanType().getName(), beanName());
+    }
+
+    /**
+     * <code>beanScope</code>
+     * <p>The scope method.</p>
+     * @return {@link java.lang.String} <p>The scope return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     */
+    default String beanScope() {
+        return BeanDefinition.SCOPE_SINGLETON;
     }
 
     /**

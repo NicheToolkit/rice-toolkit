@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.holder.ApplicationContextHolder;
 import io.github.nichetoolkit.rest.holder.BeanDefinitionRegistryHolder;
+import io.github.nichetoolkit.rest.holder.ListableBeanFactoryHolder;
 import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestId;
@@ -46,21 +47,26 @@ public class ServiceHolder {
      * @see java.lang.String
      */
     public static String MAPPER_SUFFIX = "Mapper";
+    /**
+     * <code>IS_HAS_INIT_OF_SERVICE_INTEND</code>
+     * <p>The <code>IS_HAS_INIT_OF_SERVICE_INTEND</code> field.</p>
+     */
+    static boolean IS_HAS_INIT_OF_SERVICE_INTEND = false;
 
     /**
-     * <code>serviceProperties</code>
-     * {@link io.github.nichetoolkit.rice.configure.RiceServiceProperties} <p>The constant <code>serviceProperties</code> field.</p>
+     * <code>SERVICE_PROPERTIES</code>
+     * {@link io.github.nichetoolkit.rice.configure.RiceServiceProperties} <p>The constant <code>SERVICE_PROPERTIES</code> field.</p>
      * @see io.github.nichetoolkit.rice.configure.RiceServiceProperties
      */
-    private static RiceServiceProperties serviceProperties;
+    private static RiceServiceProperties SERVICE_PROPERTIES;
 
     /**
      * <code>initOfService</code>
      * <p>The of service method.</p>
      */
     static void initOfService() {
-        if (GeneralUtils.isEmpty(serviceProperties)) {
-            serviceProperties = BeanUtils.beanOfType(RiceServiceProperties.class);
+        if (GeneralUtils.isEmpty(SERVICE_PROPERTIES)) {
+            SERVICE_PROPERTIES = BeanUtils.beanOfType(RiceServiceProperties.class);
             log.debug("The service holder has be initiated");
         }
     }
@@ -72,18 +78,24 @@ public class ServiceHolder {
      */
     @SuppressWarnings("rawtypes")
     static void initOfServiceIntend() {
-        List<RestServiceIntend> serviceIntends = ApplicationContextHolder.beansOfType(RestServiceIntend.class);
-        if (GeneralUtils.isEmpty(serviceIntends)) {
-            serviceIntends = SpringFactoriesLoader.loadFactories(RestServiceIntend.class, null);
-            if (GeneralUtils.isNotEmpty(serviceIntends)) {
-                for (RestServiceIntend<?> serviceIntend : serviceIntends) {
-                    String beanName = serviceIntend.beanName();
-                    Class<?> beanType = serviceIntend.beanType();
-                    BeanDefinitionRegistryHolder.registerBeanDefinition(beanName, beanType);
-                }
-                log.debug("There are {} service intend beans has be initiated.", serviceIntends.size());
-            }
+        if (IS_HAS_INIT_OF_SERVICE_INTEND) {
+            return;
         }
+        IS_HAS_INIT_OF_SERVICE_INTEND = true;
+        List<RestServiceIntend> serviceIntends = ApplicationContextHolder.beansOfType(RestServiceIntend.class);
+        if (GeneralUtils.isNotEmpty(serviceIntends)) {
+            return;
+        }
+        serviceIntends = SpringFactoriesLoader.loadFactories(RestServiceIntend.class, null);
+        if (GeneralUtils.isEmpty(serviceIntends)) {
+            return;
+        }
+        for (RestServiceIntend<?> serviceIntend : serviceIntends) {
+            Class<? extends RestServiceIntend> beanType = serviceIntend.beanType();
+            serviceIntend = BeanDefinitionRegistryHolder.registerRootBeanDefinition(serviceIntend.beanName(), serviceIntend.beanType(), serviceIntend.beanScope());
+            ListableBeanFactoryHolder.autowireBeanProperties(serviceIntend);
+        }
+        log.debug("There are {} service intend beans has be initiated.", serviceIntends.size());
     }
 
     /**
@@ -121,7 +133,7 @@ public class ServiceHolder {
      * @see io.github.nichetoolkit.rice.mapper.SuperMapper
      * @see java.lang.SuppressWarnings
      */
-    @SuppressWarnings({"unchecked","rawtypes"})
+    @SuppressWarnings({"unchecked", "rawtypes"})
     static <M extends RestId<I>, E extends RestId<I>, F extends IdFilter<I, K>, I, K> SuperMapper<E, I>
     findSuperMapper(Class<? extends SuperService> serviceType) {
         String simpleName = serviceType.getSimpleName();
@@ -155,7 +167,7 @@ public class ServiceHolder {
      */
     @NonNull
     public static RiceServiceProperties serviceProperties() {
-        return serviceProperties;
+        return SERVICE_PROPERTIES;
     }
 
     /**
@@ -164,7 +176,7 @@ public class ServiceHolder {
      * @return boolean <p>The of invade return object is <code>boolean</code> type.</p>
      */
     public static boolean identityOfInvade() {
-        return serviceProperties.getIdentityInvade();
+        return SERVICE_PROPERTIES.getIdentityInvade();
     }
 
     /**
@@ -173,7 +185,7 @@ public class ServiceHolder {
      * @return boolean <p>The of check return object is <code>boolean</code> type.</p>
      */
     public static boolean identityOfCheck() {
-        return serviceProperties.getIdentityCheck();
+        return SERVICE_PROPERTIES.getIdentityCheck();
     }
 
     /**
@@ -182,7 +194,7 @@ public class ServiceHolder {
      * @return boolean <p>The of nonnull return object is <code>boolean</code> type.</p>
      */
     public static boolean nameOfNonnull() {
-        return serviceProperties.getNonnullName();
+        return SERVICE_PROPERTIES.getNonnullName();
     }
 
     /**
@@ -191,7 +203,7 @@ public class ServiceHolder {
      * @return boolean <p>The of unique return object is <code>boolean</code> type.</p>
      */
     public static boolean nameOfUnique() {
-        return serviceProperties.getUniqueName();
+        return SERVICE_PROPERTIES.getUniqueName();
     }
 
     /**
@@ -200,7 +212,7 @@ public class ServiceHolder {
      * @return boolean <p>The of unique return object is <code>boolean</code> type.</p>
      */
     public static boolean modelOfUnique() {
-        return serviceProperties.getUniqueModel();
+        return SERVICE_PROPERTIES.getUniqueModel();
     }
 
     /**
@@ -209,7 +221,7 @@ public class ServiceHolder {
      * @return boolean <p>The of table return object is <code>boolean</code> type.</p>
      */
     public static boolean dynamicOfTable() {
-        return serviceProperties.getDynamicTable();
+        return SERVICE_PROPERTIES.getDynamicTable();
     }
 
     /**
@@ -219,7 +231,7 @@ public class ServiceHolder {
      * @see io.github.nichetoolkit.rice.enums.DeleteMode
      */
     public static DeleteMode deleteMode() {
-        return serviceProperties.getDeleteMode();
+        return SERVICE_PROPERTIES.getDeleteMode();
     }
 
     /**
@@ -229,7 +241,7 @@ public class ServiceHolder {
      * @see io.github.nichetoolkit.rice.enums.RemoveMode
      */
     public static RemoveMode removeMode() {
-        return serviceProperties.getRemoveMode();
+        return SERVICE_PROPERTIES.getRemoveMode();
     }
 
     /**
@@ -238,7 +250,7 @@ public class ServiceHolder {
      * @return boolean <p>The of before return object is <code>boolean</code> type.</p>
      */
     public static boolean skipOfBefore() {
-        return serviceProperties.skipOfBefore();
+        return SERVICE_PROPERTIES.skipOfBefore();
     }
 
     /**
@@ -247,7 +259,7 @@ public class ServiceHolder {
      * @return boolean <p>The of after return object is <code>boolean</code> type.</p>
      */
     public static boolean skipOfAfter() {
-        return serviceProperties.skipOfAfter();
+        return SERVICE_PROPERTIES.skipOfAfter();
     }
 
     /**
@@ -257,7 +269,7 @@ public class ServiceHolder {
      * @see java.lang.Boolean
      */
     public static Boolean judgeOfAccurate() {
-        return serviceProperties.judgeOfAccurate();
+        return SERVICE_PROPERTIES.judgeOfAccurate();
     }
 
     /**
@@ -266,7 +278,7 @@ public class ServiceHolder {
      * @return boolean <p>The of boolean return object is <code>boolean</code> type.</p>
      */
     public static boolean signOfBoolean() {
-        return serviceProperties.signOfBoolean();
+        return SERVICE_PROPERTIES.signOfBoolean();
     }
 
     /**
@@ -275,7 +287,7 @@ public class ServiceHolder {
      * @return boolean <p>The of boolean return object is <code>boolean</code> type.</p>
      */
     public static boolean valueOfBoolean() {
-        return serviceProperties.valueOfBoolean();
+        return SERVICE_PROPERTIES.valueOfBoolean();
     }
 
     /**
@@ -284,7 +296,7 @@ public class ServiceHolder {
      * @return int <p>The of number return object is <code>int</code> type.</p>
      */
     public static int signOfNumber() {
-        return serviceProperties.signOfNumber();
+        return SERVICE_PROPERTIES.signOfNumber();
     }
 
     /**
@@ -293,7 +305,7 @@ public class ServiceHolder {
      * @return int <p>The of number return object is <code>int</code> type.</p>
      */
     public static int valueOfNumber() {
-        return serviceProperties.valueOfNumber();
+        return SERVICE_PROPERTIES.valueOfNumber();
     }
 
     /**
@@ -303,7 +315,7 @@ public class ServiceHolder {
      * @see java.lang.String
      */
     public static String signOfLogic() {
-        return RemoveMode.sign(removeMode(),  signOfBoolean(), signOfNumber());
+        return RemoveMode.sign(removeMode(), signOfBoolean(), signOfNumber());
     }
 
     /**
@@ -322,7 +334,7 @@ public class ServiceHolder {
      * @return int <p>The of query return object is <code>int</code> type.</p>
      */
     public static int partitionOfQuery() {
-        return serviceProperties.partitionOfQuery();
+        return SERVICE_PROPERTIES.partitionOfQuery();
     }
 
     /**
@@ -331,7 +343,7 @@ public class ServiceHolder {
      * @return int <p>The of save return object is <code>int</code> type.</p>
      */
     public static int partitionOfSave() {
-        return serviceProperties.partitionOfSave();
+        return SERVICE_PROPERTIES.partitionOfSave();
     }
 
     /**
@@ -340,6 +352,6 @@ public class ServiceHolder {
      * @return int <p>The of delete return object is <code>int</code> type.</p>
      */
     public static int partitionOfDelete() {
-        return serviceProperties.partitionOfDelete();
+        return SERVICE_PROPERTIES.partitionOfDelete();
     }
 }
