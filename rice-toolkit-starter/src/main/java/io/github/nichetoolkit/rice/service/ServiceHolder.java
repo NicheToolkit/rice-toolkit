@@ -6,7 +6,7 @@ import io.github.nichetoolkit.rest.holder.ListableBeanFactoryHolder;
 import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestId;
-import io.github.nichetoolkit.rice.RestServiceIntend;
+import io.github.nichetoolkit.rice.DefaultServiceIntend;
 import io.github.nichetoolkit.rice.configure.RiceServiceProperties;
 import io.github.nichetoolkit.rice.enums.DeleteMode;
 import io.github.nichetoolkit.rice.enums.RemoveMode;
@@ -82,16 +82,16 @@ public class ServiceHolder  {
             return;
         }
         IS_HAS_INIT_OF_SERVICE_INTEND = true;
-        List<RestServiceIntend> serviceIntends = ApplicationContextHolder.beansOfType(RestServiceIntend.class);
+        List<DefaultServiceIntend> serviceIntends = ApplicationContextHolder.beansOfType(DefaultServiceIntend.class);
         if (GeneralUtils.isNotEmpty(serviceIntends)) {
             return;
         }
-        serviceIntends = SpringFactoriesLoader.loadFactories(RestServiceIntend.class, null);
+        serviceIntends = SpringFactoriesLoader.loadFactories(DefaultServiceIntend.class, null);
         if (GeneralUtils.isEmpty(serviceIntends)) {
             return;
         }
-        for (RestServiceIntend<?> serviceIntend : serviceIntends) {
-            Class<? extends RestServiceIntend> beanType = serviceIntend.beanType();
+        for (DefaultServiceIntend<?> serviceIntend : serviceIntends) {
+            Class<? extends DefaultServiceIntend> beanType = serviceIntend.beanType();
             serviceIntend = BeanDefinitionRegistryHolder.registerRootBeanDefinition(serviceIntend.beanName(), serviceIntend.beanType(), serviceIntend.beanScope());
             ListableBeanFactoryHolder.autowireBeanProperties(serviceIntend);
             serviceIntend.afterAutowirePropertiesSet();

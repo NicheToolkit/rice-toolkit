@@ -10,15 +10,15 @@ import org.springframework.beans.factory.config.BeanDefinition;
 /**
  * <code>RestServiceIntend</code>
  * <p>The type rest service intend interface.</p>
- * @param <B> {@link io.github.nichetoolkit.rice.RestServiceIntend} <p>The generic parameter is <code>RestServiceIntend</code> type.</p>
+ * @param <B> {@link DefaultServiceIntend} <p>The generic parameter is <code>RestServiceIntend</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.beans.factory.InitializingBean
  * @since Jdk1.8
  */
-public interface RestServiceIntend<B extends RestServiceIntend<B>> extends InitializingBean {
+public interface DefaultServiceIntend<B extends DefaultServiceIntend<B>> extends InitializingBean {
 
     @Override
-    default void afterPropertiesSet() throws Exception {
+    default void afterPropertiesSet() {
     }
 
     /**
@@ -74,16 +74,16 @@ public interface RestServiceIntend<B extends RestServiceIntend<B>> extends Initi
     /**
      * <code>beanType</code>
      * <p>The type method.</p>
-     * @param <B>   {@link io.github.nichetoolkit.rice.RestServiceIntend} <p>The generic parameter is <code>RestServiceIntend</code> type.</p>
+     * @param <B>   {@link DefaultServiceIntend} <p>The generic parameter is <code>RestServiceIntend</code> type.</p>
      * @param clazz {@link java.lang.Class} <p>The clazz parameter is <code>Class</code> type.</p>
      * @return {@link java.lang.Class} <p>The type return object is <code>Class</code> type.</p>
      * @see java.lang.Class
      * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings(value = "unchecked")
-    static <B extends RestServiceIntend<B>> Class<B> beanType(Class<?> clazz) {
+    static <B extends DefaultServiceIntend<B>> Class<B> beanType(Class<?> clazz) {
         return (Class<B>) RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
-                RestServiceIntend.class.getTypeParameters()[0], clazz, RestServiceIntend.class));
+                DefaultServiceIntend.class.getTypeParameters()[0], clazz, DefaultServiceIntend.class));
     }
 
 }
