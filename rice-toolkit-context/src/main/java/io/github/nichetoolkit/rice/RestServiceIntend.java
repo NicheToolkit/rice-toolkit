@@ -17,7 +17,6 @@ import org.springframework.beans.factory.config.BeanDefinition;
  */
 public interface RestServiceIntend<B extends RestServiceIntend<B>> extends InitializingBean {
 
-    
     @Override
     default void afterPropertiesSet() throws Exception {
     }

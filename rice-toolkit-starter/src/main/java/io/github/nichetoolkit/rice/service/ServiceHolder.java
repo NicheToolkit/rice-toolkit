@@ -27,7 +27,7 @@ import java.util.List;
  * @since Jdk1.8
  */
 @Slf4j
-public class ServiceHolder {
+public class ServiceHolder  {
 
     /**
      * <code>SERVICE_IMPL_SUFFIX</code>
