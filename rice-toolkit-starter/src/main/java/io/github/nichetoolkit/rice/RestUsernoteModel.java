@@ -18,8 +18,9 @@ import io.github.nichetoolkit.rice.pack.IdPack;
 import io.github.nichetoolkit.rice.pack.IdsPack;
 import io.github.nichetoolkit.rice.pack.UserInfoPack;
 import io.github.nichetoolkit.rice.pack.UserLoginPack;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
@@ -34,13 +35,15 @@ import java.util.stream.Collectors;
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestIdModel
  * @see io.github.nichetoolkit.rice.RestIdEntity
- * @see lombok.Data
+ * @see lombok.Setter
+ * @see lombok.Getter
  * @see lombok.EqualsAndHashCode
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
-@Data
+@Setter
+@Getter
 @EqualsAndHashCode(callSuper = true)
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

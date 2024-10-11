@@ -2,7 +2,8 @@ package io.github.nichetoolkit.rice.configure;
 
 import io.github.nichetoolkit.rice.enums.DeleteMode;
 import io.github.nichetoolkit.rice.enums.RemoveMode;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.stereotype.Component;
@@ -11,12 +12,14 @@ import org.springframework.stereotype.Component;
  * <code>RiceServiceProperties</code>
  * <p>The type rice service properties class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see lombok.Data
+ * @see lombok.Setter
+ * @see lombok.Getter
  * @see org.springframework.stereotype.Component
  * @see org.springframework.boot.context.properties.ConfigurationProperties
  * @since Jdk1.8
  */
-@Data
+@Setter
+@Getter
 @Component
 @ConfigurationProperties(prefix = "nichetoolkit.rice.service")
 public class RiceServiceProperties {
@@ -121,10 +124,12 @@ public class RiceServiceProperties {
      * <code>ServicePartition</code>
      * <p>The type service partition class.</p>
      * @author Cyan (snow22314@outlook.com)
-     * @see lombok.Data
+     * @see lombok.Setter
+     * @see lombok.Getter
      * @since Jdk1.8
      */
-    @Data
+    @Setter
+    @Getter
     public static class ServicePartition {
         /**
          * <code>querySize</code>
@@ -200,10 +205,12 @@ public class RiceServiceProperties {
      * <code>ServiceDelete</code>
      * <p>The type service delete class.</p>
      * @author Cyan (snow22314@outlook.com)
-     * @see lombok.Data
+     * @see lombok.Setter
+     * @see lombok.Getter
      * @since Jdk1.8
      */
-    @Data
+    @Setter
+    @Getter
     public static class ServiceDelete {
         /**
          * <code>beforeSkip</code>

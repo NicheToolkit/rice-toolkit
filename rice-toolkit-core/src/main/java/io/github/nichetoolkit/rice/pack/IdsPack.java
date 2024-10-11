@@ -2,7 +2,8 @@ package io.github.nichetoolkit.rice.pack;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -11,12 +12,14 @@ import java.io.Serializable;
  * <p>The type ids pack class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.io.Serializable
- * @see lombok.Data
+ * @see lombok.Setter
+ * @see lombok.Getter
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
-@Data
+@Setter
+@Getter
 @JsonInclude(value= JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class IdsPack implements Serializable {

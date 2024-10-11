@@ -12,8 +12,9 @@ import io.github.nichetoolkit.rice.jsonb.ContainRule;
 import io.github.nichetoolkit.rice.jsonb.ContrastRule;
 import io.github.nichetoolkit.rice.jsonb.EqualRule;
 import io.github.nichetoolkit.rice.jsonb.RangeRule;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import java.util.*;
@@ -26,14 +27,16 @@ import java.util.*;
  * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.filter.JsonbFilter
- * @see lombok.Data
+ * @see lombok.Setter
+ * @see lombok.Getter
  * @see lombok.EqualsAndHashCode
  * @see java.lang.SuppressWarnings
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
-@Data
+@Setter
+@Getter
 @EqualsAndHashCode(callSuper = false)
 @SuppressWarnings({"WeakerAccess", "unchecked", "MixedMutabilityReturnType"})
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
