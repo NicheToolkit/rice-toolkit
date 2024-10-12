@@ -9,6 +9,7 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.mapper.InfoMapper;
 import io.github.nichetoolkit.rice.mapper.natives.FindLoadMapper;
 import io.github.nichetoolkit.rice.mapper.natives.NameLoadMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 
 import java.lang.reflect.Method;
@@ -30,6 +31,7 @@ import java.util.List;
  * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
+@Slf4j
 @SuppressWarnings("RedundantThrows")
 public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, F extends IdFilter<I, K>, I, K> extends SuperService<M, E, F, I, K> {
 
@@ -43,7 +45,7 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
     @Override
     protected void optionalName(@NonNull M model) throws RestException {
         if (isNameOfNonnull()) {
-            OptionalUtils.ofFieldNull(model.getName(), "the name can not be null！");
+            OptionalUtils.ofFieldNull(model.getName(), "The name can not be null！",log);
         }
     }
 
@@ -57,7 +59,7 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
      * @see io.github.nichetoolkit.rest.RestException
      */
     protected void fieldRepeat(Boolean existByModel, M model) throws RestException {
-        OptionalUtils.ofFieldRepeat(existByModel, JsonUtils.parseJson(model));
+        OptionalUtils.ofFieldRepeat(existByModel, JsonUtils.parseJson(model),log);
     }
 
     @Override
@@ -68,7 +70,7 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
                 fieldRepeat(existByModel, model);
             } else if (isNameOfUnique()) {
                 Boolean existByName = existByName(tablekey, model);
-                OptionalUtils.ofNameRepeat(existByName, model.getName());
+                OptionalUtils.ofNameRepeat(existByName, model.getName(),log);
             }
 
         };
@@ -78,7 +80,7 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
                 fieldRepeat(existByModel, model);
             } else if (isNameOfUnique()) {
                 Boolean existByName = existByNameAndNotId(tablekey, model, model.getId());
-                OptionalUtils.ofNameRepeat(existByName, model.getName());
+                OptionalUtils.ofNameRepeat(existByName, model.getName(),log);
             }
         };
         if (super.superMapper instanceof InfoMapper) {

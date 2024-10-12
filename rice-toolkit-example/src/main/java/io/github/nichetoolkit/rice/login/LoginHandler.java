@@ -128,7 +128,7 @@ public class LoginHandler implements LoginAdvice {
             return false;
         }
         UserModel user = tokenService.resolveUserInfo(httpRequest);
-        OptionalUtils.ofNull(user, TokenPermissionException::new);
+        OptionalUtils.ofNull(user, log, TokenPermissionException::new);
         return true;
     }
 

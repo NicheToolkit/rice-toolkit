@@ -116,8 +116,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         String commonName = ServiceHolder.nameOfCommon(this.simpleName);
         String camelName = GeneralUtils.camelCase(commonName);
         this.superMapper = ServiceHolder.findSuperMapper(this.getClass());
-        String message ="the service and mapper name must be like 'xxxService'/'xxxServiceImpl' and 'xxxMapper'.";
-        OptionalUtils.ofNullException(this.superMapper,message,this.simpleName,ServiceUnknownException::new);
+        String message = "the service and mapper name must be like 'xxxService'/'xxxServiceImpl' and 'xxxMapper'.";
+        OptionalUtils.ofNullException(this.superMapper, message, this.simpleName, log, ServiceUnknownException::new);
         this.afterSuperHandle();
     }
 
@@ -369,7 +369,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see io.github.nichetoolkit.rest.RestException
      */
     private void optionalUpdate(K tablekey, @NonNull M model) throws RestException {
-        OptionalUtils.ofIdEmpty(model.getId());
+        OptionalUtils.ofIdEmpty(model.getId(), log);
         optionalDynamicTable(tablekey, model);
         updateActuator().actuate(tablekey, model);
     }
@@ -844,7 +844,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                 exist = existById(model.getId());
             }
             String message = "the data no found，id: " + model.getId();
-            OptionalUtils.ofFalse(exist, message, "id", DataQueryException::new);
+            OptionalUtils.ofFalse(exist, message, "id", log, DataQueryException::new);
         }
         optional(model);
         if (updateActuator != null) {
@@ -879,7 +879,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                 invadeActuator().actuate(tablekey, model);
             } else {
                 String message = "the data no found，id: " + model.getId();
-                OptionalUtils.ofFalse(exist, message, "id", DataQueryException::new);
+                OptionalUtils.ofFalse(exist, message, "id", log, DataQueryException::new);
                 optional(model);
                 if (updateActuator != null) {
                     updateActuator.actuate(tablekey, model);
@@ -1239,7 +1239,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         this.beforeCreate(model);
         Integer result = single(tablekey, model, idArray);
         String message = "creating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
-        OptionalUtils.ofCreate(result, message, simpleName);
+        OptionalUtils.ofCreate(result, message, simpleName, log);
         this.afterCreate(model);
         this.refresh();
         return model;
@@ -1282,7 +1282,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         this.beforeUpdate(model);
         Integer result = single(tablekey, model, idArray);
         String message = "updating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
-        OptionalUtils.ofUpdate(result, message, simpleName);
+        OptionalUtils.ofUpdate(result, message, simpleName, log);
         this.afterUpdate(model);
         this.refresh();
         return model;
@@ -1325,7 +1325,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         this.beforeSave(model);
         Integer result = single(tablekey, model, idArray);
         String message = "saving method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
-        OptionalUtils.ofSave(result, message, simpleName);
+        OptionalUtils.ofSave(result, message, simpleName, log);
         this.afterSave(model);
         this.refresh();
         return model;
@@ -1412,7 +1412,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
         Boolean present = modelList.size() == result;
         String message = "saveAll method has error with " + simpleName + ": " + JsonUtils.parseJson(modelList);
-        OptionalUtils.ofSaveAll(present, message, simpleName);
+        OptionalUtils.ofSaveAll(present, message, simpleName, log);
         this.afterSaveAll(modelList);
         this.refresh();
         return new ArrayList<>(modelList);

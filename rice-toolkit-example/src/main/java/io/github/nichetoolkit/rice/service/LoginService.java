@@ -72,7 +72,7 @@ public class LoginService {
         String token = loginRequest.getToken();
         UserModel localUser = tokenService.resolveUserInfo(token);
         String userId = localUser.getId();
-        OptionalUtils.ofFalse(GeneralUtils.isNotEmpty(userId), TokenInvalidException::new);
+        OptionalUtils.ofFalse(GeneralUtils.isNotEmpty(userId), log, TokenInvalidException::new);
         return localUser;
     }
 
@@ -89,15 +89,15 @@ public class LoginService {
     public UserModel loginWithPassword(LoginRequest loginRequest) throws RestException {
         String account = loginRequest.getAccount();
         String password = loginRequest.getPassword();
-        OptionalUtils.ofFalse(GeneralUtils.isNotEmpty(account) && GeneralUtils.isNotEmpty(password), LoginInfoException::new);
+        OptionalUtils.ofFalse(GeneralUtils.isNotEmpty(account) && GeneralUtils.isNotEmpty(password), log,LoginInfoException::new);
         List<UserModel> modelList = userService.queryByName(account);
-        OptionalUtils.ofFalse(GeneralUtils.isNotEmpty(modelList), LoginInfoException::new);
+        OptionalUtils.ofFalse(GeneralUtils.isNotEmpty(modelList), log, LoginInfoException::new);
         Optional<UserModel> firstOptional = modelList.stream().findFirst();
         UserModel localUser = firstOptional.orElseThrow(LoginInfoException::new);
         String localPassword = localUser.getPassword();
         if (GeneralUtils.isNotEmpty(localPassword)) {
             String encryptPassword = ShaWorker.encrypts(password);
-            OptionalUtils.ofFalse(encryptPassword.equals(localPassword), LoginPasswordException::new);
+            OptionalUtils.ofFalse(encryptPassword.equals(localPassword), log, LoginPasswordException::new);
         }
         return localUser;
     }

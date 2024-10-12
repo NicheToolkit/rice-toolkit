@@ -86,7 +86,7 @@ public class TokenService implements RestTokenResolver<UserModel, LoginResult> {
 
     @Override
     public UserModel resolveUserInfo(String token) throws RestException {
-        OptionalUtils.ofEmpty(token, TokenInvalidException::new);
+        OptionalUtils.ofEmpty(token, log,TokenInvalidException::new);
         JWT jwt;
         try {
             jwt = JwtWorker.parse(token);
@@ -96,10 +96,10 @@ public class TokenService implements RestTokenResolver<UserModel, LoginResult> {
         Map<String, Object> context = jwt.getRawClaims();
         String userId = String.valueOf(context.get(UserModel.LOGIN_USER_ID));
         String username = jwt.subject;
-        OptionalUtils.ofFalse(GeneralUtils.isNotEmpty(userId) && GeneralUtils.isNotEmpty(username) && username.equals(userId),TokenInvalidException::new);
+        OptionalUtils.ofFalse(GeneralUtils.isNotEmpty(userId) && GeneralUtils.isNotEmpty(username) && username.equals(userId),log,TokenInvalidException::new);
         String userJson = redisTemplate.opsForValue().get(UserModel.LOGIN_TOKEN + userId);
         UserModel localUser = JsonUtils.parseBean(userJson,UserModel.class);
-        OptionalUtils.ofFalse(GeneralUtils.isNotEmpty(userJson) && GeneralUtils.isNotEmpty(localUser),TokenInvalidException::new);
+        OptionalUtils.ofFalse(GeneralUtils.isNotEmpty(userJson) && GeneralUtils.isNotEmpty(localUser),log,TokenInvalidException::new);
         context.put(UserModel.LOGIN_USER_INFO, userJson);
         return localUser;
     }

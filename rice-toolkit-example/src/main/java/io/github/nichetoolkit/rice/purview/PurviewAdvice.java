@@ -81,7 +81,7 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
         if (GeneralUtils.isNotEmpty(purviewKeys)) {
             RestOptional.ofEmptyable(purviewType).emptyElseThrow(TokenPermissionException::new);
             String purviewTypeKey = purviewType.getKey();
-            OptionalUtils.ofFalse(purviewKeys.contains(purviewTypeKey),TokenPermissionException::new);
+            OptionalUtils.ofFalse(purviewKeys.contains(purviewTypeKey),log,TokenPermissionException::new);
         }
     }
 
@@ -101,7 +101,7 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
             RestOptional.ofEmptyable(purviewType).emptyElseThrow(TokenPermissionException::new);
             Number annexValue = RestReckon.annexNumber(purviewValues);
             Long value = purviewType.getValue();
-            OptionalUtils.ofFalse(RestReckon.reachNumber(annexValue,value),TokenPermissionException::new);
+            OptionalUtils.ofFalse(RestReckon.reachNumber(annexValue,value),log,TokenPermissionException::new);
         }
     }
 }
