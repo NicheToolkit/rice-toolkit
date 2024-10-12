@@ -10,7 +10,6 @@ import io.github.nichetoolkit.rice.DefaultServiceIntend;
 import io.github.nichetoolkit.rice.configure.RiceServiceProperties;
 import io.github.nichetoolkit.rice.enums.DeleteMode;
 import io.github.nichetoolkit.rice.enums.RemoveMode;
-import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.mapper.SuperMapper;
 import io.github.nichetoolkit.rice.stereotype.RestService;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +26,7 @@ import java.util.List;
  * @since Jdk1.8
  */
 @Slf4j
-public class ServiceHolder  {
+public class ServiceHolder {
 
     /**
      * <code>SERVICE_IMPL_SUFFIX</code>
@@ -53,11 +52,6 @@ public class ServiceHolder  {
      */
     static boolean IS_HAS_INIT_OF_SERVICE_INTEND = false;
 
-    /**
-     * <code>SERVICE_PROPERTIES</code>
-     * {@link io.github.nichetoolkit.rice.configure.RiceServiceProperties} <p>The constant <code>SERVICE_PROPERTIES</code> field.</p>
-     * @see io.github.nichetoolkit.rice.configure.RiceServiceProperties
-     */
     private static RiceServiceProperties SERVICE_PROPERTIES;
 
     /**
@@ -91,7 +85,6 @@ public class ServiceHolder  {
             return;
         }
         for (DefaultServiceIntend<?> serviceIntend : serviceIntends) {
-            Class<? extends DefaultServiceIntend> beanType = serviceIntend.beanType();
             serviceIntend = BeanDefinitionRegistryHolder.registerRootBeanDefinition(serviceIntend.beanName(), serviceIntend.beanType(), serviceIntend.beanScope());
             ListableBeanFactoryHolder.autowireBeanProperties(serviceIntend);
             serviceIntend.afterAutowirePropertiesSet();
@@ -121,22 +114,17 @@ public class ServiceHolder  {
     /**
      * <code>findSuperMapper</code>
      * <p>The super mapper method.</p>
-     * @param <M>         {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
      * @param <E>         {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <F>         {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The generic parameter is <code>IdFilter</code> type.</p>
      * @param <I>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <K>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param serviceType {@link java.lang.Class} <p>The service type parameter is <code>Class</code> type.</p>
      * @return {@link io.github.nichetoolkit.rice.mapper.SuperMapper} <p>The super mapper return object is <code>SuperMapper</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestId
-     * @see io.github.nichetoolkit.rice.filter.IdFilter
      * @see java.lang.Class
      * @see io.github.nichetoolkit.rice.mapper.SuperMapper
      * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
-    static <M extends RestId<I>, E extends RestId<I>, F extends IdFilter<I, K>, I, K> SuperMapper<E, I>
-    findSuperMapper(Class<? extends SuperService> serviceType) {
+    static <E extends RestId<I>, I> SuperMapper<E, I> findSuperMapper(Class<? extends SuperService> serviceType) {
         String simpleName = serviceType.getSimpleName();
         String commonName = nameOfCommon(simpleName);
         String camelName = GeneralUtils.camelCase(commonName);
