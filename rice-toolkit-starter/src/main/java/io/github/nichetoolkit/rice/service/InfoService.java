@@ -159,9 +159,9 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
         String tablename = resolveTablename(tablekey, model);
         List<E> entityList;
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = infoMapper.findDynamicByEntity(tablename, entity, valueOfLogic());
+            entityList = infoMapper.findDynamicByEntityUnique(tablename, entity, valueOfLogic());
         } else {
-            entityList = infoMapper.findByEntity(entity, valueOfLogic());
+            entityList = infoMapper.findByEntityUnique(entity, valueOfLogic());
         }
         return GeneralUtils.isNotEmpty(entityList);
     }
@@ -188,9 +188,9 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
         String tablename = resolveTablename(tablekey, model);
         List<E> entityList;
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = infoMapper.findDynamicByEntityAndNotId(tablename, entity, id, valueOfLogic());
+            entityList = infoMapper.findDynamicByEntityUniqueAndNotId(tablename, entity, id, valueOfLogic());
         } else {
-            entityList = infoMapper.findByEntityAndNotId(entity, id, valueOfLogic());
+            entityList = infoMapper.findByEntityUniqueAndNotId(entity, id, valueOfLogic());
         }
         return GeneralUtils.isNotEmpty(entityList);
     }

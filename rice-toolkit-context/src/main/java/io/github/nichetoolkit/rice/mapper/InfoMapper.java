@@ -78,7 +78,7 @@ public interface InfoMapper<E extends RestInfo<I>, I> extends SuperMapper<E, I> 
      * @see java.lang.String
      * @see java.util.List
      */
-    List<E> findByEntity(@Param("entity") E entity, @Param("logic") String logic);
+    List<E> findByEntityUnique(@Param("entity") E entity, @Param("logic") String logic);
 
     /**
      * <code>findDynamicByEntity</code>
@@ -91,7 +91,7 @@ public interface InfoMapper<E extends RestInfo<I>, I> extends SuperMapper<E, I> 
      * @see org.apache.ibatis.annotations.Param
      * @see java.util.List
      */
-    List<E> findDynamicByEntity(@Param("tablename") String tablename, @Param("entity") E entity, @Param("logic") String logic);
+    List<E> findDynamicByEntityUnique(@Param("tablename") String tablename, @Param("entity") E entity, @Param("logic") String logic);
 
     /**
      * <code>findByEntityAndNotId</code>
@@ -104,7 +104,7 @@ public interface InfoMapper<E extends RestInfo<I>, I> extends SuperMapper<E, I> 
      * @see java.lang.String
      * @see java.util.List
      */
-    List<E> findByEntityAndNotId(@Param("entity") E entity, @Param("id") I id, @Param("logic") String logic);
+    List<E> findByEntityUniqueAndNotId(@Param("entity") E entity, @Param("id") I id, @Param("logic") String logic);
 
     /**
      * <code>findDynamicByEntityAndNotId</code>
@@ -118,5 +118,5 @@ public interface InfoMapper<E extends RestInfo<I>, I> extends SuperMapper<E, I> 
      * @see org.apache.ibatis.annotations.Param
      * @see java.util.List
      */
-    List<E> findDynamicByEntityAndNotId(@Param("tablename") String tablename, @Param("entity") E entity, @Param("id") I id, @Param("logic") String logic);
+    List<E> findDynamicByEntityUniqueAndNotId(@Param("tablename") String tablename, @Param("entity") E entity, @Param("id") I id, @Param("logic") String logic);
 }
