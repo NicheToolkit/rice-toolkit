@@ -8,14 +8,14 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.BeanDefinition;
 
 /**
- * <code>RestServiceIntend</code>
- * <p>The type rest service intend interface.</p>
- * @param <B> {@link DefaultServiceIntend} <p>The generic parameter is <code>RestServiceIntend</code> type.</p>
+ * <code>ServiceIntend</code>
+ * <p>The type service intend interface.</p>
+ * @param <B> {@link io.github.nichetoolkit.rice.ServiceIntend} <p>The generic parameter is <code>ServiceIntend</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.beans.factory.InitializingBean
  * @since Jdk1.8
  */
-public interface DefaultServiceIntend<B extends DefaultServiceIntend<B>> extends InitializingBean {
+public interface ServiceIntend<B extends ServiceIntend<B>> extends InitializingBean {
 
     @Override
     default void afterPropertiesSet() {
@@ -74,16 +74,16 @@ public interface DefaultServiceIntend<B extends DefaultServiceIntend<B>> extends
     /**
      * <code>beanType</code>
      * <p>The type method.</p>
-     * @param <B>   {@link DefaultServiceIntend} <p>The generic parameter is <code>RestServiceIntend</code> type.</p>
+     * @param <B>   {@link io.github.nichetoolkit.rice.ServiceIntend} <p>The generic parameter is <code>ServiceIntend</code> type.</p>
      * @param clazz {@link java.lang.Class} <p>The clazz parameter is <code>Class</code> type.</p>
      * @return {@link java.lang.Class} <p>The type return object is <code>Class</code> type.</p>
      * @see java.lang.Class
      * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings(value = "unchecked")
-    static <B extends DefaultServiceIntend<B>> Class<B> beanType(Class<?> clazz) {
+    static <B extends ServiceIntend<B>> Class<B> beanType(Class<?> clazz) {
         return (Class<B>) RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
-                DefaultServiceIntend.class.getTypeParameters()[0], clazz, DefaultServiceIntend.class));
+                ServiceIntend.class.getTypeParameters()[0], clazz, ServiceIntend.class));
     }
 
 }
