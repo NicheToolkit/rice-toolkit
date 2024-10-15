@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
-import io.github.nichetoolkit.rice.builder.SqlBuilder;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import org.springframework.lang.NonNull;
@@ -32,8 +32,8 @@ import java.util.*;
 public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>SQL_BUILDER</code>
-     * {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The <code>SQL_BUILDER</code> field.</p>
-     * @see io.github.nichetoolkit.rice.builder.SqlBuilder
+     * {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The <code>SQL_BUILDER</code> field.</p>
+     * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
