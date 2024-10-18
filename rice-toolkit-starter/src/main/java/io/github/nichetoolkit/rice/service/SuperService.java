@@ -336,7 +336,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                 tablenameMap.put(tablekey, tablename);
             }
         }
-        optionalLogic(model);
     }
 
     /**
@@ -350,6 +349,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      */
     private void optionalCreate(K tablekey, @NonNull M model) throws RestException {
         optionalDynamicTable(tablekey, model);
+        optionalLogic(model);
         if (GeneralUtils.isEmpty(model.getId()) || !isIdentityOfInvade()) {
             createActuator().actuate(tablekey, model);
         } else {
@@ -369,6 +369,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     private void optionalUpdate(K tablekey, @NonNull M model) throws RestException {
         OptionalUtils.ofIdEmpty(model.getId(), log);
         optionalDynamicTable(tablekey, model);
+        optionalLogic(model);
         updateActuator().actuate(tablekey, model);
     }
 
@@ -383,6 +384,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      */
     private void optionalSave(K tablekey, @NonNull M model) throws RestException {
         optionalDynamicTable(tablekey, model);
+        optionalLogic(model);
         if (GeneralUtils.isEmpty(model.getId())) {
             createActuator().actuate(tablekey, model);
         } else {
