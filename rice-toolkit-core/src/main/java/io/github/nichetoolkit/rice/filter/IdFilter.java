@@ -5,6 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
+import io.github.nichetoolkit.mybatis.builder.SqlUtils;
+import io.github.nichetoolkit.mybatis.enums.StyleType;
+import io.github.nichetoolkit.mybatis.stereotype.table.RestIdentity;
+import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
@@ -322,11 +326,24 @@ public class IdFilter<I, K> extends TableFilter<K> {
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
+    @SuppressWarnings("unchecked")
     public IdFilter<I, K> toIdSql(@NonNull String alias) {
-        if (GeneralUtils.isNotEmpty(this.id)) {
-            SqlBuilders.equal(SQL_BUILDER, alias, this.id);
-        } else if (GeneralUtils.isNotEmpty(this.ids)) {
-            SqlBuilders.in(SQL_BUILDER, alias, this.ids);
+        Class<I> identityType = (Class<I>) RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
+                IdFilter.class.getTypeParameters()[0], getClass(), IdFilter.class));
+        if (identityType.isAnnotationPresent(RestIdentity.class)) {
+            List<I> idList = toIds();
+            String prefix = null;
+            if (GeneralUtils.isNotEmpty(alias) && alias.contains(".")) {
+                prefix = alias.split("\\.")[0];
+            }
+            String whereSqlOfIdentities = SqlUtils.whereSqlOfIds(prefix, idList, identityType, StyleType.LOWER_UNDERLINE);
+            SqlBuilders.append(SQL_BUILDER, whereSqlOfIdentities);
+        } else {
+            if (GeneralUtils.isNotEmpty(this.id)) {
+                SqlBuilders.equal(SQL_BUILDER, alias, this.id);
+            } else if (GeneralUtils.isNotEmpty(this.ids)) {
+                SqlBuilders.in(SQL_BUILDER, alias, this.ids);
+            }
         }
         return this;
     }
