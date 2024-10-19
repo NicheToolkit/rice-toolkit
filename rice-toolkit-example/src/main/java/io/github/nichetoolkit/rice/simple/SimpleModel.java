@@ -1,6 +1,8 @@
 package io.github.nichetoolkit.rice.simple;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.RestInfoModel;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.enums.SaveType;
@@ -16,6 +18,8 @@ import java.util.Date;
  * @see io.github.nichetoolkit.rice.RestInfoModel
  * @since Jdk1.8
  */
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> {
     /**
      * <code>time</code>
