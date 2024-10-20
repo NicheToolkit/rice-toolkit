@@ -108,8 +108,8 @@ public class IdArrayHelper {
         if (GeneralUtils.isNotEmpty(model)) {
             /*  将model的id反向关联 */
             if (idArray.length <= index) {
-                Class<?> idType = ModelHelper.genericType(model);
-                I[] copyIdArray = (I[]) Array.newInstance(idType, index + 1);
+                Class<?> identityType = ModelHelper.identityType(model);
+                I[] copyIdArray = (I[]) Array.newInstance(identityType, index + 1);
                 System.arraycopy(idArray, 0, copyIdArray, 0, idArray.length);
                 idArray = copyIdArray;
             }

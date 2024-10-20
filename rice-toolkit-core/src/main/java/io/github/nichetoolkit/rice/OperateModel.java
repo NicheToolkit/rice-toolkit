@@ -20,7 +20,7 @@ import io.github.nichetoolkit.rice.enums.SaveType;
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OperateModel extends LogicModel implements RestOperate<OperateType>{
+public class OperateModel extends LogicModel implements RestOperate{
 
     /**
      * <code>operate</code>

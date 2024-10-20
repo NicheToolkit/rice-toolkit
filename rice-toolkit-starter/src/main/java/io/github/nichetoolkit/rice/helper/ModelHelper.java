@@ -6,6 +6,7 @@ import io.github.nichetoolkit.rest.error.ClassUnsupportedException;
 import io.github.nichetoolkit.rest.identity.IdentityUtils;
 import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
 import io.github.nichetoolkit.rice.*;
+import io.github.nichetoolkit.rice.enums.OperateType;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -32,7 +33,7 @@ public class ModelHelper {
      * @see io.github.nichetoolkit.rest.error.ClassUnknownException
      * @see io.github.nichetoolkit.rest.error.ClassUnsupportedException
      */
-    public static Class<?> genericType(Object model) throws ClassUnknownException, ClassUnsupportedException {
+    public static Class<?> identityType(Object model) throws ClassUnknownException, ClassUnsupportedException {
         if (model instanceof RestIdModel || model instanceof RestInfoModel) {
             return String.class;
         } else if (model instanceof IdModel) {
@@ -42,7 +43,18 @@ public class ModelHelper {
             return RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
                     RestId.class.getTypeParameters()[0], model.getClass(), RestId.class));
         } else {
-            throw new ClassUnsupportedException("the model must extends 'RiceIdModel' or 'IdModel': " + model.getClass().getName());
+            throw new ClassUnsupportedException("the model must extends 'RestId': " + model.getClass().getName());
+        }
+    }
+
+    public static Class<?> operateType(Object model) throws ClassUnknownException, ClassUnsupportedException {
+        if (model instanceof OperateModel) {
+            return OperateType.class;
+        } else if (model instanceof RestOperate) {
+            return RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
+                    RestOperate.class.getTypeParameters()[0], model.getClass(), RestOperate.class));
+        } else {
+            throw new ClassUnsupportedException("the model must extends 'RestOperate': " + model.getClass().getName());
         }
     }
 
@@ -128,7 +140,7 @@ public class ModelHelper {
      */
     @SuppressWarnings(value = "unchecked")
     public static <I> I generate(RestId<I> model) throws ClassUnsupportedException, ClassUnknownException {
-        Class<?> clazz = genericType(model);
+        Class<?> clazz = identityType(model);
         Long id = IdentityUtils.generateLong();
         if (String.class.equals(clazz)) {
             return (I) String.valueOf(id);

@@ -13,26 +13,27 @@ import java.util.stream.Collectors;
 /**
  * <code>RestOperate</code>
  * <p>The type rest operate interface.</p>
- * @param <O> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.io.Serializable
  * @since Jdk1.8
  */
-public interface RestOperate<O> extends Serializable {
+public interface RestOperate extends Serializable {
 
     /**
      * <code>getOperate</code>
      * <p>The operate getter method.</p>
-     * @return O <p>The operate return object is <code>O</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate return object is <code>OperateType</code> type.</p>
+     * @see io.github.nichetoolkit.rice.enums.OperateType
      */
-    O getOperate();
+    OperateType getOperate();
 
     /**
      * <code>setOperate</code>
      * <p>The operate setter method.</p>
-     * @param operate O <p>The operate parameter is <code>O</code> type.</p>
+     * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
+     * @see io.github.nichetoolkit.rice.enums.OperateType
      */
-    void setOperate(O operate);
+    void setOperate(OperateType operate);
 
     /**
      * <code>build</code>

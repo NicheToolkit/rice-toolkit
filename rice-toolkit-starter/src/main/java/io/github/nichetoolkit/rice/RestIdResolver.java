@@ -6,6 +6,7 @@ import io.github.nichetoolkit.rest.error.supply.ResourceNotFoundException;
 import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
 import io.github.nichetoolkit.rest.stream.RestStream;
 import io.github.nichetoolkit.rest.util.BeanUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
 import io.github.nichetoolkit.rice.helper.ModelHelper;
 import org.springframework.beans.factory.InitializingBean;
@@ -33,25 +34,25 @@ public interface RestIdResolver<I> extends InitializingBean {
     }
 
     /**
-     * <code>idType</code>
-     * <p>The type method.</p>
-     * @return {@link java.lang.Class} <p>The type return object is <code>Class</code> type.</p>
+     * <code>type</code>
+     * <p>The method.</p>
+     * @return {@link java.lang.Class} <p>The return object is <code>Class</code> type.</p>
      * @see java.lang.Class
      */
-    default Class<I> idType() {
-        return (Class<I>) Instance.idType(getClass());
+    default Class<I> type() {
+        return (Class<I>) Instance.type(getClass());
     }
 
     /**
-     * <code>resolveId</code>
-     * <p>The id method.</p>
+     * <code>resolve</code>
+     * <p>The method.</p>
      * @param <M>   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
      * @param model M <p>The model parameter is <code>M</code> type.</p>
-     * @return I <p>The id return object is <code>I</code> type.</p>
+     * @return I <p>The return object is <code>I</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
-    <M extends RestId<I>> I resolveId(M model) throws RestException;
+    <M extends RestId<I>> I resolve(M model) throws RestException;
 
     /**
      * <code>resolveModel</code>
@@ -59,23 +60,21 @@ public interface RestIdResolver<I> extends InitializingBean {
      * @param <M>   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
      * @param <I>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param model M <p>The model parameter is <code>M</code> type.</p>
-     * @return I <p>The model return object is <code>I</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
-    static <M extends RestId<I>,I> I resolveModel(M model) throws RestException {
-        Class<?> idType = ModelHelper.genericType(model);
-        List<RestIdResolver> resolverBeans = BeanUtils.beansOfType(RestIdResolver.class);
-        OptionalUtils.ofEmpty(resolverBeans,"the bean of 'RestIdResolver' type is not found!", ResourceNotFoundException::new);
-        Map<Class, List<RestIdResolver>> resolvers= resolverBeans.stream().collect(Collectors.groupingBy(RestIdResolver::idType));
-        List<RestIdResolver> restIdResolvers = resolvers.get(idType);
-        OptionalUtils.ofEmpty(restIdResolvers,"the bean of 'RestIdResolver' type for <I> is not found!", ResourceNotFoundException::new);
-        RestOptional<RestIdResolver> anyResolver = RestStream.stream(restIdResolvers).findAny();
-        OptionalUtils.ofNull(anyResolver,"the bean of 'RestIdResolver' type for <I> is not found!", ResourceNotFoundException::new);
-        RestIdResolver<I> restIdResolver = (RestIdResolver<I>) anyResolver.get();
-        I id = restIdResolver.resolveId(model);
-        model.setId(id);
-        return id;
+    static <M extends RestId<I>,I> void resolveModel(M model) throws RestException {
+        Class<?> identityType = ModelHelper.identityType(model);
+        List<RestIdResolver> resolvers = BeanUtils.beansOfType(RestIdResolver.class);
+        OptionalUtils.ofEmpty(resolvers,"the bean of 'RestIdResolver' type is not found!", ResourceNotFoundException::new);
+        Map<Class, List<RestIdResolver>> resolverMap= resolvers.stream().collect(Collectors.groupingBy(RestIdResolver::type));
+        List<RestIdResolver> identityResolvers = resolverMap.get(identityType);
+        OptionalUtils.ofEmpty(identityResolvers,"the bean of 'RestIdResolver' type for <I> is not found!", ResourceNotFoundException::new);
+        RestOptional<RestIdResolver> identityResolver = RestStream.stream(identityResolvers).findAny();
+        OptionalUtils.ofNull(identityResolver,"the bean of 'RestIdResolver' type for <I> is not found!", ResourceNotFoundException::new);
+        RestIdResolver<I> resolver = (RestIdResolver<I>) identityResolver.get();
+        I identity = resolver.resolve(model);
+        model.setId(identity);
     }
 
     /**
@@ -93,13 +92,13 @@ public interface RestIdResolver<I> extends InitializingBean {
         static Map<Class<?>, Class<?>> RESOLVERS = new ConcurrentHashMap<>();
 
         /**
-         * <code>idType</code>
-         * <p>The type method.</p>
+         * <code>type</code>
+         * <p>The method.</p>
          * @param resolverType {@link java.lang.Class} <p>The resolver type parameter is <code>Class</code> type.</p>
-         * @return {@link java.lang.Class} <p>The type return object is <code>Class</code> type.</p>
+         * @return {@link java.lang.Class} <p>The return object is <code>Class</code> type.</p>
          * @see java.lang.Class
          */
-        private static Class<?> idType(Class<? extends RestIdResolver> resolverType) {
+        private static Class<?> type(Class<? extends RestIdResolver> resolverType) {
             return RESOLVERS.get(resolverType);
         }
 

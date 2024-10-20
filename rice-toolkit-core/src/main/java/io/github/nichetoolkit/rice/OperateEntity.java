@@ -20,7 +20,7 @@ import org.springframework.lang.NonNull;
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OperateEntity extends LogicEntity implements RestOperate<Integer> {
+public class OperateEntity extends LogicEntity {
 
     /**
      * <code>operate</code>
@@ -49,12 +49,10 @@ public class OperateEntity extends LogicEntity implements RestOperate<Integer> {
         this.operate = builder.operate;
     }
 
-    @Override
     public Integer getOperate() {
         return operate;
     }
 
-    @Override
     public void setOperate(Integer operate) {
         this.operate = operate;
     }

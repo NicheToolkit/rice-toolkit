@@ -286,17 +286,23 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     }
 
     /**
-     * <code>optionalLogic</code>
-     * <p>The logic method.</p>
+     * <code>optionalLogicAndOperate</code>
+     * <p>The logic and operate method.</p>
      * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see org.springframework.lang.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
-    private void optionalLogic(@NonNull M model) throws RestException {
+    private void optionalLogicAndOperate(@NonNull M model) throws RestException {
         if (model instanceof RestLogic) {
             RestLogic logicModel = (RestLogic) model;
             logicModel.setLogic(Optional.ofNullable(logicModel.getLogic()).orElse(valueOfLogic()));
+        }
+        if (model instanceof RestOperate) {
+            RestOperate operateModel = (RestOperate) model;
+            if (GeneralUtils.isEmpty(operateModel.getOperate())) {
+                operateModel.setOperate(Optional.ofNullable(operateModel.getOperate()).orElse(OperateType.NONE));
+            }
         }
         optionalName(model);
     }
@@ -349,7 +355,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      */
     private void optionalCreate(K tablekey, @NonNull M model) throws RestException {
         optionalDynamicTable(tablekey, model);
-        optionalLogic(model);
+        optionalLogicAndOperate(model);
         if (GeneralUtils.isEmpty(model.getId()) || !isIdentityOfInvade()) {
             createActuator().actuate(tablekey, model);
         } else {
@@ -369,7 +375,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     private void optionalUpdate(K tablekey, @NonNull M model) throws RestException {
         OptionalUtils.ofIdEmpty(model.getId(), log);
         optionalDynamicTable(tablekey, model);
-        optionalLogic(model);
+        optionalLogicAndOperate(model);
         updateActuator().actuate(tablekey, model);
     }
 
@@ -384,7 +390,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      */
     private void optionalSave(K tablekey, @NonNull M model) throws RestException {
         optionalDynamicTable(tablekey, model);
-        optionalLogic(model);
+        optionalLogicAndOperate(model);
         if (GeneralUtils.isEmpty(model.getId())) {
             createActuator().actuate(tablekey, model);
         } else {

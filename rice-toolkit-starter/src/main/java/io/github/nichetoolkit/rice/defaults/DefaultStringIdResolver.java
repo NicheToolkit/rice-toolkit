@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class DefaultStringIdResolver implements RestIdResolver<String> {
 
     @Override
-    public <M extends RestId<String>> String resolveId(M model) throws RestException {
+    public <M extends RestId<String>> String resolve(M model) throws RestException {
         return IdentityUtils.generateString();
     }
 }

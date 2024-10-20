@@ -29,7 +29,7 @@ public class ModelUtils {
      */
     public static Class<?> genericType(Object object) {
         try {
-            return ModelHelper.genericType(object);
+            return ModelHelper.identityType(object);
         } catch (ClassUnknownException | ClassUnsupportedException exception) {
             GeneralUtils.printStackTrace(exception,false);
             log.error("the class type of <I> is unknown",exception);

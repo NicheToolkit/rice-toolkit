@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class DefaultLongIdResolver implements RestIdResolver<Long> {
 
     @Override
-    public <M extends RestId<Long>> Long resolveId(M model) throws RestException {
+    public <M extends RestId<Long>> Long resolve(M model) throws RestException {
         return IdentityUtils.generateLong();
     }
 }

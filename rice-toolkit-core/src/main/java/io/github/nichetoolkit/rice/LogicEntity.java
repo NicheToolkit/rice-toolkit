@@ -17,7 +17,7 @@ import io.github.nichetoolkit.mybatis.stereotype.column.RestLogicKey;
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LogicEntity implements RestLogic {
+public class LogicEntity {
 
     /**
      * <code>logic</code>
@@ -45,12 +45,10 @@ public class LogicEntity implements RestLogic {
         this.logic = builder.logic;
     }
 
-    @Override
     public String getLogic() {
         return logic;
     }
 
-    @Override
     public void setLogic(String logic) {
         this.logic = logic;
     }
