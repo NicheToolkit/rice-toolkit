@@ -31,7 +31,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
-public class DefaultUserArgumentResolver implements HandlerMethodArgumentResolver {
+public class DefaultUserInfoResolver implements HandlerMethodArgumentResolver {
 
     /**
      * <code>userResolvers</code>
@@ -44,7 +44,7 @@ public class DefaultUserArgumentResolver implements HandlerMethodArgumentResolve
      * <code>DefaultUserArgumentResolver</code>
      * <p>Instantiates a new default user argument resolver.</p>
      */
-    public DefaultUserArgumentResolver() {
+    public DefaultUserInfoResolver() {
         this.userResolvers = new ArrayList<>();
     }
 
@@ -56,7 +56,7 @@ public class DefaultUserArgumentResolver implements HandlerMethodArgumentResolve
      * @see org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired(required = false)
-    public DefaultUserArgumentResolver(List<RestUserResolver> userResolvers) {
+    public DefaultUserInfoResolver(List<RestUserResolver> userResolvers) {
         this.userResolvers = userResolvers;
     }
 
@@ -72,9 +72,9 @@ public class DefaultUserArgumentResolver implements HandlerMethodArgumentResolve
             for (RestUserResolver userResolver : userResolvers) {
                 try {
                     if (userResolver.supports(parameter)) {
-                        RestUserInfo<?> restUser = userResolver.resolveUser(parameter, httpRequest);
-                        RestUserInfoHolder.setUser(restUser);
-                        return restUser;
+                        RestUserInfo<?> userInfo = userResolver.resolveUser(parameter, httpRequest);
+                        UserInfoHolder.setUser(userInfo);
+                        return userInfo;
                     }
                 } catch (RestException exception) {
                     log.error("the user resolver can not resolve parameter, parameter: {}, error: {}", parameter,exception.getMessage());

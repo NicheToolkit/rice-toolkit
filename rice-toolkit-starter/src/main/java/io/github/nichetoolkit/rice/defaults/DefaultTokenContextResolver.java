@@ -20,7 +20,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * @since Jdk1.8
  */
 @Component
-public class DefaultMapArgumentResolver implements HandlerMethodArgumentResolver {
+public class DefaultTokenContextResolver implements HandlerMethodArgumentResolver {
 
     /**
      * <code>TOKEN_CONTEXT_KEY</code>

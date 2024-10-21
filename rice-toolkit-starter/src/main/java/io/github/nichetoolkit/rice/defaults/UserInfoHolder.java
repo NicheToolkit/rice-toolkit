@@ -3,18 +3,18 @@ package io.github.nichetoolkit.rice.defaults;
 import io.github.nichetoolkit.rice.RestUserInfo;
 
 /**
- * <code>RestUserInfoHolder</code>
- * <p>The type rest user info holder class.</p>
+ * <code>UserInfoHolder</code>
+ * <p>The type user info holder class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public class RestUserInfoHolder {
+public class UserInfoHolder {
     /**
-     * <code>REST_USER_HOLDER</code>
-     * {@link java.lang.ThreadLocal} <p>The constant <code>REST_USER_HOLDER</code> field.</p>
+     * <code>USER_INFO_HOLDER</code>
+     * {@link java.lang.ThreadLocal} <p>The constant <code>USER_INFO_HOLDER</code> field.</p>
      * @see java.lang.ThreadLocal
      */
-    private static final ThreadLocal<RestUserInfo<?>> REST_USER_HOLDER = new ThreadLocal<>();
+    private static final ThreadLocal<RestUserInfo<?>> USER_INFO_HOLDER = new ThreadLocal<>();
 
     /**
      * <code>getUser</code>
@@ -23,7 +23,7 @@ public class RestUserInfoHolder {
      * @see io.github.nichetoolkit.rice.RestUserInfo
      */
     public static RestUserInfo<?> getUser() {
-        return REST_USER_HOLDER.get();
+        return USER_INFO_HOLDER.get();
     }
 
     /**
@@ -32,7 +32,7 @@ public class RestUserInfoHolder {
      * @param user {@link io.github.nichetoolkit.rice.RestUserInfo} <p>The user parameter is <code>RestUserInfo</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestUserInfo
      */
-    protected static void setUser(RestUserInfo<?> user) {
-        REST_USER_HOLDER.set(user);
+    static void setUser(RestUserInfo<?> user) {
+        USER_INFO_HOLDER.set(user);
     }
 }

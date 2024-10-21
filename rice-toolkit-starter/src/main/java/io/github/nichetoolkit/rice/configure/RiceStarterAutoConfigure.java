@@ -1,13 +1,10 @@
 package io.github.nichetoolkit.rice.configure;
 
-import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rest.configure.RestIdentityProperties;
-import io.github.nichetoolkit.rest.identity.IdentityFactory;
-import io.github.nichetoolkit.rest.identity.IdentityUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.RestId;
 import io.github.nichetoolkit.rice.RestIdResolver;
-import io.github.nichetoolkit.rice.defaults.DefaultMapArgumentResolver;
+import io.github.nichetoolkit.rice.defaults.DefaultTokenContextResolver;
+import io.github.nichetoolkit.rice.defaults.LongIdentityResolver;
+import io.github.nichetoolkit.rice.defaults.StringIdentityResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +13,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.web.method.annotation.MapMethodProcessor;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
@@ -56,26 +52,26 @@ public class RiceStarterAutoConfigure implements InitializingBean {
 
     /**
      * <code>mapArgumentResolver</code>
-     * {@link io.github.nichetoolkit.rice.defaults.DefaultMapArgumentResolver} <p>The <code>mapArgumentResolver</code> field.</p>
-     * @see io.github.nichetoolkit.rice.defaults.DefaultMapArgumentResolver
+     * {@link DefaultTokenContextResolver} <p>The <code>mapArgumentResolver</code> field.</p>
+     * @see DefaultTokenContextResolver
      */
-    private final DefaultMapArgumentResolver mapArgumentResolver;
+    private final DefaultTokenContextResolver mapArgumentResolver;
 
     /**
      * <code>RiceStarterAutoConfigure</code>
      * <p>Instantiates a new rice starter auto configure.</p>
      * @param loginProperties              {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
      * @param requestMappingHandlerAdapter {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter} <p>The request mapping handler adapter parameter is <code>RequestMappingHandlerAdapter</code> type.</p>
-     * @param mapArgumentResolver          {@link io.github.nichetoolkit.rice.defaults.DefaultMapArgumentResolver} <p>The map argument resolver parameter is <code>DefaultMapArgumentResolver</code> type.</p>
+     * @param mapArgumentResolver          {@link DefaultTokenContextResolver} <p>The map argument resolver parameter is <code>DefaultMapArgumentResolver</code> type.</p>
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      * @see org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter
-     * @see io.github.nichetoolkit.rice.defaults.DefaultMapArgumentResolver
+     * @see DefaultTokenContextResolver
      * @see org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired
     public RiceStarterAutoConfigure(RiceLoginProperties loginProperties,
                                     RequestMappingHandlerAdapter requestMappingHandlerAdapter,
-                                    DefaultMapArgumentResolver mapArgumentResolver) {
+                                    DefaultTokenContextResolver mapArgumentResolver) {
 
         this.loginProperties = loginProperties;
         this.requestMappingHandlerAdapter = requestMappingHandlerAdapter;
@@ -109,24 +105,14 @@ public class RiceStarterAutoConfigure implements InitializingBean {
     }
 
     @Bean
-    @ConditionalOnMissingBean(RestIdResolver.class)
+    @ConditionalOnMissingBean(StringIdentityResolver.class)
     public RestIdResolver<String> defaultStringIdResolver() {
-        return new RestIdResolver<String>() {
-            @Override
-            public <M extends RestId<String>> String resolve(M model) throws RestException {
-                return IdentityUtils.generateString();
-            }
-        };
+        return StringIdentityResolver.DEFAULT_RESOLVER;
     }
 
     @Bean
-    @ConditionalOnMissingBean(RestIdResolver.class)
+    @ConditionalOnMissingBean(LongIdentityResolver.class)
     public RestIdResolver<Long> defaultLongIdResolver() {
-        return new RestIdResolver<Long>() {
-            @Override
-            public <M extends RestId<Long>> Long resolve(M model) throws RestException {
-                return IdentityUtils.generateLong();
-            }
-        };
+        return LongIdentityResolver.DEFAULT_RESOLVER;
     }
 }

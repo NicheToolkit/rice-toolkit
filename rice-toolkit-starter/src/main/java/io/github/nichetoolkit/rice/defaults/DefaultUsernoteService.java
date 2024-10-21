@@ -68,9 +68,9 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
 
     @Override
     public void doAnnotationHandle(RestHttpRequest httpRequest, HttpServletResponse response, HandlerMethod handlerMethod, RestUserlog annotation) throws RestException {
-        if (GeneralUtils.isEmpty(RestUserInfoHolder.getUser())) {
+        if (GeneralUtils.isEmpty(UserInfoHolder.getUser())) {
             RestUserInfo<?> userInfo = resolveUserInfo(httpRequest);
-            RestUserInfoHolder.setUser(userInfo);
+            UserInfoHolder.setUser(userInfo);
         }
     }
 
@@ -126,7 +126,7 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
      * @see io.github.nichetoolkit.rest.userlog.RestResponsePack
      */
     protected void doUserInfoHandle(RestResponsePack response) {
-        if (GeneralUtils.isEmpty(RestUserInfoHolder.getUser())) {
+        if (GeneralUtils.isEmpty(UserInfoHolder.getUser())) {
             LoggingType loggingType = this.usernote.getLoggingType();
             if (GeneralUtils.isEmpty(loggingType) || !response.isSuccess()) {
                 return;
@@ -136,18 +136,18 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
                 case USER_LOGON:
                     userInfoPack = RestUsernoteModel.toDataUserInfo(response.getData());
                     if (GeneralUtils.isNotEmpty(userInfoPack)) {
-                        RestUserInfoHolder.setUser(userInfoPack);
+                        UserInfoHolder.setUser(userInfoPack);
                     }
                     break;
                 case USER_LOGIN:
                     userInfoPack = RestUsernoteModel.toDataUserLogin(response.getData());
                     if (GeneralUtils.isNotEmpty(userInfoPack)) {
-                        RestUserInfoHolder.setUser(userInfoPack);
+                        UserInfoHolder.setUser(userInfoPack);
                     }
                     break;
             }
         }
-        RestUserInfo<?> userInfo = RestUserInfoHolder.getUser();
+        RestUserInfo<?> userInfo = UserInfoHolder.getUser();
         if (GeneralUtils.isNotEmpty(userInfo)) {
             if (GeneralUtils.isNotEmpty(userInfo.getId())) {
                 this.usernote.setUserId(String.valueOf(userInfo.getId()));

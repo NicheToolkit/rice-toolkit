@@ -6,7 +6,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.advice.LoginAdvice;
 import io.github.nichetoolkit.rice.constant.AdviceConstants;
-import io.github.nichetoolkit.rice.defaults.DefaultMapArgumentResolver;
+import io.github.nichetoolkit.rice.defaults.DefaultTokenContextResolver;
 import io.github.nichetoolkit.rice.stereotype.RestAuth;
 import io.github.nichetoolkit.rice.stereotype.RestLogin;
 import io.github.nichetoolkit.rice.stereotype.RestLogout;
@@ -83,7 +83,7 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
         if (request instanceof ServletServerHttpRequest) {
             HttpServletRequest httpServletRequest = ((ServletServerHttpRequest) request).getServletRequest();
             httpRequest = RestHttpRequest.getHttpRequest(httpServletRequest);
-            context = (TokenContext) httpServletRequest.getAttribute(DefaultMapArgumentResolver.TOKEN_CONTEXT_KEY);
+            context = (TokenContext) httpServletRequest.getAttribute(DefaultTokenContextResolver.TOKEN_CONTEXT_KEY);
         }
         if (GeneralUtils.isEmpty(context)) {
             context = new TokenContext();
