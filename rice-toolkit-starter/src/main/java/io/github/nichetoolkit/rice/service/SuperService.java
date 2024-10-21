@@ -25,7 +25,6 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
 import io.github.nichetoolkit.rice.mapper.*;
 import io.github.nichetoolkit.rice.mapper.natives.*;
-import io.github.nichetoolkit.rice.service.extend.OptionalService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.lang.NonNull;
@@ -47,7 +46,7 @@ import java.util.*;
  * @see io.github.nichetoolkit.rice.RestId
  * @see io.github.nichetoolkit.rice.filter.IdFilter
  * @see org.springframework.beans.factory.InitializingBean
- * @see io.github.nichetoolkit.rice.service.extend.OptionalService
+ * @see io.github.nichetoolkit.rice.service.OptionalService
  * @see io.github.nichetoolkit.rice.advice.FilterAdvice
  * @see io.github.nichetoolkit.rice.advice.TablenameAdvice
  * @see io.github.nichetoolkit.rice.advice.SaveAdvice
@@ -1534,7 +1533,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     /**
      * <code>operateByLinkId</code>
      * <p>The by link id method.</p>
-     * @param linkId  I <p>The link id parameter is <code>I</code> type.</p>
+     * @param <L>     {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkId  L <p>The link id parameter is <code>L</code> type.</p>
      * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.enums.OperateType
@@ -1542,15 +1542,16 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void operateByLinkId(I linkId, OperateType operate) throws RestException {
+    public <L> void operateByLinkId(L linkId, OperateType operate) throws RestException {
         operateByLinkId(null, linkId, operate);
     }
 
     /**
      * <code>operateByLinkId</code>
      * <p>The by link id method.</p>
+     * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkId   I <p>The link id parameter is <code>I</code> type.</p>
+     * @param linkId   L <p>The link id parameter is <code>L</code> type.</p>
      * @param operate  {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.enums.OperateType
@@ -1560,16 +1561,16 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      */
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void operateByLinkId(K tablekey, I linkId, OperateType operate) throws RestException {
+    public <L> void operateByLinkId(K tablekey, L linkId, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
             return;
         }
         if (superMapper instanceof OperateLinkMapper) {
             String tablename = tablename(tablekey);
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((OperateLinkMapper<I>) superMapper).operateDynamicByLinkId(tablename, linkId, operate.getKey());
+                ((OperateLinkMapper<L,I>) superMapper).operateDynamicByLinkId(tablename, linkId, operate.getKey());
             } else {
-                ((OperateLinkMapper<I>) superMapper).operateByLinkId(linkId, operate.getKey());
+                ((OperateLinkMapper<L,I>) superMapper).operateByLinkId(linkId, operate.getKey());
             }
             this.refresh();
         }
@@ -1578,6 +1579,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     /**
      * <code>operateAllByLinkIds</code>
      * <p>The all by link ids method.</p>
+     * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param operate    {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
@@ -1587,13 +1589,14 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void operateAllByLinkIds(Collection<I> linkIdList, OperateType operate) throws RestException {
+    public <L> void operateAllByLinkIds(Collection<L> linkIdList, OperateType operate) throws RestException {
         operateAllByLinkIds(null, linkIdList, operate);
     }
 
     /**
      * <code>operateAllByLinkIds</code>
      * <p>The all by link ids method.</p>
+     * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey   K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param operate    {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
@@ -1606,16 +1609,16 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      */
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void operateAllByLinkIds(K tablekey, Collection<I> linkIdList, OperateType operate) throws RestException {
+    public <L> void operateAllByLinkIds(K tablekey, Collection<L> linkIdList, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
             return;
         }
         if (superMapper instanceof OperateLinkMapper) {
             String tablename = tablename(tablekey);
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((OperateLinkMapper<I>) superMapper).operateDynamicAllByLinkIds(tablename, linkIds, operate.getKey()));
+                PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((OperateLinkMapper<L,I>) superMapper).operateDynamicAllByLinkIds(tablename, linkIds, operate.getKey()));
             } else {
-                PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((OperateLinkMapper<I>) superMapper).operateAllByLinkIds(linkIds, operate.getKey()));
+                PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((OperateLinkMapper<L,I>) superMapper).operateAllByLinkIds(linkIds, operate.getKey()));
             }
             this.refresh();
         }
@@ -1922,21 +1925,23 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     /**
      * <code>removeByLinkId</code>
      * <p>The by link id method.</p>
-     * @param linkId I <p>The link id parameter is <code>I</code> type.</p>
+     * @param <L>    {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void removeByLinkId(I linkId) throws RestException {
+    public <L> void removeByLinkId(L linkId) throws RestException {
         removeByLinkId(null, linkId);
     }
 
     /**
      * <code>removeByLinkId</code>
      * <p>The by link id method.</p>
+     * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkId   I <p>The link id parameter is <code>I</code> type.</p>
+     * @param linkId   L <p>The link id parameter is <code>L</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.SuppressWarnings
      * @see org.springframework.transaction.annotation.Transactional
@@ -1944,7 +1949,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      */
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void removeByLinkId(K tablekey, I linkId) throws RestException {
+    public <L> void removeByLinkId(K tablekey, L linkId) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
             return;
         }
@@ -1952,9 +1957,9 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         if (superMapper instanceof RemoveLinkMapper) {
             String tablename = tablename(tablekey);
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((RemoveLinkMapper<I>) superMapper).removeDynamicByLinkId(tablename, linkId, logicSign);
+                ((RemoveLinkMapper<L,I>) superMapper).removeDynamicByLinkId(tablename, linkId, logicSign);
             } else {
-                ((RemoveLinkMapper<I>) superMapper).removeByLinkId(linkId, logicSign);
+                ((RemoveLinkMapper<L,I>) superMapper).removeByLinkId(linkId, logicSign);
             }
             this.refresh();
         }
@@ -1963,6 +1968,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     /**
      * <code>removeAllByLinkIds</code>
      * <p>The all by link ids method.</p>
+     * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
@@ -1970,13 +1976,14 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void removeAllByLinkIds(Collection<I> linkIdList) throws RestException {
+    public <L> void removeAllByLinkIds(Collection<L> linkIdList) throws RestException {
         removeAllByLinkIds(null, linkIdList);
     }
 
     /**
      * <code>removeAllByLinkIds</code>
      * <p>The all by link ids method.</p>
+     * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey   K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
@@ -1987,7 +1994,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      */
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void removeAllByLinkIds(K tablekey, Collection<I> linkIdList) throws RestException {
+    public <L> void removeAllByLinkIds(K tablekey, Collection<L> linkIdList) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
             return;
         }
@@ -1995,9 +2002,9 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         if (superMapper instanceof RemoveLinkMapper) {
             String tablename = tablename(tablekey);
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((RemoveLinkMapper<I>) superMapper).removeDynamicAllByLinkIds(tablename, linkIds, logicSign));
+                PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((RemoveLinkMapper<L,I>) superMapper).removeDynamicAllByLinkIds(tablename, linkIds, logicSign));
             } else {
-                PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((RemoveLinkMapper<I>) superMapper).removeAllByLinkIds(linkIds, logicSign));
+                PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((RemoveLinkMapper<L,I>) superMapper).removeAllByLinkIds(linkIds, logicSign));
             }
             this.refresh();
         }
@@ -2082,21 +2089,23 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     /**
      * <code>deleteByLinkId</code>
      * <p>The by link id method.</p>
-     * @param linkId I <p>The link id parameter is <code>I</code> type.</p>
+     * @param <L>    {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void deleteByLinkId(I linkId) throws RestException {
+    public <L> void deleteByLinkId(L linkId) throws RestException {
         deleteByLinkId(null, linkId);
     }
 
     /**
      * <code>deleteByLinkId</code>
      * <p>The by link id method.</p>
+     * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkId   I <p>The link id parameter is <code>I</code> type.</p>
+     * @param linkId   L <p>The link id parameter is <code>L</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.SuppressWarnings
      * @see org.springframework.transaction.annotation.Transactional
@@ -2104,7 +2113,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      */
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void deleteByLinkId(K tablekey, I linkId) throws RestException {
+    public <L> void deleteByLinkId(K tablekey, L linkId) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
             return;
         }
@@ -2116,9 +2125,9 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         } else if (superMapper instanceof DeleteLinkMapper) {
             String tablename = tablename(tablekey);
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((DeleteLinkMapper<I>) superMapper).deleteDynamicByLinkId(tablename, linkId);
+                ((DeleteLinkMapper<L,I>) superMapper).deleteDynamicByLinkId(tablename, linkId);
             } else {
-                ((DeleteLinkMapper<I>) superMapper).deleteByLinkId(linkId);
+                ((DeleteLinkMapper<L,I>) superMapper).deleteByLinkId(linkId);
             }
             this.refresh();
         }
@@ -2127,6 +2136,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     /**
      * <code>deleteAllByLinkIds</code>
      * <p>The all by link ids method.</p>
+     * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
@@ -2134,7 +2144,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void deleteAllByLinkIds(Collection<I> linkIdList) throws RestException {
+    public <L> void deleteAllByLinkIds(Collection<L> linkIdList) throws RestException {
         deleteAllByLinkIds(null, linkIdList);
     }
 
@@ -2142,6 +2152,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     /**
      * <code>deleteAllByLinkIds</code>
      * <p>The all by link ids method.</p>
+     * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey   K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
@@ -2152,7 +2163,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      */
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void deleteAllByLinkIds(K tablekey, Collection<I> linkIdList) throws RestException {
+    public <L> void deleteAllByLinkIds(K tablekey, Collection<L> linkIdList) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
             return;
         }
@@ -2164,9 +2175,9 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         } else if (superMapper instanceof DeleteLinkMapper) {
             String tablename = tablename(tablekey);
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                PartitionHelper.delete(linkIdList, this.partitionOfDelete(), linkIds -> ((DeleteLinkMapper<I>) superMapper).deleteDynamicAllByLinkIds(tablename, linkIds));
+                PartitionHelper.delete(linkIdList, this.partitionOfDelete(), linkIds -> ((DeleteLinkMapper<L,I>) superMapper).deleteDynamicAllByLinkIds(tablename, linkIds));
             } else {
-                PartitionHelper.delete(linkIdList, this.partitionOfDelete(), linkIds -> ((DeleteLinkMapper<I>) superMapper).deleteAllByLinkIds(linkIds));
+                PartitionHelper.delete(linkIdList, this.partitionOfDelete(), linkIds -> ((DeleteLinkMapper<L,I>) superMapper).deleteAllByLinkIds(linkIds));
             }
             this.refresh();
         }

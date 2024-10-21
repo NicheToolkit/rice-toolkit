@@ -7,12 +7,13 @@ import java.util.Collection;
 /**
  * <code>RemoveLinkMapper</code>
  * <p>The type remove link mapper interface.</p>
+ * @param <L> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.mapper.RemoveMapper
  * @since Jdk1.8
  */
-public interface RemoveLinkMapper<I> extends RemoveMapper<I> {
+public interface RemoveLinkMapper<L,I> extends RemoveMapper<I> {
 
     /**
      * <code>removeByLinkId</code>
@@ -24,7 +25,7 @@ public interface RemoveLinkMapper<I> extends RemoveMapper<I> {
      * @see java.lang.String
      * @see java.lang.Integer
      */
-    Integer removeByLinkId(@Param("linkId") I linkId, @Param("logic") String logic);
+    Integer removeByLinkId(@Param("linkId") L linkId, @Param("logic") String logic);
 
     /**
      * <code>removeDynamicByLinkId</code>
@@ -37,7 +38,7 @@ public interface RemoveLinkMapper<I> extends RemoveMapper<I> {
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer removeDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") I linkId, @Param("logic") String logic);
+    Integer removeDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") L linkId, @Param("logic") String logic);
 
     /**
      * <code>removeAllByLinkIds</code>
@@ -50,7 +51,7 @@ public interface RemoveLinkMapper<I> extends RemoveMapper<I> {
      * @see java.lang.String
      * @see java.lang.Integer
      */
-    Integer removeAllByLinkIds(@Param("linkIdList") Collection<I> linkIdList, @Param("logic") String logic);
+    Integer removeAllByLinkIds(@Param("linkIdList") Collection<L> linkIdList, @Param("logic") String logic);
 
     /**
      * <code>removeDynamicAllByLinkIds</code>
@@ -64,6 +65,6 @@ public interface RemoveLinkMapper<I> extends RemoveMapper<I> {
      * @see java.util.Collection
      * @see java.lang.Integer
      */
-    Integer removeDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection<I> linkIdList, @Param("logic") String logic);
+    Integer removeDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection<L> linkIdList, @Param("logic") String logic);
 
 }

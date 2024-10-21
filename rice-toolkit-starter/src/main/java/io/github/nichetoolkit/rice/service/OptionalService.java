@@ -1,9 +1,8 @@
-package io.github.nichetoolkit.rice.service.extend;
+package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.RestId;
 import io.github.nichetoolkit.rice.filter.IdFilter;
-import io.github.nichetoolkit.rice.service.QueryService;
 import org.springframework.lang.NonNull;
 
 import java.util.Optional;
