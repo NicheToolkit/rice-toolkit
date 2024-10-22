@@ -9,6 +9,6 @@ public class LongIdentityResolver implements RestIdResolver<Long> {
     public static final LongIdentityResolver DEFAULT_RESOLVER = new LongIdentityResolver();
     @Override
     public <M extends RestId<Long>> Long resolve(M model) throws RestException {
-        return IdentityUtils.generateLong();
+        return IdentityUtils.valueOfLong();
     }
 }

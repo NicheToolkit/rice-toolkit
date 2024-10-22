@@ -11,6 +11,6 @@ public class StringIdentityResolver implements RestIdResolver<String> {
 
     @Override
     public <M extends RestId<String>> String resolve(M model) throws RestException {
-        return IdentityUtils.generateString();
+        return IdentityUtils.valueOfString();
     }
 }

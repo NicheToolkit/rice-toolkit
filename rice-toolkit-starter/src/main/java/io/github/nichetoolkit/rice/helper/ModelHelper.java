@@ -141,7 +141,7 @@ public class ModelHelper {
     @SuppressWarnings(value = "unchecked")
     public static <I> I generate(RestId<I> model) throws ClassUnsupportedException, ClassUnknownException {
         Class<?> clazz = identityType(model);
-        Long id = IdentityUtils.generateLong();
+        Long id = IdentityUtils.valueOfLong();
         if (String.class.equals(clazz)) {
             return (I) String.valueOf(id);
         } else if (Long.class.equals(clazz)) {
