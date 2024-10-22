@@ -2,9 +2,6 @@ package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.RestId;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.sql.SQLException;
 
 /**
  * <code>SingleService</code>
@@ -25,10 +22,8 @@ public interface SingleService<M extends RestId<I>, I, K> {
      * @return M <p>The return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Object
-     * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     M create(M model, Object... idArray) throws RestException;
 
     /**
@@ -40,10 +35,8 @@ public interface SingleService<M extends RestId<I>, I, K> {
      * @return M <p>The return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Object
-     * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     M create(K tablekey, M model, Object... idArray) throws RestException;
 
     /**
@@ -54,10 +47,8 @@ public interface SingleService<M extends RestId<I>, I, K> {
      * @return M <p>The return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Object
-     * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     M update(M model, Object... idArray) throws RestException;
 
     /**
@@ -69,9 +60,7 @@ public interface SingleService<M extends RestId<I>, I, K> {
      * @return M <p>The return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Object
-     * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     M update(K tablekey, M model, Object... idArray) throws RestException;
 }

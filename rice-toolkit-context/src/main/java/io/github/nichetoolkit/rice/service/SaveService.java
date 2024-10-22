@@ -2,9 +2,6 @@ package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.RestId;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,10 +26,8 @@ public interface SaveService<M extends RestId<I>, I, K> extends QueryService<M, 
      * @return M <p>The return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Object
-     * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     M save(M model, Object... idArray) throws RestException;
 
     /**
@@ -44,10 +39,8 @@ public interface SaveService<M extends RestId<I>, I, K> extends QueryService<M, 
      * @return M <p>The return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Object
-     * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     M save(K tablekey, M model, Object... idArray) throws RestException;
 
     /**
@@ -60,10 +53,8 @@ public interface SaveService<M extends RestId<I>, I, K> extends QueryService<M, 
      * @see java.util.Collection
      * @see java.lang.Object
      * @see java.util.List
-     * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     List<M> saveAll(Collection<M> modelList, Object... idArray) throws RestException;
 
     /**
@@ -77,10 +68,8 @@ public interface SaveService<M extends RestId<I>, I, K> extends QueryService<M, 
      * @see java.util.Collection
      * @see java.lang.Object
      * @see java.util.List
-     * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
-    @Transactional(rollbackFor = {RestException.class, SQLException.class})
     List<M> saveAll(K tablekey, Collection<M> modelList, Object... idArray) throws RestException;
 
 }
