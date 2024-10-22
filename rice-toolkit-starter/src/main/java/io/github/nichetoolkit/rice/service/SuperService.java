@@ -789,19 +789,20 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     @SuppressWarnings(value = "unchecked")
     private void operateAllByWhere(String operateWhereSql, String tablename, F filter) throws RestException {
         if (!(superMapper instanceof OperateMapper)) {
-            throw new UnsupportedErrorException("the mapper is not support method of 'operateAllWithFilter' with the delete model is 'OPERATE' !");
+            throw new UnsupportedErrorException("The mapper is not support method of 'operateAllWithFilter' with the delete model is 'OPERATE' !");
         }
+        OperateType operateType = GeneralUtils.isNotEmpty(filter.getOperate()) ? filter.getOperate() : OperateType.REMOVE;
         if (DeleteMode.OPERATE != deleteMode() || (isBeforeSkip() && isAfterSkip())) {
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((OperateMapper<I>) superMapper).operateDynamicAllByWhere(tablename, operateWhereSql, OperateType.REMOVE.getKey());
+                ((OperateMapper<I>) superMapper).operateDynamicAllByWhere(tablename, operateWhereSql, operateType.getKey());
             } else {
-                ((OperateMapper<I>) superMapper).operateAllByWhere(operateWhereSql, OperateType.REMOVE.getKey());
+                ((OperateMapper<I>) superMapper).operateAllByWhere(operateWhereSql, operateType.getKey());
             }
         } else {
             String queryWhereSql = queryWhereSql(filter);
             List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
             if (GeneralUtils.isNotEmpty(entityList)) {
-                operateAdvice(entityList, OperateType.REMOVE, operate -> {
+                operateAdvice(entityList, operateType, operate -> {
                     if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
                         ((OperateMapper<I>) superMapper).operateDynamicAllByWhere(tablename, operateWhereSql, operate.getKey());
                     } else {
@@ -848,7 +849,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
             } else {
                 exist = existById(model.getId());
             }
-            String message = "the data no found，id: " + model.getId();
+            String message = "The data no found，id: " + model.getId();
             OptionalUtils.ofFalse(exist, message, "id", log, DataQueryException::new);
         }
         optional(model);
@@ -883,7 +884,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
             if (!exist && isIdentityOfInvade()) {
                 invadeActuator().actuate(tablekey, model);
             } else {
-                String message = "the data no found，id: " + model.getId();
+                String message = "The data no found，id: " + model.getId();
                 OptionalUtils.ofFalse(exist, message, "id", log, DataQueryException::new);
                 optional(model);
                 if (updateActuator != null) {
@@ -2367,6 +2368,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         if (deleteModel == DeleteMode.REMOVE) {
             removeAllWithFilter(filter);
         } else if (deleteModel == DeleteMode.OPERATE) {
+            filter.setOperate(OperateType.DELETE);
             operateAllWithFilter(filter);
         } else {
             optionalDeleteFilter(filter);
@@ -2513,11 +2515,12 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                 Method findAllByWhereMethod = findMethod;
                 Method operateAllByWhereMethod = operateMethod;
                 if (operateAllByWhereMethod != null && !operateAllByWhereMethod.isDefault()) {
+                    OperateType operateType = GeneralUtils.isNotEmpty(filter.getOperate()) ? filter.getOperate() : OperateType.REMOVE;
                     if (DeleteMode.OPERATE != deleteMode() || (isBeforeSkip() && isAfterSkip())) {
                         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                            filterMapper.operateDynamicAllByFilterWhere(tablename, operateWhereSql, filter, OperateType.REMOVE.getKey());
+                            filterMapper.operateDynamicAllByFilterWhere(tablename, operateWhereSql, filter, operateType.getKey());
                         } else {
-                            filterMapper.operateAllByFilterWhere(operateWhereSql, filter, OperateType.REMOVE.getKey());
+                            filterMapper.operateAllByFilterWhere(operateWhereSql, filter, operateType.getKey());
                         }
                     } else {
                         String queryWhereSql = queryWhereSql(filter);
@@ -2528,7 +2531,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                             entityList = superMapper.findAllByWhere(queryWhereSql);
                         }
                         if (GeneralUtils.isNotEmpty(entityList)) {
-                            operateAdvice(entityList, OperateType.REMOVE, operate -> {
+                            operateAdvice(entityList, operateType, operate -> {
                                 if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
                                     filterMapper.operateDynamicAllByFilterWhere(tablename, operateWhereSql, filter, operate.getKey());
                                 } else {
