@@ -42,14 +42,14 @@ public interface RemoveMapper<I> {
      * <code>removeAll</code>
      * <p>The all method.</p>
      * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
-     * @param sign   {@link java.lang.String} <p>The sign parameter is <code>String</code> type.</p>
+     * @param logic  {@link java.lang.String} <p>The logic parameter is <code>String</code> type.</p>
      * @return {@link java.lang.Integer} <p>The all return object is <code>Integer</code> type.</p>
      * @see java.util.Collection
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.String
      * @see java.lang.Integer
      */
-    Integer removeAll(@Param("idList") Collection<I> idList, @Param("sign") String sign);
+    Integer removeAll(@Param("idList") Collection<I> idList, @Param("logic") String logic);
 
     /**
      * <code>removeDynamicAll</code>
