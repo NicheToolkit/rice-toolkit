@@ -25,15 +25,10 @@ public enum DeleteMode implements RestValue<Integer,String> {
      */
     REMOVE(1,"remove"),
     /**
-     * <code>DELETE</code>
-     * <p>The delete delete mode field.</p>
-     */
-    DELETE(2,"delete"),
-    /**
      * <code>OPERATE</code>
      * <p>The operate delete mode field.</p>
      */
-    OPERATE(3,"operate"),
+    OPERATE(2,"operate"),
     ;
 
     /**

@@ -34,11 +34,6 @@ public enum RemoveMode implements RestValue<Integer, String> {
      * <p>The identity remove mode field.</p>
      */
     IDENTITY(4, "identity"),
-    /**
-     * <code>BACKUP</code>
-     * <p>The backup remove mode field.</p>
-     */
-    BACKUP(5, "backup"),
     ;
 
     /**
