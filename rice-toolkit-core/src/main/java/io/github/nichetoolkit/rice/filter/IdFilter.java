@@ -337,7 +337,7 @@ public class IdFilter<I, K> extends TableFilter<K> {
             if (GeneralUtils.isNotEmpty(alias) && alias.contains(".")) {
                 prefix = alias.split("\\.")[0];
             }
-            String whereSqlOfIdentities = SqlUtils.whereSqlOfIds(prefix, idList, identityType, StyleType.LOWER_UNDERLINE);
+            String whereSqlOfIdentities = SqlUtils.whereSqlOfTypes(prefix, idList, identityType, StyleType.LOWER_UNDERLINE);
             SqlBuilders.append(SQL_BUILDER, whereSqlOfIdentities);
         } else {
             if (GeneralUtils.isNotEmpty(this.id)) {
