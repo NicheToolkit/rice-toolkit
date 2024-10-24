@@ -25,7 +25,7 @@ public interface RemoveLinkMapper<L,I> extends RemoveMapper<I> {
      * @see java.lang.String
      * @see java.lang.Integer
      */
-    Integer removeByLinkId(@Param("linkId") L linkId, @Param("logic") String logic);
+    Integer removeByLinkId(@Param("linkId") L linkId, @Param("logic") Object logic);
 
     /**
      * <code>removeDynamicByLinkId</code>
@@ -38,7 +38,7 @@ public interface RemoveLinkMapper<L,I> extends RemoveMapper<I> {
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer removeDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") L linkId, @Param("logic") String logic);
+    Integer removeDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") L linkId, @Param("logic") Object logic);
 
     /**
      * <code>removeAllByLinkIds</code>
@@ -51,7 +51,7 @@ public interface RemoveLinkMapper<L,I> extends RemoveMapper<I> {
      * @see java.lang.String
      * @see java.lang.Integer
      */
-    Integer removeAllByLinkIds(@Param("linkIdList") Collection<L> linkIdList, @Param("logic") String logic);
+    Integer removeAllByLinkIds(@Param("linkIdList") Collection<L> linkIdList, @Param("logic") Object logic);
 
     /**
      * <code>removeDynamicAllByLinkIds</code>
@@ -65,6 +65,6 @@ public interface RemoveLinkMapper<L,I> extends RemoveMapper<I> {
      * @see java.util.Collection
      * @see java.lang.Integer
      */
-    Integer removeDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection<L> linkIdList, @Param("logic") String logic);
+    Integer removeDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection<L> linkIdList, @Param("logic") Object logic);
 
 }

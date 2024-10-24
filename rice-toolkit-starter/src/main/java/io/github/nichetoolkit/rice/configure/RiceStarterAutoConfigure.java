@@ -1,7 +1,7 @@
 package io.github.nichetoolkit.rice.configure;
 
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.RestIdResolver;
+import io.github.nichetoolkit.rice.resolver.RestIdentityResolver;
 import io.github.nichetoolkit.rice.defaults.DefaultTokenContextResolver;
 import io.github.nichetoolkit.rice.defaults.LongIdentityResolver;
 import io.github.nichetoolkit.rice.defaults.StringIdentityResolver;
@@ -106,13 +106,13 @@ public class RiceStarterAutoConfigure implements InitializingBean {
 
     @Bean
     @ConditionalOnMissingBean(StringIdentityResolver.class)
-    public RestIdResolver<String> defaultStringIdResolver() {
+    public RestIdentityResolver<String> defaultStringIdResolver() {
         return StringIdentityResolver.DEFAULT_RESOLVER;
     }
 
     @Bean
     @ConditionalOnMissingBean(LongIdentityResolver.class)
-    public RestIdResolver<Long> defaultLongIdResolver() {
+    public RestIdentityResolver<Long> defaultLongIdResolver() {
         return LongIdentityResolver.DEFAULT_RESOLVER;
     }
 }

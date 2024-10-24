@@ -1,8 +1,9 @@
 package io.github.nichetoolkit.rice;
 
+import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.enums.DeleteMode;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.enums.RemoveMode;
+import io.github.nichetoolkit.rice.enums.LogicMode;
 import io.github.nichetoolkit.rice.jsonb.ContainRule;
 import io.github.nichetoolkit.rice.jsonb.ContrastRule;
 import io.github.nichetoolkit.rice.jsonb.EqualRule;
@@ -14,7 +15,7 @@ import java.util.*;
 
 /**
  * <code>RestFilter</code>
- * <p>The type rest filter class.</p>
+ * <p>The rest filter class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.DefaultFilter
  * @since Jdk1.8
@@ -50,40 +51,44 @@ public abstract class RestFilter extends DefaultFilter<String, String> {
 
     /**
      * <code>toRemoveSql</code>
-     * <p>The remove sql method.</p>
+     * <p>The to remove sql method.</p>
      * @param superService {@link io.github.nichetoolkit.rice.service.SuperService} <p>The super service parameter is <code>SuperService</code> type.</p>
      * @param alias        {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestFilter} <p>The remove sql return object is <code>RestFilter</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.RestFilter} <p>The to remove sql return object is <code>RestFilter</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.SuperService
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
+     * @see io.github.nichetoolkit.rest.RestException
      */
-    public RestFilter toRemoveSql(SuperService<? extends IdModel<String>, ? extends IdEntity<String>, ? extends RestFilter, String, String> superService, @NonNull String alias) {
-        RemoveMode removeMode = superService.removeMode();
-        String logicSign = superService.signOfLogic();
+    public RestFilter toRemoveSql(SuperService<? extends IdModel<String>, ? extends IdEntity<String>, ? extends RestFilter, String, String> superService, @NonNull String alias) throws RestException {
+        LogicMode logicMode = superService.logicMode();
+        Object unmarkOfLogic = superService.unmarkOfLogic();
         Boolean accurateJudge = superService.judgeOfAccurate();
-        String logicValue = superService.valueOfLogic();
-        super.toRemoveSql(removeMode, logicSign, accurateJudge, logicValue, alias);
+        Object markOfLogic = superService.markOfLogic();
+        super.toRemoveSql(logicMode, markOfLogic, accurateJudge, unmarkOfLogic, alias);
         return this;
     }
 
     /**
      * <code>toQuerySql</code>
-     * <p>The query sql method.</p>
+     * <p>The to query sql method.</p>
      * @param superService {@link io.github.nichetoolkit.rice.service.SuperService} <p>The super service parameter is <code>SuperService</code> type.</p>
      * @param alias        {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestFilter} <p>The query sql return object is <code>RestFilter</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.RestFilter} <p>The to query sql return object is <code>RestFilter</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.SuperService
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
+     * @see io.github.nichetoolkit.rest.RestException
      */
-    public RestFilter toQuerySql(SuperService<? extends IdModel<String>, ? extends IdEntity<String>, ? extends RestFilter, String, String> superService, @NonNull String alias) {
+    public RestFilter toQuerySql(SuperService<? extends IdModel<String>, ? extends IdEntity<String>, ? extends RestFilter, String, String> superService, @NonNull String alias) throws RestException {
         DeleteMode deleteMode = superService.deleteMode();
-        RemoveMode removeMode = superService.removeMode();
-        String logicSign = superService.signOfLogic();
+        LogicMode logicMode = superService.logicMode();
+        Object markOfLogic = superService.markOfLogic();
         Boolean accurateJudge = superService.judgeOfAccurate();
-        String logicValue = superService.valueOfLogic();
-        super.toQuerySql(deleteMode, removeMode, logicSign, accurateJudge, logicValue, alias);
+        Object unmarkOfLogic = superService.unmarkOfLogic();
+        super.toQuerySql(deleteMode, logicMode, markOfLogic, accurateJudge, unmarkOfLogic, alias);
         return this;
     }
 
@@ -126,7 +131,7 @@ public abstract class RestFilter extends DefaultFilter<String, String> {
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rice.DefaultFilter.Builder
      * @since Jdk1.8

@@ -27,7 +27,7 @@ public class ModelUtils {
      * @see java.lang.Object
      * @see java.lang.Class
      */
-    public static Class<?> genericType(Object object) {
+    public static Class<?> identityType(Object object) {
         try {
             return ModelHelper.identityType(object);
         } catch (ClassUnknownException | ClassUnsupportedException exception) {
@@ -50,7 +50,7 @@ public class ModelUtils {
             return ModelHelper.newInstance(clazz);
         } catch (ClassUnrenewException exception) {
             GeneralUtils.printStackTrace(exception,false);
-            log.error("the model type of <I> is unrenew",exception);
+            log.error("the model type of <I> new instance is error",exception);
             return null;
         }
     }
@@ -70,7 +70,7 @@ public class ModelUtils {
             return ModelHelper.newInstance(clazz,args);
         } catch (ClassUnrenewException exception) {
             GeneralUtils.printStackTrace(exception,false);
-            log.error("the model type of <I> is unrenew",exception);
+            log.error("the model type of <I> new instance is error",exception);
             return null;
         }
     }
@@ -83,9 +83,9 @@ public class ModelUtils {
      * @return I <p>The return object is <code>I</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestId
      */
-    public static <I> I generate(RestId<I> model)  {
+    public static <I> I generateIdentity(RestId<I> model)  {
         try {
-            return ModelHelper.generate(model);
+            return ModelHelper.generateIdentity(model);
         } catch (ClassUnknownException exception) {
             GeneralUtils.printStackTrace(exception,false);
             log.error("the model type of <I> is unknown",exception);

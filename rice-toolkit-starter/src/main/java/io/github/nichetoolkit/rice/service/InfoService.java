@@ -105,9 +105,9 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
         String tablename = resolveTablename(tablekey, model);
         List<E> entityList;
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = infoMapper.findDynamicByName(tablename, model.getName(), valueOfLogic());
+            entityList = infoMapper.findDynamicByName(tablename, model.getName(), unmarkOfLogic());
         } else {
-            entityList = infoMapper.findByName(model.getName(), valueOfLogic());
+            entityList = infoMapper.findByName(model.getName(), unmarkOfLogic());
         }
         return GeneralUtils.isNotEmpty(entityList);
     }
@@ -134,9 +134,9 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
         String tablename = resolveTablename(tablekey, model);
         List<E> entityList;
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = infoMapper.findDynamicByNameAndNotId(tablename, model.getName(), id, valueOfLogic());
+            entityList = infoMapper.findDynamicByNameAndNotId(tablename, model.getName(), id, unmarkOfLogic());
         } else {
-            entityList = infoMapper.findByNameAndNotId(model.getName(), id, valueOfLogic());
+            entityList = infoMapper.findByNameAndNotId(model.getName(), id, unmarkOfLogic());
         }
         return GeneralUtils.isNotEmpty(entityList);
     }
@@ -159,9 +159,9 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
         String tablename = resolveTablename(tablekey, model);
         List<E> entityList;
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = infoMapper.findDynamicByEntityUnique(tablename, entity, valueOfLogic());
+            entityList = infoMapper.findDynamicByEntityUnique(tablename, entity, unmarkOfLogic());
         } else {
-            entityList = infoMapper.findByEntityUnique(entity, valueOfLogic());
+            entityList = infoMapper.findByEntityUnique(entity, unmarkOfLogic());
         }
         return GeneralUtils.isNotEmpty(entityList);
     }
@@ -188,9 +188,9 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
         String tablename = resolveTablename(tablekey, model);
         List<E> entityList;
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = infoMapper.findDynamicByEntityUniqueAndNotId(tablename, entity, id, valueOfLogic());
+            entityList = infoMapper.findDynamicByEntityUniqueAndNotId(tablename, entity, id, unmarkOfLogic());
         } else {
-            entityList = infoMapper.findByEntityUniqueAndNotId(entity, id, valueOfLogic());
+            entityList = infoMapper.findByEntityUniqueAndNotId(entity, id, unmarkOfLogic());
         }
         return GeneralUtils.isNotEmpty(entityList);
     }
@@ -209,9 +209,9 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
     private List<E> findByName(String name, String tablename) throws RestException {
         List<E> entityList;
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = infoMapper.findDynamicByName(tablename, name, valueOfLogic());
+            entityList = infoMapper.findDynamicByName(tablename, name, unmarkOfLogic());
         } else {
-            entityList = infoMapper.findByName(name, valueOfLogic());
+            entityList = infoMapper.findByName(name, unmarkOfLogic());
         }
         return entityList;
     }
@@ -264,9 +264,9 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
             /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByNameMethod */
             if (queryByNameMethod != null && !queryByNameMethod.isDefault()) {
                 if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    entityList = loadMapper.findDynamicByNameLoad(tablename, name, valueOfLogic(), isLoadArray);
+                    entityList = loadMapper.findDynamicByNameLoad(tablename, name, unmarkOfLogic(), isLoadArray);
                 } else {
-                    entityList = loadMapper.findByNameLoad(name, valueOfLogic(), isLoadArray);
+                    entityList = loadMapper.findByNameLoad(name, unmarkOfLogic(), isLoadArray);
                 }
             } else {
                 entityList = findByName(name, tablename);

@@ -30,7 +30,7 @@ public interface RemoveFilterMapper<E extends RestId<I>, F extends IdFilter<I, K
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer removeAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("logic") String logic);
+    Integer removeAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("logic") Object logic);
 
     /**
      * <code>removeDynamicAllByFilterWhere</code>
@@ -44,5 +44,5 @@ public interface RemoveFilterMapper<E extends RestId<I>, F extends IdFilter<I, K
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer removeDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("logic") String logic);
+    Integer removeDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("logic") Object logic);
 }

@@ -14,12 +14,13 @@ import io.github.nichetoolkit.rice.*;
 import io.github.nichetoolkit.rice.advice.*;
 import io.github.nichetoolkit.rice.enums.DeleteMode;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.enums.RemoveMode;
+import io.github.nichetoolkit.rice.enums.LogicMode;
 import io.github.nichetoolkit.rice.enums.SaveType;
 import io.github.nichetoolkit.rice.error.table.TablenameIsNullException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
 import io.github.nichetoolkit.rice.mapper.*;
+import io.github.nichetoolkit.rice.resolver.RestIdentityResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 
@@ -149,7 +150,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     private void optionalLogicAndOperate(@NonNull M model) throws RestException {
         if (model instanceof RestLogic) {
             RestLogic logicModel = (RestLogic) model;
-            logicModel.setLogic(Optional.ofNullable(logicModel.getLogic()).orElse(valueOfLogic()));
+            logicModel.setLogic(Optional.ofNullable(logicModel.getLogic()).orElse(unmarkOfLogic()));
         }
         if (model instanceof RestOperate) {
             RestOperate operateModel = (RestOperate) model;
@@ -399,7 +400,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     }
 
     @SuppressWarnings({"unchecked", "Duplicates"})
-    protected void removePartition(String tablename, Collection<I> idList, String logic) throws RestException {
+    protected void removePartition(String tablename, Collection<I> idList, Object logic) throws RestException {
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
             PartitionHelper.delete(idList, this.partitionOfDelete(), ids -> ((RemoveMapper<I>) superMapper).removeDynamicAll(tablename, ids, logic));
         } else {
@@ -408,7 +409,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     }
 
     @SuppressWarnings({"unchecked", "Duplicates"})
-    protected <L> void removeLinkPartition(String tablename, Collection<L> linkIdList, String logic) throws RestException {
+    protected <L> void removeLinkPartition(String tablename, Collection<L> linkIdList, Object logic) throws RestException {
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
             PartitionHelper.delete(linkIdList, this.partitionOfDelete(), linkIds -> ((RemoveLinkMapper<L, I>) superMapper).removeDynamicAllByLinkIds(tablename, linkIds, logic));
         } else {
@@ -416,7 +417,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         }
     }
 
-    protected void removeAdvice(List<E> entityList, String logic, ConsumerActuator<String> removeActuator) throws RestException {
+    protected void removeAdvice(List<E> entityList, Object logic, ConsumerActuator<Object> removeActuator) throws RestException {
         if (!isBeforeSkip()) {
             this.beforeRemoveAll(entityList);
         }
@@ -493,7 +494,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         if (!(superMapper instanceof RemoveMapper)) {
             throw new UnsupportedErrorException("The mapper is not support method of 'removeAllWithFilter' with the delete model is 'REMOVE' !");
         }
-        String logic = signOfLogic();
+        Object logic = markOfLogic();
         if (isBeforeSkip() && isAfterSkip()) {
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
                 ((RemoveMapper<I>) superMapper).removeDynamicAllByWhere(tablename, removeWhereSql, logic);
@@ -543,7 +544,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     }
 
     protected final BiConsumerActuator<K, M> DEFAULT_CREATE_ACTUATOR = (K tablekey, @NonNull M model) -> {
-        RestIdResolver.resolveModel(model);
+        RestIdentityResolver.resolveIdentity(model);
         optionalInit(model);
         optional(model);
         if (createActuator != null) {
@@ -681,22 +682,6 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         return ServiceHolder.dynamicOfTable();
     }
 
-    protected boolean signOfBoolean() {
-        return ServiceHolder.signOfBoolean();
-    }
-
-    protected boolean valueOfBoolean() {
-        return ServiceHolder.valueOfBoolean();
-    }
-
-    protected int signOfNumber() {
-        return ServiceHolder.signOfNumber();
-    }
-
-    protected int valueOfNumber() {
-        return ServiceHolder.valueOfNumber();
-    }
-
     protected boolean isBeforeSkip() {
         return ServiceHolder.skipOfBefore();
     }
@@ -755,20 +740,20 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         return ServiceHolder.deleteMode();
     }
 
-    public RemoveMode removeMode() {
-        return ServiceHolder.removeMode();
+    public LogicMode logicMode() {
+        return ServiceHolder.logicMode();
     }
 
     public Boolean judgeOfAccurate() {
         return ServiceHolder.judgeOfAccurate();
     }
 
-    public String signOfLogic() {
-        return ServiceHolder.signOfLogic();
+    public Object markOfLogic() throws RestException {
+        return ServiceHolder.markOfLogic();
     }
 
-    public String valueOfLogic() {
-        return ServiceHolder.valueOfLogic();
+    public Object unmarkOfLogic() throws RestException {
+        return ServiceHolder.unmarkOfLogic();
     }
 
 }

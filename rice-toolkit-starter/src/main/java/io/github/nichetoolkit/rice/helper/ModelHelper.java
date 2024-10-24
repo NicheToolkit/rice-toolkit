@@ -139,7 +139,7 @@ public class ModelHelper {
      * @see io.github.nichetoolkit.rest.error.ClassUnknownException
      */
     @SuppressWarnings(value = "unchecked")
-    public static <I> I generate(RestId<I> model) throws ClassUnsupportedException, ClassUnknownException {
+    public static <I> I generateIdentity(RestId<I> model) throws ClassUnsupportedException, ClassUnknownException {
         Class<?> clazz = identityType(model);
         Long id = IdentityUtils.valueOfLong();
         if (String.class.equals(clazz)) {

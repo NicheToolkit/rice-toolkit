@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * <code>RestLogic</code>
- * <p>The type rest logic interface.</p>
+ * <p>The rest logic interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.io.Serializable
  * @since Jdk1.8
@@ -13,18 +13,18 @@ public interface RestLogic extends Serializable {
 
     /**
      * <code>getLogic</code>
-     * <p>The logic getter method.</p>
-     * @return {@link java.lang.String} <p>The logic return object is <code>String</code> type.</p>
-     * @see java.lang.String
+     * <p>The get logic getter method.</p>
+     * @return {@link java.lang.Object} <p>The get logic return object is <code>Object</code> type.</p>
+     * @see java.lang.Object
      */
-    String getLogic();
+    Object getLogic();
 
     /**
      * <code>setLogic</code>
-     * <p>The logic setter method.</p>
-     * @param logic {@link java.lang.String} <p>The logic parameter is <code>String</code> type.</p>
-     * @see java.lang.String
+     * <p>The set logic setter method.</p>
+     * @param logic {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
+     * @see java.lang.Object
      */
-    void setLogic(String logic);
+    void setLogic(Object logic);
 
 }

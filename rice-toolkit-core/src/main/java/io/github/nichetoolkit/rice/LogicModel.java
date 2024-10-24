@@ -28,7 +28,7 @@ public class LogicModel extends SaveModel implements RestLogic {
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
-    protected String logic;
+    protected Object logic;
 
     /**
      * <code>LogicModel</code>
@@ -50,12 +50,12 @@ public class LogicModel extends SaveModel implements RestLogic {
 
 
     @Override
-    public String getLogic() {
+    public Object getLogic() {
         return logic;
     }
 
     @Override
-    public void setLogic(String logic) {
+    public void setLogic(Object logic) {
         this.logic = logic;
     }
 

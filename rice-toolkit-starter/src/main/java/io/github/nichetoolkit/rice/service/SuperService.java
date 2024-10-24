@@ -408,7 +408,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         if (GeneralUtils.isEmpty(id)) {
             return;
         }
-        String logic = signOfLogic();
+        Object logic = markOfLogic();
         if (superMapper instanceof RemoveMapper) {
             String tablename = resolveTablename(tablekey);
             if (isBeforeSkip() && isAfterSkip()) {
@@ -447,7 +447,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
-        String logic = signOfLogic();
+        Object logic = markOfLogic();
         if (superMapper instanceof RemoveMapper) {
             String tablename = resolveTablename(tablekey);
             if (isBeforeSkip() && isAfterSkip()) {
@@ -472,7 +472,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         if (GeneralUtils.isEmpty(linkId)) {
             return;
         }
-        String logic = signOfLogic();
+        Object logic = markOfLogic();
         if (superMapper instanceof RemoveLinkMapper) {
             String tablename = resolveTablename(tablekey);
             if (isBeforeSkip() && isAfterSkip()) {
@@ -511,7 +511,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         if (GeneralUtils.isEmpty(linkIdList)) {
             return;
         }
-        String logic = signOfLogic();
+        Object logic = markOfLogic();
         if (superMapper instanceof RemoveLinkMapper) {
             String tablename = resolveTablename(tablekey);
             if (isBeforeSkip() && isAfterSkip()) {
@@ -976,7 +976,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         K tablekey = tablekey(filter);
         String tablename = resolveTablename(tablekey);
         if (GeneralUtils.isNotEmpty(removeWhereSql)) {
-            String logic = signOfLogic();
+            Object logic = markOfLogic();
             if (RemoveFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
                 RemoveFilterMapper<E, F, I, K> filterMapper = (RemoveFilterMapper<E, F, I, K>) superMapper;
                 Method findMethod = null;

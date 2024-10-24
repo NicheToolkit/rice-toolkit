@@ -54,14 +54,21 @@
       "type": "io.github.nichetoolkit.rice.enums.DeleteMode",
       "sourceType": "io.github.nichetoolkit.rice.enums.DeleteMode",
       "description": "the delete mode of data on rest service delete handle.",
-      "defaultValue": "none"
+      "defaultValue": "remove"
     },
     {
-      "name": "nichetoolkit.rice.service.remove-mode",
-      "type": "io.github.nichetoolkit.rice.enums.RemoveMode",
-      "sourceType": "io.github.nichetoolkit.rice.enums.RemoveMode",
-      "description": "the remove mode of data on rest service remove handle.",
-      "defaultValue": "number"
+      "name": "nichetoolkit.rice.service.before-skip",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "the switch of skip delete before handle on rest service delete handle.",
+      "defaultValue": true
+    },
+    {
+      "name": "nichetoolkit.rice.service.after-skip",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "the switch of skip delete after handle on rest service delete handle.",
+      "defaultValue": true
     },
     {
       "name": "nichetoolkit.rice.service.partition.query-size",
@@ -85,20 +92,6 @@
       "defaultValue": 1000
     },
     {
-      "name": "nichetoolkit.rice.service.delete.before-skip",
-      "type": "java.lang.Boolean",
-      "sourceType": "java.lang.Boolean",
-      "description": "the switch of skip delete before handle on rest service delete handle.",
-      "defaultValue": true
-    },
-    {
-      "name": "nichetoolkit.rice.service.delete.after-skip",
-      "type": "java.lang.Boolean",
-      "sourceType": "java.lang.Boolean",
-      "description": "the switch of skip delete after handle on rest service delete handle.",
-      "defaultValue": true
-    },
-    {
       "name": "nichetoolkit.rice.service.delete.accurate-judge",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
@@ -106,32 +99,39 @@
       "defaultValue": false
     },
     {
-      "name": "nichetoolkit.rice.service.delete.boolean-sign",
-      "type": "java.lang.Boolean",
-      "sourceType": "java.lang.Boolean",
-      "description": "the sign of delete data when logical remove model is `boolean`.",
-      "defaultValue": true
+      "name": "nichetoolkit.rice.service.delete.logic-mode",
+      "type": "io.github.nichetoolkit.rice.enums.LogicMode",
+      "sourceType": "io.github.nichetoolkit.rice.enums.LogicMode",
+      "description": "the logic mode of data on rest service logic handle.",
+      "defaultValue": "config"
     },
     {
-      "name": "nichetoolkit.rice.service.delete.boolean-value",
-      "type": "java.lang.Boolean",
-      "sourceType": "java.lang.Boolean",
-      "description": "`the value of default data when logical remove model is `boolean`.",
-      "defaultValue": false
+      "name": "nichetoolkit.rice.service.delete.config-mark",
+      "type": "io.github.nichetoolkit.rice.enums.ConfigMark",
+      "sourceType": "io.github.nichetoolkit.rice.enums.ConfigMark",
+      "description": "the config mode of data on rest service logic handle.",
+      "defaultValue": "number"
     },
     {
-      "name": "nichetoolkit.rice.service.delete.number-sign",
-      "type": "java.lang.Integer",
-      "sourceType": "java.lang.Integer",
-      "description": "the sign of delete data when logical remove model is `number`.",
-      "defaultValue": 2
+      "name": "nichetoolkit.rice.service.delete.auto-mark",
+      "type": "io.github.nichetoolkit.rice.enums.AutoMark",
+      "sourceType": "io.github.nichetoolkit.rice.enums.AutoMark",
+      "description": "the auto mode of data on rest service logic handle.",
+      "defaultValue": "identity"
     },
     {
-      "name": "nichetoolkit.rice.service.delete.number-value",
-      "type": "java.lang.Integer",
-      "sourceType": "java.lang.Integer",
-      "description": "the value of default data when logical remove model is `number`.",
+      "name": "nichetoolkit.rice.service.delete.unmark-value",
+      "type": "java.lang.Object",
+      "sourceType": "java.lang.Object",
+      "description": "the unmark of delete data when logical remove model.",
       "defaultValue": 1
+    },
+    {
+      "name": "nichetoolkit.rice.service.delete.mark-value",
+      "type": "java.lang.Object",
+      "sourceType": "java.lang.Object",
+      "description": "the mark of delete data when logical remove model.",
+      "defaultValue": 2
     }
   ],
   "hints": [
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "name": "nichetoolkit.rice.service.delete.before-skip",
+      "name": "nichetoolkit.rice.service.before-skip",
       "values": [
         {
           "value": false,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "name": "nichetoolkit.rice.service.delete.after-skip",
+      "name": "nichetoolkit.rice.service.after-skip",
       "values": [
         {
           "value": false,

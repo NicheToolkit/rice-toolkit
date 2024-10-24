@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import io.github.nichetoolkit.rice.enums.DeleteMode;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.enums.RemoveMode;
+import io.github.nichetoolkit.rice.enums.LogicMode;
 import io.github.nichetoolkit.rice.filter.NameFilter;
 import io.github.nichetoolkit.rice.jsonb.ContainRule;
 import io.github.nichetoolkit.rice.jsonb.ContrastRule;
@@ -14,76 +14,39 @@ import org.springframework.lang.NonNull;
 
 import java.util.*;
 
-/**
- * <code>DefaultFilter</code>
- * <p>The type default filter class.</p>
- * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.filter.NameFilter
- * @since Jdk1.8
- */
 public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
 
-    /**
-     * <code>DefaultFilter</code>
-     * <p>Instantiates a new default filter.</p>
-     */
     public DefaultFilter() {
     }
 
-    /**
-     * <code>DefaultFilter</code>
-     * <p>Instantiates a new default filter.</p>
-     * @param ids I <p>The ids parameter is <code>I</code> type.</p>
-     * @see java.lang.SuppressWarnings
-     */
     @SuppressWarnings(value = "unchecked")
     public DefaultFilter(I... ids) {
         super(ids);
     }
 
-    /**
-     * <code>DefaultFilter</code>
-     * <p>Instantiates a new default filter.</p>
-     * @param builder {@link io.github.nichetoolkit.rice.DefaultFilter.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.DefaultFilter.Builder
-     */
     public DefaultFilter(DefaultFilter.Builder<I, K> builder) {
         super(builder);
     }
 
-    /**
-     * <code>toRemoveSql</code>
-     * <p>The remove sql method.</p>
-     * @param removeMode    {@link io.github.nichetoolkit.rice.enums.RemoveMode} <p>The remove mode parameter is <code>RemoveMode</code> type.</p>
-     * @param logicSign     {@link java.lang.String} <p>The logic sign parameter is <code>String</code> type.</p>
-     * @param accurateJudge {@link java.lang.Boolean} <p>The accurate judge parameter is <code>Boolean</code> type.</p>
-     * @param logicValue    {@link java.lang.String} <p>The logic value parameter is <code>String</code> type.</p>
-     * @param alias         {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.DefaultFilter} <p>The remove sql return object is <code>DefaultFilter</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.RemoveMode
-     * @see java.lang.String
-     * @see java.lang.Boolean
-     * @see org.springframework.lang.NonNull
-     */
-    public DefaultFilter<I, K> toRemoveSql(RemoveMode removeMode, String logicSign, Boolean accurateJudge, String logicValue, @NonNull String alias) {
-        if (GeneralUtils.isNotEmpty(logicSign)) {
-            if (removeMode == RemoveMode.BOOLEAN || removeMode == RemoveMode.NUMBER) {
-                if (accurateJudge && GeneralUtils.isNotEmpty(logicValue)) {
+    public DefaultFilter<I, K> toRemoveSql(LogicMode logicMode, Object markOfLogic, Boolean accurateJudge, Object unmarkOfLogic, @NonNull String alias) {
+        if (GeneralUtils.isNotEmpty(markOfLogic)) {
+            if (logicMode == LogicMode.CONFIG && GeneralUtils.isNotEmpty(markOfLogic)) {
+                if (accurateJudge) {
                     if (this.isRemove) {
-                        SqlBuilders.equal(SQL_BUILDER, alias, logicSign);
-                    } else {
-                        SqlBuilders.equal(SQL_BUILDER, alias, logicValue);
+                        SqlBuilders.equal(SQL_BUILDER, alias, markOfLogic);
+                    } else if (GeneralUtils.isNotEmpty(unmarkOfLogic)){
+                        SqlBuilders.equal(SQL_BUILDER, alias, unmarkOfLogic);
+                    }  else {
+                        SqlBuilders.isnull(SQL_BUILDER, alias);
                     }
                 } else {
                     if (this.isRemove) {
-                        SqlBuilders.equal(SQL_BUILDER, alias, logicSign);
+                        SqlBuilders.equal(SQL_BUILDER, alias, markOfLogic);
                     } else {
-                        SqlBuilders.unequal(SQL_BUILDER, alias, logicSign);
+                        SqlBuilders.unequal(SQL_BUILDER, alias, markOfLogic);
                     }
                 }
-            } else if (removeMode == RemoveMode.DATETIME || removeMode == RemoveMode.IDENTITY) {
+            } else if (logicMode == LogicMode.AUTO) {
                 if (this.isRemove) {
                     SqlBuilders.nonnull(SQL_BUILDER, alias);
                 } else {
@@ -94,27 +57,11 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
         return this;
     }
 
-    /**
-     * <code>toQuerySql</code>
-     * <p>The query sql method.</p>
-     * @param deleteMode    {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>The delete mode parameter is <code>DeleteMode</code> type.</p>
-     * @param removeMode    {@link io.github.nichetoolkit.rice.enums.RemoveMode} <p>The remove mode parameter is <code>RemoveMode</code> type.</p>
-     * @param logicSign     {@link java.lang.String} <p>The logic sign parameter is <code>String</code> type.</p>
-     * @param accurateJudge {@link java.lang.Boolean} <p>The accurate judge parameter is <code>Boolean</code> type.</p>
-     * @param logicValue    {@link java.lang.String} <p>The logic value parameter is <code>String</code> type.</p>
-     * @param alias         {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.DefaultFilter} <p>The query sql return object is <code>DefaultFilter</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.DeleteMode
-     * @see io.github.nichetoolkit.rice.enums.RemoveMode
-     * @see java.lang.String
-     * @see java.lang.Boolean
-     * @see org.springframework.lang.NonNull
-     */
-    public DefaultFilter<I, K> toQuerySql(DeleteMode deleteMode, RemoveMode removeMode, String logicSign, Boolean accurateJudge, String logicValue, @NonNull String alias) {
+    public DefaultFilter<I, K> toQuerySql(DeleteMode deleteMode, LogicMode logicMode, Object markOfLogic, Boolean accurateJudge, Object unmarkOfLogic, @NonNull String alias) {
         if (deleteMode == DeleteMode.OPERATE) {
             return toOperateSql(alias);
         } else if (deleteMode == DeleteMode.REMOVE) {
-            return toRemoveSql(removeMode,logicSign,accurateJudge,logicValue, alias);
+            return toRemoveSql(logicMode, markOfLogic, accurateJudge, unmarkOfLogic, alias);
         }
         return this;
     }
@@ -155,21 +102,8 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
         return this;
     }
 
-    /**
-     * <code>Builder</code>
-     * <p>The type builder class.</p>
-     * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.filter.NameFilter.Builder
-     * @since Jdk1.8
-     */
     public static abstract class Builder<I, K> extends NameFilter.Builder<I, K> {
 
-        /**
-         * <code>Builder</code>
-         * <p>Instantiates a new builder.</p>
-         */
         public Builder() {
         }
 

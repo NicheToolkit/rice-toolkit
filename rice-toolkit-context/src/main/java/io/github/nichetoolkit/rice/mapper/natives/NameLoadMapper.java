@@ -27,7 +27,7 @@ public interface NameLoadMapper<E extends RestId<I>, I> {
      * @see java.lang.Boolean
      * @see java.util.List
      */
-    List<E> findByNameLoad(@Param("name") String name,@Param("logic") String logic, @Param("loadParams") Boolean... loadParams);
+    List<E> findByNameLoad(@Param("name") String name,@Param("logic") Object logic, @Param("loadParams") Boolean... loadParams);
 
     /**
      * <code>findDynamicByNameLoad</code>
@@ -42,6 +42,6 @@ public interface NameLoadMapper<E extends RestId<I>, I> {
      * @see java.lang.Boolean
      * @see java.util.List
      */
-    List<E> findDynamicByNameLoad(@Param("tablename") String tablename, @Param("name") String name, @Param("logic") String logic, @Param("loadParams") Boolean... loadParams);
+    List<E> findDynamicByNameLoad(@Param("tablename") String tablename, @Param("name") String name, @Param("logic") Object logic, @Param("loadParams") Boolean... loadParams);
 
 }
