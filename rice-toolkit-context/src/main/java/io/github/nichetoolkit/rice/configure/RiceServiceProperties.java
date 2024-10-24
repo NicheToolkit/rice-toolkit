@@ -203,13 +203,13 @@ public class RiceServiceProperties {
          * {@link java.lang.Object} <p>The <code>unmarkValue</code> field.</p>
          * @see java.lang.Object
          */
-        private Object unmarkValue = ConfigMark.NUMBER_UNMARK;
+        private Object unmarkValue;
         /**
          * <code>markValue</code>
          * {@link java.lang.Object} <p>The <code>markValue</code> field.</p>
          * @see java.lang.Object
          */
-        private Object markValue = ConfigMark.NUMBER_MARK;
+        private Object markValue;
     }
 
     /**

@@ -196,14 +196,12 @@
       "type": "java.lang.Object",
       "sourceType": "java.lang.Object",
       "description": "the unmark of delete data when logical remove model.",
-      "defaultValue": 1
     },
     {
       "name": "nichetoolkit.rice.service.delete.mark-value",
       "type": "java.lang.Object",
       "sourceType": "java.lang.Object",
       "description": "the mark of delete data when logical remove model.",
-      "defaultValue": 2
     }
   ],
   "hints": [
