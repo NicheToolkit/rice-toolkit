@@ -5,7 +5,7 @@ import java.util.Optional;
 
 /**
  * <code>TokenContext</code>
- * <p>The type token context class.</p>
+ * <p>The token context class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.util.LinkedHashMap
  * @since Jdk1.8
@@ -28,7 +28,7 @@ public class TokenContext extends LinkedHashMap<String, Object> {
 
     /**
      * <code>setAuth</code>
-     * <p>The auth setter method.</p>
+     * <p>The set auth setter method.</p>
      * @param auth {@link java.lang.String} <p>The auth parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
@@ -38,8 +38,8 @@ public class TokenContext extends LinkedHashMap<String, Object> {
 
     /**
      * <code>getAuth</code>
-     * <p>The auth getter method.</p>
-     * @return {@link java.lang.String} <p>The auth return object is <code>String</code> type.</p>
+     * <p>The get auth getter method.</p>
+     * @return {@link java.lang.String} <p>The get auth return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getAuth() {
@@ -49,7 +49,7 @@ public class TokenContext extends LinkedHashMap<String, Object> {
 
     /**
      * <code>setToken</code>
-     * <p>The token setter method.</p>
+     * <p>The set token setter method.</p>
      * @param token {@link java.lang.String} <p>The token parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
@@ -59,8 +59,8 @@ public class TokenContext extends LinkedHashMap<String, Object> {
 
     /**
      * <code>getToken</code>
-     * <p>The token getter method.</p>
-     * @return {@link java.lang.String} <p>The token return object is <code>String</code> type.</p>
+     * <p>The get token getter method.</p>
+     * @return {@link java.lang.String} <p>The get token return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getToken() {

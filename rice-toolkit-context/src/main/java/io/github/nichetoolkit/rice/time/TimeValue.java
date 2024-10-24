@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  * <code>TimeValue</code>
- * <p>The type time value interface.</p>
+ * <p>The time value interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
@@ -29,25 +29,25 @@ public interface TimeValue {
 
     /**
      * <code>id</code>
-     * <p>The method.</p>
-     * @return {@link java.lang.Long} <p>The return object is <code>Long</code> type.</p>
+     * <p>The id method.</p>
+     * @return {@link java.lang.Long} <p>The id return object is <code>Long</code> type.</p>
      * @see java.lang.Long
      */
     Long id();
 
     /**
      * <code>format</code>
-     * <p>The method.</p>
-     * @return {@link java.lang.String} <p>The return object is <code>String</code> type.</p>
+     * <p>The format method.</p>
+     * @return {@link java.lang.String} <p>The format return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     String format();
 
     /**
      * <code>parse</code>
-     * <p>The method.</p>
+     * <p>The parse method.</p>
      * @param timeValueText {@link java.lang.String} <p>The time value text parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.time.TimeValue} <p>The return object is <code>TimeValue</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.time.TimeValue} <p>The parse return object is <code>TimeValue</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
@@ -61,9 +61,9 @@ public interface TimeValue {
 
     /**
      * <code>getTime</code>
-     * <p>The time getter method.</p>
+     * <p>The get time getter method.</p>
      * @param timeValue {@link io.github.nichetoolkit.rice.time.TimeValue} <p>The time value parameter is <code>TimeValue</code> type.</p>
-     * @return {@link java.lang.Long} <p>The time return object is <code>Long</code> type.</p>
+     * @return {@link java.lang.Long} <p>The get time return object is <code>Long</code> type.</p>
      * @see org.springframework.lang.NonNull
      * @see java.lang.Long
      */
@@ -73,9 +73,9 @@ public interface TimeValue {
 
     /**
      * <code>getStartTime</code>
-     * <p>The start time getter method.</p>
+     * <p>The get start time getter method.</p>
      * @param timeValue {@link io.github.nichetoolkit.rice.time.TimeValue} <p>The time value parameter is <code>TimeValue</code> type.</p>
-     * @return {@link java.util.Date} <p>The start time return object is <code>Date</code> type.</p>
+     * @return {@link java.util.Date} <p>The get start time return object is <code>Date</code> type.</p>
      * @see org.springframework.lang.NonNull
      * @see java.util.Date
      */
@@ -90,9 +90,9 @@ public interface TimeValue {
 
     /**
      * <code>getEndTime</code>
-     * <p>The end time getter method.</p>
+     * <p>The get end time getter method.</p>
      * @param timeValue {@link io.github.nichetoolkit.rice.time.TimeValue} <p>The time value parameter is <code>TimeValue</code> type.</p>
-     * @return {@link java.util.Date} <p>The end time return object is <code>Date</code> type.</p>
+     * @return {@link java.util.Date} <p>The get end time return object is <code>Date</code> type.</p>
      * @see org.springframework.lang.NonNull
      * @see java.util.Date
      */
@@ -107,10 +107,10 @@ public interface TimeValue {
 
     /**
      * <code>interval</code>
-     * <p>The method.</p>
+     * <p>The interval method.</p>
      * @param start {@link java.util.Date} <p>The start parameter is <code>Date</code> type.</p>
      * @param end   {@link java.util.Date} <p>The end parameter is <code>Date</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.time.TimeInterval} <p>The return object is <code>TimeInterval</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.time.TimeInterval} <p>The interval return object is <code>TimeInterval</code> type.</p>
      * @see java.util.Date
      * @see org.springframework.lang.NonNull
      * @see io.github.nichetoolkit.rice.time.TimeInterval
@@ -126,9 +126,9 @@ public interface TimeValue {
 
     /**
      * <code>instant</code>
-     * <p>The method.</p>
+     * <p>The instant method.</p>
      * @param time {@link java.util.Date} <p>The time parameter is <code>Date</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.time.TimeInstant} <p>The return object is <code>TimeInstant</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.time.TimeInstant} <p>The instant return object is <code>TimeInstant</code> type.</p>
      * @see java.util.Date
      * @see org.springframework.lang.NonNull
      * @see io.github.nichetoolkit.rice.time.TimeInstant
@@ -139,10 +139,10 @@ public interface TimeValue {
 
     /**
      * <code>value</code>
-     * <p>The method.</p>
+     * <p>The value method.</p>
      * @param start {@link java.util.Date} <p>The start parameter is <code>Date</code> type.</p>
      * @param end   {@link java.util.Date} <p>The end parameter is <code>Date</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.time.TimeValue} <p>The return object is <code>TimeValue</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.time.TimeValue} <p>The value return object is <code>TimeValue</code> type.</p>
      * @see java.util.Date
      * @see org.springframework.lang.NonNull
      */

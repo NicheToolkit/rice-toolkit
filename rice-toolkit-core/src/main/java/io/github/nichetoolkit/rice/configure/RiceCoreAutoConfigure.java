@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * <code>RiceCoreAutoConfigure</code>
- * <p>The type rice core auto configure class.</p>
+ * <p>The rice core auto configure class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see lombok.extern.slf4j.Slf4j
  * @see org.springframework.context.annotation.Configuration

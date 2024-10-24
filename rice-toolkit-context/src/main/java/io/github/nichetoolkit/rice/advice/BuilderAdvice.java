@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * <code>BuilderAdvice</code>
- * <p>The type builder advice interface.</p>
+ * <p>The builder advice interface.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
@@ -22,7 +22,7 @@ public interface BuilderAdvice<M extends RestId<I>, E extends RestId<I>, I> {
 
     /**
      * <code>buildEntity</code>
-     * <p>The entity method.</p>
+     * <p>The build entity method.</p>
      * @param model   M <p>The model parameter is <code>M</code> type.</p>
      * @param entity  E <p>The entity parameter is <code>E</code> type.</p>
      * @param idArray {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
@@ -35,7 +35,7 @@ public interface BuilderAdvice<M extends RestId<I>, E extends RestId<I>, I> {
 
     /**
      * <code>buildEntityList</code>
-     * <p>The entity list method.</p>
+     * <p>The build entity list method.</p>
      * @param modelList  {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param entityList {@link java.util.List} <p>The entity list parameter is <code>List</code> type.</p>
      * @param idArray    {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
@@ -50,7 +50,7 @@ public interface BuilderAdvice<M extends RestId<I>, E extends RestId<I>, I> {
 
     /**
      * <code>buildModel</code>
-     * <p>The model method.</p>
+     * <p>The build model method.</p>
      * @param entity      E <p>The entity parameter is <code>E</code> type.</p>
      * @param model       M <p>The model parameter is <code>M</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
@@ -63,7 +63,7 @@ public interface BuilderAdvice<M extends RestId<I>, E extends RestId<I>, I> {
 
     /**
      * <code>buildModelList</code>
-     * <p>The model list method.</p>
+     * <p>The build model list method.</p>
      * @param entityList  {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
      * @param modelList   {@link java.util.List} <p>The model list parameter is <code>List</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>

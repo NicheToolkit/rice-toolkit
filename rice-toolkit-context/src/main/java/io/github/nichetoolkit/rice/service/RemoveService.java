@@ -5,7 +5,7 @@ import java.util.Collection;
 
 /**
  * <code>RemoveService</code>
- * <p>The type remove service interface.</p>
+ * <p>The remove service interface.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
@@ -14,7 +14,7 @@ import java.util.Collection;
 public interface RemoveService<I, K> {
     /**
      * <code>removeAll</code>
-     * <p>The all method.</p>
+     * <p>The remove all method.</p>
      * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
@@ -24,7 +24,7 @@ public interface RemoveService<I, K> {
 
     /**
      * <code>removeAll</code>
-     * <p>The all method.</p>
+     * <p>The remove all method.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param idList   {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
@@ -35,7 +35,7 @@ public interface RemoveService<I, K> {
 
     /**
      * <code>removeById</code>
-     * <p>The by id method.</p>
+     * <p>The remove by id method.</p>
      * @param id I <p>The id parameter is <code>I</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
@@ -44,7 +44,7 @@ public interface RemoveService<I, K> {
 
     /**
      * <code>removeById</code>
-     * <p>The by id method.</p>
+     * <p>The remove by id method.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param id       I <p>The id parameter is <code>I</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>

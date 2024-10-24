@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * <code>RiceLoginProperties</code>
- * <p>The type rice login properties class.</p>
+ * <p>The rice login properties class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.stereotype.Component
  * @see org.springframework.boot.context.properties.ConfigurationProperties
@@ -77,8 +77,8 @@ public class RiceLoginProperties {
 
     /**
      * <code>getEnabled</code>
-     * <p>The enabled getter method.</p>
-     * @return {@link java.lang.Boolean} <p>The enabled return object is <code>Boolean</code> type.</p>
+     * <p>The get enabled getter method.</p>
+     * @return {@link java.lang.Boolean} <p>The get enabled return object is <code>Boolean</code> type.</p>
      * @see java.lang.Boolean
      */
     public Boolean getEnabled() {
@@ -87,7 +87,7 @@ public class RiceLoginProperties {
 
     /**
      * <code>setEnabled</code>
-     * <p>The enabled setter method.</p>
+     * <p>The set enabled setter method.</p>
      * @param enabled {@link java.lang.Boolean} <p>The enabled parameter is <code>Boolean</code> type.</p>
      * @see java.lang.Boolean
      */
@@ -97,8 +97,8 @@ public class RiceLoginProperties {
 
     /**
      * <code>getTokenPrefixes</code>
-     * <p>The token prefixes getter method.</p>
-     * @return {@link java.util.List} <p>The token prefixes return object is <code>List</code> type.</p>
+     * <p>The get token prefixes getter method.</p>
+     * @return {@link java.util.List} <p>The get token prefixes return object is <code>List</code> type.</p>
      * @see java.util.List
      */
     public List<String> getTokenPrefixes() {
@@ -110,7 +110,7 @@ public class RiceLoginProperties {
 
     /**
      * <code>setTokenPrefixes</code>
-     * <p>The token prefixes setter method.</p>
+     * <p>The set token prefixes setter method.</p>
      * @param tokenPrefixes {@link java.lang.String} <p>The token prefixes parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
@@ -120,7 +120,7 @@ public class RiceLoginProperties {
 
     /**
      * <code>setTokenPrefixes</code>
-     * <p>The token prefixes setter method.</p>
+     * <p>The set token prefixes setter method.</p>
      * @param tokenPrefixes {@link java.util.Collection} <p>The token prefixes parameter is <code>Collection</code> type.</p>
      * @see java.util.Collection
      */
@@ -134,8 +134,8 @@ public class RiceLoginProperties {
 
     /**
      * <code>getSkipUrls</code>
-     * <p>The skip urls getter method.</p>
-     * @return {@link java.util.List} <p>The skip urls return object is <code>List</code> type.</p>
+     * <p>The get skip urls getter method.</p>
+     * @return {@link java.util.List} <p>The get skip urls return object is <code>List</code> type.</p>
      * @see java.util.List
      */
     public List<String> getSkipUrls() {
@@ -147,7 +147,7 @@ public class RiceLoginProperties {
 
     /**
      * <code>setSkipUrls</code>
-     * <p>The skip urls setter method.</p>
+     * <p>The set skip urls setter method.</p>
      * @param skipUrls {@link java.lang.String} <p>The skip urls parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
@@ -157,8 +157,8 @@ public class RiceLoginProperties {
 
     /**
      * <code>getTokenHeaders</code>
-     * <p>The token headers getter method.</p>
-     * @return {@link java.util.List} <p>The token headers return object is <code>List</code> type.</p>
+     * <p>The get token headers getter method.</p>
+     * @return {@link java.util.List} <p>The get token headers return object is <code>List</code> type.</p>
      * @see java.util.List
      */
     public List<String> getTokenHeaders() {
@@ -170,7 +170,7 @@ public class RiceLoginProperties {
 
     /**
      * <code>setTokenHeaders</code>
-     * <p>The token headers setter method.</p>
+     * <p>The set token headers setter method.</p>
      * @param tokenHeaders {@link java.lang.String} <p>The token headers parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
@@ -180,8 +180,8 @@ public class RiceLoginProperties {
 
     /**
      * <code>getTokenExpiration</code>
-     * <p>The token expiration getter method.</p>
-     * @return {@link java.lang.Integer} <p>The token expiration return object is <code>Integer</code> type.</p>
+     * <p>The get token expiration getter method.</p>
+     * @return {@link java.lang.Integer} <p>The get token expiration return object is <code>Integer</code> type.</p>
      * @see java.lang.Integer
      */
     public Integer getTokenExpiration() {
@@ -190,7 +190,7 @@ public class RiceLoginProperties {
 
     /**
      * <code>setTokenExpiration</code>
-     * <p>The token expiration setter method.</p>
+     * <p>The set token expiration setter method.</p>
      * @param tokenExpiration {@link java.lang.Integer} <p>The token expiration parameter is <code>Integer</code> type.</p>
      * @see java.lang.Integer
      */
@@ -200,8 +200,8 @@ public class RiceLoginProperties {
 
     /**
      * <code>getTokenTimeUnit</code>
-     * <p>The token time unit getter method.</p>
-     * @return {@link java.util.concurrent.TimeUnit} <p>The token time unit return object is <code>TimeUnit</code> type.</p>
+     * <p>The get token time unit getter method.</p>
+     * @return {@link java.util.concurrent.TimeUnit} <p>The get token time unit return object is <code>TimeUnit</code> type.</p>
      * @see java.util.concurrent.TimeUnit
      */
     public TimeUnit getTokenTimeUnit() {
@@ -210,7 +210,7 @@ public class RiceLoginProperties {
 
     /**
      * <code>setTokenTimeUnit</code>
-     * <p>The token time unit setter method.</p>
+     * <p>The set token time unit setter method.</p>
      * @param tokenTimeUnit {@link java.util.concurrent.TimeUnit} <p>The token time unit parameter is <code>TimeUnit</code> type.</p>
      * @see java.util.concurrent.TimeUnit
      */
@@ -220,8 +220,8 @@ public class RiceLoginProperties {
 
     /**
      * <code>getAccessTokenHeader</code>
-     * <p>The access token header getter method.</p>
-     * @return {@link java.lang.String} <p>The access token header return object is <code>String</code> type.</p>
+     * <p>The get access token header getter method.</p>
+     * @return {@link java.lang.String} <p>The get access token header return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getAccessTokenHeader() {
@@ -230,7 +230,7 @@ public class RiceLoginProperties {
 
     /**
      * <code>setAccessTokenHeader</code>
-     * <p>The access token header setter method.</p>
+     * <p>The set access token header setter method.</p>
      * @param accessTokenHeader {@link java.lang.String} <p>The access token header parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
@@ -240,8 +240,8 @@ public class RiceLoginProperties {
 
     /**
      * <code>getAccessAuthHeader</code>
-     * <p>The access auth header getter method.</p>
-     * @return {@link java.lang.String} <p>The access auth header return object is <code>String</code> type.</p>
+     * <p>The get access auth header getter method.</p>
+     * @return {@link java.lang.String} <p>The get access auth header return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getAccessAuthHeader() {
@@ -250,7 +250,7 @@ public class RiceLoginProperties {
 
     /**
      * <code>setAccessAuthHeader</code>
-     * <p>The access auth header setter method.</p>
+     * <p>The set access auth header setter method.</p>
      * @param accessAuthHeader {@link java.lang.String} <p>The access auth header parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */

@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  * <code>TimeEntity</code>
- * <p>The type time entity class.</p>
+ * <p>The time entity class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.OperateEntity
  * @see java.lang.SuppressWarnings
@@ -66,8 +66,8 @@ public class TimeEntity extends OperateEntity {
 
     /**
      * <code>getCreateTime</code>
-     * <p>The create time getter method.</p>
-     * @return {@link java.util.Date} <p>The create time return object is <code>Date</code> type.</p>
+     * <p>The get create time getter method.</p>
+     * @return {@link java.util.Date} <p>The get create time return object is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public Date getCreateTime() {
@@ -76,7 +76,7 @@ public class TimeEntity extends OperateEntity {
 
     /**
      * <code>setCreateTime</code>
-     * <p>The create time setter method.</p>
+     * <p>The set create time setter method.</p>
      * @param createTime {@link java.util.Date} <p>The create time parameter is <code>Date</code> type.</p>
      * @see java.util.Date
      */
@@ -86,8 +86,8 @@ public class TimeEntity extends OperateEntity {
 
     /**
      * <code>getUpdateTime</code>
-     * <p>The update time getter method.</p>
-     * @return {@link java.util.Date} <p>The update time return object is <code>Date</code> type.</p>
+     * <p>The get update time getter method.</p>
+     * @return {@link java.util.Date} <p>The get update time return object is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public Date getUpdateTime() {
@@ -96,7 +96,7 @@ public class TimeEntity extends OperateEntity {
 
     /**
      * <code>setUpdateTime</code>
-     * <p>The update time setter method.</p>
+     * <p>The set update time setter method.</p>
      * @param updateTime {@link java.util.Date} <p>The update time parameter is <code>Date</code> type.</p>
      * @see java.util.Date
      */
@@ -106,7 +106,7 @@ public class TimeEntity extends OperateEntity {
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rice.OperateEntity.Builder
      * @see java.lang.SuppressWarnings
@@ -136,9 +136,9 @@ public class TimeEntity extends OperateEntity {
 
         /**
          * <code>createTime</code>
-         * <p>The time method.</p>
+         * <p>The create time method.</p>
          * @param createTime {@link java.util.Date} <p>The create time parameter is <code>Date</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.TimeEntity.Builder} <p>The time return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.TimeEntity.Builder} <p>The create time return object is <code>Builder</code> type.</p>
          * @see java.util.Date
          */
         public TimeEntity.Builder createTime(Date createTime) {
@@ -148,9 +148,9 @@ public class TimeEntity extends OperateEntity {
 
         /**
          * <code>updateTime</code>
-         * <p>The time method.</p>
+         * <p>The update time method.</p>
          * @param updateTime {@link java.util.Date} <p>The update time parameter is <code>Date</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.TimeEntity.Builder} <p>The time return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.TimeEntity.Builder} <p>The update time return object is <code>Builder</code> type.</p>
          * @see java.util.Date
          */
         public TimeEntity.Builder updateTime(Date updateTime) {

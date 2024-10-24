@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  * <code>RiceExampleApplication</code>
- * <p>The type rice example application class.</p>
+ * <p>The rice example application class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * @see org.springframework.boot.autoconfigure.SpringBootApplication

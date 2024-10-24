@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  * <code>InfoEntity</code>
- * <p>The type info entity class.</p>
+ * <p>The info entity class.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.IdEntity
@@ -99,7 +99,7 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rice.IdEntity.Builder
@@ -128,9 +128,9 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
 
         /**
          * <code>name</code>
-         * <p>The method.</p>
+         * <p>The name method.</p>
          * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.InfoEntity.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.InfoEntity.Builder} <p>The name return object is <code>Builder</code> type.</p>
          * @see java.lang.String
          */
         public InfoEntity.Builder<I> name(String name) {
@@ -140,9 +140,9 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
 
         /**
          * <code>description</code>
-         * <p>The method.</p>
+         * <p>The description method.</p>
          * @param description {@link java.lang.String} <p>The description parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.InfoEntity.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.InfoEntity.Builder} <p>The description return object is <code>Builder</code> type.</p>
          * @see java.lang.String
          */
         public InfoEntity.Builder<I> description(String description) {

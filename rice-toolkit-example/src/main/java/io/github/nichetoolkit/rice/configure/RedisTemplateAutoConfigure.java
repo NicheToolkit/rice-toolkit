@@ -10,7 +10,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * <code>RedisTemplateAutoConfigure</code>
- * <p>The type redis template auto configure class.</p>
+ * <p>The redis template auto configure class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see lombok.extern.slf4j.Slf4j
  * @see org.springframework.context.annotation.Configuration
@@ -29,9 +29,9 @@ public class RedisTemplateAutoConfigure {
 
     /**
      * <code>redisTemplate</code>
-     * <p>The template method.</p>
+     * <p>The redis template method.</p>
      * @param connectionFactory {@link org.springframework.data.redis.connection.RedisConnectionFactory} <p>The connection factory parameter is <code>RedisConnectionFactory</code> type.</p>
-     * @return {@link org.springframework.data.redis.core.RedisTemplate} <p>The template return object is <code>RedisTemplate</code> type.</p>
+     * @return {@link org.springframework.data.redis.core.RedisTemplate} <p>The redis template return object is <code>RedisTemplate</code> type.</p>
      * @see org.springframework.data.redis.connection.RedisConnectionFactory
      * @see org.springframework.data.redis.core.RedisTemplate
      * @see org.springframework.context.annotation.Bean

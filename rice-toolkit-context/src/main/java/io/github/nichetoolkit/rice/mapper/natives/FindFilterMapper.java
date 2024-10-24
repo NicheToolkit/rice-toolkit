@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * <code>FindFilterMapper</code>
- * <p>The type find filter mapper interface.</p>
+ * <p>The find filter mapper interface.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
  * @param <F> {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The generic parameter is <code>IdFilter</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
@@ -21,10 +21,10 @@ import java.util.List;
 public interface FindFilterMapper<E extends RestId<I>, F extends IdFilter<I, K>, I, K> {
     /**
      * <code>findAllByFilterWhere</code>
-     * <p>The all by filter where method.</p>
+     * <p>The find all by filter where method.</p>
      * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param filter   F <p>The filter parameter is <code>F</code> type.</p>
-     * @return {@link java.util.List} <p>The all by filter where return object is <code>List</code> type.</p>
+     * @return {@link java.util.List} <p>The find all by filter where return object is <code>List</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.util.List
@@ -33,11 +33,11 @@ public interface FindFilterMapper<E extends RestId<I>, F extends IdFilter<I, K>,
 
     /**
      * <code>findDynamicAllByFilterWhere</code>
-     * <p>The dynamic all by filter where method.</p>
+     * <p>The find dynamic all by filter where method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param filter    F <p>The filter parameter is <code>F</code> type.</p>
-     * @return {@link java.util.List} <p>The dynamic all by filter where return object is <code>List</code> type.</p>
+     * @return {@link java.util.List} <p>The find dynamic all by filter where return object is <code>List</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.util.List

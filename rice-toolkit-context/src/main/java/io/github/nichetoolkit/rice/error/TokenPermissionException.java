@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rest.error.natives.TokenErrorException;
 
 /**
  * <code>TokenPermissionException</code>
- * <p>The type token permission exception class.</p>
+ * <p>The token permission exception class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.error.natives.TokenErrorException
  * @since Jdk1.8

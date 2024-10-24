@@ -11,7 +11,7 @@ import java.util.Collection;
  * @param <S> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.mapper.DeleteMapper
+ * @see io.github.nichetoolkit.rice.mapper.AlertMapper
  * @since Jdk1.8
  */
 public interface AlertLinkMapper<L, S, I> extends AlertMapper<S, I> {

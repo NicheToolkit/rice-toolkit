@@ -13,7 +13,7 @@ import java.util.Collection;
 
 /**
  * <code>SqlBuilders</code>
- * <p>The type sql builders class.</p>
+ * <p>The sql builders class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.lang.SuppressWarnings
  * @since Jdk1.8
@@ -23,8 +23,8 @@ public class SqlBuilders {
 
     /**
      * <code>newSqlBuilder</code>
-     * <p>The sql builder method.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder return object is <code>SqlBuilder</code> type.</p>
+     * <p>The new sql builder method.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The new sql builder return object is <code>SqlBuilder</code> type.</p>
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
      */
     public static SqlBuilder newSqlBuilder() {
@@ -33,9 +33,9 @@ public class SqlBuilders {
 
     /**
      * <code>newSqlBuilder</code>
-     * <p>The sql builder method.</p>
+     * <p>The new sql builder method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The new sql builder return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
      */
@@ -45,9 +45,9 @@ public class SqlBuilders {
 
     /**
      * <code>newSqlBuilder</code>
-     * <p>The sql builder method.</p>
+     * <p>The new sql builder method.</p>
      * @param capacity int <p>The capacity parameter is <code>int</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The new sql builder return object is <code>SqlBuilder</code> type.</p>
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
      */
     public static SqlBuilder newSqlBuilder(int capacity) {
@@ -56,9 +56,9 @@ public class SqlBuilders {
 
     /**
      * <code>newSqlBuilder</code>
-     * <p>The sql builder method.</p>
+     * <p>The new sql builder method.</p>
      * @param str {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The new sql builder return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
      */
@@ -68,9 +68,9 @@ public class SqlBuilders {
 
     /**
      * <code>newSqlBuilder</code>
-     * <p>The sql builder method.</p>
+     * <p>The new sql builder method.</p>
      * @param seq {@link java.lang.CharSequence} <p>The seq parameter is <code>CharSequence</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The new sql builder return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.CharSequence
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
      */
@@ -80,11 +80,11 @@ public class SqlBuilders {
 
     /**
      * <code>nonin</code>
-     * <p>The method.</p>
+     * <p>The nonin method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param values     {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The nonin return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.util.Collection
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -95,7 +95,7 @@ public class SqlBuilders {
 
     /**
      * <code>nonin</code>
-     * <p>The method.</p>
+     * <p>The nonin method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param values     {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
@@ -109,11 +109,11 @@ public class SqlBuilders {
 
     /**
      * <code>in</code>
-     * <p>The method.</p>
+     * <p>The in method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param values     {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The in return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.util.Collection
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -124,7 +124,7 @@ public class SqlBuilders {
 
     /**
      * <code>in</code>
-     * <p>The method.</p>
+     * <p>The in method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param values     {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
@@ -138,12 +138,12 @@ public class SqlBuilders {
 
     /**
      * <code>range</code>
-     * <p>The method.</p>
+     * <p>The range method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
      * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The range return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.lang.Object
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -154,7 +154,7 @@ public class SqlBuilders {
 
     /**
      * <code>range</code>
-     * <p>The method.</p>
+     * <p>The range method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
@@ -169,12 +169,12 @@ public class SqlBuilders {
 
     /**
      * <code>scope</code>
-     * <p>The method.</p>
+     * <p>The scope method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param minTarget  {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
      * @param maxTarget  {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
      * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The scope return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.lang.Object
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -185,7 +185,7 @@ public class SqlBuilders {
 
     /**
      * <code>scope</code>
-     * <p>The method.</p>
+     * <p>The scope method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param minTarget  {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
      * @param maxTarget  {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
@@ -200,12 +200,12 @@ public class SqlBuilders {
 
     /**
      * <code>both</code>
-     * <p>The method.</p>
+     * <p>The both method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
      * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The both return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.lang.Object
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -216,7 +216,7 @@ public class SqlBuilders {
 
     /**
      * <code>both</code>
-     * <p>The method.</p>
+     * <p>The both method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
@@ -231,11 +231,11 @@ public class SqlBuilders {
 
     /**
      * <code>like</code>
-     * <p>The method.</p>
+     * <p>The like method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param value      {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The like return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
      */
@@ -245,7 +245,7 @@ public class SqlBuilders {
 
     /**
      * <code>like</code>
-     * <p>The method.</p>
+     * <p>The like method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param value      {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
@@ -258,11 +258,11 @@ public class SqlBuilders {
 
     /**
      * <code>like</code>
-     * <p>The method.</p>
+     * <p>The like method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param targets    {@link java.util.Collection} <p>The targets parameter is <code>Collection</code> type.</p>
      * @param value      {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The like return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.util.Collection
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -273,7 +273,7 @@ public class SqlBuilders {
 
     /**
      * <code>like</code>
-     * <p>The method.</p>
+     * <p>The like method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param targets    {@link java.util.Collection} <p>The targets parameter is <code>Collection</code> type.</p>
      * @param value      {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
@@ -287,11 +287,11 @@ public class SqlBuilders {
 
     /**
      * <code>equal</code>
-     * <p>The method.</p>
+     * <p>The equal method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The equal return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.lang.Object
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -302,7 +302,7 @@ public class SqlBuilders {
 
     /**
      * <code>equal</code>
-     * <p>The method.</p>
+     * <p>The equal method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
@@ -316,11 +316,11 @@ public class SqlBuilders {
 
     /**
      * <code>unequal</code>
-     * <p>The method.</p>
+     * <p>The unequal method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The unequal return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.lang.Object
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -331,7 +331,7 @@ public class SqlBuilders {
 
     /**
      * <code>unequal</code>
-     * <p>The method.</p>
+     * <p>The unequal method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
@@ -345,10 +345,10 @@ public class SqlBuilders {
 
     /**
      * <code>isnull</code>
-     * <p>The method.</p>
+     * <p>The isnull method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The isnull return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
      */
@@ -358,7 +358,7 @@ public class SqlBuilders {
 
     /**
      * <code>isnull</code>
-     * <p>The method.</p>
+     * <p>The isnull method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -370,10 +370,10 @@ public class SqlBuilders {
 
     /**
      * <code>nonnull</code>
-     * <p>The method.</p>
+     * <p>The nonnull method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The nonnull return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
      */
@@ -383,7 +383,7 @@ public class SqlBuilders {
 
     /**
      * <code>nonnull</code>
-     * <p>The method.</p>
+     * <p>The nonnull method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -395,10 +395,10 @@ public class SqlBuilders {
 
     /**
      * <code>append</code>
-     * <p>The method.</p>
+     * <p>The append method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param sql        {@link java.lang.String} <p>The sql parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
      */
@@ -408,7 +408,7 @@ public class SqlBuilders {
 
     /**
      * <code>append</code>
-     * <p>The method.</p>
+     * <p>The append method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param sql        {@link java.lang.String} <p>The sql parameter is <code>String</code> type.</p>
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -420,11 +420,11 @@ public class SqlBuilders {
 
     /**
      * <code>sort</code>
-     * <p>The method.</p>
+     * <p>The sort method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param name       {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param type       {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The type parameter is <code>SortType</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sort return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see io.github.nichetoolkit.mybatis.enums.SortType
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -435,7 +435,7 @@ public class SqlBuilders {
 
     /**
      * <code>sort</code>
-     * <p>The method.</p>
+     * <p>The sort method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param name       {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param type       {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The type parameter is <code>SortType</code> type.</p>
@@ -449,10 +449,10 @@ public class SqlBuilders {
 
     /**
      * <code>sort</code>
-     * <p>The method.</p>
+     * <p>The sort method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param sorts      {@link io.github.nichetoolkit.rice.RestSort} <p>The sorts parameter is <code>RestSort</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sort return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see io.github.nichetoolkit.rice.RestSort
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -463,7 +463,7 @@ public class SqlBuilders {
 
     /**
      * <code>sort</code>
-     * <p>The method.</p>
+     * <p>The sort method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param sorts      {@link io.github.nichetoolkit.rice.RestSort} <p>The sorts parameter is <code>RestSort</code> type.</p>
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -475,10 +475,10 @@ public class SqlBuilders {
 
     /**
      * <code>sort</code>
-     * <p>The method.</p>
+     * <p>The sort method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param filter     {@link io.github.nichetoolkit.rice.filter.SortFilter} <p>The filter parameter is <code>SortFilter</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sort return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see io.github.nichetoolkit.rice.filter.SortFilter
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -489,7 +489,7 @@ public class SqlBuilders {
 
     /**
      * <code>sort</code>
-     * <p>The method.</p>
+     * <p>The sort method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param filter     {@link io.github.nichetoolkit.rice.filter.SortFilter} <p>The filter parameter is <code>SortFilter</code> type.</p>
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
@@ -501,11 +501,11 @@ public class SqlBuilders {
 
     /**
      * <code>page</code>
-     * <p>The method.</p>
+     * <p>The page method.</p>
      * @param <T>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param page {@link java.lang.Integer} <p>The page parameter is <code>Integer</code> type.</p>
      * @param size {@link java.lang.Integer} <p>The size parameter is <code>Integer</code> type.</p>
-     * @return {@link com.github.pagehelper.Page} <p>The return object is <code>Page</code> type.</p>
+     * @return {@link com.github.pagehelper.Page} <p>The page return object is <code>Page</code> type.</p>
      * @see java.lang.Integer
      * @see com.github.pagehelper.Page
      */
@@ -518,10 +518,10 @@ public class SqlBuilders {
 
     /**
      * <code>page</code>
-     * <p>The method.</p>
+     * <p>The page method.</p>
      * @param <T>    {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param filter {@link io.github.nichetoolkit.rice.filter.PageFilter} <p>The filter parameter is <code>PageFilter</code> type.</p>
-     * @return {@link com.github.pagehelper.Page} <p>The return object is <code>Page</code> type.</p>
+     * @return {@link com.github.pagehelper.Page} <p>The page return object is <code>Page</code> type.</p>
      * @see io.github.nichetoolkit.rice.filter.PageFilter
      * @see com.github.pagehelper.Page
      */

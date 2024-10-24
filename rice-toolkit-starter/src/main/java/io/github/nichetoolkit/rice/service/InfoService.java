@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * <code>InfoService</code>
- * <p>The type info service class.</p>
+ * <p>The info service class.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.RestInfo} <p>The generic parameter is <code>RestInfo</code> type.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.RestInfo} <p>The generic parameter is <code>RestInfo</code> type.</p>
  * @param <F> {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The generic parameter is <code>IdFilter</code> type.</p>
@@ -28,6 +28,7 @@ import java.util.List;
  * @see io.github.nichetoolkit.rice.RestInfo
  * @see io.github.nichetoolkit.rice.filter.IdFilter
  * @see io.github.nichetoolkit.rice.service.SuperService
+ * @see lombok.extern.slf4j.Slf4j
  * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
@@ -51,7 +52,7 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
 
     /**
      * <code>fieldRepeat</code>
-     * <p>The repeat method.</p>
+     * <p>The field repeat method.</p>
      * @param existByModel {@link java.lang.Boolean} <p>The exist by model parameter is <code>Boolean</code> type.</p>
      * @param model        M <p>The model parameter is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
@@ -90,10 +91,10 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
 
     /**
      * <code>existByName</code>
-     * <p>The by name method.</p>
+     * <p>The exist by name method.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
-     * @return {@link java.lang.Boolean} <p>The by name return object is <code>Boolean</code> type.</p>
+     * @return {@link java.lang.Boolean} <p>The exist by name return object is <code>Boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
@@ -115,11 +116,11 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
 
     /**
      * <code>existByNameAndNotId</code>
-     * <p>The by name and not id method.</p>
+     * <p>The exist by name and not id method.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @param id       I <p>The id parameter is <code>I</code> type.</p>
-     * @return {@link java.lang.Boolean} <p>The by name and not id return object is <code>Boolean</code> type.</p>
+     * @return {@link java.lang.Boolean} <p>The exist by name and not id return object is <code>Boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
@@ -143,10 +144,10 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
 
     /**
      * <code>existByModel</code>
-     * <p>The by model method.</p>
+     * <p>The exist by model method.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
-     * @return {@link java.lang.Boolean} <p>The by model return object is <code>Boolean</code> type.</p>
+     * @return {@link java.lang.Boolean} <p>The exist by model return object is <code>Boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
@@ -168,11 +169,11 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
 
     /**
      * <code>existByModelAndNotId</code>
-     * <p>The by model and not id method.</p>
+     * <p>The exist by model and not id method.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @param id       I <p>The id parameter is <code>I</code> type.</p>
-     * @return {@link java.lang.Boolean} <p>The by model and not id return object is <code>Boolean</code> type.</p>
+     * @return {@link java.lang.Boolean} <p>The exist by model and not id return object is <code>Boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
@@ -197,10 +198,10 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
 
     /**
      * <code>findByName</code>
-     * <p>The by name method.</p>
+     * <p>The find by name method.</p>
      * @param name      {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
-     * @return {@link java.util.List} <p>The by name return object is <code>List</code> type.</p>
+     * @return {@link java.util.List} <p>The find by name return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see java.util.List
@@ -218,10 +219,10 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
 
     /**
      * <code>queryByName</code>
-     * <p>The by name method.</p>
+     * <p>The query by name method.</p>
      * @param name        {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
-     * @return {@link java.util.List} <p>The by name return object is <code>List</code> type.</p>
+     * @return {@link java.util.List} <p>The query by name return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Boolean
@@ -234,11 +235,11 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
 
     /**
      * <code>queryByName</code>
-     * <p>The by name method.</p>
+     * <p>The query by name method.</p>
      * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param name        {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
-     * @return {@link java.util.List} <p>The by name return object is <code>List</code> type.</p>
+     * @return {@link java.util.List} <p>The query by name return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Boolean

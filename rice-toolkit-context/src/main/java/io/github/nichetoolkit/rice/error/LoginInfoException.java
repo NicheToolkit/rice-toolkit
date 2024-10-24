@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rest.error.natives.LoginErrorException;
 
 /**
  * <code>LoginInfoException</code>
- * <p>The type login info exception class.</p>
+ * <p>The login info exception class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.error.natives.LoginErrorException
  * @since Jdk1.8

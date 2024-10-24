@@ -10,7 +10,7 @@ import io.github.nichetoolkit.rice.purview.PurviewType;
 
 /**
  * <code>UserModel</code>
- * <p>The type user model class.</p>
+ * <p>The user model class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestInfoModel
  * @see io.github.nichetoolkit.rice.RestUserInfo
@@ -92,8 +92,8 @@ public class UserModel extends RestInfoModel<UserModel, UserEntity> implements R
 
     /**
      * <code>getPassword</code>
-     * <p>The password getter method.</p>
-     * @return {@link java.lang.String} <p>The password return object is <code>String</code> type.</p>
+     * <p>The get password getter method.</p>
+     * @return {@link java.lang.String} <p>The get password return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getPassword() {
@@ -102,7 +102,7 @@ public class UserModel extends RestInfoModel<UserModel, UserEntity> implements R
 
     /**
      * <code>setPassword</code>
-     * <p>The password setter method.</p>
+     * <p>The set password setter method.</p>
      * @param password {@link java.lang.String} <p>The password parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
@@ -112,8 +112,8 @@ public class UserModel extends RestInfoModel<UserModel, UserEntity> implements R
 
     /**
      * <code>getPurviewType</code>
-     * <p>The purview type getter method.</p>
-     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>The purview type return object is <code>PurviewType</code> type.</p>
+     * <p>The get purview type getter method.</p>
+     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>The get purview type return object is <code>PurviewType</code> type.</p>
      * @see io.github.nichetoolkit.rice.purview.PurviewType
      */
     public PurviewType getPurviewType() {
@@ -122,7 +122,7 @@ public class UserModel extends RestInfoModel<UserModel, UserEntity> implements R
 
     /**
      * <code>setPurviewType</code>
-     * <p>The purview type setter method.</p>
+     * <p>The set purview type setter method.</p>
      * @param purviewType {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>The purview type parameter is <code>PurviewType</code> type.</p>
      * @see io.github.nichetoolkit.rice.purview.PurviewType
      */

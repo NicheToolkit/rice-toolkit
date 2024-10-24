@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  * <code>TimeInstant</code>
- * <p>The type time instant class.</p>
+ * <p>The time instant class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.time.TimeValue
  * @see java.lang.SuppressWarnings
@@ -69,8 +69,8 @@ public class TimeInstant implements TimeValue {
 
     /**
      * <code>now</code>
-     * <p>The method.</p>
-     * @return {@link io.github.nichetoolkit.rice.time.TimeInstant} <p>The return object is <code>TimeInstant</code> type.</p>
+     * <p>The now method.</p>
+     * @return {@link io.github.nichetoolkit.rice.time.TimeInstant} <p>The now return object is <code>TimeInstant</code> type.</p>
      */
     public static TimeInstant now() {
         return new TimeInstant(Instant.now());
@@ -78,9 +78,9 @@ public class TimeInstant implements TimeValue {
 
     /**
      * <code>parse</code>
-     * <p>The method.</p>
+     * <p>The parse method.</p>
      * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.time.TimeInstant} <p>The return object is <code>TimeInstant</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.time.TimeInstant} <p>The parse return object is <code>TimeInstant</code> type.</p>
      * @see java.lang.String
      */
     public static TimeInstant parse(String value) {
@@ -89,9 +89,9 @@ public class TimeInstant implements TimeValue {
 
     /**
      * <code>create</code>
-     * <p>The method.</p>
+     * <p>The create method.</p>
      * @param value {@link java.lang.Long} <p>The value parameter is <code>Long</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.time.TimeInstant} <p>The return object is <code>TimeInstant</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.time.TimeInstant} <p>The create return object is <code>TimeInstant</code> type.</p>
      * @see java.lang.Long
      */
     public static TimeInstant create(Long value) {
@@ -100,9 +100,9 @@ public class TimeInstant implements TimeValue {
 
     /**
      * <code>create</code>
-     * <p>The method.</p>
+     * <p>The create method.</p>
      * @param value {@link java.util.Date} <p>The value parameter is <code>Date</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.time.TimeInstant} <p>The return object is <code>TimeInstant</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.time.TimeInstant} <p>The create return object is <code>TimeInstant</code> type.</p>
      * @see java.util.Date
      */
     public static TimeInstant create(Date value) {
@@ -111,8 +111,8 @@ public class TimeInstant implements TimeValue {
 
     /**
      * <code>getInstant</code>
-     * <p>The instant getter method.</p>
-     * @return {@link java.time.Instant} <p>The instant return object is <code>Instant</code> type.</p>
+     * <p>The get instant getter method.</p>
+     * @return {@link java.time.Instant} <p>The get instant return object is <code>Instant</code> type.</p>
      * @see java.time.Instant
      */
     public Instant getInstant() {
@@ -121,8 +121,8 @@ public class TimeInstant implements TimeValue {
 
     /**
      * <code>getDate</code>
-     * <p>The date getter method.</p>
-     * @return {@link java.util.Date} <p>The date return object is <code>Date</code> type.</p>
+     * <p>The get date getter method.</p>
+     * @return {@link java.util.Date} <p>The get date return object is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public Date getDate() {
@@ -131,8 +131,8 @@ public class TimeInstant implements TimeValue {
 
     /**
      * <code>getTime</code>
-     * <p>The time getter method.</p>
-     * @return {@link java.lang.Long} <p>The time return object is <code>Long</code> type.</p>
+     * <p>The get time getter method.</p>
+     * @return {@link java.lang.Long} <p>The get time return object is <code>Long</code> type.</p>
      * @see java.lang.Long
      */
     public Long getTime() {

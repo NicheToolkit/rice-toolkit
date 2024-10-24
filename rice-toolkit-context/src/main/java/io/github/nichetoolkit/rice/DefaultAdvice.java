@@ -11,7 +11,7 @@ import java.lang.annotation.Annotation;
 
 /**
  * <code>DefaultAdvice</code>
- * <p>The type default advice interface.</p>
+ * <p>The default advice interface.</p>
  * @param <A> {@link java.lang.annotation.Annotation} <p>The generic parameter is <code>Annotation</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.lang.annotation.Annotation
@@ -22,10 +22,10 @@ public interface DefaultAdvice<A extends Annotation> extends Comparable<DefaultA
 
     /**
      * <code>supports</code>
-     * <p>The method.</p>
+     * <p>The supports method.</p>
      * @param annotation    A <p>The annotation parameter is <code>A</code> type.</p>
      * @param handlerMethod {@link org.springframework.web.method.HandlerMethod} <p>The handler method parameter is <code>HandlerMethod</code> type.</p>
-     * @return boolean <p>The return object is <code>boolean</code> type.</p>
+     * @return boolean <p>The supports return object is <code>boolean</code> type.</p>
      * @see org.springframework.web.method.HandlerMethod
      */
     default boolean supports(A annotation, HandlerMethod handlerMethod) {
@@ -34,7 +34,7 @@ public interface DefaultAdvice<A extends Annotation> extends Comparable<DefaultA
 
     /**
      * <code>doAnnotationHandle</code>
-     * <p>The annotation handle method.</p>
+     * <p>The do annotation handle method.</p>
      * @param request       {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>The request parameter is <code>RestHttpRequest</code> type.</p>
      * @param response      {@link javax.servlet.http.HttpServletResponse} <p>The response parameter is <code>HttpServletResponse</code> type.</p>
      * @param handlerMethod {@link org.springframework.web.method.HandlerMethod} <p>The handler method parameter is <code>HandlerMethod</code> type.</p>
@@ -50,8 +50,8 @@ public interface DefaultAdvice<A extends Annotation> extends Comparable<DefaultA
 
     /**
      * <code>clazz</code>
-     * <p>The method.</p>
-     * @return {@link java.lang.Class} <p>The return object is <code>Class</code> type.</p>
+     * <p>The clazz method.</p>
+     * @return {@link java.lang.Class} <p>The clazz return object is <code>Class</code> type.</p>
      * @see java.lang.Class
      * @see java.lang.SuppressWarnings
      */
@@ -63,8 +63,8 @@ public interface DefaultAdvice<A extends Annotation> extends Comparable<DefaultA
 
     /**
      * <code>order</code>
-     * <p>The method.</p>
-     * @return int <p>The return object is <code>int</code> type.</p>
+     * <p>The order method.</p>
+     * @return int <p>The order return object is <code>int</code> type.</p>
      */
     int order();
 

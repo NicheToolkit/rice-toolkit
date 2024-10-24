@@ -11,7 +11,7 @@ import java.util.*;
 
 /**
  * <code>RestPurview</code>
- * <p>The type rest purview interface.</p>
+ * <p>The rest purview interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.lang.annotation.Annotation
  * @see java.lang.annotation.Target
@@ -28,53 +28,53 @@ public @interface RestPurview {
 
     /**
      * <code>key</code>
-     * <p>The method.</p>
-     * @return {@link java.lang.String} <p>The return object is <code>String</code> type.</p>
+     * <p>The key method.</p>
+     * @return {@link java.lang.String} <p>The key return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     String key() default "";
 
     /**
      * <code>keys</code>
-     * <p>The method.</p>
-     * @return {@link java.lang.String} <p>The return object is <code>String</code> type.</p>
+     * <p>The keys method.</p>
+     * @return {@link java.lang.String} <p>The keys return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     String[] keys() default {};
 
     /**
      * <code>value</code>
-     * <p>The method.</p>
-     * @return long <p>The return object is <code>long</code> type.</p>
+     * <p>The value method.</p>
+     * @return long <p>The value return object is <code>long</code> type.</p>
      */
     long value() default 0L;
 
     /**
      * <code>values</code>
-     * <p>The method.</p>
-     * @return long <p>The return object is <code>long</code> type.</p>
+     * <p>The values method.</p>
+     * @return long <p>The values return object is <code>long</code> type.</p>
      */
     long[] values() default {};
 
     /**
      * <code>purview</code>
-     * <p>The method.</p>
-     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>The return object is <code>PurviewType</code> type.</p>
+     * <p>The purview method.</p>
+     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>The purview return object is <code>PurviewType</code> type.</p>
      * @see io.github.nichetoolkit.rice.purview.PurviewType
      */
     PurviewType purview() default PurviewType.PURVIEW_ALL;
 
     /**
      * <code>purviews</code>
-     * <p>The method.</p>
-     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>The return object is <code>PurviewType</code> type.</p>
+     * <p>The purviews method.</p>
+     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>The purviews return object is <code>PurviewType</code> type.</p>
      * @see io.github.nichetoolkit.rice.purview.PurviewType
      */
     PurviewType[] purviews() default {};
 
     /**
      * <code>Purview</code>
-     * <p>The type purview class.</p>
+     * <p>The purview class.</p>
      * @author Cyan (snow22314@outlook.com)
      * @since Jdk1.8
      */
@@ -82,9 +82,9 @@ public @interface RestPurview {
 
         /**
          * <code>keys</code>
-         * <p>The method.</p>
+         * <p>The keys method.</p>
          * @param purview {@link io.github.nichetoolkit.rice.purview.RestPurview} <p>The purview parameter is <code>RestPurview</code> type.</p>
-         * @return {@link java.util.List} <p>The return object is <code>List</code> type.</p>
+         * @return {@link java.util.List} <p>The keys return object is <code>List</code> type.</p>
          * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
          * @see org.springframework.lang.NonNull
          * @see java.util.List
@@ -101,9 +101,9 @@ public @interface RestPurview {
 
         /**
          * <code>values</code>
-         * <p>The method.</p>
+         * <p>The values method.</p>
          * @param purview {@link io.github.nichetoolkit.rice.purview.RestPurview} <p>The purview parameter is <code>RestPurview</code> type.</p>
-         * @return {@link java.util.List} <p>The return object is <code>List</code> type.</p>
+         * @return {@link java.util.List} <p>The values return object is <code>List</code> type.</p>
          * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
          * @see org.springframework.lang.NonNull
          * @see java.util.List

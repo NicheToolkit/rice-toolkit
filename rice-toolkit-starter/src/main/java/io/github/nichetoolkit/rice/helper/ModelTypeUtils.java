@@ -10,8 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import java.lang.reflect.Constructor;
 
 /**
- * <code>ModelUtils</code>
- * <p>The type model utils class.</p>
+ * <code>ModelTypeUtils</code>
+ * <p>The model type utils class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see lombok.extern.slf4j.Slf4j
  * @since Jdk1.8
@@ -20,10 +20,10 @@ import java.lang.reflect.Constructor;
 public class ModelTypeUtils {
 
     /**
-     * <code>genericType</code>
-     * <p>The type method.</p>
+     * <code>identityType</code>
+     * <p>The identity type method.</p>
      * @param object {@link java.lang.Object} <p>The object parameter is <code>Object</code> type.</p>
-     * @return {@link java.lang.Class} <p>The type return object is <code>Class</code> type.</p>
+     * @return {@link java.lang.Class} <p>The identity type return object is <code>Class</code> type.</p>
      * @see java.lang.Object
      * @see java.lang.Class
      */
@@ -39,10 +39,10 @@ public class ModelTypeUtils {
 
     /**
      * <code>newInstance</code>
-     * <p>The instance method.</p>
+     * <p>The new instance method.</p>
      * @param <T>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param clazz {@link java.lang.Class} <p>The clazz parameter is <code>Class</code> type.</p>
-     * @return T <p>The instance return object is <code>T</code> type.</p>
+     * @return T <p>The new instance return object is <code>T</code> type.</p>
      * @see java.lang.Class
      */
     public static <T> T newInstance(Class<T> clazz) {
@@ -57,11 +57,11 @@ public class ModelTypeUtils {
 
     /**
      * <code>newInstance</code>
-     * <p>The instance method.</p>
+     * <p>The new instance method.</p>
      * @param <T>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param clazz {@link java.lang.reflect.Constructor} <p>The clazz parameter is <code>Constructor</code> type.</p>
      * @param args  {@link java.lang.Object} <p>The args parameter is <code>Object</code> type.</p>
-     * @return T <p>The instance return object is <code>T</code> type.</p>
+     * @return T <p>The new instance return object is <code>T</code> type.</p>
      * @see java.lang.reflect.Constructor
      * @see java.lang.Object
      */
@@ -76,11 +76,11 @@ public class ModelTypeUtils {
     }
 
     /**
-     * <code>generate</code>
-     * <p>The method.</p>
+     * <code>generateIdentity</code>
+     * <p>The generate identity method.</p>
      * @param <I>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param model {@link io.github.nichetoolkit.rice.RestId} <p>The model parameter is <code>RestId</code> type.</p>
-     * @return I <p>The return object is <code>I</code> type.</p>
+     * @return I <p>The generate identity return object is <code>I</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestId
      */
     public static <I> I generateIdentity(RestId<I> model)  {

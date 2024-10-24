@@ -8,10 +8,9 @@ import org.springframework.lang.NonNull;
 
 /**
  * <code>OperateEntity</code>
- * <p>The type operate entity class.</p>
+ * <p>The operate entity class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.LogicEntity
- * @see io.github.nichetoolkit.rice.RestOperate
  * @see java.lang.SuppressWarnings
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
@@ -49,17 +48,29 @@ public class OperateEntity extends LogicEntity {
         this.operate = builder.operate;
     }
 
+    /**
+     * <code>getOperate</code>
+     * <p>The get operate getter method.</p>
+     * @return {@link java.lang.Integer} <p>The get operate return object is <code>Integer</code> type.</p>
+     * @see java.lang.Integer
+     */
     public Integer getOperate() {
         return operate;
     }
 
+    /**
+     * <code>setOperate</code>
+     * <p>The set operate setter method.</p>
+     * @param operate {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
+     * @see java.lang.Integer
+     */
     public void setOperate(Integer operate) {
         this.operate = operate;
     }
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rice.LogicEntity.Builder
      * @see java.lang.SuppressWarnings
@@ -83,9 +94,9 @@ public class OperateEntity extends LogicEntity {
 
         /**
          * <code>operate</code>
-         * <p>The method.</p>
+         * <p>The operate method.</p>
          * @param operate {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.OperateEntity.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.OperateEntity.Builder} <p>The operate return object is <code>Builder</code> type.</p>
          * @see java.lang.Integer
          */
         public OperateEntity.Builder operate(Integer operate) {
@@ -95,9 +106,9 @@ public class OperateEntity extends LogicEntity {
 
         /**
          * <code>operate</code>
-         * <p>The method.</p>
+         * <p>The operate method.</p>
          * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.OperateEntity.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.OperateEntity.Builder} <p>The operate return object is <code>Builder</code> type.</p>
          * @see io.github.nichetoolkit.rice.enums.OperateType
          * @see org.springframework.lang.NonNull
          */

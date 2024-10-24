@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * <code>DefaultInfoModel</code>
- * <p>The type default info model class.</p>
+ * <p>The default info model class.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.DefaultInfoModel} <p>The generic parameter is <code>DefaultInfoModel</code> type.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.DefaultInfoEntity} <p>The generic parameter is <code>DefaultInfoEntity</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
@@ -59,7 +59,7 @@ public abstract class DefaultInfoModel<M extends DefaultInfoModel<M, E, I>, E ex
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @param <M> {@link io.github.nichetoolkit.rice.DefaultInfoModel} <p>The generic parameter is <code>DefaultInfoModel</code> type.</p>
      * @param <E> {@link io.github.nichetoolkit.rice.DefaultInfoEntity} <p>The generic parameter is <code>DefaultInfoEntity</code> type.</p>
      * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>

@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 
 /**
  * <code>RestCheck</code>
- * <p>The type rest check interface.</p>
+ * <p>The rest check interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.lang.annotation.Annotation
  * @see java.lang.annotation.Target
@@ -22,8 +22,8 @@ import java.lang.annotation.*;
 public @interface RestCheck {
     /**
      * <code>prefixes</code>
-     * <p>The method.</p>
-     * @return {@link java.lang.String} <p>The return object is <code>String</code> type.</p>
+     * <p>The prefixes method.</p>
+     * @return {@link java.lang.String} <p>The prefixes return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     String[] prefixes() default {};

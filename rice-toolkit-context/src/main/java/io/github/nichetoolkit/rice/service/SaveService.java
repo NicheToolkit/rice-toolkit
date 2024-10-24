@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * <code>SaveService</code>
- * <p>The type save service interface.</p>
+ * <p>The save service interface.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
@@ -20,10 +20,10 @@ public interface SaveService<M extends RestId<I>, I, K> extends QueryService<M, 
 
     /**
      * <code>save</code>
-     * <p>The method.</p>
+     * <p>The save method.</p>
      * @param model   M <p>The model parameter is <code>M</code> type.</p>
      * @param idArray {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
-     * @return M <p>The return object is <code>M</code> type.</p>
+     * @return M <p>The save return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Object
      * @see io.github.nichetoolkit.rest.RestException
@@ -32,11 +32,11 @@ public interface SaveService<M extends RestId<I>, I, K> extends QueryService<M, 
 
     /**
      * <code>save</code>
-     * <p>The method.</p>
+     * <p>The save method.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @param idArray  {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
-     * @return M <p>The return object is <code>M</code> type.</p>
+     * @return M <p>The save return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Object
      * @see io.github.nichetoolkit.rest.RestException
@@ -45,10 +45,10 @@ public interface SaveService<M extends RestId<I>, I, K> extends QueryService<M, 
 
     /**
      * <code>saveAll</code>
-     * <p>The all method.</p>
+     * <p>The save all method.</p>
      * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param idArray   {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
-     * @return {@link java.util.List} <p>The all return object is <code>List</code> type.</p>
+     * @return {@link java.util.List} <p>The save all return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
      * @see java.lang.Object
@@ -59,11 +59,11 @@ public interface SaveService<M extends RestId<I>, I, K> extends QueryService<M, 
 
     /**
      * <code>saveAll</code>
-     * <p>The all method.</p>
+     * <p>The save all method.</p>
      * @param tablekey  K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param idArray   {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
-     * @return {@link java.util.List} <p>The all return object is <code>List</code> type.</p>
+     * @return {@link java.util.List} <p>The save all return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
      * @see java.lang.Object

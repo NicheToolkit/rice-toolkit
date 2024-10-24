@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 /**
  * <code>JsonbRule</code>
- * <p>The type jsonb rule class.</p>
+ * <p>The jsonb rule class.</p>
  * @param <R> {@link io.github.nichetoolkit.rice.jsonb.JsonbRule} <p>The generic parameter is <code>JsonbRule</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.io.Serializable
@@ -58,9 +58,9 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
 
     /**
      * <code>toSql</code>
-     * <p>The sql method.</p>
+     * <p>The to sql method.</p>
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @return {@link java.lang.String} <p>The sql return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The to sql return object is <code>String</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
@@ -68,10 +68,10 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
 
     /**
      * <code>toSql</code>
-     * <p>The sql method.</p>
+     * <p>The to sql method.</p>
      * @param alias    {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
      * @param variable {@link java.lang.String} <p>The variable parameter is <code>String</code> type.</p>
-     * @return {@link java.lang.String} <p>The sql return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The to sql return object is <code>String</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
@@ -79,12 +79,12 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
 
     /**
      * <code>target</code>
-     * <p>The method.</p>
+     * <p>The target method.</p>
      * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param name   {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param value  {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
      * @param type   {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The type parameter is <code>ValueType</code> type.</p>
-     * @return {@link java.lang.String} <p>The return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The target return object is <code>String</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rice.jsonb.ValueType
      */
@@ -94,12 +94,12 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
 
     /**
      * <code>target</code>
-     * <p>The method.</p>
+     * <p>The target method.</p>
      * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param name   {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param value  {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
      * @param type   {@link java.lang.String} <p>The type parameter is <code>String</code> type.</p>
-     * @return {@link java.lang.String} <p>The return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The target return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     private String target(String target, String name, String value, String type) {
@@ -115,8 +115,8 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
 
     /**
      * <code>getName</code>
-     * <p>The name getter method.</p>
-     * @return {@link java.lang.String} <p>The name return object is <code>String</code> type.</p>
+     * <p>The get name getter method.</p>
+     * @return {@link java.lang.String} <p>The get name return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getName() {
@@ -125,7 +125,7 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
 
     /**
      * <code>setName</code>
-     * <p>The name setter method.</p>
+     * <p>The set name setter method.</p>
      * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
@@ -135,7 +135,7 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @param <R> {@link io.github.nichetoolkit.rice.jsonb.JsonbRule} <p>The generic parameter is <code>JsonbRule</code> type.</p>
      * @author Cyan (snow22314@outlook.com)
      * @since Jdk1.8
@@ -157,9 +157,9 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
 
         /**
          * <code>name</code>
-         * <p>The method.</p>
+         * <p>The name method.</p>
          * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.JsonbRule.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.jsonb.JsonbRule.Builder} <p>The name return object is <code>Builder</code> type.</p>
          * @see java.lang.String
          */
         public JsonbRule.Builder<R> name(String name) {
@@ -169,8 +169,8 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
 
         /**
          * <code>build</code>
-         * <p>The method.</p>
-         * @return R <p>The return object is <code>R</code> type.</p>
+         * <p>The build method.</p>
+         * @return R <p>The build return object is <code>R</code> type.</p>
          */
         abstract public R build();
     }

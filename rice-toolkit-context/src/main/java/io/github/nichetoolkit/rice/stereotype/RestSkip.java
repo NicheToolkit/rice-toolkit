@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 
 /**
  * <code>RestSkip</code>
- * <p>The type rest skip interface.</p>
+ * <p>The rest skip interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.lang.annotation.Annotation
  * @see java.lang.annotation.Target

@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 
 /**
  * <code>ValueType</code>
- * <p>The type value type enumeration.</p>
+ * <p>The value type enumeration.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.RestField
  * @since Jdk1.8
@@ -119,9 +119,9 @@ public enum ValueType implements RestField {
 
     /**
      * <code>parseKey</code>
-     * <p>The key method.</p>
+     * <p>The parse key method.</p>
      * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The key return object is <code>ValueType</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The parse key return object is <code>ValueType</code> type.</p>
      * @see java.lang.Integer
      * @see org.springframework.lang.NonNull
      * @see com.fasterxml.jackson.annotation.JsonCreator
@@ -134,9 +134,9 @@ public enum ValueType implements RestField {
 
     /**
      * <code>parseValue</code>
-     * <p>The value method.</p>
+     * <p>The parse value method.</p>
      * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The value return object is <code>ValueType</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The parse value return object is <code>ValueType</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
@@ -147,9 +147,9 @@ public enum ValueType implements RestField {
 
     /**
      * <code>parseField</code>
-     * <p>The field method.</p>
+     * <p>The parse field method.</p>
      * @param field {@link java.lang.String} <p>The field parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The field return object is <code>ValueType</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The parse field return object is <code>ValueType</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
@@ -160,9 +160,9 @@ public enum ValueType implements RestField {
 
     /**
      * <code>isPresent</code>
-     * <p>The present method.</p>
+     * <p>The is present method.</p>
      * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
-     * @return boolean <p>The present return object is <code>boolean</code> type.</p>
+     * @return boolean <p>The is present return object is <code>boolean</code> type.</p>
      * @see java.lang.Integer
      */
     public static boolean isPresent(Integer key) {
@@ -175,9 +175,9 @@ public enum ValueType implements RestField {
 
     /**
      * <code>isContrast</code>
-     * <p>The contrast method.</p>
+     * <p>The is contrast method.</p>
      * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
-     * @return boolean <p>The contrast return object is <code>boolean</code> type.</p>
+     * @return boolean <p>The is contrast return object is <code>boolean</code> type.</p>
      * @see java.lang.Integer
      */
     public static boolean isContrast(Integer key) {
@@ -199,9 +199,9 @@ public enum ValueType implements RestField {
 
     /**
      * <code>isRange</code>
-     * <p>The range method.</p>
+     * <p>The is range method.</p>
      * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
-     * @return boolean <p>The range return object is <code>boolean</code> type.</p>
+     * @return boolean <p>The is range return object is <code>boolean</code> type.</p>
      * @see java.lang.Integer
      */
     public static boolean isRange(Integer key) {
@@ -210,9 +210,9 @@ public enum ValueType implements RestField {
 
     /**
      * <code>isEqual</code>
-     * <p>The equal method.</p>
+     * <p>The is equal method.</p>
      * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
-     * @return boolean <p>The equal return object is <code>boolean</code> type.</p>
+     * @return boolean <p>The is equal return object is <code>boolean</code> type.</p>
      * @see java.lang.Integer
      */
     public static boolean isEqual(Integer key) {
@@ -231,9 +231,9 @@ public enum ValueType implements RestField {
 
     /**
      * <code>isContain</code>
-     * <p>The contain method.</p>
+     * <p>The is contain method.</p>
      * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
-     * @return boolean <p>The contain return object is <code>boolean</code> type.</p>
+     * @return boolean <p>The is contain return object is <code>boolean</code> type.</p>
      * @see java.lang.Integer
      */
     public static boolean isContain(Integer key) {

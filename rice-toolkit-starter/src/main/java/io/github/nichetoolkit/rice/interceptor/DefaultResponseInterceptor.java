@@ -30,7 +30,7 @@ import java.util.List;
 
 /**
  * <code>DefaultResponseInterceptor</code>
- * <p>The type default response interceptor class.</p>
+ * <p>The default response interceptor class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
  * @see lombok.extern.slf4j.Slf4j

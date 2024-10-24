@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * <code>PurviewController</code>
- * <p>The type purview controller class.</p>
+ * <p>The purview controller class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see lombok.extern.slf4j.Slf4j
  * @see org.springframework.web.bind.annotation.CrossOrigin
@@ -30,8 +30,8 @@ public class PurviewController {
 
     /**
      * <code>test</code>
-     * <p>The method.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The return object is <code>RestResult</code> type.</p>
+     * <p>The test method.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The test return object is <code>RestResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestResult
      * @see org.springframework.web.bind.annotation.GetMapping

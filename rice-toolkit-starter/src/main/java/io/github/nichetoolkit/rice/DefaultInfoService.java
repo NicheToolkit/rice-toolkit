@@ -6,7 +6,7 @@ import io.github.nichetoolkit.rice.advice.BuilderAdvice;
 
 /**
  * <code>DefaultInfoService</code>
- * <p>The type default info service class.</p>
+ * <p>The default info service class.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.DefaultInfoModel} <p>The generic parameter is <code>DefaultInfoModel</code> type.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.DefaultInfoEntity} <p>The generic parameter is <code>DefaultInfoEntity</code> type.</p>
  * @param <F> {@link io.github.nichetoolkit.rice.DefaultFilter} <p>The generic parameter is <code>DefaultFilter</code> type.</p>

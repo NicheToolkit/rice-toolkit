@@ -8,7 +8,7 @@ import java.util.Optional;
 
 /**
  * <code>SaveType</code>
- * <p>The type save type enumeration.</p>
+ * <p>The save type enumeration.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.RestValue
  * @since Jdk1.8
@@ -85,9 +85,9 @@ public enum SaveType implements RestValue<Integer,String> {
 
     /**
      * <code>parseKey</code>
-     * <p>The key method.</p>
+     * <p>The parse key method.</p>
      * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.SaveType} <p>The key return object is <code>SaveType</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.enums.SaveType} <p>The parse key return object is <code>SaveType</code> type.</p>
      * @see java.lang.Integer
      * @see com.fasterxml.jackson.annotation.JsonCreator
      */
@@ -99,9 +99,9 @@ public enum SaveType implements RestValue<Integer,String> {
 
     /**
      * <code>parseValue</code>
-     * <p>The value method.</p>
+     * <p>The parse value method.</p>
      * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.SaveType} <p>The value return object is <code>SaveType</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.enums.SaveType} <p>The parse value return object is <code>SaveType</code> type.</p>
      * @see java.lang.String
      */
     public static SaveType parseValue(String value) {

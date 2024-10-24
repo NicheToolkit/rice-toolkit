@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * <code>RestIdModel</code>
- * <p>The type rest id model class.</p>
+ * <p>The rest id model class.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.RestIdModel} <p>The generic parameter is <code>RestIdModel</code> type.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.RestIdEntity} <p>The generic parameter is <code>RestIdEntity</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
@@ -47,7 +47,7 @@ public abstract class RestIdModel<M extends RestIdModel<M, E>, E extends RestIdE
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @param <M> {@link io.github.nichetoolkit.rice.RestIdModel} <p>The generic parameter is <code>RestIdModel</code> type.</p>
      * @param <E> {@link io.github.nichetoolkit.rice.RestIdEntity} <p>The generic parameter is <code>RestIdEntity</code> type.</p>
      * @author Cyan (snow22314@outlook.com)

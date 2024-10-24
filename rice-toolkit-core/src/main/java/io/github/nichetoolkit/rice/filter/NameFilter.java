@@ -22,7 +22,7 @@ import java.util.*;
 
 /**
  * <code>NameFilter</code>
- * <p>The type name filter class.</p>
+ * <p>The name filter class.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
@@ -96,8 +96,8 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
 
     /**
      * <code>getNames</code>
-     * <p>The names getter method.</p>
-     * @return {@link java.util.List} <p>The names return object is <code>List</code> type.</p>
+     * <p>The get names getter method.</p>
+     * @return {@link java.util.List} <p>The get names return object is <code>List</code> type.</p>
      * @see java.util.List
      */
     public List<String> getNames() {
@@ -109,7 +109,7 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
 
     /**
      * <code>setNames</code>
-     * <p>The names setter method.</p>
+     * <p>The set names setter method.</p>
      * @param names {@link java.lang.String} <p>The names parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
@@ -119,7 +119,7 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
 
     /**
      * <code>setNames</code>
-     * <p>The names setter method.</p>
+     * <p>The set names setter method.</p>
      * @param names {@link java.util.Collection} <p>The names parameter is <code>Collection</code> type.</p>
      * @see java.util.Collection
      * @see com.fasterxml.jackson.annotation.JsonSetter
@@ -131,7 +131,7 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
 
     /**
      * <code>addNames</code>
-     * <p>The names method.</p>
+     * <p>The add names method.</p>
      * @param names {@link java.lang.String} <p>The names parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
@@ -145,7 +145,7 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
 
     /**
      * <code>addNames</code>
-     * <p>The names method.</p>
+     * <p>The add names method.</p>
      * @param names {@link java.util.Collection} <p>The names parameter is <code>Collection</code> type.</p>
      * @see java.util.Collection
      */
@@ -159,9 +159,9 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
 
     /**
      * <code>toNameSql</code>
-     * <p>The name sql method.</p>
+     * <p>The to name sql method.</p>
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.NameFilter} <p>The name sql return object is <code>NameFilter</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.filter.NameFilter} <p>The to name sql return object is <code>NameFilter</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
@@ -176,7 +176,7 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @author Cyan (snow22314@outlook.com)
@@ -206,9 +206,9 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
 
         /**
          * <code>name</code>
-         * <p>The method.</p>
+         * <p>The name method.</p>
          * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.NameFilter.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.NameFilter.Builder} <p>The name return object is <code>Builder</code> type.</p>
          * @see java.lang.String
          */
         public NameFilter.Builder<I, K> name(String name) {
@@ -218,9 +218,9 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
 
         /**
          * <code>names</code>
-         * <p>The method.</p>
+         * <p>The names method.</p>
          * @param names {@link java.util.Collection} <p>The names parameter is <code>Collection</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.NameFilter.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.NameFilter.Builder} <p>The names return object is <code>Builder</code> type.</p>
          * @see java.util.Collection
          */
         public NameFilter.Builder<I, K> names(Collection<String> names) {
@@ -230,9 +230,9 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
 
         /**
          * <code>names</code>
-         * <p>The method.</p>
+         * <p>The names method.</p>
          * @param names {@link java.lang.String} <p>The names parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.NameFilter.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.NameFilter.Builder} <p>The names return object is <code>Builder</code> type.</p>
          * @see java.lang.String
          */
         public NameFilter.Builder<I, K> names(String... names) {

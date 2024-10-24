@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * <code>LoginController</code>
- * <p>The type login controller class.</p>
+ * <p>The login controller class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see lombok.extern.slf4j.Slf4j
  * @see org.springframework.web.bind.annotation.CrossOrigin
@@ -56,10 +56,10 @@ public class LoginController {
 
     /**
      * <code>loginWithPassword</code>
-     * <p>The with password method.</p>
+     * <p>The login with password method.</p>
      * @param context      {@link io.github.nichetoolkit.rice.TokenContext} <p>The context parameter is <code>TokenContext</code> type.</p>
      * @param loginRequest {@link io.github.nichetoolkit.rice.simple.LoginRequest} <p>The login request parameter is <code>LoginRequest</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The with password return object is <code>RestResult</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The login with password return object is <code>RestResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.TokenContext
      * @see io.github.nichetoolkit.rice.simple.LoginRequest
@@ -80,10 +80,10 @@ public class LoginController {
 
     /**
      * <code>loginWithAccessToken</code>
-     * <p>The with access token method.</p>
+     * <p>The login with access token method.</p>
      * @param context      {@link io.github.nichetoolkit.rice.TokenContext} <p>The context parameter is <code>TokenContext</code> type.</p>
      * @param loginRequest {@link io.github.nichetoolkit.rice.simple.LoginRequest} <p>The login request parameter is <code>LoginRequest</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The with access token return object is <code>RestResult</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The login with access token return object is <code>RestResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.TokenContext
      * @see io.github.nichetoolkit.rice.simple.LoginRequest
@@ -104,8 +104,8 @@ public class LoginController {
 
     /**
      * <code>logout</code>
-     * <p>The method.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The return object is <code>RestResult</code> type.</p>
+     * <p>The logout method.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The logout return object is <code>RestResult</code> type.</p>
      * @throws Exception {@link java.lang.Exception} <p>The exception is <code>Exception</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestResult
      * @see io.github.nichetoolkit.rice.stereotype.RestLogout
@@ -122,9 +122,9 @@ public class LoginController {
 
     /**
      * <code>info</code>
-     * <p>The method.</p>
+     * <p>The info method.</p>
      * @param user {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user parameter is <code>UserModel</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The return object is <code>RestResult</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The info return object is <code>RestResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.UserModel
      * @see io.github.nichetoolkit.rice.stereotype.RestUser
@@ -141,10 +141,10 @@ public class LoginController {
 
     /**
      * <code>buildLoginResult</code>
-     * <p>The login result method.</p>
+     * <p>The build login result method.</p>
      * @param context {@link io.github.nichetoolkit.rice.TokenContext} <p>The context parameter is <code>TokenContext</code> type.</p>
      * @param user    {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user parameter is <code>UserModel</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The login result return object is <code>RestResult</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The build login result return object is <code>RestResult</code> type.</p>
      * @see io.github.nichetoolkit.rice.TokenContext
      * @see io.github.nichetoolkit.rice.simple.UserModel
      * @see io.github.nichetoolkit.rest.RestResult

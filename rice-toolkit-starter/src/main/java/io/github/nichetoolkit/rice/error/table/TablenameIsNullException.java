@@ -6,7 +6,7 @@ import io.github.nichetoolkit.rice.error.TableErrorStatus;
 
 /**
  * <code>TablenameIsNullException</code>
- * <p>The type tablename is null exception class.</p>
+ * <p>The tablename is null exception class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.error.natives.ServiceErrorException
  * @since Jdk1.8

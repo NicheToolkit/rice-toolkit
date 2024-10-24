@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  * <code>RestLoginResult</code>
- * <p>The type rest login result class.</p>
+ * <p>The rest login result class.</p>
  * @param <R> {@link io.github.nichetoolkit.rice.RestLoginResult} <p>The generic parameter is <code>RestLoginResult</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.io.Serializable

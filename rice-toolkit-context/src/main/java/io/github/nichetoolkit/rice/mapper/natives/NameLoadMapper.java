@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * <code>NameLoadMapper</code>
- * <p>The type name load mapper interface.</p>
+ * <p>The name load mapper interface.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
@@ -17,13 +17,14 @@ import java.util.List;
 public interface NameLoadMapper<E extends RestId<I>, I> {
     /**
      * <code>findByNameLoad</code>
-     * <p>The by name load method.</p>
+     * <p>The find by name load method.</p>
      * @param name       {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
-     * @param logic      {@link java.lang.String} <p>The logic parameter is <code>String</code> type.</p>
+     * @param logic      {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
      * @param loadParams {@link java.lang.Boolean} <p>The load params parameter is <code>Boolean</code> type.</p>
-     * @return {@link java.util.List} <p>The by name load return object is <code>List</code> type.</p>
+     * @return {@link java.util.List} <p>The find by name load return object is <code>List</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
+     * @see java.lang.Object
      * @see java.lang.Boolean
      * @see java.util.List
      */
@@ -31,14 +32,15 @@ public interface NameLoadMapper<E extends RestId<I>, I> {
 
     /**
      * <code>findDynamicByNameLoad</code>
-     * <p>The dynamic by name load method.</p>
+     * <p>The find dynamic by name load method.</p>
      * @param tablename  {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param name       {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
-     * @param logic      {@link java.lang.String} <p>The logic parameter is <code>String</code> type.</p>
+     * @param logic      {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
      * @param loadParams {@link java.lang.Boolean} <p>The load params parameter is <code>Boolean</code> type.</p>
-     * @return {@link java.util.List} <p>The dynamic by name load return object is <code>List</code> type.</p>
+     * @return {@link java.util.List} <p>The find dynamic by name load return object is <code>List</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
+     * @see java.lang.Object
      * @see java.lang.Boolean
      * @see java.util.List
      */

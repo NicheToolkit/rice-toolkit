@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * <code>FindLoadMapper</code>
- * <p>The type find load mapper interface.</p>
+ * <p>The find load mapper interface.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
@@ -18,10 +18,10 @@ import java.util.List;
 public interface FindLoadMapper<E extends RestId<I>, I> {
     /**
      * <code>findByIdLoad</code>
-     * <p>The by id load method.</p>
+     * <p>The find by id load method.</p>
      * @param id         I <p>The id parameter is <code>I</code> type.</p>
      * @param loadParams {@link java.lang.Boolean} <p>The load params parameter is <code>Boolean</code> type.</p>
-     * @return E <p>The by id load return object is <code>E</code> type.</p>
+     * @return E <p>The find by id load return object is <code>E</code> type.</p>
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Boolean
      */
@@ -29,11 +29,11 @@ public interface FindLoadMapper<E extends RestId<I>, I> {
 
     /**
      * <code>findDynamicByIdLoad</code>
-     * <p>The dynamic by id load method.</p>
+     * <p>The find dynamic by id load method.</p>
      * @param tablename  {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param id         I <p>The id parameter is <code>I</code> type.</p>
      * @param loadParams {@link java.lang.Boolean} <p>The load params parameter is <code>Boolean</code> type.</p>
-     * @return E <p>The dynamic by id load return object is <code>E</code> type.</p>
+     * @return E <p>The find dynamic by id load return object is <code>E</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Boolean
@@ -42,10 +42,10 @@ public interface FindLoadMapper<E extends RestId<I>, I> {
 
     /**
      * <code>findAllLoad</code>
-     * <p>The all load method.</p>
+     * <p>The find all load method.</p>
      * @param idList     {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param loadParams {@link java.lang.Boolean} <p>The load params parameter is <code>Boolean</code> type.</p>
-     * @return {@link java.util.List} <p>The all load return object is <code>List</code> type.</p>
+     * @return {@link java.util.List} <p>The find all load return object is <code>List</code> type.</p>
      * @see java.util.Collection
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Boolean
@@ -55,11 +55,11 @@ public interface FindLoadMapper<E extends RestId<I>, I> {
 
     /**
      * <code>findDynamicAllLoad</code>
-     * <p>The dynamic all load method.</p>
+     * <p>The find dynamic all load method.</p>
      * @param tablename  {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param idList     {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param loadParams {@link java.lang.Boolean} <p>The load params parameter is <code>Boolean</code> type.</p>
-     * @return {@link java.util.List} <p>The dynamic all load return object is <code>List</code> type.</p>
+     * @return {@link java.util.List} <p>The find dynamic all load return object is <code>List</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.util.Collection

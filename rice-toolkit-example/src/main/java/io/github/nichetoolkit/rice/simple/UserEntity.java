@@ -6,7 +6,7 @@ import io.mybatis.provider.Entity;
 
 /**
  * <code>UserEntity</code>
- * <p>The type user entity class.</p>
+ * <p>The user entity class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestInfoEntity
  * @see io.mybatis.provider.Entity.Table
@@ -46,8 +46,8 @@ public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
 
     /**
      * <code>getUsername</code>
-     * <p>The username getter method.</p>
-     * @return {@link java.lang.String} <p>The username return object is <code>String</code> type.</p>
+     * <p>The get username getter method.</p>
+     * @return {@link java.lang.String} <p>The get username return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getUsername() {
@@ -56,7 +56,7 @@ public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
 
     /**
      * <code>setUsername</code>
-     * <p>The username setter method.</p>
+     * <p>The set username setter method.</p>
      * @param username {@link java.lang.String} <p>The username parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
@@ -66,8 +66,8 @@ public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
 
     /**
      * <code>getPassword</code>
-     * <p>The password getter method.</p>
-     * @return {@link java.lang.String} <p>The password return object is <code>String</code> type.</p>
+     * <p>The get password getter method.</p>
+     * @return {@link java.lang.String} <p>The get password return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     /* hide password */
@@ -77,7 +77,7 @@ public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
 
     /**
      * <code>setPassword</code>
-     * <p>The password setter method.</p>
+     * <p>The set password setter method.</p>
      * @param password {@link java.lang.String} <p>The password parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */

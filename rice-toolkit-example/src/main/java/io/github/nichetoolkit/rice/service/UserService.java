@@ -5,7 +5,7 @@ import io.github.nichetoolkit.rice.simple.UserModel;
 
 /**
  * <code>UserService</code>
- * <p>The type user service interface.</p>
+ * <p>The user service interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.service.FilterService
  * @see io.github.nichetoolkit.rice.service.NameService

@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * <code>IdArrayHelper</code>
- * <p>The type id array helper class.</p>
+ * <p>The id array helper class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
@@ -18,13 +18,13 @@ public class IdArrayHelper {
 
     /**
      * <code>id</code>
-     * <p>The method.</p>
+     * <p>The id method.</p>
      * @param <I>     {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param <M>     {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
      * @param model   M <p>The model parameter is <code>M</code> type.</p>
      * @param index   int <p>The index parameter is <code>int</code> type.</p>
      * @param idArray I <p>The id array parameter is <code>I</code> type.</p>
-     * @return I <p>The return object is <code>I</code> type.</p>
+     * @return I <p>The id return object is <code>I</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestId
      * @see java.lang.SuppressWarnings
      */
@@ -42,13 +42,13 @@ public class IdArrayHelper {
 
     /**
      * <code>id</code>
-     * <p>The method.</p>
+     * <p>The id method.</p>
      * @param <I>     {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param <M>     {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
      * @param models  {@link java.util.List} <p>The models parameter is <code>List</code> type.</p>
      * @param index   int <p>The index parameter is <code>int</code> type.</p>
      * @param idArray I <p>The id array parameter is <code>I</code> type.</p>
-     * @return I <p>The return object is <code>I</code> type.</p>
+     * @return I <p>The id return object is <code>I</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestId
      * @see java.util.List
      * @see java.lang.SuppressWarnings
@@ -65,7 +65,7 @@ public class IdArrayHelper {
 
     /**
      * <code>idArray</code>
-     * <p>The array method.</p>
+     * <p>The id array method.</p>
      * @param <I>     {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param <M>     {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
      * @param models  {@link java.util.List} <p>The models parameter is <code>List</code> type.</p>
@@ -90,7 +90,7 @@ public class IdArrayHelper {
 
     /**
      * <code>idArray</code>
-     * <p>The array method.</p>
+     * <p>The id array method.</p>
      * @param <I>     {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param <M>     {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
      * @param model   M <p>The model parameter is <code>M</code> type.</p>

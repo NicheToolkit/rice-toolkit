@@ -11,7 +11,7 @@ import java.util.Optional;
 
 /**
  * <code>ContrastRule</code>
- * <p>The type contrast rule class.</p>
+ * <p>The contrast rule class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.jsonb.JsonbRule
  * @see java.lang.SuppressWarnings
@@ -83,8 +83,8 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
 
     /**
      * <code>getType</code>
-     * <p>The type getter method.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The type return object is <code>ValueType</code> type.</p>
+     * <p>The get type getter method.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The get type return object is <code>ValueType</code> type.</p>
      * @see io.github.nichetoolkit.rice.jsonb.ValueType
      */
     public ValueType getType() {
@@ -93,7 +93,7 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
 
     /**
      * <code>setType</code>
-     * <p>The type setter method.</p>
+     * <p>The set type setter method.</p>
      * @param type {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The type parameter is <code>ValueType</code> type.</p>
      * @see io.github.nichetoolkit.rice.jsonb.ValueType
      */
@@ -103,8 +103,8 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
 
     /**
      * <code>getValue</code>
-     * <p>The value getter method.</p>
-     * @return {@link java.lang.Object} <p>The value return object is <code>Object</code> type.</p>
+     * <p>The get value getter method.</p>
+     * @return {@link java.lang.Object} <p>The get value return object is <code>Object</code> type.</p>
      * @see java.lang.Object
      */
     public Object getValue() {
@@ -113,7 +113,7 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
 
     /**
      * <code>setValue</code>
-     * <p>The value setter method.</p>
+     * <p>The set value setter method.</p>
      * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @see java.lang.Object
      */
@@ -123,8 +123,8 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
 
     /**
      * <code>getOperation</code>
-     * <p>The operation getter method.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastOperation} <p>The operation return object is <code>ContrastOperation</code> type.</p>
+     * <p>The get operation getter method.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastOperation} <p>The get operation return object is <code>ContrastOperation</code> type.</p>
      * @see io.github.nichetoolkit.rice.jsonb.ContrastOperation
      */
     public ContrastOperation getOperation() {
@@ -133,7 +133,7 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
 
     /**
      * <code>setOperation</code>
-     * <p>The operation setter method.</p>
+     * <p>The set operation setter method.</p>
      * @param operation {@link io.github.nichetoolkit.rice.jsonb.ContrastOperation} <p>The operation parameter is <code>ContrastOperation</code> type.</p>
      * @see io.github.nichetoolkit.rice.jsonb.ContrastOperation
      */
@@ -163,7 +163,7 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rice.jsonb.JsonbRule.Builder
      * @since Jdk1.8
@@ -203,9 +203,9 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
 
         /**
          * <code>type</code>
-         * <p>The method.</p>
+         * <p>The type method.</p>
          * @param type {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The type parameter is <code>ValueType</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastRule.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastRule.Builder} <p>The type return object is <code>Builder</code> type.</p>
          * @see io.github.nichetoolkit.rice.jsonb.ValueType
          */
         public ContrastRule.Builder type(ValueType type) {
@@ -215,9 +215,9 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
 
         /**
          * <code>type</code>
-         * <p>The method.</p>
+         * <p>The type method.</p>
          * @param type {@link java.lang.Integer} <p>The type parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastRule.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastRule.Builder} <p>The type return object is <code>Builder</code> type.</p>
          * @see java.lang.Integer
          */
         public ContrastRule.Builder type(Integer type) {
@@ -227,9 +227,9 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
 
         /**
          * <code>value</code>
-         * <p>The method.</p>
+         * <p>The value method.</p>
          * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastRule.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastRule.Builder} <p>The value return object is <code>Builder</code> type.</p>
          * @see java.lang.Object
          */
         public ContrastRule.Builder value(Object value) {
@@ -239,9 +239,9 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
 
         /**
          * <code>operation</code>
-         * <p>The method.</p>
+         * <p>The operation method.</p>
          * @param operation {@link io.github.nichetoolkit.rice.jsonb.ContrastOperation} <p>The operation parameter is <code>ContrastOperation</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastRule.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastRule.Builder} <p>The operation return object is <code>Builder</code> type.</p>
          * @see io.github.nichetoolkit.rice.jsonb.ContrastOperation
          */
         public ContrastRule.Builder operation(ContrastOperation operation) {
@@ -251,9 +251,9 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
 
         /**
          * <code>operation</code>
-         * <p>The method.</p>
+         * <p>The operation method.</p>
          * @param operation {@link java.lang.Integer} <p>The operation parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastRule.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastRule.Builder} <p>The operation return object is <code>Builder</code> type.</p>
          * @see java.lang.Integer
          */
         public ContrastRule.Builder operation(Integer operation) {

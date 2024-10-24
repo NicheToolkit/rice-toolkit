@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * <code>PurviewAdvice</code>
- * <p>The type purview advice class.</p>
+ * <p>The purview advice class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.DefaultAdvice
  * @see lombok.extern.slf4j.Slf4j
@@ -68,7 +68,7 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
 
     /**
      * <code>purviewKeysCheck</code>
-     * <p>The keys check method.</p>
+     * <p>The purview keys check method.</p>
      * @param userModel   {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user model parameter is <code>UserModel</code> type.</p>
      * @param purviewKeys {@link java.util.List} <p>The purview keys parameter is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
@@ -87,7 +87,7 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
 
     /**
      * <code>purviewValuesCheck</code>
-     * <p>The values check method.</p>
+     * <p>The purview values check method.</p>
      * @param userModel     {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user model parameter is <code>UserModel</code> type.</p>
      * @param purviewValues {@link java.util.List} <p>The purview values parameter is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>

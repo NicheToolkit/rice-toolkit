@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rest.RestStatus;
 
 /**
  * <code>LoginErrorStatus</code>
- * <p>The type login error status enumeration.</p>
+ * <p>The login error status enumeration.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.RestStatus
  * @since Jdk1.8
@@ -55,8 +55,8 @@ public enum LoginErrorStatus implements RestStatus {
 
     /**
      * <code>getName</code>
-     * <p>The name getter method.</p>
-     * @return {@link java.lang.String} <p>The name return object is <code>String</code> type.</p>
+     * <p>The get name getter method.</p>
+     * @return {@link java.lang.String} <p>The get name return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getName() {

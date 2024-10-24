@@ -19,7 +19,7 @@ import java.util.Optional;
 
 /**
  * <code>LoginService</code>
- * <p>The type login service class.</p>
+ * <p>The login service class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see lombok.extern.slf4j.Slf4j
  * @see org.springframework.stereotype.Service
@@ -60,9 +60,9 @@ public class LoginService {
 
     /**
      * <code>loginWithToken</code>
-     * <p>The with token method.</p>
+     * <p>The login with token method.</p>
      * @param loginRequest {@link io.github.nichetoolkit.rice.simple.LoginRequest} <p>The login request parameter is <code>LoginRequest</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The with token return object is <code>UserModel</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The login with token return object is <code>UserModel</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.LoginRequest
      * @see io.github.nichetoolkit.rice.simple.UserModel
@@ -78,9 +78,9 @@ public class LoginService {
 
     /**
      * <code>loginWithPassword</code>
-     * <p>The with password method.</p>
+     * <p>The login with password method.</p>
      * @param loginRequest {@link io.github.nichetoolkit.rice.simple.LoginRequest} <p>The login request parameter is <code>LoginRequest</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The with password return object is <code>UserModel</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The login with password return object is <code>UserModel</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.LoginRequest
      * @see io.github.nichetoolkit.rice.simple.UserModel

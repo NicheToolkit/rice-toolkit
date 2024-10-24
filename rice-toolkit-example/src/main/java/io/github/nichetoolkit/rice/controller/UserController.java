@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * <code>UserController</code>
- * <p>The type user controller class.</p>
+ * <p>The user controller class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see lombok.extern.slf4j.Slf4j
  * @see io.github.nichetoolkit.rice.stereotype.RestSkip
@@ -55,9 +55,9 @@ public class UserController {
 
     /**
      * <code>create</code>
-     * <p>The method.</p>
+     * <p>The create method.</p>
      * @param userModel {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user model parameter is <code>UserModel</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The return object is <code>RestResult</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The create return object is <code>RestResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.UserModel
      * @see org.springframework.web.bind.annotation.RequestBody
@@ -74,9 +74,9 @@ public class UserController {
 
     /**
      * <code>update</code>
-     * <p>The method.</p>
+     * <p>The update method.</p>
      * @param user {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user parameter is <code>UserModel</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The return object is <code>RestResult</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The update return object is <code>RestResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.UserModel
      * @see org.springframework.web.bind.annotation.RequestBody
@@ -93,9 +93,9 @@ public class UserController {
 
     /**
      * <code>queryById</code>
-     * <p>The by id method.</p>
+     * <p>The query by id method.</p>
      * @param id {@link java.lang.String} <p>The id parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The by id return object is <code>RestResult</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The query by id return object is <code>RestResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.web.bind.annotation.PathVariable
@@ -111,9 +111,9 @@ public class UserController {
 
     /**
      * <code>queryByFilter</code>
-     * <p>The by filter method.</p>
+     * <p>The query by filter method.</p>
      * @param filter {@link io.github.nichetoolkit.rice.simple.UserFilter} <p>The filter parameter is <code>UserFilter</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The by filter return object is <code>RestResult</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The query by filter return object is <code>RestResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.UserFilter
      * @see org.springframework.web.bind.annotation.RequestBody
@@ -129,9 +129,9 @@ public class UserController {
 
     /**
      * <code>deleteById</code>
-     * <p>The by id method.</p>
+     * <p>The delete by id method.</p>
      * @param id {@link java.lang.String} <p>The id parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The by id return object is <code>RestResult</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The delete by id return object is <code>RestResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.web.bind.annotation.PathVariable
@@ -149,9 +149,9 @@ public class UserController {
 
     /**
      * <code>deleteByFilter</code>
-     * <p>The by filter method.</p>
+     * <p>The delete by filter method.</p>
      * @param filter {@link io.github.nichetoolkit.rice.simple.UserFilter} <p>The filter parameter is <code>UserFilter</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The by filter return object is <code>RestResult</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestResult} <p>The delete by filter return object is <code>RestResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.UserFilter
      * @see org.springframework.web.bind.annotation.RequestBody

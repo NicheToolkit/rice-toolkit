@@ -6,7 +6,7 @@ import io.github.nichetoolkit.rice.error.TableErrorStatus;
 
 /**
  * <code>TableAlreadyExistException</code>
- * <p>The type table already exist exception class.</p>
+ * <p>The table already exist exception class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.error.natives.ServiceErrorException
  * @since Jdk1.8

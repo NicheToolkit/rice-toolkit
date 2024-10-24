@@ -12,7 +12,7 @@ import java.util.*;
 
 /**
  * <code>ContainRule</code>
- * <p>The type contain rule class.</p>
+ * <p>The contain rule class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.jsonb.JsonbRule
  * @see java.lang.SuppressWarnings
@@ -92,8 +92,8 @@ public class ContainRule extends JsonbRule<ContainRule> {
 
     /**
      * <code>getType</code>
-     * <p>The type getter method.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The type return object is <code>ValueType</code> type.</p>
+     * <p>The get type getter method.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The get type return object is <code>ValueType</code> type.</p>
      * @see io.github.nichetoolkit.rice.jsonb.ValueType
      */
     public ValueType getType() {
@@ -102,7 +102,7 @@ public class ContainRule extends JsonbRule<ContainRule> {
 
     /**
      * <code>setType</code>
-     * <p>The type setter method.</p>
+     * <p>The set type setter method.</p>
      * @param type {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The type parameter is <code>ValueType</code> type.</p>
      * @see io.github.nichetoolkit.rice.jsonb.ValueType
      */
@@ -112,7 +112,7 @@ public class ContainRule extends JsonbRule<ContainRule> {
 
     /**
      * <code>setValues</code>
-     * <p>The values setter method.</p>
+     * <p>The set values setter method.</p>
      * @param values {@link java.util.Set} <p>The values parameter is <code>Set</code> type.</p>
      * @see java.util.Set
      */
@@ -122,8 +122,8 @@ public class ContainRule extends JsonbRule<ContainRule> {
 
     /**
      * <code>getValues</code>
-     * <p>The values getter method.</p>
-     * @return {@link java.util.List} <p>The values return object is <code>List</code> type.</p>
+     * <p>The get values getter method.</p>
+     * @return {@link java.util.List} <p>The get values return object is <code>List</code> type.</p>
      * @see java.util.List
      */
     public List<Object> getValues() {
@@ -135,7 +135,7 @@ public class ContainRule extends JsonbRule<ContainRule> {
 
     /**
      * <code>setValues</code>
-     * <p>The values setter method.</p>
+     * <p>The set values setter method.</p>
      * @param values {@link java.lang.Object} <p>The values parameter is <code>Object</code> type.</p>
      * @see java.lang.Object
      */
@@ -145,7 +145,7 @@ public class ContainRule extends JsonbRule<ContainRule> {
 
     /**
      * <code>setValues</code>
-     * <p>The values setter method.</p>
+     * <p>The set values setter method.</p>
      * @param values {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
      * @see java.util.Collection
      * @see com.fasterxml.jackson.annotation.JsonSetter
@@ -157,7 +157,7 @@ public class ContainRule extends JsonbRule<ContainRule> {
 
     /**
      * <code>addValues</code>
-     * <p>The values method.</p>
+     * <p>The add values method.</p>
      * @param values {@link java.lang.Object} <p>The values parameter is <code>Object</code> type.</p>
      * @see java.lang.Object
      */
@@ -171,7 +171,7 @@ public class ContainRule extends JsonbRule<ContainRule> {
 
     /**
      * <code>addValues</code>
-     * <p>The values method.</p>
+     * <p>The add values method.</p>
      * @param values {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
      * @see java.util.Collection
      */
@@ -203,7 +203,7 @@ public class ContainRule extends JsonbRule<ContainRule> {
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rice.jsonb.JsonbRule.Builder
      * @since Jdk1.8
@@ -237,9 +237,9 @@ public class ContainRule extends JsonbRule<ContainRule> {
 
         /**
          * <code>type</code>
-         * <p>The method.</p>
+         * <p>The type method.</p>
          * @param type {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The type parameter is <code>ValueType</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.ContainRule.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.jsonb.ContainRule.Builder} <p>The type return object is <code>Builder</code> type.</p>
          * @see io.github.nichetoolkit.rice.jsonb.ValueType
          */
         public ContainRule.Builder type(ValueType type) {
@@ -249,9 +249,9 @@ public class ContainRule extends JsonbRule<ContainRule> {
 
         /**
          * <code>type</code>
-         * <p>The method.</p>
+         * <p>The type method.</p>
          * @param type {@link java.lang.Integer} <p>The type parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.ContainRule.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.jsonb.ContainRule.Builder} <p>The type return object is <code>Builder</code> type.</p>
          * @see java.lang.Integer
          */
         public ContainRule.Builder type(Integer type) {
@@ -261,9 +261,9 @@ public class ContainRule extends JsonbRule<ContainRule> {
 
         /**
          * <code>values</code>
-         * <p>The method.</p>
+         * <p>The values method.</p>
          * @param values {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.ContainRule.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.jsonb.ContainRule.Builder} <p>The values return object is <code>Builder</code> type.</p>
          * @see java.util.Collection
          */
         public ContainRule.Builder values(Collection<Object> values) {
@@ -273,9 +273,9 @@ public class ContainRule extends JsonbRule<ContainRule> {
 
         /**
          * <code>values</code>
-         * <p>The method.</p>
+         * <p>The values method.</p>
          * @param values {@link java.lang.Object} <p>The values parameter is <code>Object</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.ContainRule.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.jsonb.ContainRule.Builder} <p>The values return object is <code>Builder</code> type.</p>
          * @see java.lang.Object
          * @see org.springframework.lang.NonNull
          */

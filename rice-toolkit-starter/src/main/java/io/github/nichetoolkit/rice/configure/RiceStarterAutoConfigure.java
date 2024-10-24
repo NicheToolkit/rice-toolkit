@@ -25,7 +25,7 @@ import java.util.List;
 
 /**
  * <code>RiceStarterAutoConfigure</code>
- * <p>The type rice starter auto configure class.</p>
+ * <p>The rice starter auto configure class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.beans.factory.InitializingBean
  * @see lombok.extern.slf4j.Slf4j
@@ -55,8 +55,8 @@ public class RiceStarterAutoConfigure implements InitializingBean {
 
     /**
      * <code>mapArgumentResolver</code>
-     * {@link DefaultTokenContextResolver} <p>The <code>mapArgumentResolver</code> field.</p>
-     * @see DefaultTokenContextResolver
+     * {@link io.github.nichetoolkit.rice.defaults.DefaultTokenContextResolver} <p>The <code>mapArgumentResolver</code> field.</p>
+     * @see io.github.nichetoolkit.rice.defaults.DefaultTokenContextResolver
      */
     private final DefaultTokenContextResolver mapArgumentResolver;
 
@@ -65,10 +65,10 @@ public class RiceStarterAutoConfigure implements InitializingBean {
      * <p>Instantiates a new rice starter auto configure.</p>
      * @param loginProperties              {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
      * @param requestMappingHandlerAdapter {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter} <p>The request mapping handler adapter parameter is <code>RequestMappingHandlerAdapter</code> type.</p>
-     * @param mapArgumentResolver          {@link DefaultTokenContextResolver} <p>The map argument resolver parameter is <code>DefaultMapArgumentResolver</code> type.</p>
+     * @param mapArgumentResolver          {@link io.github.nichetoolkit.rice.defaults.DefaultTokenContextResolver} <p>The map argument resolver parameter is <code>DefaultTokenContextResolver</code> type.</p>
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      * @see org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter
-     * @see DefaultTokenContextResolver
+     * @see io.github.nichetoolkit.rice.defaults.DefaultTokenContextResolver
      * @see org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired
@@ -91,7 +91,7 @@ public class RiceStarterAutoConfigure implements InitializingBean {
 
     /**
      * <code>resolveArgumentResolver</code>
-     * <p>The argument resolver method.</p>
+     * <p>The resolve argument resolver method.</p>
      */
     private void resolveArgumentResolver() {
         List<HandlerMethodArgumentResolver> customArgumentResolvers = new LinkedList<>();
@@ -107,12 +107,28 @@ public class RiceStarterAutoConfigure implements InitializingBean {
         }
     }
 
+    /**
+     * <code>defaultStringIdResolver</code>
+     * <p>The default string id resolver method.</p>
+     * @return {@link io.github.nichetoolkit.rice.resolver.RestIdentityResolver} <p>The default string id resolver return object is <code>RestIdentityResolver</code> type.</p>
+     * @see io.github.nichetoolkit.rice.resolver.RestIdentityResolver
+     * @see org.springframework.context.annotation.Bean
+     * @see org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+     */
     @Bean
     @ConditionalOnMissingBean(DefaultStringIdResolver.class)
     public RestIdentityResolver<String> defaultStringIdResolver() {
         return DefaultStringIdResolver.DEFAULT_RESOLVER;
     }
 
+    /**
+     * <code>defaultLongIdResolver</code>
+     * <p>The default long id resolver method.</p>
+     * @return {@link io.github.nichetoolkit.rice.resolver.RestIdentityResolver} <p>The default long id resolver return object is <code>RestIdentityResolver</code> type.</p>
+     * @see io.github.nichetoolkit.rice.resolver.RestIdentityResolver
+     * @see org.springframework.context.annotation.Bean
+     * @see org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+     */
     @Bean
     @ConditionalOnMissingBean(DefaultLongIdResolver.class)
     public RestIdentityResolver<Long> defaultLongIdResolver() {
@@ -120,6 +136,16 @@ public class RiceStarterAutoConfigure implements InitializingBean {
     }
 
 
+    /**
+     * <code>defaultAutoLogicMark</code>
+     * <p>The default auto logic mark method.</p>
+     * @param serviceProperties {@link io.github.nichetoolkit.rice.configure.RiceServiceProperties} <p>The service properties parameter is <code>RiceServiceProperties</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.RestLogicMark} <p>The default auto logic mark return object is <code>RestLogicMark</code> type.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceServiceProperties
+     * @see io.github.nichetoolkit.rice.RestLogicMark
+     * @see org.springframework.context.annotation.Bean
+     * @see org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+     */
     @Bean
     @ConditionalOnMissingBean(RestLogicMark.class)
     public RestLogicMark defaultAutoLogicMark(RiceServiceProperties serviceProperties) {

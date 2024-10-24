@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 
 /**
  * <code>RestLogin</code>
- * <p>The type rest login interface.</p>
+ * <p>The rest login interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.lang.annotation.Annotation
  * @see java.lang.annotation.Target
@@ -23,24 +23,24 @@ public @interface RestLogin {
 
     /**
      * <code>prefix</code>
-     * <p>The method.</p>
-     * @return {@link java.lang.String} <p>The return object is <code>String</code> type.</p>
+     * <p>The prefix method.</p>
+     * @return {@link java.lang.String} <p>The prefix return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     String prefix() default "";
 
     /**
      * <code>type</code>
-     * <p>The method.</p>
-     * @return {@link java.lang.String} <p>The return object is <code>String</code> type.</p>
+     * <p>The type method.</p>
+     * @return {@link java.lang.String} <p>The type return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     String type() default "";
 
     /**
      * <code>update</code>
-     * <p>The method.</p>
-     * @return boolean <p>The return object is <code>boolean</code> type.</p>
+     * <p>The update method.</p>
+     * @return boolean <p>The update return object is <code>boolean</code> type.</p>
      */
     boolean update() default false;
 }

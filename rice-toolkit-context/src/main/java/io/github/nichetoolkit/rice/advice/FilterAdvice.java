@@ -5,7 +5,7 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
 
 /**
  * <code>FilterAdvice</code>
- * <p>The type filter advice interface.</p>
+ * <p>The filter advice interface.</p>
  * @param <F> {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The generic parameter is <code>IdFilter</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
@@ -19,9 +19,9 @@ public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
 
     /**
      * <code>queryWhereSql</code>
-     * <p>The where sql method.</p>
+     * <p>The query where sql method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @return {@link java.lang.String} <p>The where sql return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The query where sql return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestException
@@ -32,9 +32,9 @@ public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
 
     /**
      * <code>deleteWhereSql</code>
-     * <p>The where sql method.</p>
+     * <p>The delete where sql method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @return {@link java.lang.String} <p>The where sql return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The delete where sql return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestException
@@ -45,9 +45,9 @@ public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
 
     /**
      * <code>removeWhereSql</code>
-     * <p>The where sql method.</p>
+     * <p>The remove where sql method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @return {@link java.lang.String} <p>The where sql return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The remove where sql return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestException
@@ -58,9 +58,9 @@ public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
 
     /**
      * <code>operateWhereSql</code>
-     * <p>The where sql method.</p>
+     * <p>The operate where sql method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @return {@link java.lang.String} <p>The where sql return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The operate where sql return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestException
@@ -71,9 +71,9 @@ public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
 
     /**
      * <code>findLoadArray</code>
-     * <p>The load array method.</p>
+     * <p>The find load array method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @return {@link java.lang.Boolean} <p>The load array return object is <code>Boolean</code> type.</p>
+     * @return {@link java.lang.Boolean} <p>The find load array return object is <code>Boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
@@ -84,9 +84,9 @@ public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
 
     /**
      * <code>queryLoadArray</code>
-     * <p>The load array method.</p>
+     * <p>The query load array method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @return {@link java.lang.Boolean} <p>The load array return object is <code>Boolean</code> type.</p>
+     * @return {@link java.lang.Boolean} <p>The query load array return object is <code>Boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
@@ -97,9 +97,9 @@ public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
 
     /**
      * <code>fieldArray</code>
-     * <p>The array method.</p>
+     * <p>The field array method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @return {@link java.lang.String} <p>The array return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The field array return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestException
@@ -110,9 +110,9 @@ public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
 
     /**
      * <code>tablekey</code>
-     * <p>The method.</p>
+     * <p>The tablekey method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @return K <p>The return object is <code>K</code> type.</p>
+     * @return K <p>The tablekey return object is <code>K</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */

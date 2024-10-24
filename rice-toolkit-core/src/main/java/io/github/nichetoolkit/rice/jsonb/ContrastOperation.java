@@ -9,7 +9,7 @@ import java.util.Optional;
 
 /**
  * <code>ContrastOperation</code>
- * <p>The type contrast operation enumeration.</p>
+ * <p>The contrast operation enumeration.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.RestField
  * @since Jdk1.8
@@ -111,10 +111,10 @@ public enum ContrastOperation implements RestField {
 
     /**
      * <code>translateSql</code>
-     * <p>The sql method.</p>
+     * <p>The translate sql method.</p>
      * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param value  {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @return {@link java.lang.String} <p>The sql return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The translate sql return object is <code>String</code> type.</p>
      * @see java.lang.String
      * @see java.lang.Object
      */
@@ -124,9 +124,9 @@ public enum ContrastOperation implements RestField {
 
     /**
      * <code>parseKey</code>
-     * <p>The key method.</p>
+     * <p>The parse key method.</p>
      * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastOperation} <p>The key return object is <code>ContrastOperation</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastOperation} <p>The parse key return object is <code>ContrastOperation</code> type.</p>
      * @see java.lang.Integer
      * @see com.fasterxml.jackson.annotation.JsonCreator
      */
@@ -138,9 +138,9 @@ public enum ContrastOperation implements RestField {
 
     /**
      * <code>parseValue</code>
-     * <p>The value method.</p>
+     * <p>The parse value method.</p>
      * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastOperation} <p>The value return object is <code>ContrastOperation</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastOperation} <p>The parse value return object is <code>ContrastOperation</code> type.</p>
      * @see java.lang.String
      */
     public static ContrastOperation parseValue(String value) {
@@ -150,9 +150,9 @@ public enum ContrastOperation implements RestField {
 
     /**
      * <code>parseField</code>
-     * <p>The field method.</p>
+     * <p>The parse field method.</p>
      * @param field {@link java.lang.String} <p>The field parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastOperation} <p>The field return object is <code>ContrastOperation</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.ContrastOperation} <p>The parse field return object is <code>ContrastOperation</code> type.</p>
      * @see java.lang.String
      */
     public static ContrastOperation parseField(String field) {

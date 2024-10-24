@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice;
 
 /**
  * <code>RestIdService</code>
- * <p>The type rest id service class.</p>
+ * <p>The rest id service class.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.RestIdModel} <p>The generic parameter is <code>RestIdModel</code> type.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.RestIdEntity} <p>The generic parameter is <code>RestIdEntity</code> type.</p>
  * @param <F> {@link io.github.nichetoolkit.rice.RestFilter} <p>The generic parameter is <code>RestFilter</code> type.</p>

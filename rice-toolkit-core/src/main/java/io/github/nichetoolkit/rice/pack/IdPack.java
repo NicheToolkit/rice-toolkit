@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  * <code>IdPack</code>
- * <p>The type id pack class.</p>
+ * <p>The id pack class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.io.Serializable
  * @see lombok.Setter

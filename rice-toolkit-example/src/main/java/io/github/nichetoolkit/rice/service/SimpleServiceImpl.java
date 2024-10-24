@@ -13,7 +13,7 @@ import java.util.Optional;
 
 /**
  * <code>SimpleServiceImpl</code>
- * <p>The type simple service class.</p>
+ * <p>The simple service class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestInfoService
  * @see org.springframework.stereotype.Service

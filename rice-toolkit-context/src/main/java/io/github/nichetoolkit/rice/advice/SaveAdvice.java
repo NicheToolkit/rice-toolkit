@@ -7,7 +7,7 @@ import java.util.Collection;
 
 /**
  * <code>SaveAdvice</code>
- * <p>The type save advice interface.</p>
+ * <p>The save advice interface.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
@@ -20,7 +20,7 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>beforeCreate</code>
-     * <p>The create method.</p>
+     * <p>The before create method.</p>
      * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
@@ -31,7 +31,7 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>beforeUpdate</code>
-     * <p>The update method.</p>
+     * <p>The before update method.</p>
      * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
@@ -42,7 +42,7 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>beforeSave</code>
-     * <p>The save method.</p>
+     * <p>The before save method.</p>
      * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
@@ -52,7 +52,7 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>beforeSaveAll</code>
-     * <p>The save all method.</p>
+     * <p>The before save all method.</p>
      * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
@@ -66,7 +66,7 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>afterCreate</code>
-     * <p>The create method.</p>
+     * <p>The after create method.</p>
      * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
@@ -77,7 +77,7 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>afterUpdate</code>
-     * <p>The update method.</p>
+     * <p>The after update method.</p>
      * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
@@ -88,7 +88,7 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>afterSave</code>
-     * <p>The save method.</p>
+     * <p>The after save method.</p>
      * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
@@ -98,7 +98,7 @@ public interface SaveAdvice<M extends RestId<I>, I> {
 
     /**
      * <code>afterSaveAll</code>
-     * <p>The save all method.</p>
+     * <p>The after save all method.</p>
      * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection

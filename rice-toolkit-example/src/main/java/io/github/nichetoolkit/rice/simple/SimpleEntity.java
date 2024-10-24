@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * <code>SimpleEntity</code>
- * <p>The type simple entity class.</p>
+ * <p>The simple entity class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestInfoEntity
  * @see io.mybatis.provider.Entity.Table
@@ -43,8 +43,8 @@ public class SimpleEntity extends RestInfoEntity<SimpleEntity, SimpleModel> {
 
     /**
      * <code>getTime</code>
-     * <p>The time getter method.</p>
-     * @return {@link java.util.Date} <p>The time return object is <code>Date</code> type.</p>
+     * <p>The get time getter method.</p>
+     * @return {@link java.util.Date} <p>The get time return object is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public Date getTime() {
@@ -53,7 +53,7 @@ public class SimpleEntity extends RestInfoEntity<SimpleEntity, SimpleModel> {
 
     /**
      * <code>setTime</code>
-     * <p>The time setter method.</p>
+     * <p>The set time setter method.</p>
      * @param time {@link java.util.Date} <p>The time parameter is <code>Date</code> type.</p>
      * @see java.util.Date
      */

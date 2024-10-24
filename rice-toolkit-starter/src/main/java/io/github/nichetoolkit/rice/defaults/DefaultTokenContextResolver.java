@@ -12,8 +12,8 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * <code>DefaultMapArgumentResolver</code>
- * <p>The type default map argument resolver class.</p>
+ * <code>DefaultTokenContextResolver</code>
+ * <p>The default token context resolver class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.web.method.support.HandlerMethodArgumentResolver
  * @see org.springframework.stereotype.Component

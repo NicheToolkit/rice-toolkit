@@ -18,7 +18,7 @@ import java.util.HashSet;
 
 /**
  * <code>TimeFilter</code>
- * <p>The type time filter class.</p>
+ * <p>The time filter class.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
@@ -95,8 +95,8 @@ public class TimeFilter<I, K> extends IdFilter<I, K> {
 
     /**
      * <code>getStartTime</code>
-     * <p>The start time getter method.</p>
-     * @return {@link java.util.Date} <p>The start time return object is <code>Date</code> type.</p>
+     * <p>The get start time getter method.</p>
+     * @return {@link java.util.Date} <p>The get start time return object is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public Date getStartTime() {
@@ -105,7 +105,7 @@ public class TimeFilter<I, K> extends IdFilter<I, K> {
 
     /**
      * <code>setStartTime</code>
-     * <p>The start time setter method.</p>
+     * <p>The set start time setter method.</p>
      * @param startTime {@link java.util.Date} <p>The start time parameter is <code>Date</code> type.</p>
      * @see java.util.Date
      */
@@ -115,8 +115,8 @@ public class TimeFilter<I, K> extends IdFilter<I, K> {
 
     /**
      * <code>getEndTime</code>
-     * <p>The end time getter method.</p>
-     * @return {@link java.util.Date} <p>The end time return object is <code>Date</code> type.</p>
+     * <p>The get end time getter method.</p>
+     * @return {@link java.util.Date} <p>The get end time return object is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public Date getEndTime() {
@@ -125,7 +125,7 @@ public class TimeFilter<I, K> extends IdFilter<I, K> {
 
     /**
      * <code>setEndTime</code>
-     * <p>The end time setter method.</p>
+     * <p>The set end time setter method.</p>
      * @param endTime {@link java.util.Date} <p>The end time parameter is <code>Date</code> type.</p>
      * @see java.util.Date
      */
@@ -135,9 +135,9 @@ public class TimeFilter<I, K> extends IdFilter<I, K> {
 
     /**
      * <code>toTimeSql</code>
-     * <p>The time sql method.</p>
+     * <p>The to time sql method.</p>
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.TimeFilter} <p>The time sql return object is <code>TimeFilter</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.filter.TimeFilter} <p>The to time sql return object is <code>TimeFilter</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      */
@@ -178,7 +178,7 @@ public class TimeFilter<I, K> extends IdFilter<I, K> {
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @author Cyan (snow22314@outlook.com)
@@ -208,9 +208,9 @@ public class TimeFilter<I, K> extends IdFilter<I, K> {
 
         /**
          * <code>startTime</code>
-         * <p>The time method.</p>
+         * <p>The start time method.</p>
          * @param startTime {@link java.util.Date} <p>The start time parameter is <code>Date</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.TimeFilter.Builder} <p>The time return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.TimeFilter.Builder} <p>The start time return object is <code>Builder</code> type.</p>
          * @see java.util.Date
          */
         public TimeFilter.Builder<I, K> startTime(Date startTime) {
@@ -220,9 +220,9 @@ public class TimeFilter<I, K> extends IdFilter<I, K> {
 
         /**
          * <code>endTime</code>
-         * <p>The time method.</p>
+         * <p>The end time method.</p>
          * @param endTime {@link java.util.Date} <p>The end time parameter is <code>Date</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.TimeFilter.Builder} <p>The time return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.TimeFilter.Builder} <p>The end time return object is <code>Builder</code> type.</p>
          * @see java.util.Date
          */
         public TimeFilter.Builder<I, K> endTime(Date endTime) {

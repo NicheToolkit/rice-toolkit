@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * <code>UserResolver</code>
- * <p>The type user resolver class.</p>
+ * <p>The user resolver class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestUserResolver
  * @see org.springframework.stereotype.Component

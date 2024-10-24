@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice.constant;
 
 /**
  * <code>LoginConstants</code>
- * <p>The type login constants interface.</p>
+ * <p>The login constants interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */

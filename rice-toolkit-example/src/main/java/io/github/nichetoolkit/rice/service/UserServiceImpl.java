@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * <code>UserServiceImpl</code>
- * <p>The type user service class.</p>
+ * <p>The user service class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestInfoService
  * @see org.springframework.stereotype.Service

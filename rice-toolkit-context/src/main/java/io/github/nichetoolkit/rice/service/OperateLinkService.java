@@ -7,7 +7,7 @@ import java.util.Collection;
 
 /**
  * <code>OperateLinkService</code>
- * <p>The type operate link service interface.</p>
+ * <p>The operate link service interface.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
@@ -18,7 +18,7 @@ public interface OperateLinkService<I,K> extends OperateService<I,K> {
 
     /**
      * <code>operateAllByLinkIds</code>
-     * <p>The all by link ids method.</p>
+     * <p>The operate all by link ids method.</p>
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param operateType {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate type parameter is <code>OperateType</code> type.</p>
@@ -31,7 +31,7 @@ public interface OperateLinkService<I,K> extends OperateService<I,K> {
 
     /**
      * <code>operateAllByLinkIds</code>
-     * <p>The all by link ids method.</p>
+     * <p>The operate all by link ids method.</p>
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
@@ -45,7 +45,7 @@ public interface OperateLinkService<I,K> extends OperateService<I,K> {
 
     /**
      * <code>operateByLinkId</code>
-     * <p>The by link id method.</p>
+     * <p>The operate by link id method.</p>
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>
      * @param operateType {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate type parameter is <code>OperateType</code> type.</p>
@@ -57,7 +57,7 @@ public interface OperateLinkService<I,K> extends OperateService<I,K> {
 
     /**
      * <code>operateByLinkId</code>
-     * <p>The by link id method.</p>
+     * <p>The operate by link id method.</p>
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>

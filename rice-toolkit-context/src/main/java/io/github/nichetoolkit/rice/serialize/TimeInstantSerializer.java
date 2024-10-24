@@ -11,7 +11,7 @@ import java.io.IOException;
 
 /**
  * <code>TimeInstantSerializer</code>
- * <p>The type time instant serializer class.</p>
+ * <p>The time instant serializer class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see com.fasterxml.jackson.databind.JsonSerializer
  * @see org.springframework.stereotype.Component

@@ -10,7 +10,7 @@ import java.io.IOException;
 
 /**
  * <code>TimeValueSerializer</code>
- * <p>The type time value serializer class.</p>
+ * <p>The time value serializer class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see com.fasterxml.jackson.databind.JsonSerializer
  * @see org.springframework.stereotype.Component

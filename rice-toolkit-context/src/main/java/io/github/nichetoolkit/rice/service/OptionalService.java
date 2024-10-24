@@ -9,7 +9,7 @@ import java.util.Optional;
 
 /**
  * <code>OptionalService</code>
- * <p>The type optional service interface.</p>
+ * <p>The optional service interface.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
  * @param <F> {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The generic parameter is <code>IdFilter</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
@@ -26,7 +26,7 @@ public interface OptionalService<M extends RestId<I>, F extends IdFilter<I, K>, 
 
     /**
      * <code>optional</code>
-     * <p>The method.</p>
+     * <p>The optional method.</p>
      * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see org.springframework.lang.NonNull
@@ -37,9 +37,9 @@ public interface OptionalService<M extends RestId<I>, F extends IdFilter<I, K>, 
 
     /**
      * <code>existById</code>
-     * <p>The by id method.</p>
+     * <p>The exist by id method.</p>
      * @param id I <p>The id parameter is <code>I</code> type.</p>
-     * @return boolean <p>The by id return object is <code>boolean</code> type.</p>
+     * @return boolean <p>The exist by id return object is <code>boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
@@ -49,10 +49,10 @@ public interface OptionalService<M extends RestId<I>, F extends IdFilter<I, K>, 
 
     /**
      * <code>existById</code>
-     * <p>The by id method.</p>
+     * <p>The exist by id method.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param id       I <p>The id parameter is <code>I</code> type.</p>
-     * @return boolean <p>The by id return object is <code>boolean</code> type.</p>
+     * @return boolean <p>The exist by id return object is <code>boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
@@ -62,7 +62,7 @@ public interface OptionalService<M extends RestId<I>, F extends IdFilter<I, K>, 
 
     /**
      * <code>optionalQueryFilter</code>
-     * <p>The query filter method.</p>
+     * <p>The optional query filter method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
@@ -72,7 +72,7 @@ public interface OptionalService<M extends RestId<I>, F extends IdFilter<I, K>, 
 
     /**
      * <code>optionalDeleteFilter</code>
-     * <p>The delete filter method.</p>
+     * <p>The optional delete filter method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
@@ -82,7 +82,7 @@ public interface OptionalService<M extends RestId<I>, F extends IdFilter<I, K>, 
 
     /**
      * <code>optionalRemoveFilter</code>
-     * <p>The remove filter method.</p>
+     * <p>The optional remove filter method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
@@ -93,7 +93,7 @@ public interface OptionalService<M extends RestId<I>, F extends IdFilter<I, K>, 
 
     /**
      * <code>optionalOperateFilter</code>
-     * <p>The operate filter method.</p>
+     * <p>The optional operate filter method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException

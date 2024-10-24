@@ -7,7 +7,7 @@ import io.github.nichetoolkit.rice.enums.SaveType;
 
 /**
  * <code>LogicModel</code>
- * <p>The type logic model class.</p>
+ * <p>The logic model class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.SaveModel
  * @see io.github.nichetoolkit.rice.RestLogic
@@ -23,8 +23,8 @@ public class LogicModel extends SaveModel implements RestLogic {
 
     /**
      * <code>logic</code>
-     * {@link java.lang.String} <p>The <code>logic</code> field.</p>
-     * @see java.lang.String
+     * {@link java.lang.Object} <p>The <code>logic</code> field.</p>
+     * @see java.lang.Object
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
@@ -61,8 +61,8 @@ public class LogicModel extends SaveModel implements RestLogic {
 
     /**
      * <code>ofLogic</code>
-     * <p>The logic method.</p>
-     * @return {@link io.github.nichetoolkit.rice.LogicModel.Builder} <p>The logic return object is <code>Builder</code> type.</p>
+     * <p>The of logic method.</p>
+     * @return {@link io.github.nichetoolkit.rice.LogicModel.Builder} <p>The of logic return object is <code>Builder</code> type.</p>
      * @see io.github.nichetoolkit.rice.LogicModel.Builder
      */
     public static LogicModel.Builder ofLogic() {
@@ -71,7 +71,7 @@ public class LogicModel extends SaveModel implements RestLogic {
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rice.SaveModel.Builder
      * @since Jdk1.8
@@ -93,9 +93,9 @@ public class LogicModel extends SaveModel implements RestLogic {
 
         /**
          * <code>logic</code>
-         * <p>The method.</p>
+         * <p>The logic method.</p>
          * @param logic {@link java.lang.String} <p>The logic parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.LogicModel.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.LogicModel.Builder} <p>The logic return object is <code>Builder</code> type.</p>
          * @see java.lang.String
          */
         public LogicModel.Builder logic(String logic) {

@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  * <code>UserLoginPack</code>
- * <p>The type user login pack class.</p>
+ * <p>The user login pack class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.io.Serializable
  * @see lombok.Setter

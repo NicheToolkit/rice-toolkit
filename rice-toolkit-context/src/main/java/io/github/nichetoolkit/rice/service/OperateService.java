@@ -6,7 +6,7 @@ import java.util.Collection;
 
 /**
  * <code>OperateService</code>
- * <p>The type operate service interface.</p>
+ * <p>The operate service interface.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
@@ -15,7 +15,7 @@ import java.util.Collection;
 public interface OperateService<I, K> {
     /**
      * <code>operateAll</code>
-     * <p>The all method.</p>
+     * <p>The operate all method.</p>
      * @param idList      {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param operateType {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate type parameter is <code>OperateType</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
@@ -27,7 +27,7 @@ public interface OperateService<I, K> {
 
     /**
      * <code>operateAll</code>
-     * <p>The all method.</p>
+     * <p>The operate all method.</p>
      * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param idList      {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param operateType {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate type parameter is <code>OperateType</code> type.</p>
@@ -40,7 +40,7 @@ public interface OperateService<I, K> {
 
     /**
      * <code>operateById</code>
-     * <p>The by id method.</p>
+     * <p>The operate by id method.</p>
      * @param id          I <p>The id parameter is <code>I</code> type.</p>
      * @param operateType {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate type parameter is <code>OperateType</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
@@ -51,7 +51,7 @@ public interface OperateService<I, K> {
 
     /**
      * <code>operateById</code>
-     * <p>The by id method.</p>
+     * <p>The operate by id method.</p>
      * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param id          I <p>The id parameter is <code>I</code> type.</p>
      * @param operateType {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate type parameter is <code>OperateType</code> type.</p>

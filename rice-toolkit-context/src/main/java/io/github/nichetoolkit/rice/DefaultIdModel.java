@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * <code>DefaultIdModel</code>
- * <p>The type default id model class.</p>
+ * <p>The default id model class.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.DefaultIdModel} <p>The generic parameter is <code>DefaultIdModel</code> type.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.DefaultIdEntity} <p>The generic parameter is <code>DefaultIdEntity</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
@@ -48,7 +48,7 @@ public abstract class DefaultIdModel<M extends DefaultIdModel<M,E,I>,E extends D
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @param <M> {@link io.github.nichetoolkit.rice.DefaultIdModel} <p>The generic parameter is <code>DefaultIdModel</code> type.</p>
      * @param <E> {@link io.github.nichetoolkit.rice.DefaultIdEntity} <p>The generic parameter is <code>DefaultIdEntity</code> type.</p>
      * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>

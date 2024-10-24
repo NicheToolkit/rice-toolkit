@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <code>DefaultUserArgumentResolver</code>
- * <p>The type default user argument resolver class.</p>
+ * <code>DefaultUserInfoResolver</code>
+ * <p>The default user info resolver class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.web.method.support.HandlerMethodArgumentResolver
  * @see lombok.extern.slf4j.Slf4j
@@ -41,16 +41,16 @@ public class DefaultUserInfoResolver implements HandlerMethodArgumentResolver {
     private final List<RestUserResolver> userResolvers;
 
     /**
-     * <code>DefaultUserArgumentResolver</code>
-     * <p>Instantiates a new default user argument resolver.</p>
+     * <code>DefaultUserInfoResolver</code>
+     * <p>Instantiates a new default user info resolver.</p>
      */
     public DefaultUserInfoResolver() {
         this.userResolvers = new ArrayList<>();
     }
 
     /**
-     * <code>DefaultUserArgumentResolver</code>
-     * <p>Instantiates a new default user argument resolver.</p>
+     * <code>DefaultUserInfoResolver</code>
+     * <p>Instantiates a new default user info resolver.</p>
      * @param userResolvers {@link java.util.List} <p>The user resolvers parameter is <code>List</code> type.</p>
      * @see java.util.List
      * @see org.springframework.beans.factory.annotation.Autowired

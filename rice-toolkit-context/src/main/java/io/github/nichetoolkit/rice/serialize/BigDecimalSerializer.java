@@ -17,7 +17,7 @@ import java.util.Objects;
 
 /**
  * <code>BigDecimalSerializer</code>
- * <p>The type big decimal serializer class.</p>
+ * <p>The big decimal serializer class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see com.fasterxml.jackson.databind.JsonSerializer
  * @see com.fasterxml.jackson.databind.ser.ContextualSerializer

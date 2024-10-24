@@ -20,7 +20,7 @@ import java.io.IOException;
 
 /**
  * <code>DefaultAccessTokenFilter</code>
- * <p>The type default access token filter class.</p>
+ * <p>The default access token filter class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.web.filter.OncePerRequestFilter
  * @see lombok.extern.slf4j.Slf4j

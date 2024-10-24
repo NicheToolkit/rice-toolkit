@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice.constant;
 
 /**
  * <code>AdviceConstants</code>
- * <p>The type advice constants interface.</p>
+ * <p>The advice constants interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */

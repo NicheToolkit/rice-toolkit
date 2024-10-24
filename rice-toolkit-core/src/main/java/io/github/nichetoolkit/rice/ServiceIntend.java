@@ -9,7 +9,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 
 /**
  * <code>ServiceIntend</code>
- * <p>The type service intend interface.</p>
+ * <p>The service intend interface.</p>
  * @param <B> {@link io.github.nichetoolkit.rice.ServiceIntend} <p>The generic parameter is <code>ServiceIntend</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.beans.factory.InitializingBean
@@ -23,7 +23,7 @@ public interface ServiceIntend<B extends ServiceIntend<B>> extends InitializingB
 
     /**
      * <code>afterAutowirePropertiesSet</code>
-     * <p>The autowire properties set method.</p>
+     * <p>The after autowire properties set method.</p>
      */
     default void afterAutowirePropertiesSet() {
         LoggerUtils.debug("The service intend bean of [{}] type for named '{}' has be initiated.", beanType().getName(), beanName());
@@ -31,8 +31,8 @@ public interface ServiceIntend<B extends ServiceIntend<B>> extends InitializingB
 
     /**
      * <code>beanScope</code>
-     * <p>The scope method.</p>
-     * @return {@link java.lang.String} <p>The scope return object is <code>String</code> type.</p>
+     * <p>The bean scope method.</p>
+     * @return {@link java.lang.String} <p>The bean scope return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     default String beanScope() {
@@ -41,8 +41,8 @@ public interface ServiceIntend<B extends ServiceIntend<B>> extends InitializingB
 
     /**
      * <code>beanName</code>
-     * <p>The name method.</p>
-     * @return {@link java.lang.String} <p>The name return object is <code>String</code> type.</p>
+     * <p>The bean name method.</p>
+     * @return {@link java.lang.String} <p>The bean name return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     default String beanName() {
@@ -51,8 +51,8 @@ public interface ServiceIntend<B extends ServiceIntend<B>> extends InitializingB
 
     /**
      * <code>beanType</code>
-     * <p>The type method.</p>
-     * @return {@link java.lang.Class} <p>The type return object is <code>Class</code> type.</p>
+     * <p>The bean type method.</p>
+     * @return {@link java.lang.Class} <p>The bean type return object is <code>Class</code> type.</p>
      * @see java.lang.Class
      */
     default Class<B> beanType() {
@@ -61,9 +61,9 @@ public interface ServiceIntend<B extends ServiceIntend<B>> extends InitializingB
 
     /**
      * <code>beanName</code>
-     * <p>The name method.</p>
+     * <p>The bean name method.</p>
      * @param clazz {@link java.lang.Class} <p>The clazz parameter is <code>Class</code> type.</p>
-     * @return {@link java.lang.String} <p>The name return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The bean name return object is <code>String</code> type.</p>
      * @see java.lang.Class
      * @see java.lang.String
      */
@@ -73,10 +73,10 @@ public interface ServiceIntend<B extends ServiceIntend<B>> extends InitializingB
 
     /**
      * <code>beanType</code>
-     * <p>The type method.</p>
+     * <p>The bean type method.</p>
      * @param <B>   {@link io.github.nichetoolkit.rice.ServiceIntend} <p>The generic parameter is <code>ServiceIntend</code> type.</p>
      * @param clazz {@link java.lang.Class} <p>The clazz parameter is <code>Class</code> type.</p>
-     * @return {@link java.lang.Class} <p>The type return object is <code>Class</code> type.</p>
+     * @return {@link java.lang.Class} <p>The bean type return object is <code>Class</code> type.</p>
      * @see java.lang.Class
      * @see java.lang.SuppressWarnings
      */

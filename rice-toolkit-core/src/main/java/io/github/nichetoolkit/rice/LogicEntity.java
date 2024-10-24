@@ -6,9 +6,8 @@ import io.github.nichetoolkit.mybatis.stereotype.column.RestLogicKey;
 
 /**
  * <code>LogicEntity</code>
- * <p>The type logic entity class.</p>
+ * <p>The logic entity class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.RestLogic
  * @see java.lang.SuppressWarnings
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
@@ -45,17 +44,29 @@ public class LogicEntity {
         this.logic = builder.logic;
     }
 
+    /**
+     * <code>getLogic</code>
+     * <p>The get logic getter method.</p>
+     * @return {@link java.lang.String} <p>The get logic return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     */
     public String getLogic() {
         return logic;
     }
 
+    /**
+     * <code>setLogic</code>
+     * <p>The set logic setter method.</p>
+     * @param logic {@link java.lang.String} <p>The logic parameter is <code>String</code> type.</p>
+     * @see java.lang.String
+     */
     public void setLogic(String logic) {
         this.logic = logic;
     }
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see java.lang.SuppressWarnings
      * @since Jdk1.8
@@ -78,9 +89,9 @@ public class LogicEntity {
 
         /**
          * <code>logic</code>
-         * <p>The method.</p>
+         * <p>The logic method.</p>
          * @param logic {@link java.lang.String} <p>The logic parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.LogicEntity.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.LogicEntity.Builder} <p>The logic return object is <code>Builder</code> type.</p>
          * @see java.lang.String
          */
         public LogicEntity.Builder logic(String logic) {
@@ -90,8 +101,8 @@ public class LogicEntity {
 
         /**
          * <code>build</code>
-         * <p>The method.</p>
-         * @return {@link io.github.nichetoolkit.rice.LogicEntity} <p>The return object is <code>LogicEntity</code> type.</p>
+         * <p>The build method.</p>
+         * @return {@link io.github.nichetoolkit.rice.LogicEntity} <p>The build return object is <code>LogicEntity</code> type.</p>
          */
         public LogicEntity build() {
             return new LogicEntity(this);

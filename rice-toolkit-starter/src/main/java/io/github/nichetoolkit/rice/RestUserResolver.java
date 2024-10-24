@@ -9,7 +9,7 @@ import org.springframework.lang.NonNull;
 
 /**
  * <code>RestUserResolver</code>
- * <p>The type rest user resolver interface.</p>
+ * <p>The rest user resolver interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
@@ -17,9 +17,9 @@ public interface RestUserResolver {
 
     /**
      * <code>supports</code>
-     * <p>The method.</p>
+     * <p>The supports method.</p>
      * @param parameter {@link org.springframework.core.MethodParameter} <p>The parameter parameter is <code>MethodParameter</code> type.</p>
-     * @return boolean <p>The return object is <code>boolean</code> type.</p>
+     * @return boolean <p>The supports return object is <code>boolean</code> type.</p>
      * @see org.springframework.core.MethodParameter
      */
     default boolean supports(MethodParameter parameter) {
@@ -29,10 +29,10 @@ public interface RestUserResolver {
 
     /**
      * <code>resolveUser</code>
-     * <p>The user method.</p>
+     * <p>The resolve user method.</p>
      * @param parameter   {@link org.springframework.core.MethodParameter} <p>The parameter parameter is <code>MethodParameter</code> type.</p>
      * @param httpRequest {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>The http request parameter is <code>RestHttpRequest</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestUserInfo} <p>The user return object is <code>RestUserInfo</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.RestUserInfo} <p>The resolve user return object is <code>RestUserInfo</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see org.springframework.core.MethodParameter
      * @see io.github.nichetoolkit.rest.RestHttpRequest

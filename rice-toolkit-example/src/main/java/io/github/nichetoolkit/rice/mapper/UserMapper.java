@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * <code>UserMapper</code>
- * <p>The type user mapper interface.</p>
+ * <p>The user mapper interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestInfoMapper
  * @see io.mybatis.mapper.Mapper

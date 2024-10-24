@@ -5,7 +5,7 @@ import java.util.Collection;
 
 /**
  * <code>DeleteLinkService</code>
- * <p>The type delete link service interface.</p>
+ * <p>The delete link service interface.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
@@ -16,7 +16,7 @@ public interface DeleteLinkService<I,K> extends DeleteService<I,K> {
 
     /**
      * <code>deleteAllByLinkIds</code>
-     * <p>The all by link ids method.</p>
+     * <p>The delete all by link ids method.</p>
      * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
@@ -27,7 +27,7 @@ public interface DeleteLinkService<I,K> extends DeleteService<I,K> {
 
     /**
      * <code>deleteAllByLinkIds</code>
-     * <p>The all by link ids method.</p>
+     * <p>The delete all by link ids method.</p>
      * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey   K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
@@ -39,7 +39,7 @@ public interface DeleteLinkService<I,K> extends DeleteService<I,K> {
 
     /**
      * <code>deleteByLinkId</code>
-     * <p>The by link id method.</p>
+     * <p>The delete by link id method.</p>
      * @param <L>    {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
@@ -49,7 +49,7 @@ public interface DeleteLinkService<I,K> extends DeleteService<I,K> {
 
     /**
      * <code>deleteByLinkId</code>
-     * <p>The by link id method.</p>
+     * <p>The delete by link id method.</p>
      * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkId   L <p>The link id parameter is <code>L</code> type.</p>

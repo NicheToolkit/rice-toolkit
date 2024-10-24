@@ -10,7 +10,7 @@ import java.io.IOException;
 
 /**
  * <code>TimeIntervalDeserializer</code>
- * <p>The type time interval deserializer class.</p>
+ * <p>The time interval deserializer class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see com.fasterxml.jackson.databind.JsonDeserializer
  * @see org.springframework.stereotype.Component

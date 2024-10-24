@@ -14,7 +14,7 @@ import java.util.Objects;
 
 /**
  * <code>IdEntity</code>
- * <p>The type id entity class.</p>
+ * <p>The id entity class.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.TimeEntity
@@ -99,7 +99,7 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rice.TimeEntity.Builder
@@ -121,9 +121,9 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
 
         /**
          * <code>id</code>
-         * <p>The method.</p>
+         * <p>The id method.</p>
          * @param id I <p>The id parameter is <code>I</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.IdEntity.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.IdEntity.Builder} <p>The id return object is <code>Builder</code> type.</p>
          */
         public IdEntity.Builder<I> id(I id) {
             this.id = id;

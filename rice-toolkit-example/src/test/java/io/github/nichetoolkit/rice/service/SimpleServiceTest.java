@@ -11,7 +11,7 @@ import java.util.Date;
 
 /**
  * <code>SimpleServiceTest</code>
- * <p>The type simple service test class.</p>
+ * <p>The simple service test class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RiceExampleApplicationTests
  * @since Jdk1.8
@@ -28,7 +28,7 @@ class SimpleServiceTest extends RiceExampleApplicationTests {
 
     /**
      * <code>create</code>
-     * <p>The method.</p>
+     * <p>The create method.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see org.junit.jupiter.api.Test
      * @see io.github.nichetoolkit.rest.RestException

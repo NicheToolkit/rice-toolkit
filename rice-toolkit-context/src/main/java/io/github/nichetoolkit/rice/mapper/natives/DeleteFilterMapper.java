@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * <code>DeleteFilterMapper</code>
- * <p>The type delete filter mapper interface.</p>
+ * <p>The delete filter mapper interface.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
  * @param <F> {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The generic parameter is <code>IdFilter</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
@@ -21,10 +21,10 @@ public interface DeleteFilterMapper<E extends RestId<I>, F extends IdFilter<I, K
 
     /**
      * <code>deleteAllByFilterWhere</code>
-     * <p>The all by filter where method.</p>
+     * <p>The delete all by filter where method.</p>
      * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param filter   F <p>The filter parameter is <code>F</code> type.</p>
-     * @return {@link java.lang.Integer} <p>The all by filter where return object is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The delete all by filter where return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
@@ -33,11 +33,11 @@ public interface DeleteFilterMapper<E extends RestId<I>, F extends IdFilter<I, K
 
     /**
      * <code>deleteDynamicAllByFilterWhere</code>
-     * <p>The dynamic all by filter where method.</p>
+     * <p>The delete dynamic all by filter where method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param filter    F <p>The filter parameter is <code>F</code> type.</p>
-     * @return {@link java.lang.Integer} <p>The dynamic all by filter where return object is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The delete dynamic all by filter where return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer

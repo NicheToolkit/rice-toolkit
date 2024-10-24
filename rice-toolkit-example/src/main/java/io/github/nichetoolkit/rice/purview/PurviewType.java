@@ -9,7 +9,7 @@ import java.util.Optional;
 
 /**
  * <code>PurviewType</code>
- * <p>The type purview type enumeration.</p>
+ * <p>The purview type enumeration.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.RestReckon
  * @since Jdk1.8
@@ -77,9 +77,9 @@ public enum PurviewType implements RestReckon<Long> {
 
     /**
      * <code>parseKey</code>
-     * <p>The key method.</p>
+     * <p>The parse key method.</p>
      * @param key {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>The key return object is <code>PurviewType</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>The parse key return object is <code>PurviewType</code> type.</p>
      * @see java.lang.String
      * @see com.fasterxml.jackson.annotation.JsonCreator
      */
@@ -91,9 +91,9 @@ public enum PurviewType implements RestReckon<Long> {
 
     /**
      * <code>parseValue</code>
-     * <p>The value method.</p>
+     * <p>The parse value method.</p>
      * @param value {@link java.lang.Long} <p>The value parameter is <code>Long</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>The value return object is <code>PurviewType</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>The parse value return object is <code>PurviewType</code> type.</p>
      * @see java.lang.Long
      */
     public static PurviewType parseValue(Long value) {

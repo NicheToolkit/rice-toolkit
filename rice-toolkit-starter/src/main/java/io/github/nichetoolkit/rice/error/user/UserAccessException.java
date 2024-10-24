@@ -5,7 +5,7 @@ import io.github.nichetoolkit.rice.error.UserErrorStatus;
 
 /**
  * <code>UserAccessException</code>
- * <p>The type user access exception class.</p>
+ * <p>The user access exception class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.error.natives.TokenErrorException
  * @since Jdk1.8

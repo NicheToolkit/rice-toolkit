@@ -13,9 +13,11 @@ import java.util.Date;
 
 /**
  * <code>SimpleModel</code>
- * <p>The type simple model class.</p>
+ * <p>The simple model class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestInfoModel
+ * @see com.fasterxml.jackson.annotation.JsonInclude
+ * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
@@ -62,8 +64,8 @@ public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> {
 
     /**
      * <code>getTime</code>
-     * <p>The time getter method.</p>
-     * @return {@link java.util.Date} <p>The time return object is <code>Date</code> type.</p>
+     * <p>The get time getter method.</p>
+     * @return {@link java.util.Date} <p>The get time return object is <code>Date</code> type.</p>
      * @see java.util.Date
      */
     public Date getTime() {
@@ -72,7 +74,7 @@ public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> {
 
     /**
      * <code>setTime</code>
-     * <p>The time setter method.</p>
+     * <p>The set time setter method.</p>
      * @param time {@link java.util.Date} <p>The time parameter is <code>Date</code> type.</p>
      * @see java.util.Date
      */
@@ -91,7 +93,7 @@ public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> {
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rice.RestInfoModel.Builder
      * @since Jdk1.8
@@ -113,9 +115,9 @@ public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> {
 
         /**
          * <code>time</code>
-         * <p>The method.</p>
+         * <p>The time method.</p>
          * @param time {@link java.lang.Long} <p>The time parameter is <code>Long</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.simple.SimpleModel.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.simple.SimpleModel.Builder} <p>The time return object is <code>Builder</code> type.</p>
          * @see java.lang.Long
          */
         public SimpleModel.Builder time(Long time) {
@@ -125,9 +127,9 @@ public class SimpleModel extends RestInfoModel<SimpleModel, SimpleEntity> {
 
         /**
          * <code>time</code>
-         * <p>The method.</p>
+         * <p>The time method.</p>
          * @param time {@link java.util.Date} <p>The time parameter is <code>Date</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.simple.SimpleModel.Builder} <p>The return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.simple.SimpleModel.Builder} <p>The time return object is <code>Builder</code> type.</p>
          * @see java.util.Date
          */
         public SimpleModel.Builder time(Date time) {

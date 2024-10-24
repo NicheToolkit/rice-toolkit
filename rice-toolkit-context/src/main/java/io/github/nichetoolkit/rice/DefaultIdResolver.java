@@ -15,17 +15,27 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * <code>RestIdentityResolver</code>
- * <p>The rest identity resolver interface.</p>
- * @param <I> {@link Object} <p>The parameter can be of any type.</p>
+ * <code>DefaultIdResolver</code>
+ * <p>The default id resolver class.</p>
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see InitializingBean
- * @see SuppressWarnings
+ * @see io.github.nichetoolkit.rice.resolver.RestIdentityResolver
+ * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class DefaultIdResolver<I> implements RestIdentityResolver<I> {
 
+    /**
+     * <code>resolveIdentity</code>
+     * <p>The resolve identity method.</p>
+     * @param <M>   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <I>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestId
+     * @see io.github.nichetoolkit.rest.RestException
+     */
     static <M extends RestId<I>, I> void resolveIdentity(M model) throws RestException {
         Class<?> identityType = ModelTypeHelper.identityType(model);
         List<RestIdentityResolver> resolvers = BeanUtils.beansOfType(RestIdentityResolver.class);

@@ -5,7 +5,7 @@ import lombok.Getter;
 
 /**
  * <code>ServiceErrorStatus</code>
- * <p>The type service error status enumeration.</p>
+ * <p>The service error status enumeration.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.RestStatus
  * @see lombok.Getter
@@ -80,8 +80,8 @@ public enum ServiceErrorStatus implements RestStatus {
 
     /**
      * <code>getName</code>
-     * <p>The name getter method.</p>
-     * @return {@link java.lang.String} <p>The name return object is <code>String</code> type.</p>
+     * <p>The get name getter method.</p>
+     * @return {@link java.lang.String} <p>The get name return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getName() {

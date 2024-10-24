@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * <code>UsernoteService</code>
- * <p>The type usernote service class.</p>
+ * <p>The usernote service class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.defaults.DefaultUsernoteService
  * @see lombok.extern.slf4j.Slf4j

@@ -7,7 +7,7 @@ import java.util.Collection;
 
 /**
  * <code>SaveMapper</code>
- * <p>The type save mapper interface.</p>
+ * <p>The save mapper interface.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
@@ -20,9 +20,9 @@ public interface SaveMapper<E extends RestId<I>,I> {
 
     /**
      * <code>save</code>
-     * <p>The method.</p>
+     * <p>The save method.</p>
      * @param entity E <p>The entity parameter is <code>E</code> type.</p>
-     * @return {@link java.lang.Integer} <p>The return object is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The save return object is <code>Integer</code> type.</p>
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
@@ -30,10 +30,10 @@ public interface SaveMapper<E extends RestId<I>,I> {
 
     /**
      * <code>saveDynamic</code>
-     * <p>The dynamic method.</p>
+     * <p>The save dynamic method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param entity    E <p>The entity parameter is <code>E</code> type.</p>
-     * @return {@link java.lang.Integer} <p>The dynamic return object is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The save dynamic return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
@@ -42,9 +42,9 @@ public interface SaveMapper<E extends RestId<I>,I> {
 
     /**
      * <code>saveAll</code>
-     * <p>The all method.</p>
+     * <p>The save all method.</p>
      * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @return {@link java.lang.Integer} <p>The all return object is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The save all return object is <code>Integer</code> type.</p>
      * @see java.util.Collection
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
@@ -53,10 +53,10 @@ public interface SaveMapper<E extends RestId<I>,I> {
 
     /**
      * <code>saveDynamicAll</code>
-     * <p>The dynamic all method.</p>
+     * <p>The save dynamic all method.</p>
      * @param tablename  {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @return {@link java.lang.Integer} <p>The dynamic all return object is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The save dynamic all return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.util.Collection

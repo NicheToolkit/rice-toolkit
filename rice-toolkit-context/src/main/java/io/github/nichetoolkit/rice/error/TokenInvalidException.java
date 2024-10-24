@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rest.error.natives.TokenErrorException;
 
 /**
  * <code>TokenInvalidException</code>
- * <p>The type token invalid exception class.</p>
+ * <p>The token invalid exception class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.error.natives.TokenErrorException
  * @since Jdk1.8

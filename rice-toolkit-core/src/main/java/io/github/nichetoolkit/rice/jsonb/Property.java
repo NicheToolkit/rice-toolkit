@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  * <code>Property</code>
- * <p>The type property class.</p>
+ * <p>The property class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.io.Serializable
  * @see lombok.Builder
@@ -87,8 +87,8 @@ public class Property implements Serializable {
 
     /**
      * <code>getName</code>
-     * <p>The name getter method.</p>
-     * @return {@link java.lang.String} <p>The name return object is <code>String</code> type.</p>
+     * <p>The get name getter method.</p>
+     * @return {@link java.lang.String} <p>The get name return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getName() {
@@ -97,7 +97,7 @@ public class Property implements Serializable {
 
     /**
      * <code>setName</code>
-     * <p>The name setter method.</p>
+     * <p>The set name setter method.</p>
      * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
@@ -107,8 +107,8 @@ public class Property implements Serializable {
 
     /**
      * <code>getValue</code>
-     * <p>The value getter method.</p>
-     * @return {@link java.lang.Object} <p>The value return object is <code>Object</code> type.</p>
+     * <p>The get value getter method.</p>
+     * @return {@link java.lang.Object} <p>The get value return object is <code>Object</code> type.</p>
      * @see java.lang.Object
      */
     public Object getValue() {
@@ -117,7 +117,7 @@ public class Property implements Serializable {
 
     /**
      * <code>setValue</code>
-     * <p>The value setter method.</p>
+     * <p>The set value setter method.</p>
      * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @see java.lang.Object
      */

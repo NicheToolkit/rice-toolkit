@@ -6,7 +6,7 @@ import io.github.nichetoolkit.rice.constant.AdviceConstants;
 
 /**
  * <code>UserlogAdvice</code>
- * <p>The type userlog advice interface.</p>
+ * <p>The userlog advice interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.DefaultAdvice
  * @since Jdk1.8

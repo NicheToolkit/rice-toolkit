@@ -26,7 +26,7 @@ import java.util.List;
 
 /**
  * <code>DefaultLoginInterceptor</code>
- * <p>The type default login interceptor class.</p>
+ * <p>The default login interceptor class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.interceptor.RequestHandleInterceptor
  * @see lombok.extern.slf4j.Slf4j
@@ -107,7 +107,7 @@ public class DefaultLoginInterceptor implements RequestHandleInterceptor {
 
     /**
      * <code>checkTokenPrefix</code>
-     * <p>The token prefix method.</p>
+     * <p>The check token prefix method.</p>
      * @param restCheck   {@link io.github.nichetoolkit.rice.stereotype.RestCheck} <p>The rest check parameter is <code>RestCheck</code> type.</p>
      * @param httpRequest {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>The http request parameter is <code>RestHttpRequest</code> type.</p>
      * @throws TokenPrefixInvalidException {@link io.github.nichetoolkit.rice.error.TokenPrefixInvalidException} <p>The token prefix invalid exception is <code>TokenPrefixInvalidException</code> type.</p>

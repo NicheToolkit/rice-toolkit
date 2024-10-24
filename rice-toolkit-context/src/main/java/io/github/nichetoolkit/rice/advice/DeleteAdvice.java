@@ -7,7 +7,7 @@ import java.util.Collection;
 
 /**
  * <code>DeleteAdvice</code>
- * <p>The type delete advice interface.</p>
+ * <p>The delete advice interface.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
@@ -20,7 +20,7 @@ public interface DeleteAdvice<E extends RestId<I>, I> {
 
     /**
      * <code>beforeDelete</code>
-     * <p>The delete method.</p>
+     * <p>The before delete method.</p>
      * @param entity E <p>The entity parameter is <code>E</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
@@ -30,7 +30,7 @@ public interface DeleteAdvice<E extends RestId<I>, I> {
 
     /**
      * <code>beforeDeleteAll</code>
-     * <p>The delete all method.</p>
+     * <p>The before delete all method.</p>
      * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
@@ -44,7 +44,7 @@ public interface DeleteAdvice<E extends RestId<I>, I> {
 
     /**
      * <code>afterDelete</code>
-     * <p>The delete method.</p>
+     * <p>The after delete method.</p>
      * @param entity E <p>The entity parameter is <code>E</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
@@ -54,7 +54,7 @@ public interface DeleteAdvice<E extends RestId<I>, I> {
 
     /**
      * <code>afterDeleteAll</code>
-     * <p>The delete all method.</p>
+     * <p>The after delete all method.</p>
      * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection

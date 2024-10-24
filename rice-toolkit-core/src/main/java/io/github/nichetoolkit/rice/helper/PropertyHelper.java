@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 /**
  * <code>PropertyHelper</code>
- * <p>The type property helper class.</p>
+ * <p>The property helper class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see lombok.extern.slf4j.Slf4j
  * @since Jdk1.8
@@ -20,9 +20,9 @@ public class PropertyHelper {
 
     /**
      * <code>toPropertiesList</code>
-     * <p>The properties list method.</p>
+     * <p>The to properties list method.</p>
      * @param properties {@link java.lang.String} <p>The properties parameter is <code>String</code> type.</p>
-     * @return {@link java.util.List} <p>The properties list return object is <code>List</code> type.</p>
+     * @return {@link java.util.List} <p>The to properties list return object is <code>List</code> type.</p>
      * @see java.lang.String
      * @see java.util.List
      */
@@ -39,9 +39,9 @@ public class PropertyHelper {
 
     /**
      * <code>toPropertiesJson</code>
-     * <p>The properties json method.</p>
+     * <p>The to properties json method.</p>
      * @param properties {@link java.util.Collection} <p>The properties parameter is <code>Collection</code> type.</p>
-     * @return {@link java.lang.String} <p>The properties json return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The to properties json return object is <code>String</code> type.</p>
      * @see java.util.Collection
      * @see java.lang.String
      */
@@ -63,9 +63,9 @@ public class PropertyHelper {
 
     /**
      * <code>toPropertiesMap</code>
-     * <p>The properties map method.</p>
+     * <p>The to properties map method.</p>
      * @param properties {@link java.util.Collection} <p>The properties parameter is <code>Collection</code> type.</p>
-     * @return {@link java.util.Map} <p>The properties map return object is <code>Map</code> type.</p>
+     * @return {@link java.util.Map} <p>The to properties map return object is <code>Map</code> type.</p>
      * @see java.util.Collection
      * @see java.util.Map
      */
@@ -88,9 +88,9 @@ public class PropertyHelper {
 
     /**
      * <code>toPropertiesMap</code>
-     * <p>The properties map method.</p>
+     * <p>The to properties map method.</p>
      * @param properties {@link java.lang.String} <p>The properties parameter is <code>String</code> type.</p>
-     * @return {@link java.util.Map} <p>The properties map return object is <code>Map</code> type.</p>
+     * @return {@link java.util.Map} <p>The to properties map return object is <code>Map</code> type.</p>
      * @see java.lang.String
      * @see java.util.Map
      */
@@ -112,9 +112,9 @@ public class PropertyHelper {
 
     /**
      * <code>toPropertiesList</code>
-     * <p>The properties list method.</p>
+     * <p>The to properties list method.</p>
      * @param propertiesMap {@link java.util.Map} <p>The properties map parameter is <code>Map</code> type.</p>
-     * @return {@link java.util.List} <p>The properties list return object is <code>List</code> type.</p>
+     * @return {@link java.util.List} <p>The to properties list return object is <code>List</code> type.</p>
      * @see java.util.Map
      * @see java.util.List
      */

@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * <code>RiceExampleApplicationTests</code>
- * <p>The type rice example application tests class.</p>
+ * <p>The rice example application tests class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.boot.test.context.SpringBootTest
  * @since Jdk1.8
@@ -17,7 +17,7 @@ public class RiceExampleApplicationTests {
 
     /**
      * <code>contextLoads</code>
-     * <p>The loads method.</p>
+     * <p>The context loads method.</p>
      * @see org.junit.jupiter.api.Test
      */
     @Test

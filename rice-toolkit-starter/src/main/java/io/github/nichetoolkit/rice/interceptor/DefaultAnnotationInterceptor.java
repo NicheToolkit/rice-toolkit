@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * <code>DefaultAnnotationInterceptor</code>
- * <p>The type default annotation interceptor class.</p>
+ * <p>The default annotation interceptor class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.interceptor.RequestHandleInterceptor
  * @see lombok.extern.slf4j.Slf4j
@@ -74,7 +74,7 @@ public class DefaultAnnotationInterceptor implements RequestHandleInterceptor {
 
     /**
      * <code>adviceHandle</code>
-     * <p>The handle method.</p>
+     * <p>The advice handle method.</p>
      * @param <A>           {@link java.lang.annotation.Annotation} <p>The generic parameter is <code>Annotation</code> type.</p>
      * @param defaultAdvice {@link io.github.nichetoolkit.rice.DefaultAdvice} <p>The default advice parameter is <code>DefaultAdvice</code> type.</p>
      * @param httpRequest   {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>The http request parameter is <code>RestHttpRequest</code> type.</p>

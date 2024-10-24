@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 
 /**
  * <code>RestService</code>
- * <p>The type rest service interface.</p>
+ * <p>The rest service interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.lang.annotation.Annotation
  * @see java.lang.annotation.Target
@@ -24,8 +24,8 @@ import java.lang.annotation.*;
 public @interface RestService {
     /**
      * <code>name</code>
-     * <p>The method.</p>
-     * @return {@link java.lang.String} <p>The return object is <code>String</code> type.</p>
+     * <p>The name method.</p>
+     * @return {@link java.lang.String} <p>The name return object is <code>String</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.core.annotation.AliasFor
      */
@@ -37,8 +37,8 @@ public @interface RestService {
 
     /**
      * <code>mapperType</code>
-     * <p>The type method.</p>
-     * @return {@link java.lang.Class} <p>The type return object is <code>Class</code> type.</p>
+     * <p>The mapper type method.</p>
+     * @return {@link java.lang.Class} <p>The mapper type return object is <code>Class</code> type.</p>
      * @see java.lang.Class
      */
     Class<? extends SuperMapper> mapperType() default SuperMapper.class;

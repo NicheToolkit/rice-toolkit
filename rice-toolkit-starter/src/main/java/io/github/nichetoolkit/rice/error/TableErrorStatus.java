@@ -5,7 +5,7 @@ import lombok.Getter;
 
 /**
  * <code>TableErrorStatus</code>
- * <p>The type table error status enumeration.</p>
+ * <p>The table error status enumeration.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.RestStatus
  * @see lombok.Getter
@@ -63,8 +63,8 @@ public enum TableErrorStatus implements RestStatus {
 
     /**
      * <code>getName</code>
-     * <p>The name getter method.</p>
-     * @return {@link java.lang.String} <p>The name return object is <code>String</code> type.</p>
+     * <p>The get name getter method.</p>
+     * @return {@link java.lang.String} <p>The get name return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getName() {

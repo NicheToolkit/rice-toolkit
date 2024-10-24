@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rice.RestLoginResult;
 
 /**
  * <code>LoginResult</code>
- * <p>The type login result class.</p>
+ * <p>The login result class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestLoginResult
  * @since Jdk1.8
@@ -42,8 +42,8 @@ public class LoginResult extends RestLoginResult<LoginResult> {
 
     /**
      * <code>getUserId</code>
-     * <p>The user id getter method.</p>
-     * @return {@link java.lang.String} <p>The user id return object is <code>String</code> type.</p>
+     * <p>The get user id getter method.</p>
+     * @return {@link java.lang.String} <p>The get user id return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
     public String getUserId() {
@@ -52,7 +52,7 @@ public class LoginResult extends RestLoginResult<LoginResult> {
 
     /**
      * <code>setUserId</code>
-     * <p>The user id setter method.</p>
+     * <p>The set user id setter method.</p>
      * @param userId {@link java.lang.String} <p>The user id parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
@@ -62,8 +62,8 @@ public class LoginResult extends RestLoginResult<LoginResult> {
 
     /**
      * <code>getUser</code>
-     * <p>The user getter method.</p>
-     * @return {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user return object is <code>UserModel</code> type.</p>
+     * <p>The get user getter method.</p>
+     * @return {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The get user return object is <code>UserModel</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.UserModel
      */
     public UserModel getUser() {
@@ -72,7 +72,7 @@ public class LoginResult extends RestLoginResult<LoginResult> {
 
     /**
      * <code>setUser</code>
-     * <p>The user setter method.</p>
+     * <p>The set user setter method.</p>
      * @param user {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user parameter is <code>UserModel</code> type.</p>
      * @see io.github.nichetoolkit.rice.simple.UserModel
      */

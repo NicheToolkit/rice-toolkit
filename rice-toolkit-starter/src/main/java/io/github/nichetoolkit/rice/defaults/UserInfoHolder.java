@@ -4,7 +4,7 @@ import io.github.nichetoolkit.rice.RestUserInfo;
 
 /**
  * <code>UserInfoHolder</code>
- * <p>The type user info holder class.</p>
+ * <p>The user info holder class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
@@ -18,8 +18,8 @@ public class UserInfoHolder {
 
     /**
      * <code>getUser</code>
-     * <p>The user getter method.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestUserInfo} <p>The user return object is <code>RestUserInfo</code> type.</p>
+     * <p>The get user getter method.</p>
+     * @return {@link io.github.nichetoolkit.rice.RestUserInfo} <p>The get user return object is <code>RestUserInfo</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestUserInfo
      */
     public static RestUserInfo<?> getUser() {
@@ -28,7 +28,7 @@ public class UserInfoHolder {
 
     /**
      * <code>setUser</code>
-     * <p>The user setter method.</p>
+     * <p>The set user setter method.</p>
      * @param user {@link io.github.nichetoolkit.rice.RestUserInfo} <p>The user parameter is <code>RestUserInfo</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestUserInfo
      */

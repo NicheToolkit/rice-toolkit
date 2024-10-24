@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * <code>RestInfoEntity</code>
- * <p>The type rest info entity class.</p>
+ * <p>The rest info entity class.</p>
  * @param <E> {@link io.github.nichetoolkit.rice.RestInfoEntity} <p>The generic parameter is <code>RestInfoEntity</code> type.</p>
  * @param <M> {@link io.github.nichetoolkit.rice.RestInfoModel} <p>The generic parameter is <code>RestInfoModel</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
@@ -57,7 +57,7 @@ public abstract class RestInfoEntity<E extends RestInfoEntity<E, M>, M extends R
 
     /**
      * <code>Builder</code>
-     * <p>The type builder class.</p>
+     * <p>The builder class.</p>
      * @param <E> {@link io.github.nichetoolkit.rice.RestInfoEntity} <p>The generic parameter is <code>RestInfoEntity</code> type.</p>
      * @param <M> {@link io.github.nichetoolkit.rice.RestInfoModel} <p>The generic parameter is <code>RestInfoModel</code> type.</p>
      * @author Cyan (snow22314@outlook.com)
