@@ -8,6 +8,7 @@ import io.github.nichetoolkit.mybatis.stereotype.column.RestLogicKey;
  * <code>LogicEntity</code>
  * <p>The logic entity class.</p>
  * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rice.RestLogic
  * @see java.lang.SuppressWarnings
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
@@ -16,16 +17,16 @@ import io.github.nichetoolkit.mybatis.stereotype.column.RestLogicKey;
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LogicEntity {
+public class LogicEntity implements RestLogic {
 
     /**
      * <code>logic</code>
-     * {@link java.lang.String} <p>The <code>logic</code> field.</p>
-     * @see java.lang.String
+     * {@link java.lang.Object} <p>The <code>logic</code> field.</p>
+     * @see java.lang.Object
      * @see io.github.nichetoolkit.mybatis.stereotype.column.RestLogicKey
      */
     @RestLogicKey
-    protected String logic;
+    protected Object logic;
 
     /**
      * <code>LogicEntity</code>
@@ -44,23 +45,11 @@ public class LogicEntity {
         this.logic = builder.logic;
     }
 
-    /**
-     * <code>getLogic</code>
-     * <p>The get logic getter method.</p>
-     * @return {@link java.lang.String} <p>The get logic return object is <code>String</code> type.</p>
-     * @see java.lang.String
-     */
-    public String getLogic() {
+    public Object getLogic() {
         return logic;
     }
 
-    /**
-     * <code>setLogic</code>
-     * <p>The set logic setter method.</p>
-     * @param logic {@link java.lang.String} <p>The logic parameter is <code>String</code> type.</p>
-     * @see java.lang.String
-     */
-    public void setLogic(String logic) {
+    public void setLogic(Object logic) {
         this.logic = logic;
     }
 
