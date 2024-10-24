@@ -33,7 +33,7 @@ public abstract class DefaultLogicResolver<L> implements RestLogicResolver<L> {
      * @see io.github.nichetoolkit.rice.enums.AutoMark
      * @see io.github.nichetoolkit.rest.RestException
      */
-    static <L> L resolveLogic(AutoMark autoMark) throws RestException {
+   public static <L> L resolveLogic(AutoMark autoMark) throws RestException {
         Class<?> logicType = autoMark.getKey();
         List<RestLogicResolver> resolvers = BeanUtils.beansOfType(RestLogicResolver.class);
         if (GeneralUtils.isEmpty(resolvers)) {

@@ -987,7 +987,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
      */
     protected final BiConsumerActuator<K, M> DEFAULT_CREATE_ACTUATOR = (K tablekey, @NonNull M model) -> {
-        RestIdentityResolver.resolveIdentity(model);
+        DefaultIdResolver.resolveIdentity(model);
         optionalInit(model);
         optional(model);
         if (createActuator != null) {

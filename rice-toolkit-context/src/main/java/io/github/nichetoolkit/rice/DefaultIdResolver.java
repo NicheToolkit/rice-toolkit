@@ -36,7 +36,7 @@ public abstract class DefaultIdResolver<I> implements RestIdentityResolver<I> {
      * @see io.github.nichetoolkit.rice.RestId
      * @see io.github.nichetoolkit.rest.RestException
      */
-    static <M extends RestId<I>, I> void resolveIdentity(M model) throws RestException {
+    public static <M extends RestId<I>, I> void resolveIdentity(M model) throws RestException {
         Class<?> identityType = ModelTypeHelper.identityType(model);
         List<RestIdentityResolver> resolvers = BeanUtils.beansOfType(RestIdentityResolver.class);
         OptionalUtils.ofEmpty(resolvers, "the bean of 'RestIdentityResolver' type is not found!", ResourceNotFoundException::new);
