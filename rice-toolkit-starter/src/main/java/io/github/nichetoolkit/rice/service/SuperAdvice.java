@@ -18,9 +18,9 @@ import io.github.nichetoolkit.rice.enums.LogicMode;
 import io.github.nichetoolkit.rice.enums.SaveType;
 import io.github.nichetoolkit.rice.error.table.TablenameIsNullException;
 import io.github.nichetoolkit.rice.filter.IdFilter;
+import io.github.nichetoolkit.rice.filter.StatusFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
 import io.github.nichetoolkit.rice.mapper.*;
-import io.github.nichetoolkit.rice.resolver.RestIdentityResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 
@@ -919,7 +919,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     @SuppressWarnings(value = "unchecked")
     protected void removeAllByWhere(String removeWhereSql, String tablename, F filter) throws RestException {
         if (!(superMapper instanceof RemoveMapper)) {
-            throw new UnsupportedErrorException("The mapper is not support method of 'removeAllWithFilter' with the delete model is 'REMOVE' !");
+            throw new UnsupportedErrorException("The mapper is not support method of 'removeAllWithFilter' with the delete model is 'REMOVE'.");
         }
         Object logic = markOfLogic();
         if (isBeforeSkip() && isAfterSkip()) {
@@ -957,7 +957,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     @SuppressWarnings(value = "unchecked")
     protected void operateAllByWhere(String operateWhereSql, String tablename, F filter) throws RestException {
         if (!(superMapper instanceof OperateMapper)) {
-            throw new UnsupportedErrorException("The mapper is not support method of 'operateAllWithFilter' with the delete model is 'OPERATE' !");
+            throw new UnsupportedErrorException("The mapper is not support method of 'operateAllWithFilter' with the delete model is 'OPERATE'.");
         }
         OperateType operateType = GeneralUtils.isNotEmpty(filter.getOperate()) ? filter.getOperate() : OperateType.REMOVE;
         if (isBeforeSkip() && isAfterSkip()) {
@@ -975,6 +975,35 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
                         ((OperateMapper<I>) superMapper).operateDynamicAllByWhere(tablename, operateWhereSql, operate.getKey());
                     } else {
                         ((OperateMapper<I>) superMapper).operateAllByWhere(operateWhereSql, operate.getKey());
+                    }
+                });
+            }
+        }
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    protected <S> void alertAllByWhere(String alertWhereSql, String tablename, F filter) throws RestException {
+        if (!(superMapper instanceof AlertMapper)) {
+            throw new UnsupportedErrorException("The mapper is not support method of 'alertAllWithFilter'.");
+        }
+        assert filter instanceof StatusFilter;
+        StatusFilter<S> statusFilter = (StatusFilter<S>) filter;
+        S status = statusFilter.getStatus();
+        if (isBeforeSkip() && isAfterSkip()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                ((AlertMapper<S,I>) superMapper).alertDynamicAllByWhere(tablename, alertWhereSql, status);
+            } else {
+                ((AlertMapper<S,I>) superMapper).alertAllByWhere(alertWhereSql, status);
+            }
+        } else {
+            String queryWhereSql = queryWhereSql(filter);
+            List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
+            if (GeneralUtils.isNotEmpty(entityList)) {
+                alertAdvice(entityList, status, alertStatus -> {
+                    if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                        ((AlertMapper<S,I>) superMapper).alertDynamicAllByWhere(tablename, alertWhereSql, alertStatus);
+                    } else {
+                        ((AlertMapper<S,I>) superMapper).alertAllByWhere(alertWhereSql, alertStatus);
                     }
                 });
             }

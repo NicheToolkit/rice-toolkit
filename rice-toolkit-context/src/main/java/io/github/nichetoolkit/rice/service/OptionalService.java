@@ -101,4 +101,15 @@ public interface OptionalService<M extends RestId<I>, F extends IdFilter<I, K>, 
     default void optionalOperateFilter(F filter) throws RestException {
         optionalDeleteFilter(filter);
     }
+
+    /**
+     * <code>optionalAlertFilter</code>
+     * <p>The optional alert filter method.</p>
+     * @param filter F <p>The filter parameter is <code>F</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    default void optionalAlertFilter(F filter) throws RestException {
+        optionalDeleteFilter(filter);
+    }
 }

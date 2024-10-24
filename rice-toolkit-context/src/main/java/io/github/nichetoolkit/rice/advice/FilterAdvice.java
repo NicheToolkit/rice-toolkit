@@ -70,6 +70,19 @@ public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
     }
 
     /**
+     * <code>alertWhereSql</code>
+     * <p>The alert where sql method.</p>
+     * @param filter F <p>The filter parameter is <code>F</code> type.</p>
+     * @return {@link java.lang.String} <p>The alert where sql return object is <code>String</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    default String alertWhereSql(F filter) throws RestException {
+        return deleteWhereSql(filter);
+    }
+
+    /**
      * <code>findLoadArray</code>
      * <p>The find load array method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>

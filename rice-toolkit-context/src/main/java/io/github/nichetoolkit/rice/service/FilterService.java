@@ -57,4 +57,13 @@ public interface FilterService<M extends RestId<I>, F extends IdFilter<I,K>,I,K>
      */
     void operateAllWithFilter(F filter) throws RestException;
 
+    /**
+     * <code>alertAllWithFilter</code>
+     * <p>The alert all with filter method.</p>
+     * @param filter F <p>The filter parameter is <code>F</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    <S> void alertAllWithFilter(F filter) throws RestException;
+
 }
