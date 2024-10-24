@@ -1,10 +1,13 @@
 package io.github.nichetoolkit.rice.configure;
 
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.DefaultLogicMark;
+import io.github.nichetoolkit.rice.RestLogicMark;
+import io.github.nichetoolkit.rice.defaults.DefaultAutoLogicMark;
 import io.github.nichetoolkit.rice.resolver.RestIdentityResolver;
 import io.github.nichetoolkit.rice.defaults.DefaultTokenContextResolver;
-import io.github.nichetoolkit.rice.defaults.LongIdentityResolver;
-import io.github.nichetoolkit.rice.defaults.StringIdentityResolver;
+import io.github.nichetoolkit.rice.defaults.DefaultLongIdResolver;
+import io.github.nichetoolkit.rice.defaults.DefaultStringIdResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +84,7 @@ public class RiceStarterAutoConfigure implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() {
-        if (loginProperties.getEnabled()) {
+        if (this.loginProperties.getEnabled()) {
             resolveArgumentResolver();
         }
     }
@@ -92,27 +95,35 @@ public class RiceStarterAutoConfigure implements InitializingBean {
      */
     private void resolveArgumentResolver() {
         List<HandlerMethodArgumentResolver> customArgumentResolvers = new LinkedList<>();
-        List<HandlerMethodArgumentResolver> argumentResolvers = requestMappingHandlerAdapter.getArgumentResolvers();
+        List<HandlerMethodArgumentResolver> argumentResolvers = this.requestMappingHandlerAdapter.getArgumentResolvers();
         if (GeneralUtils.isNotEmpty(argumentResolvers)) {
             for (HandlerMethodArgumentResolver argumentResolver : argumentResolvers) {
                 if (argumentResolver instanceof MapMethodProcessor) {
-                    customArgumentResolvers.add(mapArgumentResolver);
+                    customArgumentResolvers.add(this.mapArgumentResolver);
                 }
                 customArgumentResolvers.add(argumentResolver);
             }
-            requestMappingHandlerAdapter.setArgumentResolvers(customArgumentResolvers);
+            this.requestMappingHandlerAdapter.setArgumentResolvers(customArgumentResolvers);
         }
     }
 
     @Bean
-    @ConditionalOnMissingBean(StringIdentityResolver.class)
+    @ConditionalOnMissingBean(DefaultStringIdResolver.class)
     public RestIdentityResolver<String> defaultStringIdResolver() {
-        return StringIdentityResolver.DEFAULT_RESOLVER;
+        return DefaultStringIdResolver.DEFAULT_RESOLVER;
     }
 
     @Bean
-    @ConditionalOnMissingBean(LongIdentityResolver.class)
+    @ConditionalOnMissingBean(DefaultLongIdResolver.class)
     public RestIdentityResolver<Long> defaultLongIdResolver() {
-        return LongIdentityResolver.DEFAULT_RESOLVER;
+        return DefaultLongIdResolver.DEFAULT_RESOLVER;
     }
+
+
+    @Bean
+    @ConditionalOnMissingBean(RestLogicMark.class)
+    public RestLogicMark defaultAutoLogicMark(RiceServiceProperties serviceProperties) {
+        return new DefaultAutoLogicMark(serviceProperties);
+    }
+
 }

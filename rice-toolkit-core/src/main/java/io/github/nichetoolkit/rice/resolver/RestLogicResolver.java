@@ -1,18 +1,10 @@
 package io.github.nichetoolkit.rice.resolver;
 
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rest.RestOptional;
 import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
-import io.github.nichetoolkit.rest.stream.RestStream;
-import io.github.nichetoolkit.rest.util.BeanUtils;
-import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.enums.AutoMark;
 import org.springframework.beans.factory.InitializingBean;
-
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 /**
  * <code>RestLogicResolver</code>
@@ -49,35 +41,6 @@ public interface RestLogicResolver<L> extends InitializingBean {
      * @see io.github.nichetoolkit.rest.RestException
      */
     L resolve() throws RestException;
-
-    /**
-     * <code>resolveLogic</code>
-     * <p>The resolve logic method.</p>
-     * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param autoMark {@link io.github.nichetoolkit.rice.enums.AutoMark} <p>The auto mark parameter is <code>AutoMark</code> type.</p>
-     * @return L <p>The resolve logic return object is <code>L</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.AutoMark
-     * @see io.github.nichetoolkit.rest.RestException
-     */
-    static <L> L resolveLogic(AutoMark autoMark) throws RestException {
-        Class<?> logicType = autoMark.getKey();
-        List<RestLogicResolver> resolvers = BeanUtils.beansOfType(RestLogicResolver.class);
-        if (GeneralUtils.isEmpty(resolvers)) {
-            return null;
-        }
-        Map<Class, List<RestLogicResolver>> resolverMap= resolvers.stream().collect(Collectors.groupingBy(RestLogicResolver::logicType));
-        List<RestLogicResolver> logicResolvers = resolverMap.get(logicType);
-        if (GeneralUtils.isEmpty(logicResolvers)) {
-            return null;
-        }
-        RestOptional<RestLogicResolver> logicResolver = RestStream.stream(logicResolvers).findAny();
-        if (GeneralUtils.isEmpty(logicResolver)) {
-            return null;
-        }
-        RestLogicResolver<L> resolver = (RestLogicResolver<L>) logicResolver.get();
-        return resolver.resolve();
-    }
 
     /**
      * <code>Instance</code>

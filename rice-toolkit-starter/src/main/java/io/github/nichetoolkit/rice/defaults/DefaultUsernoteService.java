@@ -14,7 +14,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestUserInfo;
 import io.github.nichetoolkit.rice.advice.UserlogAdvice;
 import io.github.nichetoolkit.rice.RestUsernoteModel;
-import io.github.nichetoolkit.rice.helper.ModelUtils;
+import io.github.nichetoolkit.rice.helper.ModelTypeUtils;
 import io.github.nichetoolkit.rice.pack.UserInfoPack;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
@@ -83,7 +83,7 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
             doTargetIdsHandle(request, response);
             doUserInfoHandle(response);
             if (GeneralUtils.isNotEmpty(this.usernote)) {
-                T childUsernote = ModelUtils.newInstance(childClass());
+                T childUsernote = ModelTypeUtils.newInstance(childClass());
                 if (GeneralUtils.isNotEmpty(childUsernote)) {
                     BeanUtils.copyNonnullProperties(this.usernote, childUsernote);
                     childUsernote.setTargetIds(this.usernote.getTargetIds());

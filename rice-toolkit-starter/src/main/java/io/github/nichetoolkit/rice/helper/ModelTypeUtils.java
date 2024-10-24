@@ -17,7 +17,7 @@ import java.lang.reflect.Constructor;
  * @since Jdk1.8
  */
 @Slf4j
-public class ModelUtils {
+public class ModelTypeUtils {
 
     /**
      * <code>genericType</code>
@@ -29,7 +29,7 @@ public class ModelUtils {
      */
     public static Class<?> identityType(Object object) {
         try {
-            return ModelHelper.identityType(object);
+            return ModelTypeHelper.identityType(object);
         } catch (ClassUnknownException | ClassUnsupportedException exception) {
             GeneralUtils.printStackTrace(exception,false);
             log.error("the class type of <I> is unknown",exception);
@@ -47,7 +47,7 @@ public class ModelUtils {
      */
     public static <T> T newInstance(Class<T> clazz) {
         try {
-            return ModelHelper.newInstance(clazz);
+            return ModelTypeHelper.newInstance(clazz);
         } catch (ClassUnrenewException exception) {
             GeneralUtils.printStackTrace(exception,false);
             log.error("the model type of <I> new instance is error",exception);
@@ -67,7 +67,7 @@ public class ModelUtils {
      */
     public static <T> T newInstance(Constructor<T> clazz, Object ... args) {
         try {
-            return ModelHelper.newInstance(clazz,args);
+            return ModelTypeHelper.newInstance(clazz,args);
         } catch (ClassUnrenewException exception) {
             GeneralUtils.printStackTrace(exception,false);
             log.error("the model type of <I> new instance is error",exception);
@@ -85,7 +85,7 @@ public class ModelUtils {
      */
     public static <I> I generateIdentity(RestId<I> model)  {
         try {
-            return ModelHelper.generateIdentity(model);
+            return ModelTypeHelper.generateIdentity(model);
         } catch (ClassUnknownException exception) {
             GeneralUtils.printStackTrace(exception,false);
             log.error("the model type of <I> is unknown",exception);

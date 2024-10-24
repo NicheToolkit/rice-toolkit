@@ -19,7 +19,7 @@ import java.lang.reflect.InvocationTargetException;
  * @since Jdk1.8
  */
 @SuppressWarnings("unused")
-public class ModelHelper {
+public class ModelTypeHelper {
 
     /**
      * <code>genericType</code>
@@ -34,12 +34,7 @@ public class ModelHelper {
      * @see io.github.nichetoolkit.rest.error.ClassUnsupportedException
      */
     public static Class<?> identityType(Object model) throws ClassUnknownException, ClassUnsupportedException {
-        if (model instanceof RestIdModel || model instanceof RestInfoModel) {
-            return String.class;
-        } else if (model instanceof IdModel) {
-            return RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
-                    IdModel.class.getTypeParameters()[0], model.getClass(), IdModel.class));
-        } else if (model instanceof RestId) {
+        if (model instanceof RestId) {
             return RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
                     RestId.class.getTypeParameters()[0], model.getClass(), RestId.class));
         } else {
