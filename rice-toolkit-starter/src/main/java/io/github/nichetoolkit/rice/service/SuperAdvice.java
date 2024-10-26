@@ -990,9 +990,6 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         assert filter instanceof StatusFilter;
         StatusFilter<S> statusFilter = (StatusFilter<S>) filter;
         S status = statusFilter.getStatus();
-        if (RestKey.class.isAssignableFrom(status.getClass())) {
-            status = ((RestKey<S>) status).getKey();
-        }
         if (isBeforeSkip() && isAfterSkip()) {
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
                 ((AlertMapper<S,I>) superMapper).alertDynamicAllByWhere(tablename, alertWhereSql, status);

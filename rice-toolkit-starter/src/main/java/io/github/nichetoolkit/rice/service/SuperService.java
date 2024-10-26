@@ -2,7 +2,6 @@ package io.github.nichetoolkit.rice.service;
 
 import com.github.pagehelper.Page;
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
 import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
 import io.github.nichetoolkit.rest.helper.PartitionHelper;
@@ -534,9 +533,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
         if (superMapper instanceof AlertMapper) {
             String tablename = resolveTablename(tablekey);
-            if (RestKey.class.isAssignableFrom(status.getClass())) {
-                status = ((RestKey<S>) status).getKey();
-            }
             if (isBeforeSkip() && isAfterSkip()) {
                 if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
                     ((AlertMapper<S, I>) superMapper).alertDynamicById(tablename, id, status);
@@ -592,7 +588,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
-    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <S> void alertAll(K tablekey, Collection<I> idList, S status) throws RestException {
         if (GeneralUtils.isEmpty(idList) || GeneralUtils.isEmpty(status)) {
@@ -600,9 +595,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
         if (superMapper instanceof AlertMapper) {
             String tablename = resolveTablename(tablekey);
-            if (RestKey.class.isAssignableFrom(status.getClass())) {
-                status = ((RestKey<S>) status).getKey();
-            }
             if (isBeforeSkip() && isAfterSkip()) {
                 alertPartition(tablename, idList, status);
             } else {
@@ -651,9 +643,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
         if (superMapper instanceof AlertLinkMapper) {
             String tablename = resolveTablename(tablekey);
-            if (RestKey.class.isAssignableFrom(status.getClass())) {
-                status = ((RestKey<S>) status).getKey();
-            }
             if (isBeforeSkip() && isAfterSkip()) {
                 if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
                     ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicByLinkId(tablename, linkId, status);
@@ -711,7 +700,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
-    @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L, S> void alertAllByLinkIds(K tablekey, Collection<L> linkIdList, S status) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList) || GeneralUtils.isEmpty(status)) {
@@ -719,9 +707,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
         if (superMapper instanceof AlertLinkMapper) {
             String tablename = resolveTablename(tablekey);
-            if (RestKey.class.isAssignableFrom(status.getClass())) {
-                status = ((RestKey<S>) status).getKey();
-            }
             if (isBeforeSkip() && isAfterSkip()) {
                 alertLinkPartition(tablename, linkIdList, status);
             } else {
@@ -1662,9 +1647,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                 Method alertAllByWhereMethod = alertMethod;
                 if (alertAllByWhereMethod != null && !alertAllByWhereMethod.isDefault()) {
                     S status = statusFilter.getStatus();
-                    if (RestKey.class.isAssignableFrom(status.getClass())) {
-                        status = ((RestKey<S>) status).getKey();
-                    }
                     if (isBeforeSkip() && isAfterSkip()) {
                         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
                             filterMapper.alertDynamicAllByFilterWhere(tablename, alertWhereSql, filter, status);
