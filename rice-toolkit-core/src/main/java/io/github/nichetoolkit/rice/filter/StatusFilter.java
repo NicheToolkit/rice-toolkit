@@ -27,11 +27,6 @@ public interface StatusFilter<S> extends Serializable {
     @SuppressWarnings(value = "unchecked")
     void setStatuses(@NonNull S... statuses);
 
-    @SuppressWarnings(value = "unchecked")
-    void addStatuses(@NonNull S... statuses);
-
-    void addStatuses(@NonNull Collection<S> statuses);
-
     default List<S> toStatuses() {
         Set<S> statusesSet = new HashSet<>();
         if (GeneralUtils.isNotEmpty(getStatus())) {

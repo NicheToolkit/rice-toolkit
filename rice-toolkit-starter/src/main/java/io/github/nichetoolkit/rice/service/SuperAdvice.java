@@ -919,7 +919,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     @SuppressWarnings(value = "unchecked")
     protected void removeAllByWhere(String removeWhereSql, String tablename, F filter) throws RestException {
         if (!(superMapper instanceof RemoveMapper)) {
-            throw new UnsupportedErrorException("The mapper is not support method of 'removeAllWithFilter' with the delete model is 'REMOVE'.");
+            throw new UnsupportedErrorException("The mapper is not support method of 'removeAllByWhere' with the delete model is 'REMOVE', it must to extends 'RemoveMapper'.");
         }
         Object logic = markOfLogic();
         if (isBeforeSkip() && isAfterSkip()) {
@@ -957,7 +957,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     @SuppressWarnings(value = "unchecked")
     protected void operateAllByWhere(String operateWhereSql, String tablename, F filter) throws RestException {
         if (!(superMapper instanceof OperateMapper)) {
-            throw new UnsupportedErrorException("The mapper is not support method of 'operateAllWithFilter' with the delete model is 'OPERATE'.");
+            throw new UnsupportedErrorException("The mapper is not support method of 'operateAllByWhere' with the delete model is 'OPERATE', it must to extends 'OperateMapper'.");
         }
         OperateType operateType = GeneralUtils.isNotEmpty(filter.getOperate()) ? filter.getOperate() : OperateType.REMOVE;
         if (isBeforeSkip() && isAfterSkip()) {
@@ -984,7 +984,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     @SuppressWarnings(value = "unchecked")
     protected <S> void alertAllByWhere(String alertWhereSql, String tablename, F filter) throws RestException {
         if (!(superMapper instanceof AlertMapper)) {
-            throw new UnsupportedErrorException("The mapper is not support method of 'alertAllWithFilter'.");
+            throw new UnsupportedErrorException("The mapper is not support method of 'alertAllByWhere', it must to extends 'AlertMapper'.");
         }
         assert filter instanceof StatusFilter;
         StatusFilter<S> statusFilter = (StatusFilter<S>) filter;
