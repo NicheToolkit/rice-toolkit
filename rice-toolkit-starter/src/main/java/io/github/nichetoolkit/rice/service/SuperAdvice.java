@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.actuator.AnchorActuator;
 import io.github.nichetoolkit.rest.actuator.BiConsumerActuator;
 import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
@@ -989,6 +990,9 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         assert filter instanceof StatusFilter;
         StatusFilter<S> statusFilter = (StatusFilter<S>) filter;
         S status = statusFilter.getStatus();
+        if (RestKey.class.isAssignableFrom(status.getClass())) {
+            status = ((RestKey<S>) status).getKey();
+        }
         if (isBeforeSkip() && isAfterSkip()) {
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
                 ((AlertMapper<S,I>) superMapper).alertDynamicAllByWhere(tablename, alertWhereSql, status);
