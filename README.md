@@ -517,18 +517,18 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>AlertMapper</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
-<td><code>alertById(@Param("id") I id, @Param("key") Integer key)</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;S,I&gt;</code></td>
+<td><code>alertById(@Param("id") I id, @Param("status") S status)</code></td>
 <td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>alert</code> and <code>alertAll</code> methods.</td>
 </tr>
 <tr>
-<td><code>alertDynamicById(@Param("tablename") String tablename, @Param("id") I id, @Param("key") Integer key)</code></td>
+<td><code>alertDynamicById(@Param("tablename") String tablename, @Param("id") I id, @Param("status") S status)</code></td>
 </tr>
 <tr>
-<td><code>alertAll(@Param("idList") Collection&lt;I&gt; idList, @Param("key") Integer key)</code></td>
+<td><code>alertAll(@Param("idList") Collection&lt;I&gt; idList, @Param("status") S status)</code></td>
 </tr>
 <tr>
-<td><code>alertDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection&lt;I&gt; idList, @Param("key") Integer key)</code></td>
+<td><code>alertDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection&lt;I&gt; idList, @Param("status") S status)</code></td>
 </tr>
 <tr>
 <td rowspan=6 style="vertical-align: middle;"><code>DeleteMapper</code></td>
@@ -664,7 +664,8 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 </tr>
 </table>
 
-* link & field mapper
+
+* link mapper
 
 <table style="text-align: center;">
 <tr>
@@ -675,65 +676,66 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>DeleteLinkMapper</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
-<td><code>deleteByLinkId(@Param("linkId") I linkId)</code></td>
-<td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>alert</code> and <code>alertAll</code> methods.</td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;L, I&gt;</code></td>
+<td><code>deleteByLinkId(@Param("linkId") L linkId)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>deleteByLinkId</code> and <code>deleteAllByLinkIds</code> methods.</td>
 </tr>
 <tr>
-<td><code>deleteDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") I linkId)</code></td>
+<td><code>deleteDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") L linkId)</code></td>
 </tr>
 <tr>
-<td><code>deleteAllByLinkIds(@Param("linkIdList") Collection&lt;I&gt; linkIdList)</code></td>
+<td><code>deleteAllByLinkIds(@Param("linkIdList") Collection&lt;L&gt; linkIdList)</code></td>
 </tr>
 <tr>
-<td><code>deleteDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection&lt;I&gt; linkIdList)</code></td>
+<td><code>deleteDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection&lt;L&gt; linkIdList)</code></td>
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>OperateLinkMapper</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
-<td><code>operateByLinkId(@Param("id") I linkId, @Param("operate") Integer operate)</code></td>
-<td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>operate</code> and <code>operateAll</code> methods.</td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;L, I&gt;</code></td>
+<td><code>operateByLinkId(@Param("linkId") L linkId, @Param("operate") Integer operate)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>operateByLinkId</code> and <code>operateAllByLinkIds</code> methods.</td>
 </tr>
 <tr>
-<td><code>operateDynamicByLinkId(@Param("tablename") String tablename, @Param("id") I linkId, @Param("operate") Integer operate)</code></td>
+<td><code>operateDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") L linkId, @Param("operate") Integer operate)</code></td>
 </tr>
 <tr>
-<td><code>operateAllByLinkIds(@Param("linkIdList") Collection&lt;I&gt; linkIdList, @Param("operate") Integer operate)</code></td>
+<td><code>operateAllByLinkIds(@Param("linkIdList") Collection&lt;L&gt; linkIdList, @Param("operate") Integer operate)</code></td>
 </tr>
 <tr>
-<td><code>operateDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection&lt;I&gt; linkIdList, @Param("operate") Integer operate)</code></td>
+<td><code>operateDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection&lt;L&gt; linkIdList, @Param("operate") Integer operate)</code></td>
 </tr>
 <tr>
 <td rowspan=4 style="vertical-align: middle;"><code>RemoveLinkMapper</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
-<td><code>removeByLinkId(@Param("linkId") I linkId, @Param("logic") String logic)</code></td>
-<td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>remove</code> and <code>removeAll</code> methods.</td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;L, I&gt;</code></td>
+<td><code>removeByLinkId(@Param("linkId") L linkId, @Param("logic") String logic)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>removeByLinkId</code> and <code>removeAllByLinkIds</code> methods.</td>
 </tr>
 <tr>
-<td><code>removeDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") I linkId, @Param("logic") String logic)</code></td>
+<td><code>removeDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") L linkId, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
-<td><code>removeAllByLinkIds(@Param("linkIdList") Collection&lt;I&gt; linkIdList, @Param("logic") String logic)</code></td>
+<td><code>removeAllByLinkIds(@Param("linkIdList") Collection&lt;L&gt; linkIdList, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
-<td><code>removeDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection&lt;I&gt; linkIdList, @Param("logic") String logic)</code></td>
+<td><code>removeDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection&lt;L&gt; linkIdList, @Param("logic") String logic)</code></td>
 </tr>
 <tr>
-<td rowspan=4 style="vertical-align: middle;"><code>AlertFieldMapper</code></td>
-<td rowspan=4 style="vertical-align: middle;"><code>&lt;I&gt;</code></td>
-<td><code>alertFieldById(@Param("id") I id, @Param("field") String field, @Param("key") Integer key)</code></td>
-<td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>alert</code> and <code>alertAll</code> methods.</td>
+<td rowspan=4 style="vertical-align: middle;"><code>AlertLinkMapper</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;L, S, I&gt;</code></td>
+<td><code>alertByLinkId(@Param("linkId") L linkId, @Param("status") S status)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>alertByLinkId</code> and <code>alertByLinkIds</code> methods.</td>
 </tr>
 <tr>
-<td><code>alertDynamicFieldById(@Param("tablename") String tablename, @Param("id") I id, @Param("field") String field, @Param("key") Integer key)</code></td>
+<td><code>alertDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") L linkId,  @Param("status") S status)</code></td>
 </tr>
 <tr>
-<td><code>alertFieldAll(@Param("idList") Collection&lt;I&gt; idList, @Param("field") String field, @Param("key") Integer key)</code></td>
+<td><code>alertAllByLinkIds(@Param("linkIdList") Collection&lt;L&gt; linkIdList, @Param("status") S status)</code></td>
 </tr>
 <tr>
-<td><code>alertDynamicFieldAll(@Param("tablename") String tablename, @Param("idList") Collection&lt;I&gt; idList, @Param("field") String field, @Param("key") Integer key)</code></td>
+<td><code>alertDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection&lt;L&gt; linkIdList, @Param("status") S status)</code></td>
 </tr>
 </table>
+
 
 * native mapper
 
@@ -748,7 +750,7 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 <td rowspan=4 style="vertical-align: middle;"><code>FindLoadMapper</code></td>
 <td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;, I&gt;</code></td>
 <td><code>findByIdLoad(@Param("id") I id, @Param("loadParams") Boolean... loadParams)</code></td>
-<td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>find</code> and <code>findAll</code> methods.</td>
+<td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>findByIdLoad</code> and <code>findAllLoad</code> methods.</td>
 </tr>
 <tr>
 <td><code>findDynamicByIdLoad(@Param("tablename") String tablename, @Param("id") I id, @Param("loadParams") Boolean... loadParams)</code></td>
@@ -763,16 +765,31 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 <td rowspan=2 style="vertical-align: middle;"><code>FilterLoadMapper</code></td>
 <td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;, I&gt;</code></td>
 <td><code>findAllByLoadWhere(@Param("whereSql") String whereSql, @Param("loadParams") Boolean... loadParams)</code></td>
-<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>findAll</code> methods.</td>
+<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>findAllByLoadWhere</code> methods.</td>
 </tr>
 <tr>
 <td><code>findDynamicAllByLoadWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("loadParams") Boolean... loadParams)</code></td>
 </tr>
 <tr>
+<td rowspan=4 style="vertical-align: middle;"><code>LinkLoadMapper</code></td>
+<td rowspan=4 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;, L, I&gt;</code></td>
+<td><code>findByLinkIdLoad(@Param("linkId") L linkId, @Param("loadParams") Boolean... loadParams)</code></td>
+<td rowspan=4 style="vertical-align: middle;">the mapper is used to handle <code>findByLinkIdLoad</code> and <code>findByLinkIdsLoad</code>  methods.</td>
+</tr>  
+<tr>
+<td><code>findDynamicByLinkIdLoad(@Param("tablename") String tablename, @Param("linkId") L linkId, @Param("loadParams") Boolean... loadParams)</code></td>
+</tr>
+<tr>
+<td><code>findAllByLinkIdsLoad(@Param("linkIdList") Collection&lt;L&gt; linkIdList, @Param("loadParams") Boolean... loadParams)</code></td>
+</tr>
+<tr>
+<td><code>findDynamicAllByLinkIdsLoad(@Param("tablename") String tablename, @Param("linkIdList") Collection&lt;L&gt; linkIdList, @Param("loadParams") Boolean... loadParams)</code></td>
+</tr>
+<tr>
 <td rowspan=2 style="vertical-align: middle;"><code>NameLoadMapper</code></td>
 <td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;, I&gt;</code></td>
 <td><code>findByNameLoad(@Param("name") String name,@Param("logic") String logic, @Param("loadParams") Boolean... loadParams)</code></td>
-<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>find</code> methods.</td>
+<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>findByNameLoad</code> methods.</td>
 </tr>
 <tr>
 <td><code>findDynamicByNameLoad(@Param("tablename") String tablename, @Param("name") String name, @Param("logic") String logic, @Param("loadParams") Boolean... loadParams)</code></td>
@@ -781,7 +798,7 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 <td rowspan=2 style="vertical-align: middle;"><code>FindFilterMapper</code></td>
 <td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
 <td><code>findAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter)</code></td>
-<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>findAll</code> methods.</td>
+<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>findAllByFilterWhere</code> methods.</td>
 </tr>
 <tr>
 <td><code>findDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter)</code></td>
@@ -790,7 +807,7 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 <td rowspan=2 style="vertical-align: middle;"><code>DeleteFilterMapper</code></td>
 <td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
 <td><code>deleteAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter)</code></td>
-<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>deleteAll</code> methods.</td>
+<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>deleteAllByFilterWhere</code> methods.</td>
 </tr>
 <tr>
 <td><code>deleteDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter)</code></td>
@@ -799,7 +816,7 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 <td rowspan=2 style="vertical-align: middle;"><code>RemoveFilterMapper</code></td>
 <td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
 <td><code>removeAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("logic") String logic)</code></td>
-<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>removeAll</code> methods.</td>
+<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>removeAllByFilterWhere</code> methods.</td>
 </tr>
 <tr>
 <td><code>removeDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("logic") String logic)</code></td>
@@ -808,21 +825,31 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 <td rowspan=2 style="vertical-align: middle;"><code>OperateFilterMapper</code></td>
 <td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, I, K&lt;</code></td>
 <td><code>operateAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("operate") Integer operate)</code></td>
-<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>removeAll</code> methods.</td>
+<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>operateAllByFilterWhere</code> methods.</td>
 </tr>
 <tr>
 <td><code>operateDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("operate") Integer operate)</code></td>
 </tr>
 <tr>
+<td rowspan=2 style="vertical-align: middle;"><code>AlertFilterMapper</code></td>
+<td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&lt;, F extends IdFilter&lt;I, K&lt;, S, I, K&lt;</code></td>
+<td><code>alertAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("status") S status)</code></td>
+<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>alertAllByFilterWhere</code> methods.</td>
+</tr>
+<tr>
+<td><code>alertDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("status") S status)</code></td>
+</tr>
+<tr>
 <td rowspan=2 style="vertical-align: middle;"><code>FindFieldMapper</code></td>
 <td rowspan=2 style="vertical-align: middle;"><code>&lt;E extends RestId&lt;I&gt;, I&gt;</code></td>
 <td><code>findAllByFieldWhere(@Param("whereSql") String whereSql, @Param("fieldParams") String... fieldParams)</code></td>
-<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>findAll</code> methods.</td>
+<td rowspan=2 style="vertical-align: middle;">the mapper is used to handle <code>findAllByFieldWhere</code> methods.</td>
 </tr>
 <tr>
 <td><code>findDynamicAllByFieldWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("fieldParams") String... fieldParams)</code></td>
 </tr>
 </table>
+
 
 * examples
 
