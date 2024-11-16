@@ -2,23 +2,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.github.nichetoolkit</groupId>
+        <artifactId>rice-toolkit-parent</artifactId>
+        <version>1.1.1-SNAPSHOT</version>
+    </parent>
 
-    <groupId>io.github.nichetoolkit</groupId>
-    <artifactId>rice-toolkit-parent</artifactId>
+    <artifactId>rice-toolkit-bom</artifactId>
     <version>1.1.1-SNAPSHOT</version>
+    <name>rice-toolkit-bom</name>
+    <packaging>jar</packaging>
+    <description>Rice toolkit bom project for Spring Boot</description>
+    <url>https://github.com/NicheToolkit/rice-toolkit/tree/master/rice-toolkit-bom</url>
 
-    <modules>
-        <module>rice-toolkit-bom</module>
-        <module>rice-toolkit-core</module>
-        <module>rice-toolkit-context</module>
-        <module>rice-toolkit-starter</module>
-<!--        <module>rice-toolkit-example</module>-->
-    </modules>
-
-    <name>rice-toolkit-parent</name>
-    <packaging>pom</packaging>
-    <description>Rice toolkit project for Spring Boot</description>
-    <url>https://github.com/NicheToolkit/rice-toolkit</url>
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
 
     <licenses>
         <license>
@@ -44,13 +45,6 @@
         <developerConnection>scm:git:git@github.com:NicheToolkit/rice-toolkit.git</developerConnection>
         <url>git@github.com:NicheToolkit/rice-toolkit.git</url>
     </scm>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.18</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
 
     <distributionManagement>
         <snapshotRepository>
@@ -109,54 +103,8 @@
 
     </repositories>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <jdk.version>1.8</jdk.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-
-        <spring-boot.version>2.7.18</spring-boot.version>
-        <!-- fix spring-core:5.3.31 CVE-2024-22233 7.5 vulnerability -->
-        <!-- fix spring-web:5.3.31 CVE-2016-1000027 9.8 vulnerability
-                                   CVE-2024-22243 8.1 Vulnerability
-                                   CVE-2024-22259 8.1 Vulnerability  -->
-        <springframework.version>5.3.39</springframework.version>
-
-        <spring-boot-maven-plugin.version>2.7.18</spring-boot-maven-plugin.version>
-        <maven-gpg-plugin.version>3.2.5</maven-gpg-plugin.version>
-        <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
-        <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
-
-        <rest-toolkit.version>1.1.1-SNAPSHOT</rest-toolkit.version>
-        <rice-toolkit.version>1.1.1-SNAPSHOT</rice-toolkit.version>
-        <mybatis-toolkit.version>1.1.1-SNAPSHOT</mybatis-toolkit.version>
-
-        <pagehelper.version>6.1.0</pagehelper.version>
-        <mybatis-plus.version>3.5.7</mybatis-plus.version>
-        <mybatis-mapper.version>2.2.4</mybatis-mapper.version>
-
-    </properties>
-
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-framework-bom</artifactId>
-                <version>${springframework.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.github.nichetoolkit</groupId>
-                <artifactId>rest-toolkit-bom</artifactId>
-                <version>${rest-toolkit.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
             <dependency>
                 <groupId>io.github.nichetoolkit</groupId>
                 <artifactId>rice-toolkit-core</artifactId>
@@ -172,78 +120,16 @@
                 <artifactId>rice-toolkit-starter</artifactId>
                 <version>${rice-toolkit.version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>io.github.nichetoolkit</groupId>
-                <artifactId>mybatis-toolkit-core</artifactId>
-                <version>${mybatis-toolkit.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-jdbc</artifactId>
-                <version>${springframework.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper</artifactId>
-                <version>${pagehelper.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-annotation</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.mybatis</groupId>
-                <artifactId>mybatis-provider</artifactId>
-                <version>${mybatis-mapper.version}</version>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>${maven-source-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${maven-javadoc-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-gpg-plugin</artifactId>
-                    <version>${maven-gpg-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.sonatype.plugins</groupId>
-                    <artifactId>nexus-staging-maven-plugin</artifactId>
-                    <version>${nexus-staging-maven-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>${maven-release-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven-compiler-plugin.version}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
         <finalName>${project.artifactId}</finalName>
         <resources>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
@@ -321,8 +207,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>8</source>
+                    <target>8</target>
                     <encoding>utf-8</encoding>
                 </configuration>
             </plugin>

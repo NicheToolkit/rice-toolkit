@@ -22,8 +22,9 @@
         <skipTests>true</skipTests>
 
         <pagehelper-starter.version>2.1.0</pagehelper-starter.version>
-        <redisson.version>3.22.1</redisson.version>
+        <mybatis-spring.version>2.3.2</mybatis-spring.version>
         <mybatis-mapper.version>2.2.4</mybatis-mapper.version>
+        <redisson.version>3.22.1</redisson.version>
         <postgresql.version>42.3.9</postgresql.version>
     </properties>
 
@@ -57,14 +58,18 @@
         </dependency>
 
         <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis-spring.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
         <!-- the redisson TCP Connection maybe trap in a vicious cycle
              when spring application startup with @MapperScan used -->
-
-
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson-spring-boot-starter</artifactId>
