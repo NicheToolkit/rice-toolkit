@@ -5,7 +5,7 @@
 
     <groupId>io.github.nichetoolkit</groupId>
     <artifactId>rice-toolkit-parent</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1-SNAPSHOT</version>
 
     <modules>
         <module>rice-toolkit-core</module>
@@ -118,51 +118,26 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 
         <spring-boot.version>2.7.18</spring-boot.version>
-        <!-- fix logback-core:1.2.12 CVE-2023-6378 7.5 vulnerability
-                                CVE-2023-6481 7.5 vulnerability -->
-        <!-- fix logback-classic:1.2.12 CVE-2023-6378 7.5 vulnerability -->
-        <logback.version>1.2.13</logback.version>
         <!-- fix spring-core:5.3.31 CVE-2024-22233 7.5 vulnerability -->
         <!-- fix spring-web:5.3.31 CVE-2016-1000027 9.8 vulnerability
                                    CVE-2024-22243 8.1 Vulnerability
                                    CVE-2024-22259 8.1 Vulnerability  -->
         <springframework.version>5.3.34</springframework.version>
-        <!-- fix snakeyaml:1.30 CVE-2022-25857 7.5 vulnerability
-                                CVE-2022-38751 6.5 vulnerability
-                                CVE-2022-38752 6.5 vulnerability
-                                CVE-2022-38749 6.5 vulnerability
-                                CVE-2022-38750 5.5 vulnerability
-                                CVE-2022-1471 9.8 vulnerability
-                                CVE-2022-41854 6.5 vulnerability  -->
-        <snakeyaml.version>2.0</snakeyaml.version>
-        <!-- fix tomcat-embed-core:9.0.83 CVE-2024-23672 7.5 vulnerability
-                                          CVE-2024-24549 6.5 vulnerability -->
-        <!-- fix tomcat-embed-websocket:9.0.83 CVE-2024-23672 7.5 vulnerability -->
-        <tomcat.version>9.0.86</tomcat.version>
-        <!-- fix okio:2.8.0 CVE-2023-3635 7.5 vulnerability       -->
-        <squareup.version>3.4.0</squareup.version>
-        <!-- fix postgresql:42.3.8 CVE-2024-1597 10.0 vulnerability    -->
-        <postgresql.version>42.3.9</postgresql.version>
-        <!-- fix json-path:2.7.0 CVE-2023-51074 5.3 vulnerability    -->
-        <jsonpath.version>2.9.0</jsonpath.version>
-
 
         <spring-boot-maven-plugin.version>2.7.18</spring-boot-maven-plugin.version>
         <maven-gpg-plugin.version>3.2.5</maven-gpg-plugin.version>
         <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
         <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
 
-        <rest-toolkit.version>1.1.0</rest-toolkit.version>
-        <rice-toolkit.version>1.1.0</rice-toolkit.version>
-        <mybatis-toolkit.version>1.1.0</mybatis-toolkit.version>
+        <rest-toolkit.version>1.1.1-SNAPSHOT</rest-toolkit.version>
+        <rice-toolkit.version>1.1.1-SNAPSHOT</rice-toolkit.version>
+        <mybatis-toolkit.version>1.1.1-SNAPSHOT</mybatis-toolkit.version>
 
         <pagehelper.version>6.1.0</pagehelper.version>
-        <pagehelper-starter.version>2.1.0</pagehelper-starter.version>
         <mybatis-spring.version>2.3.2</mybatis-spring.version>
 
         <mybatis-plus.version>3.5.7</mybatis-plus.version>
         <mybatis-mapper.version>2.2.4</mybatis-mapper.version>
-        <redisson.version>3.22.1</redisson.version>
 
     </properties>
 
@@ -170,11 +145,12 @@
         <dependencies>
             <dependency>
                 <groupId>io.github.nichetoolkit</groupId>
-                <artifactId>rest-toolkit-parent</artifactId>
+                <artifactId>rest-toolkit-bom</artifactId>
                 <version>${rest-toolkit.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            
             <dependency>
                 <groupId>io.github.nichetoolkit</groupId>
                 <artifactId>mybatis-toolkit-core</artifactId>
@@ -210,12 +186,6 @@
             </dependency>
 
             <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${pagehelper-starter.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-annotation</artifactId>
                 <version>${mybatis-plus.version}</version>
@@ -228,35 +198,11 @@
             </dependency>
 
             <dependency>
-                <groupId>io.mybatis</groupId>
-                <artifactId>mybatis-mapper</artifactId>
-                <version>${mybatis-mapper.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis-spring.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.redisson</groupId>
-                <artifactId>redisson-spring-boot-starter</artifactId>
-                <version>${redisson.version}</version>
-            </dependency>
-
-            <!-- fix CVE  vulnerability  -->
-            <dependency>
-                <groupId>org.postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>${postgresql.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.jayway.jsonpath</groupId>
-                <artifactId>json-path</artifactId>
-                <version>${jsonpath.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 

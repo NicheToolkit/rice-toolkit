@@ -6,11 +6,11 @@
     <parent>
         <groupId>io.github.nichetoolkit</groupId>
         <artifactId>rice-toolkit-parent</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>rice-toolkit-example</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1-SNAPSHOT</version>
     <name>rice-toolkit-example</name>
     <packaging>jar</packaging>
     <description>Rice toolkit test example project for Spring Boot</description>
@@ -20,6 +20,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <skipTests>true</skipTests>
+
+        <pagehelper-starter.version>2.1.0</pagehelper-starter.version>
+        <redisson.version>3.22.1</redisson.version>
+        <mybatis-mapper.version>2.2.4</mybatis-mapper.version>
+        <postgresql.version>42.3.9</postgresql.version>
     </properties>
 
     <dependencies>
@@ -42,10 +47,13 @@
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper-starter.version}</version>
         </dependency>
+
         <dependency>
             <groupId>io.mybatis</groupId>
             <artifactId>mybatis-mapper</artifactId>
+            <version>${mybatis-mapper.version}</version>
         </dependency>
 
         <dependency>
@@ -56,9 +64,11 @@
         <!-- the redisson TCP Connection maybe trap in a vicious cycle
              when spring application startup with @MapperScan used -->
 
+
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>${redisson.version}</version>
         </dependency>
 
         <dependency>
@@ -69,23 +79,12 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.jayway.jsonpath</groupId>
-                    <artifactId>json-path</artifactId>
-                </exclusion>
-            </exclusions>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
