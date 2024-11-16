@@ -17,7 +17,6 @@ import io.github.nichetoolkit.rice.simple.LoginResult;
 import io.github.nichetoolkit.rice.simple.UserModel;
 import io.github.nichetoolkit.rice.stereotype.RestLogin;
 import io.github.nichetoolkit.rice.stereotype.RestPended;
-import io.micrometer.core.instrument.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -77,7 +76,7 @@ public class TokenService implements RestTokenResolver<UserModel, LoginResult> {
                 loginResult.setToken(null);
             }
         }
-        if (StringUtils.isNotEmpty(loginResult.getToken())) {
+        if (GeneralUtils.isNotEmpty(loginResult.getToken())) {
             return loginResult.getToken();
         }
         String userId = String.valueOf(restMap.get(UserModel.LOGIN_USER_ID));

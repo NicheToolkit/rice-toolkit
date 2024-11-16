@@ -135,7 +135,7 @@
         <mybatis-toolkit.version>1.1.1-SNAPSHOT</mybatis-toolkit.version>
 
         <pagehelper.version>6.1.0</pagehelper.version>
-        <mybatis-plus.version>3.5.7</mybatis-plus.version>
+        <mybatis-plus.version>3.5.9</mybatis-plus.version>
         <mybatis-mapper.version>2.2.4</mybatis-mapper.version>
 
     </properties>
