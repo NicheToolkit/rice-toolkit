@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.github.nichetoolkit.mybatis.consts.ScriptConstants;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.mybatis.stereotype.column.RestForceInsert;
 import io.github.nichetoolkit.mybatis.stereotype.column.RestForceUpdate;
@@ -32,7 +33,7 @@ public class TimeEntity extends OperateEntity {
      * @see io.github.nichetoolkit.mybatis.stereotype.column.RestForceInsert
      */
     @RestUpdate(false)
-    @RestForceInsert("now()")
+    @RestForceInsert(ScriptConstants.NOW)
     protected Date createTime;
     /**
      * <code>updateTime</code>
@@ -41,8 +42,8 @@ public class TimeEntity extends OperateEntity {
      * @see io.github.nichetoolkit.mybatis.stereotype.column.RestForceInsert
      * @see io.github.nichetoolkit.mybatis.stereotype.column.RestForceUpdate
      */
-    @RestForceInsert("now()")
-    @RestForceUpdate("now()")
+    @RestForceInsert(ScriptConstants.NOW)
+    @RestForceUpdate(ScriptConstants.NOW)
     protected Date updateTime;
 
     /**
