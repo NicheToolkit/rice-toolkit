@@ -7,6 +7,7 @@ import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
 import io.github.nichetoolkit.rest.actuator.FunctionActuator;
 import io.github.nichetoolkit.rest.util.CollectUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.RestId;
 import io.github.nichetoolkit.rice.service.ServiceHolder;
 
 import java.util.*;
@@ -16,8 +17,8 @@ import java.util.stream.Collectors;
 /**
  * <code>MEBuilderHelper</code>
  * <p>The me builder helper class.</p>
+ * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
 @SuppressWarnings("MixedMutabilityReturnType")
@@ -26,17 +27,17 @@ public class MEBuilderHelper {
     /**
      * <code>partition</code>
      * <p>The partition method.</p>
-     * @param <I>                     {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <T>                     {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param targetIdList            {@link java.util.Collection} <p>The target id list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param targetIdList {@link java.util.Collection} <p>The target id list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryByIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by id list parameter is <code>FunctionActuator</code> type.</p>
-     * @return {@link java.util.List} <p>The partition return object is <code>List</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The partition return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.List
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, T extends RestId<I>> List<T> partition(Collection<I> targetIdList, FunctionActuator<Collection<I>, List<T>> targetListQueryByIdList) throws RestException {
         return partition(targetIdList, ServiceHolder.partitionOfQuery(), targetListQueryByIdList);
@@ -45,19 +46,19 @@ public class MEBuilderHelper {
     /**
      * <code>partition</code>
      * <p>The partition method.</p>
-     * @param <I>                     {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <T>                     {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param targetIdList            {@link java.util.Collection} <p>The target id list parameter is <code>Collection</code> type.</p>
-     * @param partition               {@link java.lang.Integer} <p>The partition parameter is <code>Integer</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param targetIdList {@link java.util.Collection} <p>The target id list parameter is <code>Collection</code> type.</p>
+     * @param partition {@link java.lang.Integer} <p>The partition parameter is <code>Integer</code> type.</p>
      * @param targetListQueryByIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by id list parameter is <code>FunctionActuator</code> type.</p>
-     * @return {@link java.util.List} <p>The partition return object is <code>List</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  java.lang.Integer
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The partition return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see java.lang.Integer
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.List
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, T extends RestId<I>> List<T> partition(Collection<I> targetIdList, Integer partition, FunctionActuator<Collection<I>, List<T>> targetListQueryByIdList) throws RestException {
         Set<I> targetIdSet = new HashSet<>(targetIdList);
@@ -77,18 +78,18 @@ public class MEBuilderHelper {
     /**
      * <code>entityList</code>
      * <p>The entity list method.</p>
-     * @param <M>       {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <E>       {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <E>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param consumer  {@link io.github.nichetoolkit.rest.actuator.ConsumerActuator} <p>The consumer parameter is <code>ConsumerActuator</code> type.</p>
-     * @param function  {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The function parameter is <code>FunctionActuator</code> type.</p>
-     * @return {@link java.util.List} <p>The entity list return object is <code>List</code> type.</p>
+     * @param consumer {@link io.github.nichetoolkit.rest.actuator.ConsumerActuator} <p>The consumer parameter is <code>ConsumerActuator</code> type.</p>
+     * @param function {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The function parameter is <code>FunctionActuator</code> type.</p>
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.ConsumerActuator
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The entity list return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.ConsumerActuator
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.List
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <M, E> List<E> entityList(Collection<M> modelList, ConsumerActuator<M> consumer, FunctionActuator<M, E> function) throws RestException {
         if (GeneralUtils.isEmpty(modelList)) {
@@ -108,16 +109,16 @@ public class MEBuilderHelper {
     /**
      * <code>entityList</code>
      * <p>The entity list method.</p>
-     * @param <M>       {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <E>       {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <E>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param function  {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The function parameter is <code>FunctionActuator</code> type.</p>
-     * @return {@link java.util.List} <p>The entity list return object is <code>List</code> type.</p>
+     * @param function {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The function parameter is <code>FunctionActuator</code> type.</p>
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The entity list return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.List
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <M, E> List<E> entityList(Collection<M> modelList, FunctionActuator<M, E> function) throws RestException {
         if (GeneralUtils.isEmpty(modelList)) {
@@ -136,16 +137,16 @@ public class MEBuilderHelper {
     /**
      * <code>indexList</code>
      * <p>The index list method.</p>
-     * @param <M>       {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <E>       {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <E>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param function  {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The function parameter is <code>FunctionActuator</code> type.</p>
-     * @return {@link java.util.List} <p>The index list return object is <code>List</code> type.</p>
+     * @param function {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The function parameter is <code>FunctionActuator</code> type.</p>
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The index list return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.List
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <M, E> List<E> indexList(Collection<M> modelList, FunctionActuator<M, List<E>> function) throws RestException {
         if (GeneralUtils.isEmpty(modelList)) {
@@ -164,18 +165,18 @@ public class MEBuilderHelper {
     /**
      * <code>indexList</code>
      * <p>The index list method.</p>
-     * @param <M>       {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <E>       {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <E>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param consumer  {@link io.github.nichetoolkit.rest.actuator.ConsumerActuator} <p>The consumer parameter is <code>ConsumerActuator</code> type.</p>
-     * @param function  {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The function parameter is <code>FunctionActuator</code> type.</p>
-     * @return {@link java.util.List} <p>The index list return object is <code>List</code> type.</p>
+     * @param consumer {@link io.github.nichetoolkit.rest.actuator.ConsumerActuator} <p>The consumer parameter is <code>ConsumerActuator</code> type.</p>
+     * @param function {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The function parameter is <code>FunctionActuator</code> type.</p>
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.ConsumerActuator
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The index list return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.ConsumerActuator
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.List
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <M, E> List<E> indexList(Collection<M> modelList, ConsumerActuator<M> consumer, FunctionActuator<M, List<E>> function) throws RestException {
         if (GeneralUtils.isEmpty(modelList)) {
@@ -195,17 +196,17 @@ public class MEBuilderHelper {
     /**
      * <code>modelList</code>
      * <p>The model list method.</p>
-     * @param <I>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <E>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <E>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @param function   {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The function parameter is <code>FunctionActuator</code> type.</p>
-     * @return {@link java.util.List} <p>The model list return object is <code>List</code> type.</p>
+     * @param function {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The function parameter is <code>FunctionActuator</code> type.</p>
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The model list return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.List
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M, E> List<M> modelList(Collection<E> entityList, FunctionActuator<E, M> function) throws RestException {
         if (GeneralUtils.isEmpty(entityList)) {
@@ -224,19 +225,19 @@ public class MEBuilderHelper {
     /**
      * <code>modelList</code>
      * <p>The model list method.</p>
-     * @param <I>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <E>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <E>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @param consumer   {@link io.github.nichetoolkit.rest.actuator.ConsumerActuator} <p>The consumer parameter is <code>ConsumerActuator</code> type.</p>
-     * @param function   {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The function parameter is <code>FunctionActuator</code> type.</p>
-     * @return {@link java.util.List} <p>The model list return object is <code>List</code> type.</p>
+     * @param consumer {@link io.github.nichetoolkit.rest.actuator.ConsumerActuator} <p>The consumer parameter is <code>ConsumerActuator</code> type.</p>
+     * @param function {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The function parameter is <code>FunctionActuator</code> type.</p>
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.ConsumerActuator
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The model list return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.ConsumerActuator
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.List
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M, E> List<M> modelList(Collection<E> entityList, ConsumerActuator<E> consumer, FunctionActuator<E, M> function) throws RestException {
         if (GeneralUtils.isEmpty(entityList)) {
@@ -255,24 +256,24 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleTargetId</code>
      * <p>The build single target id method.</p>
-     * @param <I>                   {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entity                E <p>The entity parameter is <code>E</code> type.</p>
-     * @param model                 M <p>The model parameter is <code>M</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entity E <p>The entity parameter is <code>E</code> type.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @param targetQueryByTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target query by target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param entityGetTargetId     {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The entity get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget       {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
-     * @param index                 {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param isLoadArray           {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param entityGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The entity get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  java.lang.Integer
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             E entity, M model, FunctionActuator<I, T> targetQueryByTargetId,
@@ -293,20 +294,20 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleTargetId</code>
      * <p>The build single target id method.</p>
-     * @param <I>                   {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entity                E <p>The entity parameter is <code>E</code> type.</p>
-     * @param model                 M <p>The model parameter is <code>M</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entity E <p>The entity parameter is <code>E</code> type.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @param targetQueryByTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target query by target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param entityGetTargetId     {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The entity get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget       {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param entityGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The entity get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             E entity, M model, FunctionActuator<I, T> targetQueryByTargetId,
@@ -323,23 +324,23 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleSourceId</code>
      * <p>The build single source id method.</p>
-     * @param <I>                   {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entity                E <p>The entity parameter is <code>E</code> type.</p>
-     * @param model                 M <p>The model parameter is <code>M</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entity E <p>The entity parameter is <code>E</code> type.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @param targetQueryBySourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target query by source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget       {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
-     * @param index                 {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param isLoadArray           {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  java.lang.Integer
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             E entity, M model, FunctionActuator<I, T> targetQueryBySourceId,
@@ -359,19 +360,19 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleSourceId</code>
      * <p>The build single source id method.</p>
-     * @param <I>                   {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entity                E <p>The entity parameter is <code>E</code> type.</p>
-     * @param model                 M <p>The model parameter is <code>M</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entity E <p>The entity parameter is <code>E</code> type.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @param targetQueryBySourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target query by source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget       {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             E entity, M model, FunctionActuator<I, T> targetQueryBySourceId,
@@ -387,24 +388,24 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleSourceId</code>
      * <p>The build single source id method.</p>
-     * @param <I>                   {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entity                E <p>The entity parameter is <code>E</code> type.</p>
-     * @param model                 M <p>The model parameter is <code>M</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entity E <p>The entity parameter is <code>E</code> type.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @param targetQueryBySourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target query by source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param entityGetSourceId     {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The entity get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget       {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
-     * @param index                 {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param isLoadArray           {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param entityGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The entity get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  java.lang.Integer
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             E entity, M model, FunctionActuator<I, T> targetQueryBySourceId,
@@ -424,20 +425,20 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleSourceId</code>
      * <p>The build single source id method.</p>
-     * @param <I>                   {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                   {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entity                E <p>The entity parameter is <code>E</code> type.</p>
-     * @param model                 M <p>The model parameter is <code>M</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entity E <p>The entity parameter is <code>E</code> type.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @param targetQueryBySourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target query by source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param entityGetSourceId     {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The entity get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget       {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param entityGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The entity get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             E entity, M model, FunctionActuator<I, T> targetQueryBySourceId,
@@ -458,22 +459,22 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiTargetId</code>
      * <p>The build multi target id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param model                         M <p>The model parameter is <code>M</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @param targetListQueryByTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetTargetIdList         {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList           {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
-     * @param index                         {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param isLoadArray                   {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param sourceGetTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id list parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  java.lang.Integer
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             M model, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
@@ -493,18 +494,18 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiTargetId</code>
      * <p>The build multi target id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param model                         M <p>The model parameter is <code>M</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @param targetListQueryByTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetTargetIdList         {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList           {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param sourceGetTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id list parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             M model, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
@@ -521,23 +522,23 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiSourceId</code>
      * <p>The build multi source id method.</p>
-     * @param <I>                       {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                       {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                       {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                       {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entity                    E <p>The entity parameter is <code>E</code> type.</p>
-     * @param model                     M <p>The model parameter is <code>M</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entity E <p>The entity parameter is <code>E</code> type.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @param targetListQueryBySourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList       {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
-     * @param index                     {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param isLoadArray               {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  java.lang.Integer
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             E entity, M model, FunctionActuator<I, List<T>> targetListQueryBySourceId,
@@ -557,19 +558,19 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiSourceId</code>
      * <p>The build multi source id method.</p>
-     * @param <I>                       {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                       {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                       {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                       {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entity                    E <p>The entity parameter is <code>E</code> type.</p>
-     * @param model                     M <p>The model parameter is <code>M</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entity E <p>The entity parameter is <code>E</code> type.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @param targetListQueryBySourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList       {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             E entity, M model, FunctionActuator<I, List<T>> targetListQueryBySourceId,
@@ -585,24 +586,24 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiSourceId</code>
      * <p>The build multi source id method.</p>
-     * @param <I>                       {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                       {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                       {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                       {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entity                    E <p>The entity parameter is <code>E</code> type.</p>
-     * @param model                     M <p>The model parameter is <code>M</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entity E <p>The entity parameter is <code>E</code> type.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @param targetListQueryBySourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param entityGetSourceId         {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The entity get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList       {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
-     * @param index                     {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param isLoadArray               {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param entityGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The entity get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  java.lang.Integer
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             E entity, M model, FunctionActuator<I, List<T>> targetListQueryBySourceId,
@@ -622,20 +623,20 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiSourceId</code>
      * <p>The build multi source id method.</p>
-     * @param <I>                       {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                       {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                       {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                       {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entity                    E <p>The entity parameter is <code>E</code> type.</p>
-     * @param model                     M <p>The model parameter is <code>M</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entity E <p>The entity parameter is <code>E</code> type.</p>
+     * @param model M <p>The model parameter is <code>M</code> type.</p>
      * @param targetListQueryBySourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param entityGetSourceId         {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The entity get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList       {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param entityGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The entity get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             E entity, M model, FunctionActuator<I, List<T>> targetListQueryBySourceId,
@@ -653,27 +654,27 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleTargetId</code>
      * <p>The build single target id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entityList                    {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryByTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param entityGetTargetId             {@link java.util.function.Function} <p>The entity get target id parameter is <code>Function</code> type.</p>
-     * @param sourceGetTargetId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget               {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
-     * @param index                         {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param isLoadArray                   {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param entityGetTargetId {@link java.util.function.Function} <p>The entity get target id parameter is <code>Function</code> type.</p>
+     * @param sourceGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.function.Function
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  java.lang.Integer
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.function.Function
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
@@ -690,23 +691,23 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleTargetId</code>
      * <p>The build single target id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entityList                    {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryByTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param entityGetTargetId             {@link java.util.function.Function} <p>The entity get target id parameter is <code>Function</code> type.</p>
-     * @param sourceGetTargetId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget               {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param entityGetTargetId {@link java.util.function.Function} <p>The entity get target id parameter is <code>Function</code> type.</p>
+     * @param sourceGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.function.Function
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.function.Function
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
@@ -722,28 +723,28 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleTargetId</code>
      * <p>The build single target id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entityList                    {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryByTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param entityGetTargetId             {@link java.util.function.Function} <p>The entity get target id parameter is <code>Function</code> type.</p>
-     * @param targetGetTargetId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetTargetId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget               {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
-     * @param index                         {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param isLoadArray                   {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param entityGetTargetId {@link java.util.function.Function} <p>The entity get target id parameter is <code>Function</code> type.</p>
+     * @param targetGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.function.Function
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  java.lang.Integer
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.function.Function
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
@@ -761,24 +762,24 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleTargetId</code>
      * <p>The build single target id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entityList                    {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryByTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param entityGetTargetId             {@link java.util.function.Function} <p>The entity get target id parameter is <code>Function</code> type.</p>
-     * @param targetGetTargetId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetTargetId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget               {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param entityGetTargetId {@link java.util.function.Function} <p>The entity get target id parameter is <code>Function</code> type.</p>
+     * @param targetGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.function.Function
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.function.Function
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleTargetId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
@@ -795,25 +796,25 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleSourceId</code>
      * <p>The build single source id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entityList                    {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryBySourceIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by source id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param targetGetSourceId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget               {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
-     * @param index                         {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param isLoadArray                   {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param targetGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  java.lang.Integer
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
@@ -830,21 +831,21 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleSourceId</code>
      * <p>The build single source id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entityList                    {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryBySourceIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by source id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param targetGetSourceId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget               {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param targetGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
@@ -860,28 +861,28 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleSourceId</code>
      * <p>The build single source id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entityList                    {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryBySourceIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by source id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param entityGetSourceId             {@link java.util.function.Function} <p>The entity get source id parameter is <code>Function</code> type.</p>
-     * @param targetGetSourceId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetSourceId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget               {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
-     * @param index                         {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param isLoadArray                   {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param entityGetSourceId {@link java.util.function.Function} <p>The entity get source id parameter is <code>Function</code> type.</p>
+     * @param targetGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.function.Function
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  java.lang.Integer
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.function.Function
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
@@ -899,24 +900,24 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleSourceId</code>
      * <p>The build single source id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entityList                    {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryBySourceIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by source id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param entityGetSourceId             {@link java.util.function.Function} <p>The entity get source id parameter is <code>Function</code> type.</p>
-     * @param targetGetSourceId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetSourceId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget               {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param entityGetSourceId {@link java.util.function.Function} <p>The entity get source id parameter is <code>Function</code> type.</p>
+     * @param targetGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.function.Function
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.function.Function
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildSingleSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
@@ -933,23 +934,23 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiTargetId</code>
      * <p>The build multi target id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryByTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetTargetIdList         {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList           {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
-     * @param index                         {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param isLoadArray                   {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param sourceGetTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id list parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  java.lang.Integer
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
@@ -978,19 +979,19 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiTargetId</code>
      * <p>The build multi target id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryByTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetTargetIdList         {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList           {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param sourceGetTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id list parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
@@ -1018,25 +1019,25 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiTargetId</code>
      * <p>The build multi target id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryByTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetSourceId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetTargetIdList         {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param targetGetTargetId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList           {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
-     * @param index                         {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param isLoadArray                   {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param sourceGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceGetTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id list parameter is <code>FunctionActuator</code> type.</p>
+     * @param targetGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  java.lang.Integer
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
@@ -1066,21 +1067,21 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiTargetId</code>
      * <p>The build multi target id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryByTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetSourceId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetTargetIdList         {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param targetGetTargetId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList           {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param sourceGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceGetTargetIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id list parameter is <code>FunctionActuator</code> type.</p>
+     * @param targetGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetId(
             Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryByTargetIdList,
@@ -1109,25 +1110,25 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiSourceId</code>
      * <p>The build multi source id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entityList                    {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryBySourceIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by source id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param targetGetSourceId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList           {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
-     * @param index                         {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param isLoadArray                   {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param targetGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  java.lang.Integer
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
@@ -1144,26 +1145,26 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiSourceId</code>
      * <p>The build multi source id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entityList                    {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryBySourceIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by source id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param targetGetSourceId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetSourceId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList           {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
-     * @param index                         {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param isLoadArray                   {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param targetGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  java.lang.Integer
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
@@ -1181,22 +1182,22 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiSourceId</code>
      * <p>The build multi source id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entityList                    {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryBySourceIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by source id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param targetGetSourceId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetTargetId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList           {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param targetGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
@@ -1212,28 +1213,28 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiSourceId</code>
      * <p>The build multi source id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entityList                    {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryBySourceIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by source id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param entityGetSourceId             {@link java.util.function.Function} <p>The entity get source id parameter is <code>Function</code> type.</p>
-     * @param targetGetSourceId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetTargetId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList           {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
-     * @param index                         {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param isLoadArray                   {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param entityGetSourceId {@link java.util.function.Function} <p>The entity get source id parameter is <code>Function</code> type.</p>
+     * @param targetGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.function.Function
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  java.lang.Integer
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.function.Function
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
@@ -1251,24 +1252,24 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiSourceId</code>
      * <p>The build multi source id method.</p>
-     * @param <I>                           {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <E>                           {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param entityList                    {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @param modelList                     {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param targetListQueryBySourceIdList {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target list query by source id list parameter is <code>FunctionActuator</code> type.</p>
-     * @param entityGetSourceId             {@link java.util.function.Function} <p>The entity get source id parameter is <code>Function</code> type.</p>
-     * @param targetGetSourceId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetTargetId             {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList           {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param entityGetSourceId {@link java.util.function.Function} <p>The entity get source id parameter is <code>Function</code> type.</p>
+     * @param targetGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.function.Function
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.function.Function
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>, E extends RestId<I>> void buildMultiSourceId(
             Collection<E> entityList, Collection<M> modelList, FunctionActuator<Collection<I>, List<T>> targetListQueryBySourceIdList,
@@ -1286,19 +1287,19 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleTargetTargetId</code>
      * <p>The build single target target id method.</p>
-     * @param <I>               {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>               {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>               {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param modelList         {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param targetList        {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param targetList {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
      * @param sourceGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget   {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildSingleTargetTargetId(
             Collection<M> modelList, Collection<T> targetList, FunctionActuator<M, I> sourceGetTargetId, BiConsumerActuator<M, T> sourceSetTarget
@@ -1313,20 +1314,20 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleTargetTargetId</code>
      * <p>The build single target target id method.</p>
-     * @param <I>               {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>               {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>               {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param modelList         {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param targetList        {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param targetList {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
      * @param targetGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get target id parameter is <code>FunctionActuator</code> type.</p>
      * @param sourceGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget   {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildSingleTargetTargetId(
             Collection<M> modelList, Collection<T> targetList, FunctionActuator<T, I> targetGetTargetId,
@@ -1342,19 +1343,19 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleTargetSourceId</code>
      * <p>The build single target source id method.</p>
-     * @param <I>               {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>               {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>               {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param modelList         {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param targetList        {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param targetList {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
      * @param targetGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget   {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildSingleTargetSourceId(
             Collection<M> modelList, Collection<T> targetList, FunctionActuator<T, I> targetGetSourceId,
@@ -1370,20 +1371,20 @@ public class MEBuilderHelper {
     /**
      * <code>buildSingleTargetSourceId</code>
      * <p>The build single target source id method.</p>
-     * @param <I>               {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>               {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>               {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param modelList         {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param targetList        {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param targetList {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
      * @param targetGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
      * @param sourceGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTarget   {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildSingleTargetSourceId(
             Collection<M> modelList, Collection<T> targetList, FunctionActuator<T, I> targetGetSourceId,
@@ -1399,19 +1400,19 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiTargetTargetId</code>
      * <p>The build multi target target id method.</p>
-     * @param <I>                     {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                     {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                     {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param modelList               {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param targetList              {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param targetList {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
      * @param sourceIdTargetIdListMap {@link java.util.Map} <p>The source id target id list map parameter is <code>Map</code> type.</p>
-     * @param sourceSetTargetList     {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  java.util.Map
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see java.util.Map
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetTargetId(
             Collection<M> modelList, Collection<T> targetList, Map<I, List<I>> sourceIdTargetIdListMap,
@@ -1427,22 +1428,22 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiTargetTargetId</code>
      * <p>The build multi target target id method.</p>
-     * @param <I>                     {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                     {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                     {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param modelList               {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param targetList              {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param targetList {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
      * @param sourceIdTargetIdListMap {@link java.util.Map} <p>The source id target id list map parameter is <code>Map</code> type.</p>
-     * @param targetGetTargetId       {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get target id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetSourceId       {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceSetTargetList     {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @param targetGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  java.util.Map
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see java.util.Map
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetTargetId(
             Collection<M> modelList, Collection<T> targetList, Map<I, List<I>> sourceIdTargetIdListMap,
@@ -1459,19 +1460,19 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiTargetSourceId</code>
      * <p>The build multi target source id method.</p>
-     * @param <I>                 {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                 {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                 {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param modelList           {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param targetList          {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
-     * @param targetGetSourceId   {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param targetList {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
+     * @param targetGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
      * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetSourceId(
             Collection<M> modelList, Collection<T> targetList,
@@ -1487,20 +1488,20 @@ public class MEBuilderHelper {
     /**
      * <code>buildMultiTargetSourceId</code>
      * <p>The build multi target source id method.</p>
-     * @param <I>                 {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                 {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                 {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param modelList           {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param targetList          {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
-     * @param targetGetSourceId   {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
-     * @param sourceGetSourceId   {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param targetList {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
+     * @param targetGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @param sourceGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The source get source id parameter is <code>FunctionActuator</code> type.</p>
      * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void buildMultiTargetSourceId(
             Collection<M> modelList, Collection<T> targetList,
@@ -1518,20 +1519,20 @@ public class MEBuilderHelper {
     /**
      * <code>sourceTarget</code>
      * <p>The source target method.</p>
-     * @param <I>             {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>             {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>             {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param modelList       {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param getIdKey        {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The get id key parameter is <code>FunctionActuator</code> type.</p>
-     * @param keyIdTargetMap  {@link java.util.Map} <p>The key id target map parameter is <code>Map</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param getIdKey {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The get id key parameter is <code>FunctionActuator</code> type.</p>
+     * @param keyIdTargetMap {@link java.util.Map} <p>The key id target map parameter is <code>Map</code> type.</p>
      * @param sourceSetTarget {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.Map
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.Map
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void sourceTarget(
             Collection<M> modelList, FunctionActuator<M, I> getIdKey,
@@ -1551,20 +1552,20 @@ public class MEBuilderHelper {
     /**
      * <code>sourceTargetList</code>
      * <p>The source target list method.</p>
-     * @param <I>                 {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <M>                 {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <T>                 {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param modelList           {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param getIdKey            {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The get id key parameter is <code>FunctionActuator</code> type.</p>
-     * @param keyIdTargetListMap  {@link java.util.Map} <p>The key id target list map parameter is <code>Map</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
+     * @param getIdKey {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The get id key parameter is <code>FunctionActuator</code> type.</p>
+     * @param keyIdTargetListMap {@link java.util.Map} <p>The key id target list map parameter is <code>Map</code> type.</p>
      * @param sourceSetTargetList {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The source set target list parameter is <code>BiConsumerActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  java.util.Map
+     * @see  io.github.nichetoolkit.rest.actuator.BiConsumerActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see java.util.Map
-     * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, M extends RestId<I>, T extends RestId<I>> void sourceTargetList(
             Collection<M> modelList, FunctionActuator<M, I> getIdKey,
@@ -1585,17 +1586,17 @@ public class MEBuilderHelper {
     /**
      * <code>targetMapTargetId</code>
      * <p>The target map target id method.</p>
-     * @param <I>               {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <T>               {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param targetList        {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
-     * @param targetMap         {@link java.util.Map} <p>The target map parameter is <code>Map</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param targetList {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
+     * @param targetMap {@link java.util.Map} <p>The target map parameter is <code>Map</code> type.</p>
      * @param targetGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  java.util.Map
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see java.util.Map
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, T extends RestId<I>> void targetMapTargetId(Collection<T> targetList, Map<I, T> targetMap, FunctionActuator<T, I> targetGetTargetId) throws RestException {
         for (T target : targetList) {
@@ -1608,17 +1609,17 @@ public class MEBuilderHelper {
     /**
      * <code>targetMapSourceId</code>
      * <p>The target map source id method.</p>
-     * @param <I>               {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <T>               {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param targetList        {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
-     * @param targetMap         {@link java.util.Map} <p>The target map parameter is <code>Map</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param targetList {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
+     * @param targetMap {@link java.util.Map} <p>The target map parameter is <code>Map</code> type.</p>
      * @param targetGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  java.util.Map
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see java.util.Map
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, T extends RestId<I>> void targetMapSourceId(Collection<T> targetList, Map<I, T> targetMap, FunctionActuator<T, I> targetGetSourceId) throws RestException {
         for (T target : targetList) {
@@ -1631,18 +1632,18 @@ public class MEBuilderHelper {
     /**
      * <code>targetListMapTargetId</code>
      * <p>The target list map target id method.</p>
-     * @param <I>                     {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <T>                     {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param targetList              {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
-     * @param sourceIdTargetListMap   {@link java.util.Map} <p>The source id target list map parameter is <code>Map</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param targetList {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
+     * @param sourceIdTargetListMap {@link java.util.Map} <p>The source id target list map parameter is <code>Map</code> type.</p>
      * @param sourceIdTargetIdListMap {@link java.util.Map} <p>The source id target id list map parameter is <code>Map</code> type.</p>
-     * @param targetGetTargetId       {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @param targetGetTargetId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get target id parameter is <code>FunctionActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  java.util.Map
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see java.util.Map
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, T extends RestId<I>> void targetListMapTargetId(Collection<T> targetList, Map<I, List<T>> sourceIdTargetListMap, Map<I, List<I>> sourceIdTargetIdListMap, FunctionActuator<T, I> targetGetTargetId) throws RestException {
         Map<I, T> targetIdTargetMap = new HashMap<>();
@@ -1666,17 +1667,17 @@ public class MEBuilderHelper {
     /**
      * <code>targetListMapSourceId</code>
      * <p>The target list map source id method.</p>
-     * @param <I>               {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <T>               {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param targetList        {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
-     * @param targetListMap     {@link java.util.Map} <p>The target list map parameter is <code>Map</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <T>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param targetList {@link java.util.Collection} <p>The target list parameter is <code>Collection</code> type.</p>
+     * @param targetListMap {@link java.util.Map} <p>The target list map parameter is <code>Map</code> type.</p>
      * @param targetGetSourceId {@link io.github.nichetoolkit.rest.actuator.FunctionActuator} <p>The target get source id parameter is <code>FunctionActuator</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.util.Collection
+     * @see  java.util.Map
+     * @see  io.github.nichetoolkit.rest.actuator.FunctionActuator
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.util.Collection
-     * @see java.util.Map
-     * @see io.github.nichetoolkit.rest.actuator.FunctionActuator
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <I, T extends RestId<I>> void targetListMapSourceId(Collection<T> targetList, Map<I, List<T>> targetListMap, FunctionActuator<T, I> targetGetSourceId) throws RestException {
         for (T target : targetList) {

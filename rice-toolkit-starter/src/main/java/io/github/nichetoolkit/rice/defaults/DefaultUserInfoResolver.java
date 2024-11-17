@@ -3,6 +3,7 @@ package io.github.nichetoolkit.rice.defaults;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.RestUserInfo;
 import io.github.nichetoolkit.rice.RestUserResolver;
 import io.github.nichetoolkit.rice.stereotype.RestUser;
 import lombok.extern.slf4j.Slf4j;
@@ -22,10 +23,10 @@ import java.util.List;
 /**
  * <code>DefaultUserInfoResolver</code>
  * <p>The default user info resolver class.</p>
+ * @see  org.springframework.web.method.support.HandlerMethodArgumentResolver
+ * @see  lombok.extern.slf4j.Slf4j
+ * @see  org.springframework.stereotype.Component
  * @author Cyan (snow22314@outlook.com)
- * @see org.springframework.web.method.support.HandlerMethodArgumentResolver
- * @see lombok.extern.slf4j.Slf4j
- * @see org.springframework.stereotype.Component
  * @since Jdk1.8
  */
 @Slf4j
@@ -35,7 +36,7 @@ public class DefaultUserInfoResolver implements HandlerMethodArgumentResolver {
     /**
      * <code>userResolvers</code>
      * {@link java.util.List} <p>The <code>userResolvers</code> field.</p>
-     * @see java.util.List
+     * @see  java.util.List
      */
     private final List<RestUserResolver> userResolvers;
 
@@ -51,8 +52,8 @@ public class DefaultUserInfoResolver implements HandlerMethodArgumentResolver {
      * <code>DefaultUserInfoResolver</code>
      * <p>Instantiates a new default user info resolver.</p>
      * @param userResolvers {@link java.util.List} <p>The user resolvers parameter is <code>List</code> type.</p>
-     * @see java.util.List
-     * @see org.springframework.beans.factory.annotation.Autowired
+     * @see  java.util.List
+     * @see  org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired(required = false)
     public DefaultUserInfoResolver(List<RestUserResolver> userResolvers) {

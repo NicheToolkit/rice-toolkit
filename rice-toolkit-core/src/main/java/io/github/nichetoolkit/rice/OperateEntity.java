@@ -2,18 +2,18 @@ package io.github.nichetoolkit.rice;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.nichetoolkit.mybatis.stereotype.column.RestOperateKey;
+import io.github.nichetoolkit.rice.column.RestOperateKey;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import org.springframework.lang.NonNull;
 
 /**
  * <code>OperateEntity</code>
  * <p>The operate entity class.</p>
+ * @see  io.github.nichetoolkit.rice.LogicEntity
+ * @see  java.lang.SuppressWarnings
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.LogicEntity
- * @see java.lang.SuppressWarnings
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @SuppressWarnings("WeakerAccess")
@@ -24,8 +24,8 @@ public class OperateEntity extends LogicEntity {
     /**
      * <code>operate</code>
      * {@link java.lang.Integer} <p>The <code>operate</code> field.</p>
-     * @see java.lang.Integer
-     * @see io.github.nichetoolkit.mybatis.stereotype.column.RestOperateKey
+     * @see  java.lang.Integer
+     * @see  io.github.nichetoolkit.rice.column.RestOperateKey
      */
     @RestOperateKey
     protected Integer operate;
@@ -41,7 +41,7 @@ public class OperateEntity extends LogicEntity {
      * <code>OperateEntity</code>
      * <p>Instantiates a new operate entity.</p>
      * @param builder {@link io.github.nichetoolkit.rice.OperateEntity.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.OperateEntity.Builder
+     * @see  io.github.nichetoolkit.rice.OperateEntity.Builder
      */
     public OperateEntity(OperateEntity.Builder builder) {
         super(builder);
@@ -51,8 +51,8 @@ public class OperateEntity extends LogicEntity {
     /**
      * <code>getOperate</code>
      * <p>The get operate getter method.</p>
-     * @return {@link java.lang.Integer} <p>The get operate return object is <code>Integer</code> type.</p>
-     * @see java.lang.Integer
+     * @return  {@link java.lang.Integer} <p>The get operate return object is <code>Integer</code> type.</p>
+     * @see  java.lang.Integer
      */
     public Integer getOperate() {
         return operate;
@@ -62,7 +62,7 @@ public class OperateEntity extends LogicEntity {
      * <code>setOperate</code>
      * <p>The set operate setter method.</p>
      * @param operate {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
-     * @see java.lang.Integer
+     * @see  java.lang.Integer
      */
     public void setOperate(Integer operate) {
         this.operate = operate;
@@ -71,9 +71,9 @@ public class OperateEntity extends LogicEntity {
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
+     * @see  io.github.nichetoolkit.rice.LogicEntity.Builder
+     * @see  java.lang.SuppressWarnings
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.LogicEntity.Builder
-     * @see java.lang.SuppressWarnings
      * @since Jdk1.8
      */
     @SuppressWarnings("WeakerAccess")
@@ -81,7 +81,7 @@ public class OperateEntity extends LogicEntity {
         /**
          * <code>operate</code>
          * {@link java.lang.Integer} <p>The <code>operate</code> field.</p>
-         * @see java.lang.Integer
+         * @see  java.lang.Integer
          */
         protected Integer operate;
 
@@ -96,8 +96,8 @@ public class OperateEntity extends LogicEntity {
          * <code>operate</code>
          * <p>The operate method.</p>
          * @param operate {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.OperateEntity.Builder} <p>The operate return object is <code>Builder</code> type.</p>
-         * @see java.lang.Integer
+         * @see  java.lang.Integer
+         * @return  {@link io.github.nichetoolkit.rice.OperateEntity.Builder} <p>The operate return object is <code>Builder</code> type.</p>
          */
         public OperateEntity.Builder operate(Integer operate) {
             this.operate = operate;
@@ -108,9 +108,9 @@ public class OperateEntity extends LogicEntity {
          * <code>operate</code>
          * <p>The operate method.</p>
          * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.OperateEntity.Builder} <p>The operate return object is <code>Builder</code> type.</p>
-         * @see io.github.nichetoolkit.rice.enums.OperateType
-         * @see org.springframework.lang.NonNull
+         * @see  io.github.nichetoolkit.rice.enums.OperateType
+         * @see  org.springframework.lang.NonNull
+         * @return  {@link io.github.nichetoolkit.rice.OperateEntity.Builder} <p>The operate return object is <code>Builder</code> type.</p>
          */
         public OperateEntity.Builder operate(@NonNull OperateType operate) {
             this.operate = operate.getKey();

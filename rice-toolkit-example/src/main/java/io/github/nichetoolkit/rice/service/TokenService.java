@@ -10,6 +10,7 @@ import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
 import io.github.nichetoolkit.rest.worker.jwt.JwtWorker;
 import io.github.nichetoolkit.rice.RestTokenResolver;
+import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.error.TokenInvalidException;
 import io.github.nichetoolkit.rice.helper.HttpRequestHelper;
 import io.github.nichetoolkit.rice.simple.LoginResult;
@@ -29,10 +30,10 @@ import java.util.Map;
 /**
  * <code>TokenService</code>
  * <p>The token service class.</p>
+ * @see  io.github.nichetoolkit.rice.RestTokenResolver
+ * @see  lombok.extern.slf4j.Slf4j
+ * @see  org.springframework.stereotype.Service
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.RestTokenResolver
- * @see lombok.extern.slf4j.Slf4j
- * @see org.springframework.stereotype.Service
  * @since Jdk1.8
  */
 @Slf4j
@@ -42,7 +43,7 @@ public class TokenService implements RestTokenResolver<UserModel, LoginResult> {
     /**
      * <code>redisTemplate</code>
      * {@link org.springframework.data.redis.core.StringRedisTemplate} <p>The <code>redisTemplate</code> field.</p>
-     * @see org.springframework.data.redis.core.StringRedisTemplate
+     * @see  org.springframework.data.redis.core.StringRedisTemplate
      */
     protected final StringRedisTemplate redisTemplate;
 
@@ -50,8 +51,8 @@ public class TokenService implements RestTokenResolver<UserModel, LoginResult> {
      * <code>TokenService</code>
      * <p>Instantiates a new token service.</p>
      * @param redisTemplate {@link org.springframework.data.redis.core.StringRedisTemplate} <p>The redis template parameter is <code>StringRedisTemplate</code> type.</p>
-     * @see org.springframework.data.redis.core.StringRedisTemplate
-     * @see org.springframework.beans.factory.annotation.Autowired
+     * @see  org.springframework.data.redis.core.StringRedisTemplate
+     * @see  org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired
     public TokenService(StringRedisTemplate redisTemplate) {

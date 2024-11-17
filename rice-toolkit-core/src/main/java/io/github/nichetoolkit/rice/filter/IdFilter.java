@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
-import io.github.nichetoolkit.mybatis.builder.SqlUtils;
-import io.github.nichetoolkit.mybatis.enums.StyleType;
-import io.github.nichetoolkit.mybatis.stereotype.table.RestIdentity;
+import io.github.nichetoolkit.rice.builder.SqlBuilder;
+import io.github.nichetoolkit.rice.builder.SqlUtils;
+import io.github.nichetoolkit.rice.enums.StyleType;
+import io.github.nichetoolkit.rice.table.RestIdentity;
 import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
@@ -21,13 +21,13 @@ import java.util.*;
 /**
  * <code>IdFilter</code>
  * <p>The id filter class.</p>
- * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @see  io.github.nichetoolkit.rice.filter.TableFilter
+ * @see  java.lang.SuppressWarnings
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.filter.TableFilter
- * @see java.lang.SuppressWarnings
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @SuppressWarnings({"WeakerAccess", "MixedMutabilityReturnType"})
@@ -36,9 +36,9 @@ import java.util.*;
 public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>SQL_BUILDER</code>
-     * {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The <code>SQL_BUILDER</code> field.</p>
-     * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
-     * @see com.fasterxml.jackson.annotation.JsonIgnore
+     * {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The <code>SQL_BUILDER</code> field.</p>
+     * @see  io.github.nichetoolkit.rice.builder.SqlBuilder
+     * @see  com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
     protected final SqlBuilder SQL_BUILDER = new SqlBuilder();
@@ -46,8 +46,8 @@ public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>SQL_CACHE</code>
      * {@link java.lang.ThreadLocal} <p>The <code>SQL_CACHE</code> field.</p>
-     * @see java.lang.ThreadLocal
-     * @see com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  java.lang.ThreadLocal
+     * @see  com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
     protected final ThreadLocal<String> SQL_CACHE = new ThreadLocal<>();
@@ -61,7 +61,7 @@ public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>ids</code>
      * {@link java.util.Set} <p>The <code>ids</code> field.</p>
-     * @see java.util.Set
+     * @see  java.util.Set
      */
     protected Set<I> ids;
 
@@ -85,8 +85,8 @@ public class IdFilter<I, K> extends TableFilter<K> {
      * <code>IdFilter</code>
      * <p>Instantiates a new id filter.</p>
      * @param ids I <p>The ids parameter is <code>I</code> type.</p>
-     * @see org.springframework.lang.NonNull
-     * @see java.lang.SuppressWarnings
+     * @see  org.springframework.lang.NonNull
+     * @see  java.lang.SuppressWarnings
      */
     @SuppressWarnings(value = "unchecked")
     public IdFilter(@NonNull I... ids) {
@@ -97,8 +97,8 @@ public class IdFilter<I, K> extends TableFilter<K> {
      * <code>IdFilter</code>
      * <p>Instantiates a new id filter.</p>
      * @param ids {@link java.util.Collection} <p>The ids parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
+     * @see  java.util.Collection
+     * @see  org.springframework.lang.NonNull
      */
     public IdFilter(@NonNull Collection<I> ids) {
         this.ids = new HashSet<>(ids);
@@ -108,7 +108,7 @@ public class IdFilter<I, K> extends TableFilter<K> {
      * <code>IdFilter</code>
      * <p>Instantiates a new id filter.</p>
      * @param builder {@link io.github.nichetoolkit.rice.filter.IdFilter.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.filter.IdFilter.Builder
+     * @see  io.github.nichetoolkit.rice.filter.IdFilter.Builder
      */
     public IdFilter(IdFilter.Builder<I, K> builder) {
         super(builder);
@@ -137,8 +137,8 @@ public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>getIds</code>
      * <p>The get ids getter method.</p>
-     * @return {@link java.util.List} <p>The get ids return object is <code>List</code> type.</p>
-     * @see java.util.List
+     * @return  {@link java.util.List} <p>The get ids return object is <code>List</code> type.</p>
+     * @see  java.util.List
      */
     public List<I> getIds() {
         if (GeneralUtils.isNotEmpty(ids)) {
@@ -151,9 +151,9 @@ public class IdFilter<I, K> extends TableFilter<K> {
      * <code>setIds</code>
      * <p>The set ids setter method.</p>
      * @param ids {@link java.util.Collection} <p>The ids parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
-     * @see com.fasterxml.jackson.annotation.JsonSetter
+     * @see  java.util.Collection
+     * @see  org.springframework.lang.NonNull
+     * @see  com.fasterxml.jackson.annotation.JsonSetter
      */
     @JsonSetter
     public void setIds(@NonNull Collection<I> ids) {
@@ -164,8 +164,8 @@ public class IdFilter<I, K> extends TableFilter<K> {
      * <code>setIds</code>
      * <p>The set ids setter method.</p>
      * @param ids I <p>The ids parameter is <code>I</code> type.</p>
-     * @see org.springframework.lang.NonNull
-     * @see java.lang.SuppressWarnings
+     * @see  org.springframework.lang.NonNull
+     * @see  java.lang.SuppressWarnings
      */
     @SuppressWarnings(value = "unchecked")
     public void setIds(@NonNull I... ids) {
@@ -176,8 +176,8 @@ public class IdFilter<I, K> extends TableFilter<K> {
      * <code>addIds</code>
      * <p>The add ids method.</p>
      * @param ids I <p>The ids parameter is <code>I</code> type.</p>
-     * @see org.springframework.lang.NonNull
-     * @see java.lang.SuppressWarnings
+     * @see  org.springframework.lang.NonNull
+     * @see  java.lang.SuppressWarnings
      */
     @SuppressWarnings(value = "unchecked")
     public void addIds(@NonNull I... ids) {
@@ -192,8 +192,8 @@ public class IdFilter<I, K> extends TableFilter<K> {
      * <code>addIds</code>
      * <p>The add ids method.</p>
      * @param ids {@link java.util.Collection} <p>The ids parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
+     * @see  java.util.Collection
+     * @see  org.springframework.lang.NonNull
      */
     public void addIds(@NonNull Collection<I> ids) {
         if (GeneralUtils.isEmpty(this.ids)) {
@@ -206,8 +206,8 @@ public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>toIds</code>
      * <p>The to ids method.</p>
-     * @return {@link java.util.List} <p>The to ids return object is <code>List</code> type.</p>
-     * @see java.util.List
+     * @return  {@link java.util.List} <p>The to ids return object is <code>List</code> type.</p>
+     * @see  java.util.List
      */
     public List<I> toIds() {
         Set<I> idSet = new HashSet<>();
@@ -224,9 +224,9 @@ public class IdFilter<I, K> extends TableFilter<K> {
      * <code>toIdSort</code>
      * <p>The to id sort method.</p>
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @return {@link java.lang.String} <p>The to id sort return object is <code>String</code> type.</p>
-     * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see  java.lang.String
+     * @see  org.springframework.lang.NonNull
+     * @return  {@link java.lang.String} <p>The to id sort return object is <code>String</code> type.</p>
      */
     public String toIdSort(@NonNull String alias) {
         addSorts(alias);
@@ -236,8 +236,8 @@ public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>toSql</code>
      * <p>The to sql method.</p>
-     * @return {@link java.lang.String} <p>The to sql return object is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @return  {@link java.lang.String} <p>The to sql return object is <code>String</code> type.</p>
+     * @see  java.lang.String
      */
     public String toSql() {
         return toSql(false);
@@ -247,8 +247,8 @@ public class IdFilter<I, K> extends TableFilter<K> {
      * <code>toSql</code>
      * <p>The to sql method.</p>
      * @param resume boolean <p>The resume parameter is <code>boolean</code> type.</p>
-     * @return {@link java.lang.String} <p>The to sql return object is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @return  {@link java.lang.String} <p>The to sql return object is <code>String</code> type.</p>
+     * @see  java.lang.String
      */
     public String toSql(boolean resume) {
         String sql = this.SQL_CACHE.get();
@@ -269,8 +269,8 @@ public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>toDeleteSql</code>
      * <p>The to delete sql method.</p>
-     * @return {@link java.lang.String} <p>The to delete sql return object is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @return  {@link java.lang.String} <p>The to delete sql return object is <code>String</code> type.</p>
+     * @see  java.lang.String
      */
     public String toDeleteSql() {
         return toNonsortSql();
@@ -279,8 +279,8 @@ public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>toNonsortSql</code>
      * <p>The to nonsort sql method.</p>
-     * @return {@link java.lang.String} <p>The to nonsort sql return object is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @return  {@link java.lang.String} <p>The to nonsort sql return object is <code>String</code> type.</p>
+     * @see  java.lang.String
      */
     public String toNonsortSql() {
         String sql = this.SQL_BUILDER.toString();
@@ -312,7 +312,7 @@ public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>toIdSql</code>
      * <p>The to id sql method.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The to id sql return object is <code>IdFilter</code> type.</p>
+     * @return  {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The to id sql return object is <code>IdFilter</code> type.</p>
      */
     public IdFilter<I, K> toIdSql() {
         return toIdSql("id");
@@ -322,10 +322,10 @@ public class IdFilter<I, K> extends TableFilter<K> {
      * <code>toIdSql</code>
      * <p>The to id sql method.</p>
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The to id sql return object is <code>IdFilter</code> type.</p>
-     * @see java.lang.String
-     * @see org.springframework.lang.NonNull
-     * @see java.lang.SuppressWarnings
+     * @see  java.lang.String
+     * @see  org.springframework.lang.NonNull
+     * @see  java.lang.SuppressWarnings
+     * @return  {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The to id sql return object is <code>IdFilter</code> type.</p>
      */
     @SuppressWarnings("unchecked")
     public IdFilter<I, K> toIdSql(@NonNull String alias) {
@@ -352,7 +352,7 @@ public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>toOperateSql</code>
      * <p>The to operate sql method.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The to operate sql return object is <code>IdFilter</code> type.</p>
+     * @return  {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The to operate sql return object is <code>IdFilter</code> type.</p>
      */
     public IdFilter<I, K> toOperateSql() {
         toOperateSql("operate");
@@ -363,9 +363,9 @@ public class IdFilter<I, K> extends TableFilter<K> {
      * <code>toOperateSql</code>
      * <p>The to operate sql method.</p>
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The to operate sql return object is <code>IdFilter</code> type.</p>
-     * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see  java.lang.String
+     * @see  org.springframework.lang.NonNull
+     * @return  {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The to operate sql return object is <code>IdFilter</code> type.</p>
      */
     public IdFilter<I, K> toOperateSql(@NonNull String alias) {
         if (this.isRemove) {
@@ -397,10 +397,10 @@ public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
-     * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @see  io.github.nichetoolkit.rice.filter.TableFilter.Builder
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.filter.TableFilter.Builder
      * @since Jdk1.8
      */
     public static class Builder<I, K> extends TableFilter.Builder<K> {
@@ -412,7 +412,7 @@ public class IdFilter<I, K> extends TableFilter<K> {
         /**
          * <code>ids</code>
          * {@link java.util.Set} <p>The <code>ids</code> field.</p>
-         * @see java.util.Set
+         * @see  java.util.Set
          */
         protected Set<I> ids;
 
@@ -427,7 +427,7 @@ public class IdFilter<I, K> extends TableFilter<K> {
          * <code>id</code>
          * <p>The id method.</p>
          * @param id I <p>The id parameter is <code>I</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.IdFilter.Builder} <p>The id return object is <code>Builder</code> type.</p>
+         * @return  {@link io.github.nichetoolkit.rice.filter.IdFilter.Builder} <p>The id return object is <code>Builder</code> type.</p>
          */
         public IdFilter.Builder<I, K> id(I id) {
             this.id = id;
@@ -438,9 +438,9 @@ public class IdFilter<I, K> extends TableFilter<K> {
          * <code>ids</code>
          * <p>The ids method.</p>
          * @param ids {@link java.util.Collection} <p>The ids parameter is <code>Collection</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.IdFilter.Builder} <p>The ids return object is <code>Builder</code> type.</p>
-         * @see java.util.Collection
-         * @see org.springframework.lang.NonNull
+         * @see  java.util.Collection
+         * @see  org.springframework.lang.NonNull
+         * @return  {@link io.github.nichetoolkit.rice.filter.IdFilter.Builder} <p>The ids return object is <code>Builder</code> type.</p>
          */
         public IdFilter.Builder<I, K> ids(@NonNull Collection<I> ids) {
             this.ids = new HashSet<>(ids);
@@ -451,9 +451,9 @@ public class IdFilter<I, K> extends TableFilter<K> {
          * <code>ids</code>
          * <p>The ids method.</p>
          * @param ids I <p>The ids parameter is <code>I</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.IdFilter.Builder} <p>The ids return object is <code>Builder</code> type.</p>
-         * @see org.springframework.lang.NonNull
-         * @see java.lang.SuppressWarnings
+         * @see  org.springframework.lang.NonNull
+         * @see  java.lang.SuppressWarnings
+         * @return  {@link io.github.nichetoolkit.rice.filter.IdFilter.Builder} <p>The ids return object is <code>Builder</code> type.</p>
          */
         @SuppressWarnings(value = "unchecked")
         public IdFilter.Builder<I, K> ids(@NonNull I... ids) {

@@ -5,6 +5,7 @@ import io.github.nichetoolkit.rest.*;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
+import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.advice.LoginAdvice;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
 import io.github.nichetoolkit.rice.service.TokenService;
@@ -25,10 +26,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * <code>LoginHandler</code>
  * <p>The login handler class.</p>
+ * @see  io.github.nichetoolkit.rice.advice.LoginAdvice
+ * @see  lombok.extern.slf4j.Slf4j
+ * @see  org.springframework.stereotype.Component
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.advice.LoginAdvice
- * @see lombok.extern.slf4j.Slf4j
- * @see org.springframework.stereotype.Component
  * @since Jdk1.8
  */
 @Slf4j
@@ -38,21 +39,21 @@ public class LoginHandler implements LoginAdvice {
     /**
      * <code>loginProperties</code>
      * {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The <code>loginProperties</code> field.</p>
-     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     * @see  io.github.nichetoolkit.rice.configure.RiceLoginProperties
      */
     private final RiceLoginProperties loginProperties;
 
     /**
      * <code>redisTemplate</code>
      * {@link org.springframework.data.redis.core.StringRedisTemplate} <p>The <code>redisTemplate</code> field.</p>
-     * @see org.springframework.data.redis.core.StringRedisTemplate
+     * @see  org.springframework.data.redis.core.StringRedisTemplate
      */
     private final StringRedisTemplate redisTemplate;
 
     /**
      * <code>tokenService</code>
      * {@link io.github.nichetoolkit.rice.service.TokenService} <p>The <code>tokenService</code> field.</p>
-     * @see io.github.nichetoolkit.rice.service.TokenService
+     * @see  io.github.nichetoolkit.rice.service.TokenService
      */
     private final TokenService tokenService;
 
@@ -60,12 +61,12 @@ public class LoginHandler implements LoginAdvice {
      * <code>LoginHandler</code>
      * <p>Instantiates a new login handler.</p>
      * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
-     * @param redisTemplate   {@link org.springframework.data.redis.core.StringRedisTemplate} <p>The redis template parameter is <code>StringRedisTemplate</code> type.</p>
-     * @param tokenService    {@link io.github.nichetoolkit.rice.service.TokenService} <p>The token service parameter is <code>TokenService</code> type.</p>
-     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
-     * @see org.springframework.data.redis.core.StringRedisTemplate
-     * @see io.github.nichetoolkit.rice.service.TokenService
-     * @see org.springframework.beans.factory.annotation.Autowired
+     * @param redisTemplate {@link org.springframework.data.redis.core.StringRedisTemplate} <p>The redis template parameter is <code>StringRedisTemplate</code> type.</p>
+     * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>The token service parameter is <code>TokenService</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     * @see  org.springframework.data.redis.core.StringRedisTemplate
+     * @see  io.github.nichetoolkit.rice.service.TokenService
+     * @see  org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired
     public LoginHandler(RiceLoginProperties loginProperties, StringRedisTemplate redisTemplate, TokenService tokenService) {

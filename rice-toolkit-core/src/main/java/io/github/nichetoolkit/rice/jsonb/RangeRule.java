@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.jsonb;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
+import io.github.nichetoolkit.rice.builder.SqlBuilder;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import org.springframework.lang.NonNull;
@@ -12,11 +12,11 @@ import java.util.Optional;
 /**
  * <code>RangeRule</code>
  * <p>The range rule class.</p>
+ * @see  io.github.nichetoolkit.rice.jsonb.JsonbRule
+ * @see  java.lang.SuppressWarnings
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.jsonb.JsonbRule
- * @see java.lang.SuppressWarnings
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @SuppressWarnings("WeakerAccess")
@@ -27,25 +27,25 @@ public class RangeRule extends JsonbRule<RangeRule> {
     /**
      * <code>type</code>
      * {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The <code>type</code> field.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.ValueType
+     * @see  io.github.nichetoolkit.rice.jsonb.ValueType
      */
     protected ValueType type = ValueType.STRING;
     /**
      * <code>startValue</code>
      * {@link java.lang.Object} <p>The <code>startValue</code> field.</p>
-     * @see java.lang.Object
+     * @see  java.lang.Object
      */
     protected Object startValue;
     /**
      * <code>endValue</code>
      * {@link java.lang.Object} <p>The <code>endValue</code> field.</p>
-     * @see java.lang.Object
+     * @see  java.lang.Object
      */
     protected Object endValue;
     /**
      * <code>operation</code>
      * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>operation</code> field.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.RangeOperation
+     * @see  io.github.nichetoolkit.rice.jsonb.RangeOperation
      */
     protected RangeOperation operation = RangeOperation.GREATER_EQUAL_LESS_EQUAL_OPERATION;
 
@@ -60,15 +60,15 @@ public class RangeRule extends JsonbRule<RangeRule> {
     /**
      * <code>RangeRule</code>
      * <p>Instantiates a new range rule.</p>
-     * @param name       {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
-     * @param type       {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The type parameter is <code>ValueType</code> type.</p>
+     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+     * @param type {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The type parameter is <code>ValueType</code> type.</p>
      * @param startValue {@link java.lang.Object} <p>The start value parameter is <code>Object</code> type.</p>
-     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
-     * @param operation  {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The operation parameter is <code>RangeOperation</code> type.</p>
-     * @see java.lang.String
-     * @see io.github.nichetoolkit.rice.jsonb.ValueType
-     * @see java.lang.Object
-     * @see io.github.nichetoolkit.rice.jsonb.RangeOperation
+     * @param endValue {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @param operation {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The operation parameter is <code>RangeOperation</code> type.</p>
+     * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rice.jsonb.ValueType
+     * @see  java.lang.Object
+     * @see  io.github.nichetoolkit.rice.jsonb.RangeOperation
      */
     public RangeRule(String name, ValueType type, Object startValue, Object endValue, RangeOperation operation) {
         super(name);
@@ -82,7 +82,7 @@ public class RangeRule extends JsonbRule<RangeRule> {
      * <code>RangeRule</code>
      * <p>Instantiates a new range rule.</p>
      * @param builder {@link io.github.nichetoolkit.rice.jsonb.RangeRule.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.RangeRule.Builder
+     * @see  io.github.nichetoolkit.rice.jsonb.RangeRule.Builder
      */
     public RangeRule(RangeRule.Builder builder) {
         super(builder);
@@ -95,8 +95,8 @@ public class RangeRule extends JsonbRule<RangeRule> {
     /**
      * <code>getType</code>
      * <p>The get type getter method.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The get type return object is <code>ValueType</code> type.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.ValueType
+     * @return  {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The get type return object is <code>ValueType</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.jsonb.ValueType
      */
     public ValueType getType() {
         return type;
@@ -106,7 +106,7 @@ public class RangeRule extends JsonbRule<RangeRule> {
      * <code>setType</code>
      * <p>The set type setter method.</p>
      * @param type {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The type parameter is <code>ValueType</code> type.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.ValueType
+     * @see  io.github.nichetoolkit.rice.jsonb.ValueType
      */
     public void setType(ValueType type) {
         this.type = type;
@@ -115,8 +115,8 @@ public class RangeRule extends JsonbRule<RangeRule> {
     /**
      * <code>getStartValue</code>
      * <p>The get start value getter method.</p>
-     * @return {@link java.lang.Object} <p>The get start value return object is <code>Object</code> type.</p>
-     * @see java.lang.Object
+     * @return  {@link java.lang.Object} <p>The get start value return object is <code>Object</code> type.</p>
+     * @see  java.lang.Object
      */
     public Object getStartValue() {
         return startValue;
@@ -126,7 +126,7 @@ public class RangeRule extends JsonbRule<RangeRule> {
      * <code>setStartValue</code>
      * <p>The set start value setter method.</p>
      * @param startValue {@link java.lang.Object} <p>The start value parameter is <code>Object</code> type.</p>
-     * @see java.lang.Object
+     * @see  java.lang.Object
      */
     public void setStartValue(Object startValue) {
         this.startValue = startValue;
@@ -135,8 +135,8 @@ public class RangeRule extends JsonbRule<RangeRule> {
     /**
      * <code>getEndValue</code>
      * <p>The get end value getter method.</p>
-     * @return {@link java.lang.Object} <p>The get end value return object is <code>Object</code> type.</p>
-     * @see java.lang.Object
+     * @return  {@link java.lang.Object} <p>The get end value return object is <code>Object</code> type.</p>
+     * @see  java.lang.Object
      */
     public Object getEndValue() {
         return endValue;
@@ -146,7 +146,7 @@ public class RangeRule extends JsonbRule<RangeRule> {
      * <code>setEndValue</code>
      * <p>The set end value setter method.</p>
      * @param endValue {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
-     * @see java.lang.Object
+     * @see  java.lang.Object
      */
     public void setEndValue(Object endValue) {
         this.endValue = endValue;
@@ -155,8 +155,8 @@ public class RangeRule extends JsonbRule<RangeRule> {
     /**
      * <code>getOperation</code>
      * <p>The get operation getter method.</p>
-     * @return {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The get operation return object is <code>RangeOperation</code> type.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.RangeOperation
+     * @return  {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The get operation return object is <code>RangeOperation</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.jsonb.RangeOperation
      */
     public RangeOperation getOperation() {
         return operation;
@@ -166,7 +166,7 @@ public class RangeRule extends JsonbRule<RangeRule> {
      * <code>setOperation</code>
      * <p>The set operation setter method.</p>
      * @param operation {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The operation parameter is <code>RangeOperation</code> type.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.RangeOperation
+     * @see  io.github.nichetoolkit.rice.jsonb.RangeOperation
      */
     public void setOperation(RangeOperation operation) {
         this.operation = operation;
@@ -195,33 +195,33 @@ public class RangeRule extends JsonbRule<RangeRule> {
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
+     * @see  io.github.nichetoolkit.rice.jsonb.JsonbRule.Builder
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.jsonb.JsonbRule.Builder
      * @since Jdk1.8
      */
     public static class Builder extends JsonbRule.Builder<RangeRule> {
         /**
          * <code>type</code>
          * {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The <code>type</code> field.</p>
-         * @see io.github.nichetoolkit.rice.jsonb.ValueType
+         * @see  io.github.nichetoolkit.rice.jsonb.ValueType
          */
         protected ValueType type;
         /**
          * <code>startValue</code>
          * {@link java.lang.Object} <p>The <code>startValue</code> field.</p>
-         * @see java.lang.Object
+         * @see  java.lang.Object
          */
         protected Object startValue;
         /**
          * <code>endValue</code>
          * {@link java.lang.Object} <p>The <code>endValue</code> field.</p>
-         * @see java.lang.Object
+         * @see  java.lang.Object
          */
         protected Object endValue;
         /**
          * <code>operation</code>
          * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>operation</code> field.</p>
-         * @see io.github.nichetoolkit.rice.jsonb.RangeOperation
+         * @see  io.github.nichetoolkit.rice.jsonb.RangeOperation
          */
         protected RangeOperation operation;
 
@@ -242,8 +242,8 @@ public class RangeRule extends JsonbRule<RangeRule> {
          * <code>type</code>
          * <p>The type method.</p>
          * @param type {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The type parameter is <code>ValueType</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.RangeRule.Builder} <p>The type return object is <code>Builder</code> type.</p>
-         * @see io.github.nichetoolkit.rice.jsonb.ValueType
+         * @see  io.github.nichetoolkit.rice.jsonb.ValueType
+         * @return  {@link io.github.nichetoolkit.rice.jsonb.RangeRule.Builder} <p>The type return object is <code>Builder</code> type.</p>
          */
         public RangeRule.Builder type(ValueType type) {
             this.type = type;
@@ -254,8 +254,8 @@ public class RangeRule extends JsonbRule<RangeRule> {
          * <code>type</code>
          * <p>The type method.</p>
          * @param type {@link java.lang.Integer} <p>The type parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.RangeRule.Builder} <p>The type return object is <code>Builder</code> type.</p>
-         * @see java.lang.Integer
+         * @see  java.lang.Integer
+         * @return  {@link io.github.nichetoolkit.rice.jsonb.RangeRule.Builder} <p>The type return object is <code>Builder</code> type.</p>
          */
         public RangeRule.Builder type(Integer type) {
             this.type = Optional.ofNullable(type).map(ValueType::parseKey).orElse(ValueType.LONG);
@@ -266,8 +266,8 @@ public class RangeRule extends JsonbRule<RangeRule> {
          * <code>start</code>
          * <p>The start method.</p>
          * @param startValue {@link java.lang.Object} <p>The start value parameter is <code>Object</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.RangeRule.Builder} <p>The start return object is <code>Builder</code> type.</p>
-         * @see java.lang.Object
+         * @see  java.lang.Object
+         * @return  {@link io.github.nichetoolkit.rice.jsonb.RangeRule.Builder} <p>The start return object is <code>Builder</code> type.</p>
          */
         public RangeRule.Builder start(Object startValue) {
             this.startValue = startValue;
@@ -278,8 +278,8 @@ public class RangeRule extends JsonbRule<RangeRule> {
          * <code>end</code>
          * <p>The end method.</p>
          * @param endValue {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.RangeRule.Builder} <p>The end return object is <code>Builder</code> type.</p>
-         * @see java.lang.Object
+         * @see  java.lang.Object
+         * @return  {@link io.github.nichetoolkit.rice.jsonb.RangeRule.Builder} <p>The end return object is <code>Builder</code> type.</p>
          */
         public RangeRule.Builder end(Object endValue) {
             this.endValue = endValue;
@@ -290,8 +290,8 @@ public class RangeRule extends JsonbRule<RangeRule> {
          * <code>operation</code>
          * <p>The operation method.</p>
          * @param operation {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The operation parameter is <code>RangeOperation</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.RangeRule.Builder} <p>The operation return object is <code>Builder</code> type.</p>
-         * @see io.github.nichetoolkit.rice.jsonb.RangeOperation
+         * @see  io.github.nichetoolkit.rice.jsonb.RangeOperation
+         * @return  {@link io.github.nichetoolkit.rice.jsonb.RangeRule.Builder} <p>The operation return object is <code>Builder</code> type.</p>
          */
         public RangeRule.Builder operation(RangeOperation operation) {
             this.operation = operation;
@@ -302,8 +302,8 @@ public class RangeRule extends JsonbRule<RangeRule> {
          * <code>operation</code>
          * <p>The operation method.</p>
          * @param operation {@link java.lang.Integer} <p>The operation parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.jsonb.RangeRule.Builder} <p>The operation return object is <code>Builder</code> type.</p>
-         * @see java.lang.Integer
+         * @see  java.lang.Integer
+         * @return  {@link io.github.nichetoolkit.rice.jsonb.RangeRule.Builder} <p>The operation return object is <code>Builder</code> type.</p>
          */
         public RangeRule.Builder operation(Integer operation) {
             this.operation = Optional.ofNullable(operation).map(RangeOperation::parseKey).orElse(RangeOperation.GREATER_EQUAL_LESS_EQUAL_OPERATION);

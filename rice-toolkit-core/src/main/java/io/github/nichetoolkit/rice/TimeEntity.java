@@ -2,11 +2,11 @@ package io.github.nichetoolkit.rice;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.nichetoolkit.mybatis.consts.ScriptConstants;
+import io.github.nichetoolkit.rice.consts.ScriptConstants;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.mybatis.stereotype.column.RestForceInsert;
-import io.github.nichetoolkit.mybatis.stereotype.column.RestForceUpdate;
-import io.github.nichetoolkit.mybatis.stereotype.column.RestUpdate;
+import io.github.nichetoolkit.rice.column.RestForceInsert;
+import io.github.nichetoolkit.rice.column.RestForceUpdate;
+import io.github.nichetoolkit.rice.column.RestUpdate;
 import org.springframework.lang.NonNull;
 
 import java.util.Date;
@@ -14,11 +14,11 @@ import java.util.Date;
 /**
  * <code>TimeEntity</code>
  * <p>The time entity class.</p>
+ * @see  io.github.nichetoolkit.rice.OperateEntity
+ * @see  java.lang.SuppressWarnings
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.OperateEntity
- * @see java.lang.SuppressWarnings
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @SuppressWarnings("WeakerAccess")
@@ -28,9 +28,9 @@ public class TimeEntity extends OperateEntity {
     /**
      * <code>createTime</code>
      * {@link java.util.Date} <p>The <code>createTime</code> field.</p>
-     * @see java.util.Date
-     * @see io.github.nichetoolkit.mybatis.stereotype.column.RestUpdate
-     * @see io.github.nichetoolkit.mybatis.stereotype.column.RestForceInsert
+     * @see  java.util.Date
+     * @see  io.github.nichetoolkit.rice.column.RestUpdate
+     * @see  io.github.nichetoolkit.rice.column.RestForceInsert
      */
     @RestUpdate(false)
     @RestForceInsert(ScriptConstants.NOW)
@@ -38,9 +38,9 @@ public class TimeEntity extends OperateEntity {
     /**
      * <code>updateTime</code>
      * {@link java.util.Date} <p>The <code>updateTime</code> field.</p>
-     * @see java.util.Date
-     * @see io.github.nichetoolkit.mybatis.stereotype.column.RestForceInsert
-     * @see io.github.nichetoolkit.mybatis.stereotype.column.RestForceUpdate
+     * @see  java.util.Date
+     * @see  io.github.nichetoolkit.rice.column.RestForceInsert
+     * @see  io.github.nichetoolkit.rice.column.RestForceUpdate
      */
     @RestForceInsert(ScriptConstants.NOW)
     @RestForceUpdate(ScriptConstants.NOW)
@@ -57,7 +57,7 @@ public class TimeEntity extends OperateEntity {
      * <code>TimeEntity</code>
      * <p>Instantiates a new time entity.</p>
      * @param builder {@link io.github.nichetoolkit.rice.TimeEntity.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.TimeEntity.Builder
+     * @see  io.github.nichetoolkit.rice.TimeEntity.Builder
      */
     public TimeEntity(TimeEntity.Builder builder) {
         super(builder);
@@ -68,8 +68,8 @@ public class TimeEntity extends OperateEntity {
     /**
      * <code>getCreateTime</code>
      * <p>The get create time getter method.</p>
-     * @return {@link java.util.Date} <p>The get create time return object is <code>Date</code> type.</p>
-     * @see java.util.Date
+     * @return  {@link java.util.Date} <p>The get create time return object is <code>Date</code> type.</p>
+     * @see  java.util.Date
      */
     public Date getCreateTime() {
         return createTime;
@@ -79,7 +79,7 @@ public class TimeEntity extends OperateEntity {
      * <code>setCreateTime</code>
      * <p>The set create time setter method.</p>
      * @param createTime {@link java.util.Date} <p>The create time parameter is <code>Date</code> type.</p>
-     * @see java.util.Date
+     * @see  java.util.Date
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
@@ -88,8 +88,8 @@ public class TimeEntity extends OperateEntity {
     /**
      * <code>getUpdateTime</code>
      * <p>The get update time getter method.</p>
-     * @return {@link java.util.Date} <p>The get update time return object is <code>Date</code> type.</p>
-     * @see java.util.Date
+     * @return  {@link java.util.Date} <p>The get update time return object is <code>Date</code> type.</p>
+     * @see  java.util.Date
      */
     public Date getUpdateTime() {
         return updateTime;
@@ -99,7 +99,7 @@ public class TimeEntity extends OperateEntity {
      * <code>setUpdateTime</code>
      * <p>The set update time setter method.</p>
      * @param updateTime {@link java.util.Date} <p>The update time parameter is <code>Date</code> type.</p>
-     * @see java.util.Date
+     * @see  java.util.Date
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
@@ -108,9 +108,9 @@ public class TimeEntity extends OperateEntity {
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
+     * @see  io.github.nichetoolkit.rice.OperateEntity.Builder
+     * @see  java.lang.SuppressWarnings
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.OperateEntity.Builder
-     * @see java.lang.SuppressWarnings
      * @since Jdk1.8
      */
     @SuppressWarnings("WeakerAccess")
@@ -118,13 +118,13 @@ public class TimeEntity extends OperateEntity {
         /**
          * <code>createTime</code>
          * {@link java.util.Date} <p>The <code>createTime</code> field.</p>
-         * @see java.util.Date
+         * @see  java.util.Date
          */
         protected Date createTime;
         /**
          * <code>updateTime</code>
          * {@link java.util.Date} <p>The <code>updateTime</code> field.</p>
-         * @see java.util.Date
+         * @see  java.util.Date
          */
         protected Date updateTime;
 
@@ -139,8 +139,8 @@ public class TimeEntity extends OperateEntity {
          * <code>createTime</code>
          * <p>The create time method.</p>
          * @param createTime {@link java.util.Date} <p>The create time parameter is <code>Date</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.TimeEntity.Builder} <p>The create time return object is <code>Builder</code> type.</p>
-         * @see java.util.Date
+         * @see  java.util.Date
+         * @return  {@link io.github.nichetoolkit.rice.TimeEntity.Builder} <p>The create time return object is <code>Builder</code> type.</p>
          */
         public TimeEntity.Builder createTime(Date createTime) {
             this.createTime = createTime;
@@ -151,8 +151,8 @@ public class TimeEntity extends OperateEntity {
          * <code>updateTime</code>
          * <p>The update time method.</p>
          * @param updateTime {@link java.util.Date} <p>The update time parameter is <code>Date</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.TimeEntity.Builder} <p>The update time return object is <code>Builder</code> type.</p>
-         * @see java.util.Date
+         * @see  java.util.Date
+         * @return  {@link io.github.nichetoolkit.rice.TimeEntity.Builder} <p>The update time return object is <code>Builder</code> type.</p>
          */
         public TimeEntity.Builder updateTime(Date updateTime) {
             this.updateTime = updateTime;

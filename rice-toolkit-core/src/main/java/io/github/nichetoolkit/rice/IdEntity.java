@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.nichetoolkit.mybatis.stereotype.column.RestIdentityKey;
+import io.github.nichetoolkit.rice.column.RestIdentityKey;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.mybatis.provider.Entity;
@@ -15,12 +15,12 @@ import java.util.Objects;
 /**
  * <code>IdEntity</code>
  * <p>The id entity class.</p>
- * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @see  io.github.nichetoolkit.rice.TimeEntity
+ * @see  io.github.nichetoolkit.rice.RestId
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.TimeEntity
- * @see io.github.nichetoolkit.rice.RestId
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
@@ -29,9 +29,9 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
     /**
      * <code>id</code>
      * <p>The <code>id</code> field.</p>
-     * @see com.baomidou.mybatisplus.annotation.TableId
-     * @see io.mybatis.provider.Entity.Column
-     * @see io.github.nichetoolkit.mybatis.stereotype.column.RestIdentityKey
+     * @see  com.baomidou.mybatisplus.annotation.TableId
+     * @see  io.mybatis.provider.Entity.Column
+     * @see  io.github.nichetoolkit.rice.column.RestIdentityKey
      */
     /* 兼容mybatis-plus 3.x版本 */
     @TableId
@@ -60,7 +60,7 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
      * <code>IdEntity</code>
      * <p>Instantiates a new id entity.</p>
      * @param builder {@link io.github.nichetoolkit.rice.IdEntity.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.IdEntity.Builder
+     * @see  io.github.nichetoolkit.rice.IdEntity.Builder
      */
     public IdEntity(IdEntity.Builder<I> builder) {
         super(builder);
@@ -100,9 +100,9 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
-     * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @see  io.github.nichetoolkit.rice.TimeEntity.Builder
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.TimeEntity.Builder
      * @since Jdk1.8
      */
     public static class Builder<I> extends TimeEntity.Builder {
@@ -123,7 +123,7 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
          * <code>id</code>
          * <p>The id method.</p>
          * @param id I <p>The id parameter is <code>I</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.IdEntity.Builder} <p>The id return object is <code>Builder</code> type.</p>
+         * @return  {@link io.github.nichetoolkit.rice.IdEntity.Builder} <p>The id return object is <code>Builder</code> type.</p>
          */
         public IdEntity.Builder<I> id(I id) {
             this.id = id;

@@ -3,6 +3,7 @@ package io.github.nichetoolkit.rice.interceptor;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.advice.LoginAdvice;
 import io.github.nichetoolkit.rice.constant.AdviceConstants;
 import io.github.nichetoolkit.rice.defaults.DefaultTokenContextResolver;
@@ -30,11 +31,11 @@ import java.util.List;
 /**
  * <code>DefaultResponseInterceptor</code>
  * <p>The default response interceptor class.</p>
+ * @see  org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
+ * @see  lombok.extern.slf4j.Slf4j
+ * @see  org.springframework.web.bind.annotation.ControllerAdvice
+ * @see  org.springframework.core.annotation.Order
  * @author Cyan (snow22314@outlook.com)
- * @see org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
- * @see lombok.extern.slf4j.Slf4j
- * @see org.springframework.web.bind.annotation.ControllerAdvice
- * @see org.springframework.core.annotation.Order
  * @since Jdk1.8
  */
 @Slf4j
@@ -45,7 +46,7 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
     /**
      * <code>loginAdvices</code>
      * {@link java.util.List} <p>The <code>loginAdvices</code> field.</p>
-     * @see java.util.List
+     * @see  java.util.List
      */
     private final List<LoginAdvice> loginAdvices;
 
@@ -61,8 +62,8 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
      * <code>DefaultResponseInterceptor</code>
      * <p>Instantiates a new default response interceptor.</p>
      * @param loginAdvices {@link java.util.List} <p>The login advices parameter is <code>List</code> type.</p>
-     * @see java.util.List
-     * @see org.springframework.beans.factory.annotation.Autowired
+     * @see  java.util.List
+     * @see  org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired(required = false)
     public DefaultResponseInterceptor(List<LoginAdvice> loginAdvices) {

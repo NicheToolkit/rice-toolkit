@@ -6,6 +6,9 @@ import io.github.nichetoolkit.rest.holder.BeanDefinitionRegistryHolder;
 import io.github.nichetoolkit.rest.holder.ListableBeanFactoryHolder;
 import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rice.RestId;
+import io.github.nichetoolkit.rice.RestLogicMark;
+import io.github.nichetoolkit.rice.ServiceIntend;
 import io.github.nichetoolkit.rice.configure.RiceServiceProperties;
 import io.github.nichetoolkit.rice.enums.AutoMark;
 import io.github.nichetoolkit.rice.enums.ConfigMark;
@@ -22,8 +25,8 @@ import java.util.List;
 /**
  * <code>ServiceHolder</code>
  * <p>The service holder class.</p>
+ * @see  lombok.extern.slf4j.Slf4j
  * @author Cyan (snow22314@outlook.com)
- * @see lombok.extern.slf4j.Slf4j
  * @since Jdk1.8
  */
 @Slf4j
@@ -32,19 +35,19 @@ public class ServiceHolder {
     /**
      * <code>SERVICE_IMPL_SUFFIX</code>
      * {@link java.lang.String} <p>The constant <code>SERVICE_IMPL_SUFFIX</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public static String SERVICE_IMPL_SUFFIX = "ServiceImpl";
     /**
      * <code>SERVICE_SUFFIX</code>
      * {@link java.lang.String} <p>The constant <code>SERVICE_SUFFIX</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public static String SERVICE_SUFFIX = "Service";
     /**
      * <code>MAPPER_SUFFIX</code>
      * {@link java.lang.String} <p>The constant <code>MAPPER_SUFFIX</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public static String MAPPER_SUFFIX = "Mapper";
     /**
@@ -56,14 +59,14 @@ public class ServiceHolder {
     /**
      * <code>serviceProperties</code>
      * {@link io.github.nichetoolkit.rice.configure.RiceServiceProperties} <p>The constant <code>serviceProperties</code> field.</p>
-     * @see io.github.nichetoolkit.rice.configure.RiceServiceProperties
+     * @see  io.github.nichetoolkit.rice.configure.RiceServiceProperties
      */
     private static RiceServiceProperties serviceProperties;
 
     /**
      * <code>logicMark</code>
      * {@link io.github.nichetoolkit.rice.RestLogicMark} <p>The constant <code>logicMark</code> field.</p>
-     * @see io.github.nichetoolkit.rice.RestLogicMark
+     * @see  io.github.nichetoolkit.rice.RestLogicMark
      */
     private static RestLogicMark logicMark;
 
@@ -84,7 +87,7 @@ public class ServiceHolder {
     /**
      * <code>initOfServiceIntend</code>
      * <p>The init of service intend method.</p>
-     * @see java.lang.SuppressWarnings
+     * @see  java.lang.SuppressWarnings
      */
     @SuppressWarnings("rawtypes")
     static void initOfServiceIntend() {
@@ -112,8 +115,8 @@ public class ServiceHolder {
      * <code>nameOfCommon</code>
      * <p>The name of common method.</p>
      * @param simpleName {@link java.lang.String} <p>The simple name parameter is <code>String</code> type.</p>
-     * @return {@link java.lang.String} <p>The name of common return object is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
+     * @return  {@link java.lang.String} <p>The name of common return object is <code>String</code> type.</p>
      */
     static String nameOfCommon(String simpleName) {
         String commonName;
@@ -130,14 +133,14 @@ public class ServiceHolder {
     /**
      * <code>findSuperMapper</code>
      * <p>The find super mapper method.</p>
-     * @param <E>         {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
-     * @param <I>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param serviceType {@link java.lang.Class} <p>The service type parameter is <code>Class</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.mapper.SuperMapper} <p>The find super mapper return object is <code>SuperMapper</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestId
-     * @see java.lang.Class
-     * @see io.github.nichetoolkit.rice.mapper.SuperMapper
-     * @see java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rice.RestId
+     * @see  java.lang.Class
+     * @see  io.github.nichetoolkit.rice.mapper.SuperMapper
+     * @see  java.lang.SuppressWarnings
+     * @return  {@link io.github.nichetoolkit.rice.mapper.SuperMapper} <p>The find super mapper return object is <code>SuperMapper</code> type.</p>
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     static <E extends RestId<I>, I> SuperMapper<E, I> findSuperMapper(Class<? extends SuperService> serviceType) {
@@ -166,9 +169,9 @@ public class ServiceHolder {
     /**
      * <code>serviceProperties</code>
      * <p>The service properties method.</p>
-     * @return {@link io.github.nichetoolkit.rice.configure.RiceServiceProperties} <p>The service properties return object is <code>RiceServiceProperties</code> type.</p>
-     * @see io.github.nichetoolkit.rice.configure.RiceServiceProperties
-     * @see org.springframework.lang.NonNull
+     * @return  {@link io.github.nichetoolkit.rice.configure.RiceServiceProperties} <p>The service properties return object is <code>RiceServiceProperties</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.configure.RiceServiceProperties
+     * @see  org.springframework.lang.NonNull
      */
     @NonNull
     public static RiceServiceProperties serviceProperties() {
@@ -178,9 +181,9 @@ public class ServiceHolder {
     /**
      * <code>logicMark</code>
      * <p>The logic mark method.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestLogicMark} <p>The logic mark return object is <code>RestLogicMark</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestLogicMark
-     * @see org.springframework.lang.NonNull
+     * @return  {@link io.github.nichetoolkit.rice.RestLogicMark} <p>The logic mark return object is <code>RestLogicMark</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestLogicMark
+     * @see  org.springframework.lang.NonNull
      */
     @NonNull
     public static RestLogicMark logicMark() {
@@ -244,8 +247,8 @@ public class ServiceHolder {
     /**
      * <code>deleteMode</code>
      * <p>The delete mode method.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>The delete mode return object is <code>DeleteMode</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.DeleteMode
+     * @return  {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>The delete mode return object is <code>DeleteMode</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.enums.DeleteMode
      */
     public static DeleteMode deleteMode() {
         return serviceProperties.getDeleteMode();
@@ -254,8 +257,8 @@ public class ServiceHolder {
     /**
      * <code>logicMode</code>
      * <p>The logic mode method.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.LogicMode} <p>The logic mode return object is <code>LogicMode</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.LogicMode
+     * @return  {@link io.github.nichetoolkit.rice.enums.LogicMode} <p>The logic mode return object is <code>LogicMode</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.enums.LogicMode
      */
     public static LogicMode logicMode() {
         return serviceProperties.getLogicMode();
@@ -282,8 +285,8 @@ public class ServiceHolder {
     /**
      * <code>judgeOfAccurate</code>
      * <p>The judge of accurate method.</p>
-     * @return {@link java.lang.Boolean} <p>The judge of accurate return object is <code>Boolean</code> type.</p>
-     * @see java.lang.Boolean
+     * @return  {@link java.lang.Boolean} <p>The judge of accurate return object is <code>Boolean</code> type.</p>
+     * @see  java.lang.Boolean
      */
     public static Boolean judgeOfAccurate() {
         return serviceProperties.judgeOfAccurate();
@@ -319,8 +322,8 @@ public class ServiceHolder {
     /**
      * <code>configMark</code>
      * <p>The config mark method.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.ConfigMark} <p>The config mark return object is <code>ConfigMark</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.ConfigMark
+     * @return  {@link io.github.nichetoolkit.rice.enums.ConfigMark} <p>The config mark return object is <code>ConfigMark</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.enums.ConfigMark
      */
     public static ConfigMark configMark() {
         return serviceProperties.getConfigMark();
@@ -329,8 +332,8 @@ public class ServiceHolder {
     /**
      * <code>autoMark</code>
      * <p>The auto mark method.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.AutoMark} <p>The auto mark return object is <code>AutoMark</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.AutoMark
+     * @return  {@link io.github.nichetoolkit.rice.enums.AutoMark} <p>The auto mark return object is <code>AutoMark</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.enums.AutoMark
      */
     public static AutoMark autoMark() {
         return serviceProperties.getAutoMark();
@@ -339,10 +342,10 @@ public class ServiceHolder {
     /**
      * <code>markOfLogic</code>
      * <p>The mark of logic method.</p>
-     * @return {@link java.lang.Object} <p>The mark of logic return object is <code>Object</code> type.</p>
+     * @return  {@link java.lang.Object} <p>The mark of logic return object is <code>Object</code> type.</p>
+     * @see  java.lang.Object
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.Object
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static Object markOfLogic() throws RestException {
         return logicMark.getLogicMark();
@@ -351,10 +354,10 @@ public class ServiceHolder {
     /**
      * <code>unmarkOfLogic</code>
      * <p>The unmark of logic method.</p>
-     * @return {@link java.lang.Object} <p>The unmark of logic return object is <code>Object</code> type.</p>
+     * @return  {@link java.lang.Object} <p>The unmark of logic return object is <code>Object</code> type.</p>
+     * @see  java.lang.Object
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.Object
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public static Object unmarkOfLogic() throws RestException {
         return logicMark.getLogicUnmark();
