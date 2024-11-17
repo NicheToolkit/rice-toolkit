@@ -23,7 +23,7 @@ public class RiceExampleApplicationTests {
     @Test
     void contextLoads() {
 
-        System.out.println(IdentityUtils.generateString());
+        System.out.println(IdentityUtils.valueOfString());
         // 1835974778298056704
         String password = "123456";
         String encryptPassword = ShaWorker.encrypts(password);
