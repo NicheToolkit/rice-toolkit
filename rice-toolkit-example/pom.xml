@@ -6,11 +6,11 @@
     <parent>
         <groupId>io.github.nichetoolkit</groupId>
         <artifactId>rice-toolkit-parent</artifactId>
-        <version>1.1.1-SNAPSHOT</version>
+        <version>1.1.1</version>
     </parent>
 
     <artifactId>rice-toolkit-example</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.1.1</version>
     <name>rice-toolkit-example</name>
     <packaging>jar</packaging>
     <description>Rice toolkit test example project for Spring Boot</description>
