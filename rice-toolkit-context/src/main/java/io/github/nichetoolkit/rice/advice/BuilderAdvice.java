@@ -1,7 +1,6 @@
 package io.github.nichetoolkit.rice.advice;
 
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rice.RestId;
 
 import java.util.Collection;
 import java.util.List;

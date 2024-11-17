@@ -10,6 +10,7 @@
     <modules>
         <module>rice-toolkit-example</module>
         <module>rice-toolkit-bom</module>
+        <module>rice-toolkit-mybatis</module>
         <module>rice-toolkit-core</module>
         <module>rice-toolkit-context</module>
         <module>rice-toolkit-starter</module>
@@ -132,7 +133,6 @@
 
         <rest-toolkit.version>1.1.1</rest-toolkit.version>
         <rice-toolkit.version>1.1.1</rice-toolkit.version>
-        <mybatis-toolkit.version>1.1.1</mybatis-toolkit.version>
 
         <pagehelper.version>6.1.0</pagehelper.version>
         <mybatis-plus.version>3.5.9</mybatis-plus.version>
@@ -156,7 +156,11 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
+            <dependency>
+                <groupId>io.github.nichetoolkit</groupId>
+                <artifactId>rice-toolkit-mybatis</artifactId>
+                <version>${rice-toolkit.version}</version>
+            </dependency>
             <dependency>
                 <groupId>io.github.nichetoolkit</groupId>
                 <artifactId>rice-toolkit-core</artifactId>
@@ -171,12 +175,6 @@
                 <groupId>io.github.nichetoolkit</groupId>
                 <artifactId>rice-toolkit-starter</artifactId>
                 <version>${rice-toolkit.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.github.nichetoolkit</groupId>
-                <artifactId>mybatis-toolkit-core</artifactId>
-                <version>${mybatis-toolkit.version}</version>
             </dependency>
 
             <dependency>

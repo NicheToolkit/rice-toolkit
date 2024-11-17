@@ -1,6 +1,5 @@
 package io.github.nichetoolkit.rice.mapper.natives;
 
-import io.github.nichetoolkit.rice.RestId;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Collection;

@@ -4,7 +4,6 @@ import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestResult;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
-import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.constant.LoginConstants;
 import io.github.nichetoolkit.rice.error.TokenPermissionException;
 import io.github.nichetoolkit.rice.helper.HttpRequestHelper;

@@ -5,7 +5,6 @@ import io.github.nichetoolkit.rest.RestResult;
 import io.github.nichetoolkit.rest.userlog.LoggingType;
 import io.github.nichetoolkit.rest.userlog.stereotype.RestNotelog;
 import io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog;
-import io.github.nichetoolkit.rice.RestPage;
 import io.github.nichetoolkit.rice.service.UserService;
 import io.github.nichetoolkit.rice.simple.UserFilter;
 import io.github.nichetoolkit.rice.simple.UserModel;

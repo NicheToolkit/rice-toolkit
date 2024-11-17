@@ -6,7 +6,6 @@ import io.github.nichetoolkit.rest.userlog.LoggingType;
 import io.github.nichetoolkit.rest.userlog.stereotype.RestNotelog;
 import io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog;
 import io.github.nichetoolkit.rest.util.JsonUtils;
-import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.service.LoginService;
 import io.github.nichetoolkit.rice.simple.LoginRequest;
 import io.github.nichetoolkit.rice.simple.UserModel;

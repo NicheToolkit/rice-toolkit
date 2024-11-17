@@ -9,7 +9,6 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
 import io.github.nichetoolkit.rest.worker.jwt.JwtWorker;
-import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.RestTokenResolver;
 import io.github.nichetoolkit.rice.error.TokenInvalidException;
 import io.github.nichetoolkit.rice.helper.HttpRequestHelper;

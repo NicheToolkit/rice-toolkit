@@ -3,7 +3,6 @@ package io.github.nichetoolkit.rice.service;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.util.JsonUtils;
-import io.github.nichetoolkit.rice.RestUserInfo;
 import io.github.nichetoolkit.rice.RestUsernoteModel;
 import io.github.nichetoolkit.rice.defaults.DefaultUsernoteService;
 import lombok.extern.slf4j.Slf4j;

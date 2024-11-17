@@ -4,7 +4,6 @@ import io.github.nichetoolkit.rest.error.ClassUnknownException;
 import io.github.nichetoolkit.rest.error.ClassUnrenewException;
 import io.github.nichetoolkit.rest.error.ClassUnsupportedException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.RestId;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Constructor;

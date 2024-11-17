@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rice.RestInfoModel;
-import io.github.nichetoolkit.rice.RestUserInfo;
 import io.github.nichetoolkit.rice.purview.PurviewType;
 
 /**

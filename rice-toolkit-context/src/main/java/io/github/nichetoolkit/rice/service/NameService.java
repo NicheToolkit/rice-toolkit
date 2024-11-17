@@ -1,7 +1,7 @@
 package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rice.IdModel;
+
 import java.util.List;
 
 /**

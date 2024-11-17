@@ -1,6 +1,5 @@
 package io.github.nichetoolkit.rice.defaults;
 
-import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.stereotype.RestUser;
 import org.springframework.core.MethodParameter;
 import org.springframework.lang.NonNull;

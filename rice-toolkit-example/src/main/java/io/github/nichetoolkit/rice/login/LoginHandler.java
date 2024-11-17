@@ -5,7 +5,6 @@ import io.github.nichetoolkit.rest.*;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
-import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.advice.LoginAdvice;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
 import io.github.nichetoolkit.rice.service.TokenService;

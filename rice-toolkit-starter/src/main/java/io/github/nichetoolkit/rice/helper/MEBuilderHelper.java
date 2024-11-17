@@ -7,7 +7,6 @@ import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
 import io.github.nichetoolkit.rest.actuator.FunctionActuator;
 import io.github.nichetoolkit.rest.util.CollectUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.RestId;
 import io.github.nichetoolkit.rice.service.ServiceHolder;
 
 import java.util.*;

@@ -1,7 +1,5 @@
 package io.github.nichetoolkit.rice.mapper;
 
-import io.github.nichetoolkit.rice.RestId;
-
 /**
  * <code>SuperMapper</code>
  * <p>The super mapper interface.</p>

@@ -11,7 +11,6 @@ import io.github.nichetoolkit.rest.userlog.RestUsernotePack;
 import io.github.nichetoolkit.rest.userlog.stereotype.RestUserlog;
 import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.RestUserInfo;
 import io.github.nichetoolkit.rice.advice.UserlogAdvice;
 import io.github.nichetoolkit.rice.RestUsernoteModel;
 import io.github.nichetoolkit.rice.helper.ModelTypeUtils;

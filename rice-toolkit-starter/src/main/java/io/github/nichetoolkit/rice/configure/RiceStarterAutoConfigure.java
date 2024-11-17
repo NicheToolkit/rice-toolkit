@@ -1,8 +1,6 @@
 package io.github.nichetoolkit.rice.configure;
 
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.DefaultLogicMark;
-import io.github.nichetoolkit.rice.RestLogicMark;
 import io.github.nichetoolkit.rice.defaults.DefaultAutoLogicMark;
 import io.github.nichetoolkit.rice.resolver.RestIdentityResolver;
 import io.github.nichetoolkit.rice.defaults.DefaultTokenContextResolver;

@@ -107,6 +107,11 @@
         <dependencies>
             <dependency>
                 <groupId>io.github.nichetoolkit</groupId>
+                <artifactId>rice-toolkit-mybatis</artifactId>
+                <version>${rice-toolkit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.nichetoolkit</groupId>
                 <artifactId>rice-toolkit-core</artifactId>
                 <version>${rice-toolkit.version}</version>
             </dependency>

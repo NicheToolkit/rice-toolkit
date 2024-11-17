@@ -3,7 +3,6 @@ package io.github.nichetoolkit.rice.helper;
 import io.github.nichetoolkit.rest.error.ClassUnknownException;
 import io.github.nichetoolkit.rest.error.ClassUnsupportedException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.RestId;
 
 import java.lang.reflect.Array;
 import java.util.List;

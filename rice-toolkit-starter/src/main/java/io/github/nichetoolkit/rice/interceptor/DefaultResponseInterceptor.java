@@ -3,7 +3,6 @@ package io.github.nichetoolkit.rice.interceptor;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.advice.LoginAdvice;
 import io.github.nichetoolkit.rice.constant.AdviceConstants;
 import io.github.nichetoolkit.rice.defaults.DefaultTokenContextResolver;

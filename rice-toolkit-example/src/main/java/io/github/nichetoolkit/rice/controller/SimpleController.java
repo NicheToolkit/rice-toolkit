@@ -2,7 +2,6 @@ package io.github.nichetoolkit.rice.controller;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestResult;
-import io.github.nichetoolkit.rice.RestPage;
 import io.github.nichetoolkit.rice.service.SimpleService;
 import io.github.nichetoolkit.rice.simple.SimpleFilter;
 import io.github.nichetoolkit.rice.simple.SimpleModel;

@@ -1,7 +1,5 @@
 package io.github.nichetoolkit.rice.defaults;
 
-import io.github.nichetoolkit.rice.RestUserInfo;
-
 /**
  * <code>UserInfoHolder</code>
  * <p>The user info holder class.</p>
