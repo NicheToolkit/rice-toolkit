@@ -124,7 +124,7 @@
         <!-- fix spring-web:5.3.31 CVE-2016-1000027 9.8 vulnerability
                                    CVE-2024-22243 8.1 Vulnerability
                                    CVE-2024-22259 8.1 Vulnerability  -->
-        <springframework.version>5.3.39</springframework.version>
+        <springframework.version>6.1.14</springframework.version>
 
         <spring-boot-maven-plugin.version>2.7.18</spring-boot-maven-plugin.version>
         <maven-gpg-plugin.version>3.2.5</maven-gpg-plugin.version>
