@@ -14,7 +14,7 @@
 
 # Maven Central Repository
 
-- [Maven Central Repository](https://search.maven.org/search?q=io.github.nichetoolkit)
+- [Maven Central Repository](https://mvnrepository.com/search?q=io.github.nichetoolkit)
 
 - [Sonatype Central Repository](https://central.sonatype.dev/search?q=io.github.nichetoolkit)
 
