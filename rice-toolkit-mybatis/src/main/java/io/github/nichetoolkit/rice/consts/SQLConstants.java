@@ -128,6 +128,13 @@ public interface SQLConstants {
      * @see  java.lang.String
      */
     String END = "END";
+
+    /**
+     * <code>IF</code>
+     * {@link java.lang.String} <p>The constant <code>IF</code> field.</p>
+     * @see  java.lang.String
+     */
+    String IF = "IF";
     /**
      * <code>ELSE</code>
      * {@link java.lang.String} <p>The constant <code>ELSE</code> field.</p>
