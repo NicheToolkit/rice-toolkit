@@ -5,11 +5,11 @@
     <parent>
         <groupId>io.github.nichetoolkit</groupId>
         <artifactId>rice-toolkit-parent</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
     </parent>
 
     <artifactId>rice-toolkit-core</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2-SNAPSHOT</version>
     <name>rice-toolkit-core</name>
     <packaging>jar</packaging>
     <description>Rice toolkit core project for Spring Boot</description>
@@ -20,7 +20,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <mybatis-toolkit.version>1.1.1</mybatis-toolkit.version>
+        <mybatis-toolkit.version>1.1.2-SNAPSHOT</mybatis-toolkit.version>
     </properties>
 
     <licenses>
