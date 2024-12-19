@@ -16,11 +16,6 @@ import java.util.Optional;
  */
 public enum ExcludedType implements RestKey<String> {
     /**
-     * <code>BUILTIN</code>
-     * <p>The builtin excluded type field.</p>
-     */
-    BUILTIN(SQLConstants.BUILTIN),
-    /**
      * <code>EXCLUDED</code>
      * <p>The excluded excluded type field.</p>
      */
@@ -66,7 +61,7 @@ public enum ExcludedType implements RestKey<String> {
     @JsonCreator
     public static ExcludedType parseKey(String key) {
         ExcludedType typeEnum = RestKey.parseKey(ExcludedType.class, key);
-        return Optional.ofNullable(typeEnum).orElse(ExcludedType.BUILTIN);
+        return Optional.ofNullable(typeEnum).orElse(ExcludedType.EXCLUDED);
     }
 
 }
