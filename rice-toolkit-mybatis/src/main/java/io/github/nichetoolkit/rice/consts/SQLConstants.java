@@ -55,7 +55,7 @@ public interface SQLConstants {
      * {@link java.lang.String} <p>The constant <code>BUILTIN</code> field.</p>
      * @see  java.lang.String
      */
-    String BUILTIN = "BUILTIN";
+    String BUILTIN = "";
     /**
      * <code>AS</code>
      * {@link java.lang.String} <p>The constant <code>AS</code> field.</p>
