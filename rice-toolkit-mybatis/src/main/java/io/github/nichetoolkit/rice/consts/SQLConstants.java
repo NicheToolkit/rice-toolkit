@@ -19,7 +19,7 @@ public interface SQLConstants {
      * {@link java.lang.String} <p>The constant <code>INSERT</code> field.</p>
      * @see  java.lang.String
      */
-    String INSERT = "INSERT INTO";
+    String INSERT = "INSERT";
 
     /**
      * <code>IGNORE</code>
@@ -34,6 +34,20 @@ public interface SQLConstants {
      * @see  java.lang.String
      */
     String INTO = "INTO";
+
+    /**
+     * <code>INSERT_INTO</code>
+     * {@link java.lang.String} <p>The constant <code>INSERT_INTO</code> field.</p>
+     * @see  java.lang.String
+     */
+    String INSERT_INTO = "INSERT INTO";
+
+    /**
+     * <code>INSERT_IGNORE_INTO</code>
+     * {@link java.lang.String} <p>The constant <code>INSERT_IGNORE_INTO</code> field.</p>
+     * @see  java.lang.String
+     */
+    String INSERT_IGNORE_INTO = "INSERT IGNORE INTO";
     /**
      * <code>UPDATE</code>
      * {@link java.lang.String} <p>The constant <code>UPDATE</code> field.</p>
