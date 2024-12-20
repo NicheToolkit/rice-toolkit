@@ -51,7 +51,7 @@ public @interface RestTable {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestEntity.class, attribute = "name")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestEntity.class, attribute = "name")
     String value() default "";
 
     /**
@@ -61,7 +61,7 @@ public @interface RestTable {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestEntity.class, attribute = "comment")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestEntity.class, attribute = "comment")
     String comment() default "";
 
     /**
@@ -71,7 +71,7 @@ public @interface RestTable {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestEntity.class, attribute = "alias")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestEntity.class, attribute = "alias")
     String alias() default "";
 
     /**
@@ -81,7 +81,7 @@ public @interface RestTable {
      * @see  java.lang.Class
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestEntity.class, attribute = "entityType")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestEntity.class, attribute = "entityType")
     Class<?> entityType() default Object.class;
 
     /**
@@ -91,7 +91,7 @@ public @interface RestTable {
      * @see  java.lang.Class
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestEntity.class, attribute = "identityType")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestEntity.class, attribute = "identityType")
     Class<?> identityType() default Object.class;
 
     /**
@@ -101,7 +101,7 @@ public @interface RestTable {
      * @see  java.lang.Class
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestEntity.class, attribute = "linkageType")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestEntity.class, attribute = "linkageType")
     Class<?> linkageType() default Object.class;
 
     /**
@@ -111,7 +111,7 @@ public @interface RestTable {
      * @see  java.lang.Class
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestEntity.class, attribute = "alertnessType")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestEntity.class, attribute = "alertnessType")
     Class<?> alertnessType() default Object.class;
 
     /**
@@ -121,7 +121,7 @@ public @interface RestTable {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestTableStyle.class, attribute = "catalog")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestTableStyle.class, attribute = "catalog")
     String catalog() default "";
 
     /**
@@ -131,7 +131,7 @@ public @interface RestTable {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestTableStyle.class, attribute = "schema")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestTableStyle.class, attribute = "schema")
     String schema() default "";
 
     /**
@@ -141,7 +141,7 @@ public @interface RestTable {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestTableStyle.class, attribute = "name")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestTableStyle.class, attribute = "name")
     String styleName() default "";
 
     /**
@@ -151,7 +151,7 @@ public @interface RestTable {
      * @see  io.github.nichetoolkit.rice.enums.StyleType
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestTableStyle.class, attribute = "type")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestTableStyle.class, attribute = "type")
     StyleType styleType() default StyleType.LOWER_UNDERLINE;
 
     /**
@@ -161,7 +161,7 @@ public @interface RestTable {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestUnionKeys.class, attribute = "value")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestUnionKeys.class, attribute = "value")
     String[] unionKeys() default {};
 
     /**
@@ -171,7 +171,7 @@ public @interface RestTable {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestAlertKeys.class, attribute = "value")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestAlertKeys.class, attribute = "value")
     String[] alertKeys() default {};
 
     /**
@@ -181,7 +181,7 @@ public @interface RestTable {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestLinkKeys.class, attribute = "value")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestLinkKeys.class, attribute = "value")
     String[] linkKeys() default {};
 
     /**
@@ -191,7 +191,7 @@ public @interface RestTable {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestUniqueKeys.class, attribute = "value")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestUniqueKeys.class, attribute = "value")
     String[] uniqueKeys() default {};
 
     /**
@@ -201,7 +201,7 @@ public @interface RestTable {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestExcludes.class, attribute = "fields")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestExcludes.class, attribute = "fields")
     String[] excludeFields() default {};
 
     /**
@@ -211,7 +211,7 @@ public @interface RestTable {
      * @see  java.lang.Class
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestExcludes.class, attribute = "fieldTypes")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestExcludes.class, attribute = "fieldTypes")
     Class<?>[] excludeFieldTypes() default {};
 
     /**
@@ -221,7 +221,7 @@ public @interface RestTable {
      * @see  java.lang.Class
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestExcludes.class, attribute = "superClasses")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestExcludes.class, attribute = "superClasses")
     Class<?>[] excludeSuperClasses() default {};
 
     /**
@@ -231,7 +231,7 @@ public @interface RestTable {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestIgnores.class, attribute = "fields")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestIgnores.class, attribute = "fields")
     String[] ignoreFields() default {};
 
     /**
@@ -241,7 +241,7 @@ public @interface RestTable {
      * @see  java.lang.Class
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestIgnores.class, attribute = "fieldTypes")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestIgnores.class, attribute = "fieldTypes")
     Class<?>[] ignoreFieldTypes() default {};
 
     /**
@@ -251,7 +251,7 @@ public @interface RestTable {
      * @see  java.lang.Class
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestIgnores.class, attribute = "superClasses")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestIgnores.class, attribute = "superClasses")
     Class<?>[] ignoreSuperClasses() default {};
 
     /**
@@ -261,7 +261,7 @@ public @interface RestTable {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestResultMap.class, attribute = "name")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestResultMap.class, attribute = "name")
     String resultMap() default "";
 
     /**
@@ -270,7 +270,7 @@ public @interface RestTable {
      * @return boolean <p>The auto result map return object is <code>boolean</code> type.</p>
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestResultMap.class, attribute = "autoResultMap")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestResultMap.class, attribute = "autoResultMap")
     boolean autoResultMap() default true;
 
     /**
@@ -280,6 +280,6 @@ public @interface RestTable {
      * @see  io.github.nichetoolkit.rice.table.RestProperty
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestProperties.class, attribute = "properties")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestProperties.class, attribute = "properties")
     RestProperty[] properties() default {};
 }

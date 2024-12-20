@@ -57,7 +57,7 @@ public @interface RestColumn {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestName.class, attribute = "name")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.column.RestName.class, attribute = "name")
     String value() default "";
 
     /**
@@ -67,7 +67,7 @@ public @interface RestColumn {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestName.class, attribute = "comment")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.column.RestName.class, attribute = "comment")
     String comment() default "";
 
     /**
@@ -76,7 +76,7 @@ public @interface RestColumn {
      * @return int <p>The order return object is <code>int</code> type.</p>
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestOrder.class, attribute = "value")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.column.RestOrder.class, attribute = "value")
     int order() default 0;
 
     /**
@@ -86,7 +86,7 @@ public @interface RestColumn {
      * @see  io.github.nichetoolkit.rice.enums.SortType
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestSortType.class, attribute = "type")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.column.RestSortType.class, attribute = "type")
     SortType sortType() default SortType.NONE;
 
     /**
@@ -95,7 +95,7 @@ public @interface RestColumn {
      * @return int <p>The priority return object is <code>int</code> type.</p>
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestSortType.class, attribute = "priority")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.column.RestSortType.class, attribute = "priority")
     int priority() default 0;
 
     /**
@@ -105,7 +105,7 @@ public @interface RestColumn {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestForceInsert.class, attribute = "value")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.column.RestForceInsert.class, attribute = "value")
     String forceInsert() default "";
 
     /**
@@ -115,7 +115,7 @@ public @interface RestColumn {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestForceUpdate.class, attribute = "value")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.column.RestForceUpdate.class, attribute = "value")
     String forceUpdate() default "";
 
     /**
@@ -125,7 +125,7 @@ public @interface RestColumn {
      * @see  org.apache.ibatis.type.JdbcType
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestJdbcType.class, attribute = "jdbcType")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.column.RestJdbcType.class, attribute = "jdbcType")
     JdbcType jdbcType() default JdbcType.UNDEFINED;
 
     /**
@@ -135,7 +135,7 @@ public @interface RestColumn {
      * @see  java.lang.Class
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestJdbcType.class, attribute = "typeHandler")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.column.RestJdbcType.class, attribute = "typeHandler")
     Class<? extends TypeHandler> typeHandler() default UnknownTypeHandler.class;
 
     /**
@@ -145,7 +145,7 @@ public @interface RestColumn {
      * @see  java.lang.String
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestJdbcType.class, attribute = "numericScale")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.column.RestJdbcType.class, attribute = "numericScale")
     String numericScale() default "";
 
     /**
@@ -155,7 +155,7 @@ public @interface RestColumn {
      * @see  io.github.nichetoolkit.rice.table.RestProperty
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestProperties.class, attribute = "properties")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.table.RestProperties.class, attribute = "properties")
     RestProperty[] properties() default {};
 
     /**
@@ -164,7 +164,7 @@ public @interface RestColumn {
      * @return boolean <p>The select return object is <code>boolean</code> type.</p>
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestSelect.class, attribute = "value")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.column.RestSelect.class, attribute = "value")
     boolean select() default true;
 
     /**
@@ -173,7 +173,7 @@ public @interface RestColumn {
      * @return boolean <p>The insert return object is <code>boolean</code> type.</p>
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestInsert.class, attribute = "value")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.column.RestInsert.class, attribute = "value")
     boolean insert() default true;
 
     /**
@@ -182,7 +182,7 @@ public @interface RestColumn {
      * @return boolean <p>The update return object is <code>boolean</code> type.</p>
      * @see  org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestUpdate.class, attribute = "value")
+    @AliasFor(annotation = io.github.nichetoolkit.rice.column.RestUpdate.class, attribute = "value")
     boolean update() default true;
 
     /**

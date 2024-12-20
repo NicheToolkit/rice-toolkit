@@ -34,7 +34,7 @@ public @interface RestMapper {
      * @see  org.springframework.core.annotation.AliasFor
      */
     @AliasFor(
-            annotation = Component.class
+            annotation = org.springframework.stereotype.Component.class
     )
     String value() default "";
 

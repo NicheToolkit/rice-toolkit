@@ -12,7 +12,7 @@ import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
  * @see io.github.nichetoolkit.rice.IdEntity
  * @since Jdk1.8
  */
-public interface RestModel<I,E extends IdEntity<I>> {
+public interface RestModel<I,E extends RestId<I>> {
 
     /**
      * <code>toEntity</code>
