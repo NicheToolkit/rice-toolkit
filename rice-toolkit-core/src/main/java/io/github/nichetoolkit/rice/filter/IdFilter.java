@@ -4,16 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.github.nichetoolkit.rice.builder.SqlBuilder;
-import io.github.nichetoolkit.rice.builder.SqlUtils;
-import io.github.nichetoolkit.rice.enums.StyleType;
-import io.github.nichetoolkit.rice.table.RestIdentity;
+import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
+import io.github.nichetoolkit.mybatis.builder.SqlUtils;
+import io.github.nichetoolkit.mybatis.enums.StyleType;
+import io.github.nichetoolkit.mybatis.table.RestIdentity;
 import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import java.util.*;
@@ -36,8 +38,8 @@ import java.util.*;
 public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>SQL_BUILDER</code>
-     * {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The <code>SQL_BUILDER</code> field.</p>
-     * @see  io.github.nichetoolkit.rice.builder.SqlBuilder
+     * {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The <code>SQL_BUILDER</code> field.</p>
+     * @see  io.github.nichetoolkit.mybatis.builder.SqlBuilder
      * @see  com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
@@ -55,7 +57,11 @@ public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>id</code>
      * <p>The <code>id</code> field.</p>
+     * @see  lombok.Setter
+     * @see  lombok.Getter
      */
+    @Setter
+    @Getter
     protected I id;
 
     /**
@@ -114,24 +120,6 @@ public class IdFilter<I, K> extends TableFilter<K> {
         super(builder);
         this.id = builder.id;
         this.ids = builder.ids;
-    }
-
-    /**
-     * <code>getId</code>
-     * <p>The get id getter method.</p>
-     * @return I <p>The get id return object is <code>I</code> type.</p>
-     */
-    public I getId() {
-        return id;
-    }
-
-    /**
-     * <code>setId</code>
-     * <p>The set id setter method.</p>
-     * @param id I <p>The id parameter is <code>I</code> type.</p>
-     */
-    public void setId(I id) {
-        this.id = id;
     }
 
     /**

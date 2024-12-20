@@ -2,7 +2,6 @@ package io.github.nichetoolkit.rice;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.rice.enums.SaveType;
 import org.springframework.lang.NonNull;
@@ -96,11 +95,6 @@ public class InfoModel<I> extends IdModel<I> implements RestInfo<I> {
     @Override
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return JsonUtils.parseJson(this);
     }
 
     /**

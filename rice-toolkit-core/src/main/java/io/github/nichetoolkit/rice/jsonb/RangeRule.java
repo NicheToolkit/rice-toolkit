@@ -2,9 +2,11 @@ package io.github.nichetoolkit.rice.jsonb;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.nichetoolkit.rice.builder.SqlBuilder;
+import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import java.util.Optional;
@@ -13,12 +15,16 @@ import java.util.Optional;
  * <code>RangeRule</code>
  * <p>The range rule class.</p>
  * @see  io.github.nichetoolkit.rice.jsonb.JsonbRule
+ * @see  lombok.Setter
+ * @see  lombok.Getter
  * @see  java.lang.SuppressWarnings
  * @see  com.fasterxml.jackson.annotation.JsonInclude
  * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
+@Setter
+@Getter
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -90,86 +96,6 @@ public class RangeRule extends JsonbRule<RangeRule> {
         this.startValue = builder.startValue;
         this.endValue = builder.endValue;
         this.operation = builder.operation;
-    }
-
-    /**
-     * <code>getType</code>
-     * <p>The get type getter method.</p>
-     * @return  {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The get type return object is <code>ValueType</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.jsonb.ValueType
-     */
-    public ValueType getType() {
-        return type;
-    }
-
-    /**
-     * <code>setType</code>
-     * <p>The set type setter method.</p>
-     * @param type {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The type parameter is <code>ValueType</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.jsonb.ValueType
-     */
-    public void setType(ValueType type) {
-        this.type = type;
-    }
-
-    /**
-     * <code>getStartValue</code>
-     * <p>The get start value getter method.</p>
-     * @return  {@link java.lang.Object} <p>The get start value return object is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     */
-    public Object getStartValue() {
-        return startValue;
-    }
-
-    /**
-     * <code>setStartValue</code>
-     * <p>The set start value setter method.</p>
-     * @param startValue {@link java.lang.Object} <p>The start value parameter is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     */
-    public void setStartValue(Object startValue) {
-        this.startValue = startValue;
-    }
-
-    /**
-     * <code>getEndValue</code>
-     * <p>The get end value getter method.</p>
-     * @return  {@link java.lang.Object} <p>The get end value return object is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     */
-    public Object getEndValue() {
-        return endValue;
-    }
-
-    /**
-     * <code>setEndValue</code>
-     * <p>The set end value setter method.</p>
-     * @param endValue {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     */
-    public void setEndValue(Object endValue) {
-        this.endValue = endValue;
-    }
-
-    /**
-     * <code>getOperation</code>
-     * <p>The get operation getter method.</p>
-     * @return  {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The get operation return object is <code>RangeOperation</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.jsonb.RangeOperation
-     */
-    public RangeOperation getOperation() {
-        return operation;
-    }
-
-    /**
-     * <code>setOperation</code>
-     * <p>The set operation setter method.</p>
-     * @param operation {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The operation parameter is <code>RangeOperation</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.jsonb.RangeOperation
-     */
-    public void setOperation(RangeOperation operation) {
-        this.operation = operation;
     }
 
     @Override

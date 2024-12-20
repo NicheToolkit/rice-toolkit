@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.nichetoolkit.rice.column.RestOperateKey;
+import io.github.nichetoolkit.mybatis.column.RestOperateKey;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import org.springframework.lang.NonNull;
 
@@ -25,7 +25,7 @@ public class OperateEntity extends LogicEntity {
      * <code>operate</code>
      * {@link java.lang.Integer} <p>The <code>operate</code> field.</p>
      * @see  java.lang.Integer
-     * @see  io.github.nichetoolkit.rice.column.RestOperateKey
+     * @see  RestOperateKey
      */
     @RestOperateKey
     protected Integer operate;

@@ -2,9 +2,11 @@ package io.github.nichetoolkit.rice.jsonb;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.nichetoolkit.rice.builder.SqlBuilder;
+import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import java.util.Optional;
@@ -13,12 +15,16 @@ import java.util.Optional;
  * <code>ContrastRule</code>
  * <p>The contrast rule class.</p>
  * @see  io.github.nichetoolkit.rice.jsonb.JsonbRule
+ * @see  lombok.Setter
+ * @see  lombok.Getter
  * @see  java.lang.SuppressWarnings
  * @see  com.fasterxml.jackson.annotation.JsonInclude
  * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
+@Setter
+@Getter
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -79,66 +85,6 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
         this.type = builder.type;
         this.value = builder.value;
         this.operation = builder.operation;
-    }
-
-    /**
-     * <code>getType</code>
-     * <p>The get type getter method.</p>
-     * @return  {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The get type return object is <code>ValueType</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.jsonb.ValueType
-     */
-    public ValueType getType() {
-        return type;
-    }
-
-    /**
-     * <code>setType</code>
-     * <p>The set type setter method.</p>
-     * @param type {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The type parameter is <code>ValueType</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.jsonb.ValueType
-     */
-    public void setType(ValueType type) {
-        this.type = type;
-    }
-
-    /**
-     * <code>getValue</code>
-     * <p>The get value getter method.</p>
-     * @return  {@link java.lang.Object} <p>The get value return object is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     */
-    public Object getValue() {
-        return value;
-    }
-
-    /**
-     * <code>setValue</code>
-     * <p>The set value setter method.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     */
-    public void setValue(Object value) {
-        this.value = value;
-    }
-
-    /**
-     * <code>getOperation</code>
-     * <p>The get operation getter method.</p>
-     * @return  {@link io.github.nichetoolkit.rice.jsonb.ContrastOperation} <p>The get operation return object is <code>ContrastOperation</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.jsonb.ContrastOperation
-     */
-    public ContrastOperation getOperation() {
-        return operation;
-    }
-
-    /**
-     * <code>setOperation</code>
-     * <p>The set operation setter method.</p>
-     * @param operation {@link io.github.nichetoolkit.rice.jsonb.ContrastOperation} <p>The operation parameter is <code>ContrastOperation</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.jsonb.ContrastOperation
-     */
-    public void setOperation(ContrastOperation operation) {
-        this.operation = operation;
     }
 
     @Override

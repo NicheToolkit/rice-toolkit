@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.column.RestUniqueKey;
+import io.github.nichetoolkit.mybatis.column.RestUniqueKey;
 import org.springframework.lang.NonNull;
 
 import java.util.Date;
@@ -26,7 +26,7 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
      * <code>name</code>
      * {@link java.lang.String} <p>The <code>name</code> field.</p>
      * @see  java.lang.String
-     * @see  io.github.nichetoolkit.rice.column.RestUniqueKey
+     * @see  RestUniqueKey
      */
     @RestUniqueKey
     protected String name;

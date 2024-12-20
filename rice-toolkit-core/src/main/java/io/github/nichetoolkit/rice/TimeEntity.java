@@ -2,11 +2,11 @@ package io.github.nichetoolkit.rice;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.nichetoolkit.rice.consts.ScriptConstants;
+import io.github.nichetoolkit.mybatis.consts.ScriptConstants;
 import io.github.nichetoolkit.rice.enums.OperateType;
-import io.github.nichetoolkit.rice.column.RestForceInsert;
-import io.github.nichetoolkit.rice.column.RestForceUpdate;
-import io.github.nichetoolkit.rice.column.RestUpdate;
+import io.github.nichetoolkit.mybatis.column.RestForceInsert;
+import io.github.nichetoolkit.mybatis.column.RestForceUpdate;
+import io.github.nichetoolkit.mybatis.column.RestUpdate;
 import org.springframework.lang.NonNull;
 
 import java.util.Date;
@@ -29,8 +29,8 @@ public class TimeEntity extends OperateEntity {
      * <code>createTime</code>
      * {@link java.util.Date} <p>The <code>createTime</code> field.</p>
      * @see  java.util.Date
-     * @see  io.github.nichetoolkit.rice.column.RestUpdate
-     * @see  io.github.nichetoolkit.rice.column.RestForceInsert
+     * @see  RestUpdate
+     * @see  RestForceInsert
      */
     @RestUpdate(false)
     @RestForceInsert(ScriptConstants.NOW)
@@ -39,8 +39,8 @@ public class TimeEntity extends OperateEntity {
      * <code>updateTime</code>
      * {@link java.util.Date} <p>The <code>updateTime</code> field.</p>
      * @see  java.util.Date
-     * @see  io.github.nichetoolkit.rice.column.RestForceInsert
-     * @see  io.github.nichetoolkit.rice.column.RestForceUpdate
+     * @see  RestForceInsert
+     * @see  RestForceUpdate
      */
     @RestForceInsert(ScriptConstants.NOW)
     @RestForceUpdate(ScriptConstants.NOW)

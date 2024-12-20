@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice.filter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.github.nichetoolkit.rice.builder.SqlBuilder;
+import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
@@ -387,12 +387,12 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
      * @param variable {@link java.lang.String} <p>The variable parameter is <code>String</code> type.</p>
      * @param rules {@link java.util.List} <p>The rules parameter is <code>List</code> type.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param sqlBuilder {@link SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @see  io.github.nichetoolkit.rice.jsonb.JsonbRule
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
      * @see  java.util.List
-     * @see  io.github.nichetoolkit.rice.builder.SqlBuilder
+     * @see  SqlBuilder
      */
     public <R extends JsonbRule<R>> void appendSql(@NonNull String alias, String variable, List<R> rules, SqlBuilder sqlBuilder) {
         if (GeneralUtils.isNotEmpty(rules)) {

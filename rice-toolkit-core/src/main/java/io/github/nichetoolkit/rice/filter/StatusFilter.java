@@ -1,10 +1,10 @@
 package io.github.nichetoolkit.rice.filter;
 
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.github.nichetoolkit.rice.builder.SqlBuilder;
-import io.github.nichetoolkit.rice.builder.SqlUtils;
-import io.github.nichetoolkit.rice.enums.StyleType;
-import io.github.nichetoolkit.rice.table.RestAlertness;
+import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
+import io.github.nichetoolkit.mybatis.builder.SqlUtils;
+import io.github.nichetoolkit.mybatis.enums.StyleType;
+import io.github.nichetoolkit.mybatis.table.RestAlertness;
 import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
@@ -103,9 +103,9 @@ public interface StatusFilter<S> extends Serializable {
     /**
      * <code>toStatusSql</code>
      * <p>The to status sql method.</p>
-     * @param sqlBuilder {@link io.github.nichetoolkit.rice.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param sqlBuilder {@link SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.builder.SqlBuilder
+     * @see  SqlBuilder
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
      * @see  java.lang.SuppressWarnings

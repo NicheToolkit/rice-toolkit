@@ -2,18 +2,24 @@ package io.github.nichetoolkit.rice;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.nichetoolkit.rice.column.RestLogicKey;
+import io.github.nichetoolkit.mybatis.column.RestLogicKey;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * <code>LogicEntity</code>
  * <p>The logic entity class.</p>
  * @see  io.github.nichetoolkit.rice.RestLogic
+ * @see  lombok.Setter
+ * @see  lombok.Getter
  * @see  java.lang.SuppressWarnings
  * @see  com.fasterxml.jackson.annotation.JsonInclude
  * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
+@Setter
+@Getter
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -23,7 +29,7 @@ public class LogicEntity implements RestLogic {
      * <code>logic</code>
      * {@link java.lang.Object} <p>The <code>logic</code> field.</p>
      * @see  java.lang.Object
-     * @see  io.github.nichetoolkit.rice.column.RestLogicKey
+     * @see  io.github.nichetoolkit.mybatis.column.RestLogicKey
      */
     @RestLogicKey
     protected Object logic;
@@ -43,14 +49,6 @@ public class LogicEntity implements RestLogic {
      */
     public LogicEntity(LogicEntity.Builder builder) {
         this.logic = builder.logic;
-    }
-
-    public Object getLogic() {
-        return logic;
-    }
-
-    public void setLogic(Object logic) {
-        this.logic = logic;
     }
 
     /**

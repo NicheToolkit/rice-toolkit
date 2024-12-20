@@ -3,9 +3,11 @@ package io.github.nichetoolkit.rice.jsonb;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.github.nichetoolkit.rice.builder.SqlBuilder;
+import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import java.util.*;
@@ -14,16 +16,21 @@ import java.util.*;
  * <code>ContainRule</code>
  * <p>The contain rule class.</p>
  * @see  io.github.nichetoolkit.rice.jsonb.JsonbRule
+ * @see  lombok.Getter
+ * @see  lombok.Setter
  * @see  java.lang.SuppressWarnings
  * @see  com.fasterxml.jackson.annotation.JsonInclude
  * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
+@Getter
+@Setter
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ContainRule extends JsonbRule<ContainRule> {
+
     /**
      * <code>type</code>
      * {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The <code>type</code> field.</p>
@@ -88,36 +95,6 @@ public class ContainRule extends JsonbRule<ContainRule> {
         super(builder);
         this.type = builder.type;
         this.values = builder.values;
-    }
-
-    /**
-     * <code>getType</code>
-     * <p>The get type getter method.</p>
-     * @return  {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The get type return object is <code>ValueType</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.jsonb.ValueType
-     */
-    public ValueType getType() {
-        return type;
-    }
-
-    /**
-     * <code>setType</code>
-     * <p>The set type setter method.</p>
-     * @param type {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The type parameter is <code>ValueType</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.jsonb.ValueType
-     */
-    public void setType(ValueType type) {
-        this.type = type;
-    }
-
-    /**
-     * <code>setValues</code>
-     * <p>The set values setter method.</p>
-     * @param values {@link java.util.Set} <p>The values parameter is <code>Set</code> type.</p>
-     * @see  java.util.Set
-     */
-    public void setValues(Set<Object> values) {
-        this.values = values;
     }
 
     /**

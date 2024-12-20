@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import java.util.Arrays;
@@ -14,14 +16,18 @@ import java.util.HashSet;
 /**
  * <code>TableFilter</code>
  * <p>The table filter class.</p>
- * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @see  io.github.nichetoolkit.rice.filter.OperateFilter
+ * @see  lombok.Setter
+ * @see  lombok.Getter
+ * @see  java.lang.SuppressWarnings
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.filter.OperateFilter
- * @see java.lang.SuppressWarnings
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
+@Setter
+@Getter
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -43,29 +49,11 @@ public class TableFilter<K> extends OperateFilter {
      * <code>TableFilter</code>
      * <p>Instantiates a new table filter.</p>
      * @param builder {@link io.github.nichetoolkit.rice.filter.TableFilter.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.filter.TableFilter.Builder
+     * @see  io.github.nichetoolkit.rice.filter.TableFilter.Builder
      */
     public TableFilter(TableFilter.Builder<K> builder) {
         super(builder);
         this.tablekey = builder.tablekey;
-    }
-
-    /**
-     * <code>getTablekey</code>
-     * <p>The get tablekey getter method.</p>
-     * @return K <p>The get tablekey return object is <code>K</code> type.</p>
-     */
-    public K getTablekey() {
-        return tablekey;
-    }
-
-    /**
-     * <code>setTablekey</code>
-     * <p>The set tablekey setter method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     */
-    public void setTablekey(K tablekey) {
-        this.tablekey = tablekey;
     }
 
     /**
@@ -80,9 +68,9 @@ public class TableFilter<K> extends OperateFilter {
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
-     * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @see  io.github.nichetoolkit.rice.filter.OperateFilter.Builder
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.filter.OperateFilter.Builder
      * @since Jdk1.8
      */
     public static class Builder<K> extends OperateFilter.Builder {
@@ -103,7 +91,7 @@ public class TableFilter<K> extends OperateFilter {
          * <code>tablekey</code>
          * <p>The tablekey method.</p>
          * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.TableFilter.Builder} <p>The tablekey return object is <code>Builder</code> type.</p>
+         * @return  {@link io.github.nichetoolkit.rice.filter.TableFilter.Builder} <p>The tablekey return object is <code>Builder</code> type.</p>
          */
         public TableFilter.Builder<K> tablekey(K tablekey) {
             this.tablekey = tablekey;

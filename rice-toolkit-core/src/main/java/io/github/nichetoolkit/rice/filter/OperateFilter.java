@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import java.util.*;
@@ -13,11 +15,11 @@ import java.util.*;
 /**
  * <code>OperateFilter</code>
  * <p>The operate filter class.</p>
+ * @see  io.github.nichetoolkit.rice.filter.SortFilter
+ * @see  java.lang.SuppressWarnings
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.filter.SortFilter
- * @see java.lang.SuppressWarnings
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @SuppressWarnings({"WeakerAccess", "MixedMutabilityReturnType"})
@@ -33,14 +35,18 @@ public class OperateFilter extends SortFilter {
     /**
      * <code>operate</code>
      * {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The <code>operate</code> field.</p>
-     * @see io.github.nichetoolkit.rice.enums.OperateType
+     * @see  io.github.nichetoolkit.rice.enums.OperateType
+     * @see  lombok.Getter
+     * @see  lombok.Setter
      */
+    @Getter
+    @Setter
     protected OperateType operate;
 
     /**
      * <code>operates</code>
      * {@link java.util.Set} <p>The <code>operates</code> field.</p>
-     * @see java.util.Set
+     * @see  java.util.Set
      */
     protected Set<OperateType> operates;
 
@@ -55,7 +61,7 @@ public class OperateFilter extends SortFilter {
      * <code>OperateFilter</code>
      * <p>Instantiates a new operate filter.</p>
      * @param builder {@link io.github.nichetoolkit.rice.filter.OperateFilter.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.filter.OperateFilter.Builder
+     * @see  io.github.nichetoolkit.rice.filter.OperateFilter.Builder
      */
     public OperateFilter(OperateFilter.Builder builder) {
         super(builder);
@@ -83,30 +89,10 @@ public class OperateFilter extends SortFilter {
     }
 
     /**
-     * <code>getOperate</code>
-     * <p>The get operate getter method.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The get operate return object is <code>OperateType</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.OperateType
-     */
-    public OperateType getOperate() {
-        return operate;
-    }
-
-    /**
-     * <code>setOperate</code>
-     * <p>The set operate setter method.</p>
-     * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.OperateType
-     */
-    public void setOperate(OperateType operate) {
-        this.operate = operate;
-    }
-
-    /**
      * <code>getOperates</code>
      * <p>The get operates getter method.</p>
-     * @return {@link java.util.List} <p>The get operates return object is <code>List</code> type.</p>
-     * @see java.util.List
+     * @return  {@link java.util.List} <p>The get operates return object is <code>List</code> type.</p>
+     * @see  java.util.List
      */
     public List<OperateType> getOperates() {
         if (GeneralUtils.isNotEmpty(operates)) {
@@ -119,8 +105,8 @@ public class OperateFilter extends SortFilter {
      * <code>setOperates</code>
      * <p>The set operates setter method.</p>
      * @param operates {@link java.lang.Integer} <p>The operates parameter is <code>Integer</code> type.</p>
-     * @see java.lang.Integer
-     * @see org.springframework.lang.NonNull
+     * @see  java.lang.Integer
+     * @see  org.springframework.lang.NonNull
      */
     public void setOperates(@NonNull Integer... operates) {
         this.setOperates(RestOperate.build(operates));
@@ -130,8 +116,8 @@ public class OperateFilter extends SortFilter {
      * <code>setOperates</code>
      * <p>The set operates setter method.</p>
      * @param operates {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operates parameter is <code>OperateType</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.OperateType
-     * @see org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rice.enums.OperateType
+     * @see  org.springframework.lang.NonNull
      */
     public void setOperates(@NonNull OperateType... operates) {
         this.operates = new HashSet<>(Arrays.asList(operates));
@@ -141,9 +127,9 @@ public class OperateFilter extends SortFilter {
      * <code>setOperates</code>
      * <p>The set operates setter method.</p>
      * @param operates {@link java.util.Collection} <p>The operates parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
-     * @see com.fasterxml.jackson.annotation.JsonSetter
+     * @see  java.util.Collection
+     * @see  org.springframework.lang.NonNull
+     * @see  com.fasterxml.jackson.annotation.JsonSetter
      */
     @JsonSetter
     public void setOperates(@NonNull Collection<OperateType> operates) {
@@ -154,9 +140,9 @@ public class OperateFilter extends SortFilter {
      * <code>addOperates</code>
      * <p>The add operates method.</p>
      * @param operates {@link java.lang.Integer} <p>The operates parameter is <code>Integer</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.OperateFilter} <p>The add operates return object is <code>OperateFilter</code> type.</p>
-     * @see java.lang.Integer
-     * @see org.springframework.lang.NonNull
+     * @see  java.lang.Integer
+     * @see  org.springframework.lang.NonNull
+     * @return  {@link io.github.nichetoolkit.rice.filter.OperateFilter} <p>The add operates return object is <code>OperateFilter</code> type.</p>
      */
     public OperateFilter addOperates(@NonNull Integer... operates) {
         if (GeneralUtils.isEmpty(this.operates)) {
@@ -171,9 +157,9 @@ public class OperateFilter extends SortFilter {
      * <code>addOperates</code>
      * <p>The add operates method.</p>
      * @param operates {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operates parameter is <code>OperateType</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.OperateFilter} <p>The add operates return object is <code>OperateFilter</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.OperateType
-     * @see org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rice.enums.OperateType
+     * @see  org.springframework.lang.NonNull
+     * @return  {@link io.github.nichetoolkit.rice.filter.OperateFilter} <p>The add operates return object is <code>OperateFilter</code> type.</p>
      */
     public OperateFilter addOperates(@NonNull OperateType... operates) {
         if (GeneralUtils.isEmpty(this.operates)) {
@@ -188,9 +174,9 @@ public class OperateFilter extends SortFilter {
      * <code>addOperates</code>
      * <p>The add operates method.</p>
      * @param operates {@link java.util.Collection} <p>The operates parameter is <code>Collection</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.OperateFilter} <p>The add operates return object is <code>OperateFilter</code> type.</p>
-     * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
+     * @see  java.util.Collection
+     * @see  org.springframework.lang.NonNull
+     * @return  {@link io.github.nichetoolkit.rice.filter.OperateFilter} <p>The add operates return object is <code>OperateFilter</code> type.</p>
      */
     public OperateFilter addOperates(@NonNull Collection<OperateType> operates) {
         if (GeneralUtils.isEmpty(this.operates)) {
@@ -204,8 +190,8 @@ public class OperateFilter extends SortFilter {
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
+     * @see  io.github.nichetoolkit.rice.filter.SortFilter.Builder
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.filter.SortFilter.Builder
      * @since Jdk1.8
      */
     public static class Builder extends SortFilter.Builder {
@@ -217,13 +203,13 @@ public class OperateFilter extends SortFilter {
         /**
          * <code>operate</code>
          * {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The <code>operate</code> field.</p>
-         * @see io.github.nichetoolkit.rice.enums.OperateType
+         * @see  io.github.nichetoolkit.rice.enums.OperateType
          */
         protected OperateType operate;
         /**
          * <code>operates</code>
          * {@link java.util.Set} <p>The <code>operates</code> field.</p>
-         * @see java.util.Set
+         * @see  java.util.Set
          */
         protected Set<OperateType> operates;
 
@@ -238,7 +224,7 @@ public class OperateFilter extends SortFilter {
          * <code>isRemove</code>
          * <p>The is remove method.</p>
          * @param isRemove boolean <p>The is remove parameter is <code>boolean</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.OperateFilter.Builder} <p>The is remove return object is <code>Builder</code> type.</p>
+         * @return  {@link io.github.nichetoolkit.rice.filter.OperateFilter.Builder} <p>The is remove return object is <code>Builder</code> type.</p>
          */
         public OperateFilter.Builder isRemove(boolean isRemove) {
             this.isRemove = isRemove;
@@ -249,8 +235,8 @@ public class OperateFilter extends SortFilter {
          * <code>operate</code>
          * <p>The operate method.</p>
          * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.OperateFilter.Builder} <p>The operate return object is <code>Builder</code> type.</p>
-         * @see io.github.nichetoolkit.rice.enums.OperateType
+         * @see  io.github.nichetoolkit.rice.enums.OperateType
+         * @return  {@link io.github.nichetoolkit.rice.filter.OperateFilter.Builder} <p>The operate return object is <code>Builder</code> type.</p>
          */
         public OperateFilter.Builder operate(OperateType operate) {
             this.operate = operate;
@@ -261,8 +247,8 @@ public class OperateFilter extends SortFilter {
          * <code>operate</code>
          * <p>The operate method.</p>
          * @param operate {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.OperateFilter.Builder} <p>The operate return object is <code>Builder</code> type.</p>
-         * @see java.lang.Integer
+         * @see  java.lang.Integer
+         * @return  {@link io.github.nichetoolkit.rice.filter.OperateFilter.Builder} <p>The operate return object is <code>Builder</code> type.</p>
          */
         public OperateFilter.Builder operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);
@@ -273,9 +259,9 @@ public class OperateFilter extends SortFilter {
          * <code>operates</code>
          * <p>The operates method.</p>
          * @param operates {@link java.util.Collection} <p>The operates parameter is <code>Collection</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.OperateFilter.Builder} <p>The operates return object is <code>Builder</code> type.</p>
-         * @see java.util.Collection
-         * @see org.springframework.lang.NonNull
+         * @see  java.util.Collection
+         * @see  org.springframework.lang.NonNull
+         * @return  {@link io.github.nichetoolkit.rice.filter.OperateFilter.Builder} <p>The operates return object is <code>Builder</code> type.</p>
          */
         public OperateFilter.Builder operates(@NonNull Collection<OperateType> operates) {
             this.operates = new HashSet<>(operates);
@@ -286,9 +272,9 @@ public class OperateFilter extends SortFilter {
          * <code>operates</code>
          * <p>The operates method.</p>
          * @param operates {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operates parameter is <code>OperateType</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.OperateFilter.Builder} <p>The operates return object is <code>Builder</code> type.</p>
-         * @see io.github.nichetoolkit.rice.enums.OperateType
-         * @see org.springframework.lang.NonNull
+         * @see  io.github.nichetoolkit.rice.enums.OperateType
+         * @see  org.springframework.lang.NonNull
+         * @return  {@link io.github.nichetoolkit.rice.filter.OperateFilter.Builder} <p>The operates return object is <code>Builder</code> type.</p>
          */
         public OperateFilter.Builder operates(@NonNull OperateType... operates) {
             this.operates = new HashSet<>(Arrays.asList(operates));
@@ -299,9 +285,9 @@ public class OperateFilter extends SortFilter {
          * <code>operates</code>
          * <p>The operates method.</p>
          * @param operates {@link java.lang.Integer} <p>The operates parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.OperateFilter.Builder} <p>The operates return object is <code>Builder</code> type.</p>
-         * @see java.lang.Integer
-         * @see org.springframework.lang.NonNull
+         * @see  java.lang.Integer
+         * @see  org.springframework.lang.NonNull
+         * @return  {@link io.github.nichetoolkit.rice.filter.OperateFilter.Builder} <p>The operates return object is <code>Builder</code> type.</p>
          */
         public OperateFilter.Builder operates(@NonNull Integer... operates) {
             this.operates = new HashSet<>(RestOperate.build(operates));

@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.nichetoolkit.rice.column.RestIdentityKey;
+import io.github.nichetoolkit.mybatis.column.RestIdentityKey;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import io.mybatis.provider.Entity;
@@ -31,7 +31,7 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
      * <p>The <code>id</code> field.</p>
      * @see  com.baomidou.mybatisplus.annotation.TableId
      * @see  io.mybatis.provider.Entity.Column
-     * @see  io.github.nichetoolkit.rice.column.RestIdentityKey
+     * @see  RestIdentityKey
      */
     /* 兼容mybatis-plus 3.x版本 */
     @TableId

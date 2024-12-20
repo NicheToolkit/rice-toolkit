@@ -3,7 +3,6 @@ package io.github.nichetoolkit.rice.enums;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.nichetoolkit.rest.RestKey;
-import io.github.nichetoolkit.rest.RestValue;
 
 import java.util.Date;
 import java.util.Optional;

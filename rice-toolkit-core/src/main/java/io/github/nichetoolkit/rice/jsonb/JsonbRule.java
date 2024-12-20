@@ -2,9 +2,11 @@ package io.github.nichetoolkit.rice.jsonb;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.nichetoolkit.rice.builder.SqlBuilder;
+import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
@@ -14,11 +16,15 @@ import java.io.Serializable;
  * <p>The jsonb rule class.</p>
  * @param <R>  {@link io.github.nichetoolkit.rice.jsonb.JsonbRule} <p>The generic parameter is <code>JsonbRule</code> type.</p>
  * @see  java.io.Serializable
+ * @see  lombok.Setter
+ * @see  lombok.Getter
  * @see  com.fasterxml.jackson.annotation.JsonInclude
  * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
+@Setter
+@Getter
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable {
@@ -27,7 +33,7 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
      * {@link java.lang.String} <p>The <code>name</code> field.</p>
      * @see  java.lang.String
      */
-    String name;
+    protected String name;
 
     /**
      * <code>JsonbRule</code>
@@ -111,26 +117,6 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
             targetBuilder.append("')::").append(type);
         }
         return targetBuilder.toString();
-    }
-
-    /**
-     * <code>getName</code>
-     * <p>The get name getter method.</p>
-     * @return  {@link java.lang.String} <p>The get name return object is <code>String</code> type.</p>
-     * @see  java.lang.String
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * <code>setName</code>
-     * <p>The set name setter method.</p>
-     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     */
-    public void setName(String name) {
-        this.name = name;
     }
 
     /**
