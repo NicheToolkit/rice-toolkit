@@ -8,6 +8,7 @@ import com.github.pagehelper.PageHelper;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
@@ -19,12 +20,16 @@ import java.util.List;
  * <code>PageFilter</code>
  * <p>The page filter class.</p>
  * @see  java.io.Serializable
+ * @see  lombok.Getter
+ * @see  lombok.Setter
  * @see  java.lang.SuppressWarnings
  * @see  com.fasterxml.jackson.annotation.JsonInclude
  * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
+@Getter
+@Setter
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -69,21 +74,18 @@ public class PageFilter implements Serializable {
      */
     @JsonIgnore
     protected final List<Boolean> LOAD_ARRAY = new ArrayList<>();
+
     /**
      * <code>pageNum</code>
      * {@link java.lang.Integer} <p>The <code>pageNum</code> field.</p>
      * @see  java.lang.Integer
-     * @see  lombok.Getter
      */
-    @Getter
     protected Integer pageNum = 1;
     /**
      * <code>pageSize</code>
      * {@link java.lang.Integer} <p>The <code>pageSize</code> field.</p>
      * @see  java.lang.Integer
-     * @see  lombok.Getter
      */
-    @Getter
     protected Integer pageSize = 0;
     /**
      * <code>loadLastPage</code>
