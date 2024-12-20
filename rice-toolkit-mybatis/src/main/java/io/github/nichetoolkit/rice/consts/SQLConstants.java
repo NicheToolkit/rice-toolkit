@@ -20,6 +20,20 @@ public interface SQLConstants {
      * @see  java.lang.String
      */
     String INSERT = "INSERT INTO";
+
+    /**
+     * <code>IGNORE</code>
+     * {@link java.lang.String} <p>The constant <code>IGNORE</code> field.</p>
+     * @see  java.lang.String
+     */
+    String IGNORE = "IGNORE";
+
+    /**
+     * <code>INTO</code>
+     * {@link java.lang.String} <p>The constant <code>INTO</code> field.</p>
+     * @see  java.lang.String
+     */
+    String INTO = "INTO";
     /**
      * <code>UPDATE</code>
      * {@link java.lang.String} <p>The constant <code>UPDATE</code> field.</p>
