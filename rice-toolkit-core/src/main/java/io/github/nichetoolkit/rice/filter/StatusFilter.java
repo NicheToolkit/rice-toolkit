@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
 import io.github.nichetoolkit.mybatis.builder.SqlUtils;
 import io.github.nichetoolkit.mybatis.enums.StyleType;
+import io.github.nichetoolkit.mybatis.fitter.RestAlertnessFitter;
 import io.github.nichetoolkit.mybatis.table.RestAlertness;
+import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
 import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
@@ -17,11 +20,12 @@ import java.util.*;
  * <code>StatusFilter</code>
  * <p>The status filter interface.</p>
  * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @see  io.github.nichetoolkit.mybatis.fitter.RestAlertnessFitter
  * @see  java.io.Serializable
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public interface StatusFilter<S> extends Serializable {
+public interface StatusFilter<S> extends RestAlertnessFitter, Serializable {
 
     /**
      * <code>getStatus</code>
@@ -103,9 +107,9 @@ public interface StatusFilter<S> extends Serializable {
     /**
      * <code>toStatusSql</code>
      * <p>The to status sql method.</p>
-     * @param sqlBuilder {@link SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @see  SqlBuilder
+     * @see  io.github.nichetoolkit.mybatis.builder.SqlBuilder
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
      * @see  java.lang.SuppressWarnings
@@ -115,14 +119,15 @@ public interface StatusFilter<S> extends Serializable {
     default StatusFilter<S> toStatusSql(SqlBuilder sqlBuilder, @NonNull String alias) {
         Class<S> statusType = (Class<S>) RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
                 StatusFilter.class.getTypeParameters()[0], getClass(), StatusFilter.class));
-        if (statusType.isAnnotationPresent(RestAlertness.class)) {
-            List<S> statusList = toStatuses();
-            String prefix = null;
-            if (GeneralUtils.isNotEmpty(alias) && alias.contains(".")) {
-                prefix = alias.split("\\.")[0];
-            }
-            String whereSqlOfTypes = SqlUtils.whereSqlOfTypes(prefix, statusList, statusType, StyleType.LOWER_UNDERLINE);
-            SqlBuilders.append(sqlBuilder, whereSqlOfTypes);
+        if (supports(statusType)) {
+//            List<S> statusList = toStatuses();
+//            String prefix = null;
+//            if (GeneralUtils.isNotEmpty(alias) && alias.contains(".")) {
+//                prefix = alias.split("\\.")[0];
+//            }
+//            String whereSqlOfTypes = SqlUtils.whereSqlOfTypes(prefix, statusList, statusType, StyleType.LOWER_UNDERLINE);
+            String alertnessSql = sqlOfAlertness();
+            SqlBuilders.append(sqlBuilder, alertnessSql);
         } else {
             if (GeneralUtils.isNotEmpty(getStatus())) {
                 SqlBuilders.equal(sqlBuilder, alias, getStatus());

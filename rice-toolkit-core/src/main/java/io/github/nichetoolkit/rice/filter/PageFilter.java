@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import lombok.Getter;
@@ -151,7 +152,7 @@ public class PageFilter implements Serializable {
      * @return  {@link java.lang.String} <p>The to page sql return object is <code>String</code> type.</p>
      * @see  java.lang.String
      */
-    public String toPageSql() {
+    public String toPageSql() throws RestException {
         return PAGE_LIMIT + " " + this.pageSize +
                 PAGE_OFFSET + " " + (this.pageNum - 1);
     }
@@ -163,7 +164,7 @@ public class PageFilter implements Serializable {
      * @return  {@link com.github.pagehelper.Page} <p>The to page return object is <code>Page</code> type.</p>
      * @see  com.github.pagehelper.Page
      */
-    public <T> Page<T> toPage() {
+    public <T> Page<T> toPage() throws RestException {
         if (GeneralUtils.isNotEmpty(this.pageSize)) {
             if (this.loadLastPage) {
                 return PageHelper.startPage(Integer.MAX_VALUE, this.pageSize,true,true,null);
@@ -181,7 +182,7 @@ public class PageFilter implements Serializable {
      * @return  {@link java.lang.Boolean} <p>The to load array return object is <code>Boolean</code> type.</p>
      * @see  java.lang.Boolean
      */
-    public Boolean[] toLoadArray() {
+    public Boolean[] toLoadArray() throws RestException {
         Boolean[] toArray = LOAD_ARRAY.toArray(new Boolean[0]);
         LOAD_ARRAY.clear();
         return toArray;
@@ -195,7 +196,7 @@ public class PageFilter implements Serializable {
      * @see  org.springframework.lang.NonNull
      * @return  {@link java.lang.Boolean} <p>The to load array return object is <code>Boolean</code> type.</p>
      */
-    public Boolean[] toLoadArray(@NonNull Boolean... isLoads) {
+    public Boolean[] toLoadArray(@NonNull Boolean... isLoads) throws RestException {
         this.addLoadArray(isLoads);
         return toLoadArray();
     }
@@ -206,7 +207,7 @@ public class PageFilter implements Serializable {
      * @return  {@link java.lang.String} <p>The to field array return object is <code>String</code> type.</p>
      * @see  java.lang.String
      */
-    public String[] toFieldArray() {
+    public String[] toFieldArray() throws RestException {
         String[] toArray = FIELD_ARRAY.toArray(new String[0]);
         FIELD_ARRAY.clear();
         return toArray;
@@ -220,7 +221,7 @@ public class PageFilter implements Serializable {
      * @see  org.springframework.lang.NonNull
      * @return  {@link java.lang.String} <p>The to field array return object is <code>String</code> type.</p>
      */
-    public String[] toFieldArray(@NonNull String... fields) {
+    public String[] toFieldArray(@NonNull String... fields) throws RestException {
         this.addFieldArray(fields);
         return toFieldArray();
     }

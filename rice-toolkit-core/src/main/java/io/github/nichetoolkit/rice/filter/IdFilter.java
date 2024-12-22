@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
-import io.github.nichetoolkit.mybatis.builder.SqlUtils;
-import io.github.nichetoolkit.mybatis.enums.StyleType;
-import io.github.nichetoolkit.mybatis.table.RestIdentity;
+import io.github.nichetoolkit.mybatis.fitter.RestIdentityFitter;
 import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
@@ -35,7 +33,7 @@ import java.util.*;
 @SuppressWarnings({"WeakerAccess", "MixedMutabilityReturnType"})
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class IdFilter<I, K> extends TableFilter<K> {
+public class IdFilter<I, K> extends TableFilter<K> implements RestIdentityFitter {
     /**
      * <code>SQL_BUILDER</code>
      * {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The <code>SQL_BUILDER</code> field.</p>
@@ -319,14 +317,15 @@ public class IdFilter<I, K> extends TableFilter<K> {
     public IdFilter<I, K> toIdSql(@NonNull String alias) {
         Class<I> identityType = (Class<I>) RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
                 IdFilter.class.getTypeParameters()[0], getClass(), IdFilter.class));
-        if (identityType.isAnnotationPresent(RestIdentity.class)) {
-            List<I> idList = toIds();
-            String prefix = null;
-            if (GeneralUtils.isNotEmpty(alias) && alias.contains(".")) {
-                prefix = alias.split("\\.")[0];
-            }
-            String whereSqlOfIdentities = SqlUtils.whereSqlOfTypes(prefix, idList, identityType, StyleType.LOWER_UNDERLINE);
-            SqlBuilders.append(SQL_BUILDER, whereSqlOfIdentities);
+        if (supports(identityType)) {
+//            List<I> idList = toIds();
+//            String prefix = null;
+//            if (GeneralUtils.isNotEmpty(alias) && alias.contains(".")) {
+//                prefix = alias.split("\\.")[0];
+//            }
+//            String whereSqlOfIdentities = SqlUtils.whereSqlOfTypes(prefix, idList, identityType, StyleType.LOWER_UNDERLINE);
+            String sqlOfIdentity = sqlOfIdentity();
+            SqlBuilders.append(SQL_BUILDER, sqlOfIdentity);
         } else {
             if (GeneralUtils.isNotEmpty(this.id)) {
                 SqlBuilders.equal(SQL_BUILDER, alias, this.id);

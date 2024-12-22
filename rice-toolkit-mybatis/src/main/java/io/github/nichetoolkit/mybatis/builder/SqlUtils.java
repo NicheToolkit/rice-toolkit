@@ -1,6 +1,5 @@
 package io.github.nichetoolkit.mybatis.builder;
 
-import io.github.nichetoolkit.mybatis.RestStyle;
 import io.github.nichetoolkit.mybatis.consts.SQLConstants;
 import io.github.nichetoolkit.mybatis.enums.StyleType;
 import io.github.nichetoolkit.rest.RestReckon;
