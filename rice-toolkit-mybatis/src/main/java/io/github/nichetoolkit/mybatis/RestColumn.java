@@ -221,6 +221,13 @@ public @interface RestColumn {
     boolean alertKey() default false;
 
     /**
+     * <code>fickleKey</code>
+     * <p>The fickle key method.</p>
+     * @return boolean <p>The fickle key return object is <code>boolean</code> type.</p>
+     */
+    boolean fickleKey() default false;
+
+    /**
      * <code>operateKey</code>
      * <p>The operate key method.</p>
      * @return boolean <p>The operate key return object is <code>boolean</code> type.</p>

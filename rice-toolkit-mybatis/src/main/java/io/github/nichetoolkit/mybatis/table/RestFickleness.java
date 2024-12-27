@@ -1,4 +1,4 @@
-package io.github.nichetoolkit.mybatis.fickle;
+package io.github.nichetoolkit.mybatis.table;
 
 import org.springframework.stereotype.Indexed;
 

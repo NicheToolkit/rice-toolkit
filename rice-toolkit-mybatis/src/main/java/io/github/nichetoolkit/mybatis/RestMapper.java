@@ -69,4 +69,12 @@ public @interface RestMapper {
      * @see  java.lang.Class
      */
     Class<?> alertnessType() default Object.class;
+
+    /**
+     * <code>ficklenessType</code>
+     * <p>The fickleness type method.</p>
+     * @return  {@link java.lang.Class} <p>The fickleness type return object is <code>Class</code> type.</p>
+     * @see  java.lang.Class
+     */
+    Class<?> ficklenessType() default Object.class;
 }
