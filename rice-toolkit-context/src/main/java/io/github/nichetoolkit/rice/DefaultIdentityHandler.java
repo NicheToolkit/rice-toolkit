@@ -27,6 +27,11 @@ import java.util.stream.Collectors;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class DefaultIdentityHandler<I> implements RestIdentityHandler<I> {
 
+    /**
+     * <code>DEFAULT_IDENTITY_TYPE</code>
+     * {@link java.lang.Class} <p>The constant <code>DEFAULT_IDENTITY_TYPE</code> field.</p>
+     * @see  java.lang.Class
+     */
     private static final Class<Serializable> DEFAULT_IDENTITY_TYPE = Serializable.class;
 
     /**

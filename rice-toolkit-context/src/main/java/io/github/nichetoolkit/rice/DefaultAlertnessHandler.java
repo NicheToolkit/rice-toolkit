@@ -27,6 +27,11 @@ import java.util.stream.Collectors;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class DefaultAlertnessHandler<S> implements RestAlertnessHandler<S> {
 
+    /**
+     * <code>DEFAULT_ALERTNESS_TYPE</code>
+     * {@link java.lang.Class} <p>The constant <code>DEFAULT_ALERTNESS_TYPE</code> field.</p>
+     * @see  java.lang.Class
+     */
     private static final Class<Serializable> DEFAULT_ALERTNESS_TYPE = Serializable.class;
 
     /**
