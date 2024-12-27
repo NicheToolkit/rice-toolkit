@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.jsonb;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.nichetoolkit.rest.RestField;
+import io.github.nichetoolkit.rest.RestStamp;
 import io.github.nichetoolkit.rest.RestValue;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import org.springframework.lang.NonNull;
@@ -16,56 +16,56 @@ import java.util.stream.Stream;
 /**
  * <code>ValueType</code>
  * <p>The value type enumeration.</p>
- * @see  io.github.nichetoolkit.rest.RestField
+ * @see  io.github.nichetoolkit.rest.RestStamp
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public enum ValueType implements RestField {
+public enum ValueType implements RestStamp {
     /**
      * <code>SHORT</code>
      * <p>The short value type field.</p>
      */
-    SHORT(1, "短整型","int2"),
+    SHORT(1, "smallint","int2"),
     /**
      * <code>INTEGER</code>
      * <p>The integer value type field.</p>
      */
-    INTEGER(2, "整型","int4"),
+    INTEGER(2, "integer","int4"),
     /**
      * <code>LONG</code>
      * <p>The long value type field.</p>
      */
-    LONG(3, "长整型","int8"),
+    LONG(3, "bigint","int8"),
     /**
      * <code>FLOAT</code>
      * <p>The float value type field.</p>
      */
-    FLOAT(4, "单精度浮点类型","float4"),
+    FLOAT(4, "real","float4"),
     /**
      * <code>DOUBLE</code>
-     * <p>The double value type field.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The <code>DOUBLE</code> field.</p>
      */
-    DOUBLE(5, "双精度浮点类型","float8"),
+    DOUBLE(5, "double precision","float8"),
     /**
      * <code>TEXT</code>
      * <p>The text value type field.</p>
      */
-    TEXT(6, "文本类型","text"),
+    TEXT(6, "text","text"),
     /**
      * <code>DATE</code>
      * <p>The date value type field.</p>
      */
-    DATE(7, "日期类型","timestamp"),
+    DATE(7, "timestamptz","timestamp"),
     /**
      * <code>BOOLEAN</code>
      * <p>The boolean value type field.</p>
      */
-    BOOLEAN(8, "布尔类型","bool"),
+    BOOLEAN(8, "boolean","bool"),
     /**
      * <code>STRING</code>
      * <p>The string value type field.</p>
      */
-    STRING(9, "字符串类型","varchar"),
+    STRING(9, "character","varchar"),
             ;
     /**
      * <code>key</code>
@@ -80,25 +80,25 @@ public enum ValueType implements RestField {
      */
     private final String value;
     /**
-     * <code>field</code>
-     * {@link java.lang.String} <p>The <code>field</code> field.</p>
+     * <code>stamp</code>
+     * {@link java.lang.String} <p>The <code>stamp</code> field.</p>
      * @see  java.lang.String
      */
-    private final String field;
+    private final String stamp;
 
     /**
      * <code>ValueType</code>
      * <p>Instantiates a new value type.</p>
      * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
      * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @param field {@link java.lang.String} <p>The field parameter is <code>String</code> type.</p>
+     * @param stamp {@link java.lang.String} <p>The stamp parameter is <code>String</code> type.</p>
      * @see  java.lang.Integer
      * @see  java.lang.String
      */
-    ValueType(Integer key, String value, String field) {
+    ValueType(Integer key, String value, String stamp) {
         this.key = key;
         this.value = value;
-        this.field = field;
+        this.stamp = stamp;
     }
 
     @JsonValue
@@ -113,8 +113,8 @@ public enum ValueType implements RestField {
     }
 
     @Override
-    public String getField() {
-        return this.field;
+    public String getStamp() {
+        return this.stamp;
     }
 
     /**
@@ -146,15 +146,15 @@ public enum ValueType implements RestField {
     }
 
     /**
-     * <code>parseField</code>
-     * <p>The parse field method.</p>
-     * @param field {@link java.lang.String} <p>The field parameter is <code>String</code> type.</p>
+     * <code>parseStamp</code>
+     * <p>The parse stamp method.</p>
+     * @param stamp {@link java.lang.String} <p>The stamp parameter is <code>String</code> type.</p>
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
-     * @return  {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The parse field return object is <code>ValueType</code> type.</p>
+     * @return  {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The parse stamp return object is <code>ValueType</code> type.</p>
      */
-    public static ValueType parseField(@NonNull String field) {
-        ValueType typeEnum = RestField.parseField(ValueType.class, field);
+    public static ValueType parseStamp(@NonNull String stamp) {
+        ValueType typeEnum = RestStamp.parseStamp(ValueType.class, stamp);
         return Optional.ofNullable(typeEnum).orElse(ValueType.STRING);
     }
 

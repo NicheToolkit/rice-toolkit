@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.jsonb;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.nichetoolkit.rest.RestField;
+import io.github.nichetoolkit.rest.RestStamp;
 import io.github.nichetoolkit.rest.RestValue;
 import org.springframework.lang.NonNull;
 
@@ -11,67 +11,67 @@ import java.util.Optional;
 /**
  * <code>RangeOperation</code>
  * <p>The range operation enumeration.</p>
- * @see  io.github.nichetoolkit.rest.RestField
+ * @see  io.github.nichetoolkit.rest.RestStamp
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public enum RangeOperation implements RestField {
+public enum RangeOperation implements RestStamp {
     /**
      * <code>GREATER_EQUAL_LESS_EQUAL_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_EQUAL_LESS_EQUAL_OPERATION</code> field.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_EQUAL_LESS_EQUAL_OPERATION</code> stamp.</p>
      */
-    GREATER_EQUAL_LESS_EQUAL_OPERATION(1, "大于等于且小于等于","(target >= start and target <= end)"),
+    GREATER_EQUAL_LESS_EQUAL_OPERATION(1, ">= && <=","(target >= start and target <= end)"),
     /**
      * <code>GREATER_EQUAL_LESS_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_EQUAL_LESS_OPERATION</code> field.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_EQUAL_LESS_OPERATION</code> stamp.</p>
      */
-    GREATER_EQUAL_LESS_OPERATION(2, "大于等于且小于","(target >= start and target < end)"),
+    GREATER_EQUAL_LESS_OPERATION(2, ">= && <","(target >= start and target < end)"),
     /**
      * <code>GREATER_LESS_EQUAL_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_LESS_EQUAL_OPERATION</code> field.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_LESS_EQUAL_OPERATION</code> stamp.</p>
      */
-    GREATER_LESS_EQUAL_OPERATION(3, "大于且小于等于","(target > start and target <= end)"),
+    GREATER_LESS_EQUAL_OPERATION(3, "> && <=","(target > start and target <= end)"),
     /**
      * <code>GREATER_LESS_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_LESS_OPERATION</code> field.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_LESS_OPERATION</code> stamp.</p>
      */
-    GREATER_LESS_OPERATION(4, "大于且小于","(target > start and target < end)"),
+    GREATER_LESS_OPERATION(4, "> && <","(target > start and target < end)"),
     ;
 
     /**
      * <code>key</code>
-     * {@link java.lang.Integer} <p>The <code>key</code> field.</p>
+     * {@link java.lang.Integer} <p>The <code>key</code> stamp.</p>
      * @see  java.lang.Integer
      */
     private final Integer key;
     /**
      * <code>value</code>
-     * {@link java.lang.String} <p>The <code>value</code> field.</p>
+     * {@link java.lang.String} <p>The <code>value</code> stamp.</p>
      * @see  java.lang.String
      */
     private final String value;
     /**
-     * <code>field</code>
-     * {@link java.lang.String} <p>The <code>field</code> field.</p>
+     * <code>stamp</code>
+     * {@link java.lang.String} <p>The <code>stamp</code> stamp.</p>
      * @see  java.lang.String
      */
-    private final String field;
+    private final String stamp;
 
     /**
      * <code>TARGET</code>
-     * {@link java.lang.String} <p>The constant <code>TARGET</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>TARGET</code> stamp.</p>
      * @see  java.lang.String
      */
     public static final String TARGET = "target";
     /**
      * <code>START</code>
-     * {@link java.lang.String} <p>The constant <code>START</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>START</code> stamp.</p>
      * @see  java.lang.String
      */
     public static final String START = "start";
     /**
      * <code>END</code>
-     * {@link java.lang.String} <p>The constant <code>END</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>END</code> stamp.</p>
      * @see  java.lang.String
      */
     public static final String END = "end";
@@ -81,14 +81,14 @@ public enum RangeOperation implements RestField {
      * <p>Instantiates a new range operation.</p>
      * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
      * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @param field {@link java.lang.String} <p>The field parameter is <code>String</code> type.</p>
+     * @param stamp {@link java.lang.String} <p>The stamp parameter is <code>String</code> type.</p>
      * @see  java.lang.Integer
      * @see  java.lang.String
      */
-    RangeOperation(Integer key, String value, String field) {
+    RangeOperation(Integer key, String value, String stamp) {
         this.key = key;
         this.value = value;
-        this.field = field;
+        this.stamp = stamp;
     }
 
     @JsonValue
@@ -103,8 +103,8 @@ public enum RangeOperation implements RestField {
     }
 
     @Override
-    public String getField() {
-        return this.field;
+    public String getStamp() {
+        return this.stamp;
     }
 
     /**
@@ -118,7 +118,7 @@ public enum RangeOperation implements RestField {
      * @return  {@link java.lang.String} <p>The translate sql return object is <code>String</code> type.</p>
      */
     public String translateSql(String target, Object startValue, Object endValue) {
-        return this.field.replace(TARGET, target)
+        return this.stamp.replace(TARGET, target)
                 .replace(START, String.valueOf(startValue))
                 .replace(END, String.valueOf(endValue));
     }
@@ -152,15 +152,15 @@ public enum RangeOperation implements RestField {
     }
 
     /**
-     * <code>parseField</code>
-     * <p>The parse field method.</p>
-     * @param field {@link java.lang.String} <p>The field parameter is <code>String</code> type.</p>
+     * <code>parseStamp</code>
+     * <p>The parse stamp method.</p>
+     * @param stamp {@link java.lang.String} <p>The stamp parameter is <code>String</code> type.</p>
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
-     * @return  {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The parse field return object is <code>RangeOperation</code> type.</p>
+     * @return  {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The parse stamp return object is <code>RangeOperation</code> type.</p>
      */
-    public static RangeOperation parseField(@NonNull String field) {
-        RangeOperation typeEnum = RestField.parseField(RangeOperation.class, field);
+    public static RangeOperation parseStamp(@NonNull String stamp) {
+        RangeOperation typeEnum = RestStamp.parseStamp(RangeOperation.class, stamp);
         return Optional.ofNullable(typeEnum).orElse(RangeOperation.GREATER_EQUAL_LESS_EQUAL_OPERATION);
     }
 }

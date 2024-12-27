@@ -95,7 +95,7 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
      * @return  {@link java.lang.String} <p>The target return object is <code>String</code> type.</p>
      */
     String target(String target, String name, String value, ValueType type) {
-        return target(target,name,value,type.getField());
+        return target(target,name,value,type.getStamp());
     }
 
     /**

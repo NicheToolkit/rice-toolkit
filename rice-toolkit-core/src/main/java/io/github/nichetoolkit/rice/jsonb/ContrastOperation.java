@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.jsonb;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.nichetoolkit.rest.RestField;
+import io.github.nichetoolkit.rest.RestStamp;
 import io.github.nichetoolkit.rest.RestValue;
 
 import java.util.Optional;
@@ -10,70 +10,70 @@ import java.util.Optional;
 /**
  * <code>ContrastOperation</code>
  * <p>The contrast operation enumeration.</p>
- * @see  io.github.nichetoolkit.rest.RestField
+ * @see  io.github.nichetoolkit.rest.RestStamp
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public enum ContrastOperation implements RestField {
+public enum ContrastOperation implements RestStamp {
     /**
      * <code>EQUAL_OPERATION</code>
-     * <p>The equal operation contrast operation field.</p>
+     * <p>The equal operation contrast operation stamp.</p>
      */
-    EQUAL_OPERATION(1, "相等","target = values"),
+    EQUAL_OPERATION(1, "=","target = values"),
     /**
      * <code>GREATER_OPERATION</code>
-     * <p>The greater operation contrast operation field.</p>
+     * <p>The greater operation contrast operation stamp.</p>
      */
-    GREATER_OPERATION(2, "大于","target > values"),
+    GREATER_OPERATION(2, ">","target > values"),
     /**
      * <code>GREATER_EQUAL_OPERATION</code>
-     * <p>The greater equal operation contrast operation field.</p>
+     * <p>The greater equal operation contrast operation stamp.</p>
      */
-    GREATER_EQUAL_OPERATION(3, "大于等于","target >= values"),
+    GREATER_EQUAL_OPERATION(3, ">=","target >= values"),
     /**
      * <code>LESS_OPERATION</code>
-     * <p>The less operation contrast operation field.</p>
+     * <p>The less operation contrast operation stamp.</p>
      */
-    LESS_OPERATION(4, "小于","target < values"),
+    LESS_OPERATION(4, "<","target < values"),
     /**
      * <code>LESS_EQUAL_OPERATION</code>
-     * <p>The less equal operation contrast operation field.</p>
+     * <p>The less equal operation contrast operation stamp.</p>
      */
-    LESS_EQUAL_OPERATION(5, "小于等于","target <= values"),
+    LESS_EQUAL_OPERATION(5, "<=","target <= values"),
     /**
      * <code>UNEQUAL_OPERATION</code>
-     * <p>The unequal operation contrast operation field.</p>
+     * <p>The unequal operation contrast operation stamp.</p>
      */
-    UNEQUAL_OPERATION(6, "不等于","target != values"),
+    UNEQUAL_OPERATION(6, "!=","target != values"),
     ;
     /**
      * <code>key</code>
-     * {@link java.lang.Integer} <p>The <code>key</code> field.</p>
+     * {@link java.lang.Integer} <p>The <code>key</code> stamp.</p>
      * @see  java.lang.Integer
      */
     private final Integer key;
     /**
      * <code>value</code>
-     * {@link java.lang.String} <p>The <code>value</code> field.</p>
+     * {@link java.lang.String} <p>The <code>value</code> stamp.</p>
      * @see  java.lang.String
      */
     private final String value;
     /**
-     * <code>field</code>
-     * {@link java.lang.String} <p>The <code>field</code> field.</p>
+     * <code>stamp</code>
+     * {@link java.lang.String} <p>The <code>stamp</code> stamp.</p>
      * @see  java.lang.String
      */
-    private final String field;
+    private final String stamp;
 
     /**
      * <code>TARGET</code>
-     * {@link java.lang.String} <p>The constant <code>TARGET</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>TARGET</code> stamp.</p>
      * @see  java.lang.String
      */
     public static final String TARGET = "target";
     /**
      * <code>VALUE</code>
-     * {@link java.lang.String} <p>The constant <code>VALUE</code> field.</p>
+     * {@link java.lang.String} <p>The constant <code>VALUE</code> stamp.</p>
      * @see  java.lang.String
      */
     public static final String VALUE = "values";
@@ -83,14 +83,14 @@ public enum ContrastOperation implements RestField {
      * <p>Instantiates a new contrast operation.</p>
      * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
      * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @param field {@link java.lang.String} <p>The field parameter is <code>String</code> type.</p>
+     * @param stamp {@link java.lang.String} <p>The stamp parameter is <code>String</code> type.</p>
      * @see  java.lang.Integer
      * @see  java.lang.String
      */
-    ContrastOperation(Integer key, String value, String field) {
+    ContrastOperation(Integer key, String value, String stamp) {
         this.key = key;
         this.value = value;
-        this.field = field;
+        this.stamp = stamp;
     }
 
     @JsonValue
@@ -105,8 +105,8 @@ public enum ContrastOperation implements RestField {
     }
 
     @Override
-    public String getField() {
-        return this.field;
+    public String getStamp() {
+        return this.stamp;
     }
 
     /**
@@ -119,7 +119,7 @@ public enum ContrastOperation implements RestField {
      * @return  {@link java.lang.String} <p>The translate sql return object is <code>String</code> type.</p>
      */
     public String translateSql(String target, Object value) {
-       return this.field.replace(TARGET, target).replace(VALUE, String.valueOf(value));
+       return this.stamp.replace(TARGET, target).replace(VALUE, String.valueOf(value));
     }
 
     /**
@@ -149,14 +149,14 @@ public enum ContrastOperation implements RestField {
     }
 
     /**
-     * <code>parseField</code>
-     * <p>The parse field method.</p>
-     * @param field {@link java.lang.String} <p>The field parameter is <code>String</code> type.</p>
+     * <code>parseStamp</code>
+     * <p>The parse stamp method.</p>
+     * @param stamp {@link java.lang.String} <p>The stamp parameter is <code>String</code> type.</p>
      * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.rice.jsonb.ContrastOperation} <p>The parse field return object is <code>ContrastOperation</code> type.</p>
+     * @return  {@link io.github.nichetoolkit.rice.jsonb.ContrastOperation} <p>The parse stamp return object is <code>ContrastOperation</code> type.</p>
      */
-    public static ContrastOperation parseField(String field) {
-        ContrastOperation typeEnum = RestField.parseField(ContrastOperation.class, field);
+    public static ContrastOperation parseStamp(String stamp) {
+        ContrastOperation typeEnum = RestStamp.parseStamp(ContrastOperation.class, stamp);
         return Optional.ofNullable(typeEnum).orElse(ContrastOperation.EQUAL_OPERATION);
     }
 }
