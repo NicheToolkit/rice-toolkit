@@ -3,6 +3,8 @@ package io.github.nichetoolkit.rice.jsonb;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -11,12 +13,16 @@ import java.util.Objects;
  * <code>Property</code>
  * <p>The property class.</p>
  * @see  java.io.Serializable
+ * @see  lombok.Setter
+ * @see  lombok.Getter
  * @see  lombok.Builder
  * @see  com.fasterxml.jackson.annotation.JsonInclude
  * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
+@Setter
+@Getter
 @Builder
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -83,46 +89,6 @@ public class Property implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    /**
-     * <code>getName</code>
-     * <p>The get name getter method.</p>
-     * @return  {@link java.lang.String} <p>The get name return object is <code>String</code> type.</p>
-     * @see  java.lang.String
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * <code>setName</code>
-     * <p>The set name setter method.</p>
-     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * <code>getValue</code>
-     * <p>The get value getter method.</p>
-     * @return  {@link java.lang.Object} <p>The get value return object is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     */
-    public Object getValue() {
-        return value;
-    }
-
-    /**
-     * <code>setValue</code>
-     * <p>The set value setter method.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     */
-    public void setValue(Object value) {
-        this.value = value;
     }
 
 

@@ -5,25 +5,30 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.github.pagehelper.PageInfo;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.filter.PageFilter;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * <code>RestPage</code>
  * <p>The rest page class.</p>
  * @param <T>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @see  java.io.Serializable
+ * @see  lombok.Setter
+ * @see  lombok.Getter
  * @see  java.lang.SuppressWarnings
  * @see  com.fasterxml.jackson.annotation.JsonInclude
  * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
+@Setter
+@Getter
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -60,22 +65,22 @@ public class RestPage<T> implements Serializable {
     protected Long itemSize;
     /**
      * <code>items</code>
-     * {@link java.util.List} <p>The <code>items</code> field.</p>
-     * @see  java.util.List
+     * {@link java.util.Collection} <p>The <code>items</code> field.</p>
+     * @see  java.util.Collection
      */
-    protected List<T> items = Collections.emptyList();
+    protected Collection<T> items = Collections.emptyList();
     /**
-     * <code>isFirstPage</code>
-     * {@link java.lang.Boolean} <p>The <code>isFirstPage</code> field.</p>
+     * <code>firstPage</code>
+     * {@link java.lang.Boolean} <p>The <code>firstPage</code> field.</p>
      * @see  java.lang.Boolean
      */
-    protected Boolean isFirstPage;
+    protected Boolean firstPage;
     /**
-     * <code>isLastPage</code>
-     * {@link java.lang.Boolean} <p>The <code>isLastPage</code> field.</p>
+     * <code>lastPage</code>
+     * {@link java.lang.Boolean} <p>The <code>lastPage</code> field.</p>
      * @see  java.lang.Boolean
      */
-    protected Boolean isLastPage;
+    protected Boolean lastPage;
 
     /**
      * <code>RestPage</code>
@@ -98,8 +103,8 @@ public class RestPage<T> implements Serializable {
         this.totals = (long) items.size();
         this.pageSize = (long) items.size();
         this.itemSize = (long) items.size();
-        this.isFirstPage = true;
-        this.isLastPage = true;
+        this.firstPage = true;
+        this.lastPage = true;
     }
 
     /**
@@ -129,8 +134,8 @@ public class RestPage<T> implements Serializable {
             this.pages = 0L;
             this.itemSize = 0L;
         }
-        this.isFirstPage = this.pageNum == 1;
-        this.isLastPage = this.pageNum.equals(this.pages) || this.pages == 0;
+        this.firstPage = this.pageNum == 1;
+        this.lastPage = this.pageNum.equals(this.pages) || this.pages == 0;
     }
 
     /**
@@ -298,168 +303,8 @@ public class RestPage<T> implements Serializable {
         this.pageSize = builder.pageSize;
         this.itemSize = builder.itemSize;
         this.items = builder.items;
-        this.isFirstPage = builder.isFirstPage;
-        this.isLastPage = builder.isLastPage;
-    }
-
-    /**
-     * <code>getTotals</code>
-     * <p>The get totals getter method.</p>
-     * @return  {@link java.lang.Long} <p>The get totals return object is <code>Long</code> type.</p>
-     * @see  java.lang.Long
-     */
-    public Long getTotals() {
-        return totals;
-    }
-
-    /**
-     * <code>setTotals</code>
-     * <p>The set totals setter method.</p>
-     * @param totals {@link java.lang.Long} <p>The totals parameter is <code>Long</code> type.</p>
-     * @see  java.lang.Long
-     */
-    public void setTotals(Long totals) {
-        this.totals = totals;
-    }
-
-    /**
-     * <code>getPages</code>
-     * <p>The get pages getter method.</p>
-     * @return  {@link java.lang.Long} <p>The get pages return object is <code>Long</code> type.</p>
-     * @see  java.lang.Long
-     */
-    public Long getPages() {
-        return pages;
-    }
-
-    /**
-     * <code>setPages</code>
-     * <p>The set pages setter method.</p>
-     * @param pages {@link java.lang.Long} <p>The pages parameter is <code>Long</code> type.</p>
-     * @see  java.lang.Long
-     */
-    public void setPages(Long pages) {
-        this.pages = pages;
-    }
-
-    /**
-     * <code>getPageNum</code>
-     * <p>The get page num getter method.</p>
-     * @return  {@link java.lang.Long} <p>The get page num return object is <code>Long</code> type.</p>
-     * @see  java.lang.Long
-     */
-    public Long getPageNum() {
-        return pageNum;
-    }
-
-    /**
-     * <code>setPageNum</code>
-     * <p>The set page num setter method.</p>
-     * @param pageNum {@link java.lang.Long} <p>The page num parameter is <code>Long</code> type.</p>
-     * @see  java.lang.Long
-     */
-    public void setPageNum(Long pageNum) {
-        this.pageNum = pageNum;
-    }
-
-    /**
-     * <code>getPageSize</code>
-     * <p>The get page size getter method.</p>
-     * @return  {@link java.lang.Long} <p>The get page size return object is <code>Long</code> type.</p>
-     * @see  java.lang.Long
-     */
-    public Long getPageSize() {
-        return pageSize;
-    }
-
-    /**
-     * <code>setPageSize</code>
-     * <p>The set page size setter method.</p>
-     * @param pageSize {@link java.lang.Long} <p>The page size parameter is <code>Long</code> type.</p>
-     * @see  java.lang.Long
-     */
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    /**
-     * <code>getItemSize</code>
-     * <p>The get item size getter method.</p>
-     * @return  {@link java.lang.Long} <p>The get item size return object is <code>Long</code> type.</p>
-     * @see  java.lang.Long
-     */
-    public Long getItemSize() {
-        return itemSize;
-    }
-
-    /**
-     * <code>setItemSize</code>
-     * <p>The set item size setter method.</p>
-     * @param itemSize {@link java.lang.Long} <p>The item size parameter is <code>Long</code> type.</p>
-     * @see  java.lang.Long
-     */
-    public void setItemSize(Long itemSize) {
-        this.itemSize = itemSize;
-    }
-
-    /**
-     * <code>getItems</code>
-     * <p>The get items getter method.</p>
-     * @return  {@link java.util.List} <p>The get items return object is <code>List</code> type.</p>
-     * @see  java.util.List
-     */
-    public List<T> getItems() {
-        return items;
-    }
-
-    /**
-     * <code>setItems</code>
-     * <p>The set items setter method.</p>
-     * @param items {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
-     * @see  java.util.Collection
-     */
-    public void setItems(Collection<T> items) {
-        this.items = new ArrayList<>(items);
-    }
-
-    /**
-     * <code>getFirstPage</code>
-     * <p>The get first page getter method.</p>
-     * @return  {@link java.lang.Boolean} <p>The get first page return object is <code>Boolean</code> type.</p>
-     * @see  java.lang.Boolean
-     */
-    public Boolean getFirstPage() {
-        return isFirstPage;
-    }
-
-    /**
-     * <code>setFirstPage</code>
-     * <p>The set first page setter method.</p>
-     * @param firstPage {@link java.lang.Boolean} <p>The first page parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.Boolean
-     */
-    public void setFirstPage(Boolean firstPage) {
-        isFirstPage = firstPage;
-    }
-
-    /**
-     * <code>getLastPage</code>
-     * <p>The get last page getter method.</p>
-     * @return  {@link java.lang.Boolean} <p>The get last page return object is <code>Boolean</code> type.</p>
-     * @see  java.lang.Boolean
-     */
-    public Boolean getLastPage() {
-        return isLastPage;
-    }
-
-    /**
-     * <code>setLastPage</code>
-     * <p>The set last page setter method.</p>
-     * @param lastPage {@link java.lang.Boolean} <p>The last page parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.Boolean
-     */
-    public void setLastPage(Boolean lastPage) {
-        isLastPage = lastPage;
+        this.firstPage = builder.firstPage;
+        this.lastPage = builder.lastPage;
     }
 
     /**
@@ -504,22 +349,22 @@ public class RestPage<T> implements Serializable {
         protected Long itemSize;
         /**
          * <code>items</code>
-         * {@link java.util.List} <p>The <code>items</code> field.</p>
-         * @see  java.util.List
+         * {@link java.util.Collection} <p>The <code>items</code> field.</p>
+         * @see  java.util.Collection
          */
-        protected List<T> items = Collections.emptyList();
+        protected Collection<T> items = Collections.emptyList();
         /**
-         * <code>isFirstPage</code>
-         * {@link java.lang.Boolean} <p>The <code>isFirstPage</code> field.</p>
+         * <code>firstPage</code>
+         * {@link java.lang.Boolean} <p>The <code>firstPage</code> field.</p>
          * @see  java.lang.Boolean
          */
-        protected Boolean isFirstPage;
+        protected Boolean firstPage;
         /**
-         * <code>isLastPage</code>
-         * {@link java.lang.Boolean} <p>The <code>isLastPage</code> field.</p>
+         * <code>lastPage</code>
+         * {@link java.lang.Boolean} <p>The <code>lastPage</code> field.</p>
          * @see  java.lang.Boolean
          */
-        protected Boolean isLastPage;
+        protected Boolean lastPage;
 
         /**
          * <code>Builder</code>
@@ -608,7 +453,7 @@ public class RestPage<T> implements Serializable {
          * @return  {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The first page return object is <code>Builder</code> type.</p>
          */
         public RestPage.Builder<T> firstPage(Boolean firstPage) {
-            this.isFirstPage = firstPage;
+            this.firstPage = firstPage;
             return this;
         }
 
@@ -620,7 +465,7 @@ public class RestPage<T> implements Serializable {
          * @return  {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The last page return object is <code>Builder</code> type.</p>
          */
         public RestPage.Builder<T> lastPage(Boolean lastPage) {
-            this.isLastPage = lastPage;
+            this.lastPage = lastPage;
             return this;
         }
 

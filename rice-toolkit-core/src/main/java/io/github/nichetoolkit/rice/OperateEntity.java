@@ -4,18 +4,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.mybatis.column.RestOperateKey;
 import io.github.nichetoolkit.rice.enums.OperateType;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 /**
  * <code>OperateEntity</code>
  * <p>The operate entity class.</p>
  * @see  io.github.nichetoolkit.rice.LogicEntity
+ * @see  lombok.Setter
+ * @see  lombok.Getter
  * @see  java.lang.SuppressWarnings
  * @see  com.fasterxml.jackson.annotation.JsonInclude
  * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
+@Setter
+@Getter
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -46,26 +52,6 @@ public class OperateEntity extends LogicEntity {
     public OperateEntity(OperateEntity.Builder builder) {
         super(builder);
         this.operate = builder.operate;
-    }
-
-    /**
-     * <code>getOperate</code>
-     * <p>The get operate getter method.</p>
-     * @return  {@link java.lang.Integer} <p>The get operate return object is <code>Integer</code> type.</p>
-     * @see  java.lang.Integer
-     */
-    public Integer getOperate() {
-        return operate;
-    }
-
-    /**
-     * <code>setOperate</code>
-     * <p>The set operate setter method.</p>
-     * @param operate {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
-     * @see  java.lang.Integer
-     */
-    public void setOperate(Integer operate) {
-        this.operate = operate;
     }
 
     /**

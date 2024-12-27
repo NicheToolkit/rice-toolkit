@@ -7,6 +7,8 @@ import io.github.nichetoolkit.rice.enums.OperateType;
 import io.github.nichetoolkit.mybatis.column.RestForceInsert;
 import io.github.nichetoolkit.mybatis.column.RestForceUpdate;
 import io.github.nichetoolkit.mybatis.column.RestUpdate;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import java.util.Date;
@@ -15,12 +17,16 @@ import java.util.Date;
  * <code>TimeEntity</code>
  * <p>The time entity class.</p>
  * @see  io.github.nichetoolkit.rice.OperateEntity
+ * @see  lombok.Setter
+ * @see  lombok.Getter
  * @see  java.lang.SuppressWarnings
  * @see  com.fasterxml.jackson.annotation.JsonInclude
  * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
+@Setter
+@Getter
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -63,46 +69,6 @@ public class TimeEntity extends OperateEntity {
         super(builder);
         this.createTime = builder.createTime;
         this.updateTime = builder.updateTime;
-    }
-
-    /**
-     * <code>getCreateTime</code>
-     * <p>The get create time getter method.</p>
-     * @return  {@link java.util.Date} <p>The get create time return object is <code>Date</code> type.</p>
-     * @see  java.util.Date
-     */
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    /**
-     * <code>setCreateTime</code>
-     * <p>The set create time setter method.</p>
-     * @param createTime {@link java.util.Date} <p>The create time parameter is <code>Date</code> type.</p>
-     * @see  java.util.Date
-     */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    /**
-     * <code>getUpdateTime</code>
-     * <p>The get update time getter method.</p>
-     * @return  {@link java.util.Date} <p>The get update time return object is <code>Date</code> type.</p>
-     * @see  java.util.Date
-     */
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    /**
-     * <code>setUpdateTime</code>
-     * <p>The set update time setter method.</p>
-     * @param updateTime {@link java.util.Date} <p>The update time parameter is <code>Date</code> type.</p>
-     * @see  java.util.Date
-     */
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 
     /**
