@@ -103,8 +103,10 @@ public interface StatusFilter<S> extends Serializable {
      * <code>toStatusSql</code>
      * <p>The to status sql method.</p>
      * @return  {@link io.github.nichetoolkit.rice.filter.StatusFilter} <p>The to status sql return object is <code>StatusFilter</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see  io.github.nichetoolkit.rest.RestException
      */
-    StatusFilter<S> toStatusSql();
+    StatusFilter<S> toStatusSql() throws RestException;
 
     /**
      * <code>toStatusSql</code>
@@ -112,9 +114,11 @@ public interface StatusFilter<S> extends Serializable {
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rest.RestException
      * @return  {@link io.github.nichetoolkit.rice.filter.StatusFilter} <p>The to status sql return object is <code>StatusFilter</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    StatusFilter<S> toStatusSql(@NonNull String alias);
+    StatusFilter<S> toStatusSql(@NonNull String alias) throws RestException;
 
     /**
      * <code>toStatusSql</code>
