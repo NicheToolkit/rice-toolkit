@@ -6,9 +6,11 @@ import io.github.nichetoolkit.rest.RestOptional;
 import io.github.nichetoolkit.rest.error.supply.ResourceNotFoundException;
 import io.github.nichetoolkit.rest.stream.RestStream;
 import io.github.nichetoolkit.rest.util.BeanUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,6 +26,8 @@ import java.util.stream.Collectors;
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class DefaultIdentityHandler<I> implements RestIdentityHandler<I> {
+
+    private static final Class<Serializable> DEFAULT_IDENTITY_TYPE = Serializable.class;
 
     /**
      * <code>toSqlHandle</code>
@@ -44,6 +48,9 @@ public abstract class DefaultIdentityHandler<I> implements RestIdentityHandler<I
         OptionalUtils.ofEmpty(handlers, "the bean of 'RestIdentityHandler' type for <I> is not found!", ResourceNotFoundException::new);
         Map<Class, List<RestIdentityHandler>> handlerMap = handlers.stream().collect(Collectors.groupingBy(RestIdentityHandler::identityType));
         List<RestIdentityHandler> identityHandlers = handlerMap.get(idType);
+        if (GeneralUtils.isEmpty(identityHandlers)) {
+            identityHandlers = handlerMap.get(DEFAULT_IDENTITY_TYPE);
+        }
         OptionalUtils.ofEmpty(identityHandlers, "the bean of 'RestIdentityHandler' type for <I> is not found!", ResourceNotFoundException::new);
         RestOptional<RestIdentityHandler> identityHandler = RestStream.stream(identityHandlers).findAny();
         OptionalUtils.ofNull(identityHandler, "the bean of 'RestIdentityHandler' type for <I> is not found!", ResourceNotFoundException::new);

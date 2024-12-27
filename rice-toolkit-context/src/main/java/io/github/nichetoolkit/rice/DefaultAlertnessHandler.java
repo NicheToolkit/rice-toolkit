@@ -6,9 +6,11 @@ import io.github.nichetoolkit.rest.RestOptional;
 import io.github.nichetoolkit.rest.error.supply.ResourceNotFoundException;
 import io.github.nichetoolkit.rest.stream.RestStream;
 import io.github.nichetoolkit.rest.util.BeanUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
 import io.github.nichetoolkit.rice.filter.StatusFilter;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,6 +26,8 @@ import java.util.stream.Collectors;
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class DefaultAlertnessHandler<S> implements RestAlertnessHandler<S> {
+
+    private static final Class<Serializable> DEFAULT_ALERTNESS_TYPE = Serializable.class;
 
     /**
      * <code>toSqlHandle</code>
@@ -44,6 +48,9 @@ public abstract class DefaultAlertnessHandler<S> implements RestAlertnessHandler
         OptionalUtils.ofEmpty(handlers, "the bean of 'RestAlertnessHandler' type for <S> is not found!", ResourceNotFoundException::new);
         Map<Class, List<RestAlertnessHandler>> handlerMap = handlers.stream().collect(Collectors.groupingBy(RestAlertnessHandler::alertnessType));
         List<RestAlertnessHandler> alertnessHandlers = handlerMap.get(statusType);
+        if (GeneralUtils.isEmpty(alertnessHandlers)) {
+            alertnessHandlers = handlerMap.get(DEFAULT_ALERTNESS_TYPE);
+        }
         OptionalUtils.ofEmpty(alertnessHandlers, "the bean of 'RestAlertnessHandler' type for <S> is not found!", ResourceNotFoundException::new);
         RestOptional<RestAlertnessHandler> alertnessHandler= RestStream.stream(alertnessHandlers).findAny();
         OptionalUtils.ofNull(alertnessHandler, "the bean of 'RestAlertnessHandler' type for <S> is not found!", ResourceNotFoundException::new);
