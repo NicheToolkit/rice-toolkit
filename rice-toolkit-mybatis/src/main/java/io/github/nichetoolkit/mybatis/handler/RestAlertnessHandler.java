@@ -5,7 +5,6 @@ import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
 import org.springframework.beans.factory.InitializingBean;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -39,7 +38,7 @@ public interface RestAlertnessHandler<S> extends InitializingBean {
     /**
      * <code>handle</code>
      * <p>The handle method.</p>
-     * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
+     * @param prefix {@link java.lang.String} <p>The prefix parameter is <code>String</code> type.</p>
      * @param statusList {@link java.util.Collection} <p>The status list parameter is <code>Collection</code> type.</p>
      * @param alertnessType {@link java.lang.Class} <p>The alertness type parameter is <code>Class</code> type.</p>
      * @see  java.lang.String
