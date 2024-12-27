@@ -38,7 +38,7 @@ public interface RestIdentityHandler<I> extends InitializingBean {
     /**
      * <code>handle</code>
      * <p>The handle method.</p>
-     * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
+     * @param prefix {@link java.lang.String} <p>The prefix parameter is <code>String</code> type.</p>
      * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param identityType {@link java.lang.Class} <p>The identity type parameter is <code>Class</code> type.</p>
      * @see  java.lang.String
@@ -48,7 +48,7 @@ public interface RestIdentityHandler<I> extends InitializingBean {
      * @return  {@link java.lang.String} <p>The handle return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    String handle(String alias, Collection<I> idList, Class<?> identityType) throws RestException;
+    String handle(String prefix, Collection<I> idList, Class<?> identityType) throws RestException;
 
     /**
      * <code>Instance</code>

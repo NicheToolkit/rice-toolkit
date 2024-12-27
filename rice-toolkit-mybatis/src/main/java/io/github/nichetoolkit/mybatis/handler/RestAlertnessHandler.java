@@ -49,7 +49,7 @@ public interface RestAlertnessHandler<S> extends InitializingBean {
      * @return  {@link java.lang.String} <p>The handle return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    String handle(String alias, Collection<S> statusList, Class<?> alertnessType) throws RestException;
+    String handle(String prefix, Collection<S> statusList, Class<?> alertnessType) throws RestException;
 
     /**
      * <code>Instance</code>
