@@ -129,10 +129,9 @@ public interface StatusFilter<S> extends Serializable {
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
      * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link io.github.nichetoolkit.rice.filter.StatusFilter} <p>The to status sql return object is <code>StatusFilter</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    default StatusFilter<S> toStatusSql(SqlBuilder sqlBuilder, @NonNull String alias) throws RestException {
+    default void toStatusSql(SqlBuilder sqlBuilder, @NonNull String alias) throws RestException {
         if (getStatusType().isAnnotationPresent(RestAlertness.class)) {
             toAlertnessSql(sqlBuilder, alias);
         } else {
@@ -142,7 +141,6 @@ public interface StatusFilter<S> extends Serializable {
                 SqlBuilders.in(sqlBuilder, alias, getStatuses());
             }
         }
-        return this;
     }
 
     /**
@@ -154,10 +152,9 @@ public interface StatusFilter<S> extends Serializable {
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
      * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link io.github.nichetoolkit.rice.filter.StatusFilter} <p>The to alertness sql return object is <code>StatusFilter</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    default StatusFilter<S> toAlertnessSql(SqlBuilder sqlBuilder,@NonNull String alias) throws RestException {
+    default void toAlertnessSql(SqlBuilder sqlBuilder,@NonNull String alias) throws RestException {
         throw new UnsupportedErrorException("the method of 'toAlertnessSql()' is unsupported.");
     }
 

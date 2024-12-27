@@ -335,7 +335,7 @@ public class IdFilter<I, K> extends TableFilter<K> {
      */
     public IdFilter<I, K> toIdSql(@NonNull String alias) throws RestException {
         if (getIdType().isAnnotationPresent(RestIdentity.class)) {
-            toIdentitySql(alias);
+            toIdentitySql(SQL_BUILDER,alias);
         } else {
             if (GeneralUtils.isNotEmpty(this.id)) {
                 SqlBuilders.equal(SQL_BUILDER, alias, this.id);
@@ -349,14 +349,15 @@ public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>toIdentitySql</code>
      * <p>The to identity sql method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
+     * @see  io.github.nichetoolkit.mybatis.builder.SqlBuilder
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
      * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The to identity sql return object is <code>IdFilter</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    public IdFilter<I, K> toIdentitySql(@NonNull String alias) throws RestException {
+    public void toIdentitySql(SqlBuilder sqlBuilder,@NonNull String alias) throws RestException {
         throw new UnsupportedErrorException("the method of 'toIdentitySql()' is unsupported.");
     }
 

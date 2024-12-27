@@ -59,15 +59,14 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
     }
 
     @Override
-    public DefaultFilter<I, K> toIdentitySql(@NonNull String alias) throws RestException {
+    public void toIdentitySql(SqlBuilder sqlBuilder, @NonNull String alias) throws RestException {
         List<I> idList = toIds();
         String prefix = null;
         if (GeneralUtils.isNotEmpty(alias) && alias.contains(SQLConstants.PERIOD)) {
             prefix = alias.split("\\.")[0];
         }
         String identitySql = DefaultIdentityHandler.toSqlHandle(prefix, this);
-        SqlBuilders.append(SQL_BUILDER, identitySql);
-        return this;
+        SqlBuilders.append(sqlBuilder, identitySql);
     }
 
     /**
@@ -79,10 +78,9 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
      * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link io.github.nichetoolkit.rice.DefaultFilter} <p>The to alertness sql return object is <code>DefaultFilter</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    public DefaultFilter<I, K> toAlertnessSql(SqlBuilder sqlBuilder, @NonNull String alias) throws RestException {
+    public void toAlertnessSql(SqlBuilder sqlBuilder, @NonNull String alias) throws RestException {
         if (this instanceof StatusFilter) {
             StatusFilter<?> statusFilter = (StatusFilter<?>) this;
             List<?> statusList = statusFilter.toStatuses();
@@ -95,7 +93,6 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
         } else {
             throw new UnsupportedErrorException("the method of 'toAlertnessSql()' is unsupported，it is must be 'StatusFilter' type.");
         }
-        return this;
     }
 
     /**
