@@ -39,7 +39,7 @@ public abstract class DefaultAlertnessHandler<S> implements RestAlertnessHandler
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     public static <F extends StatusFilter<S>,S> String toSqlHandle(String prefix, F filter) throws RestException {
-        Class<?> statusType = filter.getStatusType();
+        Class<S> statusType = filter.getStatusType();
         List<RestAlertnessHandler> handlers = BeanUtils.beansOfType(RestAlertnessHandler.class);
         OptionalUtils.ofEmpty(handlers, "the bean of 'RestAlertnessHandler' type for <S> is not found!", ResourceNotFoundException::new);
         Map<Class, List<RestAlertnessHandler>> handlerMap = handlers.stream().collect(Collectors.groupingBy(RestAlertnessHandler::alertnessType));

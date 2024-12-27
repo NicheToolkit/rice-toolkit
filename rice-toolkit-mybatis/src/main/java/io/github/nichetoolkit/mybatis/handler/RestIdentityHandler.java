@@ -48,7 +48,7 @@ public interface RestIdentityHandler<I> extends InitializingBean {
      * @return  {@link java.lang.String} <p>The handle return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    String handle(String prefix, Collection<I> idList, Class<?> identityType) throws RestException;
+    String handle(String prefix, Collection<I> idList, Class<I> identityType) throws RestException;
 
     /**
      * <code>Instance</code>

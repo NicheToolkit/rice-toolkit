@@ -39,7 +39,7 @@ public abstract class DefaultIdentityHandler<I> implements RestIdentityHandler<I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     public static <F extends IdFilter<I,?>, I> String toSqlHandle(String prefix, F filter) throws RestException {
-        Class<?> idType = filter.getIdType();
+        Class<I> idType = filter.getIdType();
         List<RestIdentityHandler> handlers = BeanUtils.beansOfType(RestIdentityHandler.class);
         OptionalUtils.ofEmpty(handlers, "the bean of 'RestIdentityHandler' type for <I> is not found!", ResourceNotFoundException::new);
         Map<Class, List<RestIdentityHandler>> handlerMap = handlers.stream().collect(Collectors.groupingBy(RestIdentityHandler::identityType));
