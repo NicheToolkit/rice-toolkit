@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
-import io.github.nichetoolkit.mybatis.fitter.RestIdentityFitter;
+import io.github.nichetoolkit.mybatis.table.RestIdentity;
+import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
 import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
@@ -24,16 +26,20 @@ import java.util.*;
  * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @see  io.github.nichetoolkit.rice.filter.TableFilter
+ * @see  lombok.Getter
+ * @see  lombok.Setter
  * @see  java.lang.SuppressWarnings
  * @see  com.fasterxml.jackson.annotation.JsonInclude
  * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
+@Getter
+@Setter
 @SuppressWarnings({"WeakerAccess", "MixedMutabilityReturnType"})
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class IdFilter<I, K> extends TableFilter<K> implements RestIdentityFitter {
+public class IdFilter<I, K> extends TableFilter<K> {
     /**
      * <code>SQL_BUILDER</code>
      * {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The <code>SQL_BUILDER</code> field.</p>
@@ -55,11 +61,7 @@ public class IdFilter<I, K> extends TableFilter<K> implements RestIdentityFitter
     /**
      * <code>id</code>
      * <p>The <code>id</code> field.</p>
-     * @see  lombok.Setter
-     * @see  lombok.Getter
      */
-    @Setter
-    @Getter
     protected I id;
 
     /**
@@ -118,6 +120,21 @@ public class IdFilter<I, K> extends TableFilter<K> implements RestIdentityFitter
         super(builder);
         this.id = builder.id;
         this.ids = builder.ids;
+    }
+
+    /**
+     * <code>getIdType</code>
+     * <p>The get id type getter method.</p>
+     * @return  {@link java.lang.Class} <p>The get id type return object is <code>Class</code> type.</p>
+     * @see  java.lang.Class
+     * @see  com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  java.lang.SuppressWarnings
+     */
+    @JsonIgnore
+    @SuppressWarnings("unchecked")
+    public Class<I> getIdType() {
+        return (Class<I>) RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
+                IdFilter.class.getTypeParameters()[0], getClass(), IdFilter.class));
     }
 
     /**
@@ -299,8 +316,10 @@ public class IdFilter<I, K> extends TableFilter<K> implements RestIdentityFitter
      * <code>toIdSql</code>
      * <p>The to id sql method.</p>
      * @return  {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The to id sql return object is <code>IdFilter</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see  io.github.nichetoolkit.rest.RestException
      */
-    public IdFilter<I, K> toIdSql() {
+    public IdFilter<I, K> toIdSql() throws RestException {
         return toIdSql("id");
     }
 
@@ -310,22 +329,13 @@ public class IdFilter<I, K> extends TableFilter<K> implements RestIdentityFitter
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
-     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
      * @return  {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The to id sql return object is <code>IdFilter</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    @SuppressWarnings("unchecked")
-    public IdFilter<I, K> toIdSql(@NonNull String alias) {
-        Class<I> identityType = (Class<I>) RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
-                IdFilter.class.getTypeParameters()[0], getClass(), IdFilter.class));
-        if (supports(identityType)) {
-//            List<I> idList = toIds();
-//            String prefix = null;
-//            if (GeneralUtils.isNotEmpty(alias) && alias.contains(".")) {
-//                prefix = alias.split("\\.")[0];
-//            }
-//            String whereSqlOfIdentities = SqlUtils.whereSqlOfTypes(prefix, idList, identityType, StyleType.LOWER_UNDERLINE);
-            String sqlOfIdentity = sqlOfIdentity();
-            SqlBuilders.append(SQL_BUILDER, sqlOfIdentity);
+    public IdFilter<I, K> toIdSql(@NonNull String alias) throws RestException {
+        if (getIdType().isAnnotationPresent(RestIdentity.class)) {
+            toIdentitySql(alias);
         } else {
             if (GeneralUtils.isNotEmpty(this.id)) {
                 SqlBuilders.equal(SQL_BUILDER, alias, this.id);
@@ -337,11 +347,27 @@ public class IdFilter<I, K> extends TableFilter<K> implements RestIdentityFitter
     }
 
     /**
+     * <code>toIdentitySql</code>
+     * <p>The to identity sql method.</p>
+     * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
+     * @see  java.lang.String
+     * @see  org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The to identity sql return object is <code>IdFilter</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    public IdFilter<I, K> toIdentitySql(@NonNull String alias) throws RestException {
+        throw new UnsupportedErrorException("the method of 'toIdentitySql()' is unsupported.");
+    }
+
+    /**
      * <code>toOperateSql</code>
      * <p>The to operate sql method.</p>
      * @return  {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The to operate sql return object is <code>IdFilter</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see  io.github.nichetoolkit.rest.RestException
      */
-    public IdFilter<I, K> toOperateSql() {
+    public IdFilter<I, K> toOperateSql() throws RestException {
         toOperateSql("operate");
         return this;
     }
@@ -352,9 +378,11 @@ public class IdFilter<I, K> extends TableFilter<K> implements RestIdentityFitter
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rest.RestException
      * @return  {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The to operate sql return object is <code>IdFilter</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    public IdFilter<I, K> toOperateSql(@NonNull String alias) {
+    public IdFilter<I, K> toOperateSql(@NonNull String alias) throws RestException {
         if (this.isRemove) {
             SqlBuilders.equal(SQL_BUILDER, alias, OperateType.REMOVE);
         } else if (GeneralUtils.isNotEmpty(this.operate)) {

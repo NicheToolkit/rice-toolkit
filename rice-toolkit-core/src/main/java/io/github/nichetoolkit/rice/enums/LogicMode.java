@@ -24,11 +24,11 @@ public enum LogicMode {
     /**
      * <code>isPresentOfMarkType</code>
      * <p>The is present of mark type method.</p>
-     * @param configMark   {@link io.github.nichetoolkit.rice.enums.ConfigMark} <p>The config mark parameter is <code>ConfigMark</code> type.</p>
+     * @param configMark {@link io.github.nichetoolkit.rice.enums.ConfigMark} <p>The config mark parameter is <code>ConfigMark</code> type.</p>
      * @param valueOfLogic {@link java.lang.Object} <p>The value of logic parameter is <code>Object</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.enums.ConfigMark
+     * @see  java.lang.Object
      * @return boolean <p>The is present of mark type return object is <code>boolean</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.ConfigMark
-     * @see java.lang.Object
      */
     public static boolean isPresentOfMarkType(ConfigMark configMark, Object valueOfLogic) {
         return GeneralUtils.isNotEmpty(valueOfLogic) && configMark.getKey().isAssignableFrom(valueOfLogic.getClass());
@@ -37,11 +37,11 @@ public enum LogicMode {
     /**
      * <code>valueOfConfigMark</code>
      * <p>The value of config mark method.</p>
-     * @param configMark  {@link io.github.nichetoolkit.rice.enums.ConfigMark} <p>The config mark parameter is <code>ConfigMark</code> type.</p>
+     * @param configMark {@link io.github.nichetoolkit.rice.enums.ConfigMark} <p>The config mark parameter is <code>ConfigMark</code> type.</p>
      * @param valueOfMark {@link java.lang.Object} <p>The value of mark parameter is <code>Object</code> type.</p>
-     * @return {@link java.lang.Object} <p>The value of config mark return object is <code>Object</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.ConfigMark
-     * @see java.lang.Object
+     * @see  io.github.nichetoolkit.rice.enums.ConfigMark
+     * @see  java.lang.Object
+     * @return  {@link java.lang.Object} <p>The value of config mark return object is <code>Object</code> type.</p>
      */
     public static Object valueOfConfigMark(ConfigMark configMark, Object valueOfMark) {
         if (isPresentOfMarkType(configMark,valueOfMark)) {
@@ -65,11 +65,11 @@ public enum LogicMode {
     /**
      * <code>valueOfConfigUnmark</code>
      * <p>The value of config unmark method.</p>
-     * @param configMark    {@link io.github.nichetoolkit.rice.enums.ConfigMark} <p>The config mark parameter is <code>ConfigMark</code> type.</p>
+     * @param configMark {@link io.github.nichetoolkit.rice.enums.ConfigMark} <p>The config mark parameter is <code>ConfigMark</code> type.</p>
      * @param valueOfUnmark {@link java.lang.Object} <p>The value of unmark parameter is <code>Object</code> type.</p>
-     * @return {@link java.lang.Object} <p>The value of config unmark return object is <code>Object</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.ConfigMark
-     * @see java.lang.Object
+     * @see  io.github.nichetoolkit.rice.enums.ConfigMark
+     * @see  java.lang.Object
+     * @return  {@link java.lang.Object} <p>The value of config unmark return object is <code>Object</code> type.</p>
      */
     public static Object valueOfConfigUnmark(ConfigMark configMark, Object valueOfUnmark) {
         if (isPresentOfMarkType(configMark,valueOfUnmark)) {

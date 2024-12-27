@@ -11,9 +11,9 @@ import java.io.IOException;
 /**
  * <code>TimeInstantDeserializer</code>
  * <p>The time instant deserializer class.</p>
+ * @see  com.fasterxml.jackson.databind.JsonDeserializer
+ * @see  org.springframework.stereotype.Component
  * @author Cyan (snow22314@outlook.com)
- * @see com.fasterxml.jackson.databind.JsonDeserializer
- * @see org.springframework.stereotype.Component
  * @since Jdk1.8
  */
 @Component

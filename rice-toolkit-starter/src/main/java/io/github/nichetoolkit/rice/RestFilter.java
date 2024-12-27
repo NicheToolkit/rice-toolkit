@@ -16,8 +16,8 @@ import java.util.*;
 /**
  * <code>RestFilter</code>
  * <p>The rest filter class.</p>
+ * @see  io.github.nichetoolkit.rice.DefaultFilter
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.DefaultFilter
  * @since Jdk1.8
  */
 public abstract class RestFilter extends DefaultFilter<String, String> {
@@ -33,7 +33,7 @@ public abstract class RestFilter extends DefaultFilter<String, String> {
      * <code>RestFilter</code>
      * <p>Instantiates a new rest filter.</p>
      * @param ids {@link java.lang.String} <p>The ids parameter is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public RestFilter(String... ids) {
         super(ids);
@@ -43,7 +43,7 @@ public abstract class RestFilter extends DefaultFilter<String, String> {
      * <code>RestFilter</code>
      * <p>Instantiates a new rest filter.</p>
      * @param builder {@link io.github.nichetoolkit.rice.RestFilter.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestFilter.Builder
+     * @see  io.github.nichetoolkit.rice.RestFilter.Builder
      */
     public RestFilter(RestFilter.Builder builder) {
         super(builder);
@@ -53,13 +53,13 @@ public abstract class RestFilter extends DefaultFilter<String, String> {
      * <code>toRemoveSql</code>
      * <p>The to remove sql method.</p>
      * @param superService {@link io.github.nichetoolkit.rice.service.SuperService} <p>The super service parameter is <code>SuperService</code> type.</p>
-     * @param alias        {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestFilter} <p>The to remove sql return object is <code>RestFilter</code> type.</p>
+     * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.service.SuperService
+     * @see  java.lang.String
+     * @see  org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link io.github.nichetoolkit.rice.RestFilter} <p>The to remove sql return object is <code>RestFilter</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.service.SuperService
-     * @see java.lang.String
-     * @see org.springframework.lang.NonNull
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public RestFilter toRemoveSql(SuperService<? extends IdModel<String>, ? extends IdEntity<String>, ? extends RestFilter, String, String> superService, @NonNull String alias) throws RestException {
         LogicMode logicMode = superService.logicMode();
@@ -74,13 +74,13 @@ public abstract class RestFilter extends DefaultFilter<String, String> {
      * <code>toQuerySql</code>
      * <p>The to query sql method.</p>
      * @param superService {@link io.github.nichetoolkit.rice.service.SuperService} <p>The super service parameter is <code>SuperService</code> type.</p>
-     * @param alias        {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestFilter} <p>The to query sql return object is <code>RestFilter</code> type.</p>
+     * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.service.SuperService
+     * @see  java.lang.String
+     * @see  org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link io.github.nichetoolkit.rice.RestFilter} <p>The to query sql return object is <code>RestFilter</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.service.SuperService
-     * @see java.lang.String
-     * @see org.springframework.lang.NonNull
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public RestFilter toQuerySql(SuperService<? extends IdModel<String>, ? extends IdEntity<String>, ? extends RestFilter, String, String> superService, @NonNull String alias) throws RestException {
         DeleteMode deleteMode = superService.deleteMode();
@@ -94,37 +94,37 @@ public abstract class RestFilter extends DefaultFilter<String, String> {
 
 
     @Override
-    public RestFilter toNameSql(@NonNull String alias) {
+    public RestFilter toNameSql(@NonNull String alias) throws RestException {
         super.toNameSql(alias);
         return this;
     }
 
     @Override
-    public RestFilter toJsonbSql(@NonNull String alias) {
+    public RestFilter toJsonbSql(@NonNull String alias) throws RestException {
         super.toJsonbSql(alias);
         return this;
     }
 
     @Override
-    public RestFilter toJsonbSql(@NonNull String alias, String variable) {
+    public RestFilter toJsonbSql(@NonNull String alias, String variable) throws RestException {
         super.toJsonbSql(alias, variable);
         return this;
     }
 
     @Override
-    public RestFilter toTimeSql(@NonNull String alias) {
+    public RestFilter toTimeSql(@NonNull String alias) throws RestException {
         super.toTimeSql(alias);
         return this;
     }
 
     @Override
-    public RestFilter toIdSql(@NonNull String alias) {
+    public RestFilter toIdSql(@NonNull String alias) throws RestException {
         super.toIdSql(alias);
         return this;
     }
 
     @Override
-    public RestFilter toOperateSql(@NonNull String alias) {
+    public RestFilter toOperateSql(@NonNull String alias) throws RestException {
         super.toOperateSql(alias);
         return this;
     }
@@ -132,8 +132,8 @@ public abstract class RestFilter extends DefaultFilter<String, String> {
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
+     * @see  io.github.nichetoolkit.rice.DefaultFilter.Builder
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.DefaultFilter.Builder
      * @since Jdk1.8
      */
     public static abstract class Builder extends DefaultFilter.Builder<String, String> {

@@ -3,6 +3,7 @@ package io.github.nichetoolkit.rice.filter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
@@ -23,16 +24,16 @@ import java.util.*;
 /**
  * <code>NameFilter</code>
  * <p>The name filter class.</p>
- * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @see  io.github.nichetoolkit.rice.filter.JsonbFilter
+ * @see  lombok.Setter
+ * @see  lombok.Getter
+ * @see  lombok.EqualsAndHashCode
+ * @see  java.lang.SuppressWarnings
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.filter.JsonbFilter
- * @see lombok.Setter
- * @see lombok.Getter
- * @see lombok.EqualsAndHashCode
- * @see java.lang.SuppressWarnings
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @Setter
@@ -45,13 +46,13 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
     /**
      * <code>name</code>
      * {@link java.lang.String} <p>The <code>name</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String name;
     /**
      * <code>names</code>
      * {@link java.util.Set} <p>The <code>names</code> field.</p>
-     * @see java.util.Set
+     * @see  java.util.Set
      */
     protected Set<String> names;
 
@@ -75,7 +76,7 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
      * <code>NameFilter</code>
      * <p>Instantiates a new name filter.</p>
      * @param ids I <p>The ids parameter is <code>I</code> type.</p>
-     * @see java.lang.SuppressWarnings
+     * @see  java.lang.SuppressWarnings
      */
     @SuppressWarnings(value = "unchecked")
     public NameFilter(I... ids) {
@@ -86,7 +87,7 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
      * <code>NameFilter</code>
      * <p>Instantiates a new name filter.</p>
      * @param builder {@link io.github.nichetoolkit.rice.filter.NameFilter.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.filter.NameFilter.Builder
+     * @see  io.github.nichetoolkit.rice.filter.NameFilter.Builder
      */
     public NameFilter(NameFilter.Builder<I, K> builder) {
         super(builder);
@@ -97,8 +98,8 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
     /**
      * <code>getNames</code>
      * <p>The get names getter method.</p>
-     * @return {@link java.util.List} <p>The get names return object is <code>List</code> type.</p>
-     * @see java.util.List
+     * @return  {@link java.util.List} <p>The get names return object is <code>List</code> type.</p>
+     * @see  java.util.List
      */
     public List<String> getNames() {
         if (GeneralUtils.isNotEmpty(names)) {
@@ -111,7 +112,7 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
      * <code>setNames</code>
      * <p>The set names setter method.</p>
      * @param names {@link java.lang.String} <p>The names parameter is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public void setNames(String... names) {
         this.names = Optional.ofNullable(names).map(propertyList -> new HashSet<>(Arrays.asList(propertyList))).orElse(null);
@@ -121,8 +122,8 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
      * <code>setNames</code>
      * <p>The set names setter method.</p>
      * @param names {@link java.util.Collection} <p>The names parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
-     * @see com.fasterxml.jackson.annotation.JsonSetter
+     * @see  java.util.Collection
+     * @see  com.fasterxml.jackson.annotation.JsonSetter
      */
     @JsonSetter
     public void setNames(Collection<String> names) {
@@ -133,7 +134,7 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
      * <code>addNames</code>
      * <p>The add names method.</p>
      * @param names {@link java.lang.String} <p>The names parameter is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public void addNames(String... names) {
         if (GeneralUtils.isEmpty(this.names)) {
@@ -147,7 +148,7 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
      * <code>addNames</code>
      * <p>The add names method.</p>
      * @param names {@link java.util.Collection} <p>The names parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
+     * @see  java.util.Collection
      */
     public void addNames(Collection<String> names) {
         if (GeneralUtils.isEmpty(this.names)) {
@@ -161,11 +162,13 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
      * <code>toNameSql</code>
      * <p>The to name sql method.</p>
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.NameFilter} <p>The to name sql return object is <code>NameFilter</code> type.</p>
-     * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see  java.lang.String
+     * @see  org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link io.github.nichetoolkit.rice.filter.NameFilter} <p>The to name sql return object is <code>NameFilter</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    public NameFilter<I,K> toNameSql(@NonNull String alias) {
+    public NameFilter<I,K> toNameSql(@NonNull String alias) throws RestException {
         if (GeneralUtils.isNotEmpty(this.name)) {
             SqlBuilders.like(SQL_BUILDER, alias, this.name);
         } else if (GeneralUtils.isNotEmpty(this.names)) {
@@ -174,26 +177,56 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
         return this;
     }
 
+    @Override
+    public NameFilter<I, K> toJsonbSql(@NonNull String alias) throws RestException {
+        super.toJsonbSql(alias);
+        return this;
+    }
+
+    @Override
+    public NameFilter<I, K> toJsonbSql(@NonNull String alias, String variable) throws RestException {
+        super.toJsonbSql(alias, variable);
+        return this;
+    }
+
+    @Override
+    public NameFilter<I, K> toTimeSql(@NonNull String alias) throws RestException {
+        super.toTimeSql(alias);
+        return this;
+    }
+
+    @Override
+    public NameFilter<I, K> toIdSql(@NonNull String alias) throws RestException {
+        super.toIdSql(alias);
+        return this;
+    }
+
+    @Override
+    public NameFilter<I, K> toOperateSql(@NonNull String alias) throws RestException {
+        super.toOperateSql(alias);
+        return this;
+    }
+
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
-     * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @see  io.github.nichetoolkit.rice.filter.JsonbFilter.Builder
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.filter.JsonbFilter.Builder
      * @since Jdk1.8
      */
     public static class Builder<I, K> extends JsonbFilter.Builder<I, K> {
         /**
          * <code>name</code>
          * {@link java.lang.String} <p>The <code>name</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String name;
         /**
          * <code>names</code>
          * {@link java.util.Set} <p>The <code>names</code> field.</p>
-         * @see java.util.Set
+         * @see  java.util.Set
          */
         protected Set<String> names;
 
@@ -208,8 +241,8 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
          * <code>name</code>
          * <p>The name method.</p>
          * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.NameFilter.Builder} <p>The name return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.filter.NameFilter.Builder} <p>The name return object is <code>Builder</code> type.</p>
          */
         public NameFilter.Builder<I, K> name(String name) {
             this.name = name;
@@ -220,8 +253,8 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
          * <code>names</code>
          * <p>The names method.</p>
          * @param names {@link java.util.Collection} <p>The names parameter is <code>Collection</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.NameFilter.Builder} <p>The names return object is <code>Builder</code> type.</p>
-         * @see java.util.Collection
+         * @see  java.util.Collection
+         * @return  {@link io.github.nichetoolkit.rice.filter.NameFilter.Builder} <p>The names return object is <code>Builder</code> type.</p>
          */
         public NameFilter.Builder<I, K> names(Collection<String> names) {
             this.names = Optional.ofNullable(names).map(HashSet::new).orElse(null);
@@ -232,8 +265,8 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
          * <code>names</code>
          * <p>The names method.</p>
          * @param names {@link java.lang.String} <p>The names parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.NameFilter.Builder} <p>The names return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.filter.NameFilter.Builder} <p>The names return object is <code>Builder</code> type.</p>
          */
         public NameFilter.Builder<I, K> names(String... names) {
             this.names = Optional.ofNullable(names).map(propertyList -> new HashSet<>(Arrays.asList(propertyList))).orElse(null);

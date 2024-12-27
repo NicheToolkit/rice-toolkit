@@ -25,7 +25,7 @@ public class OperateEntity extends LogicEntity {
      * <code>operate</code>
      * {@link java.lang.Integer} <p>The <code>operate</code> field.</p>
      * @see  java.lang.Integer
-     * @see  RestOperateKey
+     * @see  io.github.nichetoolkit.mybatis.column.RestOperateKey
      */
     @RestOperateKey
     protected Integer operate;

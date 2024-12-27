@@ -6,9 +6,9 @@ import lombok.Getter;
 /**
  * <code>UserErrorStatus</code>
  * <p>The user error status enumeration.</p>
+ * @see  io.github.nichetoolkit.rest.RestStatus
+ * @see  lombok.Getter
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rest.RestStatus
- * @see lombok.Getter
  * @since Jdk1.8
  */
 @Getter
@@ -33,23 +33,23 @@ public enum UserErrorStatus implements RestStatus {
     /**
      * <code>status</code>
      * {@link java.lang.Integer} <p>The <code>status</code> field.</p>
-     * @see java.lang.Integer
+     * @see  java.lang.Integer
      */
     private final Integer status;
     /**
      * <code>message</code>
      * {@link java.lang.String} <p>The <code>message</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     private final String message;
 
     /**
      * <code>UserErrorStatus</code>
      * <p>Instantiates a new user error status.</p>
-     * @param status  {@link java.lang.Integer} <p>The status parameter is <code>Integer</code> type.</p>
+     * @param status {@link java.lang.Integer} <p>The status parameter is <code>Integer</code> type.</p>
      * @param message {@link java.lang.String} <p>The message parameter is <code>String</code> type.</p>
-     * @see java.lang.Integer
-     * @see java.lang.String
+     * @see  java.lang.Integer
+     * @see  java.lang.String
      */
     UserErrorStatus(Integer status, String message) {
         this.status = status;
@@ -59,8 +59,8 @@ public enum UserErrorStatus implements RestStatus {
     /**
      * <code>getName</code>
      * <p>The get name getter method.</p>
-     * @return {@link java.lang.String} <p>The get name return object is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @return  {@link java.lang.String} <p>The get name return object is <code>String</code> type.</p>
+     * @see  java.lang.String
      */
     public String getName() {
         return this.name().toLowerCase().replace("_", " ");

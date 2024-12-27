@@ -13,13 +13,13 @@ import java.util.Objects;
 /**
  * <code>IdModel</code>
  * <p>The id model class.</p>
- * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @see  io.github.nichetoolkit.rice.TimeModel
+ * @see  io.github.nichetoolkit.rice.RestId
+ * @see  java.lang.SuppressWarnings
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.TimeModel
- * @see io.github.nichetoolkit.rice.RestId
- * @see java.lang.SuppressWarnings
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @SuppressWarnings("WeakerAccess")
@@ -52,7 +52,7 @@ public class IdModel<I> extends TimeModel implements RestId<I>{
      * <code>IdModel</code>
      * <p>Instantiates a new id model.</p>
      * @param builder {@link io.github.nichetoolkit.rice.IdModel.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.IdModel.Builder
+     * @see  io.github.nichetoolkit.rice.IdModel.Builder
      */
     public IdModel(IdModel.Builder<I> builder) {
         super(builder);
@@ -92,9 +92,9 @@ public class IdModel<I> extends TimeModel implements RestId<I>{
     /**
      * <code>ofId</code>
      * <p>The of id method.</p>
-     * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @return {@link io.github.nichetoolkit.rice.IdModel.Builder} <p>The of id return object is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.IdModel.Builder
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @return  {@link io.github.nichetoolkit.rice.IdModel.Builder} <p>The of id return object is <code>Builder</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.IdModel.Builder
      */
     public static <I> IdModel.Builder<I> ofId() {
         return new IdModel.Builder<>();
@@ -103,9 +103,9 @@ public class IdModel<I> extends TimeModel implements RestId<I>{
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
-     * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @see  io.github.nichetoolkit.rice.TimeModel.Builder
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.TimeModel.Builder
      * @since Jdk1.8
      */
     public static class Builder<I> extends TimeModel.Builder {
@@ -126,7 +126,7 @@ public class IdModel<I> extends TimeModel implements RestId<I>{
          * <code>id</code>
          * <p>The id method.</p>
          * @param id I <p>The id parameter is <code>I</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.IdModel.Builder} <p>The id return object is <code>Builder</code> type.</p>
+         * @return  {@link io.github.nichetoolkit.rice.IdModel.Builder} <p>The id return object is <code>Builder</code> type.</p>
          */
         public IdModel.Builder<I> id(I id) {
             this.id = id;

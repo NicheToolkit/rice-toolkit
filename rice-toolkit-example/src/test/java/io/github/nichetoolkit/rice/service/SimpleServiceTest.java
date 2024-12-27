@@ -12,8 +12,8 @@ import java.util.Date;
 /**
  * <code>SimpleServiceTest</code>
  * <p>The simple service test class.</p>
+ * @see  io.github.nichetoolkit.rice.RiceExampleApplicationTests
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.RiceExampleApplicationTests
  * @since Jdk1.8
  */
 class SimpleServiceTest extends RiceExampleApplicationTests {
@@ -21,7 +21,7 @@ class SimpleServiceTest extends RiceExampleApplicationTests {
     /**
      * <code>simpleService</code>
      * {@link io.github.nichetoolkit.rice.service.SimpleService} <p>The <code>simpleService</code> field.</p>
-     * @see org.springframework.beans.factory.annotation.Autowired
+     * @see  org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired
     private SimpleService simpleService;
@@ -29,9 +29,9 @@ class SimpleServiceTest extends RiceExampleApplicationTests {
     /**
      * <code>create</code>
      * <p>The create method.</p>
+     * @see  org.junit.jupiter.api.Test
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see org.junit.jupiter.api.Test
-     * @see io.github.nichetoolkit.rest.RestException
      */
     @Test
     void create() throws RestException {

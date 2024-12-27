@@ -19,9 +19,9 @@ public class HttpRequestHelper {
      * <code>resolveToken</code>
      * <p>The resolve token method.</p>
      * @param request {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
-     * @return {@link java.lang.String} <p>The resolve token return object is <code>String</code> type.</p>
-     * @see javax.servlet.http.HttpServletRequest
-     * @see java.lang.String
+     * @see  javax.servlet.http.HttpServletRequest
+     * @see  java.lang.String
+     * @return  {@link java.lang.String} <p>The resolve token return object is <code>String</code> type.</p>
      */
     public static String resolveToken(HttpServletRequest request) {
         if (GeneralUtils.isEmpty(request)) {
@@ -36,9 +36,9 @@ public class HttpRequestHelper {
      * <code>resolveAccessToken</code>
      * <p>The resolve access token method.</p>
      * @param request {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
-     * @return {@link java.lang.String} <p>The resolve access token return object is <code>String</code> type.</p>
-     * @see javax.servlet.http.HttpServletRequest
-     * @see java.lang.String
+     * @see  javax.servlet.http.HttpServletRequest
+     * @see  java.lang.String
+     * @return  {@link java.lang.String} <p>The resolve access token return object is <code>String</code> type.</p>
      */
     public static String resolveAccessToken(HttpServletRequest request) {
         RiceLoginProperties loginProperties = BeanUtils.beanOfType(RiceLoginProperties.class);
@@ -60,9 +60,9 @@ public class HttpRequestHelper {
      * <code>resolveAccessAuth</code>
      * <p>The resolve access auth method.</p>
      * @param request {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
-     * @return {@link java.lang.String} <p>The resolve access auth return object is <code>String</code> type.</p>
-     * @see javax.servlet.http.HttpServletRequest
-     * @see java.lang.String
+     * @see  javax.servlet.http.HttpServletRequest
+     * @see  java.lang.String
+     * @return  {@link java.lang.String} <p>The resolve access auth return object is <code>String</code> type.</p>
      */
     public static String resolveAccessAuth(HttpServletRequest request) {
         RiceLoginProperties loginProperties = BeanUtils.beanOfType(RiceLoginProperties.class);
@@ -83,11 +83,11 @@ public class HttpRequestHelper {
     /**
      * <code>resolveTokens</code>
      * <p>The resolve tokens method.</p>
-     * @param request        {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @param request {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
      * @param isRemovePrefix boolean <p>The is remove prefix parameter is <code>boolean</code> type.</p>
-     * @return {@link java.util.List} <p>The resolve tokens return object is <code>List</code> type.</p>
-     * @see javax.servlet.http.HttpServletRequest
-     * @see java.util.List
+     * @see  javax.servlet.http.HttpServletRequest
+     * @see  java.util.List
+     * @return  {@link java.util.List} <p>The resolve tokens return object is <code>List</code> type.</p>
      */
     public static List<String> resolveTokens(HttpServletRequest request, boolean isRemovePrefix) {
         RiceLoginProperties loginProperties = BeanUtils.beanOfType(RiceLoginProperties.class);
@@ -101,12 +101,12 @@ public class HttpRequestHelper {
     /**
      * <code>resolveTokens</code>
      * <p>The resolve tokens method.</p>
-     * @param request        {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
-     * @param tokenHeaders   {@link java.util.List} <p>The token headers parameter is <code>List</code> type.</p>
+     * @param request {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @param tokenHeaders {@link java.util.List} <p>The token headers parameter is <code>List</code> type.</p>
      * @param isRemovePrefix boolean <p>The is remove prefix parameter is <code>boolean</code> type.</p>
-     * @return {@link java.util.List} <p>The resolve tokens return object is <code>List</code> type.</p>
-     * @see javax.servlet.http.HttpServletRequest
-     * @see java.util.List
+     * @see  javax.servlet.http.HttpServletRequest
+     * @see  java.util.List
+     * @return  {@link java.util.List} <p>The resolve tokens return object is <code>List</code> type.</p>
      */
     public static List<String> resolveTokens(HttpServletRequest request, List<String> tokenHeaders, boolean isRemovePrefix) {
         RiceLoginProperties loginProperties = BeanUtils.beanOfType(RiceLoginProperties.class);
@@ -123,14 +123,14 @@ public class HttpRequestHelper {
     /**
      * <code>resolveHeaders</code>
      * <p>The resolve headers method.</p>
-     * @param request        {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
-     * @param headers        {@link java.util.Collection} <p>The headers parameter is <code>Collection</code> type.</p>
-     * @param prefixes       {@link java.util.Collection} <p>The prefixes parameter is <code>Collection</code> type.</p>
+     * @param request {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @param headers {@link java.util.Collection} <p>The headers parameter is <code>Collection</code> type.</p>
+     * @param prefixes {@link java.util.Collection} <p>The prefixes parameter is <code>Collection</code> type.</p>
      * @param isRemovePrefix boolean <p>The is remove prefix parameter is <code>boolean</code> type.</p>
-     * @return {@link java.util.List} <p>The resolve headers return object is <code>List</code> type.</p>
-     * @see javax.servlet.http.HttpServletRequest
-     * @see java.util.Collection
-     * @see java.util.List
+     * @see  javax.servlet.http.HttpServletRequest
+     * @see  java.util.Collection
+     * @see  java.util.List
+     * @return  {@link java.util.List} <p>The resolve headers return object is <code>List</code> type.</p>
      */
     public static List<String> resolveHeaders(HttpServletRequest request, Collection<String> headers, Collection<String> prefixes, boolean isRemovePrefix) {
         List<String> values = new ArrayList<>();
@@ -159,12 +159,12 @@ public class HttpRequestHelper {
     /**
      * <code>resolveAttributes</code>
      * <p>The resolve attributes method.</p>
-     * @param request    {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @param request {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
      * @param attributes {@link java.util.Collection} <p>The attributes parameter is <code>Collection</code> type.</p>
-     * @return {@link java.util.List} <p>The resolve attributes return object is <code>List</code> type.</p>
-     * @see javax.servlet.http.HttpServletRequest
-     * @see java.util.Collection
-     * @see java.util.List
+     * @see  javax.servlet.http.HttpServletRequest
+     * @see  java.util.Collection
+     * @see  java.util.List
+     * @return  {@link java.util.List} <p>The resolve attributes return object is <code>List</code> type.</p>
      */
     public static List<Object> resolveAttributes(HttpServletRequest request, Collection<String> attributes) {
         List<Object> values = new ArrayList<>();

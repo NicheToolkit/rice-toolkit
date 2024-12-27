@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Configuration;
 /**
  * <code>RiceCoreAutoConfigure</code>
  * <p>The rice core auto configure class.</p>
+ * @see  lombok.extern.slf4j.Slf4j
+ * @see  org.springframework.context.annotation.Configuration
+ * @see  org.springframework.context.annotation.ComponentScan
  * @author Cyan (snow22314@outlook.com)
- * @see lombok.extern.slf4j.Slf4j
- * @see org.springframework.context.annotation.Configuration
- * @see org.springframework.context.annotation.ComponentScan
  * @since Jdk1.8
  */
 @Slf4j

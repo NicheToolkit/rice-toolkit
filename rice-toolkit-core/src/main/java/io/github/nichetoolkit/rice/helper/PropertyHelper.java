@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 /**
  * <code>PropertyHelper</code>
  * <p>The property helper class.</p>
+ * @see  lombok.extern.slf4j.Slf4j
  * @author Cyan (snow22314@outlook.com)
- * @see lombok.extern.slf4j.Slf4j
  * @since Jdk1.8
  */
 @Slf4j
@@ -22,9 +22,9 @@ public class PropertyHelper {
      * <code>toPropertiesList</code>
      * <p>The to properties list method.</p>
      * @param properties {@link java.lang.String} <p>The properties parameter is <code>String</code> type.</p>
-     * @return {@link java.util.List} <p>The to properties list return object is <code>List</code> type.</p>
-     * @see java.lang.String
-     * @see java.util.List
+     * @see  java.lang.String
+     * @see  java.util.List
+     * @return  {@link java.util.List} <p>The to properties list return object is <code>List</code> type.</p>
      */
     public static List<Property> toPropertiesList(String properties) {
         if (GeneralUtils.isNotEmpty(properties)) {
@@ -41,9 +41,9 @@ public class PropertyHelper {
      * <code>toPropertiesJson</code>
      * <p>The to properties json method.</p>
      * @param properties {@link java.util.Collection} <p>The properties parameter is <code>Collection</code> type.</p>
-     * @return {@link java.lang.String} <p>The to properties json return object is <code>String</code> type.</p>
-     * @see java.util.Collection
-     * @see java.lang.String
+     * @see  java.util.Collection
+     * @see  java.lang.String
+     * @return  {@link java.lang.String} <p>The to properties json return object is <code>String</code> type.</p>
      */
     public static String toPropertiesJson(Collection<Property> properties) {
         if (GeneralUtils.isNotEmpty(properties)) {
@@ -65,9 +65,9 @@ public class PropertyHelper {
      * <code>toPropertiesMap</code>
      * <p>The to properties map method.</p>
      * @param properties {@link java.util.Collection} <p>The properties parameter is <code>Collection</code> type.</p>
-     * @return {@link java.util.Map} <p>The to properties map return object is <code>Map</code> type.</p>
-     * @see java.util.Collection
-     * @see java.util.Map
+     * @see  java.util.Collection
+     * @see  java.util.Map
+     * @return  {@link java.util.Map} <p>The to properties map return object is <code>Map</code> type.</p>
      */
     public static Map<String,String> toPropertiesMap(Collection<Property> properties) {
         if (GeneralUtils.isNotEmpty(properties)) {
@@ -90,9 +90,9 @@ public class PropertyHelper {
      * <code>toPropertiesMap</code>
      * <p>The to properties map method.</p>
      * @param properties {@link java.lang.String} <p>The properties parameter is <code>String</code> type.</p>
-     * @return {@link java.util.Map} <p>The to properties map return object is <code>Map</code> type.</p>
-     * @see java.lang.String
-     * @see java.util.Map
+     * @see  java.lang.String
+     * @see  java.util.Map
+     * @return  {@link java.util.Map} <p>The to properties map return object is <code>Map</code> type.</p>
      */
     public static Map<String,String> toPropertiesMap(String properties) {
         if (GeneralUtils.isNotEmpty(properties)) {
@@ -114,9 +114,9 @@ public class PropertyHelper {
      * <code>toPropertiesList</code>
      * <p>The to properties list method.</p>
      * @param propertiesMap {@link java.util.Map} <p>The properties map parameter is <code>Map</code> type.</p>
-     * @return {@link java.util.List} <p>The to properties list return object is <code>List</code> type.</p>
-     * @see java.util.Map
-     * @see java.util.List
+     * @see  java.util.Map
+     * @see  java.util.List
+     * @return  {@link java.util.List} <p>The to properties list return object is <code>List</code> type.</p>
      */
     public static List<Property> toPropertiesList(Map<String,String> propertiesMap) {
         if (GeneralUtils.isNotEmpty(propertiesMap)) {

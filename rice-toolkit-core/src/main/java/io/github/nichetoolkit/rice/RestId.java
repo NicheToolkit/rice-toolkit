@@ -5,10 +5,10 @@ import java.io.Serializable;
 /**
  * <code>RestId</code>
  * <p>The rest id interface.</p>
- * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @see  java.io.Serializable
+ * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @see java.io.Serializable
- * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
 @SuppressWarnings("WeakerAccess")

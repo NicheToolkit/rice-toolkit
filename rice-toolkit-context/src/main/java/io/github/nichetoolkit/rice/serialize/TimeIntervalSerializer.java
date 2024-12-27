@@ -12,9 +12,9 @@ import java.io.IOException;
 /**
  * <code>TimeIntervalSerializer</code>
  * <p>The time interval serializer class.</p>
+ * @see  com.fasterxml.jackson.databind.JsonSerializer
+ * @see  org.springframework.stereotype.Component
  * @author Cyan (snow22314@outlook.com)
- * @see com.fasterxml.jackson.databind.JsonSerializer
- * @see org.springframework.stereotype.Component
  * @since Jdk1.8
  */
 @Component

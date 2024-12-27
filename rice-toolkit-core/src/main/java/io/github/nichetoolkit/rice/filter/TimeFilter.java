@@ -3,6 +3,7 @@ package io.github.nichetoolkit.rice.filter;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
@@ -105,9 +106,11 @@ public class TimeFilter<I, K> extends IdFilter<I, K> {
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rest.RestException
      * @return  {@link io.github.nichetoolkit.rice.filter.TimeFilter} <p>The to time sql return object is <code>TimeFilter</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    public TimeFilter<I, K> toTimeSql(@NonNull String alias) {
+    public TimeFilter<I, K> toTimeSql(@NonNull String alias) throws RestException {
         if (GeneralUtils.isNotEmpty(this.startTime) && GeneralUtils.isNotEmpty(this.endTime) && this.startTime == this.endTime) {
             SqlBuilders.equal(SQL_BUILDER, alias, this.startTime);
         } else {
@@ -117,13 +120,13 @@ public class TimeFilter<I, K> extends IdFilter<I, K> {
     }
 
     @Override
-    public TimeFilter<I, K> toIdSql(@NonNull String alias) {
+    public TimeFilter<I, K> toIdSql(@NonNull String alias) throws RestException {
         super.toIdSql(alias);
         return this;
     }
 
     @Override
-    public TimeFilter<I, K> toOperateSql(@NonNull String alias) {
+    public TimeFilter<I, K> toOperateSql(@NonNull String alias) throws RestException {
         super.toOperateSql(alias);
         return this;
     }

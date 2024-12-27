@@ -7,9 +7,9 @@ import io.mybatis.provider.Entity;
 /**
  * <code>UserEntity</code>
  * <p>The user entity class.</p>
+ * @see  io.github.nichetoolkit.rice.RestInfoEntity
+ * @see  io.mybatis.provider.Entity.Table
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.RestInfoEntity
- * @see io.mybatis.provider.Entity.Table
  * @since Jdk1.8
  */
 @Entity.Table(value = "ntr_user")
@@ -17,13 +17,13 @@ public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
     /**
      * <code>username</code>
      * {@link java.lang.String} <p>The <code>username</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     private String username;
     /**
      * <code>password</code>
      * {@link java.lang.String} <p>The <code>password</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     private String password;
 
@@ -38,7 +38,7 @@ public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
      * <code>UserEntity</code>
      * <p>Instantiates a new user entity.</p>
      * @param id {@link java.lang.String} <p>The id parameter is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public UserEntity(String id) {
         super(id);
@@ -47,8 +47,8 @@ public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
     /**
      * <code>getUsername</code>
      * <p>The get username getter method.</p>
-     * @return {@link java.lang.String} <p>The get username return object is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @return  {@link java.lang.String} <p>The get username return object is <code>String</code> type.</p>
+     * @see  java.lang.String
      */
     public String getUsername() {
         return this.username;
@@ -58,7 +58,7 @@ public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
      * <code>setUsername</code>
      * <p>The set username setter method.</p>
      * @param username {@link java.lang.String} <p>The username parameter is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public void setUsername(String username) {
         this.username = username;
@@ -67,8 +67,8 @@ public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
     /**
      * <code>getPassword</code>
      * <p>The get password getter method.</p>
-     * @return {@link java.lang.String} <p>The get password return object is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @return  {@link java.lang.String} <p>The get password return object is <code>String</code> type.</p>
+     * @see  java.lang.String
      */
     /* hide password */
     public String getPassword() {
@@ -79,7 +79,7 @@ public class UserEntity extends RestInfoEntity<UserEntity, UserModel>  {
      * <code>setPassword</code>
      * <p>The set password setter method.</p>
      * @param password {@link java.lang.String} <p>The password parameter is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public void setPassword(String password) {
         this.password = password;

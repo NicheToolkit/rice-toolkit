@@ -10,8 +10,8 @@ import java.util.Optional;
 /**
  * <code>AutoMark</code>
  * <p>The auto mark enumeration.</p>
+ * @see  io.github.nichetoolkit.rest.RestKey
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rest.RestKey
  * @since Jdk1.8
  */
 public enum AutoMark implements RestKey<Class<?>> {
@@ -35,7 +35,7 @@ public enum AutoMark implements RestKey<Class<?>> {
     /**
      * <code>key</code>
      * {@link java.lang.Class} <p>The <code>key</code> field.</p>
-     * @see java.lang.Class
+     * @see  java.lang.Class
      */
     private final Class<?> key;
 
@@ -43,7 +43,7 @@ public enum AutoMark implements RestKey<Class<?>> {
      * <code>AutoMark</code>
      * <p>Instantiates a new auto mark.</p>
      * @param key {@link java.lang.Class} <p>The key parameter is <code>Class</code> type.</p>
-     * @see java.lang.Class
+     * @see  java.lang.Class
      */
     AutoMark(Class<?> key) {
         this.key = key;
@@ -59,9 +59,9 @@ public enum AutoMark implements RestKey<Class<?>> {
      * <code>parseKey</code>
      * <p>The parse key method.</p>
      * @param key {@link java.lang.Class} <p>The key parameter is <code>Class</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.AutoMark} <p>The parse key return object is <code>AutoMark</code> type.</p>
-     * @see java.lang.Class
-     * @see com.fasterxml.jackson.annotation.JsonCreator
+     * @see  java.lang.Class
+     * @see  com.fasterxml.jackson.annotation.JsonCreator
+     * @return  {@link io.github.nichetoolkit.rice.enums.AutoMark} <p>The parse key return object is <code>AutoMark</code> type.</p>
      */
     @JsonCreator
     public static AutoMark parseKey(Class<?> key) {

@@ -7,8 +7,8 @@ import io.github.nichetoolkit.rice.DefaultIdResolver;
 /**
  * <code>DefaultLongIdResolver</code>
  * <p>The default long id resolver class.</p>
+ * @see  io.github.nichetoolkit.rice.DefaultIdResolver
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.DefaultIdResolver
  * @since Jdk1.8
  */
 public class DefaultLongIdResolver extends DefaultIdResolver<Long> {

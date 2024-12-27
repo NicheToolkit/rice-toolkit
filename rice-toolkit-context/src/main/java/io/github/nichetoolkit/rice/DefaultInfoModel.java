@@ -9,13 +9,13 @@ import java.util.Date;
 /**
  * <code>DefaultInfoModel</code>
  * <p>The default info model class.</p>
- * @param <M> {@link io.github.nichetoolkit.rice.DefaultInfoModel} <p>The generic parameter is <code>DefaultInfoModel</code> type.</p>
- * @param <E> {@link io.github.nichetoolkit.rice.DefaultInfoEntity} <p>The generic parameter is <code>DefaultInfoEntity</code> type.</p>
- * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <M>  {@link io.github.nichetoolkit.rice.DefaultInfoModel} <p>The generic parameter is <code>DefaultInfoModel</code> type.</p>
+ * @param <E>  {@link io.github.nichetoolkit.rice.DefaultInfoEntity} <p>The generic parameter is <code>DefaultInfoEntity</code> type.</p>
+ * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @see  io.github.nichetoolkit.rice.DefaultInfoEntity
+ * @see  io.github.nichetoolkit.rice.InfoModel
+ * @see  io.github.nichetoolkit.rice.RestModel
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.DefaultInfoEntity
- * @see io.github.nichetoolkit.rice.InfoModel
- * @see io.github.nichetoolkit.rice.RestModel
  * @since Jdk1.8
  */
 public abstract class DefaultInfoModel<M extends DefaultInfoModel<M, E, I>, E extends DefaultInfoEntity<E, M, I>, I> extends InfoModel<I> implements RestModel<I, E> {
@@ -39,9 +39,9 @@ public abstract class DefaultInfoModel<M extends DefaultInfoModel<M, E, I>, E ex
     /**
      * <code>DefaultInfoModel</code>
      * <p>Instantiates a new default info model.</p>
-     * @param name        {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param description {@link java.lang.String} <p>The description parameter is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public DefaultInfoModel(String name, String description) {
         super(name, description);
@@ -51,7 +51,7 @@ public abstract class DefaultInfoModel<M extends DefaultInfoModel<M, E, I>, E ex
      * <code>DefaultInfoModel</code>
      * <p>Instantiates a new default info model.</p>
      * @param builder {@link io.github.nichetoolkit.rice.DefaultInfoModel.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.DefaultInfoModel.Builder
+     * @see  io.github.nichetoolkit.rice.DefaultInfoModel.Builder
      */
     public DefaultInfoModel(DefaultInfoModel.Builder<M, E, I> builder) {
         super(builder);
@@ -60,12 +60,12 @@ public abstract class DefaultInfoModel<M extends DefaultInfoModel<M, E, I>, E ex
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
-     * @param <M> {@link io.github.nichetoolkit.rice.DefaultInfoModel} <p>The generic parameter is <code>DefaultInfoModel</code> type.</p>
-     * @param <E> {@link io.github.nichetoolkit.rice.DefaultInfoEntity} <p>The generic parameter is <code>DefaultInfoEntity</code> type.</p>
-     * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.DefaultInfoModel} <p>The generic parameter is <code>DefaultInfoModel</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.DefaultInfoEntity} <p>The generic parameter is <code>DefaultInfoEntity</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @see  io.github.nichetoolkit.rice.DefaultInfoEntity
+     * @see  io.github.nichetoolkit.rice.InfoModel.Builder
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.DefaultInfoEntity
-     * @see io.github.nichetoolkit.rice.InfoModel.Builder
      * @since Jdk1.8
      */
     public static abstract class Builder<M extends DefaultInfoModel<M, E, I>, E extends DefaultInfoEntity<E, M, I>, I> extends InfoModel.Builder<I> {

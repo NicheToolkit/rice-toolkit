@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice.configure;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestLogicMark;
 import io.github.nichetoolkit.rice.defaults.DefaultAutoLogicMark;
-import io.github.nichetoolkit.rice.resolver.RestIdentityResolver;
+import io.github.nichetoolkit.rice.resolver.RestIdResolver;
 import io.github.nichetoolkit.rice.defaults.DefaultTokenContextResolver;
 import io.github.nichetoolkit.rice.defaults.DefaultLongIdResolver;
 import io.github.nichetoolkit.rice.defaults.DefaultStringIdResolver;
@@ -109,28 +109,28 @@ public class RiceStarterAutoConfigure implements InitializingBean {
     /**
      * <code>defaultStringIdResolver</code>
      * <p>The default string id resolver method.</p>
-     * @return  {@link io.github.nichetoolkit.rice.resolver.RestIdentityResolver} <p>The default string id resolver return object is <code>RestIdentityResolver</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.resolver.RestIdentityResolver
+     * @return  {@link io.github.nichetoolkit.rice.resolver.RestIdResolver} <p>The default string id resolver return object is <code>RestIdResolver</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.resolver.RestIdResolver
      * @see  org.springframework.context.annotation.Bean
      * @see  org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
      */
     @Bean
     @ConditionalOnMissingBean(DefaultStringIdResolver.class)
-    public RestIdentityResolver<String> defaultStringIdResolver() {
+    public RestIdResolver<String> defaultStringIdResolver() {
         return DefaultStringIdResolver.DEFAULT_RESOLVER;
     }
 
     /**
      * <code>defaultLongIdResolver</code>
      * <p>The default long id resolver method.</p>
-     * @return  {@link io.github.nichetoolkit.rice.resolver.RestIdentityResolver} <p>The default long id resolver return object is <code>RestIdentityResolver</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.resolver.RestIdentityResolver
+     * @return  {@link io.github.nichetoolkit.rice.resolver.RestIdResolver} <p>The default long id resolver return object is <code>RestIdResolver</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.resolver.RestIdResolver
      * @see  org.springframework.context.annotation.Bean
      * @see  org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
      */
     @Bean
     @ConditionalOnMissingBean(DefaultLongIdResolver.class)
-    public RestIdentityResolver<Long> defaultLongIdResolver() {
+    public RestIdResolver<Long> defaultLongIdResolver() {
         return DefaultLongIdResolver.DEFAULT_RESOLVER;
     }
 

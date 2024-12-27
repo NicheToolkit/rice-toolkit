@@ -31,7 +31,7 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
      * <p>The <code>id</code> field.</p>
      * @see  com.baomidou.mybatisplus.annotation.TableId
      * @see  io.mybatis.provider.Entity.Column
-     * @see  RestIdentityKey
+     * @see  io.github.nichetoolkit.mybatis.column.RestIdentityKey
      */
     /* 兼容mybatis-plus 3.x版本 */
     @TableId

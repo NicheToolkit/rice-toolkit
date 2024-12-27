@@ -10,9 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * <code>DefaultLoggingKeyResolver</code>
  * <p>The default logging key resolver class.</p>
+ * @see  io.github.nichetoolkit.rest.RestLoggingKeyGenerator
+ * @see  lombok.extern.slf4j.Slf4j
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rest.RestLoggingKeyGenerator
- * @see lombok.extern.slf4j.Slf4j
  * @since Jdk1.8
  */
 @Slf4j
@@ -20,7 +20,7 @@ public class DefaultLoggingKeyResolver extends RestLoggingKeyGenerator {
     /**
      * <code>loginProperties</code>
      * {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The <code>loginProperties</code> field.</p>
-     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     * @see  io.github.nichetoolkit.rice.configure.RiceLoginProperties
      */
     private final RiceLoginProperties loginProperties;
 
@@ -28,9 +28,9 @@ public class DefaultLoggingKeyResolver extends RestLoggingKeyGenerator {
      * <code>DefaultLoggingKeyResolver</code>
      * <p>Instantiates a new default logging key resolver.</p>
      * @param logbackProperties {@link io.github.nichetoolkit.rest.configure.RestLogbackProperties} <p>The logback properties parameter is <code>RestLogbackProperties</code> type.</p>
-     * @param loginProperties   {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
-     * @see io.github.nichetoolkit.rest.configure.RestLogbackProperties
-     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
+     * @see  io.github.nichetoolkit.rest.configure.RestLogbackProperties
+     * @see  io.github.nichetoolkit.rice.configure.RiceLoginProperties
      */
     public DefaultLoggingKeyResolver(RestLogbackProperties logbackProperties, RiceLoginProperties loginProperties) {
         super(logbackProperties);

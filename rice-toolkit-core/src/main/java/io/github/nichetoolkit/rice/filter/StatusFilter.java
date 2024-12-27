@@ -1,10 +1,8 @@
 package io.github.nichetoolkit.rice.filter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
-import io.github.nichetoolkit.mybatis.builder.SqlUtils;
-import io.github.nichetoolkit.mybatis.enums.StyleType;
-import io.github.nichetoolkit.mybatis.fitter.RestAlertnessFitter;
 import io.github.nichetoolkit.mybatis.table.RestAlertness;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
@@ -20,12 +18,11 @@ import java.util.*;
  * <code>StatusFilter</code>
  * <p>The status filter interface.</p>
  * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @see  io.github.nichetoolkit.mybatis.fitter.RestAlertnessFitter
  * @see  java.io.Serializable
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public interface StatusFilter<S> extends RestAlertnessFitter, Serializable {
+public interface StatusFilter<S> extends Serializable {
 
     /**
      * <code>getStatus</code>
@@ -48,6 +45,21 @@ public interface StatusFilter<S> extends RestAlertnessFitter, Serializable {
      * @see  java.util.List
      */
     List<S> getStatuses();
+
+    /**
+     * <code>getStatusType</code>
+     * <p>The get status type getter method.</p>
+     * @return  {@link java.lang.Class} <p>The get status type return object is <code>Class</code> type.</p>
+     * @see  java.lang.Class
+     * @see  com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  java.lang.SuppressWarnings
+     */
+    @JsonIgnore
+    @SuppressWarnings("unchecked")
+    default Class<S> getStatusType() {
+        return  (Class<S>) RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
+                StatusFilter.class.getTypeParameters()[0], getClass(), StatusFilter.class));
+    }
 
     /**
      * <code>setStatuses</code>
@@ -112,22 +124,13 @@ public interface StatusFilter<S> extends RestAlertnessFitter, Serializable {
      * @see  io.github.nichetoolkit.mybatis.builder.SqlBuilder
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
-     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
      * @return  {@link io.github.nichetoolkit.rice.filter.StatusFilter} <p>The to status sql return object is <code>StatusFilter</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    @SuppressWarnings("unchecked")
-    default StatusFilter<S> toStatusSql(SqlBuilder sqlBuilder, @NonNull String alias) {
-        Class<S> statusType = (Class<S>) RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
-                StatusFilter.class.getTypeParameters()[0], getClass(), StatusFilter.class));
-        if (supports(statusType)) {
-//            List<S> statusList = toStatuses();
-//            String prefix = null;
-//            if (GeneralUtils.isNotEmpty(alias) && alias.contains(".")) {
-//                prefix = alias.split("\\.")[0];
-//            }
-//            String whereSqlOfTypes = SqlUtils.whereSqlOfTypes(prefix, statusList, statusType, StyleType.LOWER_UNDERLINE);
-            String alertnessSql = sqlOfAlertness();
-            SqlBuilders.append(sqlBuilder, alertnessSql);
+    default StatusFilter<S> toStatusSql(SqlBuilder sqlBuilder, @NonNull String alias) throws RestException {
+        if (getStatusType().isAnnotationPresent(RestAlertness.class)) {
+            toAlertnessSql(sqlBuilder, alias);
         } else {
             if (GeneralUtils.isNotEmpty(getStatus())) {
                 SqlBuilders.equal(sqlBuilder, alias, getStatus());
@@ -136,6 +139,22 @@ public interface StatusFilter<S> extends RestAlertnessFitter, Serializable {
             }
         }
         return this;
+    }
+
+    /**
+     * <code>toAlertnessSql</code>
+     * <p>The to alertness sql method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
+     * @see  io.github.nichetoolkit.mybatis.builder.SqlBuilder
+     * @see  java.lang.String
+     * @see  org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link io.github.nichetoolkit.rice.filter.StatusFilter} <p>The to alertness sql return object is <code>StatusFilter</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    default StatusFilter<S> toAlertnessSql(SqlBuilder sqlBuilder,@NonNull String alias) throws RestException {
+        throw new UnsupportedErrorException("the method of 'toAlertnessSql()' is unsupported.");
     }
 
     /**

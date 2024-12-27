@@ -16,12 +16,12 @@ import java.util.List;
 /**
  * <code>RestPage</code>
  * <p>The rest page class.</p>
- * @param <T> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <T>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @see  java.io.Serializable
+ * @see  java.lang.SuppressWarnings
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see java.io.Serializable
- * @see java.lang.SuppressWarnings
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @SuppressWarnings("WeakerAccess")
@@ -31,49 +31,49 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>totals</code>
      * {@link java.lang.Long} <p>The <code>totals</code> field.</p>
-     * @see java.lang.Long
+     * @see  java.lang.Long
      */
     protected Long totals;
     /**
      * <code>pages</code>
      * {@link java.lang.Long} <p>The <code>pages</code> field.</p>
-     * @see java.lang.Long
+     * @see  java.lang.Long
      */
     protected Long pages;
     /**
      * <code>pageNum</code>
      * {@link java.lang.Long} <p>The <code>pageNum</code> field.</p>
-     * @see java.lang.Long
+     * @see  java.lang.Long
      */
     protected Long pageNum;
     /**
      * <code>pageSize</code>
      * {@link java.lang.Long} <p>The <code>pageSize</code> field.</p>
-     * @see java.lang.Long
+     * @see  java.lang.Long
      */
     protected Long pageSize;
     /**
      * <code>itemSize</code>
      * {@link java.lang.Long} <p>The <code>itemSize</code> field.</p>
-     * @see java.lang.Long
+     * @see  java.lang.Long
      */
     protected Long itemSize;
     /**
      * <code>items</code>
      * {@link java.util.List} <p>The <code>items</code> field.</p>
-     * @see java.util.List
+     * @see  java.util.List
      */
     protected List<T> items = Collections.emptyList();
     /**
      * <code>isFirstPage</code>
      * {@link java.lang.Boolean} <p>The <code>isFirstPage</code> field.</p>
-     * @see java.lang.Boolean
+     * @see  java.lang.Boolean
      */
     protected Boolean isFirstPage;
     /**
      * <code>isLastPage</code>
      * {@link java.lang.Boolean} <p>The <code>isLastPage</code> field.</p>
-     * @see java.lang.Boolean
+     * @see  java.lang.Boolean
      */
     protected Boolean isLastPage;
 
@@ -88,8 +88,8 @@ public class RestPage<T> implements Serializable {
      * <code>RestPage</code>
      * <p>Instantiates a new rest page.</p>
      * @param items {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
+     * @see  java.util.Collection
+     * @see  org.springframework.lang.NonNull
      */
     public RestPage(@NonNull Collection<T> items) {
         this.pages = 1L;
@@ -105,13 +105,13 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>RestPage</code>
      * <p>Instantiates a new rest page.</p>
-     * @param totals   {@link java.lang.Long} <p>The totals parameter is <code>Long</code> type.</p>
-     * @param pageNum  {@link java.lang.Long} <p>The page num parameter is <code>Long</code> type.</p>
+     * @param totals {@link java.lang.Long} <p>The totals parameter is <code>Long</code> type.</p>
+     * @param pageNum {@link java.lang.Long} <p>The page num parameter is <code>Long</code> type.</p>
      * @param pageSize {@link java.lang.Long} <p>The page size parameter is <code>Long</code> type.</p>
-     * @param items    {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
-     * @see java.lang.Long
-     * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
+     * @param items {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
+     * @see  java.lang.Long
+     * @see  java.util.Collection
+     * @see  org.springframework.lang.NonNull
      */
     public RestPage(Long totals, Long pageNum, Long pageSize, @NonNull Collection<T> items) {
         this.totals = totals;
@@ -136,15 +136,15 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>result</code>
      * <p>The result method.</p>
-     * @param <T>    {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <K>    {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <T>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param totals {@link java.lang.Long} <p>The totals parameter is <code>Long</code> type.</p>
-     * @param items  {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
+     * @param items {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
      * @param filter {@link io.github.nichetoolkit.rice.filter.PageFilter} <p>The filter parameter is <code>PageFilter</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestPage} <p>The result return object is <code>RestPage</code> type.</p>
-     * @see java.lang.Long
-     * @see java.util.Collection
-     * @see io.github.nichetoolkit.rice.filter.PageFilter
+     * @see  java.lang.Long
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rice.filter.PageFilter
+     * @return  {@link io.github.nichetoolkit.rice.RestPage} <p>The result return object is <code>RestPage</code> type.</p>
      */
     public static <T, K> RestPage<T> result(Long totals, Collection<T> items, PageFilter filter) {
         if (GeneralUtils.isEmpty(filter.getPageSize())) {
@@ -157,15 +157,15 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>result</code>
      * <p>The result method.</p>
-     * @param <T>    {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <K>    {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <T>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param totals {@link java.lang.Long} <p>The totals parameter is <code>Long</code> type.</p>
-     * @param items  {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
-     * @param page   {@link com.github.pagehelper.Page} <p>The page parameter is <code>Page</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestPage} <p>The result return object is <code>RestPage</code> type.</p>
-     * @see java.lang.Long
-     * @see java.util.Collection
-     * @see com.github.pagehelper.Page
+     * @param items {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
+     * @param page {@link com.github.pagehelper.Page} <p>The page parameter is <code>Page</code> type.</p>
+     * @see  java.lang.Long
+     * @see  java.util.Collection
+     * @see  com.github.pagehelper.Page
+     * @return  {@link io.github.nichetoolkit.rice.RestPage} <p>The result return object is <code>RestPage</code> type.</p>
      */
     public static <T, K> RestPage<T> result(Long totals, Collection<T> items, com.github.pagehelper.Page<?> page) {
         if (GeneralUtils.isEmpty(page)) {
@@ -179,15 +179,15 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>result</code>
      * <p>The result method.</p>
-     * @param <T>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <K>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param totals   {@link java.lang.Long} <p>The totals parameter is <code>Long</code> type.</p>
-     * @param pageNum  {@link java.lang.Long} <p>The page num parameter is <code>Long</code> type.</p>
+     * @param <T>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param totals {@link java.lang.Long} <p>The totals parameter is <code>Long</code> type.</p>
+     * @param pageNum {@link java.lang.Long} <p>The page num parameter is <code>Long</code> type.</p>
      * @param pageSize {@link java.lang.Long} <p>The page size parameter is <code>Long</code> type.</p>
-     * @param items    {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestPage} <p>The result return object is <code>RestPage</code> type.</p>
-     * @see java.lang.Long
-     * @see java.util.Collection
+     * @param items {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
+     * @see  java.lang.Long
+     * @see  java.util.Collection
+     * @return  {@link io.github.nichetoolkit.rice.RestPage} <p>The result return object is <code>RestPage</code> type.</p>
      */
     public static <T, K> RestPage<T> result(Long totals, Long pageNum, Long pageSize, Collection<T> items) {
         if (GeneralUtils.isEmpty(pageSize)) {
@@ -200,13 +200,13 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>result</code>
      * <p>The result method.</p>
-     * @param <T>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <K>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <T>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param items {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
-     * @param page  {@link com.github.pagehelper.Page} <p>The page parameter is <code>Page</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestPage} <p>The result return object is <code>RestPage</code> type.</p>
-     * @see java.util.Collection
-     * @see com.github.pagehelper.Page
+     * @param page {@link com.github.pagehelper.Page} <p>The page parameter is <code>Page</code> type.</p>
+     * @see  java.util.Collection
+     * @see  com.github.pagehelper.Page
+     * @return  {@link io.github.nichetoolkit.rice.RestPage} <p>The result return object is <code>RestPage</code> type.</p>
      */
     public static <T, K> RestPage<T> result(Collection<T> items, com.github.pagehelper.Page<?> page) {
         if (GeneralUtils.isEmpty(page)) {
@@ -230,12 +230,12 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>result</code>
      * <p>The result method.</p>
-     * @param <T>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <K>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <T>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param items {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
-     * @param page  {@link io.github.nichetoolkit.rice.RestPage} <p>The page parameter is <code>RestPage</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestPage} <p>The result return object is <code>RestPage</code> type.</p>
-     * @see java.util.Collection
+     * @param page {@link io.github.nichetoolkit.rice.RestPage} <p>The page parameter is <code>RestPage</code> type.</p>
+     * @see  java.util.Collection
+     * @return  {@link io.github.nichetoolkit.rice.RestPage} <p>The result return object is <code>RestPage</code> type.</p>
      */
     public static <T, K> RestPage<T> result(Collection<T> items, RestPage<K> page) {
         if (GeneralUtils.isEmpty(page)) {
@@ -259,13 +259,13 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>result</code>
      * <p>The result method.</p>
-     * @param <T>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <K>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param items    {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
+     * @param <T>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param items {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
      * @param pageInfo {@link com.github.pagehelper.PageInfo} <p>The page info parameter is <code>PageInfo</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestPage} <p>The result return object is <code>RestPage</code> type.</p>
-     * @see java.util.Collection
-     * @see com.github.pagehelper.PageInfo
+     * @see  java.util.Collection
+     * @see  com.github.pagehelper.PageInfo
+     * @return  {@link io.github.nichetoolkit.rice.RestPage} <p>The result return object is <code>RestPage</code> type.</p>
      */
     public static <T, K> RestPage<T> result(Collection<T> items, PageInfo<K> pageInfo) {
         if (GeneralUtils.isEmpty(pageInfo)) {
@@ -289,7 +289,7 @@ public class RestPage<T> implements Serializable {
      * <code>RestPage</code>
      * <p>Instantiates a new rest page.</p>
      * @param builder {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestPage.Builder
+     * @see  io.github.nichetoolkit.rice.RestPage.Builder
      */
     public RestPage(RestPage.Builder<T> builder) {
         this.totals = builder.totals;
@@ -305,8 +305,8 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>getTotals</code>
      * <p>The get totals getter method.</p>
-     * @return {@link java.lang.Long} <p>The get totals return object is <code>Long</code> type.</p>
-     * @see java.lang.Long
+     * @return  {@link java.lang.Long} <p>The get totals return object is <code>Long</code> type.</p>
+     * @see  java.lang.Long
      */
     public Long getTotals() {
         return totals;
@@ -316,7 +316,7 @@ public class RestPage<T> implements Serializable {
      * <code>setTotals</code>
      * <p>The set totals setter method.</p>
      * @param totals {@link java.lang.Long} <p>The totals parameter is <code>Long</code> type.</p>
-     * @see java.lang.Long
+     * @see  java.lang.Long
      */
     public void setTotals(Long totals) {
         this.totals = totals;
@@ -325,8 +325,8 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>getPages</code>
      * <p>The get pages getter method.</p>
-     * @return {@link java.lang.Long} <p>The get pages return object is <code>Long</code> type.</p>
-     * @see java.lang.Long
+     * @return  {@link java.lang.Long} <p>The get pages return object is <code>Long</code> type.</p>
+     * @see  java.lang.Long
      */
     public Long getPages() {
         return pages;
@@ -336,7 +336,7 @@ public class RestPage<T> implements Serializable {
      * <code>setPages</code>
      * <p>The set pages setter method.</p>
      * @param pages {@link java.lang.Long} <p>The pages parameter is <code>Long</code> type.</p>
-     * @see java.lang.Long
+     * @see  java.lang.Long
      */
     public void setPages(Long pages) {
         this.pages = pages;
@@ -345,8 +345,8 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>getPageNum</code>
      * <p>The get page num getter method.</p>
-     * @return {@link java.lang.Long} <p>The get page num return object is <code>Long</code> type.</p>
-     * @see java.lang.Long
+     * @return  {@link java.lang.Long} <p>The get page num return object is <code>Long</code> type.</p>
+     * @see  java.lang.Long
      */
     public Long getPageNum() {
         return pageNum;
@@ -356,7 +356,7 @@ public class RestPage<T> implements Serializable {
      * <code>setPageNum</code>
      * <p>The set page num setter method.</p>
      * @param pageNum {@link java.lang.Long} <p>The page num parameter is <code>Long</code> type.</p>
-     * @see java.lang.Long
+     * @see  java.lang.Long
      */
     public void setPageNum(Long pageNum) {
         this.pageNum = pageNum;
@@ -365,8 +365,8 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>getPageSize</code>
      * <p>The get page size getter method.</p>
-     * @return {@link java.lang.Long} <p>The get page size return object is <code>Long</code> type.</p>
-     * @see java.lang.Long
+     * @return  {@link java.lang.Long} <p>The get page size return object is <code>Long</code> type.</p>
+     * @see  java.lang.Long
      */
     public Long getPageSize() {
         return pageSize;
@@ -376,7 +376,7 @@ public class RestPage<T> implements Serializable {
      * <code>setPageSize</code>
      * <p>The set page size setter method.</p>
      * @param pageSize {@link java.lang.Long} <p>The page size parameter is <code>Long</code> type.</p>
-     * @see java.lang.Long
+     * @see  java.lang.Long
      */
     public void setPageSize(Long pageSize) {
         this.pageSize = pageSize;
@@ -385,8 +385,8 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>getItemSize</code>
      * <p>The get item size getter method.</p>
-     * @return {@link java.lang.Long} <p>The get item size return object is <code>Long</code> type.</p>
-     * @see java.lang.Long
+     * @return  {@link java.lang.Long} <p>The get item size return object is <code>Long</code> type.</p>
+     * @see  java.lang.Long
      */
     public Long getItemSize() {
         return itemSize;
@@ -396,7 +396,7 @@ public class RestPage<T> implements Serializable {
      * <code>setItemSize</code>
      * <p>The set item size setter method.</p>
      * @param itemSize {@link java.lang.Long} <p>The item size parameter is <code>Long</code> type.</p>
-     * @see java.lang.Long
+     * @see  java.lang.Long
      */
     public void setItemSize(Long itemSize) {
         this.itemSize = itemSize;
@@ -405,8 +405,8 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>getItems</code>
      * <p>The get items getter method.</p>
-     * @return {@link java.util.List} <p>The get items return object is <code>List</code> type.</p>
-     * @see java.util.List
+     * @return  {@link java.util.List} <p>The get items return object is <code>List</code> type.</p>
+     * @see  java.util.List
      */
     public List<T> getItems() {
         return items;
@@ -416,7 +416,7 @@ public class RestPage<T> implements Serializable {
      * <code>setItems</code>
      * <p>The set items setter method.</p>
      * @param items {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
+     * @see  java.util.Collection
      */
     public void setItems(Collection<T> items) {
         this.items = new ArrayList<>(items);
@@ -425,8 +425,8 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>getFirstPage</code>
      * <p>The get first page getter method.</p>
-     * @return {@link java.lang.Boolean} <p>The get first page return object is <code>Boolean</code> type.</p>
-     * @see java.lang.Boolean
+     * @return  {@link java.lang.Boolean} <p>The get first page return object is <code>Boolean</code> type.</p>
+     * @see  java.lang.Boolean
      */
     public Boolean getFirstPage() {
         return isFirstPage;
@@ -436,7 +436,7 @@ public class RestPage<T> implements Serializable {
      * <code>setFirstPage</code>
      * <p>The set first page setter method.</p>
      * @param firstPage {@link java.lang.Boolean} <p>The first page parameter is <code>Boolean</code> type.</p>
-     * @see java.lang.Boolean
+     * @see  java.lang.Boolean
      */
     public void setFirstPage(Boolean firstPage) {
         isFirstPage = firstPage;
@@ -445,8 +445,8 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>getLastPage</code>
      * <p>The get last page getter method.</p>
-     * @return {@link java.lang.Boolean} <p>The get last page return object is <code>Boolean</code> type.</p>
-     * @see java.lang.Boolean
+     * @return  {@link java.lang.Boolean} <p>The get last page return object is <code>Boolean</code> type.</p>
+     * @see  java.lang.Boolean
      */
     public Boolean getLastPage() {
         return isLastPage;
@@ -456,7 +456,7 @@ public class RestPage<T> implements Serializable {
      * <code>setLastPage</code>
      * <p>The set last page setter method.</p>
      * @param lastPage {@link java.lang.Boolean} <p>The last page parameter is <code>Boolean</code> type.</p>
-     * @see java.lang.Boolean
+     * @see  java.lang.Boolean
      */
     public void setLastPage(Boolean lastPage) {
         isLastPage = lastPage;
@@ -465,9 +465,9 @@ public class RestPage<T> implements Serializable {
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
-     * @param <T> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <T>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @see  java.lang.SuppressWarnings
      * @author Cyan (snow22314@outlook.com)
-     * @see java.lang.SuppressWarnings
      * @since Jdk1.8
      */
     @SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
@@ -475,49 +475,49 @@ public class RestPage<T> implements Serializable {
         /**
          * <code>totals</code>
          * {@link java.lang.Long} <p>The <code>totals</code> field.</p>
-         * @see java.lang.Long
+         * @see  java.lang.Long
          */
         protected Long totals;
         /**
          * <code>pages</code>
          * {@link java.lang.Long} <p>The <code>pages</code> field.</p>
-         * @see java.lang.Long
+         * @see  java.lang.Long
          */
         protected Long pages;
         /**
          * <code>pageNum</code>
          * {@link java.lang.Long} <p>The <code>pageNum</code> field.</p>
-         * @see java.lang.Long
+         * @see  java.lang.Long
          */
         protected Long pageNum;
         /**
          * <code>pageSize</code>
          * {@link java.lang.Long} <p>The <code>pageSize</code> field.</p>
-         * @see java.lang.Long
+         * @see  java.lang.Long
          */
         protected Long pageSize;
         /**
          * <code>itemSize</code>
          * {@link java.lang.Long} <p>The <code>itemSize</code> field.</p>
-         * @see java.lang.Long
+         * @see  java.lang.Long
          */
         protected Long itemSize;
         /**
          * <code>items</code>
          * {@link java.util.List} <p>The <code>items</code> field.</p>
-         * @see java.util.List
+         * @see  java.util.List
          */
         protected List<T> items = Collections.emptyList();
         /**
          * <code>isFirstPage</code>
          * {@link java.lang.Boolean} <p>The <code>isFirstPage</code> field.</p>
-         * @see java.lang.Boolean
+         * @see  java.lang.Boolean
          */
         protected Boolean isFirstPage;
         /**
          * <code>isLastPage</code>
          * {@link java.lang.Boolean} <p>The <code>isLastPage</code> field.</p>
-         * @see java.lang.Boolean
+         * @see  java.lang.Boolean
          */
         protected Boolean isLastPage;
 
@@ -532,8 +532,8 @@ public class RestPage<T> implements Serializable {
          * <code>totals</code>
          * <p>The totals method.</p>
          * @param totals {@link java.lang.Long} <p>The totals parameter is <code>Long</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The totals return object is <code>Builder</code> type.</p>
-         * @see java.lang.Long
+         * @see  java.lang.Long
+         * @return  {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The totals return object is <code>Builder</code> type.</p>
          */
         public RestPage.Builder<T> totals(Long totals) {
             this.totals = totals;
@@ -544,8 +544,8 @@ public class RestPage<T> implements Serializable {
          * <code>pages</code>
          * <p>The pages method.</p>
          * @param pages {@link java.lang.Long} <p>The pages parameter is <code>Long</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The pages return object is <code>Builder</code> type.</p>
-         * @see java.lang.Long
+         * @see  java.lang.Long
+         * @return  {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The pages return object is <code>Builder</code> type.</p>
          */
         public RestPage.Builder<T> pages(Long pages) {
             this.pages = pages;
@@ -556,8 +556,8 @@ public class RestPage<T> implements Serializable {
          * <code>pageNum</code>
          * <p>The page num method.</p>
          * @param pageNum {@link java.lang.Long} <p>The page num parameter is <code>Long</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The page num return object is <code>Builder</code> type.</p>
-         * @see java.lang.Long
+         * @see  java.lang.Long
+         * @return  {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The page num return object is <code>Builder</code> type.</p>
          */
         public RestPage.Builder<T> pageNum(Long pageNum) {
             this.pageNum = pageNum;
@@ -568,8 +568,8 @@ public class RestPage<T> implements Serializable {
          * <code>pageSize</code>
          * <p>The page size method.</p>
          * @param pageSize {@link java.lang.Long} <p>The page size parameter is <code>Long</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The page size return object is <code>Builder</code> type.</p>
-         * @see java.lang.Long
+         * @see  java.lang.Long
+         * @return  {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The page size return object is <code>Builder</code> type.</p>
          */
         public RestPage.Builder<T> pageSize(Long pageSize) {
             this.pageSize = pageSize;
@@ -580,8 +580,8 @@ public class RestPage<T> implements Serializable {
          * <code>itemSize</code>
          * <p>The item size method.</p>
          * @param itemSize {@link java.lang.Long} <p>The item size parameter is <code>Long</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The item size return object is <code>Builder</code> type.</p>
-         * @see java.lang.Long
+         * @see  java.lang.Long
+         * @return  {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The item size return object is <code>Builder</code> type.</p>
          */
         public RestPage.Builder<T> itemSize(Long itemSize) {
             this.itemSize = itemSize;
@@ -592,8 +592,8 @@ public class RestPage<T> implements Serializable {
          * <code>items</code>
          * <p>The items method.</p>
          * @param items {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The items return object is <code>Builder</code> type.</p>
-         * @see java.util.Collection
+         * @see  java.util.Collection
+         * @return  {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The items return object is <code>Builder</code> type.</p>
          */
         public RestPage.Builder<T> items(Collection<T> items) {
             this.items = new ArrayList<>(items);
@@ -604,8 +604,8 @@ public class RestPage<T> implements Serializable {
          * <code>firstPage</code>
          * <p>The first page method.</p>
          * @param firstPage {@link java.lang.Boolean} <p>The first page parameter is <code>Boolean</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The first page return object is <code>Builder</code> type.</p>
-         * @see java.lang.Boolean
+         * @see  java.lang.Boolean
+         * @return  {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The first page return object is <code>Builder</code> type.</p>
          */
         public RestPage.Builder<T> firstPage(Boolean firstPage) {
             this.isFirstPage = firstPage;
@@ -616,8 +616,8 @@ public class RestPage<T> implements Serializable {
          * <code>lastPage</code>
          * <p>The last page method.</p>
          * @param lastPage {@link java.lang.Boolean} <p>The last page parameter is <code>Boolean</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The last page return object is <code>Builder</code> type.</p>
-         * @see java.lang.Boolean
+         * @see  java.lang.Boolean
+         * @return  {@link io.github.nichetoolkit.rice.RestPage.Builder} <p>The last page return object is <code>Builder</code> type.</p>
          */
         public RestPage.Builder<T> lastPage(Boolean lastPage) {
             this.isLastPage = lastPage;
@@ -627,7 +627,7 @@ public class RestPage<T> implements Serializable {
         /**
          * <code>build</code>
          * <p>The build method.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestPage} <p>The build return object is <code>RestPage</code> type.</p>
+         * @return  {@link io.github.nichetoolkit.rice.RestPage} <p>The build return object is <code>RestPage</code> type.</p>
          */
         public RestPage<T> build() {
             return new RestPage<>(this);

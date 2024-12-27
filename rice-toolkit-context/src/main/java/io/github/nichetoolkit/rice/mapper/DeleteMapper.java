@@ -7,9 +7,9 @@ import java.util.Collection;
 /**
  * <code>DeleteMapper</code>
  * <p>The delete mapper interface.</p>
- * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
 @SuppressWarnings("UnusedReturnValue")
@@ -18,9 +18,9 @@ public interface DeleteMapper<I> {
      * <code>deleteById</code>
      * <p>The delete by id method.</p>
      * @param id I <p>The id parameter is <code>I</code> type.</p>
-     * @return {@link java.lang.Integer} <p>The delete by id return object is <code>Integer</code> type.</p>
-     * @see org.apache.ibatis.annotations.Param
-     * @see java.lang.Integer
+     * @see  org.apache.ibatis.annotations.Param
+     * @see  java.lang.Integer
+     * @return  {@link java.lang.Integer} <p>The delete by id return object is <code>Integer</code> type.</p>
      */
     Integer deleteById(@Param("id") I id);
 
@@ -28,11 +28,11 @@ public interface DeleteMapper<I> {
      * <code>deleteDynamicById</code>
      * <p>The delete dynamic by id method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
-     * @param id        I <p>The id parameter is <code>I</code> type.</p>
-     * @return {@link java.lang.Integer} <p>The delete dynamic by id return object is <code>Integer</code> type.</p>
-     * @see java.lang.String
-     * @see org.apache.ibatis.annotations.Param
-     * @see java.lang.Integer
+     * @param id I <p>The id parameter is <code>I</code> type.</p>
+     * @see  java.lang.String
+     * @see  org.apache.ibatis.annotations.Param
+     * @see  java.lang.Integer
+     * @return  {@link java.lang.Integer} <p>The delete dynamic by id return object is <code>Integer</code> type.</p>
      */
     Integer deleteDynamicById(@Param("tablename") String tablename, @Param("id") I id);
 
@@ -40,10 +40,10 @@ public interface DeleteMapper<I> {
      * <code>deleteAll</code>
      * <p>The delete all method.</p>
      * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
-     * @return {@link java.lang.Integer} <p>The delete all return object is <code>Integer</code> type.</p>
-     * @see java.util.Collection
-     * @see org.apache.ibatis.annotations.Param
-     * @see java.lang.Integer
+     * @see  java.util.Collection
+     * @see  org.apache.ibatis.annotations.Param
+     * @see  java.lang.Integer
+     * @return  {@link java.lang.Integer} <p>The delete all return object is <code>Integer</code> type.</p>
      */
     Integer deleteAll(@Param("idList") Collection<I> idList);
 
@@ -51,12 +51,12 @@ public interface DeleteMapper<I> {
      * <code>deleteDynamicAll</code>
      * <p>The delete dynamic all method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
-     * @param idList    {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
-     * @return {@link java.lang.Integer} <p>The delete dynamic all return object is <code>Integer</code> type.</p>
-     * @see java.lang.String
-     * @see org.apache.ibatis.annotations.Param
-     * @see java.util.Collection
-     * @see java.lang.Integer
+     * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @see  java.lang.String
+     * @see  org.apache.ibatis.annotations.Param
+     * @see  java.util.Collection
+     * @see  java.lang.Integer
+     * @return  {@link java.lang.Integer} <p>The delete dynamic all return object is <code>Integer</code> type.</p>
      */
     Integer deleteDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList);
 
@@ -64,10 +64,10 @@ public interface DeleteMapper<I> {
      * <code>deleteAllByWhere</code>
      * <p>The delete all by where method.</p>
      * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
-     * @return {@link java.lang.Integer} <p>The delete all by where return object is <code>Integer</code> type.</p>
-     * @see java.lang.String
-     * @see org.apache.ibatis.annotations.Param
-     * @see java.lang.Integer
+     * @see  java.lang.String
+     * @see  org.apache.ibatis.annotations.Param
+     * @see  java.lang.Integer
+     * @return  {@link java.lang.Integer} <p>The delete all by where return object is <code>Integer</code> type.</p>
      */
     Integer deleteAllByWhere(@Param("whereSql") String whereSql);
 
@@ -75,11 +75,11 @@ public interface DeleteMapper<I> {
      * <code>deleteDynamicAllByWhere</code>
      * <p>The delete dynamic all by where method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
-     * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
-     * @return {@link java.lang.Integer} <p>The delete dynamic all by where return object is <code>Integer</code> type.</p>
-     * @see java.lang.String
-     * @see org.apache.ibatis.annotations.Param
-     * @see java.lang.Integer
+     * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @see  java.lang.String
+     * @see  org.apache.ibatis.annotations.Param
+     * @see  java.lang.Integer
+     * @return  {@link java.lang.Integer} <p>The delete dynamic all by where return object is <code>Integer</code> type.</p>
      */
     Integer deleteDynamicAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql);
 }

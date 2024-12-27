@@ -9,12 +9,12 @@ import org.springframework.context.annotation.Configuration;
 /**
  * <code>RiceExampleAutoConfigure</code>
  * <p>The rice example auto configure class.</p>
+ * @see  lombok.extern.slf4j.Slf4j
+ * @see  org.springframework.context.annotation.Configuration
+ * @see  org.mybatis.spring.annotation.MapperScan
+ * @see  org.springframework.context.annotation.ComponentScan
+ * @see  org.springframework.boot.autoconfigure.ImportAutoConfiguration
  * @author Cyan (snow22314@outlook.com)
- * @see lombok.extern.slf4j.Slf4j
- * @see org.springframework.context.annotation.Configuration
- * @see org.mybatis.spring.annotation.MapperScan
- * @see org.springframework.context.annotation.ComponentScan
- * @see org.springframework.boot.autoconfigure.ImportAutoConfiguration
  * @since Jdk1.8
  */
 @Slf4j

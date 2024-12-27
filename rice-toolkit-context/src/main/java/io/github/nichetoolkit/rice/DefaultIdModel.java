@@ -9,13 +9,13 @@ import java.util.Date;
 /**
  * <code>DefaultIdModel</code>
  * <p>The default id model class.</p>
- * @param <M> {@link io.github.nichetoolkit.rice.DefaultIdModel} <p>The generic parameter is <code>DefaultIdModel</code> type.</p>
- * @param <E> {@link io.github.nichetoolkit.rice.DefaultIdEntity} <p>The generic parameter is <code>DefaultIdEntity</code> type.</p>
- * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <M>  {@link io.github.nichetoolkit.rice.DefaultIdModel} <p>The generic parameter is <code>DefaultIdModel</code> type.</p>
+ * @param <E>  {@link io.github.nichetoolkit.rice.DefaultIdEntity} <p>The generic parameter is <code>DefaultIdEntity</code> type.</p>
+ * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @see  io.github.nichetoolkit.rice.DefaultIdEntity
+ * @see  io.github.nichetoolkit.rice.IdModel
+ * @see  io.github.nichetoolkit.rice.RestModel
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.DefaultIdEntity
- * @see io.github.nichetoolkit.rice.IdModel
- * @see io.github.nichetoolkit.rice.RestModel
  * @since Jdk1.8
  */
 public abstract class DefaultIdModel<M extends DefaultIdModel<M,E,I>,E extends DefaultIdEntity<E,M,I>,I> extends IdModel<I> implements RestModel<I,E> {
@@ -40,7 +40,7 @@ public abstract class DefaultIdModel<M extends DefaultIdModel<M,E,I>,E extends D
      * <code>DefaultIdModel</code>
      * <p>Instantiates a new default id model.</p>
      * @param builder {@link io.github.nichetoolkit.rice.DefaultIdModel.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.DefaultIdModel.Builder
+     * @see  io.github.nichetoolkit.rice.DefaultIdModel.Builder
      */
     public DefaultIdModel(DefaultIdModel.Builder<M,E,I> builder) {
         super(builder);
@@ -49,12 +49,12 @@ public abstract class DefaultIdModel<M extends DefaultIdModel<M,E,I>,E extends D
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
-     * @param <M> {@link io.github.nichetoolkit.rice.DefaultIdModel} <p>The generic parameter is <code>DefaultIdModel</code> type.</p>
-     * @param <E> {@link io.github.nichetoolkit.rice.DefaultIdEntity} <p>The generic parameter is <code>DefaultIdEntity</code> type.</p>
-     * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.DefaultIdModel} <p>The generic parameter is <code>DefaultIdModel</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.DefaultIdEntity} <p>The generic parameter is <code>DefaultIdEntity</code> type.</p>
+     * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @see  io.github.nichetoolkit.rice.DefaultIdEntity
+     * @see  io.github.nichetoolkit.rice.IdModel.Builder
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.DefaultIdEntity
-     * @see io.github.nichetoolkit.rice.IdModel.Builder
      * @since Jdk1.8
      */
     public static abstract class Builder<M extends DefaultIdModel<M,E,I>,E extends DefaultIdEntity<E,M,I>,I> extends IdModel.Builder<I> {

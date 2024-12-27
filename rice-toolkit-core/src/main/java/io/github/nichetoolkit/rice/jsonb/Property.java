@@ -10,11 +10,11 @@ import java.util.Objects;
 /**
  * <code>Property</code>
  * <p>The property class.</p>
+ * @see  java.io.Serializable
+ * @see  lombok.Builder
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see java.io.Serializable
- * @see lombok.Builder
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @Builder
@@ -24,20 +24,20 @@ public class Property implements Serializable {
     /**
      * <code>VALUE</code>
      * {@link java.lang.String} <p>The constant <code>VALUE</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public static final String VALUE = "value";
 
     /**
      * <code>name</code>
      * {@link java.lang.String} <p>The <code>name</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String name;
     /**
      * <code>value</code>
      * {@link java.lang.Object} <p>The <code>value</code> field.</p>
-     * @see java.lang.Object
+     * @see  java.lang.Object
      */
     protected Object value;
 
@@ -52,7 +52,7 @@ public class Property implements Serializable {
      * <code>Property</code>
      * <p>Instantiates a new property.</p>
      * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public Property(String name) {
         this.name = name;
@@ -61,10 +61,10 @@ public class Property implements Serializable {
     /**
      * <code>Property</code>
      * <p>Instantiates a new property.</p>
-     * @param name  {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @see java.lang.String
-     * @see java.lang.Object
+     * @see  java.lang.String
+     * @see  java.lang.Object
      */
     public Property(String name, Object value) {
         this.name = name;
@@ -88,8 +88,8 @@ public class Property implements Serializable {
     /**
      * <code>getName</code>
      * <p>The get name getter method.</p>
-     * @return {@link java.lang.String} <p>The get name return object is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @return  {@link java.lang.String} <p>The get name return object is <code>String</code> type.</p>
+     * @see  java.lang.String
      */
     public String getName() {
         return name;
@@ -99,7 +99,7 @@ public class Property implements Serializable {
      * <code>setName</code>
      * <p>The set name setter method.</p>
      * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public void setName(String name) {
         this.name = name;
@@ -108,8 +108,8 @@ public class Property implements Serializable {
     /**
      * <code>getValue</code>
      * <p>The get value getter method.</p>
-     * @return {@link java.lang.Object} <p>The get value return object is <code>Object</code> type.</p>
-     * @see java.lang.Object
+     * @return  {@link java.lang.Object} <p>The get value return object is <code>Object</code> type.</p>
+     * @see  java.lang.Object
      */
     public Object getValue() {
         return value;
@@ -119,7 +119,7 @@ public class Property implements Serializable {
      * <code>setValue</code>
      * <p>The set value setter method.</p>
      * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @see java.lang.Object
+     * @see  java.lang.Object
      */
     public void setValue(Object value) {
         this.value = value;

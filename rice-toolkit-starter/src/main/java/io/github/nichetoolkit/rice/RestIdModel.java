@@ -9,11 +9,11 @@ import java.util.Date;
 /**
  * <code>RestIdModel</code>
  * <p>The rest id model class.</p>
- * @param <M> {@link io.github.nichetoolkit.rice.RestIdModel} <p>The generic parameter is <code>RestIdModel</code> type.</p>
- * @param <E> {@link io.github.nichetoolkit.rice.RestIdEntity} <p>The generic parameter is <code>RestIdEntity</code> type.</p>
+ * @param <M>  {@link io.github.nichetoolkit.rice.RestIdModel} <p>The generic parameter is <code>RestIdModel</code> type.</p>
+ * @param <E>  {@link io.github.nichetoolkit.rice.RestIdEntity} <p>The generic parameter is <code>RestIdEntity</code> type.</p>
+ * @see  io.github.nichetoolkit.rice.RestIdEntity
+ * @see  io.github.nichetoolkit.rice.DefaultIdModel
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.RestIdEntity
- * @see io.github.nichetoolkit.rice.DefaultIdModel
  * @since Jdk1.8
  */
 public abstract class RestIdModel<M extends RestIdModel<M, E>, E extends RestIdEntity<E, M>> extends DefaultIdModel<M, E, String> {
@@ -29,7 +29,7 @@ public abstract class RestIdModel<M extends RestIdModel<M, E>, E extends RestIdE
      * <code>RestIdModel</code>
      * <p>Instantiates a new rest id model.</p>
      * @param id {@link java.lang.String} <p>The id parameter is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public RestIdModel(String id) {
         super(id);
@@ -39,7 +39,7 @@ public abstract class RestIdModel<M extends RestIdModel<M, E>, E extends RestIdE
      * <code>RestIdModel</code>
      * <p>Instantiates a new rest id model.</p>
      * @param builder {@link io.github.nichetoolkit.rice.RestIdModel.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestIdModel.Builder
+     * @see  io.github.nichetoolkit.rice.RestIdModel.Builder
      */
     public RestIdModel(RestIdModel.Builder<M, E> builder) {
         super(builder);
@@ -48,11 +48,11 @@ public abstract class RestIdModel<M extends RestIdModel<M, E>, E extends RestIdE
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
-     * @param <M> {@link io.github.nichetoolkit.rice.RestIdModel} <p>The generic parameter is <code>RestIdModel</code> type.</p>
-     * @param <E> {@link io.github.nichetoolkit.rice.RestIdEntity} <p>The generic parameter is <code>RestIdEntity</code> type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestIdModel} <p>The generic parameter is <code>RestIdModel</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestIdEntity} <p>The generic parameter is <code>RestIdEntity</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestIdEntity
+     * @see  io.github.nichetoolkit.rice.DefaultIdModel.Builder
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.RestIdEntity
-     * @see io.github.nichetoolkit.rice.DefaultIdModel.Builder
      * @since Jdk1.8
      */
     public static abstract class Builder<M extends RestIdModel<M, E>, E extends RestIdEntity<E, M>> extends DefaultIdModel.Builder<M, E, String> {

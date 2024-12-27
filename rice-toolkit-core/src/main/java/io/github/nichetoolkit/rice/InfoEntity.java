@@ -26,7 +26,7 @@ public class InfoEntity<I> extends IdEntity<I> implements RestInfo<I> {
      * <code>name</code>
      * {@link java.lang.String} <p>The <code>name</code> field.</p>
      * @see  java.lang.String
-     * @see  RestUniqueKey
+     * @see  io.github.nichetoolkit.mybatis.column.RestUniqueKey
      */
     @RestUniqueKey
     protected String name;

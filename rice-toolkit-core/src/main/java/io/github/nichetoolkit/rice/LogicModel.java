@@ -8,12 +8,12 @@ import io.github.nichetoolkit.rice.enums.SaveType;
 /**
  * <code>LogicModel</code>
  * <p>The logic model class.</p>
+ * @see  io.github.nichetoolkit.rice.SaveModel
+ * @see  io.github.nichetoolkit.rice.RestLogic
+ * @see  java.lang.SuppressWarnings
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.SaveModel
- * @see io.github.nichetoolkit.rice.RestLogic
- * @see java.lang.SuppressWarnings
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @SuppressWarnings("WeakerAccess")
@@ -24,8 +24,8 @@ public class LogicModel extends SaveModel implements RestLogic {
     /**
      * <code>logic</code>
      * {@link java.lang.Object} <p>The <code>logic</code> field.</p>
-     * @see java.lang.Object
-     * @see com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  java.lang.Object
+     * @see  com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
     protected Object logic;
@@ -41,7 +41,7 @@ public class LogicModel extends SaveModel implements RestLogic {
      * <code>LogicModel</code>
      * <p>Instantiates a new logic model.</p>
      * @param builder {@link io.github.nichetoolkit.rice.LogicModel.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.LogicModel.Builder
+     * @see  io.github.nichetoolkit.rice.LogicModel.Builder
      */
     public LogicModel(LogicModel.Builder builder) {
         super(builder);
@@ -62,8 +62,8 @@ public class LogicModel extends SaveModel implements RestLogic {
     /**
      * <code>ofLogic</code>
      * <p>The of logic method.</p>
-     * @return {@link io.github.nichetoolkit.rice.LogicModel.Builder} <p>The of logic return object is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.LogicModel.Builder
+     * @return  {@link io.github.nichetoolkit.rice.LogicModel.Builder} <p>The of logic return object is <code>Builder</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.LogicModel.Builder
      */
     public static LogicModel.Builder ofLogic() {
         return new LogicModel.Builder();
@@ -72,15 +72,15 @@ public class LogicModel extends SaveModel implements RestLogic {
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
+     * @see  io.github.nichetoolkit.rice.SaveModel.Builder
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.SaveModel.Builder
      * @since Jdk1.8
      */
     public static class Builder extends SaveModel.Builder {
         /**
          * <code>logic</code>
          * {@link java.lang.String} <p>The <code>logic</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String logic;
 
@@ -95,8 +95,8 @@ public class LogicModel extends SaveModel implements RestLogic {
          * <code>logic</code>
          * <p>The logic method.</p>
          * @param logic {@link java.lang.String} <p>The logic parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.LogicModel.Builder} <p>The logic return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.LogicModel.Builder} <p>The logic return object is <code>Builder</code> type.</p>
          */
         public LogicModel.Builder logic(String logic) {
             this.logic = logic;

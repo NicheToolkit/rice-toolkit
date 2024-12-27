@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
+import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
@@ -354,9 +355,11 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rest.RestException
      * @return  {@link io.github.nichetoolkit.rice.filter.JsonbFilter} <p>The to jsonb sql return object is <code>JsonbFilter</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    public JsonbFilter<I, K> toJsonbSql(@NonNull String alias) {
+    public JsonbFilter<I, K> toJsonbSql(@NonNull String alias) throws RestException {
         this.toJsonbSql(alias, "value");
         return this;
     }
@@ -368,9 +371,11 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * @param variable {@link java.lang.String} <p>The variable parameter is <code>String</code> type.</p>
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rest.RestException
      * @return  {@link io.github.nichetoolkit.rice.filter.JsonbFilter} <p>The to jsonb sql return object is <code>JsonbFilter</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    public JsonbFilter<I, K> toJsonbSql(@NonNull String alias, String variable) {
+    public JsonbFilter<I, K> toJsonbSql(@NonNull String alias, String variable) throws RestException {
         SqlBuilder sqlBuilder = SqlBuilders.newSqlBuilder();
         this.appendSql(alias, variable, getContrasts(), sqlBuilder);
         this.appendSql(alias, variable, getRanges(), sqlBuilder);
@@ -387,12 +392,12 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
      * @param variable {@link java.lang.String} <p>The variable parameter is <code>String</code> type.</p>
      * @param rules {@link java.util.List} <p>The rules parameter is <code>List</code> type.</p>
-     * @param sqlBuilder {@link SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @see  io.github.nichetoolkit.rice.jsonb.JsonbRule
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
      * @see  java.util.List
-     * @see  SqlBuilder
+     * @see  io.github.nichetoolkit.mybatis.builder.SqlBuilder
      */
     public <R extends JsonbRule<R>> void appendSql(@NonNull String alias, String variable, List<R> rules, SqlBuilder sqlBuilder) {
         if (GeneralUtils.isNotEmpty(rules)) {
@@ -407,19 +412,19 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
 
 
     @Override
-    public JsonbFilter<I, K> toTimeSql(@NonNull String alias) {
+    public JsonbFilter<I, K> toTimeSql(@NonNull String alias) throws RestException {
         super.toTimeSql(alias);
         return this;
     }
 
     @Override
-    public JsonbFilter<I, K> toIdSql(@NonNull String alias) {
+    public JsonbFilter<I, K> toIdSql(@NonNull String alias) throws RestException {
         super.toIdSql(alias);
         return this;
     }
 
     @Override
-    public JsonbFilter<I, K> toOperateSql(@NonNull String alias) {
+    public JsonbFilter<I, K> toOperateSql(@NonNull String alias) throws RestException {
         super.toOperateSql(alias);
         return this;
     }

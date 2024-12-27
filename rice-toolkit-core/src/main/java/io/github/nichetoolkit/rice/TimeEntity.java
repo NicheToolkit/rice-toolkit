@@ -29,8 +29,8 @@ public class TimeEntity extends OperateEntity {
      * <code>createTime</code>
      * {@link java.util.Date} <p>The <code>createTime</code> field.</p>
      * @see  java.util.Date
-     * @see  RestUpdate
-     * @see  RestForceInsert
+     * @see  io.github.nichetoolkit.mybatis.column.RestUpdate
+     * @see  io.github.nichetoolkit.mybatis.column.RestForceInsert
      */
     @RestUpdate(false)
     @RestForceInsert(ScriptConstants.NOW)
@@ -39,8 +39,8 @@ public class TimeEntity extends OperateEntity {
      * <code>updateTime</code>
      * {@link java.util.Date} <p>The <code>updateTime</code> field.</p>
      * @see  java.util.Date
-     * @see  RestForceInsert
-     * @see  RestForceUpdate
+     * @see  io.github.nichetoolkit.mybatis.column.RestForceInsert
+     * @see  io.github.nichetoolkit.mybatis.column.RestForceUpdate
      */
     @RestForceInsert(ScriptConstants.NOW)
     @RestForceUpdate(ScriptConstants.NOW)

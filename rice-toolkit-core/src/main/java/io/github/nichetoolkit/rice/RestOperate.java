@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 /**
  * <code>RestOperate</code>
  * <p>The rest operate interface.</p>
+ * @see  java.io.Serializable
  * @author Cyan (snow22314@outlook.com)
- * @see java.io.Serializable
  * @since Jdk1.8
  */
 public interface RestOperate extends Serializable {
@@ -22,8 +22,8 @@ public interface RestOperate extends Serializable {
     /**
      * <code>getOperate</code>
      * <p>The get operate getter method.</p>
-     * @return {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The get operate return object is <code>OperateType</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.OperateType
+     * @return  {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The get operate return object is <code>OperateType</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.enums.OperateType
      */
     OperateType getOperate();
 
@@ -31,7 +31,7 @@ public interface RestOperate extends Serializable {
      * <code>setOperate</code>
      * <p>The set operate setter method.</p>
      * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-     * @see io.github.nichetoolkit.rice.enums.OperateType
+     * @see  io.github.nichetoolkit.rice.enums.OperateType
      */
     void setOperate(OperateType operate);
 
@@ -39,9 +39,9 @@ public interface RestOperate extends Serializable {
      * <code>build</code>
      * <p>The build method.</p>
      * @param operates {@link java.lang.Integer} <p>The operates parameter is <code>Integer</code> type.</p>
-     * @return {@link java.util.List} <p>The build return object is <code>List</code> type.</p>
-     * @see java.lang.Integer
-     * @see java.util.List
+     * @see  java.lang.Integer
+     * @see  java.util.List
+     * @return  {@link java.util.List} <p>The build return object is <code>List</code> type.</p>
      */
     static List<OperateType> build(Integer... operates) {
         if (GeneralUtils.isEmpty(operates)) {
@@ -54,9 +54,9 @@ public interface RestOperate extends Serializable {
      * <code>build</code>
      * <p>The build method.</p>
      * @param operates {@link java.util.Collection} <p>The operates parameter is <code>Collection</code> type.</p>
-     * @return {@link java.util.List} <p>The build return object is <code>List</code> type.</p>
-     * @see java.util.Collection
-     * @see java.util.List
+     * @see  java.util.Collection
+     * @see  java.util.List
+     * @return  {@link java.util.List} <p>The build return object is <code>List</code> type.</p>
      */
     static List<OperateType> build(Collection<Integer> operates) {
         if (GeneralUtils.isEmpty(operates)) {

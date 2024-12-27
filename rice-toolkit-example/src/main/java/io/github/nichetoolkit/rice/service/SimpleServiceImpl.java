@@ -14,9 +14,9 @@ import java.util.Optional;
 /**
  * <code>SimpleServiceImpl</code>
  * <p>The simple service class.</p>
+ * @see  io.github.nichetoolkit.rice.RestInfoService
+ * @see  org.springframework.stereotype.Service
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.RestInfoService
- * @see org.springframework.stereotype.Service
  * @since Jdk1.8
  */
 @Service

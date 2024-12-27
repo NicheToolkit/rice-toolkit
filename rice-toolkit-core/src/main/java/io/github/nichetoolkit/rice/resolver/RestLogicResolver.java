@@ -9,10 +9,10 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * <code>RestLogicResolver</code>
  * <p>The rest logic resolver interface.</p>
- * @param <L> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @see  org.springframework.beans.factory.InitializingBean
+ * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @see org.springframework.beans.factory.InitializingBean
- * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
 @SuppressWarnings({"rawtypes","unchecked"})
@@ -26,8 +26,8 @@ public interface RestLogicResolver<L> extends InitializingBean {
     /**
      * <code>logicType</code>
      * <p>The logic type method.</p>
-     * @return {@link java.lang.Class} <p>The logic type return object is <code>Class</code> type.</p>
-     * @see java.lang.Class
+     * @return  {@link java.lang.Class} <p>The logic type return object is <code>Class</code> type.</p>
+     * @see  java.lang.Class
      */
     default Class<L> logicType() {
         return (Class<L>) Instance.logicType(getClass());
@@ -38,7 +38,7 @@ public interface RestLogicResolver<L> extends InitializingBean {
      * <p>The resolve method.</p>
      * @return L <p>The resolve return object is <code>L</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rest.RestException
+     * @see  io.github.nichetoolkit.rest.RestException
      */
     L resolve() throws RestException;
 
@@ -52,7 +52,7 @@ public interface RestLogicResolver<L> extends InitializingBean {
         /**
          * <code>RESOLVERS</code>
          * {@link java.util.Map} <p>The <code>RESOLVERS</code> field.</p>
-         * @see java.util.Map
+         * @see  java.util.Map
          */
         static Map<Class<?>, Class<?>> RESOLVERS = new ConcurrentHashMap<>();
 
@@ -60,8 +60,8 @@ public interface RestLogicResolver<L> extends InitializingBean {
          * <code>logicType</code>
          * <p>The logic type method.</p>
          * @param resolverType {@link java.lang.Class} <p>The resolver type parameter is <code>Class</code> type.</p>
-         * @return {@link java.lang.Class} <p>The logic type return object is <code>Class</code> type.</p>
-         * @see java.lang.Class
+         * @see  java.lang.Class
+         * @return  {@link java.lang.Class} <p>The logic type return object is <code>Class</code> type.</p>
          */
         private static Class<?> logicType(Class<? extends RestLogicResolver> resolverType) {
             return RESOLVERS.get(resolverType);
@@ -71,7 +71,7 @@ public interface RestLogicResolver<L> extends InitializingBean {
          * <code>caching</code>
          * <p>The caching method.</p>
          * @param resolverType {@link java.lang.Class} <p>The resolver type parameter is <code>Class</code> type.</p>
-         * @see java.lang.Class
+         * @see  java.lang.Class
          */
         private static void caching(Class<? extends RestLogicResolver> resolverType) {
             Class<?> clazzOfId = RestGenericTypes.resolveClass(RestGenericTypes.resolveType(

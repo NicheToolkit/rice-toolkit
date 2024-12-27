@@ -30,16 +30,16 @@ import java.util.stream.Collectors;
 /**
  * <code>RestUsernoteModel</code>
  * <p>The rest usernote model class.</p>
- * @param <M> {@link io.github.nichetoolkit.rice.RestIdModel} <p>The generic parameter is <code>RestIdModel</code> type.</p>
- * @param <E> {@link io.github.nichetoolkit.rice.RestIdEntity} <p>The generic parameter is <code>RestIdEntity</code> type.</p>
+ * @param <M>  {@link io.github.nichetoolkit.rice.RestIdModel} <p>The generic parameter is <code>RestIdModel</code> type.</p>
+ * @param <E>  {@link io.github.nichetoolkit.rice.RestIdEntity} <p>The generic parameter is <code>RestIdEntity</code> type.</p>
+ * @see  io.github.nichetoolkit.rice.RestIdModel
+ * @see  io.github.nichetoolkit.rice.RestIdEntity
+ * @see  lombok.Setter
+ * @see  lombok.Getter
+ * @see  lombok.EqualsAndHashCode
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.RestIdModel
- * @see io.github.nichetoolkit.rice.RestIdEntity
- * @see lombok.Setter
- * @see lombok.Getter
- * @see lombok.EqualsAndHashCode
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @Setter
@@ -51,117 +51,117 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
     /**
      * <code>userId</code>
      * {@link java.lang.String} <p>The <code>userId</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String userId;
     /**
      * <code>targetIds</code>
      * {@link java.util.Set} <p>The <code>targetIds</code> field.</p>
-     * @see java.util.Set
+     * @see  java.util.Set
      */
     protected Set<String> targetIds;
     /**
      * <code>username</code>
      * {@link java.lang.String} <p>The <code>username</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String username;
     /**
      * <code>userAgent</code>
      * {@link java.lang.String} <p>The <code>userAgent</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String userAgent;
     /**
      * <code>ipAddress</code>
      * {@link java.lang.String} <p>The <code>ipAddress</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String ipAddress;
     /**
      * <code>requestMethod</code>
      * {@link java.lang.String} <p>The <code>requestMethod</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String requestMethod;
     /**
      * <code>requestParams</code>
      * {@link java.lang.String} <p>The <code>requestParams</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String requestParams;
     /**
      * <code>requestUrl</code>
      * {@link java.lang.String} <p>The <code>requestUrl</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String requestUrl;
     /**
      * <code>methodName</code>
      * {@link java.lang.String} <p>The <code>methodName</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String methodName;
     /**
      * <code>mediaType</code>
      * {@link java.lang.String} <p>The <code>mediaType</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String mediaType;
     /**
      * <code>responseTime</code>
      * {@link java.lang.Long} <p>The <code>responseTime</code> field.</p>
-     * @see java.lang.Long
+     * @see  java.lang.Long
      */
     protected Long responseTime;
     /**
      * <code>responseStatus</code>
      * {@link java.lang.Integer} <p>The <code>responseStatus</code> field.</p>
-     * @see java.lang.Integer
+     * @see  java.lang.Integer
      */
     protected Integer responseStatus;
     /**
      * <code>responseMessage</code>
      * {@link java.lang.String} <p>The <code>responseMessage</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String responseMessage;
     /**
      * <code>notelog</code>
      * {@link java.lang.String} <p>The <code>notelog</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String notelog;
     /**
      * <code>userlog</code>
      * {@link java.lang.String} <p>The <code>userlog</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String userlog;
     /**
      * <code>loggingKey</code>
      * {@link java.lang.String} <p>The <code>loggingKey</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String loggingKey;
     /**
      * <code>loggingValue</code>
      * {@link java.lang.String} <p>The <code>loggingValue</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     protected String loggingValue;
     /**
      * <code>loggingType</code>
      * {@link io.github.nichetoolkit.rest.userlog.LoggingType} <p>The <code>loggingType</code> field.</p>
-     * @see io.github.nichetoolkit.rest.userlog.LoggingType
+     * @see  io.github.nichetoolkit.rest.userlog.LoggingType
      */
     protected LoggingType loggingType;
     /**
      * <code>loggingTime</code>
      * {@link java.util.Date} <p>The <code>loggingTime</code> field.</p>
-     * @see java.util.Date
-     * @see org.springframework.format.annotation.DateTimeFormat
-     * @see com.fasterxml.jackson.annotation.JsonFormat
+     * @see  java.util.Date
+     * @see  org.springframework.format.annotation.DateTimeFormat
+     * @see  com.fasterxml.jackson.annotation.JsonFormat
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -178,7 +178,7 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * <code>RestUsernoteModel</code>
      * <p>Instantiates a new rest usernote model.</p>
      * @param id {@link java.lang.String} <p>The id parameter is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public RestUsernoteModel(String id) {
         super(id);
@@ -188,7 +188,7 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * <code>RestUsernoteModel</code>
      * <p>Instantiates a new rest usernote model.</p>
      * @param builder {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestUsernoteModel.Builder
+     * @see  io.github.nichetoolkit.rice.RestUsernoteModel.Builder
      */
     public RestUsernoteModel(RestUsernoteModel.Builder<M, E> builder) {
         super(builder);
@@ -217,8 +217,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
     /**
      * <code>getTargetIds</code>
      * <p>The get target ids getter method.</p>
-     * @return {@link java.util.List} <p>The get target ids return object is <code>List</code> type.</p>
-     * @see java.util.List
+     * @return  {@link java.util.List} <p>The get target ids return object is <code>List</code> type.</p>
+     * @see  java.util.List
      */
     public List<String> getTargetIds() {
         if (GeneralUtils.isNotEmpty(targetIds)) {
@@ -231,8 +231,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * <code>setTargetIds</code>
      * <p>The set target ids setter method.</p>
      * @param targetIds {@link java.lang.String} <p>The target ids parameter is <code>String</code> type.</p>
-     * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see  java.lang.String
+     * @see  org.springframework.lang.NonNull
      */
     public void setTargetIds(@NonNull String... targetIds) {
         this.targetIds = new HashSet<>(Arrays.asList(targetIds));
@@ -242,9 +242,9 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * <code>setTargetIds</code>
      * <p>The set target ids setter method.</p>
      * @param targetIds {@link java.util.Collection} <p>The target ids parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
-     * @see com.fasterxml.jackson.annotation.JsonSetter
+     * @see  java.util.Collection
+     * @see  org.springframework.lang.NonNull
+     * @see  com.fasterxml.jackson.annotation.JsonSetter
      */
     @JsonSetter
     public void setTargetIds(@NonNull Collection<String> targetIds) {
@@ -255,8 +255,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * <code>addTargetIds</code>
      * <p>The add target ids method.</p>
      * @param targetIds {@link java.lang.String} <p>The target ids parameter is <code>String</code> type.</p>
-     * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see  java.lang.String
+     * @see  org.springframework.lang.NonNull
      */
     public void addTargetIds(@NonNull String... targetIds) {
         if (GeneralUtils.isEmpty(this.targetIds)) {
@@ -270,8 +270,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * <code>addTargetIds</code>
      * <p>The add target ids method.</p>
      * @param targetIds {@link java.util.Collection} <p>The target ids parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
+     * @see  java.util.Collection
+     * @see  org.springframework.lang.NonNull
      */
     public void addTargetIds(@NonNull Collection<String> targetIds) {
         if (GeneralUtils.isEmpty(this.targetIds)) {
@@ -285,8 +285,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * <code>toDataId</code>
      * <p>The to data id method.</p>
      * @param responseData {@link java.lang.String} <p>The response data parameter is <code>String</code> type.</p>
-     * @return {@link java.lang.String} <p>The to data id return object is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
+     * @return  {@link java.lang.String} <p>The to data id return object is <code>String</code> type.</p>
      */
     public static String toDataId(String responseData) {
         if (GeneralUtils.isEmpty(responseData)) {
@@ -303,9 +303,9 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * <code>toDataIds</code>
      * <p>The to data ids method.</p>
      * @param responseData {@link java.lang.String} <p>The response data parameter is <code>String</code> type.</p>
-     * @return {@link java.util.Set} <p>The to data ids return object is <code>Set</code> type.</p>
-     * @see java.lang.String
-     * @see java.util.Set
+     * @see  java.lang.String
+     * @see  java.util.Set
+     * @return  {@link java.util.Set} <p>The to data ids return object is <code>Set</code> type.</p>
      */
     public static Set<String> toDataIds(String responseData) {
         if (GeneralUtils.isEmpty(responseData)) {
@@ -322,9 +322,9 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * <code>toDataUserInfo</code>
      * <p>The to data user info method.</p>
      * @param responseData {@link java.lang.String} <p>The response data parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.pack.UserInfoPack} <p>The to data user info return object is <code>UserInfoPack</code> type.</p>
-     * @see java.lang.String
-     * @see io.github.nichetoolkit.rice.pack.UserInfoPack
+     * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rice.pack.UserInfoPack
+     * @return  {@link io.github.nichetoolkit.rice.pack.UserInfoPack} <p>The to data user info return object is <code>UserInfoPack</code> type.</p>
      */
     public static UserInfoPack toDataUserInfo(String responseData) {
         if (GeneralUtils.isNotEmpty(responseData)) {
@@ -337,9 +337,9 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * <code>toDataUserLogin</code>
      * <p>The to data user login method.</p>
      * @param responseData {@link java.lang.String} <p>The response data parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.pack.UserInfoPack} <p>The to data user login return object is <code>UserInfoPack</code> type.</p>
-     * @see java.lang.String
-     * @see io.github.nichetoolkit.rice.pack.UserInfoPack
+     * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rice.pack.UserInfoPack
+     * @return  {@link io.github.nichetoolkit.rice.pack.UserInfoPack} <p>The to data user login return object is <code>UserInfoPack</code> type.</p>
      */
     public static UserInfoPack toDataUserLogin(String responseData) {
         if (GeneralUtils.isEmpty(responseData)) {
@@ -356,8 +356,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * <code>toUrlId</code>
      * <p>The to url id method.</p>
      * @param requestUrl {@link java.lang.String} <p>The request url parameter is <code>String</code> type.</p>
-     * @return {@link java.lang.String} <p>The to url id return object is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
+     * @return  {@link java.lang.String} <p>The to url id return object is <code>String</code> type.</p>
      */
     public static String toUrlId(String requestUrl) {
         if (GeneralUtils.isNotEmpty(requestUrl)) {
@@ -373,8 +373,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * <code>toParamId</code>
      * <p>The to param id method.</p>
      * @param requestParams {@link java.lang.String} <p>The request params parameter is <code>String</code> type.</p>
-     * @return {@link java.lang.String} <p>The to param id return object is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
+     * @return  {@link java.lang.String} <p>The to param id return object is <code>String</code> type.</p>
      */
     public static String toParamId(String requestParams) {
         if (GeneralUtils.isNotEmpty(requestParams)) {
@@ -390,9 +390,9 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * <code>toParamIds</code>
      * <p>The to param ids method.</p>
      * @param requestParams {@link java.lang.String} <p>The request params parameter is <code>String</code> type.</p>
-     * @return {@link java.util.Set} <p>The to param ids return object is <code>Set</code> type.</p>
-     * @see java.lang.String
-     * @see java.util.Set
+     * @see  java.lang.String
+     * @see  java.util.Set
+     * @return  {@link java.util.Set} <p>The to param ids return object is <code>Set</code> type.</p>
      */
     public static Set<String> toParamIds(String requestParams) {
         if (GeneralUtils.isNotEmpty(requestParams)) {
@@ -419,9 +419,9 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * <code>toListIds</code>
      * <p>The to list ids method.</p>
      * @param requestBody {@link java.lang.String} <p>The request body parameter is <code>String</code> type.</p>
-     * @return {@link java.util.Set} <p>The to list ids return object is <code>Set</code> type.</p>
-     * @see java.lang.String
-     * @see java.util.Set
+     * @see  java.lang.String
+     * @see  java.util.Set
+     * @return  {@link java.util.Set} <p>The to list ids return object is <code>Set</code> type.</p>
      */
     public static Set<String> toListIds(String requestBody) {
         if (GeneralUtils.isNotEmpty(requestBody)) {
@@ -439,9 +439,9 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
      * <code>toFilterIds</code>
      * <p>The to filter ids method.</p>
      * @param requestBody {@link java.lang.String} <p>The request body parameter is <code>String</code> type.</p>
-     * @return {@link java.util.Set} <p>The to filter ids return object is <code>Set</code> type.</p>
-     * @see java.lang.String
-     * @see java.util.Set
+     * @see  java.lang.String
+     * @see  java.util.Set
+     * @return  {@link java.util.Set} <p>The to filter ids return object is <code>Set</code> type.</p>
      */
     public static Set<String> toFilterIds(String requestBody) {
         if (GeneralUtils.isNotEmpty(requestBody)) {
@@ -458,12 +458,12 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
     /**
      * <code>ofUsernote</code>
      * <p>The of usernote method.</p>
-     * @param <M> {@link io.github.nichetoolkit.rice.RestIdModel} <p>The generic parameter is <code>RestIdModel</code> type.</p>
-     * @param <E> {@link io.github.nichetoolkit.rice.RestIdEntity} <p>The generic parameter is <code>RestIdEntity</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The of usernote return object is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestIdModel
-     * @see io.github.nichetoolkit.rice.RestIdEntity
-     * @see io.github.nichetoolkit.rice.RestUsernoteModel.Builder
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestIdModel} <p>The generic parameter is <code>RestIdModel</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestIdEntity} <p>The generic parameter is <code>RestIdEntity</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestIdModel
+     * @see  io.github.nichetoolkit.rice.RestIdEntity
+     * @see  io.github.nichetoolkit.rice.RestUsernoteModel.Builder
+     * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The of usernote return object is <code>Builder</code> type.</p>
      */
     public static <M extends RestIdModel<M, E>, E extends RestIdEntity<E, M>> RestUsernoteModel.Builder<M,E> ofUsernote() {
         return new RestUsernoteModel.Builder<>();
@@ -472,12 +472,12 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
-     * @param <M> {@link io.github.nichetoolkit.rice.RestIdModel} <p>The generic parameter is <code>RestIdModel</code> type.</p>
-     * @param <E> {@link io.github.nichetoolkit.rice.RestIdEntity} <p>The generic parameter is <code>RestIdEntity</code> type.</p>
+     * @param <M>  {@link io.github.nichetoolkit.rice.RestIdModel} <p>The generic parameter is <code>RestIdModel</code> type.</p>
+     * @param <E>  {@link io.github.nichetoolkit.rice.RestIdEntity} <p>The generic parameter is <code>RestIdEntity</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.RestIdModel
+     * @see  io.github.nichetoolkit.rice.RestIdEntity
+     * @see  io.github.nichetoolkit.rice.RestIdModel.Builder
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.RestIdModel
-     * @see io.github.nichetoolkit.rice.RestIdEntity
-     * @see io.github.nichetoolkit.rice.RestIdModel.Builder
      * @since Jdk1.8
      */
     public static class Builder<M extends RestIdModel<M, E>, E extends RestIdEntity<E, M>> extends RestIdModel.Builder<M, E> {
@@ -485,115 +485,115 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
         /**
          * <code>userId</code>
          * {@link java.lang.String} <p>The <code>userId</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String userId;
         /**
          * <code>targetIds</code>
          * {@link java.util.Set} <p>The <code>targetIds</code> field.</p>
-         * @see java.util.Set
+         * @see  java.util.Set
          */
         protected Set<String> targetIds;
         /**
          * <code>username</code>
          * {@link java.lang.String} <p>The <code>username</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String username;
         /**
          * <code>userAgent</code>
          * {@link java.lang.String} <p>The <code>userAgent</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String userAgent;
         /**
          * <code>ipAddress</code>
          * {@link java.lang.String} <p>The <code>ipAddress</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String ipAddress;
         /**
          * <code>requestMethod</code>
          * {@link java.lang.String} <p>The <code>requestMethod</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String requestMethod;
         /**
          * <code>requestParams</code>
          * {@link java.lang.String} <p>The <code>requestParams</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String requestParams;
         /**
          * <code>requestUrl</code>
          * {@link java.lang.String} <p>The <code>requestUrl</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String requestUrl;
         /**
          * <code>methodName</code>
          * {@link java.lang.String} <p>The <code>methodName</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String methodName;
         /**
          * <code>mediaType</code>
          * {@link java.lang.String} <p>The <code>mediaType</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String mediaType;
         /**
          * <code>responseTime</code>
          * {@link java.lang.Long} <p>The <code>responseTime</code> field.</p>
-         * @see java.lang.Long
+         * @see  java.lang.Long
          */
         protected Long responseTime;
         /**
          * <code>responseStatus</code>
          * {@link java.lang.Integer} <p>The <code>responseStatus</code> field.</p>
-         * @see java.lang.Integer
+         * @see  java.lang.Integer
          */
         protected Integer responseStatus;
         /**
          * <code>responseMessage</code>
          * {@link java.lang.String} <p>The <code>responseMessage</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String responseMessage;
         /**
          * <code>notelog</code>
          * {@link java.lang.String} <p>The <code>notelog</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String notelog;
         /**
          * <code>userlog</code>
          * {@link java.lang.String} <p>The <code>userlog</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String userlog;
         /**
          * <code>loggingKey</code>
          * {@link java.lang.String} <p>The <code>loggingKey</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String loggingKey;
         /**
          * <code>loggingValue</code>
          * {@link java.lang.String} <p>The <code>loggingValue</code> field.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
          */
         protected String loggingValue;
         /**
          * <code>loggingType</code>
          * {@link io.github.nichetoolkit.rest.userlog.LoggingType} <p>The <code>loggingType</code> field.</p>
-         * @see io.github.nichetoolkit.rest.userlog.LoggingType
+         * @see  io.github.nichetoolkit.rest.userlog.LoggingType
          */
         protected LoggingType loggingType;
         /**
          * <code>loggingTime</code>
          * {@link java.util.Date} <p>The <code>loggingTime</code> field.</p>
-         * @see java.util.Date
+         * @see  java.util.Date
          */
         protected Date loggingTime;
 
@@ -668,8 +668,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>userId</code>
          * <p>The user id method.</p>
          * @param userId {@link java.lang.String} <p>The user id parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The user id return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The user id return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> userId(String userId) {
             this.userId = userId;
@@ -680,9 +680,9 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>targetIds</code>
          * <p>The target ids method.</p>
          * @param targetIds {@link java.util.Collection} <p>The target ids parameter is <code>Collection</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The target ids return object is <code>Builder</code> type.</p>
-         * @see java.util.Collection
-         * @see org.springframework.lang.NonNull
+         * @see  java.util.Collection
+         * @see  org.springframework.lang.NonNull
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The target ids return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> targetIds(@NonNull Collection<String> targetIds) {
             this.targetIds = new HashSet<>(targetIds);
@@ -693,9 +693,9 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>targetIds</code>
          * <p>The target ids method.</p>
          * @param targetIds {@link java.lang.String} <p>The target ids parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The target ids return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
-         * @see org.springframework.lang.NonNull
+         * @see  java.lang.String
+         * @see  org.springframework.lang.NonNull
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The target ids return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> targetIds(@NonNull String... targetIds) {
             this.targetIds = new HashSet<>(Arrays.asList(targetIds));
@@ -706,8 +706,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>username</code>
          * <p>The username method.</p>
          * @param username {@link java.lang.String} <p>The username parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The username return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The username return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> username(String username) {
             this.username = username;
@@ -718,8 +718,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>userAgent</code>
          * <p>The user agent method.</p>
          * @param userAgent {@link java.lang.String} <p>The user agent parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The user agent return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The user agent return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> userAgent(String userAgent) {
             this.userAgent = userAgent;
@@ -730,8 +730,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>ipAddress</code>
          * <p>The ip address method.</p>
          * @param ipAddress {@link java.lang.String} <p>The ip address parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The ip address return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The ip address return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> ipAddress(String ipAddress) {
             this.ipAddress = ipAddress;
@@ -742,8 +742,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>requestMethod</code>
          * <p>The request method method.</p>
          * @param requestMethod {@link java.lang.String} <p>The request method parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The request method return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The request method return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> requestMethod(String requestMethod) {
             this.requestMethod = requestMethod;
@@ -754,8 +754,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>requestParams</code>
          * <p>The request params method.</p>
          * @param requestParams {@link java.lang.String} <p>The request params parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The request params return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The request params return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> requestParams(String requestParams) {
             this.requestParams = requestParams;
@@ -766,8 +766,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>requestUrl</code>
          * <p>The request url method.</p>
          * @param requestUrl {@link java.lang.String} <p>The request url parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The request url return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The request url return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> requestUrl(String requestUrl) {
             this.requestUrl = requestUrl;
@@ -778,8 +778,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>methodName</code>
          * <p>The method name method.</p>
          * @param methodName {@link java.lang.String} <p>The method name parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The method name return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The method name return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> methodName(String methodName) {
             this.methodName = methodName;
@@ -790,8 +790,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>mediaType</code>
          * <p>The media type method.</p>
          * @param mediaType {@link java.lang.String} <p>The media type parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The media type return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The media type return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> mediaType(String mediaType) {
             this.mediaType = mediaType;
@@ -802,8 +802,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>responseTime</code>
          * <p>The response time method.</p>
          * @param responseTime {@link java.lang.Long} <p>The response time parameter is <code>Long</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The response time return object is <code>Builder</code> type.</p>
-         * @see java.lang.Long
+         * @see  java.lang.Long
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The response time return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> responseTime(Long responseTime) {
             this.responseTime = responseTime;
@@ -814,8 +814,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>responseStatus</code>
          * <p>The response status method.</p>
          * @param responseStatus {@link java.lang.Integer} <p>The response status parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The response status return object is <code>Builder</code> type.</p>
-         * @see java.lang.Integer
+         * @see  java.lang.Integer
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The response status return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> responseStatus(Integer responseStatus) {
             this.responseStatus = responseStatus;
@@ -826,8 +826,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>responseMessage</code>
          * <p>The response message method.</p>
          * @param responseMessage {@link java.lang.String} <p>The response message parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The response message return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The response message return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> responseMessage(String responseMessage) {
             this.responseMessage = responseMessage;
@@ -838,8 +838,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>notelog</code>
          * <p>The notelog method.</p>
          * @param notelog {@link java.lang.String} <p>The notelog parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The notelog return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The notelog return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> notelog(String notelog) {
             this.notelog = notelog;
@@ -850,8 +850,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>userlog</code>
          * <p>The userlog method.</p>
          * @param userlog {@link java.lang.String} <p>The userlog parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The userlog return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The userlog return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> userlog(String userlog) {
             this.userlog = userlog;
@@ -862,8 +862,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>loggingKey</code>
          * <p>The logging key method.</p>
          * @param loggingKey {@link java.lang.String} <p>The logging key parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The logging key return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The logging key return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> loggingKey(String loggingKey) {
             this.loggingKey = loggingKey;
@@ -874,8 +874,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>loggingValue</code>
          * <p>The logging value method.</p>
          * @param loggingValue {@link java.lang.String} <p>The logging value parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The logging value return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The logging value return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> loggingValue(String loggingValue) {
             this.loggingValue = loggingValue;
@@ -886,8 +886,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>loggingType</code>
          * <p>The logging type method.</p>
          * @param loggingType {@link io.github.nichetoolkit.rest.userlog.LoggingType} <p>The logging type parameter is <code>LoggingType</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The logging type return object is <code>Builder</code> type.</p>
-         * @see io.github.nichetoolkit.rest.userlog.LoggingType
+         * @see  io.github.nichetoolkit.rest.userlog.LoggingType
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The logging type return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> loggingType(LoggingType loggingType) {
             this.loggingType = loggingType;
@@ -898,8 +898,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>loggingType</code>
          * <p>The logging type method.</p>
          * @param loggingType {@link java.lang.String} <p>The logging type parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The logging type return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
+         * @see  java.lang.String
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The logging type return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> loggingType(String loggingType) {
             this.loggingType = LoggingType.parseKey(loggingType);
@@ -910,9 +910,9 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>loggingTime</code>
          * <p>The logging time method.</p>
          * @param loggingTime {@link java.lang.Long} <p>The logging time parameter is <code>Long</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The logging time return object is <code>Builder</code> type.</p>
-         * @see java.lang.Long
-         * @see org.springframework.lang.NonNull
+         * @see  java.lang.Long
+         * @see  org.springframework.lang.NonNull
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The logging time return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> loggingTime(@NonNull Long loggingTime) {
             this.loggingTime = new Date(loggingTime);
@@ -923,8 +923,8 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>loggingTime</code>
          * <p>The logging time method.</p>
          * @param loggingTime {@link java.util.Date} <p>The logging time parameter is <code>Date</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The logging time return object is <code>Builder</code> type.</p>
-         * @see java.util.Date
+         * @see  java.util.Date
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The logging time return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> loggingTime(Date loggingTime) {
             this.loggingTime = loggingTime;
@@ -935,9 +935,9 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>usernote</code>
          * <p>The usernote method.</p>
          * @param usernote {@link io.github.nichetoolkit.rest.userlog.RestUsernotePack} <p>The usernote parameter is <code>RestUsernotePack</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The usernote return object is <code>Builder</code> type.</p>
-         * @see io.github.nichetoolkit.rest.userlog.RestUsernotePack
-         * @see org.springframework.lang.NonNull
+         * @see  io.github.nichetoolkit.rest.userlog.RestUsernotePack
+         * @see  org.springframework.lang.NonNull
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The usernote return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> usernote(@NonNull RestUsernotePack usernote) {
             this.notelog = usernote.getNotelog();
@@ -961,9 +961,9 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>request</code>
          * <p>The request method.</p>
          * @param request {@link io.github.nichetoolkit.rest.userlog.RestRequestPack} <p>The request parameter is <code>RestRequestPack</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The request return object is <code>Builder</code> type.</p>
-         * @see io.github.nichetoolkit.rest.userlog.RestRequestPack
-         * @see org.springframework.lang.NonNull
+         * @see  io.github.nichetoolkit.rest.userlog.RestRequestPack
+         * @see  org.springframework.lang.NonNull
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The request return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> request(@NonNull RestRequestPack request) {
             this.ipAddress = request.getIpAddress();
@@ -978,9 +978,9 @@ public class RestUsernoteModel<M extends RestIdModel<M, E>, E extends RestIdEnti
          * <code>response</code>
          * <p>The response method.</p>
          * @param response {@link io.github.nichetoolkit.rest.userlog.RestResponsePack} <p>The response parameter is <code>RestResponsePack</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The response return object is <code>Builder</code> type.</p>
-         * @see io.github.nichetoolkit.rest.userlog.RestResponsePack
-         * @see org.springframework.lang.NonNull
+         * @see  io.github.nichetoolkit.rest.userlog.RestResponsePack
+         * @see  org.springframework.lang.NonNull
+         * @return  {@link io.github.nichetoolkit.rice.RestUsernoteModel.Builder} <p>The response return object is <code>Builder</code> type.</p>
          */
         public RestUsernoteModel.Builder<M, E> response(@NonNull RestResponsePack response) {
             this.loggingTime = new Date(response.getTime());

@@ -11,13 +11,13 @@ import java.util.Objects;
 /**
  * <code>RestLoginResult</code>
  * <p>The rest login result class.</p>
- * @param <R> {@link io.github.nichetoolkit.rice.RestLoginResult} <p>The generic parameter is <code>RestLoginResult</code> type.</p>
+ * @param <R>  {@link io.github.nichetoolkit.rice.RestLoginResult} <p>The generic parameter is <code>RestLoginResult</code> type.</p>
+ * @see  java.io.Serializable
+ * @see  lombok.Setter
+ * @see  lombok.Getter
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see java.io.Serializable
- * @see lombok.Setter
- * @see lombok.Getter
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @Setter
@@ -28,7 +28,7 @@ public class RestLoginResult<R extends RestLoginResult<R>> implements Serializab
     /**
      * <code>token</code>
      * {@link java.lang.String} <p>The <code>token</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     private String token;
 
@@ -43,7 +43,7 @@ public class RestLoginResult<R extends RestLoginResult<R>> implements Serializab
      * <code>RestLoginResult</code>
      * <p>Instantiates a new rest login result.</p>
      * @param token {@link java.lang.String} <p>The token parameter is <code>String</code> type.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     public RestLoginResult(String token) {
         this.token = token;

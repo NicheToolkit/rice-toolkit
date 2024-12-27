@@ -21,10 +21,10 @@ import java.util.List;
 /**
  * <code>PurviewAdvice</code>
  * <p>The purview advice class.</p>
+ * @see  io.github.nichetoolkit.rice.DefaultAdvice
+ * @see  lombok.extern.slf4j.Slf4j
+ * @see  org.springframework.stereotype.Component
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.DefaultAdvice
- * @see lombok.extern.slf4j.Slf4j
- * @see org.springframework.stereotype.Component
  * @since Jdk1.8
  */
 @Slf4j
@@ -34,7 +34,7 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
     /**
      * <code>tokenService</code>
      * {@link io.github.nichetoolkit.rice.service.TokenService} <p>The <code>tokenService</code> field.</p>
-     * @see io.github.nichetoolkit.rice.service.TokenService
+     * @see  io.github.nichetoolkit.rice.service.TokenService
      */
     private final TokenService tokenService;
 
@@ -42,8 +42,8 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
      * <code>PurviewAdvice</code>
      * <p>Instantiates a new purview advice.</p>
      * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>The token service parameter is <code>TokenService</code> type.</p>
-     * @see io.github.nichetoolkit.rice.service.TokenService
-     * @see org.springframework.beans.factory.annotation.Autowired
+     * @see  io.github.nichetoolkit.rice.service.TokenService
+     * @see  org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired
     public PurviewAdvice(TokenService tokenService) {
@@ -69,12 +69,12 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
     /**
      * <code>purviewKeysCheck</code>
      * <p>The purview keys check method.</p>
-     * @param userModel   {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user model parameter is <code>UserModel</code> type.</p>
+     * @param userModel {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user model parameter is <code>UserModel</code> type.</p>
      * @param purviewKeys {@link java.util.List} <p>The purview keys parameter is <code>List</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.simple.UserModel
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.simple.UserModel
-     * @see java.util.List
-     * @see io.github.nichetoolkit.rest.RestException
      */
     private void purviewKeysCheck(UserModel userModel,List<String> purviewKeys) throws RestException {
         PurviewType purviewType = userModel.getPurviewType();
@@ -88,12 +88,12 @@ public class PurviewAdvice implements DefaultAdvice<RestPurview> {
     /**
      * <code>purviewValuesCheck</code>
      * <p>The purview values check method.</p>
-     * @param userModel     {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user model parameter is <code>UserModel</code> type.</p>
+     * @param userModel {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The user model parameter is <code>UserModel</code> type.</p>
      * @param purviewValues {@link java.util.List} <p>The purview values parameter is <code>List</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.simple.UserModel
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.simple.UserModel
-     * @see java.util.List
-     * @see io.github.nichetoolkit.rest.RestException
      */
     private void purviewValuesCheck(UserModel userModel,List<Long> purviewValues) throws RestException {
         PurviewType purviewType = userModel.getPurviewType();

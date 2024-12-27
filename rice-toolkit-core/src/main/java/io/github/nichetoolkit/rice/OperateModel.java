@@ -9,12 +9,12 @@ import io.github.nichetoolkit.rice.enums.SaveType;
 /**
  * <code>OperateModel</code>
  * <p>The operate model class.</p>
+ * @see  io.github.nichetoolkit.rice.LogicModel
+ * @see  io.github.nichetoolkit.rice.RestOperate
+ * @see  java.lang.SuppressWarnings
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.LogicModel
- * @see io.github.nichetoolkit.rice.RestOperate
- * @see java.lang.SuppressWarnings
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @SuppressWarnings("WeakerAccess")
@@ -25,7 +25,7 @@ public class OperateModel extends LogicModel implements RestOperate{
     /**
      * <code>operate</code>
      * {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The <code>operate</code> field.</p>
-     * @see io.github.nichetoolkit.rice.enums.OperateType
+     * @see  io.github.nichetoolkit.rice.enums.OperateType
      */
     protected OperateType operate;
 
@@ -40,7 +40,7 @@ public class OperateModel extends LogicModel implements RestOperate{
      * <code>OperateModel</code>
      * <p>Instantiates a new operate model.</p>
      * @param builder {@link io.github.nichetoolkit.rice.OperateModel.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.OperateModel.Builder
+     * @see  io.github.nichetoolkit.rice.OperateModel.Builder
      */
     public OperateModel(OperateModel.Builder builder) {
         super(builder);
@@ -61,7 +61,7 @@ public class OperateModel extends LogicModel implements RestOperate{
      * <code>isOperateNone</code>
      * <p>The is operate none method.</p>
      * @return boolean <p>The is operate none return object is <code>boolean</code> type.</p>
-     * @see com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
     public boolean isOperateNone() {
@@ -72,7 +72,7 @@ public class OperateModel extends LogicModel implements RestOperate{
      * <code>isOperateCreate</code>
      * <p>The is operate create method.</p>
      * @return boolean <p>The is operate create return object is <code>boolean</code> type.</p>
-     * @see com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
     public boolean isOperateCreate() {
@@ -83,7 +83,7 @@ public class OperateModel extends LogicModel implements RestOperate{
      * <code>isOperateUpdate</code>
      * <p>The is operate update method.</p>
      * @return boolean <p>The is operate update return object is <code>boolean</code> type.</p>
-     * @see com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
     public boolean isOperateUpdate() {
@@ -94,7 +94,7 @@ public class OperateModel extends LogicModel implements RestOperate{
      * <code>isOperateCopy</code>
      * <p>The is operate copy method.</p>
      * @return boolean <p>The is operate copy return object is <code>boolean</code> type.</p>
-     * @see com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
     public boolean isOperateCopy() {
@@ -105,7 +105,7 @@ public class OperateModel extends LogicModel implements RestOperate{
      * <code>isOperateRemove</code>
      * <p>The is operate remove method.</p>
      * @return boolean <p>The is operate remove return object is <code>boolean</code> type.</p>
-     * @see com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
     public boolean isOperateRemove() {
@@ -116,7 +116,7 @@ public class OperateModel extends LogicModel implements RestOperate{
      * <code>isOperateDelete</code>
      * <p>The is operate delete method.</p>
      * @return boolean <p>The is operate delete return object is <code>boolean</code> type.</p>
-     * @see com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
     public boolean isOperateDelete() {
@@ -126,8 +126,8 @@ public class OperateModel extends LogicModel implements RestOperate{
     /**
      * <code>ofOperate</code>
      * <p>The of operate method.</p>
-     * @return {@link io.github.nichetoolkit.rice.OperateModel.Builder} <p>The of operate return object is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.OperateModel.Builder
+     * @return  {@link io.github.nichetoolkit.rice.OperateModel.Builder} <p>The of operate return object is <code>Builder</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.OperateModel.Builder
      */
     public static OperateModel.Builder ofOperate() {
         return new OperateModel.Builder();
@@ -136,15 +136,15 @@ public class OperateModel extends LogicModel implements RestOperate{
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
+     * @see  io.github.nichetoolkit.rice.LogicModel.Builder
      * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.LogicModel.Builder
      * @since Jdk1.8
      */
     public static class Builder extends LogicModel.Builder {
         /**
          * <code>operate</code>
          * {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The <code>operate</code> field.</p>
-         * @see io.github.nichetoolkit.rice.enums.OperateType
+         * @see  io.github.nichetoolkit.rice.enums.OperateType
          */
         protected OperateType operate = OperateType.NONE;
 
@@ -159,8 +159,8 @@ public class OperateModel extends LogicModel implements RestOperate{
          * <code>operate</code>
          * <p>The operate method.</p>
          * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.OperateModel.Builder} <p>The operate return object is <code>Builder</code> type.</p>
-         * @see io.github.nichetoolkit.rice.enums.OperateType
+         * @see  io.github.nichetoolkit.rice.enums.OperateType
+         * @return  {@link io.github.nichetoolkit.rice.OperateModel.Builder} <p>The operate return object is <code>Builder</code> type.</p>
          */
         public OperateModel.Builder operate(OperateType operate) {
             this.operate = operate;
@@ -171,8 +171,8 @@ public class OperateModel extends LogicModel implements RestOperate{
          * <code>operate</code>
          * <p>The operate method.</p>
          * @param operate {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.OperateModel.Builder} <p>The operate return object is <code>Builder</code> type.</p>
-         * @see java.lang.Integer
+         * @see  java.lang.Integer
+         * @return  {@link io.github.nichetoolkit.rice.OperateModel.Builder} <p>The operate return object is <code>Builder</code> type.</p>
          */
         public OperateModel.Builder operate(Integer operate) {
             this.operate = OperateType.parseKey(operate);

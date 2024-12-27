@@ -20,9 +20,9 @@ import java.util.Optional;
 /**
  * <code>LoginService</code>
  * <p>The login service class.</p>
+ * @see  lombok.extern.slf4j.Slf4j
+ * @see  org.springframework.stereotype.Service
  * @author Cyan (snow22314@outlook.com)
- * @see lombok.extern.slf4j.Slf4j
- * @see org.springframework.stereotype.Service
  * @since Jdk1.8
  */
 @Slf4j
@@ -32,24 +32,24 @@ public class LoginService {
     /**
      * <code>userService</code>
      * {@link io.github.nichetoolkit.rice.service.UserService} <p>The <code>userService</code> field.</p>
-     * @see io.github.nichetoolkit.rice.service.UserService
+     * @see  io.github.nichetoolkit.rice.service.UserService
      */
     private final UserService userService;
     /**
      * <code>tokenService</code>
      * {@link io.github.nichetoolkit.rice.service.TokenService} <p>The <code>tokenService</code> field.</p>
-     * @see io.github.nichetoolkit.rice.service.TokenService
+     * @see  io.github.nichetoolkit.rice.service.TokenService
      */
     private final TokenService tokenService;
 
     /**
      * <code>LoginService</code>
      * <p>Instantiates a new login service.</p>
-     * @param userService  {@link io.github.nichetoolkit.rice.service.UserService} <p>The user service parameter is <code>UserService</code> type.</p>
+     * @param userService {@link io.github.nichetoolkit.rice.service.UserService} <p>The user service parameter is <code>UserService</code> type.</p>
      * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>The token service parameter is <code>TokenService</code> type.</p>
-     * @see io.github.nichetoolkit.rice.service.UserService
-     * @see io.github.nichetoolkit.rice.service.TokenService
-     * @see org.springframework.beans.factory.annotation.Autowired
+     * @see  io.github.nichetoolkit.rice.service.UserService
+     * @see  io.github.nichetoolkit.rice.service.TokenService
+     * @see  org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired
     public LoginService(UserService userService, TokenService tokenService) {
@@ -62,11 +62,11 @@ public class LoginService {
      * <code>loginWithToken</code>
      * <p>The login with token method.</p>
      * @param loginRequest {@link io.github.nichetoolkit.rice.simple.LoginRequest} <p>The login request parameter is <code>LoginRequest</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The login with token return object is <code>UserModel</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.simple.LoginRequest
+     * @see  io.github.nichetoolkit.rice.simple.UserModel
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The login with token return object is <code>UserModel</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.simple.LoginRequest
-     * @see io.github.nichetoolkit.rice.simple.UserModel
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public UserModel loginWithToken(LoginRequest loginRequest) throws RestException {
         String token = loginRequest.getToken();
@@ -80,11 +80,11 @@ public class LoginService {
      * <code>loginWithPassword</code>
      * <p>The login with password method.</p>
      * @param loginRequest {@link io.github.nichetoolkit.rice.simple.LoginRequest} <p>The login request parameter is <code>LoginRequest</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The login with password return object is <code>UserModel</code> type.</p>
+     * @see  io.github.nichetoolkit.rice.simple.LoginRequest
+     * @see  io.github.nichetoolkit.rice.simple.UserModel
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link io.github.nichetoolkit.rice.simple.UserModel} <p>The login with password return object is <code>UserModel</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.simple.LoginRequest
-     * @see io.github.nichetoolkit.rice.simple.UserModel
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public UserModel loginWithPassword(LoginRequest loginRequest) throws RestException {
         String account = loginRequest.getAccount();

@@ -151,6 +151,8 @@ public class PageFilter implements Serializable {
      * <p>The to page sql method.</p>
      * @return  {@link java.lang.String} <p>The to page sql return object is <code>String</code> type.</p>
      * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     public String toPageSql() throws RestException {
         return PAGE_LIMIT + " " + this.pageSize +
@@ -163,6 +165,8 @@ public class PageFilter implements Serializable {
      * @param <T>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @return  {@link com.github.pagehelper.Page} <p>The to page return object is <code>Page</code> type.</p>
      * @see  com.github.pagehelper.Page
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     public <T> Page<T> toPage() throws RestException {
         if (GeneralUtils.isNotEmpty(this.pageSize)) {
@@ -181,6 +185,8 @@ public class PageFilter implements Serializable {
      * <p>The to load array method.</p>
      * @return  {@link java.lang.Boolean} <p>The to load array return object is <code>Boolean</code> type.</p>
      * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     public Boolean[] toLoadArray() throws RestException {
         Boolean[] toArray = LOAD_ARRAY.toArray(new Boolean[0]);
@@ -194,7 +200,9 @@ public class PageFilter implements Serializable {
      * @param isLoads {@link java.lang.Boolean} <p>The is loads parameter is <code>Boolean</code> type.</p>
      * @see  java.lang.Boolean
      * @see  org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rest.RestException
      * @return  {@link java.lang.Boolean} <p>The to load array return object is <code>Boolean</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     public Boolean[] toLoadArray(@NonNull Boolean... isLoads) throws RestException {
         this.addLoadArray(isLoads);
@@ -206,6 +214,8 @@ public class PageFilter implements Serializable {
      * <p>The to field array method.</p>
      * @return  {@link java.lang.String} <p>The to field array return object is <code>String</code> type.</p>
      * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     public String[] toFieldArray() throws RestException {
         String[] toArray = FIELD_ARRAY.toArray(new String[0]);
@@ -219,7 +229,9 @@ public class PageFilter implements Serializable {
      * @param fields {@link java.lang.String} <p>The fields parameter is <code>String</code> type.</p>
      * @see  java.lang.String
      * @see  org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rest.RestException
      * @return  {@link java.lang.String} <p>The to field array return object is <code>String</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     public String[] toFieldArray(@NonNull String... fields) throws RestException {
         this.addFieldArray(fields);

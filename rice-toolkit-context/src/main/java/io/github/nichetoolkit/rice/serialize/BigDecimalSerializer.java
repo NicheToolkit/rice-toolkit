@@ -18,10 +18,10 @@ import java.util.Objects;
 /**
  * <code>BigDecimalSerializer</code>
  * <p>The big decimal serializer class.</p>
+ * @see  com.fasterxml.jackson.databind.JsonSerializer
+ * @see  com.fasterxml.jackson.databind.ser.ContextualSerializer
+ * @see  org.springframework.boot.jackson.JsonComponent
  * @author Cyan (snow22314@outlook.com)
- * @see com.fasterxml.jackson.databind.JsonSerializer
- * @see com.fasterxml.jackson.databind.ser.ContextualSerializer
- * @see org.springframework.boot.jackson.JsonComponent
  * @since Jdk1.8
  */
 @JsonComponent
@@ -30,13 +30,13 @@ public class BigDecimalSerializer extends JsonSerializer<BigDecimal> implements 
     /**
      * <code>format</code>
      * {@link java.lang.String} <p>The <code>format</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     private String format;
     /**
      * <code>serializeProperties</code>
      * {@link io.github.nichetoolkit.rice.configure.RiceSerializeProperties} <p>The <code>serializeProperties</code> field.</p>
-     * @see io.github.nichetoolkit.rice.configure.RiceSerializeProperties
+     * @see  io.github.nichetoolkit.rice.configure.RiceSerializeProperties
      */
     private final RiceSerializeProperties serializeProperties;
 
@@ -44,8 +44,8 @@ public class BigDecimalSerializer extends JsonSerializer<BigDecimal> implements 
      * <code>BigDecimalSerializer</code>
      * <p>Instantiates a new big decimal serializer.</p>
      * @param serializeProperties {@link io.github.nichetoolkit.rice.configure.RiceSerializeProperties} <p>The serialize properties parameter is <code>RiceSerializeProperties</code> type.</p>
-     * @see io.github.nichetoolkit.rice.configure.RiceSerializeProperties
-     * @see org.springframework.beans.factory.annotation.Autowired
+     * @see  io.github.nichetoolkit.rice.configure.RiceSerializeProperties
+     * @see  org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired
     public BigDecimalSerializer(RiceSerializeProperties serializeProperties) {
