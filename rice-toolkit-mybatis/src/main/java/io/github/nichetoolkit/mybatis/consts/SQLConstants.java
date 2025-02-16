@@ -312,11 +312,23 @@ public interface SQLConstants {
      */
     String BRACE_LT = "(";
     /**
+     * <code>SQUARE_GT</code>
+     * {@link java.lang.String} <p>The constant <code>SQUARE_GT</code> field.</p>
+     * @see  java.lang.String
+     */
+    String SQUARE_GT = ")";
+    /**
+     * <code>SQUARE_LT</code>
+     * {@link java.lang.String} <p>The constant <code>SQUARE_LT</code> field.</p>
+     * @see  java.lang.String
+     */
+    String SQUARE_LT = "[";
+    /**
      * <code>BRACE_GT</code>
      * {@link java.lang.String} <p>The constant <code>BRACE_GT</code> field.</p>
      * @see  java.lang.String
      */
-    String BRACE_GT = ")";
+    String BRACE_GT = "]";
     /**
      * <code>CURLY_LT</code>
      * {@link java.lang.String} <p>The constant <code>CURLY_LT</code> field.</p>
