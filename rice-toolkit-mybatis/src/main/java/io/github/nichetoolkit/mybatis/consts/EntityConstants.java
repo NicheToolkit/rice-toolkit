@@ -80,7 +80,12 @@ public interface EntityConstants {
      * @see  java.lang.String
      */
     String OPERATE = "operate";
-
+    /**
+     * <code>VALUE</code>
+     * {@link java.lang.String} <p>The constant <code>VALUE</code> field.</p>
+     * @see  java.lang.String
+     */
+    String VALUE = "value";
     /**
      * <code>CREATE_TIME</code>
      * {@link java.lang.String} <p>The constant <code>CREATE_TIME</code> field.</p>
@@ -93,7 +98,6 @@ public interface EntityConstants {
      * @see  java.lang.String
      */
     String UPDATE_TIME = "update_time";
-
     /**
      * <code>TIME_NOW</code>
      * {@link java.lang.String} <p>The constant <code>TIME_NOW</code> field.</p>
