@@ -312,8 +312,8 @@ public interface SQLConstants {
      */
     String BRACE_LT = "(";
     /**
-     * <code>SQUARE_GT</code>
-     * {@link java.lang.String} <p>The constant <code>SQUARE_GT</code> field.</p>
+     * <code>BRACE_GT</code>
+     * {@link java.lang.String} <p>The constant <code>BRACE_GT</code> field.</p>
      * @see  java.lang.String
      */
     String BRACE_GT = ")";
@@ -324,8 +324,8 @@ public interface SQLConstants {
      */
     String SQUARE_LT = "[";
     /**
-     * <code>BRACE_GT</code>
-     * {@link java.lang.String} <p>The constant <code>BRACE_GT</code> field.</p>
+     * <code>SQUARE_GT</code>
+     * {@link java.lang.String} <p>The constant <code>SQUARE_GT</code> field.</p>
      * @see  java.lang.String
      */
     String SQUARE_GT = "]";
@@ -393,5 +393,12 @@ public interface SQLConstants {
      * @see  java.lang.String
      */
     String UPDATE_GT = "UPDATE";
+
+    /**
+     * <code>SEMICOLON</code>
+     * {@link java.lang.String} <p>The constant <code>SEMICOLON</code> field.</p>
+     * @see  java.lang.String
+     */
+    String SEMICOLON = ";";
 
 }

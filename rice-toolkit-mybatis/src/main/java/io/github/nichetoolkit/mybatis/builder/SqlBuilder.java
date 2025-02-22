@@ -1706,6 +1706,16 @@ public final class SqlBuilder implements Serializable, CharSequence {
     }
 
     /**
+     * <code>semicolon</code>
+     * <p>The semicolon method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The semicolon return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder semicolon() {
+        this.append(SQLConstants.SEMICOLON);
+        return this;
+    }
+
+    /**
      * <code>eq</code>
      * <p>The eq method.</p>
      * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The eq return object is <code>SqlBuilder</code> type.</p>
