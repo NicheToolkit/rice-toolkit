@@ -1277,6 +1277,15 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     }
 
     /**
+     * <code>ignoredOfSaveResult</code>
+     * <p>The ignored of save result method.</p>
+     * @return boolean <p>The ignored of save result return object is <code>boolean</code> type.</p>
+     */
+    protected boolean ignoredOfSaveResult() {
+        return ServiceHolder.ignoredOfSaveResult();
+    }
+
+    /**
      * <code>partitionOfQuery</code>
      * <p>The partition of query method.</p>
      * @return int <p>The partition of query return object is <code>int</code> type.</p>

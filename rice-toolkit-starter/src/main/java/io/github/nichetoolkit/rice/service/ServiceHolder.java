@@ -283,6 +283,15 @@ public class ServiceHolder {
     }
 
     /**
+     * <code>ignoredOfSaveResult</code>
+     * <p>The ignored of save result method.</p>
+     * @return boolean <p>The ignored of save result return object is <code>boolean</code> type.</p>
+     */
+    public static boolean ignoredOfSaveResult() {
+        return serviceProperties.ignoredOfSaveResult();
+    }
+
+    /**
      * <code>judgeOfAccurate</code>
      * <p>The judge of accurate method.</p>
      * @return  {@link java.lang.Boolean} <p>The judge of accurate return object is <code>Boolean</code> type.</p>

@@ -143,6 +143,13 @@
       "defaultValue": true
     },
     {
+      "name": "nichetoolkit.rice.service.save-result-ignored",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "the switch of ignored save result handle on rest service save handle.",
+      "defaultValue": true
+    },
+    {
       "name": "nichetoolkit.rice.service.partition.query-size",
       "type": "java.lang.Integer",
       "sourceType": "java.lang.Integer",
@@ -319,6 +326,19 @@
         {
           "value": true,
           "description": "the switch of skip delete after handle is opened on rest service delete handle."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.rice.service.save-result-ignored",
+      "values": [
+        {
+          "value": false,
+          "description": "the switch of ignored save result handle is closed on rest service save handle."
+        },
+        {
+          "value": true,
+          "description": "the switch of ignored save result handle is opened on rest service save handle."
         }
       ]
     },

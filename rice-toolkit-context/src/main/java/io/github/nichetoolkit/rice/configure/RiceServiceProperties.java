@@ -108,6 +108,13 @@ public class RiceServiceProperties {
     private Boolean afterSkip = true;
 
     /**
+     * <code>saveResultIgnored</code>
+     * {@link java.lang.Boolean} <p>The <code>saveResultIgnored</code> field.</p>
+     * @see  java.lang.Boolean
+     */
+    private Boolean saveResultIgnored = true;
+
+    /**
      * <code>deleteMode</code>
      * {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>The <code>deleteMode</code> field.</p>
      * @see  io.github.nichetoolkit.rice.enums.DeleteMode
@@ -278,6 +285,16 @@ public class RiceServiceProperties {
      */
     public Boolean skipOfAfter() {
         return this.getAfterSkip();
+    }
+
+    /**
+     * <code>ignoredOfSaveResult</code>
+     * <p>The ignored of save result method.</p>
+     * @return  {@link java.lang.Boolean} <p>The ignored of save result return object is <code>Boolean</code> type.</p>
+     * @see  java.lang.Boolean
+     */
+    public Boolean ignoredOfSaveResult() {
+        return this.getSaveResultIgnored();
     }
 
     /**

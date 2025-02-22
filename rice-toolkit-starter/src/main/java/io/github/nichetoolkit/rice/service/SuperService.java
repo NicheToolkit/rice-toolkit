@@ -100,8 +100,10 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         optionalCreate(tablekey, model);
         this.beforeCreate(model);
         Integer result = single(tablekey, model, idArray);
-        String message = "The creating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
-        OptionalUtils.ofCreate(result, message, simpleName, log);
+        if (!ignoredOfSaveResult()) {
+            String message = "The creating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
+            OptionalUtils.ofCreate(result, message, simpleName, log);
+        }
         this.afterCreate(model);
         this.refresh();
         return model;
@@ -143,8 +145,10 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         optionalUpdate(tablekey, model);
         this.beforeUpdate(model);
         Integer result = single(tablekey, model, idArray);
-        String message = "The updating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
-        OptionalUtils.ofUpdate(result, message, simpleName, log);
+        if (!ignoredOfSaveResult()) {
+            String message = "The updating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
+            OptionalUtils.ofUpdate(result, message, simpleName, log);
+        }
         this.afterUpdate(model);
         this.refresh();
         return model;
@@ -186,8 +190,10 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         optionalSave(tablekey, model);
         this.beforeSave(model);
         Integer result = single(tablekey, model, idArray);
-        String message = "The saving method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
-        OptionalUtils.ofSave(result, message, simpleName, log);
+        if (!ignoredOfSaveResult()) {
+            String message = "The saving method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
+            OptionalUtils.ofSave(result, message, simpleName, log);
+        }
         this.afterSave(model);
         this.refresh();
         return model;
@@ -272,9 +278,11 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         } else {
             result = PartitionHelper.save(entityList, this.partitionOfSave(), superMapper::saveAll);
         }
-        Boolean present = modelList.size() == result;
-        String message = "The saveAll method has error with " + simpleName + ": " + JsonUtils.parseJson(modelList);
-        OptionalUtils.ofSaveAll(present, message, simpleName, log);
+        if (!ignoredOfSaveResult()) {
+            Boolean present = modelList.size() == result;
+            String message = "The saveAll method has error with " + simpleName + ": " + JsonUtils.parseJson(modelList);
+            OptionalUtils.ofSaveAll(present, message, simpleName, log);
+        }
         this.afterSaveAll(modelList);
         this.refresh();
         return new ArrayList<>(modelList);

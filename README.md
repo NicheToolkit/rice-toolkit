@@ -107,6 +107,7 @@
 |      `delete-mode`      | `DeleteMode` |   `remove`   |                      the delete mode of data on rest service delete handle.(the logical delete implementation mode)                      |
 |      `before-skip`      |  `Boolean`   |    `true`    |                                     the switch of skip before handle on rest service delete handle.                                      |
 |      `after-skip`       |  `Boolean`   |    `true`    |                                      the switch of skip after handle on rest service delete handle.                                      |
+|  `save-result-ignored`  |  `Boolean`   |    `true`    |                                   the switch of ignore save result handle on rest service save handle.                                   |
 | `partition.query-size`  |  `Integer`   |    `2000`    |             the partition size of `in` sql usage on rest service query handle.(the size of sql param: in (p1,p2,p3...p2000))             |
 |  `partition.save-size`  |  `Integer`   |    `500`     |                                        the partition size of  model on rest service save handle.                                         |
 | `partition.delete-size` |  `Integer`   |    `1000`    |            the partition size of `in` sql usage on rest service delete handle.(the size of sql param: in (p1,p2,p3...p1000))             |
@@ -131,6 +132,7 @@ nichetoolkit.rice.service.partition.save-size=500
 nichetoolkit.rice.service.partition.delete-size=1000
 nichetoolkit.rice.service.before-skip=true
 nichetoolkit.rice.service.after-skip=true
+nichetoolkit.rice.service.save-result-ignored=true
 nichetoolkit.rice.service.delete-mode=remove
 nichetoolkit.rice.service.delete.logic-mode=config
 nichetoolkit.rice.service.delete.auto-mark=identity
