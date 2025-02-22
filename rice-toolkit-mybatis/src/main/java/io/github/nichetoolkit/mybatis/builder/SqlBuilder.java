@@ -1716,6 +1716,16 @@ public final class SqlBuilder implements Serializable, CharSequence {
     }
 
     /**
+     * <code>rowCount</code>
+     * <p>The row count method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The row count return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder rowCount() {
+        this.append(SQLConstants.ROW_COUNT);
+        return this;
+    }
+
+    /**
      * <code>eq</code>
      * <p>The eq method.</p>
      * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The eq return object is <code>SqlBuilder</code> type.</p>

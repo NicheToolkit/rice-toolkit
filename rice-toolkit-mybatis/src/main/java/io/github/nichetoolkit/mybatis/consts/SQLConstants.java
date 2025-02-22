@@ -401,4 +401,11 @@ public interface SQLConstants {
      */
     String SEMICOLON = ";";
 
+    /**
+     * <code>ROW_COUNT</code>
+     * {@link java.lang.String} <p>The constant <code>ROW_COUNT</code> field.</p>
+     * @see  java.lang.String
+     */
+    String ROW_COUNT = "ROW_COUNT()";
+
 }
