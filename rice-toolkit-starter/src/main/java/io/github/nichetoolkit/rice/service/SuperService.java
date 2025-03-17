@@ -1128,8 +1128,18 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     }
 
     @Override
-    @SuppressWarnings(value = "unchecked")
+    public M queryById(I id, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+        return queryById(null, id,fickleArray, isLoadArray);
+    }
+
+    @Override
     public M queryById(K tablekey, I id, Boolean... isLoadArray) throws RestException {
+        return queryById(tablekey, id,null, isLoadArray);
+    }
+
+    @Override
+    @SuppressWarnings(value = "unchecked")
+    public M queryById(K tablekey, I id, String[] fickleArray, Boolean... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(id)) {
             return null;
         }
