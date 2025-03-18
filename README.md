@@ -98,6 +98,8 @@
 
 |          value          |     type     | defaultValue |                                                               description                                                                |
 |:-----------------------:|:------------:|:------------:|:----------------------------------------------------------------------------------------------------------------------------------------:|
+|     `fickle-field`      |  `Boolean`   |   `false`    |                                            the switch of fickle field on rest service handle.                                            |
+|      `auto-fickle`      |  `Boolean`   |   `false`    |                                            the switch of auto fickle on rest service handle.                                             |
 |     `unique-model`      |  `Boolean`   |   `false`    |                                     the switch of unique model check on rest service saving handle.                                      |
 |     `dynamic-table`     |  `Boolean`   |   `false`    |                                           the switch of dynamic table on rest service handle.                                            |
 |      `unique-name`      |  `Boolean`   |    `true`    |                        the switch of unique name check on rest service saving handle.(model name must be unique)                         |
@@ -121,6 +123,8 @@
 * properties
 
 ```properties
+nichetoolkit.rice.service.fickle-field=false
+nichetoolkit.rice.service.auto-fickle=false
 nichetoolkit.rice.service.unique-model=false
 nichetoolkit.rice.service.dynamic-table=false
 nichetoolkit.rice.service.identity-invade=false

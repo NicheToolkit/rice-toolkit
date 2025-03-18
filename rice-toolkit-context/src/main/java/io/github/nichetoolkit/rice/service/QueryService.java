@@ -10,7 +10,11 @@ public interface QueryService<M extends RestId<I>, I, K> extends DeleteService<I
 
     List<M> queryAll(Collection<I> idList, Boolean... isLoadArray) throws RestException;
 
+    List<M> queryAll(Collection<I> idList, String[] fickleArray, Boolean... isLoadArray) throws RestException;
+
     List<M> queryAll(K tablekey, Collection<I> idList, Boolean... isLoadArray) throws RestException;
+
+    List<M> queryAll(K tablekey, Collection<I> idList, String[] fickleArray, Boolean... isLoadArray) throws RestException;
 
     M queryById(I id, Boolean... isLoadArray) throws RestException;
 

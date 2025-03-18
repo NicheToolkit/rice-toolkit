@@ -57,6 +57,20 @@ public class RiceServiceProperties {
     public static final Integer DELETE_SIZE = 1000;
 
     /**
+     * <code>fickleModel</code>
+     * {@link java.lang.Boolean} <p>The <code>fickleModel</code> field.</p>
+     * @see  java.lang.Boolean
+     */
+    private Boolean fickleFiled = false;
+
+    /**
+     * <code>autoFickle</code>
+     * {@link java.lang.Boolean} <p>The <code>autoFickle</code> field.</p>
+     * @see  java.lang.Boolean
+     */
+    private Boolean autoFickle = false;
+
+    /**
      * <code>uniqueModel</code>
      * {@link java.lang.Boolean} <p>The <code>uniqueModel</code> field.</p>
      * @see  java.lang.Boolean

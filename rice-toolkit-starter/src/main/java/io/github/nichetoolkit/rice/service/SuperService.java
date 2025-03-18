@@ -5,6 +5,7 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
 import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
 import io.github.nichetoolkit.rest.helper.PartitionHelper;
+import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
@@ -54,13 +55,19 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     private String simpleName;
 
     @Override
+    @SuppressWarnings("unchecked")
     public void afterPropertiesSet() throws Exception {
         ServiceHolder.initOfService();
         ServiceHolder.initOfServiceIntend();
         this.simpleName = this.getClass().getSimpleName();
         this.superMapper = ServiceHolder.findSuperMapper(this.getClass());
-        String message = "The service and mapper name must be like 'xxxService'/'xxxServiceImpl' and 'xxxMapper'.";
-        OptionalUtils.ofNullException(this.superMapper, message, this.simpleName, log, ServiceUnknownException::new);
+        String superMessage = "The service and mapper name must be like 'xxxService'/'xxxServiceImpl' and 'xxxMapper'.";
+        OptionalUtils.ofNullException(this.superMapper, superMessage, this.simpleName, log, ServiceUnknownException::new);
+        this.tableMapper = (TableMapper<E, I>) BeanUtils.beanOfType(TableMapper.class);
+        if (isFickleField()) {
+            String tableMessage = "The bean of table mapper is no found, it's possible that you don't need auto fickle.";
+            OptionalUtils.ofNullException(this.tableMapper, tableMessage, this.simpleName, log, ServiceUnknownException::new);
+        }
         this.afterSuperHandle();
     }
 
@@ -100,7 +107,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         optionalCreate(tablekey, model);
         this.beforeCreate(model);
         Integer result = single(tablekey, model, idArray);
-        if (!ignoredOfSaveResult()) {
+        if (useSaveResult()) {
             String message = "The creating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
             OptionalUtils.ofCreate(result, message, simpleName, log);
         }
@@ -145,7 +152,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         optionalUpdate(tablekey, model);
         this.beforeUpdate(model);
         Integer result = single(tablekey, model, idArray);
-        if (!ignoredOfSaveResult()) {
+        if (useSaveResult()) {
             String message = "The updating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
             OptionalUtils.ofUpdate(result, message, simpleName, log);
         }
@@ -190,7 +197,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         optionalSave(tablekey, model);
         this.beforeSave(model);
         Integer result = single(tablekey, model, idArray);
-        if (!ignoredOfSaveResult()) {
+        if (useSaveResult()) {
             String message = "The saving method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
             OptionalUtils.ofSave(result, message, simpleName, log);
         }
@@ -278,7 +285,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         } else {
             result = PartitionHelper.save(entityList, this.partitionOfSave(), superMapper::saveAll);
         }
-        if (!ignoredOfSaveResult()) {
+        if (useSaveResult()) {
             Boolean present = modelList.size() == result;
             String message = "The saveAll method has error with " + simpleName + ": " + JsonUtils.parseJson(modelList);
             OptionalUtils.ofSaveAll(present, message, simpleName, log);
@@ -1129,40 +1136,29 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
 
     @Override
     public M queryById(I id, String[] fickleArray, Boolean... isLoadArray) throws RestException {
-        return queryById(null, id,fickleArray, isLoadArray);
+        return queryById(null, id, fickleArray, isLoadArray);
     }
 
     @Override
     public M queryById(K tablekey, I id, Boolean... isLoadArray) throws RestException {
-        return queryById(tablekey, id,null, isLoadArray);
+        return queryById(tablekey, id, null, isLoadArray);
     }
 
     @Override
-    @SuppressWarnings(value = "unchecked")
     public M queryById(K tablekey, I id, String[] fickleArray, Boolean... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(id)) {
             return null;
         }
         E entity;
         String tablename = resolveTablename(tablekey);
-        if (isLoadArray.length > 0 && FindLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            FindLoadMapper<E, I> loadMapper = (FindLoadMapper<E, I>) superMapper;
-            Method findMethod = null;
-            try {
-                findMethod = loadMapper.getClass().getMethod("findByIdLoad", id.getClass(), Boolean[].class);
-            } catch (NoSuchMethodException ignored) {
-            }
-            Method queryByIdMethod = findMethod;
-            /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
-            if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
-                if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    entity = loadMapper.findDynamicByIdLoad(tablename, id, isLoadArray);
-                } else {
-                    entity = loadMapper.findByIdLoad(id, isLoadArray);
-                }
-            } else {
-                entity = findById(id, tablename);
-            }
+        String[] tableFickle = resolveTableFickle(tablename, fickleArray);
+        if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
+                && isFickleField() && FickleLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
+            entity = findByIdFickleLoad(tablename, id, tableFickle, isLoadArray);
+        } else if (GeneralUtils.isNotEmpty(tableFickle) && isFickleField() && FindFickleMapper.class.isAssignableFrom(superMapper.getClass())) {
+            entity = findByIdFickle(tablename, id, tableFickle);
+        } else if (GeneralUtils.isNotEmpty(isLoadArray) && FindLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
+            entity = findByIdLoad(tablename, id, isLoadArray);
         } else {
             entity = findById(id, tablename);
         }
@@ -1178,31 +1174,29 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     }
 
     @Override
-    @SuppressWarnings(value = "unchecked")
+    public List<M> queryAll(Collection<I> idList, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+        return queryAll(null, idList, isLoadArray);
+    }
+
     public List<M> queryAll(K tablekey, Collection<I> idList, Boolean... isLoadArray) throws RestException {
+        return queryAll(tablekey, idList, null, isLoadArray);
+    }
+
+    @Override
+    public List<M> queryAll(K tablekey, Collection<I> idList, String[] fickleArray, Boolean... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return Collections.emptyList();
         }
         List<E> entityList;
         String tablename = resolveTablename(tablekey);
-        if (isLoadArray.length > 0 && FindLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            FindLoadMapper<E, I> loadMapper = (FindLoadMapper<E, I>) superMapper;
-            Method findMethod = null;
-            try {
-                findMethod = loadMapper.getClass().getMethod("findAllLoad", List.class, Boolean[].class);
-            } catch (NoSuchMethodException ignored) {
-            }
-            Method queryAllMethod = findMethod;
-            /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
-            if (queryAllMethod != null && !queryAllMethod.isDefault()) {
-                if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    entityList = PartitionHelper.query(idList, this.partitionOfQuery(), ids -> loadMapper.findDynamicAllLoad(tablename, ids, isLoadArray));
-                } else {
-                    entityList = PartitionHelper.query(idList, this.partitionOfQuery(), ids -> loadMapper.findAllLoad(ids, isLoadArray));
-                }
-            } else {
-                entityList = findAll(idList, tablename);
-            }
+        String[] tableFickle = resolveTableFickle(tablename, fickleArray);
+        if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
+                && isFickleField() && FickleLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
+            entityList = findAllFickleLoad(tablename, idList, tableFickle, isLoadArray);
+        } else if (GeneralUtils.isNotEmpty(tableFickle) && isFickleField() && FindFickleMapper.class.isAssignableFrom(superMapper.getClass())) {
+            entityList = findAllFickle(tablename, idList, tableFickle);
+        } else if (GeneralUtils.isNotEmpty(isLoadArray) && FindLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
+            entityList = findAllLoad(tablename, idList, isLoadArray);
         } else {
             entityList = findAll(idList, tablename);
         }
@@ -1641,11 +1635,11 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         optionalAlertFilter(filter);
         boolean isPresentFilter = StatusFilter.class.isAssignableFrom(filter.getClass());
         String messageOfFilter = "The 'alertAllWithFilter' method is invoked error, the filter must extends 'StatusFilter'.";
-        OptionalUtils.ofFalse(isPresentFilter,messageOfFilter, "alertAllWithFilter", log, UnsupportedErrorException::new);
+        OptionalUtils.ofFalse(isPresentFilter, messageOfFilter, "alertAllWithFilter", log, UnsupportedErrorException::new);
         assert filter instanceof StatusFilter;
         StatusFilter<S> statusFilter = (StatusFilter<S>) filter;
         String messageOfStatus = "The 'alertAllWithFilter' method is invoked error, the value of 'getStatus' method must not null.";
-        OptionalUtils.ofEmpty(statusFilter.getStatus(),messageOfStatus, "alertAllWithFilter", log, UnsupportedErrorException::new);
+        OptionalUtils.ofEmpty(statusFilter.getStatus(), messageOfStatus, "alertAllWithFilter", log, UnsupportedErrorException::new);
         String alertWhereSql = alertWhereSql(filter);
         K tablekey = tablekey(filter);
         String tablename = resolveTablename(tablekey);
@@ -1682,7 +1676,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                                 if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
                                     filterMapper.alertDynamicAllByFilterWhere(tablename, alertWhereSql, filter, alertStatus);
                                 } else {
-                                    filterMapper.alertAllByFilterWhere(alertWhereSql, filter,alertStatus);
+                                    filterMapper.alertAllByFilterWhere(alertWhereSql, filter, alertStatus);
                                 }
                             });
                         }

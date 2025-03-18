@@ -191,6 +191,24 @@ public class ServiceHolder {
     }
 
     /**
+     * <code>fickleField</code>
+     * <p>The fickle field method.</p>
+     * @return boolean <p>The fickle field return object is <code>boolean</code> type.</p>
+     */
+    public static boolean fickleField() {
+        return serviceProperties.getFickleFiled();
+    }
+
+    /**
+     * <code>fickleOfAuto</code>
+     * <p>The fickle of auto method.</p>
+     * @return boolean <p>The fickle of auto return object is <code>boolean</code> type.</p>
+     */
+    public static boolean fickleOfAuto() {
+        return serviceProperties.getAutoFickle();
+    }
+
+    /**
      * <code>identityOfInvade</code>
      * <p>The identity of invade method.</p>
      * @return boolean <p>The identity of invade return object is <code>boolean</code> type.</p>

@@ -80,6 +80,20 @@
       "defaultValue": "Access-Auth"
     },
     {
+      "name": "nichetoolkit.rice.service.fickle-field",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "the switch of fickle field on rest service handle.",
+      "defaultValue": false
+    },
+    {
+      "name": "nichetoolkit.rice.service.auto-fickle",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "the switch of auto fickle on rest service handle.",
+      "defaultValue": false
+    },
+    {
       "name": "nichetoolkit.rice.service.unique-model",
       "type": "java.lang.Boolean",
       "sourceType": "java.lang.Boolean",
@@ -222,6 +236,32 @@
         {
           "value": true,
           "description": "the switch is opened of login configuration."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.rice.service.fickle-field",
+      "values": [
+        {
+          "value": false,
+          "description": "the switch of fickle field is closed on rest service handle."
+        },
+        {
+          "value": true,
+          "description": "the switch of fickle field is opened on rest service handle."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.rice.service.auto-fickle",
+      "values": [
+        {
+          "value": false,
+          "description": "the switch of auto fickle is closed on rest service handle."
+        },
+        {
+          "value": true,
+          "description": "the switch of auto fickle is opened on rest service handle."
         }
       ]
     },

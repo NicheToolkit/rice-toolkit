@@ -21,11 +21,15 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.filter.StatusFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
 import io.github.nichetoolkit.rice.mapper.*;
+import io.github.nichetoolkit.rice.mapper.natives.FickleLoadMapper;
+import io.github.nichetoolkit.rice.mapper.natives.FindFickleMapper;
+import io.github.nichetoolkit.rice.mapper.natives.FindLoadMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * <code>SuperAdvice</code>
@@ -88,6 +92,13 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @see  io.github.nichetoolkit.rice.mapper.SuperMapper
      */
     protected SuperMapper<E, I> superMapper;
+
+    /**
+     * <code>tableMapper</code>
+     * {@link io.github.nichetoolkit.rice.mapper.TableMapper} <p>The <code>tableMapper</code> field.</p>
+     * @see  io.github.nichetoolkit.rice.mapper.TableMapper
+     */
+    protected TableMapper<E, I> tableMapper;
 
     /**
      * <code>logicActuator</code>
@@ -460,6 +471,32 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     }
 
     /**
+     * <code>resolveTableFickle</code>
+     * <p>The resolve table fickle method.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
+     * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.lang.String} <p>The resolve table fickle return object is <code>String</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    protected String[] resolveTableFickle(String tablename, String... fickleArray) throws RestException {
+        if (isFickleField()) {
+            List<String> tableColumns = tableMapper.tableColumns(tablename);
+            if (GeneralUtils.isEmpty(tableColumns)) {
+                return fickleArray;
+            }
+            if (isFickleOfAuto()) {
+                return tableColumns.toArray(new String[0]);
+            }
+            if (GeneralUtils.isNotEmpty(fickleArray)) {
+                return Arrays.stream(fickleArray).filter(tableColumns::contains).distinct().toArray(String[]::new);
+            }
+        }
+        return fickleArray;
+    }
+
+    /**
      * <code>single</code>
      * <p>The single method.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
@@ -531,6 +568,114 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
             throw new UnsupportedErrorException("The 'findByLinkId' method is unimplemented, the mapper must extends 'FindLinkMapper'.");
         }
         return entityList;
+    }
+
+    /**
+     * <code>findByIdLoad</code>
+     * <p>The find by id load method.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param id I <p>The id parameter is <code>I</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.lang.Boolean
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return E <p>The find by id load return object is <code>E</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    @SuppressWarnings(value = "unchecked")
+    protected E findByIdLoad(String tablename, I id, Boolean... isLoadArray) throws RestException {
+        E entity;
+        FindLoadMapper<E, I> loadMapper = (FindLoadMapper<E, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = loadMapper.getClass().getMethod("findByIdLoad", id.getClass(), Boolean[].class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method queryByIdMethod = findMethod;
+        /* 当LoadMapper被复写的时候 优先调用LoadMapper的findByIdMethod */
+        if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                entity = loadMapper.findDynamicByIdLoad(tablename, id, isLoadArray);
+            } else {
+                entity = loadMapper.findByIdLoad(id, isLoadArray);
+            }
+        } else {
+            entity = findById(id, tablename);
+        }
+        return entity;
+    }
+
+    /**
+     * <code>findByIdFickle</code>
+     * <p>The find by id fickle method.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param id I <p>The id parameter is <code>I</code> type.</p>
+     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return E <p>The find by id fickle return object is <code>E</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    @SuppressWarnings(value = "unchecked")
+    protected E findByIdFickle(String tablename, I id, String... fickleArray) throws RestException {
+        E entity;
+        FindFickleMapper<E, I> fickleMapper = (FindFickleMapper<E, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = fickleMapper.getClass().getMethod("findByIdFickle", id.getClass(), String[].class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method queryByIdMethod = findMethod;
+        /* 当LoadMapper被复写的时候 优先调用fickleMapper的findByIdMethod */
+        if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                entity = fickleMapper.findDynamicByIdFickle(tablename, id, fickleArray);
+            } else {
+                entity = fickleMapper.findByIdFickle(id, fickleArray);
+            }
+        } else {
+            entity = findById(id, tablename);
+        }
+        return entity;
+    }
+
+    /**
+     * <code>findByIdFickleLoad</code>
+     * <p>The find by id fickle load method.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param id I <p>The id parameter is <code>I</code> type.</p>
+     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.lang.Boolean
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return E <p>The find by id fickle load return object is <code>E</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    @SuppressWarnings(value = "unchecked")
+    protected E findByIdFickleLoad(String tablename, I id, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+        E entity;
+        FickleLoadMapper<E, I> fickleLoadMapper = (FickleLoadMapper<E, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = fickleLoadMapper.getClass().getMethod("findByIdFickleLoad", id.getClass(), String[].class, Boolean[].class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method queryByIdMethod = findMethod;
+        /* 当LoadMapper被复写的时候 优先调用fickleMapper的findByIdMethod */
+        if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                entity = fickleLoadMapper.findDynamicByIdFickleLoad(tablename, id, fickleArray, isLoadArray);
+            } else {
+                entity = fickleLoadMapper.findByIdFickleLoad(id, fickleArray, isLoadArray);
+            }
+        } else {
+            entity = findById(id, tablename);
+        }
+        return entity;
     }
 
     /**
@@ -692,6 +837,122 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         }
         return entityList;
     }
+
+    /**
+     * <code>findAllLoad</code>
+     * <p>The find all load method.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.util.Collection
+     * @see  java.lang.Boolean
+     * @see  java.util.List
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The find all load return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    @SuppressWarnings(value = "unchecked")
+    protected List<E> findAllLoad(String tablename, Collection<I> idList, Boolean... isLoadArray) throws RestException {
+        List<E> entityList;
+        FindLoadMapper<E, I> loadMapper = (FindLoadMapper<E, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = loadMapper.getClass().getMethod("findAllLoad", List.class, Boolean[].class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method queryAllMethod = findMethod;
+        /* 当LoadMapper被复写的时候 优先调用LoadMapper的findAllMethod */
+        if (queryAllMethod != null && !queryAllMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                entityList = PartitionHelper.query(idList, this.partitionOfQuery(), ids -> loadMapper.findDynamicAllLoad(tablename, ids, isLoadArray));
+            } else {
+                entityList = PartitionHelper.query(idList, this.partitionOfQuery(), ids -> loadMapper.findAllLoad(ids, isLoadArray));
+            }
+        } else {
+            entityList = findAll(idList, tablename);
+        }
+        return entityList;
+    }
+
+
+    /**
+     * <code>findAllFickle</code>
+     * <p>The find all fickle method.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.util.Collection
+     * @see  java.util.List
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The find all fickle return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    @SuppressWarnings(value = "unchecked")
+    protected List<E> findAllFickle(String tablename, Collection<I> idList, String... fickleArray) throws RestException {
+        List<E> entityList;
+        FindFickleMapper<E, I> fickleMapper = (FindFickleMapper<E, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = fickleMapper.getClass().getMethod("findAllFickle", List.class, String[].class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method queryAllMethod = findMethod;
+        /* 当fickleMapper被复写的时候 优先调用fickleMapper的findAllMethod */
+        if (queryAllMethod != null && !queryAllMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                entityList = PartitionHelper.query(idList, this.partitionOfQuery(), ids -> fickleMapper.findDynamicAllFickle(tablename, ids, fickleArray));
+            } else {
+                entityList = PartitionHelper.query(idList, this.partitionOfQuery(), ids -> fickleMapper.findAllFickle(ids, fickleArray));
+            }
+        } else {
+            entityList = findAll(idList, tablename);
+        }
+        return entityList;
+    }
+
+    /**
+     * <code>findAllFickleLoad</code>
+     * <p>The find all fickle load method.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.util.Collection
+     * @see  java.lang.Boolean
+     * @see  java.util.List
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The find all fickle load return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    @SuppressWarnings(value = "unchecked")
+    protected List<E> findAllFickleLoad(String tablename, Collection<I> idList, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+        List<E> entityList;
+        FickleLoadMapper<E, I> fickleLoadMapper = (FickleLoadMapper<E, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = fickleLoadMapper.getClass().getMethod("findAllFickleLoad", List.class, String[].class, Boolean[].class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method queryAllMethod = findMethod;
+        /* 当fickleMapper被复写的时候 优先调用fickleMapper的findAllMethod */
+        if (queryAllMethod != null && !queryAllMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                entityList = PartitionHelper.query(idList, this.partitionOfQuery(), ids -> fickleLoadMapper.findDynamicAllFickleLoad(tablename, ids, fickleArray, isLoadArray));
+            } else {
+                entityList = PartitionHelper.query(idList, this.partitionOfQuery(), ids -> fickleLoadMapper.findAllFickleLoad(ids, fickleArray, isLoadArray));
+            }
+        } else {
+            entityList = findAll(idList, tablename);
+        }
+        return entityList;
+    }
+
 
     /**
      * <code>findAllByLinkIds</code>
@@ -1003,9 +1264,9 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         S status = statusFilter.getStatus();
         if (isBeforeSkip() && isAfterSkip()) {
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                ((AlertMapper<S,I>) superMapper).alertDynamicAllByWhere(tablename, alertWhereSql, status);
+                ((AlertMapper<S, I>) superMapper).alertDynamicAllByWhere(tablename, alertWhereSql, status);
             } else {
-                ((AlertMapper<S,I>) superMapper).alertAllByWhere(alertWhereSql, status);
+                ((AlertMapper<S, I>) superMapper).alertAllByWhere(alertWhereSql, status);
             }
         } else {
             String queryWhereSql = queryWhereSql(filter);
@@ -1013,9 +1274,9 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
             if (GeneralUtils.isNotEmpty(entityList)) {
                 alertAdvice(entityList, status, alertStatus -> {
                     if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                        ((AlertMapper<S,I>) superMapper).alertDynamicAllByWhere(tablename, alertWhereSql, alertStatus);
+                        ((AlertMapper<S, I>) superMapper).alertDynamicAllByWhere(tablename, alertWhereSql, alertStatus);
                     } else {
-                        ((AlertMapper<S,I>) superMapper).alertAllByWhere(alertWhereSql, alertStatus);
+                        ((AlertMapper<S, I>) superMapper).alertAllByWhere(alertWhereSql, alertStatus);
                     }
                 });
             }
@@ -1205,6 +1466,24 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     }
 
     /**
+     * <code>isFickleField</code>
+     * <p>The is fickle field method.</p>
+     * @return boolean <p>The is fickle field return object is <code>boolean</code> type.</p>
+     */
+    protected boolean isFickleField() {
+        return ServiceHolder.fickleField();
+    }
+
+    /**
+     * <code>isFickleOfAuto</code>
+     * <p>The is fickle of auto method.</p>
+     * @return boolean <p>The is fickle of auto return object is <code>boolean</code> type.</p>
+     */
+    protected boolean isFickleOfAuto() {
+        return ServiceHolder.fickleOfAuto();
+    }
+
+    /**
      * <code>isIdentityOfInvade</code>
      * <p>The is identity of invade method.</p>
      * @return boolean <p>The is identity of invade return object is <code>boolean</code> type.</p>
@@ -1277,12 +1556,12 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     }
 
     /**
-     * <code>ignoredOfSaveResult</code>
-     * <p>The ignored of save result method.</p>
-     * @return boolean <p>The ignored of save result return object is <code>boolean</code> type.</p>
+     * <code>useSaveResult</code>
+     * <p>The use save result method.</p>
+     * @return boolean <p>The use save result return object is <code>boolean</code> type.</p>
      */
-    protected boolean ignoredOfSaveResult() {
-        return ServiceHolder.ignoredOfSaveResult();
+    protected boolean useSaveResult() {
+        return !ServiceHolder.ignoredOfSaveResult();
     }
 
     /**

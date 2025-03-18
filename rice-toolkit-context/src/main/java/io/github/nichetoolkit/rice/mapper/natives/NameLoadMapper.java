@@ -28,7 +28,7 @@ public interface NameLoadMapper<E extends RestId<I>, I> {
      * @see  java.util.List
      * @return  {@link java.util.List} <p>The find by name load return object is <code>List</code> type.</p>
      */
-    List<E> findByNameLoad(@Param("name") String name,@Param("logic") Object logic, @Param("loadParams") Boolean... loadParams);
+    List<E> findByNameLoad(@Param("name") String name, @Param("logic") Object logic, @Param("loadParams") Boolean... loadParams);
 
     /**
      * <code>findDynamicByNameLoad</code>
