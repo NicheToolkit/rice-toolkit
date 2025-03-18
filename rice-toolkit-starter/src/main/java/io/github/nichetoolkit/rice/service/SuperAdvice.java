@@ -21,15 +21,12 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.filter.StatusFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
 import io.github.nichetoolkit.rice.mapper.*;
-import io.github.nichetoolkit.rice.mapper.natives.FickleLoadMapper;
-import io.github.nichetoolkit.rice.mapper.natives.FindFickleMapper;
-import io.github.nichetoolkit.rice.mapper.natives.FindLoadMapper;
+import io.github.nichetoolkit.rice.mapper.natives.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * <code>SuperAdvice</code>
@@ -542,35 +539,6 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     }
 
     /**
-     * <code>findByLinkId</code>
-     * <p>The find by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.util.List
-     * @see  java.lang.SuppressWarnings
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link java.util.List} <p>The find by link id return object is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
-    @SuppressWarnings(value = "unchecked")
-    protected <L> List<E> findByLinkId(L linkId, String tablename) throws RestException {
-        List<E> entityList;
-        if (FindLinkMapper.class.isAssignableFrom(superMapper.getClass())) {
-            FindLinkMapper<E, L, I> findLinkMapper = (FindLinkMapper<E, L, I>) superMapper;
-            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                entityList = findLinkMapper.findDynamicByLinkId(tablename, linkId);
-            } else {
-                entityList = findLinkMapper.findByLinkId(linkId);
-            }
-        } else {
-            throw new UnsupportedErrorException("The 'findByLinkId' method is unimplemented, the mapper must extends 'FindLinkMapper'.");
-        }
-        return entityList;
-    }
-
-    /**
      * <code>findByIdLoad</code>
      * <p>The find by id load method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
@@ -584,7 +552,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings(value = "unchecked")
-    protected E findByIdLoad(String tablename, I id, Boolean... isLoadArray) throws RestException {
+    protected E findByIdLoad(I id, String tablename, Boolean... isLoadArray) throws RestException {
         E entity;
         FindLoadMapper<E, I> loadMapper = (FindLoadMapper<E, I>) superMapper;
         Method findMethod = null;
@@ -619,7 +587,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings(value = "unchecked")
-    protected E findByIdFickle(String tablename, I id, String... fickleArray) throws RestException {
+    protected E findByIdFickle(I id, String tablename, String... fickleArray) throws RestException {
         E entity;
         FindFickleMapper<E, I> fickleMapper = (FindFickleMapper<E, I>) superMapper;
         Method findMethod = null;
@@ -656,7 +624,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings(value = "unchecked")
-    protected E findByIdFickleLoad(String tablename, I id, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+    protected E findByIdFickleLoad(I id, String tablename, String[] fickleArray, Boolean... isLoadArray) throws RestException {
         E entity;
         FickleLoadMapper<E, I> fickleLoadMapper = (FickleLoadMapper<E, I>) superMapper;
         Method findMethod = null;
@@ -676,6 +644,104 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
             entity = findById(id, tablename);
         }
         return entity;
+    }
+
+    /**
+     * <code>findByLinkId</code>
+     * <p>The find by link id method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.util.List
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The find by link id return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    @SuppressWarnings(value = "unchecked")
+    protected <L> List<E> findByLinkId(L linkId, String tablename) throws RestException {
+        List<E> entityList;
+        if (FindLinkMapper.class.isAssignableFrom(superMapper.getClass())) {
+            FindLinkMapper<E, L, I> findLinkMapper = (FindLinkMapper<E, L, I>) superMapper;
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                entityList = findLinkMapper.findDynamicByLinkId(tablename, linkId);
+            } else {
+                entityList = findLinkMapper.findByLinkId(linkId);
+            }
+        } else {
+            throw new UnsupportedErrorException("The 'findByLinkId' method is unimplemented, the mapper must extends 'FindLinkMapper'.");
+        }
+        return entityList;
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    protected <L> List<E> findByLinkIdLoad(L linkId, String tablename, Boolean... isLoadArray) throws RestException {
+        List<E> entityList;
+        LinkLoadMapper<E, L, I> loadMapper = (LinkLoadMapper<E, L, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = loadMapper.getClass().getMethod("findByLinkIdLoad", linkId.getClass(), Boolean[].class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method queryByIdMethod = findMethod;
+        /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
+        if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                entityList = loadMapper.findDynamicByLinkIdLoad(tablename, linkId, isLoadArray);
+            } else {
+                entityList = loadMapper.findByLinkIdLoad(linkId, isLoadArray);
+            }
+        } else {
+            entityList = findByLinkId(linkId, tablename);
+        }
+        return entityList;
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    protected <L> List<E> findByLinkIdFickle(L linkId, String tablename, String... fickleArray) throws RestException {
+        List<E> entityList;
+        LinkFickleMapper<E, L, I> fickleMapper = (LinkFickleMapper<E, L, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = fickleMapper.getClass().getMethod("findByLinkIdFickle", linkId.getClass(), String[].class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method queryByIdMethod = findMethod;
+        /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
+        if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                entityList = fickleMapper.findDynamicByLinkIdFickle(tablename, linkId, fickleArray);
+            } else {
+                entityList = fickleMapper.findByLinkIdFickle(linkId, fickleArray);
+            }
+        } else {
+            entityList = findByLinkId(linkId, tablename);
+        }
+        return entityList;
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    protected <L> List<E> findByLinkIdFickleLoad(L linkId, String tablename, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+        List<E> entityList;
+        FickleLinkMapper<E, L, I> fickleLinkMapper = (FickleLinkMapper<E, L, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = fickleLinkMapper.getClass().getMethod("findByLinkIdFickleLoad", linkId.getClass(), String[].class, Boolean[].class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method queryByIdMethod = findMethod;
+        /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
+        if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                entityList = fickleLinkMapper.findDynamicByLinkIdFickleLoad(tablename, linkId, fickleArray, isLoadArray);
+            } else {
+                entityList = fickleLinkMapper.findByLinkIdFickleLoad(linkId, fickleArray, isLoadArray);
+            }
+        } else {
+            entityList = findByLinkId(linkId, tablename);
+        }
+        return entityList;
     }
 
     /**
@@ -854,7 +920,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings(value = "unchecked")
-    protected List<E> findAllLoad(String tablename, Collection<I> idList, Boolean... isLoadArray) throws RestException {
+    protected List<E> findAllLoad(Collection<I> idList, String tablename, Boolean... isLoadArray) throws RestException {
         List<E> entityList;
         FindLoadMapper<E, I> loadMapper = (FindLoadMapper<E, I>) superMapper;
         Method findMethod = null;
@@ -892,7 +958,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings(value = "unchecked")
-    protected List<E> findAllFickle(String tablename, Collection<I> idList, String... fickleArray) throws RestException {
+    protected List<E> findAllFickle(Collection<I> idList, String tablename, String... fickleArray) throws RestException {
         List<E> entityList;
         FindFickleMapper<E, I> fickleMapper = (FindFickleMapper<E, I>) superMapper;
         Method findMethod = null;
@@ -931,7 +997,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings(value = "unchecked")
-    protected List<E> findAllFickleLoad(String tablename, Collection<I> idList, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+    protected List<E> findAllFickleLoad(Collection<I> idList, String tablename, String[] fickleArray, Boolean... isLoadArray) throws RestException {
         List<E> entityList;
         FickleLoadMapper<E, I> fickleLoadMapper = (FickleLoadMapper<E, I>) superMapper;
         Method findMethod = null;
@@ -980,6 +1046,75 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
             }
         } else {
             throw new UnsupportedErrorException("The 'findAllByLinkIds' method is unimplemented, the mapper must extends 'FindLinkMapper'.");
+        }
+        return entityList;
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    protected <L> List<E> findAllByLinkIdsLoad(Collection<L> linkIdList, String tablename, Boolean... isLoadArray) throws RestException {
+        List<E> entityList;
+        LinkLoadMapper<E, L, I> loadMapper = (LinkLoadMapper<E, L, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = loadMapper.getClass().getMethod("findAllByLinkIdsLoad", List.class, Boolean[].class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method queryAllMethod = findMethod;
+        /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
+        if (queryAllMethod != null && !queryAllMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> loadMapper.findDynamicAllByLinkIdsLoad(tablename, linkIds, isLoadArray));
+            } else {
+                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> loadMapper.findAllByLinkIdsLoad(linkIds, isLoadArray));
+            }
+        } else {
+            entityList = findAllByLinkIds(linkIdList, tablename);
+        }
+        return entityList;
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    protected <L> List<E> findAllByLinkIdsFickle(Collection<L> linkIdList, String tablename, String... fickleArray) throws RestException {
+        List<E> entityList;
+        LinkFickleMapper<E, L, I> fickleMapper = (LinkFickleMapper<E, L, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = fickleMapper.getClass().getMethod("findAllByLinkIdsFickle", List.class, String[].class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method queryAllMethod = findMethod;
+        /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
+        if (queryAllMethod != null && !queryAllMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> fickleMapper.findDynamicAllByLinkIdsFickle(tablename, linkIds, fickleArray));
+            } else {
+                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> fickleMapper.findAllByLinkIdsFickle(linkIds, fickleArray));
+            }
+        } else {
+            entityList = findAllByLinkIds(linkIdList, tablename);
+        }
+        return entityList;
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    protected <L> List<E> findAllByLinkIdsFickleLoad(Collection<L> linkIdList, String tablename, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+        List<E> entityList;
+        FickleLinkMapper<E, L, I> fickleLinkMapper = (FickleLinkMapper<E, L, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = fickleLinkMapper.getClass().getMethod("findAllByLinkIdsFickleLoad", List.class, String[].class, Boolean[].class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method queryAllMethod = findMethod;
+        /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
+        if (queryAllMethod != null && !queryAllMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> fickleLinkMapper.findDynamicAllByLinkIdsFickleLoad(tablename, linkIds, fickleArray, isLoadArray));
+            } else {
+                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> fickleLinkMapper.findAllByLinkIdsFickleLoad(linkIds, fickleArray, isLoadArray));
+            }
+        } else {
+            entityList = findAllByLinkIds(linkIdList, tablename);
         }
         return entityList;
     }

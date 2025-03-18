@@ -1154,11 +1154,11 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         String[] tableFickle = resolveTableFickle(tablename, fickleArray);
         if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entity = findByIdFickleLoad(tablename, id, tableFickle, isLoadArray);
+            entity = findByIdFickleLoad(id, tablename, tableFickle, isLoadArray);
         } else if (GeneralUtils.isNotEmpty(tableFickle) && isFickleField() && FindFickleMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entity = findByIdFickle(tablename, id, tableFickle);
+            entity = findByIdFickle(id, tablename, tableFickle);
         } else if (GeneralUtils.isNotEmpty(isLoadArray) && FindLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entity = findByIdLoad(tablename, id, isLoadArray);
+            entity = findByIdLoad(id, tablename, isLoadArray);
         } else {
             entity = findById(id, tablename);
         }
@@ -1192,11 +1192,11 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         String[] tableFickle = resolveTableFickle(tablename, fickleArray);
         if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entityList = findAllFickleLoad(tablename, idList, tableFickle, isLoadArray);
+            entityList = findAllFickleLoad(idList, tablename, tableFickle, isLoadArray);
         } else if (GeneralUtils.isNotEmpty(tableFickle) && isFickleField() && FindFickleMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entityList = findAllFickle(tablename, idList, tableFickle);
+            entityList = findAllFickle(idList, tablename, tableFickle);
         } else if (GeneralUtils.isNotEmpty(isLoadArray) && FindLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entityList = findAllLoad(tablename, idList, isLoadArray);
+            entityList = findAllLoad(idList, tablename, isLoadArray);
         } else {
             entityList = findAll(idList, tablename);
         }
@@ -1314,41 +1314,66 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>queryByLinkId</code>
      * <p>The query by link id method.</p>
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.lang.Boolean
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    public <L> List<M> queryByLinkId(L linkId, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+        return queryByLinkId(null, linkId, fickleArray, isLoadArray);
+    }
+
+    /**
+     * <code>queryByLinkId</code>
+     * <p>The query by link id method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
      * @see  java.lang.Boolean
      * @see  java.util.List
-     * @see  java.lang.SuppressWarnings
      * @see  io.github.nichetoolkit.rest.RestException
      * @return  {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    @SuppressWarnings({"unchecked", "Duplicates"})
     public <L> List<M> queryByLinkId(K tablekey, L linkId, Boolean... isLoadArray) throws RestException {
+        return queryByLinkId(tablekey, linkId, null, isLoadArray);
+    }
+
+    /**
+     * <code>queryByLinkId</code>
+     * <p>The query by link id method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.lang.Boolean
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    public <L> List<M> queryByLinkId(K tablekey, L linkId, String[] fickleArray, Boolean... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
             return Collections.emptyList();
         }
         List<E> entityList;
         String tablename = resolveTablename(tablekey);
-        if (isLoadArray.length > 0 && LinkLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            LinkLoadMapper<E, L, I> loadMapper = (LinkLoadMapper<E, L, I>) superMapper;
-            Method findMethod = null;
-            try {
-                findMethod = loadMapper.getClass().getMethod("findByLinkIdLoad", linkId.getClass(), Boolean[].class);
-            } catch (NoSuchMethodException ignored) {
-            }
-            Method queryByIdMethod = findMethod;
-            /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
-            if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
-                if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    entityList = loadMapper.findDynamicByLinkIdLoad(tablename, linkId, isLoadArray);
-                } else {
-                    entityList = loadMapper.findByLinkIdLoad(linkId, isLoadArray);
-                }
-            } else {
-                entityList = findByLinkId(linkId, tablename);
-            }
+        String[] tableFickle = resolveTableFickle(tablename, fickleArray);
+        if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
+                && isFickleField() && FickleLinkMapper.class.isAssignableFrom(superMapper.getClass())) {
+            entityList = findByLinkIdFickleLoad(linkId, tablename, tableFickle, isLoadArray);
+        } else if (GeneralUtils.isNotEmpty(tableFickle) && isFickleField() && LinkFickleMapper.class.isAssignableFrom(superMapper.getClass())) {
+            entityList = findByLinkIdFickle(linkId, tablename, tableFickle);
+        } else if (GeneralUtils.isNotEmpty(isLoadArray) && LinkLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
+            entityList = findByLinkIdLoad(linkId, tablename, isLoadArray);
         } else {
             entityList = findByLinkId(linkId, tablename);
         }
@@ -1379,42 +1404,69 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>queryAllByLinkIds</code>
      * <p>The query all by link ids method.</p>
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.util.Collection
+     * @see  java.lang.String
+     * @see  java.lang.Boolean
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+        return queryAllByLinkIds(null, linkIdList, fickleArray, isLoadArray);
+    }
+
+    /**
+     * <code>queryAllByLinkIds</code>
+     * <p>The query all by link ids method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
      * @see  java.util.Collection
      * @see  java.lang.Boolean
      * @see  java.util.List
-     * @see  java.lang.SuppressWarnings
      * @see  io.github.nichetoolkit.rest.RestException
      * @return  {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    @SuppressWarnings({"unchecked", "Duplicates"})
     public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, Boolean... isLoadArray) throws RestException {
+        return queryAllByLinkIds(tablekey, linkIdList, null, isLoadArray);
+    }
+
+    /**
+     * <code>queryAllByLinkIds</code>
+     * <p>The query all by link ids method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.util.Collection
+     * @see  java.lang.String
+     * @see  java.lang.Boolean
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, String[] fickleArray, Boolean... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
             return Collections.emptyList();
         }
         List<E> entityList;
         String tablename = resolveTablename(tablekey);
-        if (isLoadArray.length > 0 && LinkLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            LinkLoadMapper<E, L, I> loadMapper = (LinkLoadMapper<E, L, I>) superMapper;
-            Method findMethod = null;
-            try {
-                findMethod = loadMapper.getClass().getMethod("findAllByLinkIdsLoad", List.class, Boolean[].class);
-            } catch (NoSuchMethodException ignored) {
-            }
-            Method queryAllMethod = findMethod;
-            /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
-            if (queryAllMethod != null && !queryAllMethod.isDefault()) {
-                if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> loadMapper.findDynamicAllByLinkIdsLoad(tablename, linkIds, isLoadArray));
-                } else {
-                    entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> loadMapper.findAllByLinkIdsLoad(linkIds, isLoadArray));
-                }
-            } else {
-                entityList = findAllByLinkIds(linkIdList, tablename);
-            }
+        String[] tableFickle = resolveTableFickle(tablename, fickleArray);
+        if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
+                && isFickleField() && FickleLinkMapper.class.isAssignableFrom(superMapper.getClass())) {
+            entityList = findAllByLinkIdsFickleLoad(linkIdList, tablename, tableFickle, isLoadArray);
+        } else if (GeneralUtils.isNotEmpty(tableFickle) && isFickleField() && LinkFickleMapper.class.isAssignableFrom(superMapper.getClass())) {
+            entityList = findAllByLinkIdsFickle(linkIdList, tablename, tableFickle);
+        } else if (GeneralUtils.isNotEmpty(isLoadArray) && LinkLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
+            entityList = findAllByLinkIdsLoad(linkIdList, tablename, isLoadArray);
         } else {
             entityList = findAllByLinkIds(linkIdList, tablename);
         }
