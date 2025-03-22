@@ -8,12 +8,130 @@ package io.github.nichetoolkit.mybatis.consts;
  * @since Jdk1.8
  */
 public interface SQLConstants {
+
     /**
-     * <code>AND_MATCH</code>
-     * {@link java.lang.String} <p>The constant <code>AND_MATCH</code> field.</p>
+     * <code>CREATE</code>
+     * {@link java.lang.String} <p>The constant <code>CREATE</code> field.</p>
      * @see  java.lang.String
      */
-    String AND_MATCH = " AND ";
+    String CREATE = "CREATE";
+    /**
+     * <code>INDEX</code>
+     * {@link java.lang.String} <p>The constant <code>INDEX</code> field.</p>
+     * @see  java.lang.String
+     */
+    String INDEX = "INDEX";
+
+    /**
+     * <code>CREATE_INDEX</code>
+     * {@link java.lang.String} <p>The constant <code>CREATE_INDEX</code> field.</p>
+     * @see  java.lang.String
+     */
+    String CREATE_INDEX = "CREATE INDEX";
+    /**
+     * <code>ON</code>
+     * {@link java.lang.String} <p>The constant <code>ON</code> field.</p>
+     * @see  java.lang.String
+     */
+    String ON = "ON";
+    /**
+     * <code>USING</code>
+     * {@link java.lang.String} <p>The constant <code>USING</code> field.</p>
+     * @see  java.lang.String
+     */
+    String USING = "USING";
+    /**
+     * <code>ALTER</code>
+     * {@link java.lang.String} <p>The constant <code>ALTER</code> field.</p>
+     * @see  java.lang.String
+     */
+    String ALTER = "ALTER";
+
+    /**
+     * <code>ALTER_TABLE</code>
+     * {@link java.lang.String} <p>The constant <code>ALTER_TABLE</code> field.</p>
+     * @see  java.lang.String
+     */
+    String ALTER_TABLE = "ALTER TABLE";
+
+    /**
+     * <code>ALTER_COLUMN</code>
+     * {@link java.lang.String} <p>The constant <code>ALTER_COLUMN</code> field.</p>
+     * @see  java.lang.String
+     */
+    String ALTER_COLUMN = "ALTER COLUMN";
+    /**
+     * <code>TABLE</code>
+     * {@link java.lang.String} <p>The constant <code>TABLE</code> field.</p>
+     * @see  java.lang.String
+     */
+    String TABLE = "TABLE";
+    /**
+     * <code>MODIFY</code>
+     * {@link java.lang.String} <p>The constant <code>MODIFY</code> field.</p>
+     * @see  java.lang.String
+     */
+    String MODIFY = "MODIFY";
+
+    /**
+     * <code>MODIFY_COLUMN</code>
+     * {@link java.lang.String} <p>The constant <code>MODIFY_COLUMN</code> field.</p>
+     * @see  java.lang.String
+     */
+    String MODIFY_COLUMN = "MODIFY COLUMN";
+    /**
+     * <code>COLUMN</code>
+     * {@link java.lang.String} <p>The constant <code>COLUMN</code> field.</p>
+     * @see  java.lang.String
+     */
+    String COLUMN = "COLUMN";
+    /**
+     * <code>ADD</code>
+     * {@link java.lang.String} <p>The constant <code>ADD</code> field.</p>
+     * @see  java.lang.String
+     */
+    String ADD = "ADD";
+
+    /**
+     * <code>ADD_COLUMN</code>
+     * {@link java.lang.String} <p>The constant <code>ADD_COLUMN</code> field.</p>
+     * @see  java.lang.String
+     */
+    String ADD_COLUMN = "ADD COLUMN";
+    /**
+     * <code>DROP</code>
+     * {@link java.lang.String} <p>The constant <code>DROP</code> field.</p>
+     * @see  java.lang.String
+     */
+    String DROP = "DROP";
+
+    /**
+     * <code>DROP_COLUMN</code>
+     * {@link java.lang.String} <p>The constant <code>DROP_COLUMN</code> field.</p>
+     * @see  java.lang.String
+     */
+    String DROP_COLUMN = "DROP COLUMN";
+    /**
+     * <code>TYPE</code>
+     * {@link java.lang.String} <p>The constant <code>TYPE</code> field.</p>
+     * @see  java.lang.String
+     */
+    String TYPE = "TYPE";
+
+    /**
+     * <code>DEFAULT</code>
+     * {@link java.lang.String} <p>The constant <code>DEFAULT</code> field.</p>
+     * @see  java.lang.String
+     */
+    String DEFAULT = "DEFAULT";
+
+    /**
+     * <code>COMMENT</code>
+     * {@link java.lang.String} <p>The constant <code>COMMENT</code> field.</p>
+     * @see  java.lang.String
+     */
+    String COMMENT = "COMMENT";
+
     /**
      * <code>INSERT</code>
      * {@link java.lang.String} <p>The constant <code>INSERT</code> field.</p>

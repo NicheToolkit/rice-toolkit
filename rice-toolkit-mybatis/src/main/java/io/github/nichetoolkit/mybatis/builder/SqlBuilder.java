@@ -1834,6 +1834,178 @@ public final class SqlBuilder implements Serializable, CharSequence {
     }
 
     /**
+     * <code>create</code>
+     * <p>The create method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The create return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder create() {
+        return this.keyword(SQLConstants.CREATE, true);
+    }
+
+    /**
+     * <code>index</code>
+     * <p>The index method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The index return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder index() {
+        return this.keyword(SQLConstants.INDEX, false);
+    }
+
+    /**
+     * <code>createIndex</code>
+     * <p>The create index method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The create index return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder createIndex() {
+        return this.keyword(SQLConstants.CREATE_INDEX, true);
+    }
+
+    /**
+     * <code>on</code>
+     * <p>The on method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The on return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder on() {
+        return this.keyword(SQLConstants.ON, false);
+    }
+
+    /**
+     * <code>using</code>
+     * <p>The using method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The using return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder using() {
+        return this.keyword(SQLConstants.USING, false);
+    }
+
+    /**
+     * <code>alter</code>
+     * <p>The alter method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The alter return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder alter() {
+        return this.keyword(SQLConstants.ALTER, false);
+    }
+
+    /**
+     * <code>table</code>
+     * <p>The table method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The table return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder table() {
+        return this.keyword(SQLConstants.TABLE, false);
+    }
+
+    /**
+     * <code>alterTable</code>
+     * <p>The alter table method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The alter table return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder alterTable() {
+        return this.keyword(SQLConstants.ALTER_TABLE, true);
+    }
+
+    /**
+     * <code>alterColumn</code>
+     * <p>The alter column method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The alter column return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder alterColumn() {
+        return this.keyword(SQLConstants.ALTER_COLUMN, false);
+    }
+
+    /**
+     * <code>modify</code>
+     * <p>The modify method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The modify return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder modify() {
+        return this.keyword(SQLConstants.MODIFY, false);
+    }
+
+    /**
+     * <code>modifyColumn</code>
+     * <p>The modify column method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The modify column return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder modifyColumn() {
+        return this.keyword(SQLConstants.MODIFY_COLUMN, false);
+    }
+
+    /**
+     * <code>column</code>
+     * <p>The column method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The column return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder column() {
+        return this.keyword(SQLConstants.COLUMN, false);
+    }
+
+    /**
+     * <code>add</code>
+     * <p>The add method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The add return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder add() {
+        return this.keyword(SQLConstants.ADD, false);
+    }
+
+    /**
+     * <code>addColumn</code>
+     * <p>The add column method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The add column return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder addColumn() {
+        return this.keyword(SQLConstants.ADD_COLUMN, false);
+    }
+
+    /**
+     * <code>drop</code>
+     * <p>The drop method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The drop return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder drop() {
+        return this.keyword(SQLConstants.DROP, false);
+    }
+
+    /**
+     * <code>dropColumn</code>
+     * <p>The drop column method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The drop column return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder dropColumn() {
+        return this.keyword(SQLConstants.DROP_COLUMN, false);
+    }
+
+    /**
+     * <code>type</code>
+     * <p>The type method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The type return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder type() {
+        return this.keyword(SQLConstants.TYPE, false);
+    }
+
+    /**
+     * <code>deft</code>
+     * <p>The deft method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The deft return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder deft() {
+        return this.keyword(SQLConstants.DEFAULT, false);
+    }
+
+    /**
+     * <code>comment</code>
+     * <p>The comment method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The comment return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder comment() {
+        return this.keyword(SQLConstants.COMMENT, false);
+    }
+
+
+    /**
      * <code>insert</code>
      * <p>The insert method.</p>
      * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
