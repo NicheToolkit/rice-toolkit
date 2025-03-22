@@ -93,7 +93,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * {@link io.github.nichetoolkit.rice.mapper.TableMapper} <p>The <code>tableMapper</code> field.</p>
      * @see  io.github.nichetoolkit.rice.mapper.TableMapper
      */
-    protected TableMapper<E, I> tableMapper;
+    protected TableMapper tableMapper;
 
     /**
      * <code>logicActuator</code>

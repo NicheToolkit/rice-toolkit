@@ -55,7 +55,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     private String simpleName;
 
     @Override
-    @SuppressWarnings("unchecked")
     public void afterPropertiesSet() throws Exception {
         ServiceHolder.initOfService();
         ServiceHolder.initOfServiceIntend();
@@ -63,7 +62,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         this.superMapper = ServiceHolder.findSuperMapper(this.getClass());
         String superMessage = "The service and mapper name must be like 'xxxService'/'xxxServiceImpl' and 'xxxMapper'.";
         OptionalUtils.ofNullException(this.superMapper, superMessage, this.simpleName, log, ServiceUnknownException::new);
-        this.tableMapper = (TableMapper<E, I>) BeanUtils.beanOfType(TableMapper.class);
+        this.tableMapper = BeanUtils.beanOfType(TableMapper.class);
         if (isFickleField()) {
             String tableMessage = "The bean of table mapper is no found, it's possible that you don't need auto fickle.";
             OptionalUtils.ofNullException(this.tableMapper, tableMessage, this.simpleName, log, ServiceUnknownException::new);

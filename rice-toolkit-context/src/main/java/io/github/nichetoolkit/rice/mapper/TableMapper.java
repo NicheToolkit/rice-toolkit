@@ -9,13 +9,10 @@ import java.util.List;
 /**
  * <code>TableMapper</code>
  * <p>The table mapper interface.</p>
- * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
- * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @see  io.github.nichetoolkit.rice.RestId
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public interface TableMapper<E extends RestId<I>,I> {
+public interface TableMapper {
 
     /**
      * <code>tableColumns</code>
