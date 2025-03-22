@@ -34,8 +34,8 @@ public interface FickleFilterMapper<E extends RestId<I>, I> {
      * <code>findDynamicAllByFickleLoadWhere</code>
      * <p>The find dynamic all by fickle load where method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
-     * @param fickleParams {@link java.lang.String} <p>The fickle params parameter is <code>String</code> type.</p>
      * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param fickleParams {@link java.lang.String} <p>The fickle params parameter is <code>String</code> type.</p>
      * @param loadParams {@link java.lang.Boolean} <p>The load params parameter is <code>Boolean</code> type.</p>
      * @see  java.lang.String
      * @see  org.apache.ibatis.annotations.Param
@@ -43,6 +43,6 @@ public interface FickleFilterMapper<E extends RestId<I>, I> {
      * @see  java.util.List
      * @return  {@link java.util.List} <p>The find dynamic all by fickle load where return object is <code>List</code> type.</p>
      */
-    List<E> findDynamicAllByFickleLoadWhere(@Param("tablename") String tablename, @Param("fickleParams") String[] fickleParams, @Param("whereSql") String whereSql, @Param("loadParams") Boolean... loadParams);
+    List<E> findDynamicAllByFickleLoadWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("fickleParams") String[] fickleParams, @Param("loadParams") Boolean... loadParams);
 
 }

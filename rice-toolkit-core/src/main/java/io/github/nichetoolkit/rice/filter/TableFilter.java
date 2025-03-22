@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.filter;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
 import io.github.nichetoolkit.rice.enums.OperateType;
@@ -9,15 +10,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.*;
 
 /**
  * <code>TableFilter</code>
  * <p>The table filter class.</p>
  * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @see  io.github.nichetoolkit.rice.filter.OperateFilter
+ * @see  io.github.nichetoolkit.rice.filter.FickleFilter
  * @see  lombok.Setter
  * @see  lombok.Getter
  * @see  java.lang.SuppressWarnings
@@ -31,7 +30,7 @@ import java.util.HashSet;
 @SuppressWarnings("WeakerAccess")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TableFilter<K> extends OperateFilter {
+public class TableFilter<K> extends FickleFilter {
     /**
      * <code>tablekey</code>
      * <p>The <code>tablekey</code> field.</p>
@@ -69,11 +68,11 @@ public class TableFilter<K> extends OperateFilter {
      * <code>Builder</code>
      * <p>The builder class.</p>
      * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @see  io.github.nichetoolkit.rice.filter.OperateFilter.Builder
+     * @see  io.github.nichetoolkit.rice.filter.FickleFilter.Builder
      * @author Cyan (snow22314@outlook.com)
      * @since Jdk1.8
      */
-    public static class Builder<K> extends OperateFilter.Builder {
+    public static class Builder<K> extends FickleFilter.Builder {
         /**
          * <code>tablekey</code>
          * <p>The <code>tablekey</code> field.</p>
@@ -95,6 +94,30 @@ public class TableFilter<K> extends OperateFilter {
          */
         public TableFilter.Builder<K> tablekey(K tablekey) {
             this.tablekey = tablekey;
+            return this;
+        }
+
+        @Override
+        public TableFilter.Builder<K> fickles(@NonNull String... fickles) {
+            this.fickles = new HashSet<>(Arrays.asList(fickles));
+            return this;
+        }
+
+        @Override
+        public TableFilter.Builder<K> fickles(@NonNull Collection<String> fickles) {
+            this.fickles = new HashSet<>(fickles);
+            return this;
+        }
+
+        @Override
+        public TableFilter.Builder<K> fickles(@NonNull List<RestKey<String>> fickles) {
+            this.fickles = new HashSet<>(RestKey.keys(fickles));
+            return this;
+        }
+
+        @Override
+        public TableFilter.Builder<K> fickles(@NonNull Map<String,RestKey<String>> fickles) {
+            this.fickles = new HashSet<>(RestKey.keys(fickles.values()));
             return this;
         }
 

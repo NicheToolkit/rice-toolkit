@@ -1,10 +1,8 @@
 package io.github.nichetoolkit.rice.service;
 
+import com.github.pagehelper.Page;
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rest.actuator.AnchorActuator;
-import io.github.nichetoolkit.rest.actuator.BiConsumerActuator;
-import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
-import io.github.nichetoolkit.rest.actuator.FunctionActuator;
+import io.github.nichetoolkit.rest.actuator.*;
 import io.github.nichetoolkit.rest.error.data.DataQueryException;
 import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
 import io.github.nichetoolkit.rest.helper.PartitionHelper;
@@ -541,8 +539,8 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     /**
      * <code>findByIdLoad</code>
      * <p>The find by id load method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param id I <p>The id parameter is <code>I</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
      * @see  java.lang.String
      * @see  java.lang.Boolean
@@ -577,8 +575,8 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     /**
      * <code>findByIdFickle</code>
      * <p>The find by id fickle method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param id I <p>The id parameter is <code>I</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
      * @see  java.lang.String
      * @see  java.lang.SuppressWarnings
@@ -612,8 +610,8 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     /**
      * <code>findByIdFickleLoad</code>
      * <p>The find by id fickle load method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param id I <p>The id parameter is <code>I</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
      * @see  java.lang.String
@@ -675,6 +673,21 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         return entityList;
     }
 
+    /**
+     * <code>findByLinkIdLoad</code>
+     * <p>The find by link id load method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.lang.Boolean
+     * @see  java.util.List
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The find by link id load return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     @SuppressWarnings(value = "unchecked")
     protected <L> List<E> findByLinkIdLoad(L linkId, String tablename, Boolean... isLoadArray) throws RestException {
         List<E> entityList;
@@ -698,6 +711,20 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         return entityList;
     }
 
+    /**
+     * <code>findByLinkIdFickle</code>
+     * <p>The find by link id fickle method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.util.List
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The find by link id fickle return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     @SuppressWarnings(value = "unchecked")
     protected <L> List<E> findByLinkIdFickle(L linkId, String tablename, String... fickleArray) throws RestException {
         List<E> entityList;
@@ -721,6 +748,22 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         return entityList;
     }
 
+    /**
+     * <code>findByLinkIdFickleLoad</code>
+     * <p>The find by link id fickle load method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.lang.Boolean
+     * @see  java.util.List
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The find by link id fickle load return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     @SuppressWarnings(value = "unchecked")
     protected <L> List<E> findByLinkIdFickleLoad(L linkId, String tablename, String[] fickleArray, Boolean... isLoadArray) throws RestException {
         List<E> entityList;
@@ -907,11 +950,11 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     /**
      * <code>findAllLoad</code>
      * <p>The find all load method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
      * @see  java.util.Collection
+     * @see  java.lang.String
      * @see  java.lang.Boolean
      * @see  java.util.List
      * @see  java.lang.SuppressWarnings
@@ -946,11 +989,11 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     /**
      * <code>findAllFickle</code>
      * <p>The find all fickle method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
      * @see  java.util.Collection
+     * @see  java.lang.String
      * @see  java.util.List
      * @see  java.lang.SuppressWarnings
      * @see  io.github.nichetoolkit.rest.RestException
@@ -983,12 +1026,12 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     /**
      * <code>findAllFickleLoad</code>
      * <p>The find all fickle load method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
      * @see  java.util.Collection
+     * @see  java.lang.String
      * @see  java.lang.Boolean
      * @see  java.util.List
      * @see  java.lang.SuppressWarnings
@@ -1050,6 +1093,22 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         return entityList;
     }
 
+    /**
+     * <code>findAllByLinkIdsLoad</code>
+     * <p>The find all by link ids load method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.util.Collection
+     * @see  java.lang.String
+     * @see  java.lang.Boolean
+     * @see  java.util.List
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The find all by link ids load return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     @SuppressWarnings(value = "unchecked")
     protected <L> List<E> findAllByLinkIdsLoad(Collection<L> linkIdList, String tablename, Boolean... isLoadArray) throws RestException {
         List<E> entityList;
@@ -1073,6 +1132,21 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         return entityList;
     }
 
+    /**
+     * <code>findAllByLinkIdsFickle</code>
+     * <p>The find all by link ids fickle method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
+     * @see  java.util.Collection
+     * @see  java.lang.String
+     * @see  java.util.List
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The find all by link ids fickle return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     @SuppressWarnings(value = "unchecked")
     protected <L> List<E> findAllByLinkIdsFickle(Collection<L> linkIdList, String tablename, String... fickleArray) throws RestException {
         List<E> entityList;
@@ -1096,6 +1170,23 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         return entityList;
     }
 
+    /**
+     * <code>findAllByLinkIdsFickleLoad</code>
+     * <p>The find all by link ids fickle load method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.util.Collection
+     * @see  java.lang.String
+     * @see  java.lang.Boolean
+     * @see  java.util.List
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The find all by link ids fickle load return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     @SuppressWarnings(value = "unchecked")
     protected <L> List<E> findAllByLinkIdsFickleLoad(Collection<L> linkIdList, String tablename, String[] fickleArray, Boolean... isLoadArray) throws RestException {
         List<E> entityList;
@@ -1117,6 +1208,228 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
             entityList = findAllByLinkIds(linkIdList, tablename);
         }
         return entityList;
+    }
+
+    /**
+     * <code>findAllByLoadWhere</code>
+     * <p>The find all by load where method.</p>
+     * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param filter F <p>The filter parameter is <code>F</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rice.PageResult
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link io.github.nichetoolkit.rice.PageResult} <p>The find all by load where return object is <code>PageResult</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    @SuppressWarnings(value = "unchecked")
+    protected PageResult<E, I> findAllByLoadWhere(String whereSql, String tablename, F filter, Boolean... isLoadArray) throws RestException {
+        PageResult<E, I> pageResult;
+        List<E> entityList;
+        FilterLoadMapper<E, I> loadFilterMapper = (FilterLoadMapper<E, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = loadFilterMapper.getClass().getMethod("findAllByLoadWhere", String.class, Boolean[].class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method findAllByWhereMethod = findMethod;
+        /* 当LoadMapper被复写的时候 优先调用LoadMapper的findAllByWhereMethod */
+        if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                Page<E> page = filter.toPage();
+                entityList = loadFilterMapper.findDynamicAllByLoadWhere(tablename, whereSql, isLoadArray);
+                pageResult = PageResult.builder(page, entityList);
+            } else {
+                Page<E> page = filter.toPage();
+                entityList = loadFilterMapper.findAllByLoadWhere(whereSql, isLoadArray);
+                pageResult = PageResult.builder(page, entityList);
+            }
+        } else {
+            Page<E> page = filter.toPage();
+            entityList = findAllByWhere(whereSql, tablename);
+            pageResult = PageResult.builder(page, entityList);
+        }
+        return pageResult;
+    }
+
+    /**
+     * <code>findAllByFieldWhere</code>
+     * <p>The find all by field where method.</p>
+     * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param filter F <p>The filter parameter is <code>F</code> type.</p>
+     * @param fieldArray {@link java.lang.String} <p>The field array parameter is <code>String</code> type.</p>
+     * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rice.PageResult
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link io.github.nichetoolkit.rice.PageResult} <p>The find all by field where return object is <code>PageResult</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    @SuppressWarnings(value = "unchecked")
+    protected PageResult<E, I> findAllByFieldWhere(String whereSql, String tablename, F filter, String... fieldArray) throws RestException {
+        PageResult<E, I> pageResult;
+        List<E> entityList;
+        FindFieldMapper<E, I> fieldFilterMapper = (FindFieldMapper<E, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = fieldFilterMapper.getClass().getMethod("findAllByFieldWhere", String.class, String[].class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method findAllByWhereMethod = findMethod;
+        /* 当FindMapper被复写的时候 优先调用FindMapper的findAllByWhereMethod */
+        if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                Page<E> page = filter.toPage();
+                entityList = fieldFilterMapper.findDynamicAllByFieldWhere(tablename, whereSql, fieldArray);
+                pageResult = PageResult.builder(page, entityList);
+            } else {
+                Page<E> page = filter.toPage();
+                entityList = fieldFilterMapper.findAllByFieldWhere(whereSql, fieldArray);
+                pageResult = PageResult.builder(page, entityList);
+            }
+        } else {
+            Page<E> page = filter.toPage();
+            entityList = findAllByWhere(whereSql, tablename);
+            pageResult = PageResult.builder(page, entityList);
+        }
+        return pageResult;
+    }
+
+    /**
+     * <code>findAllByFilterWhere</code>
+     * <p>The find all by filter where method.</p>
+     * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param filter F <p>The filter parameter is <code>F</code> type.</p>
+     * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rice.PageResult
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link io.github.nichetoolkit.rice.PageResult} <p>The find all by filter where return object is <code>PageResult</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    @SuppressWarnings(value = "unchecked")
+    protected PageResult<E, I> findAllByFilterWhere(String whereSql, String tablename, F filter) throws RestException {
+        PageResult<E, I> pageResult;
+        List<E> entityList;
+        FindFilterMapper<E, F, I, K> filterMapper = (FindFilterMapper<E, F, I, K>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, IdFilter.class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method findAllByWhereMethod = findMethod;
+        /* 当FindMapper被复写的时候 优先调用FindMapper的findAllByWhereMethod */
+        if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                Page<E> page = filter.toPage();
+                entityList = filterMapper.findDynamicAllByFilterWhere(tablename, whereSql, filter);
+                pageResult = PageResult.builder(page, entityList);
+            } else {
+                Page<E> page = filter.toPage();
+                entityList = filterMapper.findAllByFilterWhere(whereSql, filter);
+                pageResult = PageResult.builder(page, entityList);
+            }
+        } else {
+            Page<E> page = filter.toPage();
+            entityList = findAllByWhere(whereSql, tablename);
+            pageResult = PageResult.builder(page, entityList);
+        }
+        return pageResult;
+    }
+
+    /**
+     * <code>findAllByFickleWhere</code>
+     * <p>The find all by fickle where method.</p>
+     * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param filter F <p>The filter parameter is <code>F</code> type.</p>
+     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
+     * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rice.PageResult
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link io.github.nichetoolkit.rice.PageResult} <p>The find all by fickle where return object is <code>PageResult</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    @SuppressWarnings(value = "unchecked")
+    protected PageResult<E, I> findAllByFickleWhere(String whereSql, String tablename, F filter, String... fickleArray) throws RestException {
+        PageResult<E, I> pageResult;
+        List<E> entityList;
+        FilterFickleMapper<E, I> filterMapper = (FilterFickleMapper<E, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = filterMapper.getClass().getMethod("findAllByFickleWhere", String.class, String.class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method findAllByWhereMethod = findMethod;
+        /* 当FindMapper被复写的时候 优先调用FindMapper的findAllByWhereMethod */
+        if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                Page<E> page = filter.toPage();
+                entityList = filterMapper.findDynamicAllByFickleWhere(tablename, whereSql, fickleArray);
+                pageResult = PageResult.builder(page, entityList);
+            } else {
+                Page<E> page = filter.toPage();
+                entityList = filterMapper.findAllByFickleWhere(whereSql, fickleArray);
+                pageResult = PageResult.builder(page, entityList);
+            }
+        } else {
+            Page<E> page = filter.toPage();
+            entityList = findAllByWhere(whereSql, tablename);
+            pageResult = PageResult.builder(page, entityList);
+        }
+        return pageResult;
+    }
+
+    /**
+     * <code>findAllByFickleLoadWhere</code>
+     * <p>The find all by fickle load where method.</p>
+     * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param filter F <p>The filter parameter is <code>F</code> type.</p>
+     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rice.PageResult
+     * @see  java.lang.SuppressWarnings
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link io.github.nichetoolkit.rice.PageResult} <p>The find all by fickle load where return object is <code>PageResult</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    @SuppressWarnings(value = "unchecked")
+    protected PageResult<E, I> findAllByFickleLoadWhere(String whereSql, String tablename, F filter, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+        PageResult<E, I> pageResult;
+        List<E> entityList;
+        FickleFilterMapper<E, I> filterMapper = (FickleFilterMapper<E, I>) superMapper;
+        Method findMethod = null;
+        try {
+            findMethod = filterMapper.getClass().getMethod("findAllByFickleLoadWhere", String.class, String[].class, Boolean[].class);
+        } catch (NoSuchMethodException ignored) {
+        }
+        Method findAllByWhereMethod = findMethod;
+        /* 当FindMapper被复写的时候 优先调用FindMapper的findAllByWhereMethod */
+        if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
+            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
+                Page<E> page = filter.toPage();
+                entityList = filterMapper.findDynamicAllByFickleLoadWhere(tablename, whereSql, fickleArray, isLoadArray);
+                pageResult = PageResult.builder(page, entityList);
+            } else {
+                Page<E> page = filter.toPage();
+                entityList = filterMapper.findAllByFickleLoadWhere(whereSql, fickleArray, isLoadArray);
+                pageResult = PageResult.builder(page, entityList);
+            }
+        } else {
+            Page<E> page = filter.toPage();
+            entityList = findAllByWhere(whereSql, tablename);
+            pageResult = PageResult.builder(page, entityList);
+        }
+        return pageResult;
     }
 
     /**

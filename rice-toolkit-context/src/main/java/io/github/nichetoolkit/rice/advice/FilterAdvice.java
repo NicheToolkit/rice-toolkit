@@ -122,6 +122,19 @@ public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
     }
 
     /**
+     * <code>fickleArray</code>
+     * <p>The fickle array method.</p>
+     * @param filter F <p>The filter parameter is <code>F</code> type.</p>
+     * @return  {@link java.lang.String} <p>The fickle array return object is <code>String</code> type.</p>
+     * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    default String[] fickleArray(F filter) throws RestException {
+        return filter.toFickleArray();
+    }
+
+    /**
      * <code>tablekey</code>
      * <p>The tablekey method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>

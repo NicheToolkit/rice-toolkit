@@ -1213,7 +1213,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    @SuppressWarnings(value = "unchecked")
     public RestPage<M> queryAllWithFilter(F filter) throws RestException {
         optionalQueryFilter(filter);
         queryFilterCache.set(filter);
@@ -1221,77 +1220,31 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         Boolean[] loadArray = findLoadArray(filter);
         Boolean[] isLoadArray = queryLoadArray(filter);
         String[] fieldArray = fieldArray(filter);
+        String[] fickleArray = fickleArray(filter);
         K tablekey = tablekey(filter);
         String tablename = resolveTablename(tablekey);
-        Page<E> page;
-        List<E> entityList;
-        if (loadArray.length > 0 && FilterLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            FilterLoadMapper<E, I> loadFilterMapper = (FilterLoadMapper<E, I>) superMapper;
-            Method findMethod = null;
-            try {
-                findMethod = loadFilterMapper.getClass().getMethod("findAllByLoadWhere", String.class, Boolean[].class);
-            } catch (NoSuchMethodException ignored) {
-            }
-            Method findAllByWhereMethod = findMethod;
-            /* 当LoadMapper被复写的时候 优先调用LoadMapper的findAllByWhereMethod */
-            if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
-                page = filter.toPage();
-                if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    entityList = loadFilterMapper.findDynamicAllByLoadWhere(tablename, whereSql, loadArray);
-                } else {
-                    entityList = loadFilterMapper.findAllByLoadWhere(whereSql, loadArray);
-                }
-            } else {
-                page = filter.toPage();
-                entityList = findAllByWhere(whereSql, tablename);
-            }
-        } else if (fieldArray.length > 0 && FindFieldMapper.class.isAssignableFrom(superMapper.getClass())) {
-            FindFieldMapper<E, I> fieldFilterMapper = (FindFieldMapper<E, I>) superMapper;
-            Method findMethod = null;
-            try {
-                findMethod = fieldFilterMapper.getClass().getMethod("findAllByFieldWhere", String.class, String[].class);
-            } catch (NoSuchMethodException ignored) {
-            }
-            Method findAllByWhereMethod = findMethod;
-            /* 当FindMapper被复写的时候 优先调用FindMapper的findAllByWhereMethod */
-            if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
-                page = filter.toPage();
-                if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    entityList = fieldFilterMapper.findDynamicAllByFieldWhere(tablename, whereSql, fieldArray);
-                } else {
-                    entityList = fieldFilterMapper.findAllByFieldWhere(whereSql, fieldArray);
-                }
-            } else {
-                page = filter.toPage();
-                entityList = findAllByWhere(whereSql, tablename);
-            }
+        String[] tableFickle = resolveTableFickle(tablename, fickleArray);
+        PageResult<E, I> pageResult;
+        if (GeneralUtils.isNotEmpty(loadArray) && GeneralUtils.isNotEmpty(tableFickle)
+                && isFickleField() && FickleFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
+            pageResult = findAllByFickleLoadWhere(whereSql, tablename, filter, tableFickle, loadArray);
+        } else if (GeneralUtils.isNotEmpty(tableFickle) && isFickleField()
+                && FilterFickleMapper.class.isAssignableFrom(superMapper.getClass())) {
+            pageResult = findAllByFickleWhere(whereSql, tablename, filter, tableFickle);
+        } else if (GeneralUtils.isNotEmpty(loadArray) && FilterLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
+            pageResult = findAllByLoadWhere(whereSql, tablename, filter, loadArray);
+        } else if (GeneralUtils.isNotEmpty(fieldArray) && FindFieldMapper.class.isAssignableFrom(superMapper.getClass())) {
+            pageResult = findAllByFieldWhere(whereSql, tablename, filter, fieldArray);
         } else if (FindFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-            FindFilterMapper<E, F, I, K> filterMapper = (FindFilterMapper<E, F, I, K>) superMapper;
-            Method findMethod = null;
-            try {
-                findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, IdFilter.class);
-            } catch (NoSuchMethodException ignored) {
-            }
-            Method findAllByWhereMethod = findMethod;
-            /* 当FindMapper被复写的时候 优先调用FindMapper的findAllByWhereMethod */
-            if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
-                page = filter.toPage();
-                if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    entityList = filterMapper.findDynamicAllByFilterWhere(tablename, whereSql, filter);
-                } else {
-                    entityList = filterMapper.findAllByFilterWhere(whereSql, filter);
-                }
-            } else {
-                page = filter.toPage();
-                entityList = findAllByWhere(whereSql, tablename);
-            }
+            pageResult = findAllByFilterWhere(whereSql, tablename, filter);
         } else {
-            page = filter.toPage();
-            entityList = findAllByWhere(whereSql, tablename);
+            Page<E> page = filter.toPage();
+            List<E> entityList = findAllByWhere(whereSql, tablename);
+            pageResult = PageResult.builder(page, entityList);
         }
-        List<M> modelList = modelActuator(entityList, null, isLoadArray);
+        List<M> modelList = modelActuator(pageResult.getEntities(), null, isLoadArray);
         queryFilterCache.remove();
-        return RestPage.result(modelList, page);
+        return RestPage.result(modelList, pageResult.getPage());
     }
 
     /**
