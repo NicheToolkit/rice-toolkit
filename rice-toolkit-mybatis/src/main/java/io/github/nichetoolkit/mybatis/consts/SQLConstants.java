@@ -353,6 +353,13 @@ public interface SQLConstants {
      * @see  java.lang.String
      */
     String IS_NULL = "IS NULL";
+
+    /**
+     * <code>NOT_NULL</code>
+     * {@link java.lang.String} <p>The constant <code>NOT_NULL</code> field.</p>
+     * @see  java.lang.String
+     */
+    String NOT_NULL = "NOT NULL";
     /**
      * <code>IS_NOT_NULL</code>
      * {@link java.lang.String} <p>The constant <code>IS_NOT_NULL</code> field.</p>
