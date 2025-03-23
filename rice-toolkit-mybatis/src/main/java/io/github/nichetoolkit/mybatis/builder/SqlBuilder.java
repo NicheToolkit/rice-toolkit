@@ -1897,6 +1897,15 @@ public final class SqlBuilder implements Serializable, CharSequence {
     }
 
     /**
+     * <code>is</code>
+     * <p>The is method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The is return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder is() {
+        return this.keyword(SQLConstants.IS, false);
+    }
+
+    /**
      * <code>isNull</code>
      * <p>The is null method.</p>
      * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The is null return object is <code>SqlBuilder</code> type.</p>

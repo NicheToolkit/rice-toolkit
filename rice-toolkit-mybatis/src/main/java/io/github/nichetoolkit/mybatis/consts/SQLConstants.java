@@ -348,6 +348,13 @@ public interface SQLConstants {
     String EXCLUDED = "EXCLUDED";
 
     /**
+     * <code>IS</code>
+     * {@link java.lang.String} <p>The constant <code>IS</code> field.</p>
+     * @see  java.lang.String
+     */
+    String IS = "IS";
+
+    /**
      * <code>IS_NULL</code>
      * {@link java.lang.String} <p>The constant <code>IS_NULL</code> field.</p>
      * @see  java.lang.String
