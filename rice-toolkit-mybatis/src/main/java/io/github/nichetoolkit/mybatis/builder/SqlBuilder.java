@@ -1996,6 +1996,15 @@ public final class SqlBuilder implements Serializable, CharSequence {
     }
 
     /**
+     * <code>dropIndex</code>
+     * <p>The drop index method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The drop index return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder dropIndex() {
+        return this.keyword(SQLConstants.DROP_INDEX, false);
+    }
+
+    /**
      * <code>type</code>
      * <p>The type method.</p>
      * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The type return object is <code>SqlBuilder</code> type.</p>

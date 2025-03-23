@@ -139,6 +139,13 @@ public interface SQLConstants {
      * @see  java.lang.String
      */
     String DROP_COLUMN = "DROP COLUMN";
+
+    /**
+     * <code>DROP_INDEX</code>
+     * {@link java.lang.String} <p>The constant <code>DROP_INDEX</code> field.</p>
+     * @see  java.lang.String
+     */
+    String DROP_INDEX = "DROP INDEX";
     /**
      * <code>TYPE</code>
      * {@link java.lang.String} <p>The constant <code>TYPE</code> field.</p>
