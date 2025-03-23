@@ -1,7 +1,6 @@
 package io.github.nichetoolkit.rice.mapper;
 
 import io.github.nichetoolkit.rest.RestField;
-import io.github.nichetoolkit.rice.RestId;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -26,15 +25,26 @@ public interface TableMapper {
     List<String> tableColumns(@Param("tablename") String tablename);
 
     /**
-     * <code>indexColumn</code>
-     * <p>The index column method.</p>
+     * <code>createIndex</code>
+     * <p>The create index method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param field {@link io.github.nichetoolkit.rest.RestField} <p>The field parameter is <code>RestField</code> type.</p>
      * @see  java.lang.String
      * @see  org.apache.ibatis.annotations.Param
      * @see  io.github.nichetoolkit.rest.RestField
      */
-    void indexColumn(@Param("tablename") String tablename, @Param("field") RestField<?> field);
+    void createIndex(@Param("tablename") String tablename, @Param("field") RestField<?> field);
+
+    /**
+     * <code>dropIndex</code>
+     * <p>The drop index method.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param field {@link io.github.nichetoolkit.rest.RestField} <p>The field parameter is <code>RestField</code> type.</p>
+     * @see  java.lang.String
+     * @see  org.apache.ibatis.annotations.Param
+     * @see  io.github.nichetoolkit.rest.RestField
+     */
+    void dropIndex(@Param("tablename") String tablename, @Param("field") RestField<?> field);
 
     /**
      * <code>addColumn</code>
