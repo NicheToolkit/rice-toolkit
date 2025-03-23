@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import io.github.nichetoolkit.rest.RestType;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
-import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
