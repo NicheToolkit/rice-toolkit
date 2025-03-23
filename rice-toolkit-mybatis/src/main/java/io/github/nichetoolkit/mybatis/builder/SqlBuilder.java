@@ -1915,6 +1915,24 @@ public final class SqlBuilder implements Serializable, CharSequence {
     }
 
     /**
+     * <code>ifExists</code>
+     * <p>The if exists method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The if exists return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder ifExists() {
+        return this.keyword(SQLConstants.IF_EXISTS, false);
+    }
+
+    /**
+     * <code>ifNotExists</code>
+     * <p>The if not exists method.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The if not exists return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder ifNotExists() {
+        return this.keyword(SQLConstants.IF_NOT_EXISTS, false);
+    }
+
+    /**
      * <code>modify</code>
      * <p>The modify method.</p>
      * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The modify return object is <code>SqlBuilder</code> type.</p>

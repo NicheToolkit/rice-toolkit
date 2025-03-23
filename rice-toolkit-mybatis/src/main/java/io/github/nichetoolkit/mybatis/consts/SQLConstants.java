@@ -40,6 +40,34 @@ public interface SQLConstants {
      * @see  java.lang.String
      */
     String USING = "USING";
+
+    /**
+     * <code>NOT</code>
+     * {@link java.lang.String} <p>The constant <code>NOT</code> field.</p>
+     * @see  java.lang.String
+     */
+    String NOT = "NOT";
+
+    /**
+     * <code>EXISTS</code>
+     * {@link java.lang.String} <p>The constant <code>EXISTS</code> field.</p>
+     * @see  java.lang.String
+     */
+    String EXISTS = "EXISTS";
+
+    /**
+     * <code>IF_EXISTS</code>
+     * {@link java.lang.String} <p>The constant <code>IF_EXISTS</code> field.</p>
+     * @see  java.lang.String
+     */
+    String IF_EXISTS = "IF EXISTS";
+
+    /**
+     * <code>IF_NOT_EXISTS</code>
+     * {@link java.lang.String} <p>The constant <code>IF_NOT_EXISTS</code> field.</p>
+     * @see  java.lang.String
+     */
+    String IF_NOT_EXISTS = "IF NOT EXISTS";
     /**
      * <code>ALTER</code>
      * {@link java.lang.String} <p>The constant <code>ALTER</code> field.</p>
