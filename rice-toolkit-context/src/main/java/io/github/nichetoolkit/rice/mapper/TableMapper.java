@@ -54,10 +54,8 @@ public interface TableMapper {
      * @see  java.lang.String
      * @see  org.apache.ibatis.annotations.Param
      * @see  io.github.nichetoolkit.rest.RestField
-     * @see  java.util.List
-     * @return  {@link java.util.List} <p>The add column return object is <code>List</code> type.</p>
      */
-    List<String> addColumn(@Param("tablename") String tablename, @Param("field") RestField<?> field);
+    void addColumn(@Param("tablename") String tablename, @Param("field") RestField<?> field);
 
     /**
      * <code>modifyColumn</code>
@@ -67,23 +65,8 @@ public interface TableMapper {
      * @see  java.lang.String
      * @see  org.apache.ibatis.annotations.Param
      * @see  io.github.nichetoolkit.rest.RestField
-     * @see  java.util.List
-     * @return  {@link java.util.List} <p>The modify column return object is <code>List</code> type.</p>
      */
-    List<String> modifyColumn(@Param("tablename") String tablename, @Param("field") RestField<?> field);
-
-    /**
-     * <code>refreshColumn</code>
-     * <p>The refresh column method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
-     * @param field {@link io.github.nichetoolkit.rest.RestField} <p>The field parameter is <code>RestField</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.apache.ibatis.annotations.Param
-     * @see  io.github.nichetoolkit.rest.RestField
-     * @see  java.util.List
-     * @return  {@link java.util.List} <p>The refresh column return object is <code>List</code> type.</p>
-     */
-    List<String> refreshColumn(@Param("tablename") String tablename, @Param("field") RestField<?> field);
+    void modifyColumn(@Param("tablename") String tablename, @Param("field") RestField<?> field);
 
     /**
      * <code>dropColumn</code>
@@ -93,8 +76,6 @@ public interface TableMapper {
      * @see  java.lang.String
      * @see  org.apache.ibatis.annotations.Param
      * @see  io.github.nichetoolkit.rest.RestField
-     * @see  java.util.List
-     * @return  {@link java.util.List} <p>The drop column return object is <code>List</code> type.</p>
      */
-    List<String> dropColumn(@Param("tablename") String tablename, @Param("field") RestField<?> field);
+    void dropColumn(@Param("tablename") String tablename, @Param("field") RestField<?> field);
 }
