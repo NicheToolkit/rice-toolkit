@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.service;
 
 import com.github.pagehelper.Page;
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.actuator.*;
 import io.github.nichetoolkit.rest.error.data.DataQueryException;
 import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
@@ -469,6 +470,25 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * <code>resolveTableFickle</code>
      * <p>The resolve table fickle method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param fickleList {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.lang.String} <p>The resolve table fickle return object is <code>String</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    protected String[] resolveTableFickle(String tablename, Collection<RestKey<String>> fickleList) throws RestException {
+        if (GeneralUtils.isEmpty(fickleList)) {
+            return resolveTableFickle(tablename);
+        }
+        String[] fickleArray = fickleList.stream().map(RestKey::getKey).toArray(String[]::new);
+        return resolveTableFickle(tablename,fickleArray);
+    }
+
+    /**
+     * <code>resolveTableFickle</code>
+     * <p>The resolve table fickle method.</p>
+     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
      * @see  java.lang.String
      * @see  io.github.nichetoolkit.rest.RestException
@@ -648,9 +668,11 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * <code>findByLinkId</code>
      * <p>The find by link id method.</p>
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  java.util.List
      * @see  java.lang.SuppressWarnings
      * @see  io.github.nichetoolkit.rest.RestException
@@ -658,14 +680,14 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings(value = "unchecked")
-    protected <L> List<E> findByLinkId(L linkId, String tablename) throws RestException {
+    protected <L> List<E> findByLinkId(String tablename, L linkId, RestKey<String> linkName) throws RestException {
         List<E> entityList;
         if (FindLinkMapper.class.isAssignableFrom(superMapper.getClass())) {
             FindLinkMapper<E, L, I> findLinkMapper = (FindLinkMapper<E, L, I>) superMapper;
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                entityList = findLinkMapper.findDynamicByLinkId(tablename, linkId);
+                entityList = findLinkMapper.findDynamicByLinkId(tablename, linkId, linkName.getKey());
             } else {
-                entityList = findLinkMapper.findByLinkId(linkId);
+                entityList = findLinkMapper.findByLinkId(linkId, linkName.getKey());
             }
         } else {
             throw new UnsupportedErrorException("The 'findByLinkId' method is unimplemented, the mapper must extends 'FindLinkMapper'.");
@@ -677,10 +699,12 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * <code>findByLinkIdLoad</code>
      * <p>The find by link id load method.</p>
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
      * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  java.lang.Boolean
      * @see  java.util.List
      * @see  java.lang.SuppressWarnings
@@ -689,7 +713,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings(value = "unchecked")
-    protected <L> List<E> findByLinkIdLoad(L linkId, String tablename, Boolean... isLoadArray) throws RestException {
+    protected <L> List<E> findByLinkIdLoad( String tablename, L linkId, RestKey<String> linkName, Boolean... isLoadArray) throws RestException {
         List<E> entityList;
         LinkLoadMapper<E, L, I> loadMapper = (LinkLoadMapper<E, L, I>) superMapper;
         Method findMethod = null;
@@ -701,12 +725,12 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
         if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                entityList = loadMapper.findDynamicByLinkIdLoad(tablename, linkId, isLoadArray);
+                entityList = loadMapper.findDynamicByLinkIdLoad(tablename, linkId, linkName.getKey(), isLoadArray);
             } else {
-                entityList = loadMapper.findByLinkIdLoad(linkId, isLoadArray);
+                entityList = loadMapper.findByLinkIdLoad(linkId, linkName.getKey(), isLoadArray);
             }
         } else {
-            entityList = findByLinkId(linkId, tablename);
+            entityList = findByLinkId(tablename, linkId, linkName);
         }
         return entityList;
     }
@@ -715,10 +739,12 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * <code>findByLinkIdFickle</code>
      * <p>The find by link id fickle method.</p>
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
      * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  java.util.List
      * @see  java.lang.SuppressWarnings
      * @see  io.github.nichetoolkit.rest.RestException
@@ -726,7 +752,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings(value = "unchecked")
-    protected <L> List<E> findByLinkIdFickle(L linkId, String tablename, String... fickleArray) throws RestException {
+    protected <L> List<E> findByLinkIdFickle(String tablename, L linkId, RestKey<String> linkName, String... fickleArray) throws RestException {
         List<E> entityList;
         LinkFickleMapper<E, L, I> fickleMapper = (LinkFickleMapper<E, L, I>) superMapper;
         Method findMethod = null;
@@ -738,12 +764,12 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
         if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                entityList = fickleMapper.findDynamicByLinkIdFickle(tablename, linkId, fickleArray);
+                entityList = fickleMapper.findDynamicByLinkIdFickle(tablename, linkId, linkName.getKey(), fickleArray);
             } else {
-                entityList = fickleMapper.findByLinkIdFickle(linkId, fickleArray);
+                entityList = fickleMapper.findByLinkIdFickle(linkId, linkName.getKey(), fickleArray);
             }
         } else {
-            entityList = findByLinkId(linkId, tablename);
+            entityList = findByLinkId(tablename, linkId, linkName);
         }
         return entityList;
     }
@@ -752,11 +778,13 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * <code>findByLinkIdFickleLoad</code>
      * <p>The find by link id fickle load method.</p>
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
      * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  java.lang.Boolean
      * @see  java.util.List
      * @see  java.lang.SuppressWarnings
@@ -765,7 +793,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings(value = "unchecked")
-    protected <L> List<E> findByLinkIdFickleLoad(L linkId, String tablename, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+    protected <L> List<E> findByLinkIdFickleLoad(String tablename, L linkId, RestKey<String> linkName, String[] fickleArray, Boolean... isLoadArray) throws RestException {
         List<E> entityList;
         FickleLinkMapper<E, L, I> fickleLinkMapper = (FickleLinkMapper<E, L, I>) superMapper;
         Method findMethod = null;
@@ -777,12 +805,12 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
         if (queryByIdMethod != null && !queryByIdMethod.isDefault()) {
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                entityList = fickleLinkMapper.findDynamicByLinkIdFickleLoad(tablename, linkId, fickleArray, isLoadArray);
+                entityList = fickleLinkMapper.findDynamicByLinkIdFickleLoad(tablename, linkId, linkName.getKey(), fickleArray, isLoadArray);
             } else {
-                entityList = fickleLinkMapper.findByLinkIdFickleLoad(linkId, fickleArray, isLoadArray);
+                entityList = fickleLinkMapper.findByLinkIdFickleLoad(linkId, linkName.getKey(), fickleArray, isLoadArray);
             }
         } else {
-            entityList = findByLinkId(linkId, tablename);
+            entityList = findByLinkId(tablename, linkId, linkName);
         }
         return entityList;
     }
@@ -816,19 +844,21 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param status S <p>The status parameter is <code>S</code> type.</p>
      * @see  java.lang.String
      * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  java.lang.SuppressWarnings
      * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings({"unchecked", "Duplicates"})
-    protected <L, S> void alertLinkPartition(String tablename, Collection<L> linkIdList, S status) throws RestException {
+    protected <L, S> void alertLinkPartition(String tablename, Collection<L> linkIdList, RestKey<String> linkName, S status) throws RestException {
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicAllByLinkIds(tablename, linkIds, status));
+            PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicAllByLinkIds(tablename, linkIds, linkName.getKey(), status));
         } else {
-            PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertAllByLinkIds(linkIds, status));
+            PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertAllByLinkIds(linkIds, linkName.getKey(), status));
         }
     }
 
@@ -883,20 +913,22 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
      * @see  java.lang.String
      * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  io.github.nichetoolkit.rice.enums.OperateType
      * @see  java.lang.SuppressWarnings
      * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings({"unchecked", "Duplicates"})
-    protected <L> void operateLinkPartition(String tablename, Collection<L> linkIdList, OperateType operate) throws RestException {
+    protected <L> void operateLinkPartition(String tablename, Collection<L> linkIdList, RestKey<String> linkName, OperateType operate) throws RestException {
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((OperateLinkMapper<L, I>) superMapper).operateDynamicAllByLinkIds(tablename, linkIds, operate.getKey()));
+            PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((OperateLinkMapper<L, I>) superMapper).operateDynamicAllByLinkIds(tablename, linkIds, linkName.getKey(), operate.getKey()));
         } else {
-            PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((OperateLinkMapper<L, I>) superMapper).operateAllByLinkIds(linkIds, operate.getKey()));
+            PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((OperateLinkMapper<L, I>) superMapper).operateAllByLinkIds(linkIds, linkName.getKey(), operate.getKey()));
         }
     }
 
@@ -1067,10 +1099,12 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * <code>findAllByLinkIds</code>
      * <p>The find all by link ids method.</p>
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
-     * @see  java.util.Collection
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @see  java.lang.String
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  java.util.List
      * @see  java.lang.SuppressWarnings
      * @see  io.github.nichetoolkit.rest.RestException
@@ -1078,14 +1112,14 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings(value = "unchecked")
-    protected <L> List<E> findAllByLinkIds(Collection<L> linkIdList, String tablename) throws RestException {
+    protected <L> List<E> findAllByLinkIds(String tablename, Collection<L> linkIdList, RestKey<String> linkName) throws RestException {
         List<E> entityList;
         if (FindLinkMapper.class.isAssignableFrom(superMapper.getClass())) {
             FindLinkMapper<E, L, I> findLinkMapper = (FindLinkMapper<E, L, I>) superMapper;
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> findLinkMapper.findDynamicAllByLinkIds(tablename, linkIds));
+                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> findLinkMapper.findDynamicAllByLinkIds(tablename, linkIds, linkName.getKey()));
             } else {
-                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), findLinkMapper::findAllByLinkIds);
+                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> findLinkMapper.findAllByLinkIds(linkIds, linkName.getKey()));
             }
         } else {
             throw new UnsupportedErrorException("The 'findAllByLinkIds' method is unimplemented, the mapper must extends 'FindLinkMapper'.");
@@ -1097,11 +1131,13 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * <code>findAllByLinkIdsLoad</code>
      * <p>The find all by link ids load method.</p>
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
-     * @see  java.util.Collection
      * @see  java.lang.String
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  java.lang.Boolean
      * @see  java.util.List
      * @see  java.lang.SuppressWarnings
@@ -1110,7 +1146,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings(value = "unchecked")
-    protected <L> List<E> findAllByLinkIdsLoad(Collection<L> linkIdList, String tablename, Boolean... isLoadArray) throws RestException {
+    protected <L> List<E> findAllByLinkIdsLoad(String tablename, Collection<L> linkIdList, RestKey<String> linkName, Boolean... isLoadArray) throws RestException {
         List<E> entityList;
         LinkLoadMapper<E, L, I> loadMapper = (LinkLoadMapper<E, L, I>) superMapper;
         Method findMethod = null;
@@ -1122,12 +1158,12 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
         if (queryAllMethod != null && !queryAllMethod.isDefault()) {
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> loadMapper.findDynamicAllByLinkIdsLoad(tablename, linkIds, isLoadArray));
+                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> loadMapper.findDynamicAllByLinkIdsLoad(tablename, linkIds, linkName.getKey(), isLoadArray));
             } else {
-                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> loadMapper.findAllByLinkIdsLoad(linkIds, isLoadArray));
+                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> loadMapper.findAllByLinkIdsLoad(linkIds, linkName.getKey(), isLoadArray));
             }
         } else {
-            entityList = findAllByLinkIds(linkIdList, tablename);
+            entityList = findAllByLinkIds(tablename, linkIdList, linkName);
         }
         return entityList;
     }
@@ -1136,11 +1172,13 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * <code>findAllByLinkIdsFickle</code>
      * <p>The find all by link ids fickle method.</p>
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
-     * @see  java.util.Collection
      * @see  java.lang.String
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  java.util.List
      * @see  java.lang.SuppressWarnings
      * @see  io.github.nichetoolkit.rest.RestException
@@ -1148,7 +1186,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings(value = "unchecked")
-    protected <L> List<E> findAllByLinkIdsFickle(Collection<L> linkIdList, String tablename, String... fickleArray) throws RestException {
+    protected <L> List<E> findAllByLinkIdsFickle(String tablename, Collection<L> linkIdList, RestKey<String> linkName, String... fickleArray) throws RestException {
         List<E> entityList;
         LinkFickleMapper<E, L, I> fickleMapper = (LinkFickleMapper<E, L, I>) superMapper;
         Method findMethod = null;
@@ -1160,12 +1198,12 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
         if (queryAllMethod != null && !queryAllMethod.isDefault()) {
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> fickleMapper.findDynamicAllByLinkIdsFickle(tablename, linkIds, fickleArray));
+                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> fickleMapper.findDynamicAllByLinkIdsFickle(tablename, linkIds, linkName.getKey(), fickleArray));
             } else {
-                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> fickleMapper.findAllByLinkIdsFickle(linkIds, fickleArray));
+                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> fickleMapper.findAllByLinkIdsFickle(linkIds, linkName.getKey(), fickleArray));
             }
         } else {
-            entityList = findAllByLinkIds(linkIdList, tablename);
+            entityList = findAllByLinkIds(tablename, linkIdList, linkName);
         }
         return entityList;
     }
@@ -1174,12 +1212,14 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * <code>findAllByLinkIdsFickleLoad</code>
      * <p>The find all by link ids fickle load method.</p>
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
-     * @see  java.util.Collection
      * @see  java.lang.String
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  java.lang.Boolean
      * @see  java.util.List
      * @see  java.lang.SuppressWarnings
@@ -1188,7 +1228,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings(value = "unchecked")
-    protected <L> List<E> findAllByLinkIdsFickleLoad(Collection<L> linkIdList, String tablename, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+    protected <L> List<E> findAllByLinkIdsFickleLoad(String tablename, Collection<L> linkIdList, RestKey<String> linkName, String[] fickleArray, Boolean... isLoadArray) throws RestException {
         List<E> entityList;
         FickleLinkMapper<E, L, I> fickleLinkMapper = (FickleLinkMapper<E, L, I>) superMapper;
         Method findMethod = null;
@@ -1200,12 +1240,12 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByIdMethod */
         if (queryAllMethod != null && !queryAllMethod.isDefault()) {
             if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> fickleLinkMapper.findDynamicAllByLinkIdsFickleLoad(tablename, linkIds, fickleArray, isLoadArray));
+                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> fickleLinkMapper.findDynamicAllByLinkIdsFickleLoad(tablename, linkIds, linkName.getKey(), fickleArray, isLoadArray));
             } else {
-                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> fickleLinkMapper.findAllByLinkIdsFickleLoad(linkIds, fickleArray, isLoadArray));
+                entityList = PartitionHelper.query(linkIdList, this.partitionOfQuery(), linkIds -> fickleLinkMapper.findAllByLinkIdsFickleLoad(linkIds, linkName.getKey(), fickleArray, isLoadArray));
             }
         } else {
-            entityList = findAllByLinkIds(linkIdList, tablename);
+            entityList = findAllByLinkIds(tablename, linkIdList, linkName);
         }
         return entityList;
     }
@@ -1245,50 +1285,6 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
             } else {
                 Page<E> page = filter.toPage();
                 entityList = loadFilterMapper.findAllByLoadWhere(whereSql, isLoadArray);
-                pageResult = PageResult.builder(page, entityList);
-            }
-        } else {
-            Page<E> page = filter.toPage();
-            entityList = findAllByWhere(whereSql, tablename);
-            pageResult = PageResult.builder(page, entityList);
-        }
-        return pageResult;
-    }
-
-    /**
-     * <code>findAllByFieldWhere</code>
-     * <p>The find all by field where method.</p>
-     * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
-     * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @param fieldArray {@link java.lang.String} <p>The field array parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  io.github.nichetoolkit.rice.PageResult
-     * @see  java.lang.SuppressWarnings
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link io.github.nichetoolkit.rice.PageResult} <p>The find all by field where return object is <code>PageResult</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
-    @SuppressWarnings(value = "unchecked")
-    protected PageResult<E, I> findAllByFieldWhere(String whereSql, String tablename, F filter, String... fieldArray) throws RestException {
-        PageResult<E, I> pageResult;
-        List<E> entityList;
-        FindFieldMapper<E, I> fieldFilterMapper = (FindFieldMapper<E, I>) superMapper;
-        Method findMethod = null;
-        try {
-            findMethod = fieldFilterMapper.getClass().getMethod("findAllByFieldWhere", String.class, String[].class);
-        } catch (NoSuchMethodException ignored) {
-        }
-        Method findAllByWhereMethod = findMethod;
-        /* 当FindMapper被复写的时候 优先调用FindMapper的findAllByWhereMethod */
-        if (findAllByWhereMethod != null && !findAllByWhereMethod.isDefault()) {
-            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                Page<E> page = filter.toPage();
-                entityList = fieldFilterMapper.findDynamicAllByFieldWhere(tablename, whereSql, fieldArray);
-                pageResult = PageResult.builder(page, entityList);
-            } else {
-                Page<E> page = filter.toPage();
-                entityList = fieldFilterMapper.findAllByFieldWhere(whereSql, fieldArray);
                 pageResult = PageResult.builder(page, entityList);
             }
         } else {
@@ -1460,20 +1456,22 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param logic {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
      * @see  java.lang.String
      * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  java.lang.Object
      * @see  java.lang.SuppressWarnings
      * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings({"unchecked", "Duplicates"})
-    protected <L> void removeLinkPartition(String tablename, Collection<L> linkIdList, Object logic) throws RestException {
+    protected <L> void removeLinkPartition(String tablename, Collection<L> linkIdList, RestKey<String> linkName, Object logic) throws RestException {
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            PartitionHelper.delete(linkIdList, this.partitionOfDelete(), linkIds -> ((RemoveLinkMapper<L, I>) superMapper).removeDynamicAllByLinkIds(tablename, linkIds, logic));
+            PartitionHelper.delete(linkIdList, this.partitionOfDelete(), linkIds -> ((RemoveLinkMapper<L, I>) superMapper).removeDynamicAllByLinkIds(tablename, linkIds, linkName.getKey(), logic));
         } else {
-            PartitionHelper.delete(linkIdList, this.partitionOfDelete(), linkIds -> ((RemoveLinkMapper<L, I>) superMapper).removeAllByLinkIds(linkIds, logic));
+            PartitionHelper.delete(linkIdList, this.partitionOfDelete(), linkIds -> ((RemoveLinkMapper<L, I>) superMapper).removeAllByLinkIds(linkIds, linkName.getKey(), logic));
         }
     }
 
@@ -1525,18 +1523,20 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @see  java.lang.String
      * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  java.lang.SuppressWarnings
      * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @SuppressWarnings({"unchecked", "Duplicates"})
-    protected <L> void deleteLinkPartition(String tablename, Collection<L> linkIdList) throws RestException {
+    protected <L> void deleteLinkPartition(String tablename, Collection<L> linkIdList, RestKey<String> linkName) throws RestException {
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            PartitionHelper.delete(linkIdList, this.partitionOfDelete(), linkIds -> ((DeleteLinkMapper<L, I>) superMapper).deleteDynamicAllByLinkIds(tablename, linkIds));
+            PartitionHelper.delete(linkIdList, this.partitionOfDelete(), linkIds -> ((DeleteLinkMapper<L, I>) superMapper).deleteDynamicAllByLinkIds(tablename, linkIds, linkName.getKey()));
         } else {
-            PartitionHelper.delete(linkIdList, this.partitionOfDelete(), linkIds -> ((DeleteLinkMapper<L, I>) superMapper).deleteAllByLinkIds(linkIds));
+            PartitionHelper.delete(linkIdList, this.partitionOfDelete(), linkIds -> ((DeleteLinkMapper<L, I>) superMapper).deleteAllByLinkIds(linkIds, linkName.getKey()));
         }
     }
 

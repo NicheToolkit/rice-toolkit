@@ -21,6 +21,7 @@ public interface FickleLinkMapper<E extends RestId<I>, L, I> {
      * <code>findByLinkIdFickleLoad</code>
      * <p>The find by link id fickle load method.</p>
      * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param linkName {@link java.lang.String} <p>The link name parameter is <code>String</code> type.</p>
      * @param fickleParams {@link java.lang.String} <p>The fickle params parameter is <code>String</code> type.</p>
      * @param loadParams {@link java.lang.Boolean} <p>The load params parameter is <code>Boolean</code> type.</p>
      * @see  org.apache.ibatis.annotations.Param
@@ -29,13 +30,14 @@ public interface FickleLinkMapper<E extends RestId<I>, L, I> {
      * @see  java.util.List
      * @return  {@link java.util.List} <p>The find by link id fickle load return object is <code>List</code> type.</p>
      */
-    List<E> findByLinkIdFickleLoad(@Param("linkId") L linkId, @Param("fickleParams") String[] fickleParams, @Param("loadParams") Boolean... loadParams);
+    List<E> findByLinkIdFickleLoad(@Param("linkId") L linkId, @Param("linkName") String linkName, @Param("fickleParams") String[] fickleParams, @Param("loadParams") Boolean... loadParams);
 
     /**
      * <code>findDynamicByLinkIdFickleLoad</code>
      * <p>The find dynamic by link id fickle load method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param linkName {@link java.lang.String} <p>The link name parameter is <code>String</code> type.</p>
      * @param fickleParams {@link java.lang.String} <p>The fickle params parameter is <code>String</code> type.</p>
      * @param loadParams {@link java.lang.Boolean} <p>The load params parameter is <code>Boolean</code> type.</p>
      * @see  java.lang.String
@@ -44,12 +46,13 @@ public interface FickleLinkMapper<E extends RestId<I>, L, I> {
      * @see  java.util.List
      * @return  {@link java.util.List} <p>The find dynamic by link id fickle load return object is <code>List</code> type.</p>
      */
-    List<E> findDynamicByLinkIdFickleLoad(@Param("tablename") String tablename, @Param("id") L linkId, @Param("fickleParams") String[] fickleParams, @Param("loadParams") Boolean... loadParams);
+    List<E> findDynamicByLinkIdFickleLoad(@Param("tablename") String tablename, @Param("id") L linkId, @Param("linkName") String linkName, @Param("fickleParams") String[] fickleParams, @Param("loadParams") Boolean... loadParams);
 
     /**
      * <code>findAllByLinkIdsFickleLoad</code>
      * <p>The find all by link ids fickle load method.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link java.lang.String} <p>The link name parameter is <code>String</code> type.</p>
      * @param fickleParams {@link java.lang.String} <p>The fickle params parameter is <code>String</code> type.</p>
      * @param loadParams {@link java.lang.Boolean} <p>The load params parameter is <code>Boolean</code> type.</p>
      * @see  java.util.Collection
@@ -59,13 +62,14 @@ public interface FickleLinkMapper<E extends RestId<I>, L, I> {
      * @see  java.util.List
      * @return  {@link java.util.List} <p>The find all by link ids fickle load return object is <code>List</code> type.</p>
      */
-    List<E> findAllByLinkIdsFickleLoad(@Param("linkIdList") Collection<L> linkIdList, @Param("fickleParams") String[] fickleParams, @Param("loadParams") Boolean... loadParams);
+    List<E> findAllByLinkIdsFickleLoad(@Param("linkIdList") Collection<L> linkIdList, @Param("linkName") String linkName, @Param("fickleParams") String[] fickleParams, @Param("loadParams") Boolean... loadParams);
 
     /**
      * <code>findDynamicAllByLinkIdsFickleLoad</code>
      * <p>The find dynamic all by link ids fickle load method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link java.lang.String} <p>The link name parameter is <code>String</code> type.</p>
      * @param fickleParams {@link java.lang.String} <p>The fickle params parameter is <code>String</code> type.</p>
      * @param loadParams {@link java.lang.Boolean} <p>The load params parameter is <code>Boolean</code> type.</p>
      * @see  java.lang.String
@@ -75,6 +79,6 @@ public interface FickleLinkMapper<E extends RestId<I>, L, I> {
      * @see  java.util.List
      * @return  {@link java.util.List} <p>The find dynamic all by link ids fickle load return object is <code>List</code> type.</p>
      */
-    List<E> findDynamicAllByLinkIdsFickleLoad(@Param("tablename") String tablename, @Param("linkIdList") Collection<L> linkIdList, @Param("fickleParams") String[] fickleParams, @Param("loadParams") Boolean... loadParams);
+    List<E> findDynamicAllByLinkIdsFickleLoad(@Param("tablename") String tablename, @Param("linkIdList") Collection<L> linkIdList, @Param("linkName") String linkName, @Param("fickleParams") String[] fickleParams, @Param("loadParams") Boolean... loadParams);
 
 }

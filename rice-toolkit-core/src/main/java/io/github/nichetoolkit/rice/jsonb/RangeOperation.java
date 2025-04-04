@@ -18,60 +18,60 @@ import java.util.Optional;
 public enum RangeOperation implements RestStamp {
     /**
      * <code>GREATER_EQUAL_LESS_EQUAL_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_EQUAL_LESS_EQUAL_OPERATION</code> stamp.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_EQUAL_LESS_EQUAL_OPERATION</code> field.</p>
      */
     GREATER_EQUAL_LESS_EQUAL_OPERATION(1, ">= && <=","(target >= start and target <= end)"),
     /**
      * <code>GREATER_EQUAL_LESS_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_EQUAL_LESS_OPERATION</code> stamp.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_EQUAL_LESS_OPERATION</code> field.</p>
      */
     GREATER_EQUAL_LESS_OPERATION(2, ">= && <","(target >= start and target < end)"),
     /**
      * <code>GREATER_LESS_EQUAL_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_LESS_EQUAL_OPERATION</code> stamp.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_LESS_EQUAL_OPERATION</code> field.</p>
      */
     GREATER_LESS_EQUAL_OPERATION(3, "> && <=","(target > start and target <= end)"),
     /**
      * <code>GREATER_LESS_OPERATION</code>
-     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_LESS_OPERATION</code> stamp.</p>
+     * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>GREATER_LESS_OPERATION</code> field.</p>
      */
     GREATER_LESS_OPERATION(4, "> && <","(target > start and target < end)"),
     ;
 
     /**
      * <code>key</code>
-     * {@link java.lang.Integer} <p>The <code>key</code> stamp.</p>
+     * {@link java.lang.Integer} <p>The <code>key</code> field.</p>
      * @see  java.lang.Integer
      */
     private final Integer key;
     /**
      * <code>value</code>
-     * {@link java.lang.String} <p>The <code>value</code> stamp.</p>
+     * {@link java.lang.String} <p>The <code>value</code> field.</p>
      * @see  java.lang.String
      */
     private final String value;
     /**
      * <code>stamp</code>
-     * {@link java.lang.String} <p>The <code>stamp</code> stamp.</p>
+     * {@link java.lang.String} <p>The <code>stamp</code> field.</p>
      * @see  java.lang.String
      */
     private final String stamp;
 
     /**
      * <code>TARGET</code>
-     * {@link java.lang.String} <p>The constant <code>TARGET</code> stamp.</p>
+     * {@link java.lang.String} <p>The constant <code>TARGET</code> field.</p>
      * @see  java.lang.String
      */
     public static final String TARGET = "target";
     /**
      * <code>START</code>
-     * {@link java.lang.String} <p>The constant <code>START</code> stamp.</p>
+     * {@link java.lang.String} <p>The constant <code>START</code> field.</p>
      * @see  java.lang.String
      */
     public static final String START = "start";
     /**
      * <code>END</code>
-     * {@link java.lang.String} <p>The constant <code>END</code> stamp.</p>
+     * {@link java.lang.String} <p>The constant <code>END</code> field.</p>
      * @see  java.lang.String
      */
     public static final String END = "end";

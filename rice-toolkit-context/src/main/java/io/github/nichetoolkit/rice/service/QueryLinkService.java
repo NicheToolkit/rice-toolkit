@@ -1,27 +1,161 @@
 package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rice.RestId;
 
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * <code>QueryLinkService</code>
+ * <p>The query link service interface.</p>
+ * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+ * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @see  io.github.nichetoolkit.rice.RestId
+ * @see  io.github.nichetoolkit.rice.service.QueryService
+ * @author Cyan (snow22314@outlook.com)
+ * @since Jdk1.8
+ */
 public interface QueryLinkService<M extends RestId<I>, I, K> extends QueryService<M, I, K> {
 
-    <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, Boolean... isLoadArray) throws RestException;
+    /**
+     * <code>queryAllByLinkIds</code>
+     * <p>The query all by link ids method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.RestKey
+     * @see  java.lang.Boolean
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, RestKey<String> linkName, Boolean... isLoadArray) throws RestException;
 
-    <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, String[] fickleArray, Boolean... isLoadArray) throws RestException;
+    /**
+     * <code>queryAllByLinkIds</code>
+     * <p>The query all by link ids method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
+     * @param fickleList {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.RestKey
+     * @see  java.lang.Boolean
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, RestKey<String> linkName, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException;
 
-    <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, Boolean... isLoadArray) throws RestException;
+    /**
+     * <code>queryAllByLinkIds</code>
+     * <p>The query all by link ids method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.RestKey
+     * @see  java.lang.Boolean
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, RestKey<String> linkName, Boolean... isLoadArray) throws RestException;
 
-    <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, String[] fickleArray, Boolean... isLoadArray) throws RestException;
+    /**
+     * <code>queryAllByLinkIds</code>
+     * <p>The query all by link ids method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
+     * @param fickleList {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.RestKey
+     * @see  java.lang.Boolean
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, RestKey<String> linkName, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException;
 
-    <L> M queryByLinkId(L linkId, Boolean... isLoadArray) throws RestException;
+    /**
+     * <code>queryByLinkId</code>
+     * <p>The query by link id method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rest.RestKey
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return M <p>The query by link id return object is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    <L> M queryByLinkId(L linkId, RestKey<String> linkName, Boolean... isLoadArray) throws RestException;
 
-    <L> M queryByLinkId(L linkId, String[] fickleArray, Boolean... isLoadArray) throws RestException;
+    /**
+     * <code>queryByLinkId</code>
+     * <p>The query by link id method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
+     * @param fickleList {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rest.RestKey
+     * @see  java.util.Collection
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return M <p>The query by link id return object is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    <L> M queryByLinkId(L linkId, RestKey<String> linkName, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException;
 
-    <L> M queryByLinkId(K tablekey, L linkId, Boolean... isLoadArray) throws RestException;
+    /**
+     * <code>queryByLinkId</code>
+     * <p>The query by link id method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rest.RestKey
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return M <p>The query by link id return object is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    <L> M queryByLinkId(K tablekey, L linkId, RestKey<String> linkName, Boolean... isLoadArray) throws RestException;
 
-    <L> M queryByLinkId(K tablekey, L linkId, String[] fickleArray, Boolean... isLoadArray) throws RestException;
+    /**
+     * <code>queryByLinkId</code>
+     * <p>The query by link id method.</p>
+     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
+     * @param fickleList {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @see  io.github.nichetoolkit.rest.RestKey
+     * @see  java.util.Collection
+     * @see  java.lang.Boolean
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return M <p>The query by link id return object is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
+    <L> M queryByLinkId(K tablekey, L linkId, RestKey<String> linkName, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException;
 
 }

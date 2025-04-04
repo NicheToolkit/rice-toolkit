@@ -17,63 +17,63 @@ import java.util.Optional;
 public enum ContrastOperation implements RestStamp {
     /**
      * <code>EQUAL_OPERATION</code>
-     * <p>The equal operation contrast operation stamp.</p>
+     * <p>The equal operation contrast operation field.</p>
      */
     EQUAL_OPERATION(1, "=","target = values"),
     /**
      * <code>GREATER_OPERATION</code>
-     * <p>The greater operation contrast operation stamp.</p>
+     * <p>The greater operation contrast operation field.</p>
      */
     GREATER_OPERATION(2, ">","target > values"),
     /**
      * <code>GREATER_EQUAL_OPERATION</code>
-     * <p>The greater equal operation contrast operation stamp.</p>
+     * <p>The greater equal operation contrast operation field.</p>
      */
     GREATER_EQUAL_OPERATION(3, ">=","target >= values"),
     /**
      * <code>LESS_OPERATION</code>
-     * <p>The less operation contrast operation stamp.</p>
+     * <p>The less operation contrast operation field.</p>
      */
     LESS_OPERATION(4, "<","target < values"),
     /**
      * <code>LESS_EQUAL_OPERATION</code>
-     * <p>The less equal operation contrast operation stamp.</p>
+     * <p>The less equal operation contrast operation field.</p>
      */
     LESS_EQUAL_OPERATION(5, "<=","target <= values"),
     /**
      * <code>UNEQUAL_OPERATION</code>
-     * <p>The unequal operation contrast operation stamp.</p>
+     * <p>The unequal operation contrast operation field.</p>
      */
     UNEQUAL_OPERATION(6, "!=","target != values"),
     ;
     /**
      * <code>key</code>
-     * {@link java.lang.Integer} <p>The <code>key</code> stamp.</p>
+     * {@link java.lang.Integer} <p>The <code>key</code> field.</p>
      * @see  java.lang.Integer
      */
     private final Integer key;
     /**
      * <code>value</code>
-     * {@link java.lang.String} <p>The <code>value</code> stamp.</p>
+     * {@link java.lang.String} <p>The <code>value</code> field.</p>
      * @see  java.lang.String
      */
     private final String value;
     /**
      * <code>stamp</code>
-     * {@link java.lang.String} <p>The <code>stamp</code> stamp.</p>
+     * {@link java.lang.String} <p>The <code>stamp</code> field.</p>
      * @see  java.lang.String
      */
     private final String stamp;
 
     /**
      * <code>TARGET</code>
-     * {@link java.lang.String} <p>The constant <code>TARGET</code> stamp.</p>
+     * {@link java.lang.String} <p>The constant <code>TARGET</code> field.</p>
      * @see  java.lang.String
      */
     public static final String TARGET = "target";
     /**
      * <code>VALUE</code>
-     * {@link java.lang.String} <p>The constant <code>VALUE</code> stamp.</p>
+     * {@link java.lang.String} <p>The constant <code>VALUE</code> field.</p>
      * @see  java.lang.String
      */
     public static final String VALUE = "values";

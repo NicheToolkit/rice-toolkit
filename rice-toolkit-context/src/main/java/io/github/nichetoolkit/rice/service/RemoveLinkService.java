@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rice.service.RemoveService;
 import java.util.Collection;
 
@@ -20,11 +21,13 @@ public interface RemoveLinkService<I,K> extends RemoveService<I,K> {
      * <p>The remove all by link ids method.</p>
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    <L> void removeAllByLinkIds(Collection<L> linkIdList) throws RestException;
+    <L> void removeAllByLinkIds(Collection<L> linkIdList, RestKey<String>linkName) throws RestException;
 
     /**
      * <code>removeAllByLinkIds</code>
@@ -32,21 +35,25 @@ public interface RemoveLinkService<I,K> extends RemoveService<I,K> {
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @see  java.util.Collection
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    <L> void removeAllByLinkIds(K tablekey, Collection<L> linkIdList) throws RestException;
+    <L> void removeAllByLinkIds(K tablekey, Collection<L> linkIdList, RestKey<String>linkName) throws RestException;
 
     /**
      * <code>removeByLinkId</code>
      * <p>The remove by link id method.</p>
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  io.github.nichetoolkit.rest.RestException
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    <L> void removeByLinkId(L linkId) throws RestException;
+    <L> void removeByLinkId(L linkId, RestKey<String>linkName) throws RestException;
 
     /**
      * <code>removeByLinkId</code>
@@ -54,9 +61,11 @@ public interface RemoveLinkService<I,K> extends RemoveService<I,K> {
      * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
+     * @see  io.github.nichetoolkit.rest.RestKey
      * @see  io.github.nichetoolkit.rest.RestException
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    <L> void removeByLinkId(K tablekey, L linkId) throws RestException;
+    <L> void removeByLinkId(K tablekey, L linkId, RestKey<String>linkName) throws RestException;
 
 }

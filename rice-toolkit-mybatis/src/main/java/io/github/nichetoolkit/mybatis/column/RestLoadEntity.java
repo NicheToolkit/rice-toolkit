@@ -1,12 +1,13 @@
 package io.github.nichetoolkit.mybatis.column;
 
+import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Indexed;
 
 import java.lang.annotation.*;
 
 /**
- * <code>RestLinkKey</code>
- * <p>The rest link key interface.</p>
+ * <code>RestLoadEntity</code>
+ * <p>The rest load entity interface.</p>
  * @see  java.lang.annotation.Annotation
  * @see  java.lang.annotation.Retention
  * @see  java.lang.annotation.Target
@@ -19,14 +20,21 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 @Documented
 @Indexed
-public @interface RestLinkKey {
-
+public @interface RestLoadEntity {
     /**
      * <code>value</code>
      * <p>The value method.</p>
-     * @return  {@link java.lang.String} <p>The value return object is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @return int <p>The value return object is <code>int</code> type.</p>
+     * @see  org.springframework.core.annotation.AliasFor
      */
-    String value() default "";
+    @AliasFor("index")
+    int value() default 0;
+
+    /**
+     * <code>index</code>
+     * <p>The index method.</p>
+     * @return int <p>The index return object is <code>int</code> type.</p>
+     */
+    int index() default 0;
 }
 

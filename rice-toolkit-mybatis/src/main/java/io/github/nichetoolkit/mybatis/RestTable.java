@@ -115,9 +115,9 @@ public @interface RestTable {
     Class<?> alertnessType() default Object.class;
 
     /**
-     * <code>alertnessType</code>
-     * <p>The alertness type method.</p>
-     * @return  {@link java.lang.Class} <p>The alertness type return object is <code>Class</code> type.</p>
+     * <code>ficklenessType</code>
+     * <p>The fickleness type method.</p>
+     * @return  {@link java.lang.Class} <p>The fickleness type return object is <code>Class</code> type.</p>
      * @see  java.lang.Class
      * @see  org.springframework.core.annotation.AliasFor
      */
