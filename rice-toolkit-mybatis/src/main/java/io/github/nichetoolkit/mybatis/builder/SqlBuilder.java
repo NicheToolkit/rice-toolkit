@@ -2123,6 +2123,36 @@ public final class SqlBuilder implements Serializable, CharSequence {
     }
 
     /**
+     * <code>where</code>
+     * <p>The where method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The where return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder where(SqlBuilder sqlBuilder) {
+        if (GeneralUtils.isNotEmpty(sqlBuilder)) {
+            return where(sqlBuilder.toString().trim());
+        }
+        return this;
+    }
+
+    /**
+     * <code>where</code>
+     * <p>The where method.</p>
+     * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @see  java.lang.String
+     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The where return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder where(String whereSql) {
+        if (whereSql.startsWith(SQLConstants.AND)) {
+            whereSql = whereSql.substring(SQLConstants.AND.length());
+        }
+        if (!whereSql.startsWith(SQLConstants.ORDER_BY) && !whereSql.startsWith(SQLConstants.LIMIT) && !whereSql.startsWith(SQLConstants.WHERE)) {
+            return this.keyword(SQLConstants.WHERE, true).append(whereSql);
+        }
+        return this;
+    }
+
+    /**
      * <code>set</code>
      * <p>The set method.</p>
      * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The set return object is <code>SqlBuilder</code> type.</p>
