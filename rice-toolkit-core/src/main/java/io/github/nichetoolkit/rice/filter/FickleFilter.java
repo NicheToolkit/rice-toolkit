@@ -187,6 +187,9 @@ public class FickleFilter extends OperateFilter {
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     public String[] toFickleArray() throws RestException {
+        if (GeneralUtils.isEmpty(this.fickles)) {
+            return new String[0];
+        }
         return this.fickles.toArray(new String[0]);
     }
 
