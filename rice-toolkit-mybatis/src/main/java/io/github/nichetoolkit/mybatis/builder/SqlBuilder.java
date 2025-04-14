@@ -2143,12 +2143,17 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The where return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder where(String whereSql) {
+        if (GeneralUtils.isEmpty(whereSql)) {
+            return this;
+        }
+        whereSql = whereSql.trim();
         if (whereSql.startsWith(SQLConstants.AND)) {
             whereSql = whereSql.substring(SQLConstants.AND.length());
         }
         if (!whereSql.startsWith(SQLConstants.ORDER_BY) && !whereSql.startsWith(SQLConstants.LIMIT) && !whereSql.startsWith(SQLConstants.WHERE)) {
-            return this.keyword(SQLConstants.WHERE, true).append(whereSql);
+            this.keyword(SQLConstants.WHERE, true);
         }
+        this.cdataLt().append(whereSql).cdataGt();
         return this;
     }
 
