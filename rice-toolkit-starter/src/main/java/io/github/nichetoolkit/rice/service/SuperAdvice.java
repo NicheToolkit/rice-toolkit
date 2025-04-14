@@ -886,13 +886,13 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     @SuppressWarnings("unchecked")
     protected <L, S> void alertLinkId(String tablename, L linkId, RestKey<String> linkName, S status) throws RestException {
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            if (GeneralUtils.isNotEmpty(linkName.getKey()) && GeneralUtils.isNotEmpty(linkName)) {
+            if (GeneralUtils.isNotEmpty(linkName) && GeneralUtils.isNotEmpty(linkName.getKey())) {
                 ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicByLinkId(tablename, linkId, linkName.getKey(), status);
             } else {
                 ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicByLinkId(tablename, linkId, status);
             }
         } else {
-            if (GeneralUtils.isNotEmpty(linkName.getKey()) && GeneralUtils.isNotEmpty(linkName)) {
+            if (GeneralUtils.isNotEmpty(linkName) && GeneralUtils.isNotEmpty(linkName.getKey())) {
                 ((AlertLinkMapper<L, S, I>) superMapper).alertByLinkId(linkId, linkName.getKey(), status);
             } else {
                 ((AlertLinkMapper<L, S, I>) superMapper).alertByLinkId(linkId, status);
@@ -942,13 +942,13 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     @SuppressWarnings({"unchecked", "Duplicates"})
     protected <L, S> void alertLinkIdPartition(String tablename, Collection<L> linkIdList, RestKey<String> linkName, S status) throws RestException {
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            if (GeneralUtils.isNotEmpty(linkName.getKey()) && GeneralUtils.isNotEmpty(linkName)) {
+            if (GeneralUtils.isNotEmpty(linkName) && GeneralUtils.isNotEmpty(linkName.getKey())) {
                 PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicAllByLinkIds(tablename, linkIds, linkName.getKey(), status));
             } else {
                 PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicAllByLinkIds(tablename, linkIds, status));
             }
         } else {
-            if (GeneralUtils.isNotEmpty(linkName.getKey()) && GeneralUtils.isNotEmpty(linkName)) {
+            if (GeneralUtils.isNotEmpty(linkName) && GeneralUtils.isNotEmpty(linkName.getKey())) {
                 PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertAllByLinkIds(linkIds, linkName.getKey(), status));
             } else {
                 PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertAllByLinkIds(linkIds, status));
