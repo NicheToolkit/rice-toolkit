@@ -26,33 +26,11 @@ import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.*;
 
-/**
- * <code>SuperService</code>
- * <p>The super service class.</p>
- * @param <M>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
- * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
- * @param <F>  {@link io.github.nichetoolkit.rice.filter.IdFilter} <p>The generic parameter is <code>IdFilter</code> type.</p>
- * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @see  io.github.nichetoolkit.rice.RestId
- * @see  io.github.nichetoolkit.rice.filter.IdFilter
- * @see  io.github.nichetoolkit.rice.service.SuperAdvice
- * @see  org.springframework.beans.factory.InitializingBean
- * @see  lombok.extern.slf4j.Slf4j
- * @see  java.lang.SuppressWarnings
- * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
- */
 @Slf4j
 @SuppressWarnings("RedundantThrows")
 public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F extends IdFilter<I, K>, I, K>
         extends SuperAdvice<M, E, F, I, K> implements InitializingBean {
 
-    /**
-     * <code>simpleName</code>
-     * {@link java.lang.String} <p>The <code>simpleName</code> field.</p>
-     * @see  java.lang.String
-     */
     private String simpleName;
 
     @Override
@@ -71,34 +49,11 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         this.afterSuperHandle();
     }
 
-    /**
-     * <code>create</code>
-     * <p>The create method.</p>
-     * @param model M <p>The model parameter is <code>M</code> type.</p>
-     * @param idArray {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return M <p>The create return object is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public M create(M model, Object... idArray) throws RestException {
         return create(null, model, idArray);
     }
 
-    /**
-     * <code>create</code>
-     * <p>The create method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param model M <p>The model parameter is <code>M</code> type.</p>
-     * @param idArray {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return M <p>The create return object is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public M create(K tablekey, M model, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
@@ -116,34 +71,11 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         return model;
     }
 
-    /**
-     * <code>update</code>
-     * <p>The update method.</p>
-     * @param model M <p>The model parameter is <code>M</code> type.</p>
-     * @param idArray {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return M <p>The update return object is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public M update(M model, Object... idArray) throws RestException {
         return update(null, model, idArray);
     }
 
-    /**
-     * <code>update</code>
-     * <p>The update method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param model M <p>The model parameter is <code>M</code> type.</p>
-     * @param idArray {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return M <p>The update return object is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public M update(K tablekey, M model, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
@@ -161,34 +93,11 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         return model;
     }
 
-    /**
-     * <code>save</code>
-     * <p>The save method.</p>
-     * @param model M <p>The model parameter is <code>M</code> type.</p>
-     * @param idArray {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return M <p>The save return object is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public M save(M model, Object... idArray) throws RestException {
         return save(null, model, idArray);
     }
 
-    /**
-     * <code>save</code>
-     * <p>The save method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param model M <p>The model parameter is <code>M</code> type.</p>
-     * @param idArray {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return M <p>The save return object is <code>M</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public M save(K tablekey, M model, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
@@ -206,54 +115,16 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         return model;
     }
 
-    /**
-     * <code>saveAll</code>
-     * <p>The save all method.</p>
-     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @see  java.util.Collection
-     * @see  java.util.List
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link java.util.List} <p>The save all return object is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public List<M> saveAll(Collection<M> modelList) throws RestException {
         return saveAll(modelList, (Object[]) null);
     }
 
-    /**
-     * <code>saveAll</code>
-     * <p>The save all method.</p>
-     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param idArray {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
-     * @see  java.util.Collection
-     * @see  java.lang.Object
-     * @see  java.util.List
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link java.util.List} <p>The save all return object is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public List<M> saveAll(Collection<M> modelList, Object... idArray) throws RestException {
         return saveAll(null, modelList, idArray);
     }
 
-    /**
-     * <code>saveAll</code>
-     * <p>The save all method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
-     * @param idArray {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
-     * @see  java.util.Collection
-     * @see  java.lang.Object
-     * @see  java.util.List
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link java.util.List} <p>The save all return object is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public List<M> saveAll(K tablekey, Collection<M> modelList, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(modelList)) {
@@ -295,32 +166,11 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         return new ArrayList<>(modelList);
     }
 
-    /**
-     * <code>operateById</code>
-     * <p>The operate by id method.</p>
-     * @param id I <p>The id parameter is <code>I</code> type.</p>
-     * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.enums.OperateType
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void operateById(I id, OperateType operate) throws RestException {
         operateById(null, id, operate);
     }
 
-    /**
-     * <code>operateById</code>
-     * <p>The operate by id method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param id I <p>The id parameter is <code>I</code> type.</p>
-     * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.enums.OperateType
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void operateById(K tablekey, I id, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(operate)) {
@@ -346,34 +196,11 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>operateAll</code>
-     * <p>The operate all method.</p>
-     * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
-     * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rice.enums.OperateType
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void operateAll(Collection<I> idList, OperateType operate) throws RestException {
         operateAll(null, idList, operate);
     }
 
-    /**
-     * <code>operateAll</code>
-     * <p>The operate all method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
-     * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rice.enums.OperateType
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void operateAll(K tablekey, Collection<I> idList, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
@@ -392,71 +219,21 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>operateByLinkId</code>
-     * <p>The operate by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.enums.OperateType
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void operateByLinkId(L linkId, OperateType operate) throws RestException {
         operateByLinkId(null, linkId, operate);
     }
 
-    /**
-     * <code>operateByLinkId</code>
-     * <p>The operate by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.enums.OperateType
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void operateByLinkId(K tablekey, L linkId, OperateType operate) throws RestException {
         operateByLinkId(null, linkId, null, operate);
     }
 
-    /**
-     * <code>operateByLinkId</code>
-     * <p>The operate by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  io.github.nichetoolkit.rice.enums.OperateType
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void operateByLinkId(L linkId, RestKey<String> linkName, OperateType operate) throws RestException {
         operateByLinkId(null, linkId, linkName, operate);
     }
 
-    /**
-     * <code>operateByLinkId</code>
-     * <p>The operate by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  io.github.nichetoolkit.rice.enums.OperateType
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void operateByLinkId(K tablekey, L linkId, RestKey<String> linkName, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
@@ -482,75 +259,21 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>operateAllByLinkIds</code>
-     * <p>The operate all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rice.enums.OperateType
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void operateAllByLinkIds(Collection<L> linkIdList, OperateType operate) throws RestException {
         operateAllByLinkIds(null, linkIdList, operate);
     }
 
-    /**
-     * <code>operateAllByLinkIds</code>
-     * <p>The operate all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rice.enums.OperateType
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void operateAllByLinkIds(K tablekey, Collection<L> linkIdList, OperateType operate) throws RestException {
         operateAllByLinkIds(null, linkIdList, null, operate);
     }
 
-    /**
-     * <code>operateAllByLinkIds</code>
-     * <p>The operate all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  io.github.nichetoolkit.rice.enums.OperateType
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void operateAllByLinkIds(Collection<L> linkIdList, RestKey<String> linkName, OperateType operate) throws RestException {
         operateAllByLinkIds(null, linkIdList, linkName, operate);
     }
 
-    /**
-     * <code>operateAllByLinkIds</code>
-     * <p>The operate all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param operate {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  io.github.nichetoolkit.rice.enums.OperateType
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void operateAllByLinkIds(K tablekey, Collection<L> linkIdList, RestKey<String> linkName, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
@@ -569,32 +292,11 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>alertById</code>
-     * <p>The alert by id method.</p>
-     * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param id I <p>The id parameter is <code>I</code> type.</p>
-     * @param status S <p>The status parameter is <code>S</code> type.</p>
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <S> void alertById(I id, S status) throws RestException {
         alertById(null, id, status);
     }
 
-    /**
-     * <code>alertById</code>
-     * <p>The alert by id method.</p>
-     * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param id I <p>The id parameter is <code>I</code> type.</p>
-     * @param status S <p>The status parameter is <code>S</code> type.</p>
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <S> void alertById(K tablekey, I id, S status) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(status)) {
@@ -620,34 +322,11 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>alertAll</code>
-     * <p>The alert all method.</p>
-     * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
-     * @param status S <p>The status parameter is <code>S</code> type.</p>
-     * @see  java.util.Collection
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <S> void alertAll(Collection<I> idList, S status) throws RestException {
         alertAll(null, idList, status);
     }
 
-    /**
-     * <code>alertAll</code>
-     * <p>The alert all method.</p>
-     * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
-     * @param status S <p>The status parameter is <code>S</code> type.</p>
-     * @see  java.util.Collection
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <S> void alertAll(K tablekey, Collection<I> idList, S status) throws RestException {
         if (GeneralUtils.isEmpty(idList) || GeneralUtils.isEmpty(status)) {
@@ -666,71 +345,21 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>alertByLinkId</code>
-     * <p>The alert by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param status S <p>The status parameter is <code>S</code> type.</p>
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L, S> void alertByLinkId(L linkId, S status) throws RestException {
         alertByLinkId(null, linkId, status);
     }
 
-    /**
-     * <code>alertByLinkId</code>
-     * <p>The alert by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param status S <p>The status parameter is <code>S</code> type.</p>
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L, S> void alertByLinkId(K tablekey, L linkId, S status) throws RestException {
         alertByLinkId(null, linkId, null, status);
     }
 
-    /**
-     * <code>alertByLinkId</code>
-     * <p>The alert by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param status S <p>The status parameter is <code>S</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L, S> void alertByLinkId(L linkId, RestKey<String> linkName, S status) throws RestException {
         alertByLinkId(null, linkId, linkName, status);
     }
 
-    /**
-     * <code>alertByLinkId</code>
-     * <p>The alert by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param status S <p>The status parameter is <code>S</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L, S> void alertByLinkId(K tablekey, L linkId, RestKey<String> linkName, S status) throws RestException {
         if (GeneralUtils.isEmpty(linkId) || GeneralUtils.isEmpty(status)) {
@@ -756,75 +385,21 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>alertAllByLinkIds</code>
-     * <p>The alert all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param status S <p>The status parameter is <code>S</code> type.</p>
-     * @see  java.util.Collection
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L, S> void alertAllByLinkIds(Collection<L> linkIdList,  S status) throws RestException {
+    public <L, S> void alertAllByLinkIds(Collection<L> linkIdList, S status) throws RestException {
         alertAllByLinkIds(null, linkIdList, status);
     }
 
-    /**
-     * <code>alertAllByLinkIds</code>
-     * <p>The alert all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param status S <p>The status parameter is <code>S</code> type.</p>
-     * @see  java.util.Collection
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L, S> void alertAllByLinkIds(K tablekey, Collection<L> linkIdList, S status) throws RestException {
         alertAllByLinkIds(null, linkIdList, null, status);
     }
 
-    /**
-     * <code>alertAllByLinkIds</code>
-     * <p>The alert all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param status S <p>The status parameter is <code>S</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L, S> void alertAllByLinkIds(Collection<L> linkIdList, RestKey<String> linkName, S status) throws RestException {
         alertAllByLinkIds(null, linkIdList, linkName, status);
     }
 
-    /**
-     * <code>alertAllByLinkIds</code>
-     * <p>The alert all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param status S <p>The status parameter is <code>S</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L, S> void alertAllByLinkIds(K tablekey, Collection<L> linkIdList, RestKey<String> linkName, S status) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList) || GeneralUtils.isEmpty(status)) {
@@ -843,28 +418,11 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>removeById</code>
-     * <p>The remove by id method.</p>
-     * @param id I <p>The id parameter is <code>I</code> type.</p>
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void removeById(I id) throws RestException {
         removeById(null, id);
     }
 
-    /**
-     * <code>removeById</code>
-     * <p>The remove by id method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param id I <p>The id parameter is <code>I</code> type.</p>
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void removeById(K tablekey, I id) throws RestException {
         if (GeneralUtils.isEmpty(id)) {
@@ -891,30 +449,11 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>removeAll</code>
-     * <p>The remove all method.</p>
-     * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
-     * @see  java.util.Collection
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void removeAll(Collection<I> idList) throws RestException {
         removeAll(null, idList);
     }
 
-    /**
-     * <code>removeAll</code>
-     * <p>The remove all method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
-     * @see  java.util.Collection
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void removeAll(K tablekey, Collection<I> idList) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
@@ -934,63 +473,21 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>removeByLinkId</code>
-     * <p>The remove by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void removeByLinkId(L linkId) throws RestException {
         removeByLinkId(null, linkId);
     }
 
-    /**
-     * <code>removeByLinkId</code>
-     * <p>The remove by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void removeByLinkId(K tablekey, L linkId) throws RestException {
         removeByLinkId(null, linkId, null);
     }
 
-    /**
-     * <code>removeByLinkId</code>
-     * <p>The remove by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void removeByLinkId(L linkId, RestKey<String> linkName) throws RestException {
         removeByLinkId(null, linkId, linkName);
     }
 
-    /**
-     * <code>removeByLinkId</code>
-     * <p>The remove by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void removeByLinkId(K tablekey, L linkId, RestKey<String> linkName) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
@@ -1017,67 +514,21 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>removeAllByLinkIds</code>
-     * <p>The remove all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @see  java.util.Collection
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void removeAllByLinkIds(Collection<L> linkIdList) throws RestException {
         removeAllByLinkIds(null, linkIdList);
     }
 
-    /**
-     * <code>removeAllByLinkIds</code>
-     * <p>The remove all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @see  java.util.Collection
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void removeAllByLinkIds(K tablekey, Collection<L> linkIdList) throws RestException {
         removeAllByLinkIds(null, linkIdList, null);
     }
 
-    /**
-     * <code>removeAllByLinkIds</code>
-     * <p>The remove all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void removeAllByLinkIds(Collection<L> linkIdList, RestKey<String> linkName) throws RestException {
         removeAllByLinkIds(null, linkIdList, linkName);
     }
 
-    /**
-     * <code>removeAllByLinkIds</code>
-     * <p>The remove all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void removeAllByLinkIds(K tablekey, Collection<L> linkIdList, RestKey<String> linkName) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
@@ -1164,63 +615,21 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>deleteByLinkId</code>
-     * <p>The delete by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void deleteByLinkId(L linkId) throws RestException {
         deleteByLinkId(null, linkId);
     }
 
-    /**
-     * <code>deleteByLinkId</code>
-     * <p>The delete by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void deleteByLinkId(K tablekey, L linkId) throws RestException {
         deleteByLinkId(null, linkId, null);
     }
 
-    /**
-     * <code>deleteByLinkId</code>
-     * <p>The delete by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void deleteByLinkId(L linkId, RestKey<String> linkName) throws RestException {
         deleteByLinkId(null, linkId, linkName);
     }
 
-    /**
-     * <code>deleteByLinkId</code>
-     * <p>The delete by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void deleteByLinkId(K tablekey, L linkId, RestKey<String> linkName) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
@@ -1251,70 +660,22 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>deleteAllByLinkIds</code>
-     * <p>The delete all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @see  java.util.Collection
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void deleteAllByLinkIds(Collection<L> linkIdList) throws RestException {
         deleteAllByLinkIds(null, linkIdList);
     }
 
-    /**
-     * <code>deleteAllByLinkIds</code>
-     * <p>The delete all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @see  java.util.Collection
-     * @see  java.lang.SuppressWarnings
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @SuppressWarnings("Duplicates")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void deleteAllByLinkIds(K tablekey, Collection<L> linkIdList) throws RestException {
         deleteAllByLinkIds(null, linkIdList, null);
     }
 
-    /**
-     * <code>deleteAllByLinkIds</code>
-     * <p>The delete all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void deleteAllByLinkIds(Collection<L> linkIdList, RestKey<String> linkName) throws RestException {
         deleteAllByLinkIds(null, linkIdList, linkName);
     }
 
-    /**
-     * <code>deleteAllByLinkIds</code>
-     * <p>The delete all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  java.lang.SuppressWarnings
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @SuppressWarnings("Duplicates")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <L> void deleteAllByLinkIds(K tablekey, Collection<L> linkIdList, RestKey<String> linkName) throws RestException {
@@ -1413,15 +774,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         return modelActuator(entityList, null, isLoadArray);
     }
 
-    /**
-     * <code>queryAllWithFilter</code>
-     * <p>The query all with filter method.</p>
-     * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.rice.RestPage} <p>The query all with filter return object is <code>RestPage</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.RestPage
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     public RestPage<M> queryAllWithFilter(F filter) throws RestException {
         optionalQueryFilter(filter);
         queryFilterCache.set(filter);
@@ -1454,80 +806,34 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         return RestPage.result(modelList, pageResult.getPage());
     }
 
-    /**
-     * <code>queryByLinkId</code>
-     * <p>The query by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  java.lang.Boolean
-     * @see  java.util.List
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
+    public <L> List<M> queryByLinkId(L linkId, Boolean... isLoadArray) throws RestException {
+        return queryByLinkId(null, linkId, isLoadArray);
+    }
+
+    public <L> List<M> queryByLinkId(L linkId, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+        return queryByLinkId(null, linkId, null, fickleArray, isLoadArray);
+    }
+
+    public <L> List<M> queryByLinkId(K tablekey, L linkId, Boolean... isLoadArray) throws RestException {
+        return queryByLinkId(tablekey, linkId, null, null, isLoadArray);
+    }
+
+    public <L> List<M> queryByLinkId(K tablekey, L linkId, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+        return queryByLinkId(tablekey, linkId, null, null, isLoadArray);
+    }
+
     public <L> List<M> queryByLinkId(L linkId, RestKey<String> linkName, Boolean... isLoadArray) throws RestException {
         return queryByLinkId(null, linkId, linkName, isLoadArray);
     }
 
-    /**
-     * <code>queryByLinkId</code>
-     * <p>The query by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  java.lang.String
-     * @see  java.lang.Boolean
-     * @see  java.util.List
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     public <L> List<M> queryByLinkId(L linkId, RestKey<String> linkName, String[] fickleArray, Boolean... isLoadArray) throws RestException {
         return queryByLinkId(null, linkId, linkName, fickleArray, isLoadArray);
     }
 
-    /**
-     * <code>queryByLinkId</code>
-     * <p>The query by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  java.lang.Boolean
-     * @see  java.util.List
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     public <L> List<M> queryByLinkId(K tablekey, L linkId, RestKey<String> linkName, Boolean... isLoadArray) throws RestException {
         return queryByLinkId(tablekey, linkId, linkName, null, isLoadArray);
     }
 
-    /**
-     * <code>queryByLinkId</code>
-     * <p>The query by link id method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  java.lang.String
-     * @see  java.lang.Boolean
-     * @see  java.util.List
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     public <L> List<M> queryByLinkId(K tablekey, L linkId, RestKey<String> linkName, String[] fickleArray, Boolean... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
             return Collections.emptyList();
@@ -1551,84 +857,34 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         return modelActuator(entityList, null, isLoadArray);
     }
 
-    /**
-     * <code>queryAllByLinkIds</code>
-     * <p>The query all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  java.lang.Boolean
-     * @see  java.util.List
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
+    public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, Boolean... isLoadArray) throws RestException {
+        return queryAllByLinkIds(null, linkIdList, isLoadArray);
+    }
+
+    public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+        return queryAllByLinkIds(null, linkIdList, fickleArray, isLoadArray);
+    }
+
+    public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, Boolean... isLoadArray) throws RestException {
+        return queryAllByLinkIds(tablekey, linkIdList, null, null, isLoadArray);
+    }
+
+    public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, String[] fickleArray, Boolean... isLoadArray) throws RestException {
+        return queryAllByLinkIds(tablekey, linkIdList, null, null, isLoadArray);
+    }
+
     public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, RestKey<String> linkName, Boolean... isLoadArray) throws RestException {
         return queryAllByLinkIds(null, linkIdList, linkName, isLoadArray);
     }
 
-    /**
-     * <code>queryAllByLinkIds</code>
-     * <p>The query all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  java.lang.String
-     * @see  java.lang.Boolean
-     * @see  java.util.List
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, RestKey<String> linkName, String[] fickleArray, Boolean... isLoadArray) throws RestException {
         return queryAllByLinkIds(null, linkIdList, linkName, fickleArray, isLoadArray);
     }
 
-    /**
-     * <code>queryAllByLinkIds</code>
-     * <p>The query all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  java.lang.Boolean
-     * @see  java.util.List
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, RestKey<String> linkName, Boolean... isLoadArray) throws RestException {
         return queryAllByLinkIds(tablekey, linkIdList, linkName, null, isLoadArray);
     }
 
-    /**
-     * <code>queryAllByLinkIds</code>
-     * <p>The query all by link ids method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param fickleArray {@link java.lang.String} <p>The fickle array parameter is <code>String</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
-     * @see  java.util.Collection
-     * @see  io.github.nichetoolkit.rest.RestKey
-     * @see  java.lang.String
-     * @see  java.lang.Boolean
-     * @see  java.util.List
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, RestKey<String> linkName, String[] fickleArray, Boolean... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
             return Collections.emptyList();
@@ -1650,15 +906,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     }
 
 
-    /**
-     * <code>deleteAllWithFilter</code>
-     * <p>The delete all with filter method.</p>
-     * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @see  java.lang.SuppressWarnings
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void deleteAllWithFilter(F filter) throws RestException {
@@ -1720,15 +967,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>removeAllWithFilter</code>
-     * <p>The remove all with filter method.</p>
-     * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @see  java.lang.SuppressWarnings
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void removeAllWithFilter(F filter) throws RestException {
@@ -1784,15 +1022,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>operateAllWithFilter</code>
-     * <p>The operate all with filter method.</p>
-     * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @see  java.lang.SuppressWarnings
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public void operateAllWithFilter(F filter) throws RestException {
@@ -1847,16 +1076,6 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         }
     }
 
-    /**
-     * <code>alertAllWithFilter</code>
-     * <p>The alert all with filter method.</p>
-     * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @see  java.lang.SuppressWarnings
-     * @see  org.springframework.transaction.annotation.Transactional
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
     @SuppressWarnings(value = "unchecked")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
     public <S> void alertAllWithFilter(F filter) throws RestException {

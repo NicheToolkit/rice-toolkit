@@ -91,11 +91,12 @@ public interface QueryLinkService<M extends RestId<I>, I, K> extends QueryServic
      * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
      * @see  java.lang.Boolean
+     * @see  java.util.List
      * @see  io.github.nichetoolkit.rest.RestException
-     * @return M <p>The query by link id return object is <code>M</code> type.</p>
+     * @return  {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    <L> M queryByLinkId(L linkId, Boolean... isLoadArray) throws RestException;
+    <L> List<M> queryByLinkId(L linkId, Boolean... isLoadArray) throws RestException;
 
     /**
      * <code>queryByLinkId</code>
@@ -106,11 +107,12 @@ public interface QueryLinkService<M extends RestId<I>, I, K> extends QueryServic
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
      * @see  java.util.Collection
      * @see  java.lang.Boolean
+     * @see  java.util.List
      * @see  io.github.nichetoolkit.rest.RestException
-     * @return M <p>The query by link id return object is <code>M</code> type.</p>
+     * @return  {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    <L> M queryByLinkId(L linkId, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException;
+    <L> List<M> queryByLinkId(L linkId, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException;
 
     /**
      * <code>queryByLinkId</code>
@@ -120,11 +122,12 @@ public interface QueryLinkService<M extends RestId<I>, I, K> extends QueryServic
      * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
      * @see  java.lang.Boolean
+     * @see  java.util.List
      * @see  io.github.nichetoolkit.rest.RestException
-     * @return M <p>The query by link id return object is <code>M</code> type.</p>
+     * @return  {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    <L> M queryByLinkId(K tablekey, L linkId, Boolean... isLoadArray) throws RestException;
+    <L> List<M> queryByLinkId(K tablekey, L linkId, Boolean... isLoadArray) throws RestException;
 
     /**
      * <code>queryByLinkId</code>
@@ -136,11 +139,12 @@ public interface QueryLinkService<M extends RestId<I>, I, K> extends QueryServic
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
      * @see  java.util.Collection
      * @see  java.lang.Boolean
+     * @see  java.util.List
      * @see  io.github.nichetoolkit.rest.RestException
-     * @return M <p>The query by link id return object is <code>M</code> type.</p>
+     * @return  {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    <L> M queryByLinkId(K tablekey, L linkId, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException;
+    <L> List<M> queryByLinkId(K tablekey, L linkId, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException;
 
     /**
      * <code>queryAllByLinkIds</code>
@@ -223,11 +227,12 @@ public interface QueryLinkService<M extends RestId<I>, I, K> extends QueryServic
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
      * @see  io.github.nichetoolkit.rest.RestKey
      * @see  java.lang.Boolean
+     * @see  java.util.List
      * @see  io.github.nichetoolkit.rest.RestException
-     * @return M <p>The query by link id return object is <code>M</code> type.</p>
+     * @return  {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    <L> M queryByLinkId(L linkId, RestKey<String> linkName, Boolean... isLoadArray) throws RestException;
+    <L> List<M> queryByLinkId(L linkId, RestKey<String> linkName, Boolean... isLoadArray) throws RestException;
 
     /**
      * <code>queryByLinkId</code>
@@ -240,11 +245,12 @@ public interface QueryLinkService<M extends RestId<I>, I, K> extends QueryServic
      * @see  io.github.nichetoolkit.rest.RestKey
      * @see  java.util.Collection
      * @see  java.lang.Boolean
+     * @see  java.util.List
      * @see  io.github.nichetoolkit.rest.RestException
-     * @return M <p>The query by link id return object is <code>M</code> type.</p>
+     * @return  {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    <L> M queryByLinkId(L linkId, RestKey<String> linkName, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException;
+    <L> List<M> queryByLinkId(L linkId, RestKey<String> linkName, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException;
 
     /**
      * <code>queryByLinkId</code>
@@ -256,11 +262,12 @@ public interface QueryLinkService<M extends RestId<I>, I, K> extends QueryServic
      * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
      * @see  io.github.nichetoolkit.rest.RestKey
      * @see  java.lang.Boolean
+     * @see  java.util.List
      * @see  io.github.nichetoolkit.rest.RestException
-     * @return M <p>The query by link id return object is <code>M</code> type.</p>
+     * @return  {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    <L> M queryByLinkId(K tablekey, L linkId, RestKey<String> linkName, Boolean... isLoadArray) throws RestException;
+    <L> List<M> queryByLinkId(K tablekey, L linkId, RestKey<String> linkName, Boolean... isLoadArray) throws RestException;
 
     /**
      * <code>queryByLinkId</code>
@@ -274,10 +281,11 @@ public interface QueryLinkService<M extends RestId<I>, I, K> extends QueryServic
      * @see  io.github.nichetoolkit.rest.RestKey
      * @see  java.util.Collection
      * @see  java.lang.Boolean
+     * @see  java.util.List
      * @see  io.github.nichetoolkit.rest.RestException
-     * @return M <p>The query by link id return object is <code>M</code> type.</p>
+     * @return  {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    <L> M queryByLinkId(K tablekey, L linkId, RestKey<String> linkName, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException;
+    <L> List<M> queryByLinkId(K tablekey, L linkId, RestKey<String> linkName, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException;
 
 }
