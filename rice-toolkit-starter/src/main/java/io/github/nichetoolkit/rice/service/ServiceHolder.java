@@ -196,7 +196,7 @@ public class ServiceHolder {
      * @return boolean <p>The fickle field return object is <code>boolean</code> type.</p>
      */
     public static boolean fickleField() {
-        return serviceProperties.getFickleFiled();
+        return serviceProperties.getFickleField();
     }
 
     /**
