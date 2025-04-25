@@ -225,7 +225,7 @@ public interface RestFickleType extends RestType, Serializable {
      */
     static RestFickleType ofType(Class<?> clazz) {
         MybatisType mybatisType = MybatisType.parseClazz(clazz);
-        return new RestFickleType.OfRestFickleType(mybatisType.getKey(), mybatisType.getValue(), mybatisType.getType());
+        return new RestFickleType.OfRestFickleType(mybatisType.getKey(), mybatisType.getValue(), clazz);
     }
 
     /**
