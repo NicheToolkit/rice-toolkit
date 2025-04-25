@@ -63,7 +63,7 @@ public interface RestFickleType extends RestType, Serializable {
      */
     @JsonIgnore
     default TypeHandler<?> getJdbcTypeHandler() {
-        return MybatisType.parseJdbcType(this.getJdbcType()).getJdbcTypeHandler();
+        return MybatisType.parseClazz(this.getType()).getJdbcTypeHandler();
     }
 
     /**
