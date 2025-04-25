@@ -134,14 +134,14 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
     /**
      * <code>of</code>
      * <p>The of method.</p>
-     * @param <F>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param key  {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+     * @param <F>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+     * @param value F <p>The value parameter is <code>F</code> type.</p>
      * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of return object is <code>RestFickle</code> type.</p>
      * @see java.lang.String
      */
-    static <F> RestFickle<F> of(String key, String name) {
-        return new OfRestFickle<>(key, null, name);
+    static <F> RestFickle<F> of(String key, F value) {
+        return new OfRestFickle<>(key, value, key,false);
     }
 
     /**
@@ -154,7 +154,7 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
      * @see java.lang.String
      */
     static <F> RestFickle<F> ofValue(String key, F value) {
-        return new OfRestFickle<>(key, value, key);
+        return new OfRestFickle<>(key, value, key,true);
     }
 
     /**
@@ -168,7 +168,7 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
      * @see java.lang.String
      */
     static <F> RestFickle<F> ofValue(String key, F value, String name) {
-        return new OfRestFickle<>(key, value, name);
+        return new OfRestFickle<>(key, value, name,true);
     }
 
     /**
@@ -338,15 +338,16 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
         /**
          * <code>OfRestFickle</code>
          * <p>Instantiates a new of rest fickle.</p>
-         * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-         * @param value F <p>The value parameter is <code>F</code> type.</p>
-         * @param name  {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+         * @param key        {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+         * @param value      F <p>The value parameter is <code>F</code> type.</p>
+         * @param name       {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+         * @param fickleType boolean <p>The fickle type parameter is <code>boolean</code> type.</p>
          * @see java.lang.String
          */
-        public OfRestFickle(String key, F value, String name) {
+        public OfRestFickle(String key, F value, String name, boolean fickleType) {
             super(key, value);
             this.name = name;
-            if (GeneralUtils.isNotEmpty(value)) {
+            if (fickleType && GeneralUtils.isNotEmpty(value)) {
                 this.type = RestFickleType.ofType(value.getClass());
             }
         }
