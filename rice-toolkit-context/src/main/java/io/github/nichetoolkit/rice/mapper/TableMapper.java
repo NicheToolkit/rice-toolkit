@@ -14,68 +14,68 @@ import java.util.List;
 public interface TableMapper {
 
     /**
-     * <code>tableColumns</code>
-     * <p>The table columns method.</p>
+     * <code>findTableColumns</code>
+     * <p>The find table columns method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
-     * @return {@link java.util.List} <p>The table columns return object is <code>List</code> type.</p>
+     * @return {@link java.util.List} <p>The find table columns return object is <code>List</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.util.List
      */
-    List<String> tableColumns(@Param("tablename") String tablename);
+    List<String> findTableColumns(@Param("tablename") String tablename);
 
     /**
-     * <code>createIndex</code>
-     * <p>The create index method.</p>
+     * <code>createTableIndex</code>
+     * <p>The create table index method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param field     {@link io.github.nichetoolkit.rest.RestField} <p>The field parameter is <code>RestField</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see io.github.nichetoolkit.rest.RestField
      */
-    void createIndex(@Param("tablename") String tablename, @Param("field") RestField<?> field);
+    void createTableIndex(@Param("tablename") String tablename, @Param("field") RestField<?> field);
 
     /**
-     * <code>dropIndex</code>
-     * <p>The drop index method.</p>
+     * <code>dropTableIndex</code>
+     * <p>The drop table index method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param field     {@link io.github.nichetoolkit.rest.RestField} <p>The field parameter is <code>RestField</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see io.github.nichetoolkit.rest.RestField
      */
-    void dropIndex(@Param("tablename") String tablename, @Param("field") RestField<?> field);
+    void dropTableIndex(@Param("tablename") String tablename, @Param("field") RestField<?> field);
 
     /**
-     * <code>addColumn</code>
-     * <p>The add column method.</p>
+     * <code>addTableColumn</code>
+     * <p>The add table column method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param field     {@link io.github.nichetoolkit.rest.RestField} <p>The field parameter is <code>RestField</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see io.github.nichetoolkit.rest.RestField
      */
-    void addColumn(@Param("tablename") String tablename, @Param("field") RestField<?> field);
+    void addTableColumn(@Param("tablename") String tablename, @Param("field") RestField<?> field);
 
     /**
-     * <code>modifyColumn</code>
-     * <p>The modify column method.</p>
+     * <code>modifyTableColumn</code>
+     * <p>The modify table column method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param field     {@link io.github.nichetoolkit.rest.RestField} <p>The field parameter is <code>RestField</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see io.github.nichetoolkit.rest.RestField
      */
-    void modifyColumn(@Param("tablename") String tablename, @Param("field") RestField<?> field);
+    void modifyTableColumn(@Param("tablename") String tablename, @Param("field") RestField<?> field);
 
     /**
-     * <code>dropColumn</code>
-     * <p>The drop column method.</p>
+     * <code>dropTableColumn</code>
+     * <p>The drop table column method.</p>
      * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param field     {@link io.github.nichetoolkit.rest.RestField} <p>The field parameter is <code>RestField</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see io.github.nichetoolkit.rest.RestField
      */
-    void dropColumn(@Param("tablename") String tablename, @Param("field") RestField<?> field);
+    void dropTableColumn(@Param("tablename") String tablename, @Param("field") RestField<?> field);
 }

@@ -22,12 +22,12 @@ import java.util.List;
 @SuppressWarnings("UnusedReturnValue")
 public interface SuperMapper<E extends RestId<I>, I> extends SaveMapper<E, I>, FindMapper<E, I>, DeleteMapper<I> {
     /**
-     * <code>tableColumns</code>
-     * <p>The table columns method.</p>
-     * @return {@link java.util.List} <p>The table columns return object is <code>List</code> type.</p>
+     * <code>findColumns</code>
+     * <p>The find columns method.</p>
+     * @return {@link java.util.List} <p>The find columns return object is <code>List</code> type.</p>
      * @see java.util.List
      */
-    List<String> tableColumns();
+    List<String> findColumns();
 
     /**
      * <code>createIndex</code>

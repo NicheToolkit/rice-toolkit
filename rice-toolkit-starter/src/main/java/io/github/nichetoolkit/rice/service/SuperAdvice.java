@@ -502,9 +502,9 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         if (isFickleField()) {
             List<String> tableColumns;
             if (GeneralUtils.isNotEmpty(tablename) && GeneralUtils.isNotEmpty(tableMapper)) {
-                tableColumns = tableMapper.tableColumns(tablename);
+                tableColumns = tableMapper.findTableColumns(tablename);
             } else {
-                tableColumns = superMapper.tableColumns();
+                tableColumns = superMapper.findColumns();
             }
             if (GeneralUtils.isEmpty(tableColumns)) {
                 return fickleArray;
