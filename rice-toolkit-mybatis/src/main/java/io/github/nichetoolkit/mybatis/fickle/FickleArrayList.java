@@ -15,13 +15,13 @@ import java.util.stream.Collectors;
 /**
  * <code>FickleArrayList</code>
  * <p>The fickle array list class.</p>
- * @param <F>  {@link io.github.nichetoolkit.mybatis.fickle.FickleField} <p>The generic parameter is <code>FickleField</code> type.</p>
- * @see  io.github.nichetoolkit.mybatis.fickle.FickleField
+ * @param <F>  {@link RestFickle} <p>The generic parameter is <code>FickleField</code> type.</p>
+ * @see  RestFickle
  * @see  java.util.ArrayList
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public class FickleArrayList<F extends FickleField<?>> extends ArrayList<F> {
+public class FickleArrayList<F extends RestFickle<?>> extends ArrayList<F> {
 
     /**
      * <code>FickleArrayList</code>

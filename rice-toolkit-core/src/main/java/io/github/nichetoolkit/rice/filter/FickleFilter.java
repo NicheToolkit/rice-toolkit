@@ -3,6 +3,7 @@ package io.github.nichetoolkit.rice.filter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.github.nichetoolkit.mybatis.fickle.RestFickle;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
@@ -11,15 +12,16 @@ import io.github.nichetoolkit.rice.enums.OperateType;
 import org.springframework.lang.NonNull;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * <code>FickleFilter</code>
  * <p>The fickle filter class.</p>
- * @see  io.github.nichetoolkit.rice.filter.OperateFilter
- * @see  java.lang.SuppressWarnings
- * @see  com.fasterxml.jackson.annotation.JsonInclude
- * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rice.filter.OperateFilter
+ * @see java.lang.SuppressWarnings
+ * @see com.fasterxml.jackson.annotation.JsonInclude
+ * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @SuppressWarnings({"WeakerAccess", "MixedMutabilityReturnType"})
@@ -30,7 +32,7 @@ public class FickleFilter extends OperateFilter {
     /**
      * <code>fickles</code>
      * {@link java.util.Set} <p>The <code>fickles</code> field.</p>
-     * @see  java.util.Set
+     * @see java.util.Set
      */
     protected Set<String> fickles;
 
@@ -45,7 +47,7 @@ public class FickleFilter extends OperateFilter {
      * <code>FickleFilter</code>
      * <p>Instantiates a new fickle filter.</p>
      * @param builder {@link io.github.nichetoolkit.rice.filter.FickleFilter.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.filter.FickleFilter.Builder
+     * @see io.github.nichetoolkit.rice.filter.FickleFilter.Builder
      */
     public FickleFilter(FickleFilter.Builder builder) {
         super(builder);
@@ -54,8 +56,8 @@ public class FickleFilter extends OperateFilter {
     /**
      * <code>getFickles</code>
      * <p>The get fickles getter method.</p>
-     * @return  {@link java.util.List} <p>The get fickles return object is <code>List</code> type.</p>
-     * @see  java.util.List
+     * @return {@link java.util.List} <p>The get fickles return object is <code>List</code> type.</p>
+     * @see java.util.List
      */
     public List<String> getFickles() {
         if (GeneralUtils.isNotEmpty(fickles)) {
@@ -68,8 +70,8 @@ public class FickleFilter extends OperateFilter {
      * <code>setFickles</code>
      * <p>The set fickles setter method.</p>
      * @param fickles {@link java.lang.String} <p>The fickles parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.springframework.lang.NonNull
+     * @see java.lang.String
+     * @see org.springframework.lang.NonNull
      */
     public void setFickles(@NonNull String... fickles) {
         this.fickles = new HashSet<>(Arrays.asList(fickles));
@@ -79,9 +81,9 @@ public class FickleFilter extends OperateFilter {
      * <code>setFickles</code>
      * <p>The set fickles setter method.</p>
      * @param fickles {@link java.util.Collection} <p>The fickles parameter is <code>Collection</code> type.</p>
-     * @see  java.util.Collection
-     * @see  org.springframework.lang.NonNull
-     * @see  com.fasterxml.jackson.annotation.JsonSetter
+     * @see java.util.Collection
+     * @see org.springframework.lang.NonNull
+     * @see com.fasterxml.jackson.annotation.JsonSetter
      */
     @JsonSetter
     public void setFickles(@NonNull Collection<String> fickles) {
@@ -92,8 +94,8 @@ public class FickleFilter extends OperateFilter {
      * <code>setFickles</code>
      * <p>The set fickles setter method.</p>
      * @param fickles {@link java.util.List} <p>The fickles parameter is <code>List</code> type.</p>
-     * @see  java.util.List
-     * @see  org.springframework.lang.NonNull
+     * @see java.util.List
+     * @see org.springframework.lang.NonNull
      */
     public void setFickles(@NonNull List<RestKey<String>> fickles) {
         this.fickles = new HashSet<>(RestKey.keys(fickles));
@@ -103,8 +105,8 @@ public class FickleFilter extends OperateFilter {
      * <code>setFickles</code>
      * <p>The set fickles setter method.</p>
      * @param fickles {@link java.util.Map} <p>The fickles parameter is <code>Map</code> type.</p>
-     * @see  java.util.Map
-     * @see  org.springframework.lang.NonNull
+     * @see java.util.Map
+     * @see org.springframework.lang.NonNull
      */
     public void setFickles(@NonNull Map<String,RestKey<String>> fickles) {
         this.fickles = new HashSet<>(RestKey.keys(fickles.values()));
@@ -114,9 +116,9 @@ public class FickleFilter extends OperateFilter {
      * <code>addFickles</code>
      * <p>The add fickles method.</p>
      * @param fickles {@link java.lang.String} <p>The fickles parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.springframework.lang.NonNull
-     * @return  {@link io.github.nichetoolkit.rice.filter.FickleFilter} <p>The add fickles return object is <code>FickleFilter</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.filter.FickleFilter} <p>The add fickles return object is <code>FickleFilter</code> type.</p>
+     * @see java.lang.String
+     * @see org.springframework.lang.NonNull
      */
     public FickleFilter addFickles(@NonNull String... fickles) {
         if (GeneralUtils.isEmpty(this.fickles)) {
@@ -131,9 +133,9 @@ public class FickleFilter extends OperateFilter {
      * <code>addFickles</code>
      * <p>The add fickles method.</p>
      * @param fickles {@link java.util.Collection} <p>The fickles parameter is <code>Collection</code> type.</p>
-     * @see  java.util.Collection
-     * @see  org.springframework.lang.NonNull
-     * @return  {@link io.github.nichetoolkit.rice.filter.FickleFilter} <p>The add fickles return object is <code>FickleFilter</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.filter.FickleFilter} <p>The add fickles return object is <code>FickleFilter</code> type.</p>
+     * @see java.util.Collection
+     * @see org.springframework.lang.NonNull
      */
     public FickleFilter addFickles(@NonNull Collection<String> fickles) {
         if (GeneralUtils.isEmpty(this.fickles)) {
@@ -148,9 +150,9 @@ public class FickleFilter extends OperateFilter {
      * <code>addFickles</code>
      * <p>The add fickles method.</p>
      * @param fickles {@link java.util.List} <p>The fickles parameter is <code>List</code> type.</p>
-     * @see  java.util.List
-     * @see  org.springframework.lang.NonNull
-     * @return  {@link io.github.nichetoolkit.rice.filter.FickleFilter} <p>The add fickles return object is <code>FickleFilter</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.filter.FickleFilter} <p>The add fickles return object is <code>FickleFilter</code> type.</p>
+     * @see java.util.List
+     * @see org.springframework.lang.NonNull
      */
     public final FickleFilter addFickles(@NonNull List<RestKey<String>> fickles) {
         if (GeneralUtils.isEmpty(this.fickles)) {
@@ -165,9 +167,9 @@ public class FickleFilter extends OperateFilter {
      * <code>addFickles</code>
      * <p>The add fickles method.</p>
      * @param fickles {@link java.util.Map} <p>The fickles parameter is <code>Map</code> type.</p>
-     * @see  java.util.Map
-     * @see  org.springframework.lang.NonNull
-     * @return  {@link io.github.nichetoolkit.rice.filter.FickleFilter} <p>The add fickles return object is <code>FickleFilter</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.filter.FickleFilter} <p>The add fickles return object is <code>FickleFilter</code> type.</p>
+     * @see java.util.Map
+     * @see org.springframework.lang.NonNull
      */
     public final FickleFilter addFickles(@NonNull Map<String,RestKey<String>> fickles) {
         if (GeneralUtils.isEmpty(this.fickles)) {
@@ -181,30 +183,30 @@ public class FickleFilter extends OperateFilter {
     /**
      * <code>toFickleArray</code>
      * <p>The to fickle array method.</p>
-     * @return  {@link java.lang.String} <p>The to fickle array return object is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  io.github.nichetoolkit.rest.RestException
+     * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The to fickle array return object is <code>RestFickle</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.fickle.RestFickle
+     * @see io.github.nichetoolkit.rest.RestException
      */
-    public String[] toFickleArray() throws RestException {
+    public RestFickle<?>[] toFickleArray() throws RestException {
         if (GeneralUtils.isEmpty(this.fickles)) {
-            return new String[0];
+            return new RestFickle<?>[0];
         }
-        return this.fickles.toArray(new String[0]);
+        return this.fickles.stream().map(RestFickle::of).toArray(RestFickle<?>[]::new);
     }
 
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
-     * @see  io.github.nichetoolkit.rice.filter.OperateFilter.Builder
      * @author Cyan (snow22314@outlook.com)
+     * @see io.github.nichetoolkit.rice.filter.OperateFilter.Builder
      * @since Jdk1.8
      */
     public static class Builder extends OperateFilter.Builder {
         /**
          * <code>fickles</code>
          * {@link java.util.Set} <p>The <code>fickles</code> field.</p>
-         * @see  java.util.Set
+         * @see java.util.Set
          */
         protected Set<String> fickles;
 
@@ -219,9 +221,9 @@ public class FickleFilter extends OperateFilter {
          * <code>fickles</code>
          * <p>The fickles method.</p>
          * @param fickles {@link java.lang.String} <p>The fickles parameter is <code>String</code> type.</p>
-         * @see  java.lang.String
-         * @see  org.springframework.lang.NonNull
-         * @return  {@link io.github.nichetoolkit.rice.filter.FickleFilter.Builder} <p>The fickles return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.FickleFilter.Builder} <p>The fickles return object is <code>Builder</code> type.</p>
+         * @see java.lang.String
+         * @see org.springframework.lang.NonNull
          */
         public FickleFilter.Builder fickles(@NonNull String... fickles) {
             this.fickles = new HashSet<>(Arrays.asList(fickles));
@@ -232,9 +234,9 @@ public class FickleFilter extends OperateFilter {
          * <code>fickles</code>
          * <p>The fickles method.</p>
          * @param fickles {@link java.util.Collection} <p>The fickles parameter is <code>Collection</code> type.</p>
-         * @see  java.util.Collection
-         * @see  org.springframework.lang.NonNull
-         * @return  {@link io.github.nichetoolkit.rice.filter.FickleFilter.Builder} <p>The fickles return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.FickleFilter.Builder} <p>The fickles return object is <code>Builder</code> type.</p>
+         * @see java.util.Collection
+         * @see org.springframework.lang.NonNull
          */
         public FickleFilter.Builder fickles(@NonNull Collection<String> fickles) {
             this.fickles = new HashSet<>(fickles);
@@ -245,9 +247,9 @@ public class FickleFilter extends OperateFilter {
          * <code>fickles</code>
          * <p>The fickles method.</p>
          * @param fickles {@link java.util.List} <p>The fickles parameter is <code>List</code> type.</p>
-         * @see  java.util.List
-         * @see  org.springframework.lang.NonNull
-         * @return  {@link io.github.nichetoolkit.rice.filter.FickleFilter.Builder} <p>The fickles return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.FickleFilter.Builder} <p>The fickles return object is <code>Builder</code> type.</p>
+         * @see java.util.List
+         * @see org.springframework.lang.NonNull
          */
         public FickleFilter.Builder fickles(@NonNull  List<RestKey<String>> fickles) {
             this.fickles = new HashSet<>(RestKey.keys(fickles));
@@ -258,9 +260,9 @@ public class FickleFilter extends OperateFilter {
          * <code>fickles</code>
          * <p>The fickles method.</p>
          * @param fickles {@link java.util.Map} <p>The fickles parameter is <code>Map</code> type.</p>
-         * @see  java.util.Map
-         * @see  org.springframework.lang.NonNull
-         * @return  {@link io.github.nichetoolkit.rice.filter.FickleFilter.Builder} <p>The fickles return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.FickleFilter.Builder} <p>The fickles return object is <code>Builder</code> type.</p>
+         * @see java.util.Map
+         * @see org.springframework.lang.NonNull
          */
         public FickleFilter.Builder fickles(@NonNull  Map<String,RestKey<String>> fickles) {
             this.fickles = new HashSet<>(RestKey.keys(fickles.values()));

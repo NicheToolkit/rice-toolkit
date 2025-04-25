@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.service;
 
 import com.github.pagehelper.Page;
+import io.github.nichetoolkit.mybatis.fickle.RestFickle;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
@@ -58,7 +59,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     @Override
     public void afterPropertiesSet() throws Exception {
         ServiceHolder.initOfService();
-        ServiceHolder.initOfServiceIntend();
+        ServiceHolder.initOfServiceFitter();
         this.simpleName = this.getClass().getSimpleName();
         this.superMapper = ServiceHolder.findSuperMapper(this.getClass());
         String superMessage = "The service and mapper name must be like 'xxxService'/'xxxServiceImpl' and 'xxxMapper'.";
@@ -1344,8 +1345,19 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         return queryById(null, id, isLoadArray);
     }
 
-    @Override
-    public M queryById(I id, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException {
+    /**
+     * <code>queryById</code>
+     * <p>The query by id method.</p>
+     * @param id          I <p>The id parameter is <code>I</code> type.</p>
+     * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @return M <p>The query by id return object is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see java.util.Collection
+     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    public M queryById(I id, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
         return queryById(null, id, fickleList, isLoadArray);
     }
 
@@ -1354,14 +1366,27 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         return queryById(tablekey, id, null, isLoadArray);
     }
 
-    @Override
-    public M queryById(K tablekey, I id, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException {
+
+    /**
+     * <code>queryById</code>
+     * <p>The query by id method.</p>
+     * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param id          I <p>The id parameter is <code>I</code> type.</p>
+     * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @return M <p>The query by id return object is <code>M</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see java.util.Collection
+     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    public M queryById(K tablekey, I id, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(id)) {
             return null;
         }
         E entity;
         String tablename = resolveTablename(tablekey);
-        String[] tableFickle = resolveTableFickle(tablename, fickleList);
+        RestFickle<?>[] tableFickle = resolveTableFickle(tablename, fickleList);
         if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
             entity = findByIdFickleLoad(id, tablename, tableFickle, isLoadArray);
@@ -1383,23 +1408,49 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         return queryAll(null, idList, isLoadArray);
     }
 
-    @Override
-    public List<M> queryAll(Collection<I> idList, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException {
+    /**
+     * <code>queryAll</code>
+     * <p>The query all method.</p>
+     * @param idList      {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @return {@link java.util.List} <p>The query all return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see java.util.Collection
+     * @see java.lang.Boolean
+     * @see java.util.List
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    public List<M> queryAll(Collection<I> idList, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
         return queryAll(null, idList, fickleList, isLoadArray);
     }
 
+    @Override
     public List<M> queryAll(K tablekey, Collection<I> idList, Boolean... isLoadArray) throws RestException {
         return queryAll(tablekey, idList, null, isLoadArray);
     }
 
-    @Override
-    public List<M> queryAll(K tablekey, Collection<I> idList, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException {
+    /**
+     * <code>queryAll</code>
+     * <p>The query all method.</p>
+     * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param idList      {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
+     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @return {@link java.util.List} <p>The query all return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see java.util.Collection
+     * @see java.lang.Boolean
+     * @see java.util.List
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    public List<M> queryAll(K tablekey, Collection<I> idList, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return Collections.emptyList();
         }
         List<E> entityList;
         String tablename = resolveTablename(tablekey);
-        String[] tableFickle = resolveTableFickle(tablename, fickleList);
+        RestFickle<?>[] tableFickle = resolveTableFickle(tablename, fickleList);
         if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
             entityList = findAllFickleLoad(idList, tablename, tableFickle, isLoadArray);
@@ -1429,10 +1480,10 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         Boolean[] loadArray = findLoadArray(filter);
         Boolean[] isLoadArray = queryLoadArray(filter);
         String[] fieldArray = fieldArray(filter);
-        String[] fickleArray = fickleArray(filter);
+        RestFickle<?>[] fickleArray = fickleArray(filter);
         K tablekey = tablekey(filter);
         String tablename = resolveTablename(tablekey);
-        String[] tableFickle = resolveTableFickle(tablename, fickleArray);
+        RestFickle<?>[] tableFickle = resolveTableFickle(tablename, fickleArray);
         PageResult<E, I> pageResult;
         if (GeneralUtils.isNotEmpty(loadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
@@ -1484,7 +1535,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(L linkId, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryByLinkId(L linkId, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
         return queryByLinkId(null, linkId, null, fickleList, isLoadArray);
     }
 
@@ -1520,7 +1571,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(K tablekey, L linkId, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryByLinkId(K tablekey, L linkId, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
         return queryByLinkId(tablekey, linkId, null, fickleList, isLoadArray);
     }
 
@@ -1558,7 +1609,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(L linkId, RestKey<String> linkName, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryByLinkId(L linkId, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
         return queryByLinkId(null, linkId, linkName, fickleList, isLoadArray);
     }
 
@@ -1598,13 +1649,13 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(K tablekey, L linkId, RestKey<String> linkName, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryByLinkId(K tablekey, L linkId, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
             return Collections.emptyList();
         }
         List<E> entityList;
         String tablename = resolveTablename(tablekey);
-        String[] tableFickle = resolveTableFickle(tablename, fickleList);
+        RestFickle<?>[] tableFickle = resolveTableFickle(tablename, fickleList);
         if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleLinkMapper.class.isAssignableFrom(superMapper.getClass())) {
             entityList = findByLinkIdFickleLoad(tablename, linkId, linkName, tableFickle, isLoadArray);
@@ -1652,7 +1703,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
         return queryAllByLinkIds(null, linkIdList, fickleList, isLoadArray);
     }
 
@@ -1689,7 +1740,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
         return queryAllByLinkIds(tablekey, linkIdList, null, fickleList, isLoadArray);
     }
 
@@ -1728,7 +1779,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, RestKey<String> linkName, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
         return queryAllByLinkIds(null, linkIdList, linkName, fickleList, isLoadArray);
     }
 
@@ -1769,13 +1820,13 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, RestKey<String> linkName, Collection<RestKey<String>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
             return Collections.emptyList();
         }
         List<E> entityList;
         String tablename = resolveTablename(tablekey);
-        String[] tableFickle = resolveTableFickle(tablename, fickleList);
+        RestFickle<?>[] tableFickle = resolveTableFickle(tablename, fickleList);
         if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleLinkMapper.class.isAssignableFrom(superMapper.getClass())) {
             entityList = findAllByLinkIdsFickleLoad(tablename, linkIdList, linkName, tableFickle, isLoadArray);

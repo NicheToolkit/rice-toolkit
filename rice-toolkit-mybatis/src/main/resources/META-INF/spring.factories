@@ -1,1 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.github.nichetoolkit.mybatis.configure.RiceMybatisAutoConfigure
+io.github.nichetoolkit.rest.fitter.RestFulfilledFitter=io.github.nichetoolkit.mybatis.holder.RestSqlSessionHolder

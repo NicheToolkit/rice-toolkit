@@ -54,7 +54,7 @@ public class ServiceHolder {
      * <code>IS_HAS_INIT_OF_SERVICE_INTEND</code>
      * <p>The <code>IS_HAS_INIT_OF_SERVICE_INTEND</code> field.</p>
      */
-    static boolean IS_HAS_INIT_OF_SERVICE_INTEND = false;
+    static boolean IS_HAS_INIT_OF_SERVICE_FITTER = false;
 
     /**
      * <code>serviceProperties</code>
@@ -85,30 +85,30 @@ public class ServiceHolder {
     }
 
     /**
-     * <code>initOfServiceIntend</code>
-     * <p>The init of service intend method.</p>
+     * <code>initOfServiceFitter</code>
+     * <p>The init of service fitter method.</p>
      * @see  java.lang.SuppressWarnings
      */
     @SuppressWarnings("rawtypes")
-    static void initOfServiceIntend() {
-        if (IS_HAS_INIT_OF_SERVICE_INTEND) {
+    static void initOfServiceFitter() {
+        if (IS_HAS_INIT_OF_SERVICE_FITTER) {
             return;
         }
-        IS_HAS_INIT_OF_SERVICE_INTEND = true;
-        List<RestServiceFitter> serviceIntends = ApplicationContextHolder.beansOfType(RestServiceFitter.class);
-        if (GeneralUtils.isNotEmpty(serviceIntends)) {
+        IS_HAS_INIT_OF_SERVICE_FITTER = true;
+        List<RestServiceFitter> serviceFitters = ApplicationContextHolder.beansOfType(RestServiceFitter.class);
+        if (GeneralUtils.isNotEmpty(serviceFitters)) {
             return;
         }
-        serviceIntends = SpringFactoriesLoader.loadFactories(RestServiceFitter.class, null);
-        if (GeneralUtils.isEmpty(serviceIntends)) {
+        serviceFitters = SpringFactoriesLoader.loadFactories(RestServiceFitter.class, null);
+        if (GeneralUtils.isEmpty(serviceFitters)) {
             return;
         }
-        for (RestServiceFitter<?> serviceIntend : serviceIntends) {
-            serviceIntend = BeanDefinitionRegistryHolder.registerRootBeanDefinition(serviceIntend.beanName(), serviceIntend.beanType(), serviceIntend.beanScope());
-            ListableBeanFactoryHolder.autowireBeanProperties(serviceIntend);
-            serviceIntend.afterAutowirePropertiesSet();
+        for (RestServiceFitter<?> serviceFitter : serviceFitters) {
+            serviceFitter = BeanDefinitionRegistryHolder.registerRootBeanDefinition(serviceFitter.beanName(), serviceFitter.beanType(), serviceFitter.beanScope());
+            ListableBeanFactoryHolder.autowireBeanProperties(serviceFitter);
+            serviceFitter.afterAutowirePropertiesSet();
         }
-        log.debug("There are {} service intend beans has be initiated.", serviceIntends.size());
+        log.debug("There are {} service fitter beans has be initiated.", serviceFitters.size());
     }
 
     /**

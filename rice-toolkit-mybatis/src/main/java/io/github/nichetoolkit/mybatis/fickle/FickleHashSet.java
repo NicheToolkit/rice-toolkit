@@ -8,22 +8,19 @@ import io.github.nichetoolkit.rest.stream.DefaultStreamSupport;
 import io.github.nichetoolkit.rest.stream.RestStream;
 
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * <code>FickleHashSet</code>
  * <p>The fickle hash set class.</p>
- * @param <F>  {@link io.github.nichetoolkit.mybatis.fickle.FickleField} <p>The generic parameter is <code>FickleField</code> type.</p>
- * @see  io.github.nichetoolkit.mybatis.fickle.FickleField
+ * @param <F>  {@link RestFickle} <p>The generic parameter is <code>FickleField</code> type.</p>
+ * @see  RestFickle
  * @see  java.util.LinkedHashSet
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public class FickleHashSet<F extends FickleField<?>> extends LinkedHashSet<F> {
+public class FickleHashSet<F extends RestFickle<?>> extends LinkedHashSet<F> {
 
     /**
      * <code>FickleHashSet</code>
