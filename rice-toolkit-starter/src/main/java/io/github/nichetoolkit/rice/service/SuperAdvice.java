@@ -499,8 +499,13 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @see io.github.nichetoolkit.rest.RestException
      */
     protected RestFickle<?>[] resolveTableFickle(String tablename, RestFickle<?>... fickleArray) throws RestException {
-        if (isFickleField() && GeneralUtils.isNotEmpty(tableMapper)) {
-            List<String> tableColumns = tableMapper.tableColumns(tablename);
+        if (isFickleField()) {
+            List<String> tableColumns;
+            if (GeneralUtils.isNotEmpty(tablename) && GeneralUtils.isNotEmpty(tableMapper)) {
+                tableColumns = tableMapper.tableColumns(tablename);
+            } else {
+                tableColumns = superMapper.tableColumns();
+            }
             if (GeneralUtils.isEmpty(tableColumns)) {
                 return fickleArray;
             }
