@@ -1870,8 +1870,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                     Method findMethod = null;
                     Method deleteMethod = null;
                     try {
-                        findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, IdFilter.class);
-                        deleteMethod = filterMapper.getClass().getMethod("deleteAllByFilterWhere", String.class, IdFilter.class);
+                        findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, Object.class);
+                        deleteMethod = filterMapper.getClass().getMethod("deleteAllByFilterWhere", String.class, Object.class);
                     } catch (NoSuchMethodException ignored) {
                     }
                     Method findAllByWhereMethod = findMethod;
@@ -1934,8 +1934,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                 Method findMethod = null;
                 Method removeMethod = null;
                 try {
-                    findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, IdFilter.class);
-                    removeMethod = filterMapper.getClass().getMethod("removeAllByFilterWhere", String.class, IdFilter.class, Object.class);
+                    findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, Object.class);
+                    removeMethod = filterMapper.getClass().getMethod("removeAllByFilterWhere", String.class, Object.class, Object.class);
                 } catch (NoSuchMethodException ignored) {
                 }
                 Method findAllByWhereMethod = findMethod;
@@ -1997,8 +1997,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                 Method findMethod = null;
                 Method operateMethod = null;
                 try {
-                    findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, IdFilter.class);
-                    operateMethod = filterMapper.getClass().getMethod("operateAllByFilterWhere", String.class, IdFilter.class, Integer.class);
+                    findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, Object.class);
+                    operateMethod = filterMapper.getClass().getMethod("operateAllByFilterWhere", String.class, Object.class, Integer.class);
                 } catch (NoSuchMethodException ignored) {
                 }
                 Method findAllByWhereMethod = findMethod;
@@ -2068,8 +2068,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                 Method findMethod = null;
                 Method alertMethod = null;
                 try {
-                    findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, IdFilter.class);
-                    alertMethod = filterMapper.getClass().getMethod("alertAllByFilterWhere", String.class, IdFilter.class, Object.class);
+                    findMethod = filterMapper.getClass().getMethod("findAllByFilterWhere", String.class, Object.class);
+                    alertMethod = filterMapper.getClass().getMethod("alertAllByFilterWhere", String.class, Object.class, Object.class);
                 } catch (NoSuchMethodException ignored) {
                 }
                 Method findAllByWhereMethod = findMethod;
