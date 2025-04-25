@@ -330,6 +330,9 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
         public OfRestFickle(RestEntry<String, F> entry, String name) {
             super(entry);
             this.name = name;
+            if (GeneralUtils.isNotEmpty(entry.getValue())) {
+                this.type = RestFickleType.ofType(entry.getValue().getClass());
+            }
         }
 
         /**
@@ -343,6 +346,9 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
         public OfRestFickle(String key, F value, String name) {
             super(key, value);
             this.name = name;
+            if (GeneralUtils.isNotEmpty(value)) {
+                this.type = RestFickleType.ofType(value.getClass());
+            }
         }
 
         /**
@@ -357,7 +363,11 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
         public OfRestFickle(String key, F value, RestFickleType type) {
             super(key, value);
             this.name = key;
-            this.type = type;
+            if (GeneralUtils.isNotEmpty(value)) {
+                this.type = RestFickleType.ofType(type, value.getClass());
+            } else {
+                this.type = type;
+            }
         }
 
         /**
@@ -373,7 +383,11 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
         public OfRestFickle(String key, F value, String name, RestFickleType type) {
             super(key, value);
             this.name = name;
-            this.type = type;
+            if (GeneralUtils.isNotEmpty(value)) {
+                this.type = RestFickleType.ofType(type, value.getClass());
+            } else {
+                this.type = type;
+            }
         }
 
         @Override
