@@ -75,7 +75,7 @@ public enum MybatisType implements RestFickleType {
     CHARACTER(62, JdbcType.CHAR, "string", Character.class, DATE),
 
     STRING(71, JdbcType.VARCHAR, "string", String.class),
-    LONG(72, JdbcType.BIGINT, "long", Long.class, BIGINT),
+    LONG(72, JdbcType.BIGINT, "long", Long.class),
     INT(73, JdbcType.INTEGER, "int", Integer.class, INTEGER),
 
     LONG_ARRAY(81, JdbcType.ARRAY, "long[]", Long[].class, ARRAY),
