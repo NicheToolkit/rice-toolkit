@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JavaType;
 import io.github.nichetoolkit.mybatis.fickle.RestFickleType;
 import io.github.nichetoolkit.mybatis.holder.RestSqlSessionHolder;
 import io.github.nichetoolkit.rest.RestValue;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
@@ -220,7 +221,8 @@ public enum MybatisType implements RestFickleType {
 
     public static MybatisType parseAlias(String alias) {
         MybatisType typeEnum = null;
-        if (alias != null) {
+        if (GeneralUtils.isNotEmpty(alias)) {
+            alias = alias.toLowerCase();
             Map<String, MybatisType> keyEnumMap = Stream.of(values()).collect(Collectors.toMap(MybatisType::getAlias, Function.identity(), (oldValue, newValue) -> oldValue, HashMap::new));
             typeEnum = keyEnumMap.get(alias);
         }
