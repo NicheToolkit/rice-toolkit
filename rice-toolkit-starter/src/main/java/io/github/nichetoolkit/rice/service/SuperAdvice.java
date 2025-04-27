@@ -8,6 +8,7 @@ import io.github.nichetoolkit.rest.actuator.*;
 import io.github.nichetoolkit.rest.error.data.DataQueryException;
 import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
 import io.github.nichetoolkit.rest.helper.PartitionHelper;
+import io.github.nichetoolkit.rest.stream.RestStream;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
 import io.github.nichetoolkit.rice.*;
@@ -513,7 +514,15 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
                 return tableColumns.stream().map(RestFickle::of).toArray(RestFickle[]::new);
             }
             if (GeneralUtils.isNotEmpty(fickleArray)) {
-                return Arrays.stream(fickleArray).filter(fickle -> tableColumns.contains(fickle.getKey())).distinct().toArray(RestFickle[]::new);
+                return RestStream.stream(fickleArray).filter(Objects::nonNull).filter(fickle -> {
+                   if (GeneralUtils.isNotEmpty(fickle.getKey())) {
+                       return tableColumns.contains(fickle.getKey());
+                   } else {
+                       String fickleName = fickle.getName();
+                       String columnName = DefaultColumnResolver.resolveColumn(fickleName);
+                       return tableColumns.contains(columnName);
+                   }
+                }).distinct().toArray(RestFickle[]::new);
             }
         }
         return fickleArray;

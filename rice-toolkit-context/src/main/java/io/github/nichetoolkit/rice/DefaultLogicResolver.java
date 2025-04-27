@@ -44,11 +44,11 @@ public abstract class DefaultLogicResolver<L> implements RestLogicResolver<L> {
         if (GeneralUtils.isEmpty(logicResolvers)) {
             return null;
         }
-        RestOptional<RestLogicResolver> logicResolver = RestStream.stream(logicResolvers).findAny();
-        if (GeneralUtils.isEmpty(logicResolver)) {
+        RestOptional<RestLogicResolver> resolverOptional = RestStream.stream(logicResolvers).findAny();
+        if (!resolverOptional.isNullPresent()) {
             return null;
         }
-        RestLogicResolver<L> resolver = (RestLogicResolver<L>) logicResolver.get();
+        RestLogicResolver<L> resolver = (RestLogicResolver<L>) resolverOptional.get();
         return resolver.resolve();
     }
 

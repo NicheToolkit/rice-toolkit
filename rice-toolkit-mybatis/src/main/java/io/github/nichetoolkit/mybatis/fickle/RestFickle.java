@@ -122,53 +122,78 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
     /**
      * <code>of</code>
      * <p>The of method.</p>
-     * @param <F> {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param key {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+     * @param <F>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of return object is <code>RestFickle</code> type.</p>
      * @see java.lang.String
      */
-    static <F> RestFickle<F> of(String key) {
-        return new OfRestFickle<>(key);
+    static <F> RestFickle<F> of(String name) {
+        return new OfRestFickle<>(name);
     }
 
     /**
      * <code>of</code>
      * <p>The of method.</p>
      * @param <F>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+     * @param name  {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param value F <p>The value parameter is <code>F</code> type.</p>
      * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of return object is <code>RestFickle</code> type.</p>
      * @see java.lang.String
      */
-    static <F> RestFickle<F> of(String key, F value) {
-        return new OfRestFickle<>(key, value, key,false);
+    static <F> RestFickle<F> of(String name, F value) {
+        return new OfRestFickle<>(name, null, value, false);
     }
 
     /**
-     * <code>ofValue</code>
-     * <p>The of value method.</p>
-     * @param <F>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-     * @param value F <p>The value parameter is <code>F</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of value return object is <code>RestFickle</code> type.</p>
+     * <code>ofKey</code>
+     * <p>The of key method.</p>
+     * @param <F> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param key {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of key return object is <code>RestFickle</code> type.</p>
      * @see java.lang.String
      */
-    static <F> RestFickle<F> ofValue(String key, F value) {
-        return new OfRestFickle<>(key, value, key,true);
+    static <F> RestFickle<F> ofKey(String key) {
+        return new OfRestFickle<>(null, key, null, false);
+    }
+
+    /**
+     * <code>ofKey</code>
+     * <p>The of key method.</p>
+     * @param <F>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+     * @param value F <p>The value parameter is <code>F</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of key return object is <code>RestFickle</code> type.</p>
+     * @see java.lang.String
+     */
+    static <F> RestFickle<F> ofKey(String key, F value) {
+        return new OfRestFickle<>(null, key, value, false);
     }
 
     /**
      * <code>ofValue</code>
      * <p>The of value method.</p>
      * @param <F>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-     * @param value F <p>The value parameter is <code>F</code> type.</p>
      * @param name  {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+     * @param value F <p>The value parameter is <code>F</code> type.</p>
      * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of value return object is <code>RestFickle</code> type.</p>
      * @see java.lang.String
      */
-    static <F> RestFickle<F> ofValue(String key, F value, String name) {
-        return new OfRestFickle<>(key, value, name,true);
+    static <F> RestFickle<F> ofValue(String name, F value) {
+        return new OfRestFickle<>(name, null, value, true);
+    }
+
+    /**
+     * <code>ofValue</code>
+     * <p>The of value method.</p>
+     * @param <F>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param name  {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+     * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+     * @param value F <p>The value parameter is <code>F</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of value return object is <code>RestFickle</code> type.</p>
+     * @see java.lang.String
+     */
+    static <F> RestFickle<F> ofValue(String name, String key, F value) {
+        return new OfRestFickle<>(name, key, value, true);
     }
 
     /**
@@ -180,57 +205,57 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
      * @see io.github.nichetoolkit.rest.RestEntry
      */
     static <F> RestFickle<F> ofEntry(RestEntry<String, F> entry) {
-        return new OfRestFickle<>(entry, entry.getKey());
+        return new OfRestFickle<>(null, entry);
     }
 
     /**
      * <code>ofEntry</code>
      * <p>The of entry method.</p>
      * @param <F>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param entry {@link io.github.nichetoolkit.rest.RestEntry} <p>The entry parameter is <code>RestEntry</code> type.</p>
      * @param name  {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+     * @param entry {@link io.github.nichetoolkit.rest.RestEntry} <p>The entry parameter is <code>RestEntry</code> type.</p>
      * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of entry return object is <code>RestFickle</code> type.</p>
-     * @see io.github.nichetoolkit.rest.RestEntry
      * @see java.lang.String
+     * @see io.github.nichetoolkit.rest.RestEntry
      */
-    static <F> RestFickle<F> ofEntry(RestEntry<String, F> entry, String name) {
-        return new OfRestFickle<>(entry, name);
+    static <F> RestFickle<F> ofEntry(String name, RestEntry<String, F> entry) {
+        return new OfRestFickle<>(name, entry);
     }
 
     /**
      * <code>ofType</code>
      * <p>The of type method.</p>
      * @param <F>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param key  {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param type {@link io.github.nichetoolkit.rest.RestType} <p>The type parameter is <code>RestType</code> type.</p>
      * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of type return object is <code>RestFickle</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestType
      */
-    static <F> RestFickle<F> ofType(String key, RestType type) {
-        return new OfRestFickle<>(key, null, key, RestFickleType.of(type));
+    static <F> RestFickle<F> ofType(String name, RestType type) {
+        return new OfRestFickle<>(name, null, null, RestFickleType.of(type));
     }
 
     /**
      * <code>ofType</code>
      * <p>The of type method.</p>
      * @param <F>       {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param key       {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+     * @param name      {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param type      {@link io.github.nichetoolkit.rest.RestType} <p>The type parameter is <code>RestType</code> type.</p>
      * @param typeValue {@link java.lang.String} <p>The type value parameter is <code>String</code> type.</p>
      * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of type return object is <code>RestFickle</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestType
      */
-    static <F> RestFickle<F> ofType(String key, RestType type, String typeValue) {
-        return new OfRestFickle<>(key, null, key, RestFickleType.ofValue(type, typeValue));
+    static <F> RestFickle<F> ofType(String name, RestType type, String typeValue) {
+        return new OfRestFickle<>(name, null, null, RestFickleType.ofValue(type, typeValue));
     }
 
     /**
      * <code>ofType</code>
      * <p>The of type method.</p>
      * @param <F>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+     * @param name  {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param type  {@link io.github.nichetoolkit.rest.RestType} <p>The type parameter is <code>RestType</code> type.</p>
      * @param clazz {@link java.lang.Class} <p>The clazz parameter is <code>Class</code> type.</p>
      * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of type return object is <code>RestFickle</code> type.</p>
@@ -238,39 +263,39 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
      * @see io.github.nichetoolkit.rest.RestType
      * @see java.lang.Class
      */
-    static <F> RestFickle<F> ofType(String key, RestType type, Class<?> clazz) {
-        return new OfRestFickle<>(key, null, key, RestFickleType.ofType(type, clazz));
+    static <F> RestFickle<F> ofType(String name, RestType type, Class<?> clazz) {
+        return new OfRestFickle<>(name, null, null, RestFickleType.ofType(type, clazz));
     }
 
     /**
      * <code>ofType</code>
      * <p>The of type method.</p>
      * @param <F>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-     * @param value F <p>The value parameter is <code>F</code> type.</p>
-     * @param type  {@link io.github.nichetoolkit.rest.RestType} <p>The type parameter is <code>RestType</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of type return object is <code>RestFickle</code> type.</p>
-     * @see java.lang.String
-     * @see io.github.nichetoolkit.rest.RestType
-     */
-    static <F> RestFickle<F> ofType(String key, F value, RestType type) {
-        return new OfRestFickle<>(key, value, key,  RestFickleType.of(type));
-    }
-
-    /**
-     * <code>ofType</code>
-     * <p>The of type method.</p>
-     * @param <F>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-     * @param value F <p>The value parameter is <code>F</code> type.</p>
      * @param name  {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+     * @param value F <p>The value parameter is <code>F</code> type.</p>
      * @param type  {@link io.github.nichetoolkit.rest.RestType} <p>The type parameter is <code>RestType</code> type.</p>
      * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of type return object is <code>RestFickle</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestType
      */
-    static <F> RestFickle<F> ofType(String key, F value, String name, RestType type) {
-        return new OfRestFickle<>(key, value, name,  RestFickleType.of(type));
+    static <F> RestFickle<F> ofType(String name, F value, RestType type) {
+        return new OfRestFickle<>(name, null, value, RestFickleType.of(type));
+    }
+
+    /**
+     * <code>ofType</code>
+     * <p>The of type method.</p>
+     * @param <F>   {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param name  {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+     * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+     * @param value F <p>The value parameter is <code>F</code> type.</p>
+     * @param type  {@link io.github.nichetoolkit.rest.RestType} <p>The type parameter is <code>RestType</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of type return object is <code>RestFickle</code> type.</p>
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.rest.RestType
+     */
+    static <F> RestFickle<F> ofType(String name, String key, F value, RestType type) {
+        return new OfRestFickle<>(name, key, value, RestFickleType.of(type));
     }
 
     /**
@@ -289,45 +314,45 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
      * @param <F> {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rest.RestValue.OfRestValue
+     * @see lombok.Setter
      * @since Jdk1.8
      */
+    @Setter
     class OfRestFickle<F> extends RestValue.OfRestValue<String, F> implements RestFickle<F> {
         /**
          * <code>name</code>
          * {@link java.lang.String} <p>The <code>name</code> field.</p>
          * @see java.lang.String
          */
-        private final String name;
+        private String name;
 
         /**
          * <code>type</code>
          * {@link io.github.nichetoolkit.mybatis.fickle.RestFickleType} <p>The <code>type</code> field.</p>
          * @see io.github.nichetoolkit.mybatis.fickle.RestFickleType
-         * @see lombok.Setter
          */
-        @Setter
         private RestFickleType type = MybatisType.OBJECT;
 
         /**
          * <code>OfRestFickle</code>
          * <p>Instantiates a new of rest fickle.</p>
-         * @param key {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+         * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
          * @see java.lang.String
          */
-        public OfRestFickle(String key) {
-            super(key, null);
-            this.name = key;
+        public OfRestFickle(String name) {
+            super(null, null);
+            this.name = name;
         }
 
         /**
          * <code>OfRestFickle</code>
          * <p>Instantiates a new of rest fickle.</p>
-         * @param entry {@link io.github.nichetoolkit.rest.RestEntry} <p>The entry parameter is <code>RestEntry</code> type.</p>
          * @param name  {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
-         * @see io.github.nichetoolkit.rest.RestEntry
+         * @param entry {@link io.github.nichetoolkit.rest.RestEntry} <p>The entry parameter is <code>RestEntry</code> type.</p>
          * @see java.lang.String
+         * @see io.github.nichetoolkit.rest.RestEntry
          */
-        public OfRestFickle(RestEntry<String, F> entry, String name) {
+        public OfRestFickle(String name, RestEntry<String, F> entry) {
             super(entry);
             this.name = name;
             if (GeneralUtils.isNotEmpty(entry.getValue())) {
@@ -338,14 +363,14 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
         /**
          * <code>OfRestFickle</code>
          * <p>Instantiates a new of rest fickle.</p>
+         * @param name       {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
          * @param key        {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
          * @param value      F <p>The value parameter is <code>F</code> type.</p>
-         * @param name       {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
          * @param fickleType boolean <p>The fickle type parameter is <code>boolean</code> type.</p>
          * @see java.lang.String
          */
-        public OfRestFickle(String key, F value, String name, boolean fickleType) {
-            super(key, value);
+        public OfRestFickle(String name, String key, F value, boolean fickleType) {
+            super(null, value);
             this.name = name;
             if (fickleType && GeneralUtils.isNotEmpty(value)) {
                 this.type = RestFickleType.ofType(value.getClass());
@@ -355,15 +380,15 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
         /**
          * <code>OfRestFickle</code>
          * <p>Instantiates a new of rest fickle.</p>
-         * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+         * @param name  {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
          * @param value F <p>The value parameter is <code>F</code> type.</p>
          * @param type  {@link io.github.nichetoolkit.mybatis.fickle.RestFickleType} <p>The type parameter is <code>RestFickleType</code> type.</p>
          * @see java.lang.String
          * @see io.github.nichetoolkit.mybatis.fickle.RestFickleType
          */
-        public OfRestFickle(String key, F value, RestFickleType type) {
-            super(key, value);
-            this.name = key;
+        public OfRestFickle(String name, F value, RestFickleType type) {
+            super(null, value);
+            this.name = name;
             if (GeneralUtils.isNotEmpty(value)) {
                 this.type = RestFickleType.ofType(type, value.getClass());
             } else {
@@ -374,14 +399,14 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
         /**
          * <code>OfRestFickle</code>
          * <p>Instantiates a new of rest fickle.</p>
+         * @param name  {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
          * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
          * @param value F <p>The value parameter is <code>F</code> type.</p>
-         * @param name  {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
          * @param type  {@link io.github.nichetoolkit.mybatis.fickle.RestFickleType} <p>The type parameter is <code>RestFickleType</code> type.</p>
          * @see java.lang.String
          * @see io.github.nichetoolkit.mybatis.fickle.RestFickleType
          */
-        public OfRestFickle(String key, F value, String name, RestFickleType type) {
+        public OfRestFickle(String name, String key, F value, RestFickleType type) {
             super(key, value);
             this.name = name;
             if (GeneralUtils.isNotEmpty(value)) {
@@ -418,7 +443,7 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
             if (o == null || getClass() != o.getClass()) return false;
             if (!super.equals(o)) return false;
             OfRestFickle<?> that = (OfRestFickle<?>) o;
-            return Objects.equals(name, that.name) && Objects.equals(type, that.type);
+            return Objects.equals(name, that.name);
         }
 
         @Override
