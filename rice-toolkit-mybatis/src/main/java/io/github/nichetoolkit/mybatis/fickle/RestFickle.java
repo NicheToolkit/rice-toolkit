@@ -32,10 +32,6 @@ import java.util.Objects;
 public interface RestFickle<F> extends RestField<F>, Serializable {
 
     @Override
-    @JsonValue
-    String getKey();
-
-    @Override
     RestFickleType getType();
 
     /**
@@ -75,9 +71,7 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
      * <p>The get jdbc type getter method.</p>
      * @return {@link org.apache.ibatis.type.JdbcType} <p>The get jdbc type return object is <code>JdbcType</code> type.</p>
      * @see org.apache.ibatis.type.JdbcType
-     * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
-    @JsonIgnore
     default JdbcType getJdbcType() {
         return getType().getJdbcType();
     }
@@ -87,9 +81,7 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
      * <p>The get java type getter method.</p>
      * @return {@link com.fasterxml.jackson.databind.JavaType} <p>The get java type return object is <code>JavaType</code> type.</p>
      * @see com.fasterxml.jackson.databind.JavaType
-     * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
-    @JsonIgnore
     default JavaType getJavaType() {
         return getType().getJavaType();
     }
