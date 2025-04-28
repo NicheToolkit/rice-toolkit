@@ -23,8 +23,12 @@ import java.util.Objects;
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.RestField
  * @see java.io.Serializable
+ * @see com.fasterxml.jackson.annotation.JsonInclude
+ * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public interface RestFickle<F> extends RestField<F>, Serializable {
 
     @Override
