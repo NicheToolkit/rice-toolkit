@@ -16,12 +16,8 @@ import java.io.Serializable;
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.RestType
  * @see java.io.Serializable
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
-@JsonInclude(value = JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public interface RestFickleType extends RestType, Serializable {
 
     /**
@@ -37,9 +33,7 @@ public interface RestFickleType extends RestType, Serializable {
      * <p>The get jdbc type getter method.</p>
      * @return {@link org.apache.ibatis.type.JdbcType} <p>The get jdbc type return object is <code>JdbcType</code> type.</p>
      * @see org.apache.ibatis.type.JdbcType
-     * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
-    @JsonIgnore
     JdbcType getJdbcType();
 
     /**
@@ -47,9 +41,7 @@ public interface RestFickleType extends RestType, Serializable {
      * <p>The get java type getter method.</p>
      * @return {@link com.fasterxml.jackson.databind.JavaType} <p>The get java type return object is <code>JavaType</code> type.</p>
      * @see com.fasterxml.jackson.databind.JavaType
-     * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
-    @JsonIgnore
     default JavaType getJavaType() {
         return TypeFactory.defaultInstance().constructType(getType());
     }
@@ -82,18 +74,9 @@ public interface RestFickleType extends RestType, Serializable {
     }
 
     @Override
-    @JsonIgnore
-    Class<?> getType();
-
-    @JsonValue
-    @Override
-    Integer getKey();
-
-    @Override
     default String getValue() {
         return getAlias();
     }
-
 
     /**
      * <code>of</code>
