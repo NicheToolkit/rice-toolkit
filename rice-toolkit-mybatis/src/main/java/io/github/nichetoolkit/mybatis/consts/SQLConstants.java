@@ -15,6 +15,7 @@ public interface SQLConstants {
      * @see java.lang.String
      */
     String ASTERISK = "*";
+
     /**
      * <code>CREATE</code>
      * {@link java.lang.String} <p>The constant <code>CREATE</code> field.</p>

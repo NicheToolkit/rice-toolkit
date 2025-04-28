@@ -15,11 +15,11 @@ import java.util.Date;
 /**
  * <code>SqlBuilder</code>
  * <p>The sql builder class.</p>
- * @see  java.io.Serializable
- * @see  java.lang.CharSequence
- * @see  lombok.Getter
- * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
+ * @see java.io.Serializable
+ * @see java.lang.CharSequence
+ * @see lombok.Getter
+ * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
 @Getter
@@ -29,7 +29,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>EMPTY</code>
      * {@link java.lang.String} <p>The constant <code>EMPTY</code> field.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     public static final String EMPTY = SQLConstants.EMPTY;
 
@@ -42,7 +42,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>sqlBuilder</code>
      * {@link java.lang.StringBuilder} <p>The <code>sqlBuilder</code> field.</p>
-     * @see  java.lang.StringBuilder
+     * @see java.lang.StringBuilder
      */
     private final StringBuilder sqlBuilder;
 
@@ -58,7 +58,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>SqlBuilder</code>
      * <p>Instantiates a new sql builder.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
-     * @see  java.lang.StringBuilder
+     * @see java.lang.StringBuilder
      */
     public SqlBuilder(StringBuilder sqlBuilder) {
         this.sqlBuilder = sqlBuilder;
@@ -77,9 +77,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>SqlBuilder</code>
      * <p>Instantiates a new sql builder.</p>
      * @param str {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.RuntimeException
      * @throws RuntimeException {@link java.lang.RuntimeException} <p>The runtime exception is <code>RuntimeException</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.RuntimeException
      */
     public SqlBuilder(String str) throws RuntimeException {
         this.sqlBuilder = new StringBuilder(str);
@@ -89,7 +89,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>SqlBuilder</code>
      * <p>Instantiates a new sql builder.</p>
      * @param seq {@link java.lang.CharSequence} <p>The seq parameter is <code>CharSequence</code> type.</p>
-     * @see  java.lang.CharSequence
+     * @see java.lang.CharSequence
      */
     public SqlBuilder(CharSequence seq) {
         this.sqlBuilder = new StringBuilder(seq);
@@ -98,7 +98,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>clear</code>
      * <p>The clear method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The clear return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The clear return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder clear() {
         this.sqlBuilder.delete(0, this.sqlBuilder.length());
@@ -109,8 +109,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>append</code>
      * <p>The append method.</p>
      * @param obj {@link java.lang.Object} <p>The obj parameter is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.Object
      */
     public SqlBuilder append(Object obj) {
         return append(String.valueOf(obj));
@@ -120,8 +120,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>append</code>
      * <p>The append method.</p>
      * @param str {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
      */
     public SqlBuilder append(String str) {
         sqlBuilder.append(str);
@@ -132,8 +132,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>append</code>
      * <p>The append method.</p>
      * @param sb {@link java.lang.StringBuilder} <p>The sb parameter is <code>StringBuilder</code> type.</p>
-     * @see  java.lang.StringBuilder
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.StringBuilder
      */
     public SqlBuilder append(StringBuilder sb) {
         sqlBuilder.append(sb);
@@ -144,7 +144,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>append</code>
      * <p>The append method.</p>
      * @param sb {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sb parameter is <code>SqlBuilder</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(SqlBuilder sb) {
         sqlBuilder.append(sb.sqlBuilder);
@@ -155,8 +155,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>append</code>
      * <p>The append method.</p>
      * @param sb {@link java.lang.StringBuffer} <p>The sb parameter is <code>StringBuffer</code> type.</p>
-     * @see  java.lang.StringBuffer
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.StringBuffer
      */
     public SqlBuilder append(StringBuffer sb) {
         sqlBuilder.append(sb);
@@ -167,8 +167,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>append</code>
      * <p>The append method.</p>
      * @param s {@link java.lang.CharSequence} <p>The s parameter is <code>CharSequence</code> type.</p>
-     * @see  java.lang.CharSequence
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.CharSequence
      */
     public SqlBuilder append(CharSequence s) {
         sqlBuilder.append(s);
@@ -178,11 +178,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>append</code>
      * <p>The append method.</p>
-     * @param s {@link java.lang.CharSequence} <p>The s parameter is <code>CharSequence</code> type.</p>
+     * @param s     {@link java.lang.CharSequence} <p>The s parameter is <code>CharSequence</code> type.</p>
      * @param start int <p>The start parameter is <code>int</code> type.</p>
-     * @param end int <p>The end parameter is <code>int</code> type.</p>
-     * @see  java.lang.CharSequence
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @param end   int <p>The end parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.CharSequence
      */
     public SqlBuilder append(CharSequence s, int start, int end) {
         sqlBuilder.append(s, start, end);
@@ -193,7 +193,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>append</code>
      * <p>The append method.</p>
      * @param str char <p>The str parameter is <code>char</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(char[] str) {
         sqlBuilder.append(str);
@@ -204,10 +204,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>append</code>
      * <p>The append method.</p>
-     * @param str char <p>The str parameter is <code>char</code> type.</p>
+     * @param str    char <p>The str parameter is <code>char</code> type.</p>
      * @param offset int <p>The offset parameter is <code>int</code> type.</p>
-     * @param len int <p>The len parameter is <code>int</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @param len    int <p>The len parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(char[] str, int offset, int len) {
         sqlBuilder.append(str, offset, len);
@@ -219,7 +219,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>append</code>
      * <p>The append method.</p>
      * @param b boolean <p>The b parameter is <code>boolean</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(boolean b) {
         sqlBuilder.append(b);
@@ -231,7 +231,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>append</code>
      * <p>The append method.</p>
      * @param c char <p>The c parameter is <code>char</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(char c) {
         sqlBuilder.append(c);
@@ -243,7 +243,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>append</code>
      * <p>The append method.</p>
      * @param i int <p>The parameter is <code>int</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(int i) {
         sqlBuilder.append(i);
@@ -255,7 +255,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>append</code>
      * <p>The append method.</p>
      * @param lng long <p>The lng parameter is <code>long</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(long lng) {
         sqlBuilder.append(lng);
@@ -267,7 +267,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>append</code>
      * <p>The append method.</p>
      * @param f float <p>The f parameter is <code>float</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(float f) {
         sqlBuilder.append(f);
@@ -278,7 +278,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>append</code>
      * <p>The append method.</p>
      * @param d double <p>The d parameter is <code>double</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder append(double d) {
         sqlBuilder.append(d);
@@ -289,7 +289,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>appendCodePoint</code>
      * <p>The append code point method.</p>
      * @param codePoint int <p>The code point parameter is <code>int</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append code point return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The append code point return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder appendCodePoint(int codePoint) {
         sqlBuilder.appendCodePoint(codePoint);
@@ -300,7 +300,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>delete</code>
      * <p>The delete method.</p>
      * @param start int <p>The start parameter is <code>int</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The delete return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The delete return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder delete(int start) {
         sqlBuilder.delete(start, sqlBuilder.length());
@@ -311,8 +311,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>delete</code>
      * <p>The delete method.</p>
      * @param start int <p>The start parameter is <code>int</code> type.</p>
-     * @param end int <p>The end parameter is <code>int</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The delete return object is <code>SqlBuilder</code> type.</p>
+     * @param end   int <p>The end parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The delete return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder delete(int start, int end) {
         sqlBuilder.delete(start, end);
@@ -323,7 +323,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>deleteCharAt</code>
      * <p>The delete char at method.</p>
      * @param index int <p>The index parameter is <code>int</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The delete char at return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The delete char at return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder deleteCharAt(int index) {
         sqlBuilder.deleteCharAt(index);
@@ -333,7 +333,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>deleteLastChar</code>
      * <p>The delete last char method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The delete last char return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The delete last char return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder deleteLastChar() {
         sqlBuilder.deleteCharAt(sqlBuilder.length() - 1);
@@ -344,10 +344,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>replace</code>
      * <p>The replace method.</p>
      * @param start int <p>The start parameter is <code>int</code> type.</p>
-     * @param end int <p>The end parameter is <code>int</code> type.</p>
-     * @param str {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The replace return object is <code>SqlBuilder</code> type.</p>
+     * @param end   int <p>The end parameter is <code>int</code> type.</p>
+     * @param str   {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The replace return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
      */
     public SqlBuilder replace(int start, int end, String str) {
         sqlBuilder.replace(start, end, str);
@@ -357,11 +357,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>insert</code>
      * <p>The insert method.</p>
-     * @param index int <p>The index parameter is <code>int</code> type.</p>
-     * @param str char <p>The str parameter is <code>char</code> type.</p>
+     * @param index  int <p>The index parameter is <code>int</code> type.</p>
+     * @param str    char <p>The str parameter is <code>char</code> type.</p>
      * @param offset int <p>The offset parameter is <code>int</code> type.</p>
-     * @param len int <p>The len parameter is <code>int</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @param len    int <p>The len parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int index, char[] str, int offset,
                              int len) {
@@ -373,9 +373,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>insert</code>
      * <p>The insert method.</p>
      * @param offset int <p>The offset parameter is <code>int</code> type.</p>
-     * @param obj {@link java.lang.Object} <p>The obj parameter is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @param obj    {@link java.lang.Object} <p>The obj parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.Object
      */
     public SqlBuilder insert(int offset, Object obj) {
         sqlBuilder.insert(offset, obj);
@@ -386,9 +386,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>insert</code>
      * <p>The insert method.</p>
      * @param offset int <p>The offset parameter is <code>int</code> type.</p>
-     * @param str {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @param str    {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
      */
     public SqlBuilder insert(int offset, String str) {
         sqlBuilder.insert(offset, str);
@@ -399,8 +399,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>insert</code>
      * <p>The insert method.</p>
      * @param offset int <p>The offset parameter is <code>int</code> type.</p>
-     * @param str char <p>The str parameter is <code>char</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @param str    char <p>The str parameter is <code>char</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int offset, char[] str) {
         sqlBuilder.insert(offset, str);
@@ -411,9 +411,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>insert</code>
      * <p>The insert method.</p>
      * @param dstOffset int <p>The dst offset parameter is <code>int</code> type.</p>
-     * @param s {@link java.lang.CharSequence} <p>The s parameter is <code>CharSequence</code> type.</p>
-     * @see  java.lang.CharSequence
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @param s         {@link java.lang.CharSequence} <p>The s parameter is <code>CharSequence</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.CharSequence
      */
     public SqlBuilder insert(int dstOffset, CharSequence s) {
         sqlBuilder.insert(dstOffset, s);
@@ -424,11 +424,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>insert</code>
      * <p>The insert method.</p>
      * @param dstOffset int <p>The dst offset parameter is <code>int</code> type.</p>
-     * @param s {@link java.lang.CharSequence} <p>The s parameter is <code>CharSequence</code> type.</p>
-     * @param start int <p>The start parameter is <code>int</code> type.</p>
-     * @param end int <p>The end parameter is <code>int</code> type.</p>
-     * @see  java.lang.CharSequence
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @param s         {@link java.lang.CharSequence} <p>The s parameter is <code>CharSequence</code> type.</p>
+     * @param start     int <p>The start parameter is <code>int</code> type.</p>
+     * @param end       int <p>The end parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.CharSequence
      */
     public SqlBuilder insert(int dstOffset, CharSequence s,
                              int start, int end) {
@@ -440,8 +440,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>insert</code>
      * <p>The insert method.</p>
      * @param offset int <p>The offset parameter is <code>int</code> type.</p>
-     * @param b boolean <p>The b parameter is <code>boolean</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @param b      boolean <p>The b parameter is <code>boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int offset, boolean b) {
         sqlBuilder.insert(offset, b);
@@ -452,8 +452,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>insert</code>
      * <p>The insert method.</p>
      * @param offset int <p>The offset parameter is <code>int</code> type.</p>
-     * @param c char <p>The c parameter is <code>char</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @param c      char <p>The c parameter is <code>char</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int offset, char c) {
         sqlBuilder.insert(offset, c);
@@ -464,8 +464,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>insert</code>
      * <p>The insert method.</p>
      * @param offset int <p>The offset parameter is <code>int</code> type.</p>
-     * @param i int <p>The parameter is <code>int</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @param i      int <p>The parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int offset, int i) {
         sqlBuilder.insert(offset, i);
@@ -476,8 +476,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>insert</code>
      * <p>The insert method.</p>
      * @param offset int <p>The offset parameter is <code>int</code> type.</p>
-     * @param l long <p>The l parameter is <code>long</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @param l      long <p>The l parameter is <code>long</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int offset, long l) {
         sqlBuilder.insert(offset, l);
@@ -488,8 +488,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>insert</code>
      * <p>The insert method.</p>
      * @param offset int <p>The offset parameter is <code>int</code> type.</p>
-     * @param f float <p>The f parameter is <code>float</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @param f      float <p>The f parameter is <code>float</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int offset, float f) {
         sqlBuilder.insert(offset, f);
@@ -500,8 +500,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>insert</code>
      * <p>The insert method.</p>
      * @param offset int <p>The offset parameter is <code>int</code> type.</p>
-     * @param d double <p>The d parameter is <code>double</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @param d      double <p>The d parameter is <code>double</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert(int offset, double d) {
         sqlBuilder.insert(offset, d);
@@ -513,8 +513,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>indexOf</code>
      * <p>The index of method.</p>
      * @param str {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
      * @return int <p>The index of return object is <code>int</code> type.</p>
+     * @see java.lang.String
      */
     public int indexOf(String str) {
         return sqlBuilder.indexOf(str);
@@ -524,10 +524,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>indexOf</code>
      * <p>The index of method.</p>
-     * @param str {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
+     * @param str       {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
      * @param fromIndex int <p>The from index parameter is <code>int</code> type.</p>
-     * @see  java.lang.String
      * @return int <p>The index of return object is <code>int</code> type.</p>
+     * @see java.lang.String
      */
     public int indexOf(String str, int fromIndex) {
         return sqlBuilder.indexOf(str, fromIndex);
@@ -538,8 +538,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>lastIndexOf</code>
      * <p>The last index of method.</p>
      * @param str {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
      * @return int <p>The last index of return object is <code>int</code> type.</p>
+     * @see java.lang.String
      */
     public int lastIndexOf(String str) {
         return sqlBuilder.lastIndexOf(str);
@@ -549,10 +549,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>lastIndexOf</code>
      * <p>The last index of method.</p>
-     * @param str {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
+     * @param str       {@link java.lang.String} <p>The str parameter is <code>String</code> type.</p>
      * @param fromIndex int <p>The from index parameter is <code>int</code> type.</p>
-     * @see  java.lang.String
      * @return int <p>The last index of return object is <code>int</code> type.</p>
+     * @see java.lang.String
      */
     public int lastIndexOf(String str, int fromIndex) {
         return sqlBuilder.lastIndexOf(str, fromIndex);
@@ -562,7 +562,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>reverse</code>
      * <p>The reverse method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The reverse return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The reverse return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder reverse() {
         sqlBuilder.reverse();
@@ -597,7 +597,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>sqlBuilder</code>
      * <p>The sql builder method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder return object is <code>SqlBuilder</code> type.</p>
      */
     public static SqlBuilder sqlBuilder() {
         return new SqlBuilder();
@@ -607,8 +607,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>sqlBuilder</code>
      * <p>The sql builder method.</p>
      * @param sql {@link java.lang.String} <p>The sql parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
      */
     public static SqlBuilder sqlBuilder(String sql) {
         return new SqlBuilder(sql);
@@ -617,11 +617,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>isn</code>
      * <p>The isn method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The isn return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The isn return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Boolean
      */
     public SqlBuilder isn(String target, Boolean andOfOr) {
         if (GeneralUtils.isNotEmpty(target)) {
@@ -634,11 +634,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>inn</code>
      * <p>The inn method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The inn return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The inn return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Boolean
      */
     public SqlBuilder inn(String target, Boolean andOfOr) {
         if (GeneralUtils.isNotEmpty(target)) {
@@ -651,13 +651,13 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>eq</code>
      * <p>The eq method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The eq return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The eq return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
      */
     public SqlBuilder eq(String target, Object value, Boolean andOfOr) {
         if (value instanceof Number) {
@@ -675,13 +675,13 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>neq</code>
      * <p>The neq method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The neq return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The neq return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
      */
     public SqlBuilder neq(String target, Object value, Boolean andOfOr) {
         if (value instanceof Number) {
@@ -699,12 +699,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>lk</code>
      * <p>The lk method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lk return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lk return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Boolean
      */
     public SqlBuilder lk(String target, String value, Boolean andOfOr) {
         return lk(target, value, null, andOfOr);
@@ -713,12 +713,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>lkl</code>
      * <p>The lkl method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkl return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkl return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Boolean
      */
     public SqlBuilder lkl(String target, String value, Boolean andOfOr) {
         return lk(target, value, true, andOfOr);
@@ -727,12 +727,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>lkg</code>
      * <p>The lkg method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkg return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkg return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Boolean
      */
     public SqlBuilder lkg(String target, String value, Boolean andOfOr) {
         return lk(target, value, false, andOfOr);
@@ -742,9 +742,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>lk</code>
      * <p>The lk method.</p>
      * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lk return object is <code>SqlBuilder</code> type.</p>
+     * @param value  {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lk return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
      */
     public SqlBuilder lk(String target, String value) {
         return lk(target, value, null, null);
@@ -754,9 +754,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>lkl</code>
      * <p>The lkl method.</p>
      * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkl return object is <code>SqlBuilder</code> type.</p>
+     * @param value  {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkl return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
      */
     public SqlBuilder lkl(String target, String value) {
         return lk(target, value, true, null);
@@ -766,9 +766,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>lkg</code>
      * <p>The lkg method.</p>
      * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkg return object is <code>SqlBuilder</code> type.</p>
+     * @param value  {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkg return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
      */
     public SqlBuilder lkg(String target, String value) {
         return lk(target, value, false, null);
@@ -778,12 +778,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>lk</code>
      * <p>The lk method.</p>
      * @param targets {@link java.util.Collection} <p>The targets parameter is <code>Collection</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.util.Collection
-     * @see  java.lang.String
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lk return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lk return object is <code>SqlBuilder</code> type.</p>
+     * @see java.util.Collection
+     * @see java.lang.String
+     * @see java.lang.Boolean
      */
     public SqlBuilder lk(Collection<String> targets, String value, Boolean andOfOr) {
         return lk(targets, value, null, andOfOr);
@@ -793,12 +793,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>lkl</code>
      * <p>The lkl method.</p>
      * @param targets {@link java.util.Collection} <p>The targets parameter is <code>Collection</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.util.Collection
-     * @see  java.lang.String
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkl return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkl return object is <code>SqlBuilder</code> type.</p>
+     * @see java.util.Collection
+     * @see java.lang.String
+     * @see java.lang.Boolean
      */
     public SqlBuilder lkl(Collection<String> targets, String value, Boolean andOfOr) {
         return lk(targets, value, true, andOfOr);
@@ -808,12 +808,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>lkg</code>
      * <p>The lkg method.</p>
      * @param targets {@link java.util.Collection} <p>The targets parameter is <code>Collection</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.util.Collection
-     * @see  java.lang.String
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkg return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkg return object is <code>SqlBuilder</code> type.</p>
+     * @see java.util.Collection
+     * @see java.lang.String
+     * @see java.lang.Boolean
      */
     public SqlBuilder lkg(Collection<String> targets, String value, Boolean andOfOr) {
         return lk(targets, value, false, andOfOr);
@@ -823,10 +823,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>lk</code>
      * <p>The lk method.</p>
      * @param targets {@link java.util.Collection} <p>The targets parameter is <code>Collection</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @see  java.util.Collection
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lk return object is <code>SqlBuilder</code> type.</p>
+     * @param value   {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lk return object is <code>SqlBuilder</code> type.</p>
+     * @see java.util.Collection
+     * @see java.lang.String
      */
     public SqlBuilder lk(Collection<String> targets, String value) {
         return lk(targets, value, null, null);
@@ -836,10 +836,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>lkl</code>
      * <p>The lkl method.</p>
      * @param targets {@link java.util.Collection} <p>The targets parameter is <code>Collection</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @see  java.util.Collection
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkl return object is <code>SqlBuilder</code> type.</p>
+     * @param value   {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkl return object is <code>SqlBuilder</code> type.</p>
+     * @see java.util.Collection
+     * @see java.lang.String
      */
     public SqlBuilder lkl(Collection<String> targets, String value) {
         return lk(targets, value, true, null);
@@ -849,10 +849,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>lkg</code>
      * <p>The lkg method.</p>
      * @param targets {@link java.util.Collection} <p>The targets parameter is <code>Collection</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @see  java.util.Collection
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkg return object is <code>SqlBuilder</code> type.</p>
+     * @param value   {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lkg return object is <code>SqlBuilder</code> type.</p>
+     * @see java.util.Collection
+     * @see java.lang.String
      */
     public SqlBuilder lkg(Collection<String> targets, String value) {
         return lk(targets, value, false, null);
@@ -862,14 +862,14 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>lk</code>
      * <p>The lk method.</p>
      * @param targets {@link java.util.Collection} <p>The targets parameter is <code>Collection</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @param ltOfGt {@link java.lang.Boolean} <p>The lt of gt parameter is <code>Boolean</code> type.</p>
+     * @param value   {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @param ltOfGt  {@link java.lang.Boolean} <p>The lt of gt parameter is <code>Boolean</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.util.Collection
-     * @see  java.lang.String
-     * @see  java.lang.Boolean
-     * @see  java.lang.SuppressWarnings
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lk return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lk return object is <code>SqlBuilder</code> type.</p>
+     * @see java.util.Collection
+     * @see java.lang.String
+     * @see java.lang.Boolean
+     * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings("Duplicates")
     public SqlBuilder lk(Collection<String> targets, String value, Boolean ltOfGt, Boolean andOfOr) {
@@ -901,14 +901,14 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>lk</code>
      * <p>The lk method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @param ltOfGt {@link java.lang.Boolean} <p>The lt of gt parameter is <code>Boolean</code> type.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @param ltOfGt  {@link java.lang.Boolean} <p>The lt of gt parameter is <code>Boolean</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Boolean
-     * @see  java.lang.SuppressWarnings
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lk return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lk return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Boolean
+     * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings("Duplicates")
     public SqlBuilder lk(String target, String value, Boolean ltOfGt, Boolean andOfOr) {
@@ -938,9 +938,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <p>The ain method.</p>
      * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param values {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.util.Collection
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The ain return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The ain return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.util.Collection
      */
     public SqlBuilder ain(String target, Collection<?> values) {
         return in(target, values, true);
@@ -951,9 +951,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <p>The oin method.</p>
      * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param values {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.util.Collection
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The oin return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The oin return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.util.Collection
      */
     public SqlBuilder oin(String target, Collection<?> values) {
         return in(target, values, false);
@@ -962,13 +962,13 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>nin</code>
      * <p>The nin method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param values {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param values  {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.util.Collection
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The nin return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The nin return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.util.Collection
+     * @see java.lang.Boolean
      */
     public SqlBuilder nin(String target, Collection<?> values, Boolean andOfOr) {
         if (GeneralUtils.isNotEmpty(values)) {
@@ -989,13 +989,13 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>in</code>
      * <p>The in method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param values {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param values  {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.util.Collection
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The in return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The in return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.util.Collection
+     * @see java.lang.Boolean
      */
     public SqlBuilder in(String target, Collection<?> values, Boolean andOfOr) {
         if (GeneralUtils.isNotEmpty(values)) {
@@ -1016,12 +1016,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>rb</code>
      * <p>The rb method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
-     * @param endValue {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The rb return object is <code>SqlBuilder</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The rb return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
      */
     public SqlBuilder rb(String target, Object beginValue, Object endValue) {
         if (GeneralUtils.isUsable(beginValue) && GeneralUtils.isUsable(endValue)) {
@@ -1036,10 +1036,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <p>The sb method.</p>
      * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
      * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sb return object is <code>SqlBuilder</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sb return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
      */
     public SqlBuilder sb(String minTarget, String maxTarget, Object value) {
         if (GeneralUtils.isUsable(value)) {
@@ -1052,12 +1052,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>reb</code>
      * <p>The reb method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
-     * @param endValue {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The reb return object is <code>SqlBuilder</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The reb return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
      */
     public SqlBuilder reb(String target, Object beginValue, Object endValue) {
         if (GeneralUtils.isUsable(beginValue) && GeneralUtils.isUsable(endValue)) {
@@ -1072,10 +1072,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <p>The seb method.</p>
      * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
      * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The seb return object is <code>SqlBuilder</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The seb return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
      */
     public SqlBuilder seb(String minTarget, String maxTarget, Object value) {
         if (GeneralUtils.isUsable(value)) {
@@ -1088,15 +1088,15 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>reo</code>
      * <p>The reo method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
-     * @param endValue {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @see  java.lang.SuppressWarnings
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The reo return object is <code>SqlBuilder</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The reo return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
+     * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings("Duplicates")
     public SqlBuilder reo(String target, Object beginValue, Object endValue, Boolean andOfOr) {
@@ -1113,13 +1113,13 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <p>The seo method.</p>
      * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
      * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @see  java.lang.SuppressWarnings
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The seo return object is <code>SqlBuilder</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr   {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The seo return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
+     * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings("Duplicates")
     public SqlBuilder seo(String minTarget, String maxTarget, Object value, Boolean andOfOr) {
@@ -1134,15 +1134,15 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>ro</code>
      * <p>The ro method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
-     * @param endValue {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @see  java.lang.SuppressWarnings
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The ro return object is <code>SqlBuilder</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The ro return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
+     * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings("Duplicates")
     public SqlBuilder ro(String target, Object beginValue, Object endValue, Boolean andOfOr) {
@@ -1159,13 +1159,13 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <p>The so method.</p>
      * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
      * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @see  java.lang.SuppressWarnings
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The so return object is <code>SqlBuilder</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr   {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The so return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
+     * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings("Duplicates")
     public SqlBuilder so(String minTarget, String maxTarget, Object value, Boolean andOfOr) {
@@ -1180,15 +1180,15 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>ra</code>
      * <p>The ra method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
-     * @param endValue {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @see  java.lang.SuppressWarnings
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The ra return object is <code>SqlBuilder</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The ra return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
+     * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings("Duplicates")
     public SqlBuilder ra(String target, Object beginValue, Object endValue, Boolean andOfOr) {
@@ -1205,13 +1205,13 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <p>The sa method.</p>
      * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
      * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @see  java.lang.SuppressWarnings
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sa return object is <code>SqlBuilder</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr   {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sa return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
+     * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings("Duplicates")
     public SqlBuilder sa(String minTarget, String maxTarget, Object value, Boolean andOfOr) {
@@ -1226,15 +1226,15 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>rea</code>
      * <p>The rea method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
-     * @param endValue {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @see  java.lang.SuppressWarnings
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The rea return object is <code>SqlBuilder</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The rea return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
+     * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings("Duplicates")
     public SqlBuilder rea(String target, Object beginValue, Object endValue, Boolean andOfOr) {
@@ -1251,13 +1251,13 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <p>The sea method.</p>
      * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
      * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @see  java.lang.SuppressWarnings
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sea return object is <code>SqlBuilder</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr   {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sea return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
+     * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings("Duplicates")
     public SqlBuilder sea(String minTarget, String maxTarget, Object value, Boolean andOfOr) {
@@ -1272,14 +1272,14 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>r</code>
      * <p>The r method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
-     * @param endValue {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The r return object is <code>SqlBuilder</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The r return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
      */
     public SqlBuilder r(String target, Object beginValue, Object endValue, Boolean andOfOr) {
         this.gt(target, beginValue, andOfOr);
@@ -1292,12 +1292,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <p>The s method.</p>
      * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
      * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The s return object is <code>SqlBuilder</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr   {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The s return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
      */
     public SqlBuilder s(String minTarget, String maxTarget, Object value, Boolean andOfOr) {
         this.gt(maxTarget, value, andOfOr);
@@ -1308,14 +1308,14 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>re</code>
      * <p>The re method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
-     * @param endValue {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The re return object is <code>SqlBuilder</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The re return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
      */
     public SqlBuilder re(String target, Object beginValue, Object endValue, Boolean andOfOr) {
         this.gte(target, beginValue, andOfOr);
@@ -1328,12 +1328,12 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <p>The se method.</p>
      * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
      * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The se return object is <code>SqlBuilder</code> type.</p>
+     * @param value     {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr   {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The se return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
      */
     public SqlBuilder se(String minTarget, String maxTarget, Object value, Boolean andOfOr) {
         this.gte(maxTarget, value, andOfOr);
@@ -1344,16 +1344,16 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>rs</code>
      * <p>The rs method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param beginValue {@link java.lang.Object} <p>The begin value parameter is <code>Object</code> type.</p>
-     * @param endValue {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @param endValue   {@link java.lang.Object} <p>The end value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
      * @param beginOfEnd {@link java.lang.Boolean} <p>The begin of end parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @see  java.lang.SuppressWarnings
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The rs return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The rs return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
+     * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings("Duplicates")
     public SqlBuilder rs(String target, Object beginValue, Object endValue, Boolean andOfOr, Boolean beginOfEnd) {
@@ -1370,16 +1370,16 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>ss</code>
      * <p>The ss method.</p>
-     * @param minTarget {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
-     * @param maxTarget {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
+     * @param minTarget  {@link java.lang.String} <p>The min target parameter is <code>String</code> type.</p>
+     * @param maxTarget  {@link java.lang.String} <p>The max target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param andOfOr    {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
      * @param beginOfEnd {@link java.lang.Boolean} <p>The begin of end parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @see  java.lang.SuppressWarnings
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The ss return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The ss return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
+     * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings("Duplicates")
     public SqlBuilder ss(String minTarget, String maxTarget, Object value, Boolean andOfOr, Boolean beginOfEnd) {
@@ -1396,13 +1396,13 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>gt</code>
      * <p>The gt method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The gt return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The gt return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
      */
     public SqlBuilder gt(String target, Object value, Boolean andOfOr) {
         if (GeneralUtils.isUsable(value)) {
@@ -1416,13 +1416,13 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>lt</code>
      * <p>The lt method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lt return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lt return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
      */
     public SqlBuilder lt(String target, Object value, Boolean andOfOr) {
         if (GeneralUtils.isUsable(value)) {
@@ -1437,13 +1437,13 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>gte</code>
      * <p>The gte method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The gte return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The gte return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
      */
     public SqlBuilder gte(String target, Object value, Boolean andOfOr) {
         if (GeneralUtils.isUsable(value)) {
@@ -1457,13 +1457,13 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>lte</code>
      * <p>The lte method.</p>
-     * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param target  {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value   {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lte return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lte return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     * @see java.lang.Boolean
      */
     public SqlBuilder lte(String target, Object value, Boolean andOfOr) {
         if (GeneralUtils.isUsable(value)) {
@@ -1478,8 +1478,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>value</code>
      * <p>The value method.</p>
      * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @see  java.lang.Object
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The value return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The value return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.Object
      */
     public SqlBuilder value(Object value) {
         this.value(value, false);
@@ -1489,11 +1489,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>value</code>
      * <p>The value method.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param value       {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @param commaOfNone {@link java.lang.Boolean} <p>The comma of none parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The value return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The value return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.Object
+     * @see java.lang.Boolean
      */
     public SqlBuilder value(Object value, Boolean commaOfNone) {
         if (value instanceof String) {
@@ -1517,11 +1517,11 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>value</code>
      * <p>The value method.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param value  {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @param symbol {@link java.lang.String} <p>The symbol parameter is <code>String</code> type.</p>
-     * @see  java.lang.Object
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The value return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The value return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.Object
+     * @see java.lang.String
      */
     public SqlBuilder value(Object value, String symbol) {
         if (value instanceof String) {
@@ -1541,8 +1541,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>andOfOr</code>
      * <p>The and of or method.</p>
      * @param andOfOr {@link java.lang.Boolean} <p>The and of or parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.Boolean
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The and of or return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The and of or return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.Boolean
      */
     public SqlBuilder andOfOr(Boolean andOfOr) {
         if (GeneralUtils.isNotEmpty(andOfOr)) {
@@ -1558,7 +1558,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>and</code>
      * <p>The and method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The and return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The and return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder and() {
         this.keyword(SQLConstants.AND, false);
@@ -1568,7 +1568,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>or</code>
      * <p>The or method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The or return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The or return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder or() {
         this.keyword(SQLConstants.OR, false);
@@ -1578,7 +1578,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>cdataLt</code>
      * <p>The cdata lt method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The cdata lt return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The cdata lt return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder cdataLt() {
         this.append(ScriptConstants.CDATA_LT).blank();
@@ -1588,7 +1588,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>cdataGt</code>
      * <p>The cdata gt method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The cdata gt return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The cdata gt return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder cdataGt() {
         this.blank().append(ScriptConstants.CDATA_GT);
@@ -1598,7 +1598,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>braceLt</code>
      * <p>The brace lt method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The brace lt return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The brace lt return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder braceLt() {
         this.blank().append(SQLConstants.BRACE_LT);
@@ -1608,7 +1608,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>braceGt</code>
      * <p>The brace gt method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The brace gt return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The brace gt return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder braceGt() {
         this.append(SQLConstants.BRACE_GT).blank();
@@ -1618,7 +1618,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>squareLt</code>
      * <p>The square lt method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The square lt return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The square lt return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder squareLt() {
         this.blank().append(SQLConstants.SQUARE_LT);
@@ -1628,7 +1628,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>squareGt</code>
      * <p>The square gt method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The square gt return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The square gt return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder squareGt() {
         this.append(SQLConstants.SQUARE_GT).blank();
@@ -1638,7 +1638,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>comma</code>
      * <p>The comma method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The comma return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The comma return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder comma() {
         this.append(SQLConstants.COMMA).blank();
@@ -1648,7 +1648,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>period</code>
      * <p>The period method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The period return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The period return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder period() {
         this.append(SQLConstants.PERIOD);
@@ -1658,7 +1658,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>blank</code>
      * <p>The blank method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The blank return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The blank return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder blank() {
         this.append(SQLConstants.BLANK);
@@ -1668,7 +1668,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>sQuote</code>
      * <p>The s quote method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The s quote return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The s quote return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder sQuote() {
         this.append(SQLConstants.SINGLE_QUOTE);
@@ -1678,7 +1678,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>dQuote</code>
      * <p>The d quote method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The d quote return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The d quote return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder dQuote() {
         this.append(SQLConstants.DOUBLE_QUOTE);
@@ -1688,7 +1688,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>percent</code>
      * <p>The percent method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The percent return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The percent return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder percent() {
         this.append(SQLConstants.PERCENT);
@@ -1698,7 +1698,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>linefeed</code>
      * <p>The linefeed method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The linefeed return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The linefeed return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder linefeed() {
         this.append(SQLConstants.LINEFEED);
@@ -1708,7 +1708,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>semicolon</code>
      * <p>The semicolon method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The semicolon return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The semicolon return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder semicolon() {
         this.append(SQLConstants.SEMICOLON);
@@ -1718,7 +1718,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>rowCount</code>
      * <p>The row count method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The row count return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The row count return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder rowCount() {
         this.append(SQLConstants.ROW_COUNT);
@@ -1728,7 +1728,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>eq</code>
      * <p>The eq method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The eq return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The eq return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder eq() {
         return this.keyword(SQLConstants.CONTRAST_EQ, false);
@@ -1737,7 +1737,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>gt</code>
      * <p>The gt method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The gt return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The gt return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder gt() {
         return this.keyword(SQLConstants.CONTRAST_GT, false);
@@ -1746,7 +1746,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>lt</code>
      * <p>The lt method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lt return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lt return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder lt() {
         return this.keyword(SQLConstants.CONTRAST_LT, false);
@@ -1755,7 +1755,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>gte</code>
      * <p>The gte method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The gte return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The gte return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder gte() {
         return this.keyword(SQLConstants.CONTRAST_GTE, false);
@@ -1764,7 +1764,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>lte</code>
      * <p>The lte method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lte return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The lte return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder lte() {
         return this.keyword(SQLConstants.CONTRAST_LTE, false);
@@ -1773,7 +1773,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>neq</code>
      * <p>The neq method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The neq return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The neq return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder neq() {
         return this.keyword(SQLConstants.CONTRAST_NEQ, false);
@@ -1782,7 +1782,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>isn</code>
      * <p>The isn method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The isn return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The isn return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder isn() {
         return this.keyword(SQLConstants.IS_NULL, false);
@@ -1791,7 +1791,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>inn</code>
      * <p>The inn method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The inn return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The inn return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder inn() {
         return this.keyword(SQLConstants.IS_NOT_NULL, false);
@@ -1800,7 +1800,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>like</code>
      * <p>The like method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The like return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The like return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder like() {
         return this.keyword(SQLConstants.LIKE, false);
@@ -1809,7 +1809,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>in</code>
      * <p>The in method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The in return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The in return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder in() {
         return this.keyword(SQLConstants.IN, false);
@@ -1818,7 +1818,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>nin</code>
      * <p>The nin method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The nin return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The nin return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder nin() {
         return this.keyword(SQLConstants.NOT_IN, false);
@@ -1827,7 +1827,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>limit</code>
      * <p>The limit method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The limit return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The limit return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder limit() {
         return this.keyword(SQLConstants.LIMIT, false);
@@ -1836,7 +1836,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>create</code>
      * <p>The create method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The create return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The create return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder create() {
         return this.keyword(SQLConstants.CREATE, true);
@@ -1845,7 +1845,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>index</code>
      * <p>The index method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The index return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The index return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder index() {
         return this.keyword(SQLConstants.INDEX, false);
@@ -1854,7 +1854,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>createIndex</code>
      * <p>The create index method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The create index return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The create index return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder createIndex() {
         return this.keyword(SQLConstants.CREATE_INDEX, true);
@@ -1863,7 +1863,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>on</code>
      * <p>The on method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The on return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The on return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder on() {
         return this.keyword(SQLConstants.ON, false);
@@ -1872,7 +1872,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>using</code>
      * <p>The using method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The using return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The using return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder using() {
         return this.keyword(SQLConstants.USING, false);
@@ -1881,7 +1881,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>alter</code>
      * <p>The alter method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The alter return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The alter return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder alter() {
         return this.keyword(SQLConstants.ALTER, false);
@@ -1890,7 +1890,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>notNull</code>
      * <p>The not null method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The not null return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The not null return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder notNull() {
         return this.keyword(SQLConstants.NOT_NULL, false);
@@ -1899,7 +1899,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>is</code>
      * <p>The is method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The is return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The is return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder is() {
         return this.keyword(SQLConstants.IS, false);
@@ -1908,7 +1908,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>isNull</code>
      * <p>The is null method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The is null return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The is null return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder isNull() {
         return this.keyword(SQLConstants.IS_NULL, false);
@@ -1917,7 +1917,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>isNotNull</code>
      * <p>The is not null method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The is not null return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The is not null return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder isNotNull() {
         return this.keyword(SQLConstants.IS_NOT_NULL, false);
@@ -1926,7 +1926,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>table</code>
      * <p>The table method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The table return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The table return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder table() {
         return this.keyword(SQLConstants.TABLE, false);
@@ -1935,7 +1935,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>alterTable</code>
      * <p>The alter table method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The alter table return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The alter table return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder alterTable() {
         return this.keyword(SQLConstants.ALTER_TABLE, true);
@@ -1944,7 +1944,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>alterColumn</code>
      * <p>The alter column method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The alter column return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The alter column return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder alterColumn() {
         return this.keyword(SQLConstants.ALTER_COLUMN, false);
@@ -1953,7 +1953,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>ifExists</code>
      * <p>The if exists method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The if exists return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The if exists return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder ifExists() {
         return this.keyword(SQLConstants.IF_EXISTS, false);
@@ -1962,7 +1962,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>ifNotExists</code>
      * <p>The if not exists method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The if not exists return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The if not exists return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder ifNotExists() {
         return this.keyword(SQLConstants.IF_NOT_EXISTS, false);
@@ -1971,7 +1971,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>modify</code>
      * <p>The modify method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The modify return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The modify return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder modify() {
         return this.keyword(SQLConstants.MODIFY, false);
@@ -1980,7 +1980,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>modifyColumn</code>
      * <p>The modify column method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The modify column return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The modify column return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder modifyColumn() {
         return this.keyword(SQLConstants.MODIFY_COLUMN, false);
@@ -1989,7 +1989,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>column</code>
      * <p>The column method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The column return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The column return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder column() {
         return this.keyword(SQLConstants.COLUMN, false);
@@ -1998,7 +1998,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>add</code>
      * <p>The add method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The add return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The add return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder add() {
         return this.keyword(SQLConstants.ADD, false);
@@ -2007,7 +2007,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>addColumn</code>
      * <p>The add column method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The add column return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The add column return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder addColumn() {
         return this.keyword(SQLConstants.ADD_COLUMN, false);
@@ -2016,7 +2016,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>drop</code>
      * <p>The drop method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The drop return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The drop return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder drop() {
         return this.keyword(SQLConstants.DROP, false);
@@ -2025,7 +2025,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>dropColumn</code>
      * <p>The drop column method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The drop column return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The drop column return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder dropColumn() {
         return this.keyword(SQLConstants.DROP_COLUMN, false);
@@ -2034,7 +2034,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>dropIndex</code>
      * <p>The drop index method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The drop index return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The drop index return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder dropIndex() {
         return this.keyword(SQLConstants.DROP_INDEX, false);
@@ -2043,7 +2043,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>type</code>
      * <p>The type method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The type return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The type return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder type() {
         return this.keyword(SQLConstants.TYPE, false);
@@ -2052,7 +2052,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>deft</code>
      * <p>The deft method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The deft return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The deft return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder deft() {
         return this.keyword(SQLConstants.DEFAULT, false);
@@ -2061,7 +2061,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>comment</code>
      * <p>The comment method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The comment return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The comment return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder comment() {
         return this.keyword(SQLConstants.COMMENT, false);
@@ -2069,9 +2069,23 @@ public final class SqlBuilder implements Serializable, CharSequence {
 
 
     /**
+     * <code>as</code>
+     * <p>The as method.</p>
+     * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The as return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     */
+    public SqlBuilder as(String alias) {
+        if (GeneralUtils.isEmpty(alias)) {
+            return this;
+        }
+        return this.keyword(SQLConstants.AS + SQLConstants.BLANK + alias, false);
+    }
+
+    /**
      * <code>insert</code>
      * <p>The insert method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insert() {
         return this.keyword(SQLConstants.INSERT_INTO, true);
@@ -2080,7 +2094,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>insertIgnore</code>
      * <p>The insert ignore method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert ignore return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The insert ignore return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder insertIgnore() {
         return this.keyword(SQLConstants.INSERT_IGNORE_INTO, true);
@@ -2089,7 +2103,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>update</code>
      * <p>The update method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The update return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The update return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder update() {
         return this.keyword(SQLConstants.UPDATE, true);
@@ -2098,7 +2112,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>select</code>
      * <p>The select method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The select return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The select return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder select() {
         return this.keyword(SQLConstants.SELECT, true);
@@ -2107,7 +2121,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>delete</code>
      * <p>The delete method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The delete return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The delete return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder delete() {
         return this.keyword(SQLConstants.DELETE, true);
@@ -2116,7 +2130,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>where</code>
      * <p>The where method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The where return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The where return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder where() {
         return this.keyword(SQLConstants.WHERE, true);
@@ -2126,7 +2140,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>where</code>
      * <p>The where method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The where return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The where return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder where(SqlBuilder sqlBuilder) {
         if (GeneralUtils.isNotEmpty(sqlBuilder)) {
@@ -2139,8 +2153,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>where</code>
      * <p>The where method.</p>
      * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The where return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The where return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
      */
     public SqlBuilder where(String whereSql) {
         if (GeneralUtils.isEmpty(whereSql)) {
@@ -2160,7 +2174,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>set</code>
      * <p>The set method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The set return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The set return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder set() {
         return this.keyword(SQLConstants.SET, true);
@@ -2169,7 +2183,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>values</code>
      * <p>The values method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The values return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The values return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder values() {
         return this.keyword(SQLConstants.VALUES, true);
@@ -2178,7 +2192,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>from</code>
      * <p>The from method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The from return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The from return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder from() {
         return this.keyword(SQLConstants.FROM, true);
@@ -2187,7 +2201,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>orderBy</code>
      * <p>The order by method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The order by return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The order by return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder orderBy() {
         return this.keyword(SQLConstants.ORDER_BY, true);
@@ -2196,7 +2210,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>groupBy</code>
      * <p>The group by method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The group by return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The group by return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder groupBy() {
         return this.keyword(SQLConstants.GROUP_BY, true);
@@ -2205,7 +2219,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>onDuplicateKey</code>
      * <p>The on duplicate key method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The on duplicate key return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The on duplicate key return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder onDuplicateKey() {
         return this.keyword(SQLConstants.ON_DUPLICATE_KEY_LT, true);
@@ -2214,7 +2228,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>onConflict</code>
      * <p>The on conflict method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The on conflict return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The on conflict return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder onConflict() {
         return this.keyword(SQLConstants.ON_CONFLICT_LT, true);
@@ -2223,7 +2237,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>doNothing</code>
      * <p>The do nothing method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The do nothing return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The do nothing return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder doNothing() {
         return this.keyword(SQLConstants.DO_NOTHING_GT, false);
@@ -2233,7 +2247,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * <code>doUpdate</code>
      * <p>The do update method.</p>
      * @param doOrNone boolean <p>The do or none parameter is <code>boolean</code> type.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The do update return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The do update return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder doUpdate(boolean doOrNone) {
         return this.keyword(doOrNone ? SQLConstants.DO_UPDATE_GT : SQLConstants.UPDATE_GT, false);
@@ -2242,10 +2256,10 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>keyword</code>
      * <p>The keyword method.</p>
-     * @param keyword {@link java.lang.String} <p>The keyword parameter is <code>String</code> type.</p>
+     * @param keyword  {@link java.lang.String} <p>The keyword parameter is <code>String</code> type.</p>
      * @param linefeed boolean <p>The linefeed parameter is <code>boolean</code> type.</p>
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The keyword return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The keyword return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
      */
     public SqlBuilder keyword(String keyword, boolean linefeed) {
         if (linefeed) {
