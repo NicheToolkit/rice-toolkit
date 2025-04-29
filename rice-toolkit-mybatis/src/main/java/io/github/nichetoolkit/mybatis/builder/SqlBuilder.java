@@ -1636,6 +1636,26 @@ public final class SqlBuilder implements Serializable, CharSequence {
     }
 
     /**
+     * <code>curlyLt</code>
+     * <p>The curly lt method.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The curly lt return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder curlyLt() {
+        this.blank().append(SQLConstants.CURLY_LT);
+        return this;
+    }
+
+    /**
+     * <code>curlyGt</code>
+     * <p>The curly gt method.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The curly gt return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder curlyGt() {
+        this.append(SQLConstants.CURLY_GT).blank();
+        return this;
+    }
+
+    /**
      * <code>comma</code>
      * <p>The comma method.</p>
      * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The comma return object is <code>SqlBuilder</code> type.</p>
