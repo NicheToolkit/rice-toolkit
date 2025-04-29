@@ -583,6 +583,13 @@ public interface SQLConstants {
     String SEMICOLON = ";";
 
     /**
+     * <code>COLON</code>
+     * {@link java.lang.String} <p>The constant <code>COLON</code> field.</p>
+     * @see java.lang.String
+     */
+    String COLON = ":";
+
+    /**
      * <code>ROW_COUNT</code>
      * {@link java.lang.String} <p>The constant <code>ROW_COUNT</code> field.</p>
      * @see java.lang.String

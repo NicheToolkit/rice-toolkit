@@ -1760,6 +1760,16 @@ public final class SqlBuilder implements Serializable, CharSequence {
     }
 
     /**
+     * <code>colon</code>
+     * <p>The colon method.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The colon return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder colon() {
+        this.append(SQLConstants.COLON);
+        return this;
+    }
+
+    /**
      * <code>rowCount</code>
      * <p>The row count method.</p>
      * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The row count return object is <code>SqlBuilder</code> type.</p>
