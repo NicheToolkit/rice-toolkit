@@ -236,6 +236,13 @@ public interface RestFickleType extends RestType, Serializable {
         /**
          * <code>OfRestFickleType</code>
          * <p>Instantiates a new of rest fickle type.</p>
+         */
+        public OfRestFickleType() {
+        }
+
+        /**
+         * <code>OfRestFickleType</code>
+         * <p>Instantiates a new of rest fickle type.</p>
          * @param key   {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
          * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
          * @param type  {@link java.lang.Class} <p>The type parameter is <code>Class</code> type.</p>
