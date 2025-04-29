@@ -2111,7 +2111,8 @@ public final class SqlBuilder implements Serializable, CharSequence {
      * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The concat return object is <code>SqlBuilder</code> type.</p>
      */
     public SqlBuilder concat() {
-        return this.keyword(SQLConstants.CONCAT, false);
+        this.append(SQLConstants.CONCAT);
+        return this;
     }
 
     /**
