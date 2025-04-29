@@ -2067,7 +2067,6 @@ public final class SqlBuilder implements Serializable, CharSequence {
         return this.keyword(SQLConstants.COMMENT, false);
     }
 
-
     /**
      * <code>as</code>
      * <p>The as method.</p>
@@ -2080,6 +2079,15 @@ public final class SqlBuilder implements Serializable, CharSequence {
             return this;
         }
         return this.keyword(SQLConstants.AS + SQLConstants.BLANK + alias, false);
+    }
+
+    /**
+     * <code>concat</code>
+     * <p>The concat method.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The concat return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder concat() {
+        return this.keyword(SQLConstants.CONCAT, false);
     }
 
     /**

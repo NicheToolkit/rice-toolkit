@@ -170,4 +170,5 @@ public interface ScriptConstants {
      * @see  java.lang.String
      */
     String BIND_LABEL = "\n<bind name=\"%s\" value=\"%s\"/>";
+
 }

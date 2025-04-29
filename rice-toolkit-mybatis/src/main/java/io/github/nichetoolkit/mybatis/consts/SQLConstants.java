@@ -17,6 +17,13 @@ public interface SQLConstants {
     String ASTERISK = "*";
 
     /**
+     * <code>CONCAT</code>
+     * {@link java.lang.String} <p>The constant <code>CONCAT</code> field.</p>
+     * @see java.lang.String
+     */
+    String CONCAT = "CONCAT";
+
+    /**
      * <code>CREATE</code>
      * {@link java.lang.String} <p>The constant <code>CREATE</code> field.</p>
      * @see java.lang.String
