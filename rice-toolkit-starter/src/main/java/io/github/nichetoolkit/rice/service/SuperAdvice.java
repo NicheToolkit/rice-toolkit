@@ -2,12 +2,15 @@ package io.github.nichetoolkit.rice.service;
 
 import com.github.pagehelper.Page;
 import io.github.nichetoolkit.mybatis.fickle.RestFickle;
+import io.github.nichetoolkit.mybatis.load.RestLoad;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestKey;
+import io.github.nichetoolkit.rest.RestOptional;
 import io.github.nichetoolkit.rest.actuator.*;
 import io.github.nichetoolkit.rest.error.data.DataQueryException;
 import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
 import io.github.nichetoolkit.rest.helper.PartitionHelper;
+import io.github.nichetoolkit.rest.stream.RestCollectors;
 import io.github.nichetoolkit.rest.stream.RestStream;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
@@ -28,6 +31,8 @@ import org.springframework.lang.NonNull;
 
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * <code>SuperAdvice</code>
@@ -469,37 +474,66 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     }
 
     /**
-     * <code>resolveTableFickle</code>
-     * <p>The resolve table fickle method.</p>
+     * <code>isLoadArray</code>
+     * <p>The is load array method.</p>
+     * @param loadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load array parameter is <code>RestLoad</code> type.</p>
+     * @return {@link java.lang.Boolean} <p>The is load array return object is <code>Boolean</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
+     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    protected Boolean[] isLoadArray(RestLoad... loadArray) throws RestException {
+        Boolean[] isLoadArray = new Boolean[0];
+        if (GeneralUtils.isEmpty(loadArray)) {
+            return isLoadArray;
+        }
+        RestOptional<Integer> maxIndexOptional = RestStream.stream(loadArray).map(RestLoad::getIndex).max(Integer::compare);
+        return maxIndexOptional.validMap(maxIndex -> {
+            Map<Integer, RestLoad> indexLoadMap = RestStream.stream(loadArray).collect(RestCollectors.toMap(RestLoad::getIndex, FunctionActuator.identity(), (oldValue, newValue) -> newValue));
+            return IntStream.range(0, maxIndex).mapToObj(index -> {
+                RestLoad restLoad = indexLoadMap.get(index);
+                if (GeneralUtils.isNotEmpty(restLoad)) {
+                    return restLoad.getValue();
+                } else {
+                    return false;
+                }
+            }).toArray(Boolean[]::new);
+        }).orElse(isLoadArray);
+    }
+
+    /**
+     * <code>tableFickle</code>
+     * <p>The table fickle method.</p>
      * @param tablename  {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param fickleList {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The resolve table fickle return object is <code>RestFickle</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The table fickle return object is <code>RestFickle</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see java.util.Collection
      * @see io.github.nichetoolkit.mybatis.fickle.RestFickle
      * @see io.github.nichetoolkit.rest.RestException
      */
-    protected RestFickle<?>[] resolveTableFickle(String tablename, Collection<RestFickle<?>> fickleList) throws RestException {
+    protected RestFickle<?>[] tableFickle(String tablename, Collection<RestFickle<?>> fickleList) throws RestException {
         if (GeneralUtils.isEmpty(fickleList)) {
-            return resolveTableFickle(tablename);
+            return tableFickle(tablename);
         }
         RestFickle<?>[] fickleArray = fickleList.toArray(new RestFickle[0]);
-        return resolveTableFickle(tablename, fickleArray);
+        return tableFickle(tablename, fickleArray);
     }
 
     /**
-     * <code>resolveTableFickle</code>
-     * <p>The resolve table fickle method.</p>
+     * <code>tableFickle</code>
+     * <p>The table fickle method.</p>
      * @param tablename   {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param fickleArray {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The fickle array parameter is <code>RestFickle</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The resolve table fickle return object is <code>RestFickle</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The table fickle return object is <code>RestFickle</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.mybatis.fickle.RestFickle
      * @see io.github.nichetoolkit.rest.RestException
      */
-    protected RestFickle<?>[] resolveTableFickle(String tablename, RestFickle<?>... fickleArray) throws RestException {
+    protected RestFickle<?>[] tableFickle(String tablename, RestFickle<?>... fickleArray) throws RestException {
         if (isFickleField()) {
             List<String> tableColumns;
             if (GeneralUtils.isNotEmpty(tablename) && GeneralUtils.isNotEmpty(tableMapper)) {
@@ -515,13 +549,13 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
             }
             if (GeneralUtils.isNotEmpty(fickleArray)) {
                 return RestStream.stream(fickleArray).filter(Objects::nonNull).filter(fickle -> {
-                   if (GeneralUtils.isNotEmpty(fickle.getKey())) {
-                       return tableColumns.contains(fickle.getKey());
-                   } else {
-                       String fickleName = fickle.getName();
-                       String columnName = DefaultColumnResolver.resolveColumn(fickleName);
-                       return tableColumns.contains(columnName);
-                   }
+                    if (GeneralUtils.isNotEmpty(fickle.getKey())) {
+                        return tableColumns.contains(fickle.getKey());
+                    } else {
+                        String fickleName = fickle.getName();
+                        String columnName = DefaultColumnResolver.resolveColumn(fickleName);
+                        return tableColumns.contains(columnName);
+                    }
                 }).distinct().toArray(RestFickle[]::new);
             }
         }
@@ -578,16 +612,16 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * <p>The find by id load method.</p>
      * @param id          I <p>The id parameter is <code>I</code> type.</p>
      * @param tablename   {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return E <p>The find by id load return object is <code>E</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.lang.SuppressWarnings
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings(value = "unchecked")
-    protected E findByIdLoad(I id, String tablename, Boolean... isLoadArray) throws RestException {
+    protected E findByIdLoad(I id, String tablename, RestLoad... isLoadArray) throws RestException {
         E entity;
         FindLoadMapper<E, I> loadMapper = (FindLoadMapper<E, I>) superMapper;
         Method findMethod = null;
@@ -651,17 +685,17 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param id          I <p>The id parameter is <code>I</code> type.</p>
      * @param tablename   {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param fickleArray {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The fickle array parameter is <code>RestFickle</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return E <p>The find by id fickle load return object is <code>E</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.mybatis.fickle.RestFickle
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.lang.SuppressWarnings
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings(value = "unchecked")
-    protected E findByIdFickleLoad(I id, String tablename, RestFickle<?>[] fickleArray, Boolean... isLoadArray) throws RestException {
+    protected E findByIdFickleLoad(I id, String tablename, RestFickle<?>[] fickleArray, RestLoad... isLoadArray) throws RestException {
         E entity;
         FickleLoadMapper<E, I> fickleLoadMapper = (FickleLoadMapper<E, I>) superMapper;
         Method findMethod = null;
@@ -729,18 +763,18 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param tablename   {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The find by link id load return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestKey
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see java.lang.SuppressWarnings
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings(value = "unchecked")
-    protected <L> List<E> findByLinkIdLoad(String tablename, L linkId, RestKey<String> linkName, Boolean... isLoadArray) throws RestException {
+    protected <L> List<E> findByLinkIdLoad(String tablename, L linkId, RestKey<String> linkName, RestLoad... isLoadArray) throws RestException {
         List<E> entityList;
         LinkLoadMapper<E, L, I> loadMapper = (LinkLoadMapper<E, L, I>) superMapper;
         Method findMethod = null;
@@ -826,19 +860,19 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param fickleArray {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The fickle array parameter is <code>RestFickle</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The find by link id fickle load return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestKey
      * @see io.github.nichetoolkit.mybatis.fickle.RestFickle
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see java.lang.SuppressWarnings
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings(value = "unchecked")
-    protected <L> List<E> findByLinkIdFickleLoad(String tablename, L linkId, RestKey<String> linkName, RestFickle<?>[] fickleArray, Boolean... isLoadArray) throws RestException {
+    protected <L> List<E> findByLinkIdFickleLoad(String tablename, L linkId, RestKey<String> linkName, RestFickle<?>[] fickleArray, RestLoad... isLoadArray) throws RestException {
         List<E> entityList;
         FickleLinkMapper<E, L, I> fickleLinkMapper = (FickleLinkMapper<E, L, I>) superMapper;
         Method findMethod = null;
@@ -1160,18 +1194,18 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * <p>The find all load method.</p>
      * @param idList      {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param tablename   {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The find all load return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
      * @see java.lang.String
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see java.lang.SuppressWarnings
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings(value = "unchecked")
-    protected List<E> findAllLoad(Collection<I> idList, String tablename, Boolean... isLoadArray) throws RestException {
+    protected List<E> findAllLoad(Collection<I> idList, String tablename, RestLoad... isLoadArray) throws RestException {
         List<E> entityList;
         FindLoadMapper<E, I> loadMapper = (FindLoadMapper<E, I>) superMapper;
         Method findMethod = null;
@@ -1238,19 +1272,19 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param idList      {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param tablename   {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param fickleArray {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The fickle array parameter is <code>RestFickle</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The find all fickle load return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
      * @see java.lang.String
      * @see io.github.nichetoolkit.mybatis.fickle.RestFickle
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see java.lang.SuppressWarnings
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings(value = "unchecked")
-    protected List<E> findAllFickleLoad(Collection<I> idList, String tablename, RestFickle<?>[] fickleArray, Boolean... isLoadArray) throws RestException {
+    protected List<E> findAllFickleLoad(Collection<I> idList, String tablename, RestFickle<?>[] fickleArray, RestLoad... isLoadArray) throws RestException {
         List<E> entityList;
         FickleLoadMapper<E, I> fickleLoadMapper = (FickleLoadMapper<E, I>) superMapper;
         Method findMethod = null;
@@ -1320,19 +1354,19 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param tablename   {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The find all by link ids load return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestKey
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see java.lang.SuppressWarnings
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings(value = "unchecked")
-    protected <L> List<E> findAllByLinkIdsLoad(String tablename, Collection<L> linkIdList, RestKey<String> linkName, Boolean... isLoadArray) throws RestException {
+    protected <L> List<E> findAllByLinkIdsLoad(String tablename, Collection<L> linkIdList, RestKey<String> linkName, RestLoad... isLoadArray) throws RestException {
         List<E> entityList;
         LinkLoadMapper<E, L, I> loadMapper = (LinkLoadMapper<E, L, I>) superMapper;
         Method findMethod = null;
@@ -1419,20 +1453,20 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param fickleArray {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The fickle array parameter is <code>RestFickle</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The find all by link ids fickle load return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestKey
      * @see io.github.nichetoolkit.mybatis.fickle.RestFickle
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see java.lang.SuppressWarnings
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings(value = "unchecked")
-    protected <L> List<E> findAllByLinkIdsFickleLoad(String tablename, Collection<L> linkIdList, RestKey<String> linkName, RestFickle<?>[] fickleArray, Boolean... isLoadArray) throws RestException {
+    protected <L> List<E> findAllByLinkIdsFickleLoad(String tablename, Collection<L> linkIdList, RestKey<String> linkName, RestFickle<?>[] fickleArray, RestLoad... isLoadArray) throws RestException {
         List<E> entityList;
         FickleLinkMapper<E, L, I> fickleLinkMapper = (FickleLinkMapper<E, L, I>) superMapper;
         Method findMethod = null;
@@ -1468,17 +1502,17 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param whereSql    {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param tablename   {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param filter      F <p>The filter parameter is <code>F</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link io.github.nichetoolkit.rice.PageResult} <p>The find all by load where return object is <code>PageResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see io.github.nichetoolkit.rice.PageResult
      * @see java.lang.SuppressWarnings
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings(value = "unchecked")
-    protected PageResult<E, I> findAllByLoadWhere(String whereSql, String tablename, F filter, Boolean... isLoadArray) throws RestException {
+    protected PageResult<E, I> findAllByLoadWhere(String whereSql, String tablename, F filter, RestLoad... isLoadArray) throws RestException {
         PageResult<E, I> pageResult;
         List<E> entityList;
         FilterLoadMapper<E, I> loadFilterMapper = (FilterLoadMapper<E, I>) superMapper;
@@ -1602,18 +1636,18 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param tablename   {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
      * @param filter      F <p>The filter parameter is <code>F</code> type.</p>
      * @param fickleArray {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The fickle array parameter is <code>RestFickle</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link io.github.nichetoolkit.rice.PageResult} <p>The find all by fickle load where return object is <code>PageResult</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.mybatis.fickle.RestFickle
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see io.github.nichetoolkit.rice.PageResult
      * @see java.lang.SuppressWarnings
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings(value = "unchecked")
-    protected PageResult<E, I> findAllByFickleLoadWhere(String whereSql, String tablename, F filter, RestFickle<?>[] fickleArray, Boolean... isLoadArray) throws RestException {
+    protected PageResult<E, I> findAllByFickleLoadWhere(String whereSql, String tablename, F filter, RestFickle<?>[] fickleArray, RestLoad... isLoadArray) throws RestException {
         PageResult<E, I> pageResult;
         List<E> entityList;
         FickleFilterMapper<E, I> filterMapper = (FickleFilterMapper<E, I>) superMapper;

@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.service;
 
 import com.github.pagehelper.Page;
 import io.github.nichetoolkit.mybatis.fickle.RestFickle;
+import io.github.nichetoolkit.mybatis.load.RestLoad;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.actuator.ConsumerActuator;
@@ -1341,7 +1342,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     }
 
     @Override
-    public M queryById(I id, Boolean... isLoadArray) throws RestException {
+    public M queryById(I id, RestLoad... isLoadArray) throws RestException {
         return queryById(null, id, isLoadArray);
     }
 
@@ -1350,19 +1351,19 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <p>The query by id method.</p>
      * @param id          I <p>The id parameter is <code>I</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return M <p>The query by id return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public M queryById(I id, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
+    public M queryById(I id, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         return queryById(null, id, fickleList, isLoadArray);
     }
 
     @Override
-    public M queryById(K tablekey, I id, Boolean... isLoadArray) throws RestException {
+    public M queryById(K tablekey, I id, RestLoad... isLoadArray) throws RestException {
         return queryById(tablekey, id, null, isLoadArray);
     }
 
@@ -1373,20 +1374,20 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param id          I <p>The id parameter is <code>I</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return M <p>The query by id return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public M queryById(K tablekey, I id, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
+    public M queryById(K tablekey, I id, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(id)) {
             return null;
         }
         E entity;
         String tablename = resolveTablename(tablekey);
-        RestFickle<?>[] tableFickle = resolveTableFickle(tablename, fickleList);
+        RestFickle<?>[] tableFickle = tableFickle(tablename, fickleList);
         if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
             entity = findByIdFickleLoad(id, tablename, tableFickle, isLoadArray);
@@ -1400,11 +1401,12 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         if (GeneralUtils.isEmpty(entity)) {
             return null;
         }
-        return modelActuator(entity, isLoadArray);
+        Boolean[] loadArray = isLoadArray(isLoadArray);
+        return modelActuator(entity, loadArray);
     }
 
     @Override
-    public List<M> queryAll(Collection<I> idList, Boolean... isLoadArray) throws RestException {
+    public List<M> queryAll(Collection<I> idList, RestLoad... isLoadArray) throws RestException {
         return queryAll(null, idList, isLoadArray);
     }
 
@@ -1413,20 +1415,20 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <p>The query all method.</p>
      * @param idList      {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query all return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public List<M> queryAll(Collection<I> idList, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
+    public List<M> queryAll(Collection<I> idList, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         return queryAll(null, idList, fickleList, isLoadArray);
     }
 
     @Override
-    public List<M> queryAll(K tablekey, Collection<I> idList, Boolean... isLoadArray) throws RestException {
+    public List<M> queryAll(K tablekey, Collection<I> idList, RestLoad... isLoadArray) throws RestException {
         return queryAll(tablekey, idList, null, isLoadArray);
     }
 
@@ -1436,21 +1438,21 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param idList      {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query all return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public List<M> queryAll(K tablekey, Collection<I> idList, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
+    public List<M> queryAll(K tablekey, Collection<I> idList, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return Collections.emptyList();
         }
         List<E> entityList;
         String tablename = resolveTablename(tablekey);
-        RestFickle<?>[] tableFickle = resolveTableFickle(tablename, fickleList);
+        RestFickle<?>[] tableFickle = tableFickle(tablename, fickleList);
         if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
             entityList = findAllFickleLoad(idList, tablename, tableFickle, isLoadArray);
@@ -1461,7 +1463,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         } else {
             entityList = findAll(idList, tablename);
         }
-        return modelActuator(entityList, null, isLoadArray);
+        Boolean[] loadArray = isLoadArray(isLoadArray);
+        return modelActuator(entityList, null, loadArray);
     }
 
     /**
@@ -1477,13 +1480,13 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         optionalQueryFilter(filter);
         queryFilterCache.set(filter);
         String whereSql = queryWhereSql(filter);
-        Boolean[] loadArray = findLoadArray(filter);
+        RestLoad[] loadArray = findLoadArray(filter);
         Boolean[] isLoadArray = queryLoadArray(filter);
         String[] fieldArray = fieldArray(filter);
         RestFickle<?>[] fickleArray = fickleArray(filter);
         K tablekey = tablekey(filter);
         String tablename = resolveTablename(tablekey);
-        RestFickle<?>[] tableFickle = resolveTableFickle(tablename, fickleArray);
+        RestFickle<?>[] tableFickle = tableFickle(tablename, fickleArray);
         PageResult<E, I> pageResult;
         if (GeneralUtils.isNotEmpty(loadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
@@ -1510,14 +1513,14 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <p>The query by link id method.</p>
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(L linkId, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryByLinkId(L linkId, RestLoad... isLoadArray) throws RestException {
         return queryByLinkId(null, linkId, isLoadArray);
     }
 
@@ -1527,15 +1530,15 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(L linkId, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryByLinkId(L linkId, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         return queryByLinkId(null, linkId, null, fickleList, isLoadArray);
     }
 
@@ -1545,14 +1548,14 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(K tablekey, L linkId, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryByLinkId(K tablekey, L linkId, RestLoad... isLoadArray) throws RestException {
         return queryByLinkId(tablekey, linkId, null, null, isLoadArray);
     }
 
@@ -1563,15 +1566,15 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(K tablekey, L linkId, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryByLinkId(K tablekey, L linkId, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         return queryByLinkId(tablekey, linkId, null, fickleList, isLoadArray);
     }
 
@@ -1581,15 +1584,15 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestKey
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(L linkId, RestKey<String> linkName, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryByLinkId(L linkId, RestKey<String> linkName, RestLoad... isLoadArray) throws RestException {
         return queryByLinkId(null, linkId, linkName, isLoadArray);
     }
 
@@ -1600,16 +1603,16 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestKey
      * @see java.util.Collection
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(L linkId, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryByLinkId(L linkId, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         return queryByLinkId(null, linkId, linkName, fickleList, isLoadArray);
     }
 
@@ -1620,15 +1623,15 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestKey
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(K tablekey, L linkId, RestKey<String> linkName, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryByLinkId(K tablekey, L linkId, RestKey<String> linkName, RestLoad... isLoadArray) throws RestException {
         return queryByLinkId(tablekey, linkId, linkName, null, isLoadArray);
     }
 
@@ -1640,22 +1643,22 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestKey
      * @see java.util.Collection
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(K tablekey, L linkId, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryByLinkId(K tablekey, L linkId, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
             return Collections.emptyList();
         }
         List<E> entityList;
         String tablename = resolveTablename(tablekey);
-        RestFickle<?>[] tableFickle = resolveTableFickle(tablename, fickleList);
+        RestFickle<?>[] tableFickle = tableFickle(tablename, fickleList);
         if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleLinkMapper.class.isAssignableFrom(superMapper.getClass())) {
             entityList = findByLinkIdFickleLoad(tablename, linkId, linkName, tableFickle, isLoadArray);
@@ -1669,7 +1672,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         if (GeneralUtils.isEmpty(entityList)) {
             return Collections.emptyList();
         }
-        return modelActuator(entityList, null, isLoadArray);
+        Boolean[] loadArray = isLoadArray(isLoadArray);
+        return modelActuator(entityList, null, loadArray);
     }
 
     /**
@@ -1677,15 +1681,15 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <p>The query all by link ids method.</p>
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, RestLoad... isLoadArray) throws RestException {
         return queryAllByLinkIds(null, linkIdList, isLoadArray);
     }
 
@@ -1695,15 +1699,15 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         return queryAllByLinkIds(null, linkIdList, fickleList, isLoadArray);
     }
 
@@ -1713,15 +1717,15 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, RestLoad... isLoadArray) throws RestException {
         return queryAllByLinkIds(tablekey, linkIdList, null, null, isLoadArray);
     }
 
@@ -1732,15 +1736,15 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         return queryAllByLinkIds(tablekey, linkIdList, null, fickleList, isLoadArray);
     }
 
@@ -1750,16 +1754,16 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestKey
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, RestKey<String> linkName, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, RestKey<String> linkName, RestLoad... isLoadArray) throws RestException {
         return queryAllByLinkIds(null, linkIdList, linkName, isLoadArray);
     }
 
@@ -1770,16 +1774,16 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestKey
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryAllByLinkIds(Collection<L> linkIdList, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         return queryAllByLinkIds(null, linkIdList, linkName, fickleList, isLoadArray);
     }
 
@@ -1790,16 +1794,16 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestKey
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, RestKey<String> linkName, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, RestKey<String> linkName, RestLoad... isLoadArray) throws RestException {
         return queryAllByLinkIds(tablekey, linkIdList, linkName, null, isLoadArray);
     }
 
@@ -1811,22 +1815,22 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestKey
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, Boolean... isLoadArray) throws RestException {
+    public <L> List<M> queryAllByLinkIds(K tablekey, Collection<L> linkIdList, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
             return Collections.emptyList();
         }
         List<E> entityList;
         String tablename = resolveTablename(tablekey);
-        RestFickle<?>[] tableFickle = resolveTableFickle(tablename, fickleList);
+        RestFickle<?>[] tableFickle = tableFickle(tablename, fickleList);
         if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleLinkMapper.class.isAssignableFrom(superMapper.getClass())) {
             entityList = findAllByLinkIdsFickleLoad(tablename, linkIdList, linkName, tableFickle, isLoadArray);
@@ -1837,7 +1841,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         } else {
             entityList = findAllByLinkIds(tablename, linkIdList, linkName);
         }
-        return modelActuator(entityList, null, isLoadArray);
+        Boolean[] loadArray = isLoadArray(isLoadArray);
+        return modelActuator(entityList, null, loadArray);
     }
 
 

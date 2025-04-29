@@ -320,7 +320,7 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
      * @return {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The of null return object is <code>RestFickle</code> type.</p>
      */
     static <F> RestFickle<F> ofNull() {
-        return new OfRestFickle<>(null);
+        return new OfRestFickle<>();
     }
 
     /**

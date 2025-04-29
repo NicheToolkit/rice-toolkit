@@ -1,8 +1,12 @@
 package io.github.nichetoolkit.rice.advice;
 
 import io.github.nichetoolkit.mybatis.fickle.RestFickle;
+import io.github.nichetoolkit.mybatis.load.RestLoad;
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.RestOptional;
 import io.github.nichetoolkit.rice.filter.IdFilter;
+
+import java.util.stream.IntStream;
 
 /**
  * <code>FilterAdvice</code>
@@ -92,8 +96,13 @@ public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default Boolean[] findLoadArray(F filter) throws RestException {
-        return filter.toLoadArray();
+    default RestLoad[] findLoadArray(F filter) throws RestException {
+        Boolean[] isLoadArray = filter.toLoadArray();
+        return RestOptional.ofEmptyable(isLoadArray).emptyMap(loadArray ->
+                IntStream.range(0, loadArray.length).mapToObj(index -> {
+                    Boolean loadValue = loadArray[index];
+                    return RestLoad.of(index, loadValue);
+                }).toArray(RestLoad[]::new)).orElse(new RestLoad[0]);
     }
 
     /**
