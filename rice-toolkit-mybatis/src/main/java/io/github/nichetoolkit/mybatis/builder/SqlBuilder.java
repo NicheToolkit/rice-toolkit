@@ -1497,7 +1497,7 @@ public final class SqlBuilder implements Serializable, CharSequence {
      */
     public SqlBuilder value(Object value, Boolean commaOfNone) {
         if (value instanceof String) {
-            this.sQuote().append(value).sQuote();
+            this.sQuote(value);
         } else if (value instanceof Date) {
             // the value is like '2020-09-11 00:00:00'
             this.sQuote().append(DateUtils.formatTime((Date) value)).sQuote();
@@ -1682,6 +1682,30 @@ public final class SqlBuilder implements Serializable, CharSequence {
      */
     public SqlBuilder dQuote() {
         this.append(SQLConstants.DOUBLE_QUOTE);
+        return this;
+    }
+
+    /**
+     * <code>sQuote</code>
+     * <p>The s quote method.</p>
+     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The s quote return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.Object
+     */
+    public SqlBuilder sQuote(Object value) {
+        this.sQuote().append(value).sQuote();
+        return this;
+    }
+
+    /**
+     * <code>dQuote</code>
+     * <p>The d quote method.</p>
+     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The d quote return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.Object
+     */
+    public SqlBuilder dQuote(Object value) {
+        this.dQuote().append(value).dQuote();
         return this;
     }
 
