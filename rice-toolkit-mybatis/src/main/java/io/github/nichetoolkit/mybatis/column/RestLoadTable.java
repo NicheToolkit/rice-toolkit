@@ -6,8 +6,8 @@ import org.springframework.stereotype.Indexed;
 import java.lang.annotation.*;
 
 /**
- * <code>RestLoadKey</code>
- * <p>The rest load key interface.</p>
+ * <code>RestLoadTable</code>
+ * <p>The rest load table interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.lang.annotation.Annotation
  * @see java.lang.annotation.Retention
@@ -20,34 +20,24 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 @Documented
 @Indexed
-public @interface RestLoadKey {
-
+public @interface RestLoadTable {
     /**
      * <code>value</code>
      * <p>The value method.</p>
-     * @return {@link java.lang.Class} <p>The value return object is <code>Class</code> type.</p>
-     * @see java.lang.Class
+     * @return {@link java.lang.String} <p>The value return object is <code>String</code> type.</p>
+     * @see java.lang.String
      * @see org.springframework.core.annotation.AliasFor
      */
-    @AliasFor("type")
-    Class<?> value() default Void.class;
+    @AliasFor("format")
+    String value() default "%s_%s";
 
     /**
-     * <code>type</code>
-     * <p>The type method.</p>
-     * @return {@link java.lang.Class} <p>The type return object is <code>Class</code> type.</p>
-     * @see java.lang.Class
-     */
-    Class<?> type() default Void.class;
-
-    /**
-     * <code>key</code>
-     * <p>The key method.</p>
-     * @return {@link java.lang.String} <p>The key return object is <code>String</code> type.</p>
+     * <code>format</code>
+     * <p>The format method.</p>
+     * @return {@link java.lang.String} <p>The format return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
-    String key() default "";
-
+    String format() default "%s_%s";
 
 }
 

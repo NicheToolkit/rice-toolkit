@@ -27,16 +27,8 @@ public @interface RestLoadEntity {
      * @return int <p>The value return object is <code>int</code> type.</p>
      * @see org.springframework.core.annotation.AliasFor
      */
-    @AliasFor("load")
-    String value() default "";
-
-    /**
-     * <code>load</code>
-     * <p>The load method.</p>
-     * @return {@link java.lang.String} <p>The load return object is <code>String</code> type.</p>
-     * @see java.lang.String
-     */
-    String load() default "";
+    @AliasFor("index")
+    int value() default 0;
 
     /**
      * <code>index</code>
@@ -44,6 +36,14 @@ public @interface RestLoadEntity {
      * @return int <p>The index return object is <code>int</code> type.</p>
      */
     int index() default 0;
+
+    /**
+     * <code>key</code>
+     * <p>The key method.</p>
+     * @return {@link java.lang.String} <p>The key return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     */
+    String key() default "";
 
 }
 

@@ -16,61 +16,12 @@ import java.util.List;
  * @see io.github.nichetoolkit.rice.mapper.SaveMapper
  * @see io.github.nichetoolkit.rice.mapper.FindMapper
  * @see io.github.nichetoolkit.rice.mapper.DeleteMapper
+ * @see io.github.nichetoolkit.rice.mapper.FindParamMapper
+ * @see io.github.nichetoolkit.rice.mapper.ColumnMapper
  * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
 @SuppressWarnings("UnusedReturnValue")
-public interface SuperMapper<E extends RestId<I>, I> extends SaveMapper<E, I>, FindMapper<E, I>, DeleteMapper<I> {
-    /**
-     * <code>findColumns</code>
-     * <p>The find columns method.</p>
-     * @return {@link java.util.List} <p>The find columns return object is <code>List</code> type.</p>
-     * @see java.util.List
-     */
-    List<String> findColumns();
+public interface SuperMapper<E extends RestId<I>, I> extends SaveMapper<E, I>, FindMapper<E, I>, DeleteMapper<I>, FindParamMapper<E, I>, ColumnMapper {
 
-    /**
-     * <code>createIndex</code>
-     * <p>The create index method.</p>
-     * @param field {@link io.github.nichetoolkit.rest.RestField} <p>The field parameter is <code>RestField</code> type.</p>
-     * @see io.github.nichetoolkit.rest.RestField
-     * @see org.apache.ibatis.annotations.Param
-     */
-    void createIndex(@Param("field") RestField<?> field);
-
-    /**
-     * <code>dropIndex</code>
-     * <p>The drop index method.</p>
-     * @param field {@link io.github.nichetoolkit.rest.RestField} <p>The field parameter is <code>RestField</code> type.</p>
-     * @see io.github.nichetoolkit.rest.RestField
-     * @see org.apache.ibatis.annotations.Param
-     */
-    void dropIndex(@Param("field") RestField<?> field);
-
-    /**
-     * <code>addColumn</code>
-     * <p>The add column method.</p>
-     * @param field {@link io.github.nichetoolkit.rest.RestField} <p>The field parameter is <code>RestField</code> type.</p>
-     * @see io.github.nichetoolkit.rest.RestField
-     * @see org.apache.ibatis.annotations.Param
-     */
-    void addColumn(@Param("field") RestField<?> field);
-
-    /**
-     * <code>modifyColumn</code>
-     * <p>The modify column method.</p>
-     * @param field {@link io.github.nichetoolkit.rest.RestField} <p>The field parameter is <code>RestField</code> type.</p>
-     * @see io.github.nichetoolkit.rest.RestField
-     * @see org.apache.ibatis.annotations.Param
-     */
-    void modifyColumn(@Param("field") RestField<?> field);
-
-    /**
-     * <code>dropColumn</code>
-     * <p>The drop column method.</p>
-     * @param field {@link io.github.nichetoolkit.rest.RestField} <p>The field parameter is <code>RestField</code> type.</p>
-     * @see io.github.nichetoolkit.rest.RestField
-     * @see org.apache.ibatis.annotations.Param
-     */
-    void dropColumn(@Param("field") RestField<?> field);
 }

@@ -21,7 +21,6 @@ import java.lang.annotation.*;
 @Documented
 @Indexed
 public @interface RestLoadParam {
-
     /**
      * <code>value</code>
      * <p>The value method.</p>
@@ -29,24 +28,32 @@ public @interface RestLoadParam {
      * @see java.lang.String
      * @see org.springframework.core.annotation.AliasFor
      */
-    @AliasFor("load")
+    @AliasFor("param")
     String value() default "";
 
     /**
-     * <code>load</code>
-     * <p>The load method.</p>
-     * @return {@link java.lang.String} <p>The load return object is <code>String</code> type.</p>
+     * <code>param</code>
+     * <p>The param method.</p>
+     * @return {@link java.lang.String} <p>The param return object is <code>String</code> type.</p>
      * @see java.lang.String
      */
-    String load() default "";
+    String param() default "";
 
     /**
-     * <code>type</code>
-     * <p>The type method.</p>
-     * @return {@link java.lang.Class} <p>The type return object is <code>Class</code> type.</p>
+     * <code>types</code>
+     * <p>The types method.</p>
+     * @return {@link java.lang.Class} <p>The types return object is <code>Class</code> type.</p>
      * @see java.lang.Class
      */
-    Class<?>[] type() default {};
+    Class<?>[] types() default {};
+
+    /**
+     * <code>keys</code>
+     * <p>The keys method.</p>
+     * @return {@link java.lang.String} <p>The keys return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     */
+    String[] keys() default {};
 
 
 }
