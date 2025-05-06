@@ -277,7 +277,7 @@ public interface RestLoad extends RestValue<String, Boolean>, RestEntry<String, 
         @Override
         public String getKey() {
             String key = super.getKey();
-            if (GeneralUtils.isEmpty(key) && GeneralUtils.isNotEmpty(this.index)) {
+            if (GeneralUtils.isEmpty(key) && GeneralUtils.isUsable(this.index)) {
                 return String.valueOf(this.index);
             }
             return key;
