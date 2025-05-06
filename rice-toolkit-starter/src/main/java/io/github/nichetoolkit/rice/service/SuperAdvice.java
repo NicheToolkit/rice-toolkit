@@ -31,7 +31,6 @@ import org.springframework.lang.NonNull;
 
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -626,7 +625,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         FindLoadMapper<E, I> loadMapper = (FindLoadMapper<E, I>) superMapper;
         Method findMethod = null;
         try {
-            findMethod = loadMapper.getClass().getMethod("findByIdLoad", Object.class, Boolean[].class);
+            findMethod = loadMapper.getClass().getMethod("findByIdLoad", Object.class, RestLoad[].class);
         } catch (NoSuchMethodException ignored) {
         }
         Method queryByIdMethod = findMethod;
@@ -700,7 +699,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         FickleLoadMapper<E, I> fickleLoadMapper = (FickleLoadMapper<E, I>) superMapper;
         Method findMethod = null;
         try {
-            findMethod = fickleLoadMapper.getClass().getMethod("findByIdFickleLoad", Object.class, RestFickle[].class, Boolean[].class);
+            findMethod = fickleLoadMapper.getClass().getMethod("findByIdFickleLoad", Object.class, RestFickle[].class, RestLoad[].class);
         } catch (NoSuchMethodException ignored) {
         }
         Method queryByIdMethod = findMethod;
@@ -779,7 +778,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         LinkLoadMapper<E, L, I> loadMapper = (LinkLoadMapper<E, L, I>) superMapper;
         Method findMethod = null;
         try {
-            findMethod = loadMapper.getClass().getMethod("findByLinkIdLoad", Object.class, Boolean[].class);
+            findMethod = loadMapper.getClass().getMethod("findByLinkIdLoad", Object.class, RestLoad[].class);
         } catch (NoSuchMethodException ignored) {
         }
         Method queryByIdMethod = findMethod;
@@ -877,7 +876,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         FickleLinkMapper<E, L, I> fickleLinkMapper = (FickleLinkMapper<E, L, I>) superMapper;
         Method findMethod = null;
         try {
-            findMethod = fickleLinkMapper.getClass().getMethod("findByLinkIdFickleLoad", Object.class, RestFickle[].class, Boolean[].class);
+            findMethod = fickleLinkMapper.getClass().getMethod("findByLinkIdFickleLoad", Object.class, RestFickle[].class, RestLoad[].class);
         } catch (NoSuchMethodException ignored) {
         }
         Method queryByIdMethod = findMethod;
@@ -1210,7 +1209,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         FindLoadMapper<E, I> loadMapper = (FindLoadMapper<E, I>) superMapper;
         Method findMethod = null;
         try {
-            findMethod = loadMapper.getClass().getMethod("findAllLoad", Collection.class, Boolean[].class);
+            findMethod = loadMapper.getClass().getMethod("findAllLoad", Collection.class, RestLoad[].class);
         } catch (NoSuchMethodException ignored) {
         }
         Method queryAllMethod = findMethod;
@@ -1289,7 +1288,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         FickleLoadMapper<E, I> fickleLoadMapper = (FickleLoadMapper<E, I>) superMapper;
         Method findMethod = null;
         try {
-            findMethod = fickleLoadMapper.getClass().getMethod("findAllFickleLoad", Collection.class, RestFickle[].class, Boolean[].class);
+            findMethod = fickleLoadMapper.getClass().getMethod("findAllFickleLoad", Collection.class, RestFickle[].class, RestLoad[].class);
         } catch (NoSuchMethodException ignored) {
         }
         Method queryAllMethod = findMethod;
@@ -1371,7 +1370,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         LinkLoadMapper<E, L, I> loadMapper = (LinkLoadMapper<E, L, I>) superMapper;
         Method findMethod = null;
         try {
-            findMethod = loadMapper.getClass().getMethod("findAllByLinkIdsLoad", Collection.class, Boolean[].class);
+            findMethod = loadMapper.getClass().getMethod("findAllByLinkIdsLoad", Collection.class, RestLoad[].class);
         } catch (NoSuchMethodException ignored) {
         }
         Method queryAllMethod = findMethod;
@@ -1471,7 +1470,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         FickleLinkMapper<E, L, I> fickleLinkMapper = (FickleLinkMapper<E, L, I>) superMapper;
         Method findMethod = null;
         try {
-            findMethod = fickleLinkMapper.getClass().getMethod("findAllByLinkIdsFickleLoad", Collection.class, RestFickle[].class, Boolean[].class);
+            findMethod = fickleLinkMapper.getClass().getMethod("findAllByLinkIdsFickleLoad", Collection.class, RestFickle[].class, RestLoad[].class);
         } catch (NoSuchMethodException ignored) {
         }
         Method queryAllMethod = findMethod;
@@ -1518,7 +1517,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         FilterLoadMapper<E, I> loadFilterMapper = (FilterLoadMapper<E, I>) superMapper;
         Method findMethod = null;
         try {
-            findMethod = loadFilterMapper.getClass().getMethod("findAllByLoadWhere", String.class, Boolean[].class);
+            findMethod = loadFilterMapper.getClass().getMethod("findAllByLoadWhere", String.class, RestLoad[].class);
         } catch (NoSuchMethodException ignored) {
         }
         Method findAllByWhereMethod = findMethod;
@@ -1653,7 +1652,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         FickleFilterMapper<E, I> filterMapper = (FickleFilterMapper<E, I>) superMapper;
         Method findMethod = null;
         try {
-            findMethod = filterMapper.getClass().getMethod("findAllByFickleLoadWhere", String.class, RestFickle[].class, Boolean[].class);
+            findMethod = filterMapper.getClass().getMethod("findAllByFickleLoadWhere", String.class, RestFickle[].class, RestLoad[].class);
         } catch (NoSuchMethodException ignored) {
         }
         Method findAllByWhereMethod = findMethod;
