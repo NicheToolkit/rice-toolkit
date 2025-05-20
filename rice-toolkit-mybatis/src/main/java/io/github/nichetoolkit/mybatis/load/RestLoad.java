@@ -26,6 +26,24 @@ import java.util.Objects;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public interface RestLoad extends RestValue<String, Boolean>, RestEntry<String, Boolean>, Serializable {
+    /**
+     * <code>_KEY</code>
+     * {@link java.lang.String} <p>The constant <code>_KEY</code> field.</p>
+     * @see java.lang.String
+     */
+    String _KEY = "key";
+    /**
+     * <code>_INDEX</code>
+     * {@link java.lang.String} <p>The constant <code>_INDEX</code> field.</p>
+     * @see java.lang.String
+     */
+    String _INDEX = "index";
+    /**
+     * <code>_VALUE</code>
+     * {@link java.lang.String} <p>The constant <code>_VALUE</code> field.</p>
+     * @see java.lang.String
+     */
+    String _VALUE = "value";
 
     /**
      * <code>getIndex</code>
