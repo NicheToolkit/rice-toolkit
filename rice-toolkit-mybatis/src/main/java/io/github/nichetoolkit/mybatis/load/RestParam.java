@@ -28,11 +28,12 @@ public interface RestParam extends RestValue<String, Object>, RestEntry<String, 
      * <code>of</code>
      * <p>The of method.</p>
      * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
      * @return {@link io.github.nichetoolkit.mybatis.load.RestParam} <p>The of return object is <code>RestParam</code> type.</p>
      * @see java.lang.String
+     * @see java.lang.Object
      */
-    static RestParam of(String key, String value) {
+    static RestParam of(String key, Object value) {
         return new RestParam.OfRestParam(key, value);
     }
 
@@ -78,10 +79,11 @@ public interface RestParam extends RestValue<String, Object>, RestEntry<String, 
          * <code>OfRestParam</code>
          * <p>Instantiates a new of rest param.</p>
          * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-         * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
+         * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
          * @see java.lang.String
+         * @see java.lang.Object
          */
-        public OfRestParam(String key, String value) {
+        public OfRestParam(String key, Object value) {
             super(key, value);
         }
 
