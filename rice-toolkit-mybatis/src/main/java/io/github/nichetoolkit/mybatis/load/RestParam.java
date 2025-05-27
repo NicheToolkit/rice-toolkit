@@ -22,7 +22,7 @@ import java.util.Map;
  */
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public interface RestParam extends RestValue<String, String>, RestEntry<String, String>, Serializable {
+public interface RestParam extends RestValue<String, Object>, RestEntry<String, Object>, Serializable {
 
     /**
      * <code>of</code>
@@ -43,7 +43,7 @@ public interface RestParam extends RestValue<String, String>, RestEntry<String, 
      * @return {@link io.github.nichetoolkit.mybatis.load.RestParam} <p>The of return object is <code>RestParam</code> type.</p>
      * @see java.util.Map.Entry
      */
-    static RestParam of(Map.Entry<String, String> entry) {
+    static RestParam of(Map.Entry<String, Object> entry) {
         return new RestParam.OfRestParam(entry);
     }
 
@@ -65,7 +65,7 @@ public interface RestParam extends RestValue<String, String>, RestEntry<String, 
      * @since Jdk1.8
      */
     @Setter
-    class OfRestParam extends OfRestValue<String, String> implements RestParam {
+    class OfRestParam extends OfRestValue<String, Object> implements RestParam {
 
         /**
          * <code>OfRestParam</code>
@@ -91,7 +91,7 @@ public interface RestParam extends RestValue<String, String>, RestEntry<String, 
          * @param entry {@link java.util.Map.Entry} <p>The entry parameter is <code>Entry</code> type.</p>
          * @see java.util.Map.Entry
          */
-        public OfRestParam(Map.Entry<String, String> entry) {
+        public OfRestParam(Map.Entry<String, Object> entry) {
             super(entry);
         }
 
