@@ -8,12 +8,12 @@ import java.lang.annotation.*;
 /**
  * <code>RestLoadEntity</code>
  * <p>The rest load entity interface.</p>
- * @see  java.lang.annotation.Annotation
- * @see  java.lang.annotation.Retention
- * @see  java.lang.annotation.Target
- * @see  java.lang.annotation.Documented
- * @see  org.springframework.stereotype.Indexed
  * @author Cyan (snow22314@outlook.com)
+ * @see java.lang.annotation.Annotation
+ * @see java.lang.annotation.Retention
+ * @see java.lang.annotation.Target
+ * @see java.lang.annotation.Documented
+ * @see org.springframework.stereotype.Indexed
  * @since Jdk1.8
  */
 @Retention(RetentionPolicy.RUNTIME)
@@ -24,32 +24,26 @@ public @interface RestLoadEntity {
     /**
      * <code>value</code>
      * <p>The value method.</p>
-     * @return int <p>The value return object is <code>int</code> type.</p>
-     * @see  org.springframework.core.annotation.AliasFor
+     * @return {@link java.lang.String} <p>The value return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     * @see org.springframework.core.annotation.AliasFor
      */
-    @AliasFor("index")
-    int value() default 0;
-
-    /**
-     * <code>index</code>
-     * <p>The index method.</p>
-     * @return int <p>The index return object is <code>int</code> type.</p>
-     */
-    int index() default 0;
+    @AliasFor("key")
+    String value() default "";
 
     /**
      * <code>key</code>
      * <p>The key method.</p>
-     * @return  {@link java.lang.String} <p>The key return object is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @return {@link java.lang.String} <p>The key return object is <code>String</code> type.</p>
+     * @see java.lang.String
      */
     String key() default "";
 
     /**
      * <code>table</code>
      * <p>The table method.</p>
-     * @return  {@link java.lang.String} <p>The table return object is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @return {@link java.lang.String} <p>The table return object is <code>String</code> type.</p>
+     * @see java.lang.String
      */
     String table() default "";
 
