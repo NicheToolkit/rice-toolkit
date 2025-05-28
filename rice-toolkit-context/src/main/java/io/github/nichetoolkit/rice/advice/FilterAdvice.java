@@ -91,30 +91,25 @@ public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
      * <code>findLoadArray</code>
      * <p>The find load array method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @return {@link java.lang.Boolean} <p>The find load array return object is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The find load array return object is <code>RestLoad</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see io.github.nichetoolkit.rest.RestException
      */
     default RestLoad[] findLoadArray(F filter) throws RestException {
-        Boolean[] isLoadArray = filter.toLoadArray();
-        return RestOptional.ofEmptyable(isLoadArray).emptyMap(loadArray ->
-                IntStream.range(0, loadArray.length).mapToObj(index -> {
-                    Boolean loadValue = loadArray[index];
-                    return RestLoad.of(index, loadValue);
-                }).toArray(RestLoad[]::new)).orElse(new RestLoad[0]);
+        return filter.toLoadArray();
     }
 
     /**
      * <code>queryLoadArray</code>
      * <p>The query load array method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @return {@link java.lang.Boolean} <p>The query load array return object is <code>Boolean</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The query load array return object is <code>RestLoad</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default Boolean[] queryLoadArray(F filter) throws RestException {
+    default RestLoad[] queryLoadArray(F filter) throws RestException {
         return filter.toLoadArray();
     }
 

@@ -1401,8 +1401,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         if (GeneralUtils.isEmpty(entity)) {
             return null;
         }
-        Boolean[] loadArray = isLoadArray(isLoadArray);
-        return modelActuator(entity, loadArray);
+        return modelActuator(entity, isLoadArray);
     }
 
     @Override
@@ -1463,8 +1462,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         } else {
             entityList = findAll(idList, tablename);
         }
-        Boolean[] loadArray = isLoadArray(isLoadArray);
-        return modelActuator(entityList, null, loadArray);
+        return modelActuator(entityList, null, isLoadArray);
     }
 
     /**
@@ -1481,7 +1479,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         queryFilterCache.set(filter);
         String whereSql = queryWhereSql(filter);
         RestLoad[] loadArray = findLoadArray(filter);
-        Boolean[] isLoadArray = queryLoadArray(filter);
+        RestLoad[] isLoadArray = queryLoadArray(filter);
         String[] fieldArray = fieldArray(filter);
         RestFickle<?>[] fickleArray = fickleArray(filter);
         K tablekey = tablekey(filter);
@@ -1672,8 +1670,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         if (GeneralUtils.isEmpty(entityList)) {
             return Collections.emptyList();
         }
-        Boolean[] loadArray = isLoadArray(isLoadArray);
-        return modelActuator(entityList, null, loadArray);
+        return modelActuator(entityList, null, isLoadArray);
     }
 
     /**
@@ -1841,8 +1838,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         } else {
             entityList = findAllByLinkIds(tablename, linkIdList, linkName);
         }
-        Boolean[] loadArray = isLoadArray(isLoadArray);
-        return modelActuator(entityList, null, loadArray);
+        return modelActuator(entityList, null, isLoadArray);
     }
 
 
@@ -2115,12 +2111,12 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     }
 
     @Override
-    public M mutateEntity(E model, Boolean... isLoadArray) throws RestException {
+    public M mutateEntity(E model, RestLoad... isLoadArray) throws RestException {
         return modelActuator(model, isLoadArray);
     }
 
     @Override
-    public List<M> mutateEntityList(List<E> entityList, ConsumerActuator<E> actuator, Boolean... isLoadArray) throws RestException {
+    public List<M> mutateEntityList(List<E> entityList, ConsumerActuator<E> actuator, RestLoad... isLoadArray) throws RestException {
         return modelActuator(entityList, actuator, isLoadArray);
     }
 

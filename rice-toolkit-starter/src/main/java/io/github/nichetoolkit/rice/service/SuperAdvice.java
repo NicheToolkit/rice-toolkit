@@ -5,12 +5,10 @@ import io.github.nichetoolkit.mybatis.fickle.RestFickle;
 import io.github.nichetoolkit.mybatis.load.RestLoad;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestKey;
-import io.github.nichetoolkit.rest.RestOptional;
 import io.github.nichetoolkit.rest.actuator.*;
 import io.github.nichetoolkit.rest.error.data.DataQueryException;
 import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
 import io.github.nichetoolkit.rest.helper.PartitionHelper;
-import io.github.nichetoolkit.rest.stream.RestCollectors;
 import io.github.nichetoolkit.rest.stream.RestStream;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
@@ -31,7 +29,6 @@ import org.springframework.lang.NonNull;
 
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.stream.IntStream;
 
 /**
  * <code>SuperAdvice</code>
@@ -198,15 +195,15 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * <code>modelActuator</code>
      * <p>The model actuator method.</p>
      * @param entity      E <p>The entity parameter is <code>E</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return M <p>The model actuator return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.lang.SuppressWarnings
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings(value = "unchecked")
-    protected M modelActuator(E entity, Boolean... isLoadArray) throws RestException {
+    protected M modelActuator(E entity, RestLoad... isLoadArray) throws RestException {
         M model = this.createModel(entity);
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice<M, E, I> builderAdvice = (BuilderAdvice<M, E, I>) this;
@@ -221,18 +218,18 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * <p>The model actuator method.</p>
      * @param entityList  {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
      * @param actuator    {@link io.github.nichetoolkit.rest.actuator.ConsumerActuator} <p>The actuator parameter is <code>ConsumerActuator</code> type.</p>
-     * @param isLoadArray {@link java.lang.Boolean} <p>The is load array parameter is <code>Boolean</code> type.</p>
+     * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The model actuator return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.actuator.ConsumerActuator
-     * @see java.lang.Boolean
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see java.lang.SuppressWarnings
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings(value = "unchecked")
-    protected List<M> modelActuator(Collection<E> entityList, ConsumerActuator<E> actuator, Boolean... isLoadArray) throws RestException {
+    protected List<M> modelActuator(Collection<E> entityList, ConsumerActuator<E> actuator, RestLoad... isLoadArray) throws RestException {
         List<M> modelList;
         if (BuilderAdvice.class.isAssignableFrom(this.getClass())) {
             BuilderAdvice<M, E, I> builderAdvice = (BuilderAdvice<M, E, I>) this;
@@ -470,35 +467,6 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
             }
         }
         return null;
-    }
-
-    /**
-     * <code>isLoadArray</code>
-     * <p>The is load array method.</p>
-     * @param loadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load array parameter is <code>RestLoad</code> type.</p>
-     * @return {@link java.lang.Boolean} <p>The is load array return object is <code>Boolean</code> type.</p>
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.mybatis.load.RestLoad
-     * @see java.lang.Boolean
-     * @see io.github.nichetoolkit.rest.RestException
-     */
-    protected Boolean[] isLoadArray(RestLoad... loadArray) throws RestException {
-        Boolean[] isLoadArray = new Boolean[0];
-        if (GeneralUtils.isEmpty(loadArray)) {
-            return isLoadArray;
-        }
-        RestOptional<Integer> maxIndexOptional = RestStream.stream(loadArray).map(RestLoad::getIndex).max(Integer::compare);
-        return maxIndexOptional.validMap(maxIndex -> {
-            Map<Integer, RestLoad> indexLoadMap = RestStream.stream(loadArray).collect(RestCollectors.toMap(RestLoad::getIndex, FunctionActuator.identity(), (oldValue, newValue) -> newValue));
-            return IntStream.range(0, maxIndex).mapToObj(index -> {
-                RestLoad restLoad = indexLoadMap.get(index);
-                if (GeneralUtils.isNotEmpty(restLoad)) {
-                    return restLoad.getValue();
-                } else {
-                    return false;
-                }
-            }).toArray(Boolean[]::new);
-        }).orElse(isLoadArray);
     }
 
     /**

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import io.github.nichetoolkit.mybatis.load.RestLoad;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
@@ -20,13 +21,13 @@ import java.util.List;
 /**
  * <code>PageFilter</code>
  * <p>The page filter class.</p>
- * @see  java.io.Serializable
- * @see  lombok.Getter
- * @see  lombok.Setter
- * @see  java.lang.SuppressWarnings
- * @see  com.fasterxml.jackson.annotation.JsonInclude
- * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
+ * @see java.io.Serializable
+ * @see lombok.Getter
+ * @see lombok.Setter
+ * @see java.lang.SuppressWarnings
+ * @see com.fasterxml.jackson.annotation.JsonInclude
+ * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @Getter
@@ -38,60 +39,60 @@ public class PageFilter implements Serializable {
     /**
      * <code>PAGE_REGEX</code>
      * {@link java.lang.String} <p>The constant <code>PAGE_REGEX</code> field.</p>
-     * @see  java.lang.String
-     * @see  com.fasterxml.jackson.annotation.JsonIgnore
+     * @see java.lang.String
+     * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
     public static final String PAGE_REGEX = "_";
     /**
      * <code>PAGE_LIMIT</code>
      * {@link java.lang.String} <p>The constant <code>PAGE_LIMIT</code> field.</p>
-     * @see  java.lang.String
-     * @see  com.fasterxml.jackson.annotation.JsonIgnore
+     * @see java.lang.String
+     * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
     public static final String PAGE_LIMIT = "LIMIT";
     /**
      * <code>PAGE_OFFSET</code>
      * {@link java.lang.String} <p>The constant <code>PAGE_OFFSET</code> field.</p>
-     * @see  java.lang.String
-     * @see  com.fasterxml.jackson.annotation.JsonIgnore
+     * @see java.lang.String
+     * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
     public static final String PAGE_OFFSET = "OFFSET";
     /**
      * <code>FIELD_ARRAY</code>
      * {@link java.util.List} <p>The <code>FIELD_ARRAY</code> field.</p>
-     * @see  java.util.List
-     * @see  com.fasterxml.jackson.annotation.JsonIgnore
+     * @see java.util.List
+     * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
     protected final List<String> FIELD_ARRAY = new ArrayList<>();
     /**
      * <code>LOAD_ARRAY</code>
      * {@link java.util.List} <p>The <code>LOAD_ARRAY</code> field.</p>
-     * @see  java.util.List
-     * @see  com.fasterxml.jackson.annotation.JsonIgnore
+     * @see java.util.List
+     * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
-    protected final List<Boolean> LOAD_ARRAY = new ArrayList<>();
+    protected final List<RestLoad> LOAD_ARRAY = new ArrayList<>();
 
     /**
      * <code>pageNum</code>
      * {@link java.lang.Integer} <p>The <code>pageNum</code> field.</p>
-     * @see  java.lang.Integer
+     * @see java.lang.Integer
      */
     protected Integer pageNum = 1;
     /**
      * <code>pageSize</code>
      * {@link java.lang.Integer} <p>The <code>pageSize</code> field.</p>
-     * @see  java.lang.Integer
+     * @see java.lang.Integer
      */
     protected Integer pageSize = 0;
     /**
      * <code>loadLastPage</code>
      * {@link java.lang.Boolean} <p>The <code>loadLastPage</code> field.</p>
-     * @see  java.lang.Boolean
+     * @see java.lang.Boolean
      */
     protected Boolean loadLastPage = false;
 
@@ -105,9 +106,9 @@ public class PageFilter implements Serializable {
     /**
      * <code>PageFilter</code>
      * <p>Instantiates a new page filter.</p>
-     * @param pageNum {@link java.lang.Integer} <p>The page num parameter is <code>Integer</code> type.</p>
+     * @param pageNum  {@link java.lang.Integer} <p>The page num parameter is <code>Integer</code> type.</p>
      * @param pageSize {@link java.lang.Integer} <p>The page size parameter is <code>Integer</code> type.</p>
-     * @see  java.lang.Integer
+     * @see java.lang.Integer
      */
     public PageFilter(Integer pageNum, Integer pageSize) {
         this.pageNum = pageNum;
@@ -118,7 +119,7 @@ public class PageFilter implements Serializable {
      * <code>PageFilter</code>
      * <p>Instantiates a new page filter.</p>
      * @param builder {@link io.github.nichetoolkit.rice.filter.PageFilter.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.filter.PageFilter.Builder
+     * @see io.github.nichetoolkit.rice.filter.PageFilter.Builder
      */
     public PageFilter(PageFilter.Builder builder) {
         this.pageNum = builder.pageNum;
@@ -129,7 +130,7 @@ public class PageFilter implements Serializable {
      * <code>setPageNum</code>
      * <p>The set page num setter method.</p>
      * @param pageNum {@link java.lang.Integer} <p>The page num parameter is <code>Integer</code> type.</p>
-     * @see  java.lang.Integer
+     * @see java.lang.Integer
      */
     public void setPageNum(Integer pageNum) {
         if (pageNum == null) {
@@ -149,10 +150,10 @@ public class PageFilter implements Serializable {
     /**
      * <code>toPageSql</code>
      * <p>The to page sql method.</p>
-     * @return  {@link java.lang.String} <p>The to page sql return object is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  io.github.nichetoolkit.rest.RestException
+     * @return {@link java.lang.String} <p>The to page sql return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.rest.RestException
      */
     public String toPageSql() throws RestException {
         return PAGE_LIMIT + " " + this.pageSize +
@@ -162,11 +163,11 @@ public class PageFilter implements Serializable {
     /**
      * <code>toPage</code>
      * <p>The to page method.</p>
-     * @param <T>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @return  {@link com.github.pagehelper.Page} <p>The to page return object is <code>Page</code> type.</p>
-     * @see  com.github.pagehelper.Page
-     * @see  io.github.nichetoolkit.rest.RestException
+     * @param <T> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @return {@link com.github.pagehelper.Page} <p>The to page return object is <code>Page</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see com.github.pagehelper.Page
+     * @see io.github.nichetoolkit.rest.RestException
      */
     public <T> Page<T> toPage() throws RestException {
         if (GeneralUtils.isNotEmpty(this.pageSize)) {
@@ -183,13 +184,13 @@ public class PageFilter implements Serializable {
     /**
      * <code>toLoadArray</code>
      * <p>The to load array method.</p>
-     * @return  {@link java.lang.Boolean} <p>The to load array return object is <code>Boolean</code> type.</p>
-     * @see  java.lang.Boolean
-     * @see  io.github.nichetoolkit.rest.RestException
+     * @return {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The to load array return object is <code>RestLoad</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
+     * @see io.github.nichetoolkit.rest.RestException
      */
-    public Boolean[] toLoadArray() throws RestException {
-        Boolean[] toArray = LOAD_ARRAY.toArray(new Boolean[0]);
+    public RestLoad[] toLoadArray() throws RestException {
+        RestLoad[] toArray = LOAD_ARRAY.toArray(new RestLoad[0]);
         LOAD_ARRAY.clear();
         return toArray;
     }
@@ -197,14 +198,14 @@ public class PageFilter implements Serializable {
     /**
      * <code>toLoadArray</code>
      * <p>The to load array method.</p>
-     * @param isLoads {@link java.lang.Boolean} <p>The is loads parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.Boolean
-     * @see  org.springframework.lang.NonNull
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link java.lang.Boolean} <p>The to load array return object is <code>Boolean</code> type.</p>
+     * @param isLoads {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is loads parameter is <code>RestLoad</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The to load array return object is <code>RestLoad</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
+     * @see org.springframework.lang.NonNull
+     * @see io.github.nichetoolkit.rest.RestException
      */
-    public Boolean[] toLoadArray(@NonNull Boolean... isLoads) throws RestException {
+    public RestLoad[] toLoadArray(@NonNull RestLoad... isLoads) throws RestException {
         this.addLoadArray(isLoads);
         return toLoadArray();
     }
@@ -212,10 +213,10 @@ public class PageFilter implements Serializable {
     /**
      * <code>toFieldArray</code>
      * <p>The to field array method.</p>
-     * @return  {@link java.lang.String} <p>The to field array return object is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  io.github.nichetoolkit.rest.RestException
+     * @return {@link java.lang.String} <p>The to field array return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.rest.RestException
      */
     public String[] toFieldArray() throws RestException {
         String[] toArray = FIELD_ARRAY.toArray(new String[0]);
@@ -227,11 +228,11 @@ public class PageFilter implements Serializable {
      * <code>toFieldArray</code>
      * <p>The to field array method.</p>
      * @param fields {@link java.lang.String} <p>The fields parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.springframework.lang.NonNull
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link java.lang.String} <p>The to field array return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The to field array return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see java.lang.String
+     * @see org.springframework.lang.NonNull
+     * @see io.github.nichetoolkit.rest.RestException
      */
     public String[] toFieldArray(@NonNull String... fields) throws RestException {
         this.addFieldArray(fields);
@@ -241,11 +242,11 @@ public class PageFilter implements Serializable {
     /**
      * <code>addLoadArray</code>
      * <p>The add load array method.</p>
-     * @param isLoads {@link java.lang.Boolean} <p>The is loads parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.Boolean
-     * @see  org.springframework.lang.NonNull
+     * @param isLoads {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is loads parameter is <code>RestLoad</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.load.RestLoad
+     * @see org.springframework.lang.NonNull
      */
-    public void addLoadArray(@NonNull Boolean... isLoads) {
+    public void addLoadArray(@NonNull RestLoad... isLoads) {
         LOAD_ARRAY.addAll(Arrays.asList(isLoads));
     }
 
@@ -253,8 +254,8 @@ public class PageFilter implements Serializable {
      * <code>addFieldArray</code>
      * <p>The add field array method.</p>
      * @param fields {@link java.lang.String} <p>The fields parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.springframework.lang.NonNull
+     * @see java.lang.String
+     * @see org.springframework.lang.NonNull
      */
     public void addFieldArray(@NonNull String... fields) {
         FIELD_ARRAY.addAll(Arrays.asList(fields));
@@ -263,8 +264,8 @@ public class PageFilter implements Serializable {
     /**
      * <code>name</code>
      * <p>The name method.</p>
-     * @return  {@link java.lang.String} <p>The name return object is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @return {@link java.lang.String} <p>The name return object is <code>String</code> type.</p>
+     * @see java.lang.String
      */
     public String name() {
         return this.getClass().getSimpleName();
@@ -273,8 +274,8 @@ public class PageFilter implements Serializable {
     /**
      * <code>toKey</code>
      * <p>The to key method.</p>
-     * @return  {@link java.lang.String} <p>The to key return object is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @return {@link java.lang.String} <p>The to key return object is <code>String</code> type.</p>
+     * @see java.lang.String
      */
     public String toKey() {
         return this.pageNum + PAGE_REGEX + this.pageSize;
@@ -290,13 +291,13 @@ public class PageFilter implements Serializable {
         /**
          * <code>pageNum</code>
          * {@link java.lang.Integer} <p>The <code>pageNum</code> field.</p>
-         * @see  java.lang.Integer
+         * @see java.lang.Integer
          */
         protected Integer pageNum;
         /**
          * <code>pageSize</code>
          * {@link java.lang.Integer} <p>The <code>pageSize</code> field.</p>
-         * @see  java.lang.Integer
+         * @see java.lang.Integer
          */
         protected Integer pageSize;
 
@@ -311,8 +312,8 @@ public class PageFilter implements Serializable {
          * <code>pageNum</code>
          * <p>The page num method.</p>
          * @param pageNum {@link java.lang.Integer} <p>The page num parameter is <code>Integer</code> type.</p>
-         * @see  java.lang.Integer
-         * @return  {@link io.github.nichetoolkit.rice.filter.PageFilter.Builder} <p>The page num return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.PageFilter.Builder} <p>The page num return object is <code>Builder</code> type.</p>
+         * @see java.lang.Integer
          */
         public PageFilter.Builder pageNum(Integer pageNum) {
             this.pageNum = pageNum;
@@ -323,8 +324,8 @@ public class PageFilter implements Serializable {
          * <code>pageSize</code>
          * <p>The page size method.</p>
          * @param pageSize {@link java.lang.Integer} <p>The page size parameter is <code>Integer</code> type.</p>
-         * @see  java.lang.Integer
-         * @return  {@link io.github.nichetoolkit.rice.filter.PageFilter.Builder} <p>The page size return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.PageFilter.Builder} <p>The page size return object is <code>Builder</code> type.</p>
+         * @see java.lang.Integer
          */
         public PageFilter.Builder pageSize(Integer pageSize) {
             this.pageSize = pageSize;
@@ -334,7 +335,7 @@ public class PageFilter implements Serializable {
         /**
          * <code>build</code>
          * <p>The build method.</p>
-         * @return  {@link io.github.nichetoolkit.rice.filter.PageFilter} <p>The build return object is <code>PageFilter</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.PageFilter} <p>The build return object is <code>PageFilter</code> type.</p>
          */
         public PageFilter build() {
             return new PageFilter(this);

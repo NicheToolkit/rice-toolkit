@@ -279,8 +279,7 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
         if (GeneralUtils.isEmpty(entityList)) {
             return Collections.emptyList();
         }
-        Boolean[] loadArray = isLoadArray(isLoadArray);
-        return mutateEntityList(entityList,entity -> {}, loadArray);
+        return mutateEntityList(entityList,entity -> {}, isLoadArray);
     }
 
 }

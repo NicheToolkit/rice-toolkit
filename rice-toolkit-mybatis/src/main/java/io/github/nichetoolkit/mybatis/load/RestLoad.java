@@ -9,8 +9,9 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * <code>RestLoad</code>
@@ -33,25 +34,12 @@ public interface RestLoad extends RestValue<String, Boolean>, RestEntry<String, 
      */
     String _KEY = "key";
     /**
-     * <code>_INDEX</code>
-     * {@link java.lang.String} <p>The constant <code>_INDEX</code> field.</p>
-     * @see java.lang.String
-     */
-    String _INDEX = "index";
-    /**
      * <code>_VALUE</code>
      * {@link java.lang.String} <p>The constant <code>_VALUE</code> field.</p>
      * @see java.lang.String
      */
     String _VALUE = "value";
 
-    /**
-     * <code>getIndex</code>
-     * <p>The get index getter method.</p>
-     * @return {@link java.lang.Integer} <p>The get index return object is <code>Integer</code> type.</p>
-     * @see java.lang.Integer
-     */
-    Integer getIndex();
 
     /**
      * <code>of</code>
@@ -65,27 +53,17 @@ public interface RestLoad extends RestValue<String, Boolean>, RestEntry<String, 
     }
 
     /**
-     * <code>of</code>
-     * <p>The of method.</p>
-     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The of return object is <code>RestLoad</code> type.</p>
-     * @see java.lang.Integer
-     */
-    static RestLoad of(Integer index) {
-        return new RestLoad.OfRestLoad(index);
-    }
-
-    /**
-     * <code>of</code>
-     * <p>The of method.</p>
-     * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The of return object is <code>RestLoad</code> type.</p>
+     * <code>ofArray</code>
+     * <p>The of array method.</p>
+     * @param keys {@link java.lang.String} <p>The keys parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The of array return object is <code>RestLoad</code> type.</p>
      * @see java.lang.String
-     * @see java.lang.Integer
      */
-    static RestLoad of(String key, Integer index) {
-        return new RestLoad.OfRestLoad(key, index);
+    static RestLoad[] ofArray(String... keys) {
+        if (GeneralUtils.isEmpty(keys)) {
+            return null;
+        }
+        return Arrays.stream(keys).map(RestLoad.OfRestLoad::new).toArray(RestLoad[]::new);
     }
 
     /**
@@ -101,32 +79,19 @@ public interface RestLoad extends RestValue<String, Boolean>, RestEntry<String, 
         return new RestLoad.OfRestLoad(key, value);
     }
 
-    /**
-     * <code>of</code>
-     * <p>The of method.</p>
-     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param value {@link java.lang.Boolean} <p>The value parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The of return object is <code>RestLoad</code> type.</p>
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
-     */
-    static RestLoad of(Integer index, Boolean value) {
-        return new RestLoad.OfRestLoad(index, value);
-    }
 
     /**
-     * <code>of</code>
-     * <p>The of method.</p>
-     * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param value {@link java.lang.Boolean} <p>The value parameter is <code>Boolean</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The of return object is <code>RestLoad</code> type.</p>
-     * @see java.lang.String
-     * @see java.lang.Integer
-     * @see java.lang.Boolean
+     * <code>ofArray</code>
+     * <p>The of array method.</p>
+     * @param entries {@link java.util.Collection} <p>The entries parameter is <code>Collection</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The of array return object is <code>RestLoad</code> type.</p>
+     * @see java.util.Collection
      */
-    static RestLoad of(String key, Integer index, Boolean value) {
-        return new RestLoad.OfRestLoad(key, index, value);
+    static RestLoad[] ofArray(Collection<Map.Entry<String, Boolean>> entries) {
+        if (GeneralUtils.isEmpty(entries)) {
+            return null;
+        }
+        return entries.stream().map(RestLoad.OfRestLoad::new).toArray(RestLoad[]::new);
     }
 
     /**
@@ -141,17 +106,19 @@ public interface RestLoad extends RestValue<String, Boolean>, RestEntry<String, 
     }
 
     /**
-     * <code>of</code>
-     * <p>The of method.</p>
-     * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-     * @param entry {@link java.util.Map.Entry} <p>The entry parameter is <code>Entry</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The of return object is <code>RestLoad</code> type.</p>
-     * @see java.lang.Integer
-     * @see java.util.Map.Entry
+     * <code>ofArray</code>
+     * <p>The of array method.</p>
+     * @param map {@link java.util.Map} <p>The map parameter is <code>Map</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The of array return object is <code>RestLoad</code> type.</p>
+     * @see java.util.Map
      */
-    static RestLoad of(Integer index, Map.Entry<String, Boolean> entry) {
-        return new RestLoad.OfRestLoad(index, entry);
+    static RestLoad[] ofArray(Map<String, Boolean> map) {
+        if (GeneralUtils.isEmpty(map)) {
+            return null;
+        }
+        return map.entrySet().stream().map(RestLoad.OfRestLoad::new).toArray(RestLoad[]::new);
     }
+
 
     /**
      * <code>ofNull</code>
@@ -174,13 +141,6 @@ public interface RestLoad extends RestValue<String, Boolean>, RestEntry<String, 
     class OfRestLoad extends RestValue.OfRestValue<String, Boolean> implements RestLoad {
 
         /**
-         * <code>index</code>
-         * {@link java.lang.Integer} <p>The <code>index</code> field.</p>
-         * @see java.lang.Integer
-         */
-        private Integer index;
-
-        /**
          * <code>OfRestLoad</code>
          * <p>Instantiates a new of rest load.</p>
          */
@@ -195,44 +155,6 @@ public interface RestLoad extends RestValue<String, Boolean>, RestEntry<String, 
          */
         public OfRestLoad(String key) {
             super(key, true);
-            this.index = 0;
-        }
-
-        /**
-         * <code>OfRestLoad</code>
-         * <p>Instantiates a new of rest load.</p>
-         * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-         * @see java.lang.Integer
-         */
-        public OfRestLoad(Integer index) {
-            super(null, true);
-            this.index = index;
-        }
-
-        /**
-         * <code>OfRestLoad</code>
-         * <p>Instantiates a new of rest load.</p>
-         * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-         * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-         * @see java.lang.String
-         * @see java.lang.Integer
-         */
-        public OfRestLoad(String key, Integer index) {
-            super(key, true);
-            this.index = index;
-        }
-
-        /**
-         * <code>OfRestLoad</code>
-         * <p>Instantiates a new of rest load.</p>
-         * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-         * @param value {@link java.lang.Boolean} <p>The value parameter is <code>Boolean</code> type.</p>
-         * @see java.lang.Integer
-         * @see java.lang.Boolean
-         */
-        public OfRestLoad(Integer index, Boolean value) {
-            super(null, value);
-            this.index = index;
         }
 
         /**
@@ -245,22 +167,6 @@ public interface RestLoad extends RestValue<String, Boolean>, RestEntry<String, 
          */
         public OfRestLoad(String key, Boolean value) {
             super(key, value);
-            this.index = 0;
-        }
-
-        /**
-         * <code>OfRestLoad</code>
-         * <p>Instantiates a new of rest load.</p>
-         * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-         * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-         * @param value {@link java.lang.Boolean} <p>The value parameter is <code>Boolean</code> type.</p>
-         * @see java.lang.String
-         * @see java.lang.Integer
-         * @see java.lang.Boolean
-         */
-        public OfRestLoad(String key, Integer index, Boolean value) {
-            super(key, value);
-            this.index = index;
         }
 
         /**
@@ -271,48 +177,7 @@ public interface RestLoad extends RestValue<String, Boolean>, RestEntry<String, 
          */
         public OfRestLoad(Map.Entry<String, Boolean> entry) {
             super(entry);
-            this.index = 0;
         }
 
-        /**
-         * <code>OfRestLoad</code>
-         * <p>Instantiates a new of rest load.</p>
-         * @param index {@link java.lang.Integer} <p>The index parameter is <code>Integer</code> type.</p>
-         * @param entry {@link java.util.Map.Entry} <p>The entry parameter is <code>Entry</code> type.</p>
-         * @see java.lang.Integer
-         * @see java.util.Map.Entry
-         */
-        public OfRestLoad(Integer index, Map.Entry<String, Boolean> entry) {
-            super(entry);
-            this.index = index;
-        }
-
-        @Override
-        public Integer getIndex() {
-            return this.index;
-        }
-
-        @Override
-        public String getKey() {
-            String key = super.getKey();
-            if (GeneralUtils.isEmpty(key) && GeneralUtils.isUsable(this.index)) {
-                return String.valueOf(this.index);
-            }
-            return key;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            if (!super.equals(o)) return false;
-            OfRestLoad that = (OfRestLoad) o;
-            return Objects.equals(index, that.index);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(super.hashCode(), index);
-        }
     }
 }
