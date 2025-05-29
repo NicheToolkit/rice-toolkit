@@ -23,6 +23,7 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.filter.StatusFilter;
 import io.github.nichetoolkit.rice.helper.MEBuilderHelper;
 import io.github.nichetoolkit.rice.mapper.*;
+import io.github.nichetoolkit.rice.mapper.filter.FindFilterMapper;
 import io.github.nichetoolkit.rice.mapper.natives.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
