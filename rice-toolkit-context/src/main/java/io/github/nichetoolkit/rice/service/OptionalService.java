@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.RestId;
+import io.github.nichetoolkit.rice.RestTablekey;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import org.springframework.lang.NonNull;
 
@@ -56,7 +57,7 @@ public interface OptionalService<M extends RestId<I>, F extends IdFilter<I, K>, 
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see  io.github.nichetoolkit.rest.RestException
      */
-    default boolean existById(K tablekey, I id) throws RestException {
+    default boolean existById(RestTablekey<K> tablekey, I id) throws RestException {
         return Optional.ofNullable(this.queryById(tablekey, id)).isPresent();
     }
 

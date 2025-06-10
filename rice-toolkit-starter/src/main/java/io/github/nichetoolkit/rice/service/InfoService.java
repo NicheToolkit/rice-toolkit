@@ -6,6 +6,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
 import io.github.nichetoolkit.rice.RestInfo;
+import io.github.nichetoolkit.rice.RestTablekey;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.mapper.InfoMapper;
 import io.github.nichetoolkit.rice.mapper.natives.FindLoadMapper;
@@ -66,7 +67,7 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
 
     @Override
     protected void afterSuperHandle() throws RestException {
-        this.createActuator = (K tablekey, @NonNull M model) -> {
+        this.createActuator = (RestTablekey<K> tablekey, @NonNull M model) -> {
             if (isModelOfUnique()) {
                 Boolean existByModel = existByModel(tablekey, model);
                 fieldRepeat(existByModel, model);
@@ -76,7 +77,7 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
             }
 
         };
-        this.updateActuator = (K tablekey, @NonNull M model) -> {
+        this.updateActuator = (RestTablekey<K> tablekey, @NonNull M model) -> {
             if (isModelOfUnique()) {
                 Boolean existByModel = existByModelAndNotId(tablekey, model, model.getId());
                 fieldRepeat(existByModel, model);
@@ -93,14 +94,15 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
     /**
      * <code>existByName</code>
      * <p>The exist by name method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @return {@link java.lang.Boolean} <p>The exist by name return object is <code>Boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTablekey
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    private Boolean existByName(K tablekey, M model) throws RestException {
+    private Boolean existByName(RestTablekey<K> tablekey, M model) throws RestException {
         if (GeneralUtils.isEmpty(model.getName())) {
             return false;
         }
@@ -118,15 +120,16 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
     /**
      * <code>existByNameAndNotId</code>
      * <p>The exist by name and not id method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @param id       I <p>The id parameter is <code>I</code> type.</p>
      * @return {@link java.lang.Boolean} <p>The exist by name and not id return object is <code>Boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTablekey
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    private Boolean existByNameAndNotId(K tablekey, M model, I id) throws RestException {
+    private Boolean existByNameAndNotId(RestTablekey<K> tablekey, M model, I id) throws RestException {
         if (GeneralUtils.isEmpty(model.getName())) {
             return false;
         }
@@ -146,14 +149,15 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
     /**
      * <code>existByModel</code>
      * <p>The exist by model method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @return {@link java.lang.Boolean} <p>The exist by model return object is <code>Boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTablekey
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    private Boolean existByModel(K tablekey, M model) throws RestException {
+    private Boolean existByModel(RestTablekey<K> tablekey, M model) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return false;
         }
@@ -171,15 +175,16 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
     /**
      * <code>existByModelAndNotId</code>
      * <p>The exist by model and not id method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @param id       I <p>The id parameter is <code>I</code> type.</p>
      * @return {@link java.lang.Boolean} <p>The exist by model and not id return object is <code>Boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTablekey
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    private Boolean existByModelAndNotId(K tablekey, M model, I id) throws RestException {
+    private Boolean existByModelAndNotId(RestTablekey<K> tablekey, M model, I id) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return false;
         }
@@ -237,11 +242,12 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
     /**
      * <code>queryByName</code>
      * <p>The query by name method.</p>
-     * @param tablekey    K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param tablekey    {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
      * @param name        {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query by name return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTablekey
      * @see java.lang.String
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
@@ -249,7 +255,7 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings(value = "unchecked")
-    public List<M> queryByName(K tablekey, String name, RestLoad... isLoadArray) throws RestException {
+    public List<M> queryByName(RestTablekey<K> tablekey, String name, RestLoad... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(name)) {
             return null;
         }

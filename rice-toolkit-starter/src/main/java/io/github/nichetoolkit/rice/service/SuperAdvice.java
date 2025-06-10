@@ -77,14 +77,14 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The <code>createActuator</code> field.</p>
      * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
      */
-    protected BiConsumerActuator<K, M> createActuator;
+    protected BiConsumerActuator<RestTablekey<K>, M> createActuator;
 
     /**
      * <code>updateActuator</code>
      * {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The <code>updateActuator</code> field.</p>
      * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
      */
-    protected BiConsumerActuator<K, M> updateActuator;
+    protected BiConsumerActuator<RestTablekey<K>, M> updateActuator;
 
     /**
      * <code>superMapper</code>
@@ -291,15 +291,16 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     /**
      * <code>optionalDynamicTable</code>
      * <p>The optional dynamic table method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTablekey
      * @see org.springframework.lang.NonNull
      * @see java.lang.SuppressWarnings
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings(value = "unchecked")
-    private void optionalDynamicTable(K tablekey, @NonNull M model) throws RestException {
+    private void optionalDynamicTable(RestTablekey<K> tablekey, @NonNull M model) throws RestException {
         if (isDynamicOfTable()) {
             Map<K, String> tablenameMap = tablenameCaches.get();
             if (GeneralUtils.isEmpty(tablenameMap)) {
@@ -307,20 +308,20 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
                 tablenameCaches.set(tablenameMap);
             }
             if (GeneralUtils.isEmpty(tablekey) && model instanceof RestTablekey) {
-                RestTablekey<K> tablekeyModel = (RestTablekey<K>) model;
-                tablekey = tablekeyModel.getTablekey();
+                tablekey = (RestTablekey<K>) model;
             }
-            if (GeneralUtils.isEmpty(tablekey)) {
+            if (GeneralUtils.isEmpty(tablekey) || GeneralUtils.isEmpty(tablekey.getTablekey())) {
                 return;
             }
-            String tablename = tablenameMap.get(tablekey);
+            K ofTablekey = tablekey.getTablekey();
+            String tablename = tablenameMap.get(tablekey.getTablekey());
             if (GeneralUtils.isNotEmpty(tablename)) {
                 return;
             }
-            tablename = dynamicTablename(tablekey);
+            tablename = dynamicTablename(ofTablekey);
             if (GeneralUtils.isNotEmpty(tablename)) {
                 optionalTablename(tablename);
-                tablenameMap.put(tablekey, tablename);
+                tablenameMap.put(ofTablekey, tablename);
             }
         }
     }
@@ -328,13 +329,14 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     /**
      * <code>optionalCreate</code>
      * <p>The optional create method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTablekey
      * @see org.springframework.lang.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
-    protected void optionalCreate(K tablekey, @NonNull M model) throws RestException {
+    protected void optionalCreate(RestTablekey<K> tablekey, @NonNull M model) throws RestException {
         optionalDynamicTable(tablekey, model);
         optionalLogicAndOperate(model);
         if (GeneralUtils.isEmpty(model.getId()) || !isIdentityOfInvade()) {
@@ -347,13 +349,14 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     /**
      * <code>optionalUpdate</code>
      * <p>The optional update method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTablekey
      * @see org.springframework.lang.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
-    protected void optionalUpdate(K tablekey, @NonNull M model) throws RestException {
+    protected void optionalUpdate(RestTablekey<K> tablekey, @NonNull M model) throws RestException {
         OptionalUtils.ofIdEmpty(model.getId(), log);
         optionalDynamicTable(tablekey, model);
         optionalLogicAndOperate(model);
@@ -363,13 +366,14 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     /**
      * <code>optionalSave</code>
      * <p>The optional save method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTablekey
      * @see org.springframework.lang.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
-    protected void optionalSave(K tablekey, @NonNull M model) throws RestException {
+    protected void optionalSave(RestTablekey<K> tablekey, @NonNull M model) throws RestException {
         optionalDynamicTable(tablekey, model);
         optionalLogicAndOperate(model);
         if (GeneralUtils.isEmpty(model.getId())) {
@@ -533,18 +537,19 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     /**
      * <code>single</code>
      * <p>The single method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @param idArray  {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
      * @return {@link java.lang.Integer} <p>The single return object is <code>Integer</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTablekey
      * @see java.lang.Object
      * @see java.lang.Integer
      * @see io.github.nichetoolkit.rest.RestException
      */
-    protected Integer single(K tablekey, M model, Object... idArray) throws RestException {
+    protected Integer single(RestTablekey<K> tablekey, M model, Object... idArray) throws RestException {
         E entity = entityActuator(model, idArray);
-        String tablename = tablename(tablekey, model);
+        String tablename = tablename(tablekey.getTablekey(), model);
         Integer result;
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
             result = superMapper.saveDynamic(tablename, entity);
@@ -2067,7 +2072,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The <code>DEFAULT_CREATE_ACTUATOR</code> field.</p>
      * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
      */
-    protected final BiConsumerActuator<K, M> DEFAULT_CREATE_ACTUATOR = (K tablekey, @NonNull M model) -> {
+    protected final BiConsumerActuator<RestTablekey<K>, M> DEFAULT_CREATE_ACTUATOR = (RestTablekey<K> tablekey, @NonNull M model) -> {
         DefaultIdResolver.resolveIdentity(model);
         optionalInit(model);
         optional(model);
@@ -2090,11 +2095,11 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings("unchecked")
-    private final BiConsumerActuator<K, M> DEFAULT_UPDATE_ACTUATOR = (K tablekey, @NonNull M model) -> {
+    private final BiConsumerActuator<RestTablekey<K>, M> DEFAULT_UPDATE_ACTUATOR = (RestTablekey<K> tablekey, @NonNull M model) -> {
         if (isIdentityOfExistsCheck()) {
             boolean exist;
             if (isDynamicOfTable() && model instanceof RestTablekey) {
-                exist = existById(((RestTablekey<K>) model).getTablekey(), model.getId());
+                exist = existById(((RestTablekey<K>) model), model.getId());
             } else {
                 exist = existById(model.getId());
             }
@@ -2122,11 +2127,11 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings(value = "unchecked")
-    private final BiConsumerActuator<K, M> DEFAULT_SAVE_ACTUATOR = (K tablekey, @NonNull M model) -> {
+    private final BiConsumerActuator<RestTablekey<K>, M> DEFAULT_SAVE_ACTUATOR = (RestTablekey<K> tablekey, @NonNull M model) -> {
         if (isIdentityOfExistsCheck()) {
             boolean exist;
             if (isDynamicOfTable() && model instanceof RestTablekey) {
-                exist = existById(((RestTablekey<K>) model).getTablekey(), model.getId());
+                exist = existById((RestTablekey<K>) model, model.getId());
             } else {
                 exist = existById(model.getId());
             }
@@ -2157,7 +2162,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The <code>DEFAULT_INVADE_ACTUATOR</code> field.</p>
      * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
      */
-    private final BiConsumerActuator<K, M> DEFAULT_INVADE_ACTUATOR = (K tablekey, @NonNull M model) -> {
+    private final BiConsumerActuator<RestTablekey<K>, M> DEFAULT_INVADE_ACTUATOR = (RestTablekey<K> tablekey, @NonNull M model) -> {
         optionalInit(model);
         optional(model);
         if (createActuator != null) {
@@ -2210,7 +2215,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @return {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The create actuator return object is <code>BiConsumerActuator</code> type.</p>
      * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
      */
-    protected BiConsumerActuator<K, M> createActuator() {
+    protected BiConsumerActuator<RestTablekey<K>, M> createActuator() {
         return DEFAULT_CREATE_ACTUATOR;
     }
 
@@ -2220,7 +2225,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @return {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The update actuator return object is <code>BiConsumerActuator</code> type.</p>
      * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
      */
-    protected BiConsumerActuator<K, M> updateActuator() {
+    protected BiConsumerActuator<RestTablekey<K>, M> updateActuator() {
         return DEFAULT_UPDATE_ACTUATOR;
     }
 
@@ -2230,7 +2235,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @return {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The save actuator return object is <code>BiConsumerActuator</code> type.</p>
      * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
      */
-    protected BiConsumerActuator<K, M> saveActuator() {
+    protected BiConsumerActuator<RestTablekey<K>, M> saveActuator() {
         return DEFAULT_SAVE_ACTUATOR;
     }
 
@@ -2240,7 +2245,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @return {@link io.github.nichetoolkit.rest.actuator.BiConsumerActuator} <p>The invade actuator return object is <code>BiConsumerActuator</code> type.</p>
      * @see io.github.nichetoolkit.rest.actuator.BiConsumerActuator
      */
-    protected BiConsumerActuator<K, M> invadeActuator() {
+    protected BiConsumerActuator<RestTablekey<K>, M> invadeActuator() {
         return DEFAULT_INVADE_ACTUATOR;
     }
 
@@ -2447,18 +2452,18 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     protected abstract M createModel(E entity) throws RestException;
 
     @Override
-    public String resolveTablename(K tablekey) throws RestException {
-        return tablename(tablekey);
+    public String resolveTablename(RestTablekey<K> tablekey) throws RestException {
+        return tablename(tablekey.getTablekey());
     }
 
     @Override
-    public String resolveTablename(K tablekey, M model) throws RestException {
-        return tablename(tablekey, model);
+    public String resolveTablename(RestTablekey<K> tablekey, M model) throws RestException {
+        return tablename(tablekey.getTablekey(), model);
     }
 
     @Override
-    public String resolveTablename(K tablekey, Collection<M> modelList) throws RestException {
-        return tablename(tablekey, modelList);
+    public String resolveTablename(RestTablekey<K> tablekey, Collection<M> modelList) throws RestException {
+        return tablename(tablekey.getTablekey(), modelList);
     }
 
     /**

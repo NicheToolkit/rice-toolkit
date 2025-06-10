@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.advice;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.RestId;
+import io.github.nichetoolkit.rice.RestTablekey;
 
 import java.util.Collection;
 
@@ -28,7 +29,7 @@ public interface TablenameAdvice<M extends RestId<I>, I, K> {
      * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    String resolveTablename(K tablekey) throws RestException;
+    String resolveTablename(RestTablekey<K> tablekey) throws RestException;
 
     /**
      * <code>resolveTablename</code>
@@ -40,7 +41,7 @@ public interface TablenameAdvice<M extends RestId<I>, I, K> {
      * @see  io.github.nichetoolkit.rest.RestException
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    String resolveTablename(K tablekey, M model) throws RestException;
+    String resolveTablename(RestTablekey<K> tablekey, M model) throws RestException;
 
     /**
      * <code>resolveTablename</code>
@@ -53,5 +54,5 @@ public interface TablenameAdvice<M extends RestId<I>, I, K> {
      * @return  {@link java.lang.String} <p>The resolve tablename return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    String resolveTablename(K tablekey, Collection<M> modelList) throws RestException;
+    String resolveTablename(RestTablekey<K> tablekey, Collection<M> modelList) throws RestException;
 }

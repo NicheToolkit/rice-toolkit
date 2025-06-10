@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.RestSort;
+import io.github.nichetoolkit.rice.RestTablekey;
 import io.github.nichetoolkit.rice.enums.OperateType;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,14 +16,14 @@ import java.util.*;
 /**
  * <code>TableFilter</code>
  * <p>The table filter class.</p>
- * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @see  io.github.nichetoolkit.rice.filter.FickleFilter
- * @see  lombok.Setter
- * @see  lombok.Getter
- * @see  java.lang.SuppressWarnings
- * @see  com.fasterxml.jackson.annotation.JsonInclude
- * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
+ * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rice.filter.FickleFilter
+ * @see lombok.Setter
+ * @see lombok.Getter
+ * @see java.lang.SuppressWarnings
+ * @see com.fasterxml.jackson.annotation.JsonInclude
+ * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @Setter
@@ -48,7 +49,7 @@ public class TableFilter<K> extends FickleFilter {
      * <code>TableFilter</code>
      * <p>Instantiates a new table filter.</p>
      * @param builder {@link io.github.nichetoolkit.rice.filter.TableFilter.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.filter.TableFilter.Builder
+     * @see io.github.nichetoolkit.rice.filter.TableFilter.Builder
      */
     public TableFilter(TableFilter.Builder<K> builder) {
         super(builder);
@@ -58,18 +59,19 @@ public class TableFilter<K> extends FickleFilter {
     /**
      * <code>toTablekey</code>
      * <p>The to tablekey method.</p>
-     * @return K <p>The to tablekey return object is <code>K</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.RestTablekey} <p>The to tablekey return object is <code>RestTablekey</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTablekey
      */
-    public K toTablekey() {
-        return this.tablekey;
+    public RestTablekey<K> toTablekey() {
+        return RestTablekey.of(this.tablekey);
     }
 
     /**
      * <code>Builder</code>
      * <p>The builder class.</p>
-     * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @see  io.github.nichetoolkit.rice.filter.FickleFilter.Builder
+     * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @author Cyan (snow22314@outlook.com)
+     * @see io.github.nichetoolkit.rice.filter.FickleFilter.Builder
      * @since Jdk1.8
      */
     public static class Builder<K> extends FickleFilter.Builder {
@@ -90,7 +92,7 @@ public class TableFilter<K> extends FickleFilter {
          * <code>tablekey</code>
          * <p>The tablekey method.</p>
          * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
-         * @return  {@link io.github.nichetoolkit.rice.filter.TableFilter.Builder} <p>The tablekey return object is <code>Builder</code> type.</p>
+         * @return {@link io.github.nichetoolkit.rice.filter.TableFilter.Builder} <p>The tablekey return object is <code>Builder</code> type.</p>
          */
         public TableFilter.Builder<K> tablekey(K tablekey) {
             this.tablekey = tablekey;
