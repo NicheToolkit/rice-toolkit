@@ -2429,7 +2429,8 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestException
      */
-    protected abstract void afterSuperHandle() throws RestException;
+    protected void afterSuperHandle() throws RestException {
+    }
 
     /**
      * <code>createEntity</code>
