@@ -151,7 +151,7 @@ public class ServiceHolder {
         RestService service = serviceType.getAnnotation(RestService.class);
         if (GeneralUtils.isNotEmpty(service)) {
             Class<?> mapperType = service.mapperType();
-            if (mapperType != null && mapperType != SuperMapper.class) {
+            if (mapperType != null && SuperMapper.class.isAssignableFrom(mapperType)) {
                 superMapper = (SuperMapper<E, I>) BeanUtils.beanOfType(mapperType);
             }
         }
