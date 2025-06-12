@@ -549,7 +549,8 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      */
     protected Integer single(RestTablekey<K> tablekey, M model, Object... idArray) throws RestException {
         E entity = entityActuator(model, idArray);
-        String tablename = tablename(tablekey.getTablekey(), model);
+        K tableKey = Optional.ofNullable(tablekey).map(RestTablekey::getTablekey).orElse(null);
+        String tablename = tablename(tableKey, model);
         Integer result;
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
             result = superMapper.saveDynamic(tablename, entity);
@@ -2454,17 +2455,17 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
 
     @Override
     public String resolveTablename(RestTablekey<K> tablekey) throws RestException {
-        return tablename(tablekey.getTablekey());
+        return tablename(Optional.ofNullable(tablekey).map(RestTablekey::getTablekey).orElse(null));
     }
 
     @Override
     public String resolveTablename(RestTablekey<K> tablekey, M model) throws RestException {
-        return tablename(tablekey.getTablekey(), model);
+        return tablename(Optional.ofNullable(tablekey).map(RestTablekey::getTablekey).orElse(null), model);
     }
 
     @Override
     public String resolveTablename(RestTablekey<K> tablekey, Collection<M> modelList) throws RestException {
-        return tablename(tablekey.getTablekey(), modelList);
+        return tablename(Optional.ofNullable(tablekey).map(RestTablekey::getTablekey).orElse(null), modelList);
     }
 
     /**
