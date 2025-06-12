@@ -1,6 +1,5 @@
 package io.github.nichetoolkit.mybatis.holder;
 
-import io.github.nichetoolkit.rest.RestFitter;
 import io.github.nichetoolkit.rest.fitter.RestFulfilledFitter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +50,11 @@ public class RestSqlSessionHolder implements RestFulfilledFitter<RestSqlSessionH
     @Override
     public void afterAutowirePropertiesSet() {
         INSTANCE = this;
+    }
+
+    @Override
+    public int getOrder() {
+        return Integer.MIN_VALUE;
     }
 
     /**
