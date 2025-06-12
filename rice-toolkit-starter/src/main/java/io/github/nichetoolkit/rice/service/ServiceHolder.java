@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.RestOrder;
 import io.github.nichetoolkit.rest.holder.ApplicationContextHolder;
 import io.github.nichetoolkit.rest.holder.BeanDefinitionRegistryHolder;
 import io.github.nichetoolkit.rest.holder.ListableBeanFactoryHolder;
@@ -103,6 +104,7 @@ public class ServiceHolder {
         if (GeneralUtils.isEmpty(serviceFitters)) {
             return;
         }
+        serviceFitters.sort(RestOrder::compareTo);
         for (RestServiceFitter<?> serviceFitter : serviceFitters) {
             serviceFitter = BeanDefinitionRegistryHolder.registerRootBeanDefinition(serviceFitter.beanName(), serviceFitter.beanType(), serviceFitter.beanScope());
             ListableBeanFactoryHolder.autowireBeanProperties(serviceFitter);

@@ -20,7 +20,7 @@ import java.lang.annotation.*;
 @Target({ElementType.FIELD, ElementType.ANNOTATION_TYPE})
 @Documented
 @Indexed
-public @interface RestOrder {
+public @interface RestOrdered {
     /**
      * <code>value</code>
      * <p>The value method.</p>

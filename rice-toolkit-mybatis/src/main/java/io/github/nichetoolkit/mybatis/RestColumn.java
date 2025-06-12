@@ -15,22 +15,22 @@ import java.lang.annotation.*;
 /**
  * <code>RestColumn</code>
  * <p>The rest column interface.</p>
- * @see  java.lang.annotation.Annotation
- * @see  java.lang.annotation.Retention
- * @see  java.lang.annotation.Target
- * @see  java.lang.annotation.Documented
- * @see  org.springframework.stereotype.Indexed
- * @see  io.github.nichetoolkit.mybatis.column.RestName
- * @see  io.github.nichetoolkit.mybatis.column.RestOrder
- * @see  io.github.nichetoolkit.mybatis.column.RestSelect
- * @see  io.github.nichetoolkit.mybatis.column.RestInsert
- * @see  io.github.nichetoolkit.mybatis.column.RestUpdate
- * @see  io.github.nichetoolkit.mybatis.column.RestSortType
- * @see  io.github.nichetoolkit.mybatis.column.RestJdbcType
- * @see  io.github.nichetoolkit.mybatis.column.RestForceInsert
- * @see  io.github.nichetoolkit.mybatis.column.RestForceUpdate
- * @see  io.github.nichetoolkit.mybatis.table.RestProperties
  * @author Cyan (snow22314@outlook.com)
+ * @see java.lang.annotation.Annotation
+ * @see java.lang.annotation.Retention
+ * @see java.lang.annotation.Target
+ * @see java.lang.annotation.Documented
+ * @see org.springframework.stereotype.Indexed
+ * @see io.github.nichetoolkit.mybatis.column.RestName
+ * @see io.github.nichetoolkit.mybatis.column.RestOrdered
+ * @see io.github.nichetoolkit.mybatis.column.RestSelect
+ * @see io.github.nichetoolkit.mybatis.column.RestInsert
+ * @see io.github.nichetoolkit.mybatis.column.RestUpdate
+ * @see io.github.nichetoolkit.mybatis.column.RestSortType
+ * @see io.github.nichetoolkit.mybatis.column.RestJdbcType
+ * @see io.github.nichetoolkit.mybatis.column.RestForceInsert
+ * @see io.github.nichetoolkit.mybatis.column.RestForceUpdate
+ * @see io.github.nichetoolkit.mybatis.table.RestProperties
  * @since Jdk1.8
  */
 @Retention(RetentionPolicy.RUNTIME)
@@ -39,7 +39,7 @@ import java.lang.annotation.*;
 @Indexed
 
 @RestName
-@RestOrder
+@RestOrdered
 @RestSelect
 @RestInsert
 @RestUpdate
@@ -53,9 +53,9 @@ public @interface RestColumn {
     /**
      * <code>value</code>
      * <p>The value method.</p>
-     * @return  {@link java.lang.String} <p>The value return object is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.springframework.core.annotation.AliasFor
+     * @return {@link java.lang.String} <p>The value return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor(annotation = RestName.class, attribute = "name")
     String value() default "";
@@ -63,9 +63,9 @@ public @interface RestColumn {
     /**
      * <code>comment</code>
      * <p>The comment method.</p>
-     * @return  {@link java.lang.String} <p>The comment return object is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.springframework.core.annotation.AliasFor
+     * @return {@link java.lang.String} <p>The comment return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor(annotation = RestName.class, attribute = "comment")
     String comment() default "";
@@ -74,17 +74,17 @@ public @interface RestColumn {
      * <code>order</code>
      * <p>The order method.</p>
      * @return int <p>The order return object is <code>int</code> type.</p>
-     * @see  org.springframework.core.annotation.AliasFor
+     * @see org.springframework.core.annotation.AliasFor
      */
-    @AliasFor(annotation = RestOrder.class, attribute = "value")
+    @AliasFor(annotation = RestOrdered.class, attribute = "value")
     int order() default 0;
 
     /**
      * <code>sortType</code>
      * <p>The sort type method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The sort type return object is <code>SortType</code> type.</p>
-     * @see  io.github.nichetoolkit.mybatis.enums.SortType
-     * @see  org.springframework.core.annotation.AliasFor
+     * @return {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The sort type return object is <code>SortType</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.enums.SortType
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor(annotation = RestSortType.class, attribute = "type")
     SortType sortType() default SortType.NONE;
@@ -93,7 +93,7 @@ public @interface RestColumn {
      * <code>priority</code>
      * <p>The priority method.</p>
      * @return int <p>The priority return object is <code>int</code> type.</p>
-     * @see  org.springframework.core.annotation.AliasFor
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor(annotation = RestSortType.class, attribute = "priority")
     int priority() default 0;
@@ -101,9 +101,9 @@ public @interface RestColumn {
     /**
      * <code>forceInsert</code>
      * <p>The force insert method.</p>
-     * @return  {@link java.lang.String} <p>The force insert return object is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.springframework.core.annotation.AliasFor
+     * @return {@link java.lang.String} <p>The force insert return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor(annotation = RestForceInsert.class, attribute = "value")
     String forceInsert() default "";
@@ -111,9 +111,9 @@ public @interface RestColumn {
     /**
      * <code>forceUpdate</code>
      * <p>The force update method.</p>
-     * @return  {@link java.lang.String} <p>The force update return object is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.springframework.core.annotation.AliasFor
+     * @return {@link java.lang.String} <p>The force update return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor(annotation = RestForceUpdate.class, attribute = "value")
     String forceUpdate() default "";
@@ -121,9 +121,9 @@ public @interface RestColumn {
     /**
      * <code>jdbcType</code>
      * <p>The jdbc type method.</p>
-     * @return  {@link org.apache.ibatis.type.JdbcType} <p>The jdbc type return object is <code>JdbcType</code> type.</p>
-     * @see  org.apache.ibatis.type.JdbcType
-     * @see  org.springframework.core.annotation.AliasFor
+     * @return {@link org.apache.ibatis.type.JdbcType} <p>The jdbc type return object is <code>JdbcType</code> type.</p>
+     * @see org.apache.ibatis.type.JdbcType
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor(annotation = RestJdbcType.class, attribute = "jdbcType")
     JdbcType jdbcType() default JdbcType.UNDEFINED;
@@ -131,9 +131,9 @@ public @interface RestColumn {
     /**
      * <code>typeHandler</code>
      * <p>The type handler method.</p>
-     * @return  {@link java.lang.Class} <p>The type handler return object is <code>Class</code> type.</p>
-     * @see  java.lang.Class
-     * @see  org.springframework.core.annotation.AliasFor
+     * @return {@link java.lang.Class} <p>The type handler return object is <code>Class</code> type.</p>
+     * @see java.lang.Class
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor(annotation = RestJdbcType.class, attribute = "typeHandler")
     Class<? extends TypeHandler> typeHandler() default UnknownTypeHandler.class;
@@ -141,9 +141,9 @@ public @interface RestColumn {
     /**
      * <code>numericScale</code>
      * <p>The numeric scale method.</p>
-     * @return  {@link java.lang.String} <p>The numeric scale return object is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.springframework.core.annotation.AliasFor
+     * @return {@link java.lang.String} <p>The numeric scale return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor(annotation = RestJdbcType.class, attribute = "numericScale")
     String numericScale() default "";
@@ -151,9 +151,9 @@ public @interface RestColumn {
     /**
      * <code>properties</code>
      * <p>The properties method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.table.RestProperty} <p>The properties return object is <code>RestProperty</code> type.</p>
-     * @see  io.github.nichetoolkit.mybatis.table.RestProperty
-     * @see  org.springframework.core.annotation.AliasFor
+     * @return {@link io.github.nichetoolkit.mybatis.table.RestProperty} <p>The properties return object is <code>RestProperty</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.table.RestProperty
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor(annotation = RestProperties.class, attribute = "properties")
     RestProperty[] properties() default {};
@@ -162,7 +162,7 @@ public @interface RestColumn {
      * <code>select</code>
      * <p>The select method.</p>
      * @return boolean <p>The select return object is <code>boolean</code> type.</p>
-     * @see  org.springframework.core.annotation.AliasFor
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor(annotation = RestSelect.class, attribute = "value")
     boolean select() default true;
@@ -171,7 +171,7 @@ public @interface RestColumn {
      * <code>insert</code>
      * <p>The insert method.</p>
      * @return boolean <p>The insert return object is <code>boolean</code> type.</p>
-     * @see  org.springframework.core.annotation.AliasFor
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor(annotation = RestInsert.class, attribute = "value")
     boolean insert() default true;
@@ -180,7 +180,7 @@ public @interface RestColumn {
      * <code>update</code>
      * <p>The update method.</p>
      * @return boolean <p>The update return object is <code>boolean</code> type.</p>
-     * @see  org.springframework.core.annotation.AliasFor
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor(annotation = RestUpdate.class, attribute = "value")
     boolean update() default true;
