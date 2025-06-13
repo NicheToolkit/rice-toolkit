@@ -36,10 +36,10 @@ public abstract class DefaultColumnResolver implements RestColumnResolver {
         List<RestColumnResolver> filterResolvers = RestStream.stream(resolvers).filter(RestColumnResolver::isNotDefault).collect(RestCollectors.toList());
         if (GeneralUtils.isEmpty(filterResolvers)) {
             RestOptional<RestColumnResolver> resolverOptional = RestStream.stream(resolvers).findAny();
-            return resolverOptional.emptyMap(resolver -> resolver.resolve(fieldName)).orElse(fieldName);
+            return resolverOptional.mapOfEmpty(resolver -> resolver.resolve(fieldName)).orElse(fieldName);
         } else {
             RestOptional<RestColumnResolver> resolverOptional = RestStream.stream(filterResolvers).findAny();
-            return resolverOptional.emptyMap(resolver -> resolver.resolve(fieldName)).orElse(fieldName);
+            return resolverOptional.mapOfEmpty(resolver -> resolver.resolve(fieldName)).orElse(fieldName);
         }
     }
 
