@@ -3,6 +3,7 @@ package io.github.nichetoolkit.mybatis.enums;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.nichetoolkit.mybatis.consts.DriverConstants;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.RestValue;
 
 import java.util.Optional;
@@ -117,7 +118,7 @@ public enum DatabaseType implements RestValue<String, String> {
      */
     @JsonCreator
     public static DatabaseType parseKey(String key) {
-        DatabaseType datasourceDriver = RestValue.parseKey(DatabaseType.class, key);
+        DatabaseType datasourceDriver = RestKey.parseKey(DatabaseType.class, key);
         return Optional.ofNullable(datasourceDriver).orElse(DatabaseType.POSTGRESQL);
     }
 

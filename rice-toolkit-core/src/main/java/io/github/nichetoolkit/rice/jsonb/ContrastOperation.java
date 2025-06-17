@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.jsonb;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.RestStamp;
 import io.github.nichetoolkit.rest.RestValue;
 
@@ -132,7 +133,7 @@ public enum ContrastOperation implements RestStamp {
      */
     @JsonCreator
     public static ContrastOperation parseKey(Integer key) {
-        ContrastOperation typeEnum = RestValue.parseKey(ContrastOperation.class, key);
+        ContrastOperation typeEnum = RestKey.parseKey(ContrastOperation.class, key);
         return Optional.ofNullable(typeEnum).orElse(ContrastOperation.EQUAL_OPERATION);
     }
 

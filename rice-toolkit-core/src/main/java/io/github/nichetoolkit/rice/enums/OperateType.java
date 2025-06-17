@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.RestValue;
 
 import java.util.Optional;
@@ -93,7 +94,7 @@ public enum OperateType implements RestValue<Integer,String> {
      */
     @JsonCreator
     public static OperateType parseKey(Integer key) {
-        OperateType typeEnum = RestValue.parseKey(OperateType.class, key);
+        OperateType typeEnum = RestKey.parseKey(OperateType.class, key);
         return Optional.ofNullable(typeEnum).orElse(OperateType.NONE);
     }
 

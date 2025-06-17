@@ -2,6 +2,7 @@ package io.github.nichetoolkit.mybatis.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.RestValue;
 
 import java.util.Optional;
@@ -77,7 +78,7 @@ public enum SortType implements RestValue<String,String> {
      */
     @JsonCreator
     public static SortType parseKey(String key) {
-        SortType typeEnum = RestValue.parseKey(SortType.class, key);
+        SortType typeEnum = RestKey.parseKey(SortType.class, key);
         return Optional.ofNullable(typeEnum).orElse(SortType.DESC);
     }
 

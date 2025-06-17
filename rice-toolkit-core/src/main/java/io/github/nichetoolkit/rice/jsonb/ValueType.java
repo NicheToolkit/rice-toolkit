@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.jsonb;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.RestStamp;
 import io.github.nichetoolkit.rest.RestValue;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
@@ -128,7 +129,7 @@ public enum ValueType implements RestStamp {
      */
     @JsonCreator
     public static ValueType parseKey(@NonNull Integer key) {
-        ValueType typeEnum = RestValue.parseKey(ValueType.class, key);
+        ValueType typeEnum = RestKey.parseKey(ValueType.class, key);
         return Optional.ofNullable(typeEnum).orElse(ValueType.STRING);
     }
 

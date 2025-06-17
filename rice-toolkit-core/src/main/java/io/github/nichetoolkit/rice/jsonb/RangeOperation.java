@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.jsonb;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.RestStamp;
 import io.github.nichetoolkit.rest.RestValue;
 import org.springframework.lang.NonNull;
@@ -134,7 +135,7 @@ public enum RangeOperation implements RestStamp {
      */
     @JsonCreator
     public static RangeOperation parseKey(@NonNull Integer key) {
-        RangeOperation typeEnum = RestValue.parseKey(RangeOperation.class, key);
+        RangeOperation typeEnum = RestKey.parseKey(RangeOperation.class, key);
         return Optional.ofNullable(typeEnum).orElse(RangeOperation.GREATER_EQUAL_LESS_EQUAL_OPERATION);
     }
 

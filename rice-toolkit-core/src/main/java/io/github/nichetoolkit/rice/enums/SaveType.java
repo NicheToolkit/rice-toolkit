@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.RestValue;
 
 import java.util.Optional;
@@ -93,7 +94,7 @@ public enum SaveType implements RestValue<Integer,String> {
      */
     @JsonCreator
     public static SaveType parseKey(Integer key) {
-        SaveType typeEnum = RestValue.parseKey(SaveType.class, key);
+        SaveType typeEnum = RestKey.parseKey(SaveType.class, key);
         return Optional.ofNullable(typeEnum).orElse(SaveType.NONE);
     }
 

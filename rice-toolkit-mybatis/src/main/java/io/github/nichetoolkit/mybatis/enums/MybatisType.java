@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.JavaType;
 import io.github.nichetoolkit.mybatis.fickle.RestFickleType;
 import io.github.nichetoolkit.mybatis.holder.RestSqlSessionHolder;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.RestValue;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import org.apache.ibatis.type.JdbcType;
@@ -196,7 +197,7 @@ public enum MybatisType implements RestFickleType {
 
     @JsonCreator
     public static MybatisType parseKey(Integer key) {
-        MybatisType typeEnum = RestValue.parseKey(MybatisType.class, key);
+        MybatisType typeEnum = RestKey.parseKey(MybatisType.class, key);
         return Optional.ofNullable(typeEnum).orElse(MybatisType.OBJECT);
     }
 

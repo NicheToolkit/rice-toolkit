@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.purview;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.RestReckon;
 import io.github.nichetoolkit.rest.RestValue;
 
@@ -85,7 +86,7 @@ public enum PurviewType implements RestReckon<Long> {
      */
     @JsonCreator
     public static PurviewType parseKey(String key) {
-        PurviewType typeEnum = RestValue.parseKey(PurviewType.class, key);
+        PurviewType typeEnum = RestKey.parseKey(PurviewType.class, key);
         return Optional.ofNullable(typeEnum).orElse(PurviewType.PURVIEW_ALL);
     }
 
