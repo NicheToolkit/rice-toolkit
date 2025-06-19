@@ -11,6 +11,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
@@ -26,6 +27,7 @@ import java.util.List;
  * @see lombok.Getter
  * @see lombok.Setter
  * @see java.lang.SuppressWarnings
+ * @see lombok.experimental.SuperBuilder
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
@@ -33,6 +35,7 @@ import java.util.List;
 @Getter
 @Setter
 @SuppressWarnings("WeakerAccess")
+@SuperBuilder(builderMethodName = "ofPageBuilder")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PageFilter implements Serializable {
@@ -113,17 +116,6 @@ public class PageFilter implements Serializable {
     public PageFilter(Integer pageNum, Integer pageSize) {
         this.pageNum = pageNum;
         this.pageSize = pageSize;
-    }
-
-    /**
-     * <code>PageFilter</code>
-     * <p>Instantiates a new page filter.</p>
-     * @param builder {@link io.github.nichetoolkit.rice.filter.PageFilter.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.filter.PageFilter.Builder
-     */
-    public PageFilter(PageFilter.Builder builder) {
-        this.pageNum = builder.pageNum;
-        this.pageSize = builder.pageSize;
     }
 
     /**
@@ -280,66 +272,4 @@ public class PageFilter implements Serializable {
     public String toKey() {
         return this.pageNum + PAGE_REGEX + this.pageSize;
     }
-
-    /**
-     * <code>Builder</code>
-     * <p>The builder class.</p>
-     * @author Cyan (snow22314@outlook.com)
-     * @since Jdk1.8
-     */
-    public static class Builder {
-        /**
-         * <code>pageNum</code>
-         * {@link java.lang.Integer} <p>The <code>pageNum</code> field.</p>
-         * @see java.lang.Integer
-         */
-        protected Integer pageNum;
-        /**
-         * <code>pageSize</code>
-         * {@link java.lang.Integer} <p>The <code>pageSize</code> field.</p>
-         * @see java.lang.Integer
-         */
-        protected Integer pageSize;
-
-        /**
-         * <code>Builder</code>
-         * <p>Instantiates a new builder.</p>
-         */
-        public Builder() {
-        }
-
-        /**
-         * <code>pageNum</code>
-         * <p>The page num method.</p>
-         * @param pageNum {@link java.lang.Integer} <p>The page num parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.PageFilter.Builder} <p>The page num return object is <code>Builder</code> type.</p>
-         * @see java.lang.Integer
-         */
-        public PageFilter.Builder pageNum(Integer pageNum) {
-            this.pageNum = pageNum;
-            return this;
-        }
-
-        /**
-         * <code>pageSize</code>
-         * <p>The page size method.</p>
-         * @param pageSize {@link java.lang.Integer} <p>The page size parameter is <code>Integer</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.PageFilter.Builder} <p>The page size return object is <code>Builder</code> type.</p>
-         * @see java.lang.Integer
-         */
-        public PageFilter.Builder pageSize(Integer pageSize) {
-            this.pageSize = pageSize;
-            return this;
-        }
-
-        /**
-         * <code>build</code>
-         * <p>The build method.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.PageFilter} <p>The build return object is <code>PageFilter</code> type.</p>
-         */
-        public PageFilter build() {
-            return new PageFilter(this);
-        }
-    }
-
 }

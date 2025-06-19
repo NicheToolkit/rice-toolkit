@@ -94,7 +94,7 @@ public class LoginService {
         OptionalUtils.ofFalse(GeneralUtils.isNotEmpty(modelList), log, LoginInfoException::new);
         Optional<UserModel> firstOptional = modelList.stream().findFirst();
         UserModel localUser = firstOptional.orElseThrow(LoginInfoException::new);
-        String localPassword = localUser.getPassword();
+        String localPassword = localUser.password();
         if (GeneralUtils.isNotEmpty(localPassword)) {
             String encryptPassword = ShaWorker.encrypts(password);
             OptionalUtils.ofFalse(encryptPassword.equals(localPassword), log, LoginPasswordException::new);

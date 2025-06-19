@@ -7,22 +7,25 @@ import io.github.nichetoolkit.rice.RestUserInfo;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 /**
  * <code>UserInfoPack</code>
  * <p>The user info pack class.</p>
- * @see  io.github.nichetoolkit.rice.InfoModel
- * @see  io.github.nichetoolkit.rice.RestUserInfo
- * @see  lombok.Setter
- * @see  lombok.Getter
- * @see  lombok.EqualsAndHashCode
- * @see  com.fasterxml.jackson.annotation.JsonInclude
- * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rice.InfoModel
+ * @see io.github.nichetoolkit.rice.RestUserInfo
+ * @see lombok.Setter
+ * @see lombok.Getter
+ * @see lombok.experimental.SuperBuilder
+ * @see lombok.EqualsAndHashCode
+ * @see com.fasterxml.jackson.annotation.JsonInclude
+ * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @Setter
 @Getter
+@SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @JsonInclude(value= JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -30,7 +33,7 @@ public class UserInfoPack extends InfoModel<String> implements RestUserInfo<Stri
     /**
      * <code>username</code>
      * {@link java.lang.String} <p>The <code>username</code> field.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     protected String username;
 }

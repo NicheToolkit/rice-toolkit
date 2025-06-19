@@ -2,6 +2,9 @@ package io.github.nichetoolkit.rice.simple;
 
 import io.github.nichetoolkit.rice.RestInfoEntity;
 import io.mybatis.provider.Entity;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Date;
 
@@ -9,18 +12,24 @@ import java.util.Date;
 /**
  * <code>SimpleEntity</code>
  * <p>The simple entity class.</p>
- * @see  io.github.nichetoolkit.rice.RestInfoEntity
- * @see  io.mybatis.provider.Entity.Table
  * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rice.RestInfoEntity
+ * @see lombok.Setter
+ * @see lombok.Getter
+ * @see lombok.experimental.SuperBuilder
+ * @see io.mybatis.provider.Entity.Table
  * @since Jdk1.8
  */
+@Setter
+@Getter
+@SuperBuilder
 @Entity.Table(value = "ntr_simple")
 public class SimpleEntity extends RestInfoEntity<SimpleEntity, SimpleModel> {
 
     /**
      * <code>time</code>
      * {@link java.util.Date} <p>The <code>time</code> field.</p>
-     * @see  java.util.Date
+     * @see java.util.Date
      */
     private Date time;
 
@@ -35,40 +44,18 @@ public class SimpleEntity extends RestInfoEntity<SimpleEntity, SimpleModel> {
      * <code>SimpleEntity</code>
      * <p>Instantiates a new simple entity.</p>
      * @param id {@link java.lang.String} <p>The id parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     public SimpleEntity(String id) {
         super(id);
     }
 
-    /**
-     * <code>getTime</code>
-     * <p>The get time getter method.</p>
-     * @return  {@link java.util.Date} <p>The get time return object is <code>Date</code> type.</p>
-     * @see  java.util.Date
-     */
-    public Date getTime() {
-        return time;
-    }
-
-    /**
-     * <code>setTime</code>
-     * <p>The set time setter method.</p>
-     * @param time {@link java.util.Date} <p>The time parameter is <code>Date</code> type.</p>
-     * @see  java.util.Date
-     */
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
     @Override
     public SimpleModel toModel() {
-        SimpleModel.Builder builder = new SimpleModel.Builder();
-        builder.id(this.id)
+        return SimpleModel.builder().id(this.id)
                 .name(this.name)
                 .description(this.description)
-                .time(this.time);
-        return new SimpleModel(builder);
+                .time(this.time).build();
     }
 
 }

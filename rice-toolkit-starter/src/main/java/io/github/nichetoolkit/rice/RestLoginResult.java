@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -11,24 +12,26 @@ import java.util.Objects;
 /**
  * <code>RestLoginResult</code>
  * <p>The rest login result class.</p>
- * @param <R>  {@link io.github.nichetoolkit.rice.RestLoginResult} <p>The generic parameter is <code>RestLoginResult</code> type.</p>
- * @see  java.io.Serializable
- * @see  lombok.Setter
- * @see  lombok.Getter
- * @see  com.fasterxml.jackson.annotation.JsonInclude
- * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
+ * @param <R> {@link io.github.nichetoolkit.rice.RestLoginResult} <p>The generic parameter is <code>RestLoginResult</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
+ * @see java.io.Serializable
+ * @see lombok.Setter
+ * @see lombok.Getter
+ * @see lombok.experimental.SuperBuilder
+ * @see com.fasterxml.jackson.annotation.JsonInclude
+ * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @Setter
 @Getter
+@SuperBuilder
 @JsonInclude(value= JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RestLoginResult<R extends RestLoginResult<R>> implements Serializable {
     /**
      * <code>token</code>
      * {@link java.lang.String} <p>The <code>token</code> field.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     private String token;
 
@@ -43,7 +46,7 @@ public class RestLoginResult<R extends RestLoginResult<R>> implements Serializab
      * <code>RestLoginResult</code>
      * <p>Instantiates a new rest login result.</p>
      * @param token {@link java.lang.String} <p>The token parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     public RestLoginResult(String token) {
         this.token = token;

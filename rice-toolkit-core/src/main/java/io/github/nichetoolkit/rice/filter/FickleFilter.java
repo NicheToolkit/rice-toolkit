@@ -7,23 +7,24 @@ import io.github.nichetoolkit.mybatis.fickle.RestFickle;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import io.github.nichetoolkit.rice.RestOperate;
-import io.github.nichetoolkit.rice.enums.OperateType;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
 import org.springframework.lang.NonNull;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * <code>FickleFilter</code>
  * <p>The fickle filter class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.filter.OperateFilter
+ * @see lombok.experimental.SuperBuilder
  * @see java.lang.SuppressWarnings
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
+@SuperBuilder(builderMethodName = "ofFickleBuilder")
 @SuppressWarnings({"WeakerAccess", "MixedMutabilityReturnType"})
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -41,16 +42,6 @@ public class FickleFilter extends OperateFilter {
      * <p>Instantiates a new fickle filter.</p>
      */
     public FickleFilter() {
-    }
-
-    /**
-     * <code>FickleFilter</code>
-     * <p>Instantiates a new fickle filter.</p>
-     * @param builder {@link io.github.nichetoolkit.rice.filter.FickleFilter.Builder} <p>The builder parameter is <code>Builder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.filter.FickleFilter.Builder
-     */
-    public FickleFilter(FickleFilter.Builder builder) {
-        super(builder);
     }
 
     /**
@@ -195,133 +186,7 @@ public class FickleFilter extends OperateFilter {
         return this.fickles.stream().map(RestFickle::of).toArray(RestFickle<?>[]::new);
     }
 
-    /**
-     * <code>Builder</code>
-     * <p>The builder class.</p>
-     * @author Cyan (snow22314@outlook.com)
-     * @see io.github.nichetoolkit.rice.filter.OperateFilter.Builder
-     * @since Jdk1.8
-     */
-    public static class Builder extends OperateFilter.Builder {
-        /**
-         * <code>fickles</code>
-         * {@link java.util.Set} <p>The <code>fickles</code> field.</p>
-         * @see java.util.Set
-         */
-        protected Set<String> fickles;
 
-        /**
-         * <code>Builder</code>
-         * <p>Instantiates a new builder.</p>
-         */
-        public Builder() {
-        }
-
-        /**
-         * <code>fickles</code>
-         * <p>The fickles method.</p>
-         * @param fickles {@link java.lang.String} <p>The fickles parameter is <code>String</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.FickleFilter.Builder} <p>The fickles return object is <code>Builder</code> type.</p>
-         * @see java.lang.String
-         * @see org.springframework.lang.NonNull
-         */
-        public FickleFilter.Builder fickles(@NonNull String... fickles) {
-            this.fickles = new HashSet<>(Arrays.asList(fickles));
-            return this;
-        }
-
-        /**
-         * <code>fickles</code>
-         * <p>The fickles method.</p>
-         * @param fickles {@link java.util.Collection} <p>The fickles parameter is <code>Collection</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.FickleFilter.Builder} <p>The fickles return object is <code>Builder</code> type.</p>
-         * @see java.util.Collection
-         * @see org.springframework.lang.NonNull
-         */
-        public FickleFilter.Builder fickles(@NonNull Collection<String> fickles) {
-            this.fickles = new HashSet<>(fickles);
-            return this;
-        }
-
-        /**
-         * <code>fickles</code>
-         * <p>The fickles method.</p>
-         * @param fickles {@link java.util.List} <p>The fickles parameter is <code>List</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.FickleFilter.Builder} <p>The fickles return object is <code>Builder</code> type.</p>
-         * @see java.util.List
-         * @see org.springframework.lang.NonNull
-         */
-        public FickleFilter.Builder fickles(@NonNull  List<RestKey<String>> fickles) {
-            this.fickles = new HashSet<>(RestKey.keys(fickles));
-            return this;
-        }
-
-        /**
-         * <code>fickles</code>
-         * <p>The fickles method.</p>
-         * @param fickles {@link java.util.Map} <p>The fickles parameter is <code>Map</code> type.</p>
-         * @return {@link io.github.nichetoolkit.rice.filter.FickleFilter.Builder} <p>The fickles return object is <code>Builder</code> type.</p>
-         * @see java.util.Map
-         * @see org.springframework.lang.NonNull
-         */
-        public FickleFilter.Builder fickles(@NonNull  Map<String,RestKey<String>> fickles) {
-            this.fickles = new HashSet<>(RestKey.keys(fickles.values()));
-            return this;
-        }
-
-        @Override
-        public FickleFilter.Builder isRemove(boolean isRemove) {
-            this.isRemove = isRemove;
-            return this;
-        }
-
-        @Override
-        public FickleFilter.Builder operate(OperateType operate) {
-            this.operate = operate;
-            return this;
-        }
-
-        @Override
-        public FickleFilter.Builder operate(Integer operate) {
-            this.operate = OperateType.parseKey(operate);
-            return this;
-        }
-
-        @Override
-        public FickleFilter.Builder operates(@NonNull Collection<OperateType> operates) {
-            this.operates = new HashSet<>(operates);
-            return this;
-        }
-
-        @Override
-        public FickleFilter.Builder operates(@NonNull OperateType... operates) {
-            this.operates = new HashSet<>(Arrays.asList(operates));
-            return this;
-        }
-
-        @Override
-        public FickleFilter.Builder operates(@NonNull Integer... operates) {
-            this.operates = new HashSet<>(RestOperate.build(operates));
-            return this;
-        }
-
-        @Override
-        public FickleFilter.Builder pageNum(Integer pageNum) {
-            this.pageNum = pageNum;
-            return this;
-        }
-
-        @Override
-        public FickleFilter.Builder pageSize(Integer pageSize) {
-            this.pageSize = pageSize;
-            return this;
-        }
-
-        @Override
-        public FickleFilter build() {
-            return new FickleFilter(this);
-        }
-    }
 
 
 }

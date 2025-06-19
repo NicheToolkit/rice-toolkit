@@ -4,6 +4,7 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.identity.IdentityUtils;
 import io.github.nichetoolkit.rice.DefaultLogicMark;
 import io.github.nichetoolkit.rice.configure.RiceServiceProperties;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Date;
 
@@ -14,6 +15,7 @@ import java.util.Date;
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
+@SuperBuilder
 public class DefaultAutoLogicMark extends DefaultLogicMark {
 
     /**

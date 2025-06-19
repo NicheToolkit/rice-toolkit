@@ -26,13 +26,13 @@ import java.util.Set;
 /**
  * <code>DefaultUsernoteService</code>
  * <p>The default usernote service class.</p>
- * @param <T>  {@link io.github.nichetoolkit.rice.RestUsernoteModel} <p>The generic parameter is <code>RestUsernoteModel</code> type.</p>
- * @see  io.github.nichetoolkit.rice.RestUsernoteModel
- * @see  io.github.nichetoolkit.rice.advice.UserlogAdvice
- * @see  io.github.nichetoolkit.rest.RestUsernoteAdvice
- * @see  lombok.extern.slf4j.Slf4j
- * @see  java.lang.SuppressWarnings
+ * @param <T> {@link io.github.nichetoolkit.rice.RestUsernoteModel} <p>The generic parameter is <code>RestUsernoteModel</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rice.RestUsernoteModel
+ * @see io.github.nichetoolkit.rice.advice.UserlogAdvice
+ * @see io.github.nichetoolkit.rest.RestUsernoteAdvice
+ * @see lombok.extern.slf4j.Slf4j
+ * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
 @Slf4j
@@ -41,7 +41,7 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
     /**
      * <code>usernote</code>
      * {@link io.github.nichetoolkit.rice.RestUsernoteModel} <p>The <code>usernote</code> field.</p>
-     * @see  io.github.nichetoolkit.rice.RestUsernoteModel
+     * @see io.github.nichetoolkit.rice.RestUsernoteModel
      */
     private RestUsernoteModel<?, ?> usernote;
 
@@ -56,9 +56,9 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
     /**
      * <code>childClass</code>
      * <p>The child class method.</p>
-     * @return  {@link java.lang.Class} <p>The child class return object is <code>Class</code> type.</p>
-     * @see  java.lang.Class
-     * @see  java.lang.SuppressWarnings
+     * @return {@link java.lang.Class} <p>The child class return object is <code>Class</code> type.</p>
+     * @see java.lang.Class
+     * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings(value = "unchecked")
     private Class<T> childClass() {
@@ -77,9 +77,10 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
     @Override
     public void doUsernoteHandle(@NonNull RestRequestPack request, @NonNull RestResponsePack response, @NonNull RestUsernotePack usernote) {
         try {
-            this.usernote = RestUsernoteModel.ofUsernote()
+
+            this.usernote = RestUsernoteModel.builder().build()
                     .usernote(usernote).request(request)
-                    .response(response).build();
+                    .response(response);
             doTargetIdsHandle(request, response);
             doUserInfoHandle(response);
             if (GeneralUtils.isNotEmpty(this.usernote)) {
@@ -102,11 +103,11 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
      * <code>resolveUserInfo</code>
      * <p>The resolve user info method.</p>
      * @param httpRequest {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>The http request parameter is <code>RestHttpRequest</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestHttpRequest
-     * @see  io.github.nichetoolkit.rice.RestUserInfo
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link io.github.nichetoolkit.rice.RestUserInfo} <p>The resolve user info return object is <code>RestUserInfo</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.RestUserInfo} <p>The resolve user info return object is <code>RestUserInfo</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rest.RestHttpRequest
+     * @see io.github.nichetoolkit.rice.RestUserInfo
+     * @see io.github.nichetoolkit.rest.RestException
      */
     public abstract RestUserInfo<?> resolveUserInfo(RestHttpRequest httpRequest) throws RestException;
 
@@ -115,7 +116,7 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
      * <p>The do usernote handle method.</p>
      * @param usernote T <p>The usernote parameter is <code>T</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestException
+     * @see io.github.nichetoolkit.rest.RestException
      */
     public abstract void doUsernoteHandle(T usernote) throws RestException;
 
@@ -123,7 +124,7 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
      * <code>doUserInfoHandle</code>
      * <p>The do user info handle method.</p>
      * @param response {@link io.github.nichetoolkit.rest.userlog.RestResponsePack} <p>The response parameter is <code>RestResponsePack</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.userlog.RestResponsePack
+     * @see io.github.nichetoolkit.rest.userlog.RestResponsePack
      */
     protected void doUserInfoHandle(RestResponsePack response) {
         if (GeneralUtils.isEmpty(UserInfoHolder.getUser())) {
@@ -159,10 +160,10 @@ public abstract class DefaultUsernoteService<T extends RestUsernoteModel<?, ?>> 
     /**
      * <code>doTargetIdsHandle</code>
      * <p>The do target ids handle method.</p>
-     * @param request {@link io.github.nichetoolkit.rest.userlog.RestRequestPack} <p>The request parameter is <code>RestRequestPack</code> type.</p>
+     * @param request  {@link io.github.nichetoolkit.rest.userlog.RestRequestPack} <p>The request parameter is <code>RestRequestPack</code> type.</p>
      * @param response {@link io.github.nichetoolkit.rest.userlog.RestResponsePack} <p>The response parameter is <code>RestResponsePack</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.userlog.RestRequestPack
-     * @see  io.github.nichetoolkit.rest.userlog.RestResponsePack
+     * @see io.github.nichetoolkit.rest.userlog.RestRequestPack
+     * @see io.github.nichetoolkit.rest.userlog.RestResponsePack
      */
     protected void doTargetIdsHandle(RestRequestPack request, RestResponsePack response) {
         LoggingType loggingType = this.usernote.getLoggingType();
