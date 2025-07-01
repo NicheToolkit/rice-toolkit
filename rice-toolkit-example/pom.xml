@@ -15,6 +15,46 @@
     <packaging>jar</packaging>
     <description>Rice toolkit test example project for Spring Boot</description>
 
+    <distributionManagement>
+        <repository>
+            <id>sonatype-nexus-release</id>
+            <url>https://central.sonatype.com</url>
+        </repository>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshot</id>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>sonatype-nexus-release</id>
+            <name>sonatype maven releases</name>
+            <url>https://central.sonatype.com/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>sonatype-nexus-snapshot</id>
+            <name>sonatype maven snapshots</name>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -80,52 +120,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <repositories>
-
-        <repository>
-            <id>sonatype-nexus-central</id>
-            <name>sonatype maven centrals</name>
-            <url>https://oss.sonatype.org/content/repositories/releases/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>daily</updatePolicy>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>sonatype-nexus-release</id>
-            <name>sonatype maven releases</name>
-            <url>https://s01.oss.sonatype.org/content/repositories/releases/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>daily</updatePolicy>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>sonatype-nexus-snapshot</id>
-            <name>sonatype maven snapshots</name>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-                <updatePolicy>daily</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-
-    </repositories>
 
     <build>
         <finalName>${project.artifactId}</finalName>
@@ -201,23 +195,16 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
                 <extensions>true</extensions>
-                <executions>
-                    <execution>
-                        <id>default-deploy</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
-                    <serverId>sonatype-nexus-central</serverId>
-                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                    <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+                    <centralBaseUrl>https://central.sonatype.com/</centralBaseUrl>
+                    <centralSnapshotsUrl>https://central.sonatype.com/repository/maven-snapshots/</centralSnapshotsUrl>
+                    <publishingServerId>sonatype-nexus-release</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                    <skipPublishing>true</skipPublishing>
+                    <waitUntil>published</waitUntil>
                 </configuration>
             </plugin>
             <plugin>
