@@ -38,7 +38,7 @@ import java.util.List;
 @AutoConfiguration
 @SuppressWarnings("SameNameButDifferent")
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rest"})
-@ConditionalOnProperty(value = "nichetoolkit.rice.login.enabled", havingValue = "true",matchIfMissing = true)
+@ConditionalOnProperty(value = "nichetoolkit.rice.login.enabled", havingValue = "true")
 public class RiceLoginAutoConfigure implements WebMvcConfigurer {
 
     /**
