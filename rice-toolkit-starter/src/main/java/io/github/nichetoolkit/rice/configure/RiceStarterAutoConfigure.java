@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.configure;
 
 import io.github.nichetoolkit.mybatis.enums.StyleType;
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rest.RestI18nBasename;
+import io.github.nichetoolkit.rest.RestI18n;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.DefaultColumnResolver;
 import io.github.nichetoolkit.rice.RestLogicMark;
@@ -89,7 +89,7 @@ public class RiceStarterAutoConfigure implements InitializingBean {
     }
 
     @Bean
-    public RestI18nBasename riceI18nBasename() {
+    public RestI18n riceI18nBasename() {
         return () -> Collections.singleton(RICE_I18N);
     }
 
