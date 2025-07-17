@@ -89,7 +89,7 @@ public class RiceStarterAutoConfigure implements InitializingBean {
     }
 
     @Bean
-    public RestI18nBasename restI18nBasename() {
+    public RestI18nBasename riceI18nBasename() {
         return () -> Collections.singleton(RICE_I18N);
     }
 
