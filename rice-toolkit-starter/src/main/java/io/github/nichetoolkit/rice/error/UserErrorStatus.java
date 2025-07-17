@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.error;
 
 import io.github.nichetoolkit.rest.RestStatus;
+import io.github.nichetoolkit.rest.util.I18nUtils;
 import lombok.Getter;
 
 /**
@@ -17,17 +18,17 @@ public enum UserErrorStatus implements RestStatus {
      * <code>USER_INVALID_ERROR</code>
      * {@link io.github.nichetoolkit.rice.error.UserErrorStatus} <p>The <code>USER_INVALID_ERROR</code> field.</p>
      */
-    USER_INVALID_ERROR(11510,"the user is invalid"),
+    USER_INVALID_ERROR(11510,"The user info is invalid"),
     /**
      * <code>USER_ACCESS_ERROR</code>
      * {@link io.github.nichetoolkit.rice.error.UserErrorStatus} <p>The <code>USER_ACCESS_ERROR</code> field.</p>
      */
-    USER_ACCESS_ERROR(11511,"the user access error"),
+    USER_ACCESS_ERROR(11511,"The user access error"),
     /**
      * <code>USER_NO_PERMISSION</code>
      * {@link io.github.nichetoolkit.rice.error.UserErrorStatus} <p>The <code>USER_NO_PERMISSION</code> field.</p>
      */
-    USER_NO_PERMISSION(11512,"the user is no permission"),
+    USER_NO_PERMISSION(11512,"The user is no permission"),
     ;
 
     /**
@@ -56,24 +57,9 @@ public enum UserErrorStatus implements RestStatus {
         this.message = message;
     }
 
-    /**
-     * <code>getName</code>
-     * <p>The get name getter method.</p>
-     * @return  {@link java.lang.String} <p>The get name return object is <code>String</code> type.</p>
-     * @see  java.lang.String
-     */
-    public String getName() {
-        return this.name().toLowerCase().replace("_", " ");
-    }
-
-    @Override
-    public Integer getStatus() {
-        return this.status;
-    }
-
     @Override
     public String getMessage() {
-        return this.message;
+        return I18nUtils.message(name(), this.message);
     }
 
 }

@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.error;
 
 import io.github.nichetoolkit.rest.RestStatus;
+import io.github.nichetoolkit.rest.util.I18nUtils;
 import lombok.Getter;
 
 /**
@@ -17,22 +18,22 @@ public enum TableErrorStatus implements RestStatus {
      * <code>TABLE_UNKNOWN_ERROR</code>
      * {@link io.github.nichetoolkit.rice.error.TableErrorStatus} <p>The <code>TABLE_UNKNOWN_ERROR</code> field.</p>
      */
-    TABLE_UNKNOWN_ERROR(11310,"the table has unknown error!"),
+    TABLE_UNKNOWN_ERROR(11310,"It has encountered a table unknown error"),
     /**
      * <code>TABLE_NAME_IS_NULL</code>
      * {@link io.github.nichetoolkit.rice.error.TableErrorStatus} <p>The <code>TABLE_NAME_IS_NULL</code> field.</p>
      */
-    TABLE_NAME_IS_NULL(11311, "the table name can not be null!"),
+    TABLE_NAME_IS_NULL(11311, "The table name cannot be empty"),
     /**
      * <code>TABLE_NON_EXIST</code>
      * {@link io.github.nichetoolkit.rice.error.TableErrorStatus} <p>The <code>TABLE_NON_EXIST</code> field.</p>
      */
-    TABLE_NON_EXIST(11312, "the table structure is not exist!"),
+    TABLE_NON_EXIST(11312, "The table structure is not exist"),
     /**
      * <code>TABLE_ALREADY_EXIST</code>
      * {@link io.github.nichetoolkit.rice.error.TableErrorStatus} <p>The <code>TABLE_ALREADY_EXIST</code> field.</p>
      */
-    TABLE_ALREADY_EXIST(11313, "the table structure already exists!"),
+    TABLE_ALREADY_EXIST(11313, "The table structure is already exist"),
     ;
 
     /**
@@ -61,24 +62,8 @@ public enum TableErrorStatus implements RestStatus {
         this.message = message;
     }
 
-    /**
-     * <code>getName</code>
-     * <p>The get name getter method.</p>
-     * @return  {@link java.lang.String} <p>The get name return object is <code>String</code> type.</p>
-     * @see  java.lang.String
-     */
-    public String getName() {
-        return this.name().toLowerCase().replace("_", " ");
-    }
-
-    @Override
-    public Integer getStatus() {
-        return this.status;
-    }
-
     @Override
     public String getMessage() {
-        return this.message;
+        return I18nUtils.message(name(), this.message);
     }
-
 }

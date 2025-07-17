@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.rice.error;
 
 import io.github.nichetoolkit.rest.RestStatus;
+import io.github.nichetoolkit.rest.util.I18nUtils;
 import lombok.Getter;
 
 /**
@@ -17,12 +18,12 @@ public enum TokenErrorStatus implements RestStatus {
      * <code>TOKEN_INVALID_ERROR</code>
      * {@link io.github.nichetoolkit.rice.error.TokenErrorStatus} <p>The <code>TOKEN_INVALID_ERROR</code> field.</p>
      */
-    TOKEN_INVALID_ERROR(11500,"The access token verification is invalid. please login again"),
+    TOKEN_INVALID_ERROR(11500,"The access token verification is invalid"),
     /**
      * <code>TOKEN_ACCESS_ERROR</code>
      * {@link io.github.nichetoolkit.rice.error.TokenErrorStatus} <p>The <code>TOKEN_ACCESS_ERROR</code> field.</p>
      */
-    TOKEN_ACCESS_ERROR(11501,"The access token verification is invalid"),
+    TOKEN_ACCESS_ERROR(11501,"The access token verification is error"),
     /**
      * <code>TOKEN_NO_PERMISSION</code>
      * {@link io.github.nichetoolkit.rice.error.TokenErrorStatus} <p>The <code>TOKEN_NO_PERMISSION</code> field.</p>
@@ -61,24 +62,9 @@ public enum TokenErrorStatus implements RestStatus {
         this.message = message;
     }
 
-    /**
-     * <code>getName</code>
-     * <p>The get name getter method.</p>
-     * @return  {@link java.lang.String} <p>The get name return object is <code>String</code> type.</p>
-     * @see  java.lang.String
-     */
-    public String getName() {
-        return this.name().toLowerCase().replace("_", " ");
-    }
-
-    @Override
-    public Integer getStatus() {
-        return this.status;
-    }
-
     @Override
     public String getMessage() {
-        return this.message;
+        return I18nUtils.message(name(), this.message);
     }
 
 }

@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.configure;
 
 import io.github.nichetoolkit.mybatis.enums.StyleType;
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.RestI18nBasename;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.DefaultColumnResolver;
 import io.github.nichetoolkit.rice.RestLogicMark;
@@ -23,6 +24,7 @@ import org.springframework.web.method.annotation.MapMethodProcessor;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,6 +44,7 @@ import java.util.List;
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rice"})
 @ImportAutoConfiguration(value = {RiceLoginAutoConfigure.class})
 public class RiceStarterAutoConfigure implements InitializingBean {
+    private static final String RICE_I18N = "rice-i18n";
     /**
      * <code>loginProperties</code>
      * {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The <code>loginProperties</code> field.</p>
@@ -84,6 +87,12 @@ public class RiceStarterAutoConfigure implements InitializingBean {
         this.mapArgumentResolver = mapArgumentResolver;
         log.debug("The auto configuration for [rice-starter] initiated");
     }
+
+    @Bean
+    public RestI18nBasename restI18nBasename() {
+        return () -> Collections.singleton(RICE_I18N);
+    }
+
 
     @Override
     public void afterPropertiesSet() {

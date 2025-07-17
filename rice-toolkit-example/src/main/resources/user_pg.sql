@@ -1,4 +1,5 @@
 
+
 DROP TABLE IF EXISTS "public"."ntr_user";
 CREATE TABLE "public"."ntr_user"
 (
