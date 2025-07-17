@@ -44,7 +44,12 @@ import java.util.List;
 @ComponentScan(basePackages = {"io.github.nichetoolkit.rice"})
 @ImportAutoConfiguration(value = {RiceLoginAutoConfigure.class})
 public class RiceStarterAutoConfigure implements InitializingBean {
-    private static final String RICE_I18N = "rice-i18n";
+    /**
+     * <code>RICE_I18N</code>
+     * {@link java.lang.String} <p>The constant <code>RICE_I18N</code> field.</p>
+     * @see java.lang.String
+     */
+    private static final String RICE_I18N = "rice-i18n/messages";
     /**
      * <code>loginProperties</code>
      * {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The <code>loginProperties</code> field.</p>
@@ -88,6 +93,13 @@ public class RiceStarterAutoConfigure implements InitializingBean {
         log.debug("The auto configuration for [rice-starter] initiated");
     }
 
+    /**
+     * <code>riceI18nBasename</code>
+     * <p>The rice i 18 n basename method.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestI18n} <p>The rice i 18 n basename return object is <code>RestI18n</code> type.</p>
+     * @see io.github.nichetoolkit.rest.RestI18n
+     * @see org.springframework.context.annotation.Bean
+     */
     @Bean
     public RestI18n riceI18nBasename() {
         return () -> Collections.singleton(RICE_I18N);
