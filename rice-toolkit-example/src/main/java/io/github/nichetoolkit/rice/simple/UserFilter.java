@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.simple;
 
 
 import io.github.nichetoolkit.rice.RestFilter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -12,5 +13,6 @@ import lombok.experimental.SuperBuilder;
  * @since Jdk1.8
  */
 @SuperBuilder
+@NoArgsConstructor
 public class UserFilter extends RestFilter {
 }

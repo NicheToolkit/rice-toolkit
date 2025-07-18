@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.simple;
 
 import io.github.nichetoolkit.rice.RestLoginResult;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 

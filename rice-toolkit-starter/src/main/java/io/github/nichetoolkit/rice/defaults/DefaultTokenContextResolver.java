@@ -4,7 +4,6 @@ import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.stereotype.RestUser;
 import org.springframework.core.MethodParameter;
 import org.springframework.lang.NonNull;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.RequestAttributes;
@@ -14,18 +13,16 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 /**
  * <code>DefaultTokenContextResolver</code>
  * <p>The default token context resolver class.</p>
- * @see  org.springframework.web.method.support.HandlerMethodArgumentResolver
- * @see  org.springframework.stereotype.Component
  * @author Cyan (snow22314@outlook.com)
+ * @see org.springframework.web.method.support.HandlerMethodArgumentResolver
  * @since Jdk1.8
  */
-@Component
 public class DefaultTokenContextResolver implements HandlerMethodArgumentResolver {
 
     /**
      * <code>TOKEN_CONTEXT_KEY</code>
      * {@link java.lang.String} <p>The constant <code>TOKEN_CONTEXT_KEY</code> field.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     public static final String TOKEN_CONTEXT_KEY = "TOKEN_CONTEXT_KEY";
 

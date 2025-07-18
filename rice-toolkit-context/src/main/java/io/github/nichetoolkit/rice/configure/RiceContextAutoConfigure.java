@@ -1,21 +1,24 @@
 package io.github.nichetoolkit.rice.configure;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 
 /**
  * <code>RiceContextAutoConfigure</code>
  * <p>The rice context auto configure class.</p>
- * @see  lombok.extern.slf4j.Slf4j
- * @see  org.springframework.context.annotation.Configuration
- * @see  org.springframework.context.annotation.ComponentScan
  * @author Cyan (snow22314@outlook.com)
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.boot.autoconfigure.AutoConfiguration
+ * @see org.springframework.boot.autoconfigure.AutoConfigureAfter
+ * @see org.springframework.boot.autoconfigure.ImportAutoConfiguration
  * @since Jdk1.8
  */
 @Slf4j
-@Configuration
-@ComponentScan(basePackages = {"io.github.nichetoolkit.rice"})
+@AutoConfiguration
+@AutoConfigureAfter(RiceCoreAutoConfigure.class)
+@ImportAutoConfiguration(RiceSerializeAutoConfigure.class)
 public class RiceContextAutoConfigure {
     /**
      * <code>RiceContextAutoConfigure</code>

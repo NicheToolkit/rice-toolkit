@@ -3,6 +3,7 @@ package io.github.nichetoolkit.rice.simple;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
@@ -25,6 +26,7 @@ import java.io.Serializable;
 @SuperBuilder
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
+@NoArgsConstructor
 public class LoginRequest implements Serializable {
     /**
      * <code>token</code>

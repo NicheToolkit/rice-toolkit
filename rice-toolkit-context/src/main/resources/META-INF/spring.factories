@@ -1,1 +1,3 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.github.nichetoolkit.rice.configure.RiceContextAutoConfigure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  io.github.nichetoolkit.rice.configure.RiceContextAutoConfigure,\
+  io.github.nichetoolkit.rice.configure.RiceSerializeAutoConfigure

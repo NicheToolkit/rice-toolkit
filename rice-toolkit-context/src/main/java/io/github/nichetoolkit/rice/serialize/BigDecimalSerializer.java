@@ -47,7 +47,6 @@ public class BigDecimalSerializer extends JsonSerializer<BigDecimal> implements 
      * @see  io.github.nichetoolkit.rice.configure.RiceSerializeProperties
      * @see  org.springframework.beans.factory.annotation.Autowired
      */
-    @Autowired
     public BigDecimalSerializer(RiceSerializeProperties serializeProperties) {
         this.format = serializeProperties.getBigDecimalFormat();
         this.serializeProperties = serializeProperties;

@@ -5,11 +5,7 @@ import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.configure.RiceLoginProperties;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.lang.NonNull;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -21,27 +17,23 @@ import java.io.IOException;
 /**
  * <code>DefaultAccessTokenFilter</code>
  * <p>The default access token filter class.</p>
- * @see  org.springframework.web.filter.OncePerRequestFilter
- * @see  lombok.extern.slf4j.Slf4j
- * @see  org.springframework.stereotype.Component
- * @see  org.springframework.core.annotation.Order
  * @author Cyan (snow22314@outlook.com)
+ * @see org.springframework.web.filter.OncePerRequestFilter
+ * @see lombok.extern.slf4j.Slf4j
  * @since Jdk1.8
  */
 @Slf4j
-@Component
-@Order(value = Ordered.HIGHEST_PRECEDENCE + 101)
 public class DefaultAccessTokenFilter extends OncePerRequestFilter {
     /**
      * <code>loginProperties</code>
      * {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The <code>loginProperties</code> field.</p>
-     * @see  io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      */
     private final RiceLoginProperties loginProperties;
     /**
      * <code>accessValue</code>
      * {@link io.github.nichetoolkit.rest.RestAccessValue} <p>The <code>accessValue</code> field.</p>
-     * @see  io.github.nichetoolkit.rest.RestAccessValue
+     * @see io.github.nichetoolkit.rest.RestAccessValue
      */
     private RestAccessValue accessValue;
 
@@ -49,10 +41,8 @@ public class DefaultAccessTokenFilter extends OncePerRequestFilter {
      * <code>DefaultAccessTokenFilter</code>
      * <p>Instantiates a new default access token filter.</p>
      * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.configure.RiceLoginProperties
-     * @see  org.springframework.beans.factory.annotation.Autowired
+     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      */
-    @Autowired(required = false)
     public DefaultAccessTokenFilter(RiceLoginProperties loginProperties) {
         this.loginProperties = loginProperties;
     }
@@ -61,12 +51,10 @@ public class DefaultAccessTokenFilter extends OncePerRequestFilter {
      * <code>DefaultAccessTokenFilter</code>
      * <p>Instantiates a new default access token filter.</p>
      * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
-     * @param accessValue {@link io.github.nichetoolkit.rest.RestAccessValue} <p>The access value parameter is <code>RestAccessValue</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.configure.RiceLoginProperties
-     * @see  io.github.nichetoolkit.rest.RestAccessValue
-     * @see  org.springframework.beans.factory.annotation.Autowired
+     * @param accessValue     {@link io.github.nichetoolkit.rest.RestAccessValue} <p>The access value parameter is <code>RestAccessValue</code> type.</p>
+     * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
+     * @see io.github.nichetoolkit.rest.RestAccessValue
      */
-    @Autowired(required = false)
     public DefaultAccessTokenFilter(RiceLoginProperties loginProperties, RestAccessValue accessValue) {
         this.loginProperties = loginProperties;
         this.accessValue = accessValue;
