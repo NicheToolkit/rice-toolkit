@@ -5,7 +5,9 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestI18n;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.DefaultColumnResolver;
-import io.github.nichetoolkit.rice.RestUserResolver;
+import io.github.nichetoolkit.rice.advice.LoginAdvice;
+import io.github.nichetoolkit.rice.constant.AdviceConstants;
+import io.github.nichetoolkit.rice.interceptor.DefaultResponseInterceptor;
 import io.github.nichetoolkit.rice.resolver.RestColumnResolver;
 import io.github.nichetoolkit.rice.resolver.RestIdResolver;
 import io.github.nichetoolkit.rice.defaults.DefaultLongIdResolver;
@@ -16,8 +18,12 @@ import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * <code>RiceStarterAutoConfigure</code>
@@ -49,6 +55,15 @@ public class RiceStarterAutoConfigure {
     public RiceStarterAutoConfigure() {
         log.debug("The auto configuration for [rice-starter] initiated");
     }
+
+
+    @Bean
+    @Order(AdviceConstants.RESPONSE_ORDER)
+    @ConditionalOnMissingBean(DefaultResponseInterceptor.class)
+    public DefaultResponseInterceptor controllerAdvice(Optional<List<LoginAdvice>> loginAdvices) {
+        return new DefaultResponseInterceptor(loginAdvices.orElse(new ArrayList<>()));
+    }
+
 
     /**
      * <code>riceI18nBasename</code>
