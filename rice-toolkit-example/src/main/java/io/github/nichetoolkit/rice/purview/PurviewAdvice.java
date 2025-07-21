@@ -6,7 +6,7 @@ import io.github.nichetoolkit.rest.RestOptional;
 import io.github.nichetoolkit.rest.RestReckon;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
-import io.github.nichetoolkit.rice.DefaultAdvice;
+import io.github.nichetoolkit.rice.RestAfterLoginAdvice;
 import io.github.nichetoolkit.rice.error.TokenPermissionException;
 import io.github.nichetoolkit.rice.service.TokenService;
 import io.github.nichetoolkit.rice.simple.UserModel;
@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * <code>PurviewAdvice</code>
  * <p>The purview advice class.</p>
- * @see  io.github.nichetoolkit.rice.DefaultAdvice
+ * @see  RestAfterLoginAdvice
  * @see  lombok.extern.slf4j.Slf4j
  * @see  org.springframework.stereotype.Component
  * @author Cyan (snow22314@outlook.com)
@@ -29,7 +29,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
-public class PurviewAdvice implements DefaultAdvice<RestPurview> {
+public class PurviewAdvice implements RestAfterLoginAdvice<RestPurview> {
 
     /**
      * <code>tokenService</code>

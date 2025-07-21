@@ -3,7 +3,8 @@ package io.github.nichetoolkit.rice.configure;
 import io.github.nichetoolkit.rest.RestAccessValue;
 import io.github.nichetoolkit.rest.RestLoggingKey;
 import io.github.nichetoolkit.rest.configure.RestLogbackProperties;
-import io.github.nichetoolkit.rice.DefaultAdvice;
+import io.github.nichetoolkit.rice.RestAfterLoginAdvice;
+import io.github.nichetoolkit.rice.RestBeforeLoginAdvice;
 import io.github.nichetoolkit.rice.advice.LoginAdvice;
 import io.github.nichetoolkit.rice.constant.AdviceConstants;
 import io.github.nichetoolkit.rice.defaults.DefaultAccessTokenFilter;
@@ -21,7 +22,9 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <code>RiceLoginAutoConfigure</code>
@@ -154,37 +157,21 @@ public class RiceLoginAutoConfigure {
     /**
      * <code>annotationInterceptor</code>
      * <p>The annotation interceptor method.</p>
-     * @param defaultAdvices {@link java.util.List} <p>The default advices parameter is <code>List</code> type.</p>
+     * @param beforeAdvice {@link java.util.Optional} <p>The before advice parameter is <code>Optional</code> type.</p>
+     * @param afterAdvice  {@link java.util.Optional} <p>The after advice parameter is <code>Optional</code> type.</p>
      * @return {@link io.github.nichetoolkit.rice.interceptor.DefaultAnnotationInterceptor} <p>The annotation interceptor return object is <code>DefaultAnnotationInterceptor</code> type.</p>
-     * @see java.util.List
+     * @see java.util.Optional
      * @see io.github.nichetoolkit.rice.interceptor.DefaultAnnotationInterceptor
      * @see org.springframework.context.annotation.Bean
      * @see org.springframework.core.annotation.Order
-     * @see org.springframework.boot.autoconfigure.condition.ConditionalOnBean
      * @see org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
      */
     @Bean
     @Order(AdviceConstants.ANNOTATION_ORDER)
-    @ConditionalOnBean(DefaultAdvice.class)
     @ConditionalOnMissingBean(DefaultAnnotationInterceptor.class)
-    public DefaultAnnotationInterceptor annotationInterceptor(List<DefaultAdvice<?>> defaultAdvices) {
-        return new DefaultAnnotationInterceptor(defaultAdvices);
+    public DefaultAnnotationInterceptor annotationInterceptor(Optional<List<RestBeforeLoginAdvice<?>>> beforeAdvice,Optional<List<RestAfterLoginAdvice<?>>> afterAdvice) {
+        return new DefaultAnnotationInterceptor(beforeAdvice.orElse(new ArrayList<>()), afterAdvice.orElse(new ArrayList<>()));
     }
 
-    /**
-     * <code>annotationInterceptor</code>
-     * <p>The annotation interceptor method.</p>
-     * @return {@link io.github.nichetoolkit.rice.interceptor.DefaultAnnotationInterceptor} <p>The annotation interceptor return object is <code>DefaultAnnotationInterceptor</code> type.</p>
-     * @see io.github.nichetoolkit.rice.interceptor.DefaultAnnotationInterceptor
-     * @see org.springframework.context.annotation.Bean
-     * @see org.springframework.core.annotation.Order
-     * @see org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
-     */
-    @Bean
-    @Order(AdviceConstants.ANNOTATION_ORDER)
-    @ConditionalOnMissingBean({DefaultAnnotationInterceptor.class, DefaultAdvice.class})
-    public DefaultAnnotationInterceptor annotationInterceptor() {
-        return new DefaultAnnotationInterceptor();
-    }
 
 }
