@@ -6,6 +6,7 @@ import io.github.nichetoolkit.rice.InfoModel;
 import io.github.nichetoolkit.rice.RestUserInfo;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
@@ -29,6 +30,7 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @JsonInclude(value= JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
+@NoArgsConstructor
 public class UserInfoPack extends InfoModel<String> implements RestUserInfo<String> {
     /**
      * <code>username</code>

@@ -16,7 +16,7 @@ import org.springframework.lang.NonNull;
  * @since Jdk1.8
  */
 @SuperBuilder(builderMethodName = "ofRestBuilder")
-public abstract class RestFilter extends DefaultFilter<String, String> {
+public class RestFilter extends DefaultFilter<String, String> {
 
     /**
      * <code>RestFilter</code>
