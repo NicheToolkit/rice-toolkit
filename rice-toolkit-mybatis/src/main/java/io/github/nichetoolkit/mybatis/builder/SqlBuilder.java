@@ -2358,5 +2358,27 @@ public final class SqlBuilder implements Serializable, CharSequence {
         return this;
     }
 
+    /**
+     * <code>variable</code>
+     * <p>The variable method.</p>
+     * @param name  {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
+     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The variable return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
+     */
+    public SqlBuilder variable(String name, Object value) {
+        if (value instanceof String) {
+            this.signer(name);
+        } else if (value instanceof Date) {
+            this.dollar(name);
+        } else if (value instanceof RestKey) {
+            this.signer(name + SQLConstants.PERIOD + ScriptConstants.KEY);
+        } else {
+            this.signer(name);
+        }
+        return this;
+    }
+
 
 }
