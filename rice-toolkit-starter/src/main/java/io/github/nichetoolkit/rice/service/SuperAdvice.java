@@ -337,6 +337,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @see io.github.nichetoolkit.rest.RestException
      */
     protected void optionalCreate(RestTablekey<K> tablekey, @NonNull M model) throws RestException {
+        model.initialize();
         optionalDynamicTable(tablekey, model);
         optionalLogicAndOperate(model);
         if (GeneralUtils.isEmpty(model.getId()) || !isIdentityOfInvade()) {
@@ -357,6 +358,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @see io.github.nichetoolkit.rest.RestException
      */
     protected void optionalUpdate(RestTablekey<K> tablekey, @NonNull M model) throws RestException {
+        model.initialize();
         OptionalUtils.ofIdEmpty(model.getId(), log);
         optionalDynamicTable(tablekey, model);
         optionalLogicAndOperate(model);
@@ -374,6 +376,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @see io.github.nichetoolkit.rest.RestException
      */
     protected void optionalSave(RestTablekey<K> tablekey, @NonNull M model) throws RestException {
+        model.initialize();
         optionalDynamicTable(tablekey, model);
         optionalLogicAndOperate(model);
         if (GeneralUtils.isEmpty(model.getId())) {

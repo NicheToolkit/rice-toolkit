@@ -1,14 +1,16 @@
 package io.github.nichetoolkit.rice;
 
+import io.github.nichetoolkit.rest.util.GeneralUtils;
+
 import java.io.Serializable;
 
 /**
  * <code>RestId</code>
  * <p>The rest id interface.</p>
- * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @see  java.io.Serializable
- * @see  java.lang.SuppressWarnings
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
+ * @see java.io.Serializable
+ * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
 @SuppressWarnings("WeakerAccess")
@@ -27,4 +29,20 @@ public interface RestId<I> extends Serializable {
      * @param id I <p>The id parameter is <code>I</code> type.</p>
      */
     void setId(I id);
+
+    /**
+     * <code>isEmpty</code>
+     * <p>The is empty method.</p>
+     * @return boolean <p>The is empty return object is <code>boolean</code> type.</p>
+     */
+    default boolean isEmpty() {
+        return GeneralUtils.isEmpty(getId());
+    }
+
+    /**
+     * <code>initialize</code>
+     * <p>The initialize method.</p>
+     */
+    default void initialize() {
+    }
 }
