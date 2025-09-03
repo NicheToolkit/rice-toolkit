@@ -1,5 +1,6 @@
 package io.github.nichetoolkit.rice;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 
 import java.io.Serializable;
@@ -35,6 +36,7 @@ public interface RestId<I> extends Serializable {
      * <p>The is empty method.</p>
      * @return boolean <p>The is empty return object is <code>boolean</code> type.</p>
      */
+    @JsonIgnore
     default boolean isEmpty() {
         return GeneralUtils.isEmpty(getId());
     }
