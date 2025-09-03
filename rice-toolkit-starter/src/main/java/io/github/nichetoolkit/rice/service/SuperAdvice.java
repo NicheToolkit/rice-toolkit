@@ -237,7 +237,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
             BuilderAdvice<M, E, I> builderAdvice = (BuilderAdvice<M, E, I>) this;
             Method findMethod = null;
             try {
-                findMethod = builderAdvice.getClass().getMethod("buildModelList", Collection.class, List.class, Boolean[].class);
+                findMethod = builderAdvice.getClass().getMethod("buildModelList", Collection.class, List.class, RestLoad[].class);
             } catch (NoSuchMethodException ignored) {
             }
             Method buildModelListMethod = findMethod;
