@@ -341,6 +341,17 @@ public final class SqlBuilder implements Serializable, CharSequence {
     }
 
     /**
+     * <code>deleteLastChar</code>
+     * <p>The delete last char method.</p>
+     * @param index int <p>The index parameter is <code>int</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The delete last char return object is <code>SqlBuilder</code> type.</p>
+     */
+    public SqlBuilder deleteLastChar(int index) {
+        sqlBuilder.deleteCharAt(sqlBuilder.length() - index);
+        return this;
+    }
+
+    /**
      * <code>replace</code>
      * <p>The replace method.</p>
      * @param start int <p>The start parameter is <code>int</code> type.</p>
