@@ -8,6 +8,7 @@ import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.actuator.*;
 import io.github.nichetoolkit.rest.error.data.DataQueryException;
 import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
+import io.github.nichetoolkit.rest.error.often.IdentityNullException;
 import io.github.nichetoolkit.rest.helper.PartitionHelper;
 import io.github.nichetoolkit.rest.stream.RestStream;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
@@ -340,7 +341,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         model.initialize();
         optionalDynamicTable(tablekey, model);
         optionalLogicAndOperate(model);
-        if (GeneralUtils.isEmpty(model.getId()) || !isIdentityOfInvade()) {
+        if (model.isEmpty() || !isIdentityOfInvade()) {
             createActuator().actuate(tablekey, model);
         } else {
             invadeActuator().actuate(tablekey, model);
@@ -359,7 +360,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      */
     protected void optionalUpdate(RestTablekey<K> tablekey, @NonNull M model) throws RestException {
         model.initialize();
-        OptionalUtils.ofIdEmpty(model.getId(), log);
+        OptionalUtils.ofTrueException(model.isEmpty(), log,IdentityNullException::new);
         optionalDynamicTable(tablekey, model);
         optionalLogicAndOperate(model);
         updateActuator().actuate(tablekey, model);
@@ -379,7 +380,7 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
         model.initialize();
         optionalDynamicTable(tablekey, model);
         optionalLogicAndOperate(model);
-        if (GeneralUtils.isEmpty(model.getId())) {
+        if (model.isEmpty()) {
             createActuator().actuate(tablekey, model);
         } else {
             saveActuator().actuate(tablekey, model);
