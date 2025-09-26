@@ -46,6 +46,13 @@ public @interface RestLoadEntity {
      * @see java.lang.String
      */
     String table() default "";
+    
+    /**
+     * <code>recursive</code>
+     * <p>The recursive method.</p>
+     * @return boolean <p>The recursive return object is <code>boolean</code> type.</p>
+     */
+    boolean recursive() default false;
 
 }
 
