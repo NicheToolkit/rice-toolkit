@@ -46,7 +46,7 @@ public @interface RestLoadEntity {
      * @see java.lang.String
      */
     String table() default "";
-    
+
     /**
      * <code>recursive</code>
      * <p>The recursive method.</p>
