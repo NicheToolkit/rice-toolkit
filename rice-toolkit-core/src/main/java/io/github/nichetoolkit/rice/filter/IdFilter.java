@@ -195,7 +195,7 @@ public class IdFilter<I, K> extends TableFilter<K> {
         } else if (GeneralUtils.isNotEmpty(this.operates)) {
             SqlBuilders.in(SQL_BUILDER, alias, this.operates);
         } else {
-            SqlBuilders.nonin(SQL_BUILDER, alias, Arrays.asList(OperateType.REMOVE, OperateType.DELETE));
+            SqlBuilders.nin(SQL_BUILDER, alias, Arrays.asList(OperateType.REMOVE, OperateType.DELETE));
         }
         return this;
     }

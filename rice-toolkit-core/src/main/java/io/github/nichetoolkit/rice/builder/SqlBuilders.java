@@ -79,23 +79,23 @@ public class SqlBuilders {
     }
 
     /**
-     * <code>nonin</code>
-     * <p>The nonin method.</p>
+     * <code>nin</code>
+     * <p>The nin method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param values     {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
-     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The nonin return object is <code>SqlBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The nin return object is <code>SqlBuilder</code> type.</p>
      * @see java.lang.StringBuilder
      * @see java.util.Collection
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
      */
-    public static SqlBuilder nonin(StringBuilder sqlBuilder, String target, Collection<?> values) {
+    public static SqlBuilder nin(StringBuilder sqlBuilder, String target, Collection<?> values) {
         return newSqlBuilder(sqlBuilder).nin(target, values, true);
     }
 
     /**
-     * <code>nonin</code>
-     * <p>The nonin method.</p>
+     * <code>nin</code>
+     * <p>The nin method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
      * @param values     {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
@@ -103,7 +103,7 @@ public class SqlBuilders {
      * @see java.lang.String
      * @see java.util.Collection
      */
-    public static void nonin(SqlBuilder sqlBuilder, String target, Collection<?> values) {
+    public static void nin(SqlBuilder sqlBuilder, String target, Collection<?> values) {
         sqlBuilder.nin(target, values, true);
     }
 
@@ -134,6 +134,64 @@ public class SqlBuilders {
      */
     public static void in(SqlBuilder sqlBuilder, String target, Collection<?> values) {
         sqlBuilder.in(target, values, true);
+    }
+
+    /**
+     * <code>inOrNull</code>
+     * <p>The in or null method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param values     {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The in or null return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.StringBuilder
+     * @see java.util.Collection
+     * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
+     */
+    public static SqlBuilder inOrNull(StringBuilder sqlBuilder, String target, Collection<?> values) {
+        return newSqlBuilder(sqlBuilder).and().braceLt().in(target, values, null).isn(target,false).braceGt();
+    }
+
+    /**
+     * <code>inOrNull</code>
+     * <p>The in or null method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param values     {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
+     * @see java.lang.String
+     * @see java.util.Collection
+     */
+    public static void inOrNull(SqlBuilder sqlBuilder, String target, Collection<?> values) {
+        sqlBuilder.and().braceLt().in(target, values, null).isn(target,false).braceGt();
+    }
+
+    /**
+     * <code>ninOrNull</code>
+     * <p>The nin or null method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param values     {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The nin or null return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.StringBuilder
+     * @see java.util.Collection
+     * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
+     */
+    public static SqlBuilder ninOrNull(StringBuilder sqlBuilder, String target, Collection<?> values) {
+        return newSqlBuilder(sqlBuilder).and().braceLt().nin(target, values, null).isn(target,false).braceGt();
+    }
+
+    /**
+     * <code>ninOrNull</code>
+     * <p>The nin or null method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param values     {@link java.util.Collection} <p>The values parameter is <code>Collection</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
+     * @see java.lang.String
+     * @see java.util.Collection
+     */
+    public static void ninOrNull(SqlBuilder sqlBuilder, String target, Collection<?> values) {
+        sqlBuilder.and().braceLt().nin(target, values, null).isn(target,false).braceGt();
     }
 
     /**
@@ -344,6 +402,35 @@ public class SqlBuilders {
     }
 
     /**
+     * <code>unequalOrNull</code>
+     * <p>The unequal or null method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The unequal or null return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.StringBuilder
+     * @see java.lang.Object
+     * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
+     */
+    public static SqlBuilder unequalOrNull(StringBuilder sqlBuilder, String target, Object value) {
+        return newSqlBuilder(sqlBuilder).and().braceLt().neq(target, value, null).isn(target,false).braceGt();
+    }
+
+    /**
+     * <code>unequalOrNull</code>
+     * <p>The unequal or null method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
+     * @see java.lang.String
+     * @see java.lang.Object
+     */
+    public static void unequalOrNull(SqlBuilder sqlBuilder, String target, Object value) {
+        sqlBuilder.and().braceLt().neq(target, value, null).isn(target,false).braceGt();
+    }
+
+    /**
      * <code>equalOrSql</code>
      * <p>The equal or sql method.</p>
      * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
@@ -403,6 +490,68 @@ public class SqlBuilders {
      */
     public static void equalOrSql(SqlBuilder sqlBuilder, String target, Object value, String sql) {
         sqlBuilder.and().braceLt().eq(target, value, null).or().append(sql).braceGt();
+    }
+
+    /**
+     * <code>unequalOrSql</code>
+     * <p>The unequal or sql method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param sql        {@link java.lang.StringBuilder} <p>The sql parameter is <code>StringBuilder</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The unequal or sql return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.StringBuilder
+     * @see java.lang.Object
+     * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
+     */
+    public static SqlBuilder unequalOrSql(StringBuilder sqlBuilder, String target, Object value, StringBuilder sql) {
+        return newSqlBuilder(sqlBuilder).and().braceLt().neq(target, value, null).or().append(sql).braceGt();
+    }
+
+    /**
+     * <code>unequalOrSql</code>
+     * <p>The unequal or sql method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param sql        {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql parameter is <code>SqlBuilder</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
+     * @see java.lang.String
+     * @see java.lang.Object
+     */
+    public static void unequalOrSql(SqlBuilder sqlBuilder, String target, Object value, SqlBuilder sql) {
+        sqlBuilder.and().braceLt().neq(target, value, null).or().append(sql).braceGt();
+    }
+
+    /**
+     * <code>unequalOrSql</code>
+     * <p>The unequal or sql method.</p>
+     * @param sqlBuilder {@link java.lang.StringBuilder} <p>The sql builder parameter is <code>StringBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param sql        {@link java.lang.String} <p>The sql parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The unequal or sql return object is <code>SqlBuilder</code> type.</p>
+     * @see java.lang.StringBuilder
+     * @see java.lang.Object
+     * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
+     */
+    public static SqlBuilder unequalOrSql(StringBuilder sqlBuilder, String target, Object value, String sql) {
+        return newSqlBuilder(sqlBuilder).and().braceLt().neq(target, value, null).or().append(sql).braceGt();
+    }
+
+    /**
+     * <code>unequalOrSql</code>
+     * <p>The unequal or sql method.</p>
+     * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
+     * @param target     {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
+     * @param value      {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @param sql        {@link java.lang.String} <p>The sql parameter is <code>String</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
+     * @see java.lang.String
+     * @see java.lang.Object
+     */
+    public static void unequalOrSql(SqlBuilder sqlBuilder, String target, Object value, String sql) {
+        sqlBuilder.and().braceLt().neq(target, value, null).or().append(sql).braceGt();
     }
 
     /**
