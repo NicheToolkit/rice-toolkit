@@ -1,5 +1,7 @@
 package io.github.nichetoolkit.mybatis.holder;
 
+import io.github.nichetoolkit.rest.RestOptional;
+import io.github.nichetoolkit.rest.error.lack.ConfigureLackError;
 import io.github.nichetoolkit.rest.fitter.RestFulfilledFitter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +46,7 @@ public class RestSqlSessionHolder implements RestFulfilledFitter<RestSqlSessionH
      * @return {@link io.github.nichetoolkit.mybatis.holder.RestSqlSessionHolder} <p>The instance return object is <code>RestSqlSessionHolder</code> type.</p>
      */
     public static RestSqlSessionHolder instance() {
-        return INSTANCE;
+        return RestOptional.ofNullable(INSTANCE).orNullThrow(ConfigureLackError::new);
     }
 
     @Override
@@ -64,7 +66,7 @@ public class RestSqlSessionHolder implements RestFulfilledFitter<RestSqlSessionH
      * @see org.apache.ibatis.session.SqlSessionFactory
      */
     public static SqlSessionFactory sqlSessionFactory() {
-        return INSTANCE.sqlSessionFactory;
+        return instance().sqlSessionFactory;
     }
 
     /**
@@ -74,7 +76,7 @@ public class RestSqlSessionHolder implements RestFulfilledFitter<RestSqlSessionH
      * @see org.apache.ibatis.session.Configuration
      */
     public static Configuration configuration() {
-        return INSTANCE.sqlSessionFactory.getConfiguration();
+        return instance().sqlSessionFactory.getConfiguration();
     }
 
     /**
@@ -84,7 +86,7 @@ public class RestSqlSessionHolder implements RestFulfilledFitter<RestSqlSessionH
      * @see org.apache.ibatis.type.TypeAliasRegistry
      */
     public static TypeAliasRegistry typeAliasRegistry() {
-        return INSTANCE.sqlSessionFactory.getConfiguration().getTypeAliasRegistry();
+        return instance().sqlSessionFactory.getConfiguration().getTypeAliasRegistry();
     }
 
     /**
@@ -94,7 +96,7 @@ public class RestSqlSessionHolder implements RestFulfilledFitter<RestSqlSessionH
      * @see org.apache.ibatis.type.TypeHandlerRegistry
      */
     public static TypeHandlerRegistry typeHandlerRegistry() {
-        return INSTANCE.sqlSessionFactory.getConfiguration().getTypeHandlerRegistry();
+        return instance().sqlSessionFactory.getConfiguration().getTypeHandlerRegistry();
     }
 
 }
