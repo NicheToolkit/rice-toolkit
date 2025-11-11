@@ -96,11 +96,6 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
         if (GeneralUtils.isEmpty(context)) {
             context = new TokenContext();
         }
-        /* 登出接口注解 */
-        RestLogout restLogout = AnnotationUtils.getAnnotation(returnType.getAnnotatedElement(), RestLogout.class);
-        if (GeneralUtils.isEmpty(restLogout) && GeneralUtils.isNotEmpty(httpRequest)) {
-            restLogout = httpRequest.getMethodAnnotation(RestLogout.class);
-        }
         /* 登录接口注解 */
         RestLogin restLogin = AnnotationUtils.getAnnotation(returnType.getAnnotatedElement(), RestLogin.class);
         if (GeneralUtils.isEmpty(restLogin) && GeneralUtils.isNotEmpty(httpRequest)) {
@@ -119,11 +114,6 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
         if (GeneralUtils.isNotEmpty(loginAdvices)) {
             for (LoginAdvice loginAdvice : loginAdvices) {
                 try {
-                    if (GeneralUtils.isNotEmpty(restLogout)) {
-                        /* 登出接口拦截 */
-                        loginAdvice.doLogoutHandle(httpRequest, body, returnType, context);
-                        continue;
-                    }
                     if (GeneralUtils.isNotEmpty(restLogin)) {
                         /* 登录接口拦截 */
                         Object loginResult = loginAdvice.doLoginHandle(httpRequest, body, returnType, context);

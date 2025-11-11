@@ -108,7 +108,7 @@ public class LoginHandler implements LoginAdvice {
     }
 
     @Override
-    public void doLogoutHandle(RestHttpRequest request, Object body, MethodParameter returnType, TokenContext context) throws RestException {
+    public void doLogoutHandle(RestHttpRequest request) throws RestException {
         UserModel userModel = tokenService.resolveUserInfo(request);
         RestOptional.ofNullable(userModel).isNotEmpty(user -> {
             String userId = user.getId();

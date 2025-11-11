@@ -81,24 +81,6 @@ public interface LoginAdvice extends LogoutAdvice {
     }
 
     /**
-     * <code>doLogoutHandle</code>
-     * <p>The do logout handle method.</p>
-     * @param request {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>The request parameter is <code>RestHttpRequest</code> type.</p>
-     * @param body {@link java.lang.Object} <p>The body parameter is <code>Object</code> type.</p>
-     * @param returnType {@link org.springframework.core.MethodParameter} <p>The return type parameter is <code>MethodParameter</code> type.</p>
-     * @param context {@link io.github.nichetoolkit.rice.TokenContext} <p>The context parameter is <code>TokenContext</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestHttpRequest
-     * @see  java.lang.Object
-     * @see  org.springframework.core.MethodParameter
-     * @see  io.github.nichetoolkit.rice.TokenContext
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     */
-    default void doLogoutHandle(RestHttpRequest request, Object body, MethodParameter returnType, TokenContext context) throws RestException {
-        doLogoutHandle(request);
-    }
-
-    /**
      * <code>preHandle</code>
      * <p>The pre handle method.</p>
      * @param request {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>The request parameter is <code>RestHttpRequest</code> type.</p>
