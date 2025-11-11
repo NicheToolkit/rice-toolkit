@@ -16,28 +16,34 @@ public interface AdviceConstants {
     int RESPONSE_ORDER = 1;
 
     /**
+     * <code>LOGOUT_ORDER</code>
+     * <p>The constant <code>LOGOUT_ORDER</code> field.</p>
+     */
+    int LOGOUT_ORDER = 10;
+
+    /**
      * <code>LOGIN_ORDER</code>
      * <p>The constant <code>LOGIN_ORDER</code> field.</p>
      */
-    int LOGIN_ORDER = 10;
+    int LOGIN_ORDER = 11;
 
     /**
      * <code>ANNOTATION_ORDER</code>
      * <p>The constant <code>ANNOTATION_ORDER</code> field.</p>
      */
-    int ANNOTATION_ORDER = 11;
+    int ANNOTATION_ORDER = 12;
 
     /**
      * <code>OPEN_ADVICE_ORDER</code>
      * <p>The constant <code>OPEN_ADVICE_ORDER</code> field.</p>
      */
-    int OPEN_ADVICE_ORDER = 12;
+    int OPEN_ADVICE_ORDER = 13;
 
     /**
      * <code>AUTH_ADVICE_ORDER</code>
      * <p>The constant <code>AUTH_ADVICE_ORDER</code> field.</p>
      */
-    int AUTH_ADVICE_ORDER = 13;
+    int AUTH_ADVICE_ORDER = 14;
 
     /**
      * <code>USERLOG_ADVICE_ORDER</code>

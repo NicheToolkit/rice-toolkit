@@ -1,7 +1,9 @@
 package io.github.nichetoolkit.rice.interceptor;
 
+import io.github.nichetoolkit.rest.RestError;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
+import io.github.nichetoolkit.rest.RestResult;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.advice.LoginAdvice;
@@ -77,6 +79,12 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object body, @NonNull MethodParameter returnType,@NonNull MediaType selectedContentType,@NonNull Class selectedConverterType,@NonNull ServerHttpRequest request,@NonNull ServerHttpResponse response) {
+        if (body instanceof RestResult) {
+            Object data = ((RestResult<?>) body).getData();
+            if (data instanceof RestError) {
+                return body;
+            }
+        }
         TokenContext context = null;
         RestHttpRequest httpRequest = null;
         /* 将请求中的模型数据容器取出来 */

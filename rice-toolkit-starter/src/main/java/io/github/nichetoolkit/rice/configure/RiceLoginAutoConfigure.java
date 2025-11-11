@@ -5,6 +5,7 @@ import io.github.nichetoolkit.rest.RestLoggingKey;
 import io.github.nichetoolkit.rest.configure.RestLogbackProperties;
 import io.github.nichetoolkit.rice.RestAfterLoginAdvice;
 import io.github.nichetoolkit.rice.RestBeforeLoginAdvice;
+import io.github.nichetoolkit.rice.RestBeforeLogoutAdvice;
 import io.github.nichetoolkit.rice.advice.LoginAdvice;
 import io.github.nichetoolkit.rice.constant.AdviceConstants;
 import io.github.nichetoolkit.rice.defaults.DefaultAccessTokenFilter;
@@ -157,8 +158,9 @@ public class RiceLoginAutoConfigure {
     /**
      * <code>annotationInterceptor</code>
      * <p>The annotation interceptor method.</p>
-     * @param beforeAdvice {@link java.util.Optional} <p>The before advice parameter is <code>Optional</code> type.</p>
-     * @param afterAdvice  {@link java.util.Optional} <p>The after advice parameter is <code>Optional</code> type.</p>
+     * @param logoutAdvices {@link java.util.Optional} <p>The logout advices parameter is <code>Optional</code> type.</p>
+     * @param beforeAdvice  {@link java.util.Optional} <p>The before advice parameter is <code>Optional</code> type.</p>
+     * @param afterAdvice   {@link java.util.Optional} <p>The after advice parameter is <code>Optional</code> type.</p>
      * @return {@link io.github.nichetoolkit.rice.interceptor.DefaultAnnotationInterceptor} <p>The annotation interceptor return object is <code>DefaultAnnotationInterceptor</code> type.</p>
      * @see java.util.Optional
      * @see io.github.nichetoolkit.rice.interceptor.DefaultAnnotationInterceptor
@@ -169,8 +171,8 @@ public class RiceLoginAutoConfigure {
     @Bean
     @Order(AdviceConstants.ANNOTATION_ORDER)
     @ConditionalOnMissingBean(DefaultAnnotationInterceptor.class)
-    public DefaultAnnotationInterceptor annotationInterceptor(Optional<List<RestBeforeLoginAdvice<?>>> beforeAdvice,Optional<List<RestAfterLoginAdvice<?>>> afterAdvice) {
-        return new DefaultAnnotationInterceptor(beforeAdvice.orElse(new ArrayList<>()), afterAdvice.orElse(new ArrayList<>()));
+    public DefaultAnnotationInterceptor annotationInterceptor(Optional<List<RestBeforeLogoutAdvice<?>>> logoutAdvices, Optional<List<RestBeforeLoginAdvice<?>>> beforeAdvice, Optional<List<RestAfterLoginAdvice<?>>> afterAdvice) {
+        return new DefaultAnnotationInterceptor(logoutAdvices.orElse(new ArrayList<>()),beforeAdvice.orElse(new ArrayList<>()), afterAdvice.orElse(new ArrayList<>()));
     }
 
 

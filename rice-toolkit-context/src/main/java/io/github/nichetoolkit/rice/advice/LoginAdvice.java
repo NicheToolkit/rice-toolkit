@@ -4,6 +4,7 @@ import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestResult;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
+import io.github.nichetoolkit.rice.RestBeforeLoginAdvice;
 import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.constant.LoginConstants;
 import io.github.nichetoolkit.rice.error.TokenPermissionException;
@@ -20,7 +21,7 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public interface LoginAdvice {
+public interface LoginAdvice extends LogoutAdvice {
 
     /**
      * <code>doAuthHandle</code>
@@ -94,8 +95,8 @@ public interface LoginAdvice {
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     default void doLogoutHandle(RestHttpRequest request, Object body, MethodParameter returnType, TokenContext context) throws RestException {
+        doLogoutHandle(request);
     }
-
 
     /**
      * <code>preHandle</code>
