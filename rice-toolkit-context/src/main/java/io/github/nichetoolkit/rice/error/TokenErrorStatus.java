@@ -7,9 +7,9 @@ import lombok.Getter;
 /**
  * <code>TokenErrorStatus</code>
  * <p>The token error status enumeration.</p>
- * @see  io.github.nichetoolkit.rest.RestStatus
- * @see  lombok.Getter
  * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rest.RestStatus
+ * @see lombok.Getter
  * @since Jdk1.8
  */
 @Getter
@@ -34,28 +34,34 @@ public enum TokenErrorStatus implements RestStatus {
      * {@link io.github.nichetoolkit.rice.error.TokenErrorStatus} <p>The <code>TOKEN_PREFIX_INVALID</code> field.</p>
      */
     TOKEN_PREFIX_INVALID(11503,"The access token prefix is invalid"),
+
+    /**
+     * <code>TOKEN_DUPLICATE_ERROR</code>
+     * {@link io.github.nichetoolkit.rice.error.TokenErrorStatus} <p>The <code>TOKEN_DUPLICATE_ERROR</code> field.</p>
+     */
+    TOKEN_DUPLICATE_ERROR(11504,"The access token duplicate verification"),
     ;
 
     /**
      * <code>status</code>
      * {@link java.lang.Integer} <p>The <code>status</code> field.</p>
-     * @see  java.lang.Integer
+     * @see java.lang.Integer
      */
     private final Integer status;
     /**
      * <code>message</code>
      * {@link java.lang.String} <p>The <code>message</code> field.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     private final String message;
 
     /**
      * <code>TokenErrorStatus</code>
      * <p>Instantiates a new token error status.</p>
-     * @param status {@link java.lang.Integer} <p>The status parameter is <code>Integer</code> type.</p>
+     * @param status  {@link java.lang.Integer} <p>The status parameter is <code>Integer</code> type.</p>
      * @param message {@link java.lang.String} <p>The message parameter is <code>String</code> type.</p>
-     * @see  java.lang.Integer
-     * @see  java.lang.String
+     * @see java.lang.Integer
+     * @see java.lang.String
      */
     TokenErrorStatus(Integer status, String message) {
         this.status = status;
