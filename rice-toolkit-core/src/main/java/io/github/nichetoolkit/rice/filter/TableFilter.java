@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.filter;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.github.nichetoolkit.rice.RestTablekey;
+import io.github.nichetoolkit.rice.RestTableKey;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
@@ -29,10 +29,10 @@ import lombok.experimental.SuperBuilder;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TableFilter<K> extends FickleFilter {
     /**
-     * <code>tablekey</code>
-     * <p>The <code>tablekey</code> field.</p>
+     * <code>tableKey</code>
+     * <p>The <code>tableKey</code> field.</p>
      */
-    protected K tablekey;
+    protected K tableKey;
 
     /**
      * <code>TableFilter</code>
@@ -42,12 +42,12 @@ public class TableFilter<K> extends FickleFilter {
     }
 
     /**
-     * <code>toTablekey</code>
-     * <p>The to tablekey method.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestTablekey} <p>The to tablekey return object is <code>RestTablekey</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * <code>toTableKey</code>
+     * <p>The to tableKey method.</p>
+     * @return {@link io.github.nichetoolkit.rice.RestTableKey} <p>The to tableKey return object is <code>RestTableKey</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTableKey
      */
-    public RestTablekey<K> toTablekey() {
-        return RestTablekey.of(this.tablekey);
+    public RestTableKey<K> toTableKey() {
+        return RestTableKey.of(this.tableKey);
     }
 }

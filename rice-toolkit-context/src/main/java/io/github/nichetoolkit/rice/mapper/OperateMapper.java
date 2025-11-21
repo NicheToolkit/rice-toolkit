@@ -26,7 +26,7 @@ public interface OperateMapper<I> {
     /**
      * <code>operateDynamicById</code>
      * <p>The operate dynamic by id method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param id I <p>The id parameter is <code>I</code> type.</p>
      * @param operate {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
      * @see  java.lang.String
@@ -34,7 +34,7 @@ public interface OperateMapper<I> {
      * @see  java.lang.Integer
      * @return  {@link java.lang.Integer} <p>The operate dynamic by id return object is <code>Integer</code> type.</p>
      */
-    Integer operateDynamicById(@Param("tablename") String tablename, @Param("id") I id, @Param("operate") Integer operate);
+    Integer operateDynamicById(@Param("tableName") String tableName, @Param("id") I id, @Param("operate") Integer operate);
 
     /**
      * <code>operateAll</code>
@@ -51,7 +51,7 @@ public interface OperateMapper<I> {
     /**
      * <code>operateDynamicAll</code>
      * <p>The operate dynamic all method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param operate {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
      * @see  java.lang.String
@@ -60,7 +60,7 @@ public interface OperateMapper<I> {
      * @see  java.lang.Integer
      * @return  {@link java.lang.Integer} <p>The operate dynamic all return object is <code>Integer</code> type.</p>
      */
-    Integer operateDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList, @Param("operate") Integer operate);
+    Integer operateDynamicAll(@Param("tableName") String tableName, @Param("idList") Collection<I> idList, @Param("operate") Integer operate);
 
     /**
      * <code>operateAllByWhere</code>
@@ -77,7 +77,7 @@ public interface OperateMapper<I> {
     /**
      * <code>operateDynamicAllByWhere</code>
      * <p>The operate dynamic all by where method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param operate {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
      * @see  java.lang.String
@@ -85,5 +85,5 @@ public interface OperateMapper<I> {
      * @see  java.lang.Integer
      * @return  {@link java.lang.Integer} <p>The operate dynamic all by where return object is <code>Integer</code> type.</p>
      */
-    Integer operateDynamicAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("operate") Integer operate);
+    Integer operateDynamicAllByWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("operate") Integer operate);
 }

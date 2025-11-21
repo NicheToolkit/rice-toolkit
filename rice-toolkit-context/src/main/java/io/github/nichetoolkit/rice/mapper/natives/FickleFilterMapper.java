@@ -36,7 +36,7 @@ public interface FickleFilterMapper<E extends RestId<I>, I> {
     /**
      * <code>findDynamicAllByFickleLoadWhere</code>
      * <p>The find dynamic all by fickle load where method.</p>
-     * @param tablename    {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName    {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param whereSql     {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param fickleParams {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The fickle params parameter is <code>RestFickle</code> type.</p>
      * @param loadParams   {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load params parameter is <code>RestLoad</code> type.</p>
@@ -47,6 +47,6 @@ public interface FickleFilterMapper<E extends RestId<I>, I> {
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      */
-    List<E> findDynamicAllByFickleLoadWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("fickleParams") RestFickle<?>[] fickleParams, @Param("loadParams") RestLoad... loadParams);
+    List<E> findDynamicAllByFickleLoadWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("fickleParams") RestFickle<?>[] fickleParams, @Param("loadParams") RestLoad... loadParams);
 
 }

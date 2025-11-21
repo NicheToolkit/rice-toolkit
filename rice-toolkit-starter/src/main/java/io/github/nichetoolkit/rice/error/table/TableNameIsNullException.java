@@ -5,34 +5,34 @@ import io.github.nichetoolkit.rest.error.natives.ServiceErrorException;
 import io.github.nichetoolkit.rice.error.TableErrorStatus;
 
 /**
- * <code>TablenameIsNullException</code>
- * <p>The tablename is null exception class.</p>
+ * <code>TableNameIsNullException</code>
+ * <p>The tableName is null exception class.</p>
  * @see  io.github.nichetoolkit.rest.error.natives.ServiceErrorException
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public class TablenameIsNullException extends ServiceErrorException {
+public class TableNameIsNullException extends ServiceErrorException {
 
     /**
-     * <code>TablenameIsNullException</code>
-     * <p>Instantiates a new tablename is null exception.</p>
+     * <code>TableNameIsNullException</code>
+     * <p>Instantiates a new tableName is null exception.</p>
      */
-    public TablenameIsNullException() {
+    public TableNameIsNullException() {
         super(TableErrorStatus.TABLE_NAME_IS_NULL);
     }
 
     /**
-     * <code>TablenameIsNullException</code>
-     * <p>Instantiates a new tablename is null exception.</p>
+     * <code>TableNameIsNullException</code>
+     * <p>Instantiates a new tableName is null exception.</p>
      * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see  java.lang.String
      */
-    public TablenameIsNullException(String error) {
+    public TableNameIsNullException(String error) {
         super(TableErrorStatus.TABLE_NAME_IS_NULL, error);
     }
 
     @Override
-    public TablenameIsNullException get() {
-        return new TablenameIsNullException();
+    public TableNameIsNullException get() {
+        return new TableNameIsNullException();
     }
 }

@@ -31,14 +31,14 @@ public interface SaveMapper<E extends RestId<I>,I> {
     /**
      * <code>saveDynamic</code>
      * <p>The save dynamic method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param entity E <p>The entity parameter is <code>E</code> type.</p>
      * @see  java.lang.String
      * @see  org.apache.ibatis.annotations.Param
      * @see  java.lang.Integer
      * @return  {@link java.lang.Integer} <p>The save dynamic return object is <code>Integer</code> type.</p>
      */
-    Integer saveDynamic(@Param("tablename") String tablename, @Param("entity") E entity);
+    Integer saveDynamic(@Param("tableName") String tableName, @Param("entity") E entity);
 
     /**
      * <code>saveAll</code>
@@ -54,7 +54,7 @@ public interface SaveMapper<E extends RestId<I>,I> {
     /**
      * <code>saveDynamicAll</code>
      * <p>The save dynamic all method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
      * @see  java.lang.String
      * @see  org.apache.ibatis.annotations.Param
@@ -62,5 +62,5 @@ public interface SaveMapper<E extends RestId<I>,I> {
      * @see  java.lang.Integer
      * @return  {@link java.lang.Integer} <p>The save dynamic all return object is <code>Integer</code> type.</p>
      */
-    Integer saveDynamicAll(@Param("tablename") String tablename, @Param("entityList") Collection<E> entityList);
+    Integer saveDynamicAll(@Param("tableName") String tableName, @Param("entityList") Collection<E> entityList);
 }

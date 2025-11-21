@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.RestId;
-import io.github.nichetoolkit.rice.RestTablekey;
+import io.github.nichetoolkit.rice.RestTableKey;
 
 /**
  * <code>SingleService</code>
@@ -30,16 +30,16 @@ public interface SingleService<M extends RestId<I>, I, K> {
     /**
      * <code>create</code>
      * <p>The create method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @param idArray  {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
      * @return M <p>The create return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.lang.Object
      * @see io.github.nichetoolkit.rest.RestException
      */
-    M create(RestTablekey<K> tablekey, M model, Object... idArray) throws RestException;
+    M create(RestTableKey<K> tableKey, M model, Object... idArray) throws RestException;
 
     /**
      * <code>update</code>
@@ -56,14 +56,14 @@ public interface SingleService<M extends RestId<I>, I, K> {
     /**
      * <code>update</code>
      * <p>The update method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @param idArray  {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
      * @return M <p>The update return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.lang.Object
      * @see io.github.nichetoolkit.rest.RestException
      */
-    M update(RestTablekey<K> tablekey, M model, Object... idArray) throws RestException;
+    M update(RestTableKey<K> tableKey, M model, Object... idArray) throws RestException;
 }

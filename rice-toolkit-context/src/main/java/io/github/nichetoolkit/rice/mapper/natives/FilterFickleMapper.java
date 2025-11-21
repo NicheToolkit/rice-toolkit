@@ -33,7 +33,7 @@ public interface FilterFickleMapper<E extends RestId<I>, I> {
     /**
      * <code>findDynamicAllByFickleWhere</code>
      * <p>The find dynamic all by fickle where method.</p>
-     * @param tablename    {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName    {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param whereSql     {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param fickleParams {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The fickle params parameter is <code>RestFickle</code> type.</p>
      * @return {@link java.util.List} <p>The find dynamic all by fickle where return object is <code>List</code> type.</p>
@@ -42,6 +42,6 @@ public interface FilterFickleMapper<E extends RestId<I>, I> {
      * @see io.github.nichetoolkit.mybatis.fickle.RestFickle
      * @see java.util.List
      */
-    List<E> findDynamicAllByFickleWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("fickleParams") RestFickle<?>... fickleParams);
+    List<E> findDynamicAllByFickleWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("fickleParams") RestFickle<?>... fickleParams);
 
 }

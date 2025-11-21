@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.RestId;
-import io.github.nichetoolkit.rice.RestTablekey;
+import io.github.nichetoolkit.rice.RestTableKey;
 
 import java.util.Collection;
 import java.util.List;
@@ -35,16 +35,16 @@ public interface SaveService<M extends RestId<I>, I, K> extends QueryService<M, 
     /**
      * <code>save</code>
      * <p>The save method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @param idArray  {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
      * @return M <p>The save return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.lang.Object
      * @see io.github.nichetoolkit.rest.RestException
      */
-    M save(RestTablekey<K> tablekey, M model, Object... idArray) throws RestException;
+    M save(RestTableKey<K> tableKey, M model, Object... idArray) throws RestException;
 
     /**
      * <code>saveAll</code>
@@ -63,17 +63,17 @@ public interface SaveService<M extends RestId<I>, I, K> extends QueryService<M, 
     /**
      * <code>saveAll</code>
      * <p>The save all method.</p>
-     * @param tablekey  {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey  {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param idArray   {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
      * @return {@link java.util.List} <p>The save all return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see java.lang.Object
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    List<M> saveAll(RestTablekey<K> tablekey, Collection<M> modelList, Object... idArray) throws RestException;
+    List<M> saveAll(RestTableKey<K> tableKey, Collection<M> modelList, Object... idArray) throws RestException;
 
 }

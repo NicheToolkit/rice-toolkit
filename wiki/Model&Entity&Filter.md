@@ -114,13 +114,13 @@ the filter is used to receive query fields on service or controller handle.
 |  `PageFilter`   |            |                                the filter is used to receive `pageNum` and `pageSize` fields.(the `loadLastPage` is used to load the last page data of query handle)                                 |
 |  `SortFilter`   |            |                                                the filter is used to receive `sorts` field.(the `RestSort` is used to sort the data of query handle)                                                 |
 | `OperateFilter` |            |                                 the filter is used to receive `operate` and `operates` fields.(the `remove` is used to load the logical delete data of query handle)                                 |
-|  `TableFilter`  |   `<K>`    |                 the filter is used to receive `tablekey` field，and the `tablekey` type can be any object.(the `tablekey` is used to load the data of query handle on dynamic table )                 |
+|  `TableFilter`  |   `<K>`    |                 the filter is used to receive `tableKey` field，and the `tableKey` type can be any object.(the `tableKey` is used to load the data of query handle on dynamic table )                 |
 |   `IdFilter`    |  `<I, K>`  |                                                       the filter is used to receive `id` and `ids` fields.and the `id` type can be any object.                                                       |
 |  `TimeFilter`   |  `<I, K>`  |                                                                   the filter is used to receive `startTime` and `endTime` fields.                                                                    |
 |  `JsonbFilter`  |  `<I, K>`  | the filter is used to receive `contrasts`、`ranges`、`equals`  and `contains` fields.(the `ContrastRule`、`RangeRule`、`EqualRule` and `ContainRule` is used to filter the `jsonb` data of query handle) |
 |  `NameFilter`   |  `<I, K>`  |                                                                       the filter is used to receive `name` and `names` fields.                                                                       |
 | `DefaultFilter` |  `<I, K>`  |                                              the children filters of  `DefaultFilter` can build `SQL` with `toRemoveSql()` and `toQuerySql()` methods.                                               |
-|  `RestFilter`   |            |                                                                           the `id` and `tablekey`type is default `String`.                                                                           |
+|  `RestFilter`   |            |                                                                           the `id` and `tableKey`type is default `String`.                                                                           |
 
 * examples
 

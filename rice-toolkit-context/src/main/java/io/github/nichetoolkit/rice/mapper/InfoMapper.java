@@ -32,7 +32,7 @@ public interface InfoMapper<E extends RestInfo<I>, I> extends SuperMapper<E, I> 
     /**
      * <code>findDynamicByName</code>
      * <p>The find dynamic by name method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param logic {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
      * @see  java.lang.String
@@ -41,7 +41,7 @@ public interface InfoMapper<E extends RestInfo<I>, I> extends SuperMapper<E, I> 
      * @see  java.util.List
      * @return  {@link java.util.List} <p>The find dynamic by name return object is <code>List</code> type.</p>
      */
-    List<E> findDynamicByName(@Param("tablename") String tablename, @Param("name") String name, @Param("logic") Object logic);
+    List<E> findDynamicByName(@Param("tableName") String tableName, @Param("name") String name, @Param("logic") Object logic);
 
     /**
      * <code>findByNameAndNotId</code>
@@ -60,7 +60,7 @@ public interface InfoMapper<E extends RestInfo<I>, I> extends SuperMapper<E, I> 
     /**
      * <code>findDynamicByNameAndNotId</code>
      * <p>The find dynamic by name and not id method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param id I <p>The id parameter is <code>I</code> type.</p>
      * @param logic {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
@@ -70,7 +70,7 @@ public interface InfoMapper<E extends RestInfo<I>, I> extends SuperMapper<E, I> 
      * @see  java.util.List
      * @return  {@link java.util.List} <p>The find dynamic by name and not id return object is <code>List</code> type.</p>
      */
-    List<E> findDynamicByNameAndNotId(@Param("tablename") String tablename, @Param("name") String name, @Param("id") I id, @Param("logic") Object logic);
+    List<E> findDynamicByNameAndNotId(@Param("tableName") String tableName, @Param("name") String name, @Param("id") I id, @Param("logic") Object logic);
 
     /**
      * <code>findByEntityUnique</code>
@@ -87,7 +87,7 @@ public interface InfoMapper<E extends RestInfo<I>, I> extends SuperMapper<E, I> 
     /**
      * <code>findDynamicByEntityUnique</code>
      * <p>The find dynamic by entity unique method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param entity E <p>The entity parameter is <code>E</code> type.</p>
      * @param logic {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
      * @see  java.lang.String
@@ -96,7 +96,7 @@ public interface InfoMapper<E extends RestInfo<I>, I> extends SuperMapper<E, I> 
      * @see  java.util.List
      * @return  {@link java.util.List} <p>The find dynamic by entity unique return object is <code>List</code> type.</p>
      */
-    List<E> findDynamicByEntityUnique(@Param("tablename") String tablename, @Param("entity") E entity, @Param("logic") Object logic);
+    List<E> findDynamicByEntityUnique(@Param("tableName") String tableName, @Param("entity") E entity, @Param("logic") Object logic);
 
     /**
      * <code>findByEntityUniqueAndNotId</code>
@@ -114,7 +114,7 @@ public interface InfoMapper<E extends RestInfo<I>, I> extends SuperMapper<E, I> 
     /**
      * <code>findDynamicByEntityUniqueAndNotId</code>
      * <p>The find dynamic by entity unique and not id method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param entity E <p>The entity parameter is <code>E</code> type.</p>
      * @param id I <p>The id parameter is <code>I</code> type.</p>
      * @param logic {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
@@ -124,5 +124,5 @@ public interface InfoMapper<E extends RestInfo<I>, I> extends SuperMapper<E, I> 
      * @see  java.util.List
      * @return  {@link java.util.List} <p>The find dynamic by entity unique and not id return object is <code>List</code> type.</p>
      */
-    List<E> findDynamicByEntityUniqueAndNotId(@Param("tablename") String tablename, @Param("entity") E entity, @Param("id") I id, @Param("logic") Object logic);
+    List<E> findDynamicByEntityUniqueAndNotId(@Param("tableName") String tableName, @Param("entity") E entity, @Param("id") I id, @Param("logic") Object logic);
 }

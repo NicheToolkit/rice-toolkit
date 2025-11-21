@@ -37,7 +37,7 @@ public interface FickleLinkMapper<E extends RestId<I>, L, I> {
     /**
      * <code>findDynamicByLinkIdFickleLoad</code>
      * <p>The find dynamic by link id fickle load method.</p>
-     * @param tablename    {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName    {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param linkId       L <p>The link id parameter is <code>L</code> type.</p>
      * @param fickleParams {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The fickle params parameter is <code>RestFickle</code> type.</p>
      * @param loadParams   {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load params parameter is <code>RestLoad</code> type.</p>
@@ -48,7 +48,7 @@ public interface FickleLinkMapper<E extends RestId<I>, L, I> {
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      */
-    List<E> findDynamicByLinkIdFickleLoad(@Param("tablename") String tablename, @Param("id") L linkId, @Param("fickleParams") RestFickle<?>[] fickleParams, @Param("loadParams") RestLoad... loadParams);
+    List<E> findDynamicByLinkIdFickleLoad(@Param("tableName") String tableName, @Param("id") L linkId, @Param("fickleParams") RestFickle<?>[] fickleParams, @Param("loadParams") RestLoad... loadParams);
 
     /**
      * <code>findAllByLinkIdsFickleLoad</code>
@@ -68,7 +68,7 @@ public interface FickleLinkMapper<E extends RestId<I>, L, I> {
     /**
      * <code>findDynamicAllByLinkIdsFickleLoad</code>
      * <p>The find dynamic all by link ids fickle load method.</p>
-     * @param tablename    {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName    {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param linkIdList   {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param fickleParams {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The fickle params parameter is <code>RestFickle</code> type.</p>
      * @param loadParams   {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load params parameter is <code>RestLoad</code> type.</p>
@@ -80,7 +80,7 @@ public interface FickleLinkMapper<E extends RestId<I>, L, I> {
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      */
-    List<E> findDynamicAllByLinkIdsFickleLoad(@Param("tablename") String tablename, @Param("linkIdList") Collection<L> linkIdList, @Param("fickleParams") RestFickle<?>[] fickleParams, @Param("loadParams") RestLoad... loadParams);
+    List<E> findDynamicAllByLinkIdsFickleLoad(@Param("tableName") String tableName, @Param("linkIdList") Collection<L> linkIdList, @Param("fickleParams") RestFickle<?>[] fickleParams, @Param("loadParams") RestLoad... loadParams);
 
     /**
      * <code>findByLinkIdFickleLoad</code>
@@ -101,7 +101,7 @@ public interface FickleLinkMapper<E extends RestId<I>, L, I> {
     /**
      * <code>findDynamicByLinkIdFickleLoad</code>
      * <p>The find dynamic by link id fickle load method.</p>
-     * @param tablename    {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName    {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param linkId       L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName     {@link java.lang.String} <p>The link name parameter is <code>String</code> type.</p>
      * @param fickleParams {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The fickle params parameter is <code>RestFickle</code> type.</p>
@@ -113,7 +113,7 @@ public interface FickleLinkMapper<E extends RestId<I>, L, I> {
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      */
-    List<E> findDynamicByLinkIdFickleLoad(@Param("tablename") String tablename, @Param("id") L linkId, @Param("linkName") String linkName, @Param("fickleParams") RestFickle<?>[] fickleParams, @Param("loadParams") RestLoad... loadParams);
+    List<E> findDynamicByLinkIdFickleLoad(@Param("tableName") String tableName, @Param("id") L linkId, @Param("linkName") String linkName, @Param("fickleParams") RestFickle<?>[] fickleParams, @Param("loadParams") RestLoad... loadParams);
 
     /**
      * <code>findAllByLinkIdsFickleLoad</code>
@@ -135,7 +135,7 @@ public interface FickleLinkMapper<E extends RestId<I>, L, I> {
     /**
      * <code>findDynamicAllByLinkIdsFickleLoad</code>
      * <p>The find dynamic all by link ids fickle load method.</p>
-     * @param tablename    {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName    {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param linkIdList   {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName     {@link java.lang.String} <p>The link name parameter is <code>String</code> type.</p>
      * @param fickleParams {@link io.github.nichetoolkit.mybatis.fickle.RestFickle} <p>The fickle params parameter is <code>RestFickle</code> type.</p>
@@ -148,6 +148,6 @@ public interface FickleLinkMapper<E extends RestId<I>, L, I> {
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      */
-    List<E> findDynamicAllByLinkIdsFickleLoad(@Param("tablename") String tablename, @Param("linkIdList") Collection<L> linkIdList, @Param("linkName") String linkName, @Param("fickleParams") RestFickle<?>[] fickleParams, @Param("loadParams") RestLoad... loadParams);
+    List<E> findDynamicAllByLinkIdsFickleLoad(@Param("tableName") String tableName, @Param("linkIdList") Collection<L> linkIdList, @Param("linkName") String linkName, @Param("fickleParams") RestFickle<?>[] fickleParams, @Param("loadParams") RestLoad... loadParams);
 
 }

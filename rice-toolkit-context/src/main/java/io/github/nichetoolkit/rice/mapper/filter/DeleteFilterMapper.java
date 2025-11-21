@@ -34,7 +34,7 @@ public interface DeleteFilterMapper<E extends RestId<I>, F extends IdFilter<I, K
     /**
      * <code>deleteDynamicAllByFilterWhere</code>
      * <p>The delete dynamic all by filter where method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param filter    F <p>The filter parameter is <code>F</code> type.</p>
      * @return {@link java.lang.Integer} <p>The delete dynamic all by filter where return object is <code>Integer</code> type.</p>
@@ -42,5 +42,5 @@ public interface DeleteFilterMapper<E extends RestId<I>, F extends IdFilter<I, K
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer deleteDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter);
+    Integer deleteDynamicAllByFilterWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("filter") F filter);
 }

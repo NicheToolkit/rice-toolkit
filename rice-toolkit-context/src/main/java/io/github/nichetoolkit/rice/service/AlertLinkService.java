@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestKey;
-import io.github.nichetoolkit.rice.RestTablekey;
+import io.github.nichetoolkit.rice.RestTableKey;
 
 import java.util.Collection;
 
@@ -35,15 +35,15 @@ public interface AlertLinkService<I, K> extends AlertService<I, K> {
      * <p>The alert all by link ids method.</p>
      * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param <S>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey   {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey   {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param status     S <p>The status parameter is <code>S</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestException
      */
-    <L, S> void alertAllByLinkIds(RestTablekey<K> tablekey, Collection<L> linkIdList, S status) throws RestException;
+    <L, S> void alertAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList, S status) throws RestException;
 
     /**
      * <code>alertAllByLinkIds</code>
@@ -65,17 +65,17 @@ public interface AlertLinkService<I, K> extends AlertService<I, K> {
      * <p>The alert all by link ids method.</p>
      * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param <S>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey   {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey   {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName   {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param status     S <p>The status parameter is <code>S</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestKey
      * @see io.github.nichetoolkit.rest.RestException
      */
-    <L, S> void alertAllByLinkIds(RestTablekey<K> tablekey, Collection<L> linkIdList, RestKey<String> linkName, S status) throws RestException;
+    <L, S> void alertAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList, RestKey<String> linkName, S status) throws RestException;
 
     /**
      * <code>alertByLinkId</code>
@@ -94,14 +94,14 @@ public interface AlertLinkService<I, K> extends AlertService<I, K> {
      * <p>The alert by link id method.</p>
      * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param <S>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkId   L <p>The link id parameter is <code>L</code> type.</p>
      * @param status   S <p>The status parameter is <code>S</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see io.github.nichetoolkit.rest.RestException
      */
-    <L, S> void alertByLinkId(RestTablekey<K> tablekey, L linkId,  S status) throws RestException;
+    <L, S> void alertByLinkId(RestTableKey<K> tableKey, L linkId,  S status) throws RestException;
 
     /**
      * <code>alertByLinkId</code>
@@ -122,15 +122,143 @@ public interface AlertLinkService<I, K> extends AlertService<I, K> {
      * <p>The alert by link id method.</p>
      * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param <S>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkId   L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param status   S <p>The status parameter is <code>S</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see io.github.nichetoolkit.rest.RestKey
      * @see io.github.nichetoolkit.rest.RestException
      */
-    <L, S> void alertByLinkId(RestTablekey<K> tablekey, L linkId, RestKey<String> linkName, S status) throws RestException;
+    <L, S> void alertByLinkId(RestTableKey<K> tableKey, L linkId, RestKey<String> linkName, S status) throws RestException;
+
+    /**
+     * <code>alertAllByLinkIds</code>
+     * <p>The alert all by link ids method.</p>
+     * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <S>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param status     S <p>The status parameter is <code>S</code> type.</p>
+     * @param statusName {@link io.github.nichetoolkit.rest.RestKey} <p>The status name parameter is <code>RestKey</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see java.util.Collection
+     * @see io.github.nichetoolkit.rest.RestKey
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    <L, S> void alertAllByLinkIds(Collection<L> linkIdList,  S status, RestKey<String> statusName) throws RestException;
+
+    /**
+     * <code>alertAllByLinkIds</code>
+     * <p>The alert all by link ids method.</p>
+     * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <S>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param tableKey   {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param status     S <p>The status parameter is <code>S</code> type.</p>
+     * @param statusName {@link io.github.nichetoolkit.rest.RestKey} <p>The status name parameter is <code>RestKey</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTableKey
+     * @see java.util.Collection
+     * @see io.github.nichetoolkit.rest.RestKey
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    <L, S> void alertAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList, S status, RestKey<String> statusName) throws RestException;
+
+    /**
+     * <code>alertAllByLinkIds</code>
+     * <p>The alert all by link ids method.</p>
+     * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <S>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName   {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
+     * @param status     S <p>The status parameter is <code>S</code> type.</p>
+     * @param statusName {@link io.github.nichetoolkit.rest.RestKey} <p>The status name parameter is <code>RestKey</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see java.util.Collection
+     * @see io.github.nichetoolkit.rest.RestKey
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    <L, S> void alertAllByLinkIds(Collection<L> linkIdList, RestKey<String> linkName, S status, RestKey<String> statusName) throws RestException;
+
+    /**
+     * <code>alertAllByLinkIds</code>
+     * <p>The alert all by link ids method.</p>
+     * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <S>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param tableKey   {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
+     * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
+     * @param linkName   {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
+     * @param status     S <p>The status parameter is <code>S</code> type.</p>
+     * @param statusName {@link io.github.nichetoolkit.rest.RestKey} <p>The status name parameter is <code>RestKey</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTableKey
+     * @see java.util.Collection
+     * @see io.github.nichetoolkit.rest.RestKey
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    <L, S> void alertAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList, RestKey<String> linkName, S status, RestKey<String> statusName) throws RestException;
+
+    /**
+     * <code>alertByLinkId</code>
+     * <p>The alert by link id method.</p>
+     * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <S>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkId     L <p>The link id parameter is <code>L</code> type.</p>
+     * @param status     S <p>The status parameter is <code>S</code> type.</p>
+     * @param statusName {@link io.github.nichetoolkit.rest.RestKey} <p>The status name parameter is <code>RestKey</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rest.RestKey
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    <L, S> void alertByLinkId(L linkId,  S status, RestKey<String> statusName) throws RestException;
+
+    /**
+     * <code>alertByLinkId</code>
+     * <p>The alert by link id method.</p>
+     * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <S>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param tableKey   {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
+     * @param linkId     L <p>The link id parameter is <code>L</code> type.</p>
+     * @param status     S <p>The status parameter is <code>S</code> type.</p>
+     * @param statusName {@link io.github.nichetoolkit.rest.RestKey} <p>The status name parameter is <code>RestKey</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTableKey
+     * @see io.github.nichetoolkit.rest.RestKey
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    <L, S> void alertByLinkId(RestTableKey<K> tableKey, L linkId,  S status, RestKey<String> statusName) throws RestException;
+
+    /**
+     * <code>alertByLinkId</code>
+     * <p>The alert by link id method.</p>
+     * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <S>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param linkId     L <p>The link id parameter is <code>L</code> type.</p>
+     * @param linkName   {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
+     * @param status     S <p>The status parameter is <code>S</code> type.</p>
+     * @param statusName {@link io.github.nichetoolkit.rest.RestKey} <p>The status name parameter is <code>RestKey</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rest.RestKey
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    <L, S> void alertByLinkId(L linkId, RestKey<String> linkName, S status, RestKey<String> statusName) throws RestException;
+
+    /**
+     * <code>alertByLinkId</code>
+     * <p>The alert by link id method.</p>
+     * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <S>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param tableKey   {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
+     * @param linkId     L <p>The link id parameter is <code>L</code> type.</p>
+     * @param linkName   {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
+     * @param status     S <p>The status parameter is <code>S</code> type.</p>
+     * @param statusName {@link io.github.nichetoolkit.rest.RestKey} <p>The status name parameter is <code>RestKey</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.RestTableKey
+     * @see io.github.nichetoolkit.rest.RestKey
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    <L, S> void alertByLinkId(RestTableKey<K> tableKey, L linkId, RestKey<String> linkName, S status, RestKey<String> statusName) throws RestException;
 
 }

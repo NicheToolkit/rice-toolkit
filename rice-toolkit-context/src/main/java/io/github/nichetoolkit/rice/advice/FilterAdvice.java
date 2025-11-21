@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice.advice;
 import io.github.nichetoolkit.mybatis.fickle.RestFickle;
 import io.github.nichetoolkit.mybatis.load.RestLoad;
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rice.RestTablekey;
+import io.github.nichetoolkit.rice.RestTableKey;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 
 /**
@@ -138,15 +138,15 @@ public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
     }
 
     /**
-     * <code>tablekey</code>
-     * <p>The tablekey method.</p>
+     * <code>tableKey</code>
+     * <p>The tableKey method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey return object is <code>RestTablekey</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey return object is <code>RestTableKey</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default RestTablekey<K> tablekey(F filter) throws RestException {
-        return filter.toTablekey();
+    default RestTableKey<K> tableKey(F filter) throws RestException {
+        return filter.toTableKey();
     }
 }

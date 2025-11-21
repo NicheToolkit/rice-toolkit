@@ -28,7 +28,7 @@ public interface RemoveMapper<I> {
     /**
      * <code>removeDynamicById</code>
      * <p>The remove dynamic by id method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param id I <p>The id parameter is <code>I</code> type.</p>
      * @param logic {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
      * @see  java.lang.String
@@ -37,7 +37,7 @@ public interface RemoveMapper<I> {
      * @see  java.lang.Integer
      * @return  {@link java.lang.Integer} <p>The remove dynamic by id return object is <code>Integer</code> type.</p>
      */
-    Integer removeDynamicById(@Param("tablename") String tablename, @Param("id") I id, @Param("logic") Object logic);
+    Integer removeDynamicById(@Param("tableName") String tableName, @Param("id") I id, @Param("logic") Object logic);
 
     /**
      * <code>removeAll</code>
@@ -55,7 +55,7 @@ public interface RemoveMapper<I> {
     /**
      * <code>removeDynamicAll</code>
      * <p>The remove dynamic all method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param logic {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
      * @see  java.lang.String
@@ -65,7 +65,7 @@ public interface RemoveMapper<I> {
      * @see  java.lang.Integer
      * @return  {@link java.lang.Integer} <p>The remove dynamic all return object is <code>Integer</code> type.</p>
      */
-    Integer removeDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList, @Param("logic") Object logic);
+    Integer removeDynamicAll(@Param("tableName") String tableName, @Param("idList") Collection<I> idList, @Param("logic") Object logic);
 
     /**
      * <code>removeAllByWhere</code>
@@ -83,7 +83,7 @@ public interface RemoveMapper<I> {
     /**
      * <code>removeDynamicAllByWhere</code>
      * <p>The remove dynamic all by where method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param logic {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
      * @see  java.lang.String
@@ -92,5 +92,5 @@ public interface RemoveMapper<I> {
      * @see  java.lang.Integer
      * @return  {@link java.lang.Integer} <p>The remove dynamic all by where return object is <code>Integer</code> type.</p>
      */
-    Integer removeDynamicAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("logic") Object logic);
+    Integer removeDynamicAllByWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("logic") Object logic);
 }

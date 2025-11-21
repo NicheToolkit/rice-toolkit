@@ -1,7 +1,7 @@
 package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rice.RestTablekey;
+import io.github.nichetoolkit.rice.RestTableKey;
 
 import java.util.Collection;
 
@@ -27,14 +27,14 @@ public interface DeleteService<I, K> {
     /**
      * <code>deleteAll</code>
      * <p>The delete all method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param idList   {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestException
      */
-    void deleteAll(RestTablekey<K> tablekey, Collection<I> idList) throws RestException;
+    void deleteAll(RestTableKey<K> tableKey, Collection<I> idList) throws RestException;
 
     /**
      * <code>deleteById</code>
@@ -48,11 +48,11 @@ public interface DeleteService<I, K> {
     /**
      * <code>deleteById</code>
      * <p>The delete by id method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param id       I <p>The id parameter is <code>I</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see io.github.nichetoolkit.rest.RestException
      */
-    void deleteById(RestTablekey<K> tablekey, I id) throws RestException;
+    void deleteById(RestTableKey<K> tableKey, I id) throws RestException;
 }

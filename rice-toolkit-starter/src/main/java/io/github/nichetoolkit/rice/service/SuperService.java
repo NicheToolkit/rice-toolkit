@@ -93,24 +93,24 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     /**
      * <code>create</code>
      * <p>The create method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @param idArray  {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
      * @return M <p>The create return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.lang.Object
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public M create(RestTablekey<K> tablekey, M model, Object... idArray) throws RestException {
+    public M create(RestTableKey<K> tableKey, M model, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return null;
         }
-        optionalCreate(tablekey, model);
+        optionalCreate(tableKey, model);
         this.beforeCreate(model);
-        Integer result = single(tablekey, model, idArray);
+        Integer result = single(tableKey, model, idArray);
         if (useSaveResult()) {
             String message = "The creating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
             OptionalUtils.ofCreate(result, message, simpleName, log);
@@ -139,24 +139,24 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     /**
      * <code>update</code>
      * <p>The update method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @param idArray  {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
      * @return M <p>The update return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.lang.Object
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public M update(RestTablekey<K> tablekey, M model, Object... idArray) throws RestException {
+    public M update(RestTableKey<K> tableKey, M model, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return null;
         }
-        optionalUpdate(tablekey, model);
+        optionalUpdate(tableKey, model);
         this.beforeUpdate(model);
-        Integer result = single(tablekey, model, idArray);
+        Integer result = single(tableKey, model, idArray);
         if (useSaveResult()) {
             String message = "The updating method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
             OptionalUtils.ofUpdate(result, message, simpleName, log);
@@ -185,24 +185,24 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     /**
      * <code>save</code>
      * <p>The save method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @param idArray  {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
      * @return M <p>The save return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.lang.Object
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public M save(RestTablekey<K> tablekey, M model, Object... idArray) throws RestException {
+    public M save(RestTableKey<K> tableKey, M model, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return null;
         }
-        optionalSave(tablekey, model);
+        optionalSave(tableKey, model);
         this.beforeSave(model);
-        Integer result = single(tablekey, model, idArray);
+        Integer result = single(tableKey, model, idArray);
         if (useSaveResult()) {
             String message = "The saving method has error with " + simpleName + ": " + JsonUtils.parseJson(model);
             OptionalUtils.ofSave(result, message, simpleName, log);
@@ -249,12 +249,12 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     /**
      * <code>saveAll</code>
      * <p>The save all method.</p>
-     * @param tablekey  {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey  {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param idArray   {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
      * @return {@link java.util.List} <p>The save all return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see java.lang.Object
      * @see java.util.List
@@ -262,7 +262,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public List<M> saveAll(RestTablekey<K> tablekey, Collection<M> modelList, Object... idArray) throws RestException {
+    public List<M> saveAll(RestTableKey<K> tableKey, Collection<M> modelList, Object... idArray) throws RestException {
         if (GeneralUtils.isEmpty(modelList)) {
             return Collections.emptyList();
         }
@@ -274,21 +274,21 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         List<E> entityList;
         if (beforeSaveAllMethod != null && !beforeSaveAllMethod.isDefault()) {
             for (M model : modelList) {
-                optionalSave(tablekey, model);
+                optionalSave(tableKey, model);
             }
             this.beforeSaveAll(modelList);
             entityList = entityActuator(modelList, model -> {
             }, idArray);
         } else {
             entityList = entityActuator(modelList, model -> {
-                this.optionalSave(tablekey, model);
+                this.optionalSave(tableKey, model);
                 this.beforeSave(model);
             }, idArray);
         }
-        String tablename = resolveTablename(tablekey, modelList);
+        String tableName = resolveTableName(tableKey, modelList);
         Integer result;
-        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            result = PartitionHelper.save(entityList, this.partitionOfSave(), entities -> superMapper.saveDynamicAll(tablename, entities));
+        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
+            result = PartitionHelper.save(entityList, this.partitionOfSave(), entities -> superMapper.saveDynamicAll(tableName, entities));
         } else {
             result = PartitionHelper.save(entityList, this.partitionOfSave(), superMapper::saveAll);
         }
@@ -320,31 +320,31 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     /**
      * <code>operateById</code>
      * <p>The operate by id method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param id       I <p>The id parameter is <code>I</code> type.</p>
      * @param operate  {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see io.github.nichetoolkit.rice.enums.OperateType
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void operateById(RestTablekey<K> tablekey, I id, OperateType operate) throws RestException {
+    public void operateById(RestTableKey<K> tableKey, I id, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(operate)) {
             return;
         }
         if (superMapper instanceof OperateMapper) {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                operateId(tablename, id, operate);
+                operateId(tableName, id, operate);
             } else {
-                E entity = findById(id, tablename);
+                E entity = findById(id, tableName);
                 if (GeneralUtils.isNotEmpty(entity)) {
                     if (!isBeforeSkip()) {
                         this.beforeOperate(entity);
                     }
-                    operateId(tablename, id, operate);
+                    operateId(tableName, id, operate);
                     if (!isAfterSkip()) {
                         this.afterOperate(entity);
                     }
@@ -373,29 +373,29 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     /**
      * <code>operateAll</code>
      * <p>The operate all method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param idList   {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param operate  {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rice.enums.OperateType
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void operateAll(RestTablekey<K> tablekey, Collection<I> idList, OperateType operate) throws RestException {
+    public void operateAll(RestTableKey<K> tableKey, Collection<I> idList, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
         if (superMapper instanceof OperateMapper) {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                operatePartition(tablename, idList, operate);
+                operatePartition(tableName, idList, operate);
             } else {
-                List<E> entityList = findAll(idList, tablename);
+                List<E> entityList = findAll(idList, tableName);
                 if (GeneralUtils.isNotEmpty(entityList)) {
-                    operateAdvice(entityList, operate, type -> operatePartition(tablename, idList, type));
+                    operateAdvice(entityList, operate, type -> operatePartition(tableName, idList, type));
                 }
             }
         }
@@ -421,17 +421,17 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>operateByLinkId</code>
      * <p>The operate by link id method.</p>
      * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkId   L <p>The link id parameter is <code>L</code> type.</p>
      * @param operate  {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see io.github.nichetoolkit.rice.enums.OperateType
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L> void operateByLinkId(RestTablekey<K> tablekey, L linkId, OperateType operate) throws RestException {
+    public <L> void operateByLinkId(RestTableKey<K> tableKey, L linkId, OperateType operate) throws RestException {
         operateByLinkId(null, linkId, null, operate);
     }
 
@@ -457,33 +457,33 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>operateByLinkId</code>
      * <p>The operate by link id method.</p>
      * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkId   L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param operate  {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see io.github.nichetoolkit.rest.RestKey
      * @see io.github.nichetoolkit.rice.enums.OperateType
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L> void operateByLinkId(RestTablekey<K> tablekey, L linkId, RestKey<String> linkName, OperateType operate) throws RestException {
+    public <L> void operateByLinkId(RestTableKey<K> tableKey, L linkId, RestKey<String> linkName, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
             return;
         }
         if (superMapper instanceof OperateLinkMapper) {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                operateLinkId(tablename, linkId, linkName, operate);
+                operateLinkId(tableName, linkId, linkName, operate);
             } else {
-                List<E> entityList = findByLinkId(tablename, linkId, linkName);
+                List<E> entityList = findByLinkId(tableName, linkId, linkName);
                 if (GeneralUtils.isNotEmpty(entityList)) {
                     if (!isBeforeSkip()) {
                         this.beforeOperateAll(entityList);
                     }
-                    operateLinkId(tablename, linkId, linkName, operate);
+                    operateLinkId(tableName, linkId, linkName, operate);
                     if (!isAfterSkip()) {
                         this.afterOperateAll(entityList);
                     }
@@ -514,18 +514,18 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>operateAllByLinkIds</code>
      * <p>The operate all by link ids method.</p>
      * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey   {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey   {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param operate    {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rice.enums.OperateType
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L> void operateAllByLinkIds(RestTablekey<K> tablekey, Collection<L> linkIdList, OperateType operate) throws RestException {
+    public <L> void operateAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList, OperateType operate) throws RestException {
         operateAllByLinkIds(null, linkIdList, null, operate);
     }
 
@@ -552,12 +552,12 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>operateAllByLinkIds</code>
      * <p>The operate all by link ids method.</p>
      * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey   {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey   {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName   {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param operate    {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operate parameter is <code>OperateType</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestKey
      * @see io.github.nichetoolkit.rice.enums.OperateType
@@ -565,18 +565,18 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L> void operateAllByLinkIds(RestTablekey<K> tablekey, Collection<L> linkIdList, RestKey<String> linkName, OperateType operate) throws RestException {
+    public <L> void operateAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList, RestKey<String> linkName, OperateType operate) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
             return;
         }
         if (superMapper instanceof OperateLinkMapper) {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                operateLinkIdPartition(tablename, linkIdList, linkName, operate);
+                operateLinkIdPartition(tableName, linkIdList, linkName, operate);
             } else {
-                List<E> entityList = findAllByLinkIds(tablename, linkIdList, linkName);
+                List<E> entityList = findAllByLinkIds(tableName, linkIdList, linkName);
                 if (GeneralUtils.isNotEmpty(entityList)) {
-                    operateAdvice(entityList, operate, type -> operateLinkIdPartition(tablename, linkIdList, linkName, type));
+                    operateAdvice(entityList, operate, type -> operateLinkIdPartition(tableName, linkIdList, linkName, type));
                 }
             }
         }
@@ -601,30 +601,30 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>alertById</code>
      * <p>The alert by id method.</p>
      * @param <S>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param id       I <p>The id parameter is <code>I</code> type.</p>
      * @param status   S <p>The status parameter is <code>S</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <S> void alertById(RestTablekey<K> tablekey, I id, S status) throws RestException {
+    public <S> void alertById(RestTableKey<K> tableKey, I id, S status) throws RestException {
         if (GeneralUtils.isEmpty(id) || GeneralUtils.isEmpty(status)) {
             return;
         }
         if (superMapper instanceof AlertMapper) {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                alertId(tablename, id, status);
+                alertId(tableName, id, status);
             } else {
-                E entity = findById(id, tablename);
+                E entity = findById(id, tableName);
                 if (GeneralUtils.isNotEmpty(entity)) {
                     if (!isBeforeSkip()) {
                         this.beforeAlert(entity);
                     }
-                    alertId(tablename, id, status);
+                    alertId(tableName, id, status);
                     if (!isAfterSkip()) {
                         this.afterAlert(entity);
                     }
@@ -654,28 +654,28 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>alertAll</code>
      * <p>The alert all method.</p>
      * @param <S>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param idList   {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param status   S <p>The status parameter is <code>S</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <S> void alertAll(RestTablekey<K> tablekey, Collection<I> idList, S status) throws RestException {
+    public <S> void alertAll(RestTableKey<K> tableKey, Collection<I> idList, S status) throws RestException {
         if (GeneralUtils.isEmpty(idList) || GeneralUtils.isEmpty(status)) {
             return;
         }
         if (superMapper instanceof AlertMapper) {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                alertPartition(tablename, idList, status);
+                alertPartition(tableName, idList, status);
             } else {
-                List<E> entityList = findAll(idList, tablename);
+                List<E> entityList = findAll(idList, tableName);
                 if (GeneralUtils.isNotEmpty(entityList)) {
-                    alertAdvice(entityList, status, alertStatus -> alertPartition(tablename, idList, alertStatus));
+                    alertAdvice(entityList, status, alertStatus -> alertPartition(tableName, idList, alertStatus));
                 }
             }
         }
@@ -702,16 +702,16 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <p>The alert by link id method.</p>
      * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param <S>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkId   L <p>The link id parameter is <code>L</code> type.</p>
      * @param status   S <p>The status parameter is <code>S</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L, S> void alertByLinkId(RestTablekey<K> tablekey, L linkId, S status) throws RestException {
+    public <L, S> void alertByLinkId(RestTableKey<K> tableKey, L linkId, S status) throws RestException {
         alertByLinkId(null, linkId, null, status);
     }
 
@@ -738,32 +738,32 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <p>The alert by link id method.</p>
      * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param <S>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkId   L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param status   S <p>The status parameter is <code>S</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see io.github.nichetoolkit.rest.RestKey
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L, S> void alertByLinkId(RestTablekey<K> tablekey, L linkId, RestKey<String> linkName, S status) throws RestException {
+    public <L, S> void alertByLinkId(RestTableKey<K> tableKey, L linkId, RestKey<String> linkName, S status) throws RestException {
         if (GeneralUtils.isEmpty(linkId) || GeneralUtils.isEmpty(status)) {
             return;
         }
         if (superMapper instanceof AlertLinkMapper) {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                alertLinkId(tablename, linkId, linkName, status);
+                alertLinkId(tableName, linkId, linkName, status);
             } else {
-                List<E> entityList = findByLinkId(tablename, linkId, linkName);
+                List<E> entityList = findByLinkId(tableName, linkId, linkName);
                 if (GeneralUtils.isNotEmpty(entityList)) {
                     if (!isBeforeSkip()) {
                         this.beforeAlertAll(entityList);
                     }
-                    alertLinkId(tablename, linkId, linkName, status);
+                    alertLinkId(tableName, linkId, linkName, status);
                     if (!isAfterSkip()) {
                         this.afterAlertAll(entityList);
                     }
@@ -795,17 +795,17 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <p>The alert all by link ids method.</p>
      * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param <S>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey   {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey   {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param status     S <p>The status parameter is <code>S</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L, S> void alertAllByLinkIds(RestTablekey<K> tablekey, Collection<L> linkIdList, S status) throws RestException {
+    public <L, S> void alertAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList, S status) throws RestException {
         alertAllByLinkIds(null, linkIdList, null, status);
     }
 
@@ -833,30 +833,30 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <p>The alert all by link ids method.</p>
      * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param <S>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey   {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey   {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName   {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param status     S <p>The status parameter is <code>S</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestKey
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L, S> void alertAllByLinkIds(RestTablekey<K> tablekey, Collection<L> linkIdList, RestKey<String> linkName, S status) throws RestException {
+    public <L, S> void alertAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList, RestKey<String> linkName, S status) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList) || GeneralUtils.isEmpty(status)) {
             return;
         }
         if (superMapper instanceof AlertLinkMapper) {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                alertLinkIdPartition(tablename, linkIdList, linkName, status);
+                alertLinkIdPartition(tableName, linkIdList, linkName, status);
             } else {
-                List<E> entityList = findAllByLinkIds(tablename, linkIdList, linkName);
+                List<E> entityList = findAllByLinkIds(tableName, linkIdList, linkName);
                 if (GeneralUtils.isNotEmpty(entityList)) {
-                    alertAdvice(entityList, status, type -> alertLinkIdPartition(tablename, linkIdList, linkName, type));
+                    alertAdvice(entityList, status, type -> alertLinkIdPartition(tableName, linkIdList, linkName, type));
                 }
             }
         }
@@ -878,30 +878,30 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     /**
      * <code>removeById</code>
      * <p>The remove by id method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param id       I <p>The id parameter is <code>I</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void removeById(RestTablekey<K> tablekey, I id) throws RestException {
+    public void removeById(RestTableKey<K> tableKey, I id) throws RestException {
         if (GeneralUtils.isEmpty(id)) {
             return;
         }
         Object logic = markOfLogic();
         if (superMapper instanceof RemoveMapper) {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                removeId(tablename, id, logic);
+                removeId(tableName, id, logic);
             } else {
-                E entity = findById(id, tablename);
+                E entity = findById(id, tableName);
                 if (GeneralUtils.isNotEmpty(entity)) {
                     if (!isBeforeSkip()) {
                         this.beforeRemove(entity);
                     }
-                    removeId(tablename, id, logic);
+                    removeId(tableName, id, logic);
                     if (!isAfterSkip()) {
                         this.afterRemove(entity);
                     }
@@ -928,28 +928,28 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     /**
      * <code>removeAll</code>
      * <p>The remove all method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param idList   {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void removeAll(RestTablekey<K> tablekey, Collection<I> idList) throws RestException {
+    public void removeAll(RestTableKey<K> tableKey, Collection<I> idList) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
         Object logic = markOfLogic();
         if (superMapper instanceof RemoveMapper) {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                removePartition(tablename, idList, logic);
+                removePartition(tableName, idList, logic);
             } else {
-                List<E> entityList = findAll(idList, tablename);
+                List<E> entityList = findAll(idList, tableName);
                 if (GeneralUtils.isNotEmpty(entityList)) {
-                    removeAdvice(entityList, logic, sign -> removePartition(tablename, idList, sign));
+                    removeAdvice(entityList, logic, sign -> removePartition(tableName, idList, sign));
                 }
             }
         }
@@ -973,15 +973,15 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>removeByLinkId</code>
      * <p>The remove by link id method.</p>
      * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkId   L <p>The link id parameter is <code>L</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L> void removeByLinkId(RestTablekey<K> tablekey, L linkId) throws RestException {
+    public <L> void removeByLinkId(RestTableKey<K> tableKey, L linkId) throws RestException {
         removeByLinkId(null, linkId, null);
     }
 
@@ -1005,32 +1005,32 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>removeByLinkId</code>
      * <p>The remove by link id method.</p>
      * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkId   L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see io.github.nichetoolkit.rest.RestKey
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L> void removeByLinkId(RestTablekey<K> tablekey, L linkId, RestKey<String> linkName) throws RestException {
+    public <L> void removeByLinkId(RestTableKey<K> tableKey, L linkId, RestKey<String> linkName) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
             return;
         }
         Object logic = markOfLogic();
         if (superMapper instanceof RemoveLinkMapper) {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                removeLinkId(tablename, linkId, linkName, logic);
+                removeLinkId(tableName, linkId, linkName, logic);
             } else {
-                List<E> entityList = findByLinkId(tablename, linkId, linkName);
+                List<E> entityList = findByLinkId(tableName, linkId, linkName);
                 if (GeneralUtils.isNotEmpty(entityList)) {
                     if (!isBeforeSkip()) {
                         this.beforeRemoveAll(entityList);
                     }
-                    removeLinkId(tablename, linkId, linkName, logic);
+                    removeLinkId(tableName, linkId, linkName, logic);
                     if (!isAfterSkip()) {
                         this.afterRemoveAll(entityList);
                     }
@@ -1059,16 +1059,16 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>removeAllByLinkIds</code>
      * <p>The remove all by link ids method.</p>
      * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey   {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey   {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L> void removeAllByLinkIds(RestTablekey<K> tablekey, Collection<L> linkIdList) throws RestException {
+    public <L> void removeAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList) throws RestException {
         removeAllByLinkIds(null, linkIdList, null);
     }
 
@@ -1093,30 +1093,30 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>removeAllByLinkIds</code>
      * <p>The remove all by link ids method.</p>
      * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey   {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey   {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName   {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestKey
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L> void removeAllByLinkIds(RestTablekey<K> tablekey, Collection<L> linkIdList, RestKey<String> linkName) throws RestException {
+    public <L> void removeAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList, RestKey<String> linkName) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
             return;
         }
         Object logic = markOfLogic();
         if (superMapper instanceof RemoveLinkMapper) {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                removeLinkIdPartition(tablename, linkIdList, linkName, logic);
+                removeLinkIdPartition(tableName, linkIdList, linkName, logic);
             } else {
-                List<E> entityList = findAllByLinkIds(tablename, linkIdList, linkName);
+                List<E> entityList = findAllByLinkIds(tableName, linkIdList, linkName);
                 if (GeneralUtils.isNotEmpty(entityList)) {
-                    removeAdvice(entityList, logic, sign -> removeLinkIdPartition(tablename, linkIdList, linkName, sign));
+                    removeAdvice(entityList, logic, sign -> removeLinkIdPartition(tableName, linkIdList, linkName, sign));
                 }
             }
         }
@@ -1130,26 +1130,26 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
 
     @Override
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void deleteById(RestTablekey<K> tablekey, I id) throws RestException {
+    public void deleteById(RestTableKey<K> tableKey, I id) throws RestException {
         if (GeneralUtils.isEmpty(id)) {
             return;
         }
         DeleteMode deleteModel = deleteMode();
         if (deleteModel == DeleteMode.REMOVE) {
-            removeById(tablekey, id);
+            removeById(tableKey, id);
         } else if (deleteModel == DeleteMode.OPERATE) {
-            operateById(tablekey, id, OperateType.REMOVE);
+            operateById(tableKey, id, OperateType.REMOVE);
         } else {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                deleteId(tablename, id);
+                deleteId(tableName, id);
             } else {
-                E entity = findById(id, tablename);
+                E entity = findById(id, tableName);
                 if (GeneralUtils.isNotEmpty(entity)) {
                     if (!isBeforeSkip()) {
                         this.beforeDelete(entity);
                     }
-                    deleteId(tablename, id);
+                    deleteId(tableName, id);
                     if (!isAfterSkip()) {
                         this.afterDelete(entity);
                     }
@@ -1167,23 +1167,23 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
 
     @Override
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public void deleteAll(RestTablekey<K> tablekey, Collection<I> idList) throws RestException {
+    public void deleteAll(RestTableKey<K> tableKey, Collection<I> idList) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return;
         }
         DeleteMode deleteModel = deleteMode();
         if (deleteModel == DeleteMode.REMOVE) {
-            removeAll(tablekey, idList);
+            removeAll(tableKey, idList);
         } else if (deleteModel == DeleteMode.OPERATE) {
-            operateAll(tablekey, idList, OperateType.REMOVE);
+            operateAll(tableKey, idList, OperateType.REMOVE);
         } else {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                deletePartition(tablename, idList);
+                deletePartition(tableName, idList);
             } else {
                 List<E> entityList = superMapper.findAll(idList);
                 if (GeneralUtils.isNotEmpty(entityList)) {
-                    deleteAdvice(entityList, () -> deletePartition(tablename, idList));
+                    deleteAdvice(entityList, () -> deletePartition(tableName, idList));
                 }
             }
         }
@@ -1207,15 +1207,15 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>deleteByLinkId</code>
      * <p>The delete by link id method.</p>
      * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkId   L <p>The link id parameter is <code>L</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L> void deleteByLinkId(RestTablekey<K> tablekey, L linkId) throws RestException {
+    public <L> void deleteByLinkId(RestTableKey<K> tableKey, L linkId) throws RestException {
         deleteByLinkId(null, linkId, null);
     }
 
@@ -1239,36 +1239,36 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>deleteByLinkId</code>
      * <p>The delete by link id method.</p>
      * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkId   L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see io.github.nichetoolkit.rest.RestKey
      * @see org.springframework.transaction.annotation.Transactional
      * @see io.github.nichetoolkit.rest.RestException
      */
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L> void deleteByLinkId(RestTablekey<K> tablekey, L linkId, RestKey<String> linkName) throws RestException {
+    public <L> void deleteByLinkId(RestTableKey<K> tableKey, L linkId, RestKey<String> linkName) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
             return;
         }
         DeleteMode deleteModel = deleteMode();
         if (deleteModel == DeleteMode.REMOVE) {
-            removeByLinkId(tablekey, linkId, linkName);
+            removeByLinkId(tableKey, linkId, linkName);
         } else if (deleteModel == DeleteMode.OPERATE) {
-            operateByLinkId(tablekey, linkId, linkName, OperateType.REMOVE);
+            operateByLinkId(tableKey, linkId, linkName, OperateType.REMOVE);
         } else if (superMapper instanceof DeleteLinkMapper) {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                deleteLinkId(tablename, linkId, linkName);
+                deleteLinkId(tableName, linkId, linkName);
             } else {
-                List<E> entityList = findByLinkId(tablename, linkId, linkName);
+                List<E> entityList = findByLinkId(tableName, linkId, linkName);
                 if (GeneralUtils.isNotEmpty(entityList)) {
                     if (!isBeforeSkip()) {
                         this.beforeDeleteAll(entityList);
                     }
-                    deleteLinkId(tablename, linkId, linkName);
+                    deleteLinkId(tableName, linkId, linkName);
                     if (!isAfterSkip()) {
                         this.afterDeleteAll(entityList);
                     }
@@ -1297,10 +1297,10 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>deleteAllByLinkIds</code>
      * <p>The delete all by link ids method.</p>
      * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey   {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey   {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see java.lang.SuppressWarnings
      * @see org.springframework.transaction.annotation.Transactional
@@ -1308,7 +1308,7 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      */
     @SuppressWarnings("Duplicates")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L> void deleteAllByLinkIds(RestTablekey<K> tablekey, Collection<L> linkIdList) throws RestException {
+    public <L> void deleteAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList) throws RestException {
         deleteAllByLinkIds(null, linkIdList, null);
     }
 
@@ -1333,11 +1333,11 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>deleteAllByLinkIds</code>
      * <p>The delete all by link ids method.</p>
      * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey   {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey   {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName   {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestKey
      * @see java.lang.SuppressWarnings
@@ -1346,23 +1346,23 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      */
     @SuppressWarnings("Duplicates")
     @Transactional(rollbackFor = {RestException.class, SQLException.class})
-    public <L> void deleteAllByLinkIds(RestTablekey<K> tablekey, Collection<L> linkIdList, RestKey<String> linkName) throws RestException {
+    public <L> void deleteAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList, RestKey<String> linkName) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
             return;
         }
         DeleteMode deleteModel = deleteMode();
         if (deleteModel == DeleteMode.REMOVE) {
-            removeAllByLinkIds(tablekey, linkIdList, linkName);
+            removeAllByLinkIds(tableKey, linkIdList, linkName);
         } else if (deleteModel == DeleteMode.OPERATE) {
-            operateAllByLinkIds(tablekey, linkIdList, linkName, OperateType.REMOVE);
+            operateAllByLinkIds(tableKey, linkIdList, linkName, OperateType.REMOVE);
         } else if (superMapper instanceof DeleteLinkMapper) {
-            String tablename = resolveTablename(tablekey);
+            String tableName = resolveTableName(tableKey);
             if (isBeforeSkip() && isAfterSkip()) {
-                deleteLinkIdPartition(tablename, linkIdList, linkName);
+                deleteLinkIdPartition(tableName, linkIdList, linkName);
             } else {
-                List<E> entityList = findAllByLinkIds(tablename, linkIdList, linkName);
+                List<E> entityList = findAllByLinkIds(tableName, linkIdList, linkName);
                 if (GeneralUtils.isNotEmpty(entityList)) {
-                    deleteAdvice(entityList, () -> deleteLinkIdPartition(tablename, linkIdList, linkName));
+                    deleteAdvice(entityList, () -> deleteLinkIdPartition(tableName, linkIdList, linkName));
                 }
             }
         }
@@ -1390,41 +1390,41 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     }
 
     @Override
-    public M queryById(RestTablekey<K> tablekey, I id, RestLoad... isLoadArray) throws RestException {
-        return queryById(tablekey, id, null, isLoadArray);
+    public M queryById(RestTableKey<K> tableKey, I id, RestLoad... isLoadArray) throws RestException {
+        return queryById(tableKey, id, null, isLoadArray);
     }
 
 
     /**
      * <code>queryById</code>
      * <p>The query by id method.</p>
-     * @param tablekey    {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param id          I <p>The id parameter is <code>I</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
      * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return M <p>The query by id return object is <code>M</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public M queryById(RestTablekey<K> tablekey, I id, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
+    public M queryById(RestTableKey<K> tableKey, I id, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(id)) {
             return null;
         }
         E entity;
-        String tablename = resolveTablename(tablekey);
-        RestFickle<?>[] tableFickle = tableFickle(tablename, fickleList);
+        String tableName = resolveTableName(tableKey);
+        RestFickle<?>[] tableFickle = tableFickle(tableName, fickleList);
         if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entity = findByIdFickleLoad(id, tablename, tableFickle, isLoadArray);
+            entity = findByIdFickleLoad(id, tableName, tableFickle, isLoadArray);
         } else if (GeneralUtils.isNotEmpty(tableFickle) && isFickleField() && FindFickleMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entity = findByIdFickle(id, tablename, tableFickle);
+            entity = findByIdFickle(id, tableName, tableFickle);
         } else if (GeneralUtils.isNotEmpty(isLoadArray) && FindLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entity = findByIdLoad(id, tablename, isLoadArray);
+            entity = findByIdLoad(id, tableName, isLoadArray);
         } else {
-            entity = findById(id, tablename);
+            entity = findById(id, tableName);
         }
         if (GeneralUtils.isEmpty(entity)) {
             return null;
@@ -1455,41 +1455,41 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     }
 
     @Override
-    public List<M> queryAll(RestTablekey<K> tablekey, Collection<I> idList, RestLoad... isLoadArray) throws RestException {
-        return queryAll(tablekey, idList, null, isLoadArray);
+    public List<M> queryAll(RestTableKey<K> tableKey, Collection<I> idList, RestLoad... isLoadArray) throws RestException {
+        return queryAll(tableKey, idList, null, isLoadArray);
     }
 
     /**
      * <code>queryAll</code>
      * <p>The query all method.</p>
-     * @param tablekey    {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param idList      {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
      * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query all return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public List<M> queryAll(RestTablekey<K> tablekey, Collection<I> idList, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
+    public List<M> queryAll(RestTableKey<K> tableKey, Collection<I> idList, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(idList)) {
             return Collections.emptyList();
         }
         List<E> entityList;
-        String tablename = resolveTablename(tablekey);
-        RestFickle<?>[] tableFickle = tableFickle(tablename, fickleList);
+        String tableName = resolveTableName(tableKey);
+        RestFickle<?>[] tableFickle = tableFickle(tableName, fickleList);
         if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entityList = findAllFickleLoad(idList, tablename, tableFickle, isLoadArray);
+            entityList = findAllFickleLoad(idList, tableName, tableFickle, isLoadArray);
         } else if (GeneralUtils.isNotEmpty(tableFickle) && isFickleField() && FindFickleMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entityList = findAllFickle(idList, tablename, tableFickle);
+            entityList = findAllFickle(idList, tableName, tableFickle);
         } else if (GeneralUtils.isNotEmpty(isLoadArray) && FindLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entityList = findAllLoad(idList, tablename, isLoadArray);
+            entityList = findAllLoad(idList, tableName, isLoadArray);
         } else {
-            entityList = findAll(idList, tablename);
+            entityList = findAll(idList, tableName);
         }
         return modelActuator(entityList, null, isLoadArray);
     }
@@ -1511,23 +1511,23 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         RestLoad[] isLoadArray = queryLoadArray(filter);
         String[] fieldArray = fieldArray(filter);
         RestFickle<?>[] fickleArray = fickleArray(filter);
-        RestTablekey<K> tablekey = tablekey(filter);
-        String tablename = resolveTablename(tablekey);
-        RestFickle<?>[] tableFickle = tableFickle(tablename, fickleArray);
+        RestTableKey<K> tableKey = tableKey(filter);
+        String tableName = resolveTableName(tableKey);
+        RestFickle<?>[] tableFickle = tableFickle(tableName, fickleArray);
         PageResult<E, I> pageResult;
         if (GeneralUtils.isNotEmpty(loadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-            pageResult = findAllByFickleLoadWhere(whereSql, tablename, filter, tableFickle, loadArray);
+            pageResult = findAllByFickleLoadWhere(whereSql, tableName, filter, tableFickle, loadArray);
         } else if (GeneralUtils.isNotEmpty(tableFickle) && isFickleField()
                 && FilterFickleMapper.class.isAssignableFrom(superMapper.getClass())) {
-            pageResult = findAllByFickleWhere(whereSql, tablename, filter, tableFickle);
+            pageResult = findAllByFickleWhere(whereSql, tableName, filter, tableFickle);
         } else if (GeneralUtils.isNotEmpty(loadArray) && FilterLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            pageResult = findAllByLoadWhere(whereSql, tablename, filter, loadArray);
+            pageResult = findAllByLoadWhere(whereSql, tableName, filter, loadArray);
         } else if (FindFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
-            pageResult = findAllByFilterWhere(whereSql, tablename, filter);
+            pageResult = findAllByFilterWhere(whereSql, tableName, filter);
         } else {
             Page<E> page = filter.toPage();
-            List<E> entityList = findAllByWhere(whereSql, tablename);
+            List<E> entityList = findAllByWhere(whereSql, tableName);
             pageResult = PageResult.builder(page, entityList);
         }
         List<M> modelList = modelActuator(pageResult.getEntities(), null, isLoadArray);
@@ -1573,38 +1573,38 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>queryByLinkId</code>
      * <p>The query by link id method.</p>
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey    {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>
      * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(RestTablekey<K> tablekey, L linkId, RestLoad... isLoadArray) throws RestException {
-        return queryByLinkId(tablekey, linkId, null, null, isLoadArray);
+    public <L> List<M> queryByLinkId(RestTableKey<K> tableKey, L linkId, RestLoad... isLoadArray) throws RestException {
+        return queryByLinkId(tableKey, linkId, null, null, isLoadArray);
     }
 
     /**
      * <code>queryByLinkId</code>
      * <p>The query by link id method.</p>
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey    {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
      * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(RestTablekey<K> tablekey, L linkId, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
-        return queryByLinkId(tablekey, linkId, null, fickleList, isLoadArray);
+    public <L> List<M> queryByLinkId(RestTableKey<K> tableKey, L linkId, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
+        return queryByLinkId(tableKey, linkId, null, fickleList, isLoadArray);
     }
 
     /**
@@ -1649,56 +1649,56 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>queryByLinkId</code>
      * <p>The query by link id method.</p>
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey    {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see io.github.nichetoolkit.rest.RestKey
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(RestTablekey<K> tablekey, L linkId, RestKey<String> linkName, RestLoad... isLoadArray) throws RestException {
-        return queryByLinkId(tablekey, linkId, linkName, null, isLoadArray);
+    public <L> List<M> queryByLinkId(RestTableKey<K> tableKey, L linkId, RestKey<String> linkName, RestLoad... isLoadArray) throws RestException {
+        return queryByLinkId(tableKey, linkId, linkName, null, isLoadArray);
     }
 
     /**
      * <code>queryByLinkId</code>
      * <p>The query by link id method.</p>
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey    {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkId      L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
      * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query by link id return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see io.github.nichetoolkit.rest.RestKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryByLinkId(RestTablekey<K> tablekey, L linkId, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
+    public <L> List<M> queryByLinkId(RestTableKey<K> tableKey, L linkId, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(linkId)) {
             return Collections.emptyList();
         }
         List<E> entityList;
-        String tablename = resolveTablename(tablekey);
-        RestFickle<?>[] tableFickle = tableFickle(tablename, fickleList);
+        String tableName = resolveTableName(tableKey);
+        RestFickle<?>[] tableFickle = tableFickle(tableName, fickleList);
         if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleLinkMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entityList = findByLinkIdFickleLoad(tablename, linkId, linkName, tableFickle, isLoadArray);
+            entityList = findByLinkIdFickleLoad(tableName, linkId, linkName, tableFickle, isLoadArray);
         } else if (GeneralUtils.isNotEmpty(tableFickle) && isFickleField() && LinkFickleMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entityList = findByLinkIdFickle(tablename, linkId, linkName, tableFickle);
+            entityList = findByLinkIdFickle(tableName, linkId, linkName, tableFickle);
         } else if (GeneralUtils.isNotEmpty(isLoadArray) && LinkLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entityList = findByLinkIdLoad(tablename, linkId, linkName, isLoadArray);
+            entityList = findByLinkIdLoad(tableName, linkId, linkName, isLoadArray);
         } else {
-            entityList = findByLinkId(tablename, linkId, linkName);
+            entityList = findByLinkId(tableName, linkId, linkName);
         }
         if (GeneralUtils.isEmpty(entityList)) {
             return Collections.emptyList();
@@ -1745,39 +1745,39 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>queryAllByLinkIds</code>
      * <p>The query all by link ids method.</p>
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey    {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(RestTablekey<K> tablekey, Collection<L> linkIdList, RestLoad... isLoadArray) throws RestException {
-        return queryAllByLinkIds(tablekey, linkIdList, null, null, isLoadArray);
+    public <L> List<M> queryAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList, RestLoad... isLoadArray) throws RestException {
+        return queryAllByLinkIds(tableKey, linkIdList, null, null, isLoadArray);
     }
 
     /**
      * <code>queryAllByLinkIds</code>
      * <p>The query all by link ids method.</p>
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey    {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
      * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(RestTablekey<K> tablekey, Collection<L> linkIdList, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
-        return queryAllByLinkIds(tablekey, linkIdList, null, fickleList, isLoadArray);
+    public <L> List<M> queryAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
+        return queryAllByLinkIds(tableKey, linkIdList, null, fickleList, isLoadArray);
     }
 
     /**
@@ -1823,57 +1823,57 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
      * <code>queryAllByLinkIds</code>
      * <p>The query all by link ids method.</p>
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey    {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestKey
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(RestTablekey<K> tablekey, Collection<L> linkIdList, RestKey<String> linkName, RestLoad... isLoadArray) throws RestException {
-        return queryAllByLinkIds(tablekey, linkIdList, linkName, null, isLoadArray);
+    public <L> List<M> queryAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList, RestKey<String> linkName, RestLoad... isLoadArray) throws RestException {
+        return queryAllByLinkIds(tableKey, linkIdList, linkName, null, isLoadArray);
     }
 
     /**
      * <code>queryAllByLinkIds</code>
      * <p>The query all by link ids method.</p>
      * @param <L>         {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tablekey    {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param linkIdList  {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName    {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
      * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query all by link ids return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.util.Collection
      * @see io.github.nichetoolkit.rest.RestKey
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    public <L> List<M> queryAllByLinkIds(RestTablekey<K> tablekey, Collection<L> linkIdList, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
+    public <L> List<M> queryAllByLinkIds(RestTableKey<K> tableKey, Collection<L> linkIdList, RestKey<String> linkName, Collection<RestFickle<?>> fickleList, RestLoad... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(linkIdList)) {
             return Collections.emptyList();
         }
         List<E> entityList;
-        String tablename = resolveTablename(tablekey);
-        RestFickle<?>[] tableFickle = tableFickle(tablename, fickleList);
+        String tableName = resolveTableName(tableKey);
+        RestFickle<?>[] tableFickle = tableFickle(tableName, fickleList);
         if (GeneralUtils.isNotEmpty(isLoadArray) && GeneralUtils.isNotEmpty(tableFickle)
                 && isFickleField() && FickleLinkMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entityList = findAllByLinkIdsFickleLoad(tablename, linkIdList, linkName, tableFickle, isLoadArray);
+            entityList = findAllByLinkIdsFickleLoad(tableName, linkIdList, linkName, tableFickle, isLoadArray);
         } else if (GeneralUtils.isNotEmpty(tableFickle) && isFickleField() && LinkFickleMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entityList = findAllByLinkIdsFickle(tablename, linkIdList, linkName, tableFickle);
+            entityList = findAllByLinkIdsFickle(tableName, linkIdList, linkName, tableFickle);
         } else if (GeneralUtils.isNotEmpty(isLoadArray) && LinkLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
-            entityList = findAllByLinkIdsLoad(tablename, linkIdList, linkName, isLoadArray);
+            entityList = findAllByLinkIdsLoad(tableName, linkIdList, linkName, isLoadArray);
         } else {
-            entityList = findAllByLinkIds(tablename, linkIdList, linkName);
+            entityList = findAllByLinkIds(tableName, linkIdList, linkName);
         }
         return modelActuator(entityList, null, isLoadArray);
     }
@@ -1900,8 +1900,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         } else {
             optionalDeleteFilter(filter);
             String whereSql = deleteWhereSql(filter);
-            RestTablekey<K> tablekey = tablekey(filter);
-            String tablename = resolveTablename(tablekey);
+            RestTableKey<K> tableKey = tableKey(filter);
+            String tableName = resolveTableName(tableKey);
             if (GeneralUtils.isNotEmpty(whereSql)) {
                 if (DeleteFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
                     DeleteFilterMapper<E, F, I, K> filterMapper = (DeleteFilterMapper<E, F, I, K>) superMapper;
@@ -1916,8 +1916,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                     Method deleteAllByWhereMethod = deleteMethod;
                     if (deleteAllByWhereMethod != null && !deleteAllByWhereMethod.isDefault()) {
                         if (isBeforeSkip() && isAfterSkip()) {
-                            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                                filterMapper.deleteDynamicAllByFilterWhere(tablename, whereSql, filter);
+                            if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
+                                filterMapper.deleteDynamicAllByFilterWhere(tableName, whereSql, filter);
                             } else {
                                 filterMapper.deleteAllByFilterWhere(whereSql, filter);
                             }
@@ -1931,8 +1931,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                             }
                             if (GeneralUtils.isNotEmpty(entityList)) {
                                 deleteAdvice(entityList, () -> {
-                                    if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                                        filterMapper.deleteDynamicAllByFilterWhere(tablename, whereSql, filter);
+                                    if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
+                                        filterMapper.deleteDynamicAllByFilterWhere(tableName, whereSql, filter);
                                     } else {
                                         filterMapper.deleteAllByFilterWhere(whereSql, filter);
                                     }
@@ -1940,10 +1940,10 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                             }
                         }
                     } else {
-                        deleteAllByWhere(whereSql, tablename, filter);
+                        deleteAllByWhere(whereSql, tableName, filter);
                     }
                 } else {
-                    deleteAllByWhere(whereSql, tablename, filter);
+                    deleteAllByWhere(whereSql, tableName, filter);
                 }
             }
         }
@@ -1963,8 +1963,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     public void removeAllWithFilter(F filter) throws RestException {
         optionalRemoveFilter(filter);
         String removeWhereSql = removeWhereSql(filter);
-        RestTablekey<K> tablekey = tablekey(filter);
-        String tablename = resolveTablename(tablekey);
+        RestTableKey<K> tableKey = tableKey(filter);
+        String tableName = resolveTableName(tableKey);
         if (GeneralUtils.isNotEmpty(removeWhereSql)) {
             Object logic = markOfLogic();
             if (RemoveFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
@@ -1980,8 +1980,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                 Method removeAllByWhereMethod = removeMethod;
                 if (removeAllByWhereMethod != null && !removeAllByWhereMethod.isDefault()) {
                     if (isBeforeSkip() && isAfterSkip()) {
-                        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                            filterMapper.removeDynamicAllByFilterWhere(tablename, removeWhereSql, filter, logic);
+                        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
+                            filterMapper.removeDynamicAllByFilterWhere(tableName, removeWhereSql, filter, logic);
                         } else {
                             filterMapper.removeAllByFilterWhere(removeWhereSql, filter, logic);
                         }
@@ -1995,8 +1995,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                         }
                         if (GeneralUtils.isNotEmpty(entityList)) {
                             removeAdvice(entityList, logic, sign -> {
-                                if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                                    filterMapper.removeDynamicAllByFilterWhere(tablename, removeWhereSql, filter, sign);
+                                if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
+                                    filterMapper.removeDynamicAllByFilterWhere(tableName, removeWhereSql, filter, sign);
                                 } else {
                                     filterMapper.removeAllByFilterWhere(removeWhereSql, filter, sign);
                                 }
@@ -2004,10 +2004,10 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                         }
                     }
                 } else {
-                    removeAllByWhere(removeWhereSql, tablename, filter);
+                    removeAllByWhere(removeWhereSql, tableName, filter);
                 }
             } else {
-                removeAllByWhere(removeWhereSql, tablename, filter);
+                removeAllByWhere(removeWhereSql, tableName, filter);
             }
 
         }
@@ -2027,8 +2027,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
     public void operateAllWithFilter(F filter) throws RestException {
         optionalOperateFilter(filter);
         String operateWhereSql = operateWhereSql(filter);
-        RestTablekey<K> tablekey = tablekey(filter);
-        String tablename = resolveTablename(tablekey);
+        RestTableKey<K> tableKey = tableKey(filter);
+        String tableName = resolveTableName(tableKey);
         if (GeneralUtils.isNotEmpty(operateWhereSql)) {
             if (OperateFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
                 OperateFilterMapper<E, F, I, K> filterMapper = (OperateFilterMapper<E, F, I, K>) superMapper;
@@ -2044,8 +2044,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                 if (operateAllByWhereMethod != null && !operateAllByWhereMethod.isDefault()) {
                     OperateType operateType = GeneralUtils.isNotEmpty(filter.getOperate()) ? filter.getOperate() : OperateType.REMOVE;
                     if (isBeforeSkip() && isAfterSkip()) {
-                        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                            filterMapper.operateDynamicAllByFilterWhere(tablename, operateWhereSql, filter, operateType.getKey());
+                        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
+                            filterMapper.operateDynamicAllByFilterWhere(tableName, operateWhereSql, filter, operateType.getKey());
                         } else {
                             filterMapper.operateAllByFilterWhere(operateWhereSql, filter, operateType.getKey());
                         }
@@ -2059,8 +2059,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                         }
                         if (GeneralUtils.isNotEmpty(entityList)) {
                             operateAdvice(entityList, operateType, operate -> {
-                                if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                                    filterMapper.operateDynamicAllByFilterWhere(tablename, operateWhereSql, filter, operate.getKey());
+                                if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
+                                    filterMapper.operateDynamicAllByFilterWhere(tableName, operateWhereSql, filter, operate.getKey());
                                 } else {
                                     filterMapper.operateAllByFilterWhere(operateWhereSql, filter, operate.getKey());
                                 }
@@ -2068,10 +2068,10 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                         }
                     }
                 } else {
-                    operateAllByWhere(operateWhereSql, tablename, filter);
+                    operateAllByWhere(operateWhereSql, tableName, filter);
                 }
             } else {
-                operateAllByWhere(operateWhereSql, tablename, filter);
+                operateAllByWhere(operateWhereSql, tableName, filter);
             }
         }
     }
@@ -2098,8 +2098,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         String messageOfStatus = "The 'alertAllWithFilter' method is invoked error, the value of 'getStatus' method must not null.";
         OptionalUtils.ofEmpty(statusFilter.getStatus(), messageOfStatus, "alertAllWithFilter", log, UnsupportedErrorException::new);
         String alertWhereSql = alertWhereSql(filter);
-        RestTablekey<K> tablekey = tablekey(filter);
-        String tablename = resolveTablename(tablekey);
+        RestTableKey<K> tableKey = tableKey(filter);
+        String tableName = resolveTableName(tableKey);
         if (GeneralUtils.isNotEmpty(alertWhereSql)) {
             if (AlertFilterMapper.class.isAssignableFrom(superMapper.getClass())) {
                 AlertFilterMapper<E, F, S, I, K> filterMapper = (AlertFilterMapper<E, F, S, I, K>) superMapper;
@@ -2115,8 +2115,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                 if (alertAllByWhereMethod != null && !alertAllByWhereMethod.isDefault()) {
                     S status = statusFilter.getStatus();
                     if (isBeforeSkip() && isAfterSkip()) {
-                        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                            filterMapper.alertDynamicAllByFilterWhere(tablename, alertWhereSql, filter, status);
+                        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
+                            filterMapper.alertDynamicAllByFilterWhere(tableName, alertWhereSql, filter, status);
                         } else {
                             filterMapper.alertAllByFilterWhere(alertWhereSql, filter, status);
                         }
@@ -2130,8 +2130,8 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                         }
                         if (GeneralUtils.isNotEmpty(entityList)) {
                             alertAdvice(entityList, status, alertStatus -> {
-                                if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                                    filterMapper.alertDynamicAllByFilterWhere(tablename, alertWhereSql, filter, alertStatus);
+                                if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
+                                    filterMapper.alertDynamicAllByFilterWhere(tableName, alertWhereSql, filter, alertStatus);
                                 } else {
                                     filterMapper.alertAllByFilterWhere(alertWhereSql, filter, alertStatus);
                                 }
@@ -2139,10 +2139,10 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
                         }
                     }
                 } else {
-                    alertAllByWhere(alertWhereSql, tablename, filter);
+                    alertAllByWhere(alertWhereSql, tableName, filter);
                 }
             } else {
-                alertAllByWhere(alertWhereSql, tablename, filter);
+                alertAllByWhere(alertWhereSql, tableName, filter);
             }
         }
     }

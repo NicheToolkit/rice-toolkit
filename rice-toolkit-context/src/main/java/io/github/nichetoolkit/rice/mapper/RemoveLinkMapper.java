@@ -30,7 +30,7 @@ public interface RemoveLinkMapper<L, I> extends RemoveMapper<I> {
     /**
      * <code>removeDynamicByLinkId</code>
      * <p>The remove dynamic by link id method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
      * @param logic {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
      * @see  java.lang.String
@@ -39,7 +39,7 @@ public interface RemoveLinkMapper<L, I> extends RemoveMapper<I> {
      * @see  java.lang.Integer
      * @return  {@link java.lang.Integer} <p>The remove dynamic by link id return object is <code>Integer</code> type.</p>
      */
-    Integer removeDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") L linkId, @Param("logic") Object logic);
+    Integer removeDynamicByLinkId(@Param("tableName") String tableName, @Param("linkId") L linkId, @Param("logic") Object logic);
 
     /**
      * <code>removeAllByLinkIds</code>
@@ -57,7 +57,7 @@ public interface RemoveLinkMapper<L, I> extends RemoveMapper<I> {
     /**
      * <code>removeDynamicAllByLinkIds</code>
      * <p>The remove dynamic all by link ids method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param logic {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
      * @see  java.lang.String
@@ -67,7 +67,7 @@ public interface RemoveLinkMapper<L, I> extends RemoveMapper<I> {
      * @see  java.lang.Integer
      * @return  {@link java.lang.Integer} <p>The remove dynamic all by link ids return object is <code>Integer</code> type.</p>
      */
-    Integer removeDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection<L> linkIdList, @Param("logic") Object logic);
+    Integer removeDynamicAllByLinkIds(@Param("tableName") String tableName, @Param("linkIdList") Collection<L> linkIdList, @Param("logic") Object logic);
 
     /**
      * <code>removeByLinkId</code>
@@ -86,7 +86,7 @@ public interface RemoveLinkMapper<L, I> extends RemoveMapper<I> {
     /**
      * <code>removeDynamicByLinkId</code>
      * <p>The remove dynamic by link id method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param linkId L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName {@link java.lang.String} <p>The link name parameter is <code>String</code> type.</p>
      * @param logic {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
@@ -96,7 +96,7 @@ public interface RemoveLinkMapper<L, I> extends RemoveMapper<I> {
      * @see  java.lang.Integer
      * @return  {@link java.lang.Integer} <p>The remove dynamic by link id return object is <code>Integer</code> type.</p>
      */
-    Integer removeDynamicByLinkId(@Param("tablename") String tablename, @Param("linkId") L linkId, @Param("linkName") String linkName, @Param("logic") Object logic);
+    Integer removeDynamicByLinkId(@Param("tableName") String tableName, @Param("linkId") L linkId, @Param("linkName") String linkName, @Param("logic") Object logic);
 
     /**
      * <code>removeAllByLinkIds</code>
@@ -116,7 +116,7 @@ public interface RemoveLinkMapper<L, I> extends RemoveMapper<I> {
     /**
      * <code>removeDynamicAllByLinkIds</code>
      * <p>The remove dynamic all by link ids method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName {@link java.lang.String} <p>The link name parameter is <code>String</code> type.</p>
      * @param logic {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
@@ -127,6 +127,6 @@ public interface RemoveLinkMapper<L, I> extends RemoveMapper<I> {
      * @see  java.lang.Integer
      * @return  {@link java.lang.Integer} <p>The remove dynamic all by link ids return object is <code>Integer</code> type.</p>
      */
-    Integer removeDynamicAllByLinkIds(@Param("tablename") String tablename, @Param("linkIdList") Collection<L> linkIdList, @Param("linkName") String linkName, @Param("logic") Object logic);
+    Integer removeDynamicAllByLinkIds(@Param("tableName") String tableName, @Param("linkIdList") Collection<L> linkIdList, @Param("linkName") String linkName, @Param("logic") Object logic);
 
 }

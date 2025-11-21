@@ -35,7 +35,7 @@ public interface OperateFilterMapper<E extends RestId<I>, F extends IdFilter<I, 
     /**
      * <code>operateDynamicAllByFilterWhere</code>
      * <p>The operate dynamic all by filter where method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param filter    F <p>The filter parameter is <code>F</code> type.</p>
      * @param operate   {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>
@@ -44,5 +44,5 @@ public interface OperateFilterMapper<E extends RestId<I>, F extends IdFilter<I, 
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer operateDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("operate") Integer operate);
+    Integer operateDynamicAllByFilterWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("operate") Integer operate);
 }

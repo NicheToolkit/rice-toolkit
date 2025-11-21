@@ -36,7 +36,7 @@ public interface RemoveFilterMapper<E extends RestId<I>, F extends IdFilter<I, K
     /**
      * <code>removeDynamicAllByFilterWhere</code>
      * <p>The remove dynamic all by filter where method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param filter    F <p>The filter parameter is <code>F</code> type.</p>
      * @param logic     {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
@@ -46,5 +46,5 @@ public interface RemoveFilterMapper<E extends RestId<I>, F extends IdFilter<I, K
      * @see java.lang.Object
      * @see java.lang.Integer
      */
-    Integer removeDynamicAllByFilterWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("logic") Object logic);
+    Integer removeDynamicAllByFilterWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("logic") Object logic);
 }

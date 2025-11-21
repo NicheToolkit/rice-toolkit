@@ -31,7 +31,7 @@ public interface FindLoadMapper<E extends RestId<I>, I> {
     /**
      * <code>findDynamicByIdLoad</code>
      * <p>The find dynamic by id load method.</p>
-     * @param tablename  {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param id         I <p>The id parameter is <code>I</code> type.</p>
      * @param loadParams {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load params parameter is <code>RestLoad</code> type.</p>
      * @return E <p>The find dynamic by id load return object is <code>E</code> type.</p>
@@ -39,7 +39,7 @@ public interface FindLoadMapper<E extends RestId<I>, I> {
      * @see org.apache.ibatis.annotations.Param
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      */
-    E findDynamicByIdLoad(@Param("tablename") String tablename, @Param("id") I id, @Param("loadParams") RestLoad... loadParams);
+    E findDynamicByIdLoad(@Param("tableName") String tableName, @Param("id") I id, @Param("loadParams") RestLoad... loadParams);
 
     /**
      * <code>findAllLoad</code>
@@ -57,7 +57,7 @@ public interface FindLoadMapper<E extends RestId<I>, I> {
     /**
      * <code>findDynamicAllLoad</code>
      * <p>The find dynamic all load method.</p>
-     * @param tablename  {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param idList     {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param loadParams {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load params parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The find dynamic all load return object is <code>List</code> type.</p>
@@ -67,6 +67,6 @@ public interface FindLoadMapper<E extends RestId<I>, I> {
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      */
-    List<E> findDynamicAllLoad(@Param("tablename") String tablename, @Param("idList") Collection<I> idList, @Param("loadParams") RestLoad... loadParams);
+    List<E> findDynamicAllLoad(@Param("tableName") String tableName, @Param("idList") Collection<I> idList, @Param("loadParams") RestLoad... loadParams);
 
 }

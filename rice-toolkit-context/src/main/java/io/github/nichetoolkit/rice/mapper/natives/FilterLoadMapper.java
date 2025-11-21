@@ -33,7 +33,7 @@ public interface FilterLoadMapper<E extends RestId<I>, I> {
     /**
      * <code>findDynamicAllByLoadWhere</code>
      * <p>The find dynamic all by load where method.</p>
-     * @param tablename  {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param whereSql   {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param loadParams {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load params parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The find dynamic all by load where return object is <code>List</code> type.</p>
@@ -42,6 +42,6 @@ public interface FilterLoadMapper<E extends RestId<I>, I> {
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      */
-    List<E> findDynamicAllByLoadWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql, @Param("loadParams") RestLoad... loadParams);
+    List<E> findDynamicAllByLoadWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("loadParams") RestLoad... loadParams);
 
 }

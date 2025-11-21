@@ -34,12 +34,12 @@ public class TableAlreadyExistException extends ServiceErrorException {
     /**
      * <code>TableAlreadyExistException</code>
      * <p>Instantiates a new table already exist exception.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
      * @see  java.lang.String
      */
-    public TableAlreadyExistException(String tablename, String error) {
-        super(TableErrorStatus.TABLE_ALREADY_EXIST, tablename, error);
+    public TableAlreadyExistException(String tableName, String error) {
+        super(TableErrorStatus.TABLE_ALREADY_EXIST, tableName, error);
     }
 
     @Override

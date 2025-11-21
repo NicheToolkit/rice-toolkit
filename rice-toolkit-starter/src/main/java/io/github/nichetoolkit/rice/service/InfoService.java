@@ -6,7 +6,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
 import io.github.nichetoolkit.rice.RestInfo;
-import io.github.nichetoolkit.rice.RestTablekey;
+import io.github.nichetoolkit.rice.RestTableKey;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import io.github.nichetoolkit.rice.mapper.InfoMapper;
 import io.github.nichetoolkit.rice.mapper.natives.FindLoadMapper;
@@ -67,22 +67,22 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
 
     @Override
     protected void afterSuperHandle() throws RestException {
-        this.createActuator = (RestTablekey<K> tablekey, @NonNull M model) -> {
+        this.createActuator = (RestTableKey<K> tableKey, @NonNull M model) -> {
             if (isModelOfUnique()) {
-                Boolean existByModel = existByModel(tablekey, model);
+                Boolean existByModel = existByModel(tableKey, model);
                 fieldRepeat(existByModel, model);
             } else if (isNameOfUnique()) {
-                Boolean existByName = existByName(tablekey, model);
+                Boolean existByName = existByName(tableKey, model);
                 OptionalUtils.ofNameRepeat(existByName, model.getName(),log);
             }
 
         };
-        this.updateActuator = (RestTablekey<K> tablekey, @NonNull M model) -> {
+        this.updateActuator = (RestTableKey<K> tableKey, @NonNull M model) -> {
             if (isModelOfUnique()) {
-                Boolean existByModel = existByModelAndNotId(tablekey, model, model.getId());
+                Boolean existByModel = existByModelAndNotId(tableKey, model, model.getId());
                 fieldRepeat(existByModel, model);
             } else if (isNameOfUnique()) {
-                Boolean existByName = existByNameAndNotId(tablekey, model, model.getId());
+                Boolean existByName = existByNameAndNotId(tableKey, model, model.getId());
                 OptionalUtils.ofNameRepeat(existByName, model.getName(),log);
             }
         };
@@ -94,22 +94,22 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
     /**
      * <code>existByName</code>
      * <p>The exist by name method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @return {@link java.lang.Boolean} <p>The exist by name return object is <code>Boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    private Boolean existByName(RestTablekey<K> tablekey, M model) throws RestException {
+    private Boolean existByName(RestTableKey<K> tableKey, M model) throws RestException {
         if (GeneralUtils.isEmpty(model.getName())) {
             return false;
         }
-        String tablename = resolveTablename(tablekey, model);
+        String tableName = resolveTableName(tableKey, model);
         List<E> entityList;
-        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = infoMapper.findDynamicByName(tablename, model.getName(), unmarkOfLogic());
+        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
+            entityList = infoMapper.findDynamicByName(tableName, model.getName(), unmarkOfLogic());
         } else {
             entityList = infoMapper.findByName(model.getName(), unmarkOfLogic());
         }
@@ -120,26 +120,26 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
     /**
      * <code>existByNameAndNotId</code>
      * <p>The exist by name and not id method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @param id       I <p>The id parameter is <code>I</code> type.</p>
      * @return {@link java.lang.Boolean} <p>The exist by name and not id return object is <code>Boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    private Boolean existByNameAndNotId(RestTablekey<K> tablekey, M model, I id) throws RestException {
+    private Boolean existByNameAndNotId(RestTableKey<K> tableKey, M model, I id) throws RestException {
         if (GeneralUtils.isEmpty(model.getName())) {
             return false;
         }
         if (GeneralUtils.isEmpty(id)) {
-            return existByName(tablekey, model);
+            return existByName(tableKey, model);
         }
-        String tablename = resolveTablename(tablekey, model);
+        String tableName = resolveTableName(tableKey, model);
         List<E> entityList;
-        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = infoMapper.findDynamicByNameAndNotId(tablename, model.getName(), id, unmarkOfLogic());
+        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
+            entityList = infoMapper.findDynamicByNameAndNotId(tableName, model.getName(), id, unmarkOfLogic());
         } else {
             entityList = infoMapper.findByNameAndNotId(model.getName(), id, unmarkOfLogic());
         }
@@ -149,23 +149,23 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
     /**
      * <code>existByModel</code>
      * <p>The exist by model method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @return {@link java.lang.Boolean} <p>The exist by model return object is <code>Boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    private Boolean existByModel(RestTablekey<K> tablekey, M model) throws RestException {
+    private Boolean existByModel(RestTableKey<K> tableKey, M model) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return false;
         }
         E entity = this.createEntity(model);
-        String tablename = resolveTablename(tablekey, model);
+        String tableName = resolveTableName(tableKey, model);
         List<E> entityList;
-        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = infoMapper.findDynamicByEntityUnique(tablename, entity, unmarkOfLogic());
+        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
+            entityList = infoMapper.findDynamicByEntityUnique(tableName, entity, unmarkOfLogic());
         } else {
             entityList = infoMapper.findByEntityUnique(entity, unmarkOfLogic());
         }
@@ -175,27 +175,27 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
     /**
      * <code>existByModelAndNotId</code>
      * <p>The exist by model and not id method.</p>
-     * @param tablekey {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @param id       I <p>The id parameter is <code>I</code> type.</p>
      * @return {@link java.lang.Boolean} <p>The exist by model and not id return object is <code>Boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.lang.Boolean
      * @see io.github.nichetoolkit.rest.RestException
      */
-    private Boolean existByModelAndNotId(RestTablekey<K> tablekey, M model, I id) throws RestException {
+    private Boolean existByModelAndNotId(RestTableKey<K> tableKey, M model, I id) throws RestException {
         if (GeneralUtils.isEmpty(model)) {
             return false;
         }
         if (GeneralUtils.isEmpty(id)) {
-            return existByModel(tablekey, model);
+            return existByModel(tableKey, model);
         }
         E entity = this.createEntity(model);
-        String tablename = resolveTablename(tablekey, model);
+        String tableName = resolveTableName(tableKey, model);
         List<E> entityList;
-        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = infoMapper.findDynamicByEntityUniqueAndNotId(tablename, entity, id, unmarkOfLogic());
+        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
+            entityList = infoMapper.findDynamicByEntityUniqueAndNotId(tableName, entity, id, unmarkOfLogic());
         } else {
             entityList = infoMapper.findByEntityUniqueAndNotId(entity, id, unmarkOfLogic());
         }
@@ -206,17 +206,17 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
      * <code>findByName</code>
      * <p>The find by name method.</p>
      * @param name      {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @return {@link java.util.List} <p>The find by name return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.RestException
      */
-    private List<E> findByName(String name, String tablename) throws RestException {
+    private List<E> findByName(String name, String tableName) throws RestException {
         List<E> entityList;
-        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-            entityList = infoMapper.findDynamicByName(tablename, name, unmarkOfLogic());
+        if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
+            entityList = infoMapper.findDynamicByName(tableName, name, unmarkOfLogic());
         } else {
             entityList = infoMapper.findByName(name, unmarkOfLogic());
         }
@@ -242,12 +242,12 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
     /**
      * <code>queryByName</code>
      * <p>The query by name method.</p>
-     * @param tablekey    {@link io.github.nichetoolkit.rice.RestTablekey} <p>The tablekey parameter is <code>RestTablekey</code> type.</p>
+     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
      * @param name        {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query by name return object is <code>List</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see io.github.nichetoolkit.rice.RestTablekey
+     * @see io.github.nichetoolkit.rice.RestTableKey
      * @see java.lang.String
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
@@ -255,12 +255,12 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings(value = "unchecked")
-    public List<M> queryByName(RestTablekey<K> tablekey, String name, RestLoad... isLoadArray) throws RestException {
+    public List<M> queryByName(RestTableKey<K> tableKey, String name, RestLoad... isLoadArray) throws RestException {
         if (GeneralUtils.isEmpty(name)) {
             return null;
         }
         List<E> entityList;
-        String tablename = resolveTablename(tablekey);
+        String tableName = resolveTableName(tableKey);
         if (isLoadArray.length > 0 && FindLoadMapper.class.isAssignableFrom(superMapper.getClass())) {
             NameLoadMapper<E, I> loadMapper = (NameLoadMapper<E, I>) superMapper;
             Method findMethod = null;
@@ -271,16 +271,16 @@ public abstract class InfoService<M extends RestInfo<I>, E extends RestInfo<I>, 
             Method queryByNameMethod = findMethod;
             /* 当LoadMapper被复写的时候 优先调用LoadMapper的queryByNameMethod */
             if (queryByNameMethod != null && !queryByNameMethod.isDefault()) {
-                if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tablename)) {
-                    entityList = loadMapper.findDynamicByNameLoad(tablename, name, unmarkOfLogic(), isLoadArray);
+                if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
+                    entityList = loadMapper.findDynamicByNameLoad(tableName, name, unmarkOfLogic(), isLoadArray);
                 } else {
                     entityList = loadMapper.findByNameLoad(name, unmarkOfLogic(), isLoadArray);
                 }
             } else {
-                entityList = findByName(name, tablename);
+                entityList = findByName(name, tableName);
             }
         } else {
-            entityList = findByName(name, tablename);
+            entityList = findByName(name, tableName);
         }
         if (GeneralUtils.isEmpty(entityList)) {
             return Collections.emptyList();

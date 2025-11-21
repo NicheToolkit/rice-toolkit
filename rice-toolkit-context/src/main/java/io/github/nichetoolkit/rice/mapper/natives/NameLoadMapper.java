@@ -34,7 +34,7 @@ public interface NameLoadMapper<E extends RestId<I>, I> {
     /**
      * <code>findDynamicByNameLoad</code>
      * <p>The find dynamic by name load method.</p>
-     * @param tablename  {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param name       {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param logic      {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
      * @param loadParams {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load params parameter is <code>RestLoad</code> type.</p>
@@ -45,6 +45,6 @@ public interface NameLoadMapper<E extends RestId<I>, I> {
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      */
-    List<E> findDynamicByNameLoad(@Param("tablename") String tablename, @Param("name") String name, @Param("logic") Object logic, @Param("loadParams") RestLoad... loadParams);
+    List<E> findDynamicByNameLoad(@Param("tableName") String tableName, @Param("name") String name, @Param("logic") Object logic, @Param("loadParams") RestLoad... loadParams);
 
 }

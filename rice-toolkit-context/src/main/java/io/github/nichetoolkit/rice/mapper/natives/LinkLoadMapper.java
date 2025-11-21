@@ -33,7 +33,7 @@ public interface LinkLoadMapper<E extends RestId<I>, L, I> {
     /**
      * <code>findDynamicByLinkIdLoad</code>
      * <p>The find dynamic by link id load method.</p>
-     * @param tablename  {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param linkId     L <p>The link id parameter is <code>L</code> type.</p>
      * @param loadParams {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load params parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The find dynamic by link id load return object is <code>List</code> type.</p>
@@ -42,7 +42,7 @@ public interface LinkLoadMapper<E extends RestId<I>, L, I> {
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      */
-    List<E> findDynamicByLinkIdLoad(@Param("tablename") String tablename, @Param("linkId") L linkId, @Param("loadParams") RestLoad... loadParams);
+    List<E> findDynamicByLinkIdLoad(@Param("tableName") String tableName, @Param("linkId") L linkId, @Param("loadParams") RestLoad... loadParams);
 
     /**
      * <code>findAllByLinkIdsLoad</code>
@@ -60,7 +60,7 @@ public interface LinkLoadMapper<E extends RestId<I>, L, I> {
     /**
      * <code>findDynamicAllByLinkIdsLoad</code>
      * <p>The find dynamic all by link ids load method.</p>
-     * @param tablename  {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param loadParams {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load params parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The find dynamic all by link ids load return object is <code>List</code> type.</p>
@@ -70,7 +70,7 @@ public interface LinkLoadMapper<E extends RestId<I>, L, I> {
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      */
-    List<E> findDynamicAllByLinkIdsLoad(@Param("tablename") String tablename, @Param("linkIdList") Collection<L> linkIdList, @Param("loadParams") RestLoad... loadParams);
+    List<E> findDynamicAllByLinkIdsLoad(@Param("tableName") String tableName, @Param("linkIdList") Collection<L> linkIdList, @Param("loadParams") RestLoad... loadParams);
 
     /**
      * <code>findByLinkIdLoad</code>
@@ -89,7 +89,7 @@ public interface LinkLoadMapper<E extends RestId<I>, L, I> {
     /**
      * <code>findDynamicByLinkIdLoad</code>
      * <p>The find dynamic by link id load method.</p>
-     * @param tablename  {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param linkId     L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName   {@link java.lang.String} <p>The link name parameter is <code>String</code> type.</p>
      * @param loadParams {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load params parameter is <code>RestLoad</code> type.</p>
@@ -99,7 +99,7 @@ public interface LinkLoadMapper<E extends RestId<I>, L, I> {
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      */
-    List<E> findDynamicByLinkIdLoad(@Param("tablename") String tablename, @Param("linkId") L linkId, @Param("linkName") String linkName, @Param("loadParams") RestLoad... loadParams);
+    List<E> findDynamicByLinkIdLoad(@Param("tableName") String tableName, @Param("linkId") L linkId, @Param("linkName") String linkName, @Param("loadParams") RestLoad... loadParams);
 
     /**
      * <code>findAllByLinkIdsLoad</code>
@@ -119,7 +119,7 @@ public interface LinkLoadMapper<E extends RestId<I>, L, I> {
     /**
      * <code>findDynamicAllByLinkIdsLoad</code>
      * <p>The find dynamic all by link ids load method.</p>
-     * @param tablename  {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName   {@link java.lang.String} <p>The link name parameter is <code>String</code> type.</p>
      * @param loadParams {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load params parameter is <code>RestLoad</code> type.</p>
@@ -130,6 +130,6 @@ public interface LinkLoadMapper<E extends RestId<I>, L, I> {
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
      * @see java.util.List
      */
-    List<E> findDynamicAllByLinkIdsLoad(@Param("tablename") String tablename, @Param("linkIdList") Collection<L> linkIdList, @Param("linkName") String linkName, @Param("loadParams") RestLoad... loadParams);
+    List<E> findDynamicAllByLinkIdsLoad(@Param("tableName") String tableName, @Param("linkIdList") Collection<L> linkIdList, @Param("linkName") String linkName, @Param("loadParams") RestLoad... loadParams);
 
 }

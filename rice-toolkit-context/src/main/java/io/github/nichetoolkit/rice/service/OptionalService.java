@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.service;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rice.RestId;
-import io.github.nichetoolkit.rice.RestTablekey;
+import io.github.nichetoolkit.rice.RestTableKey;
 import io.github.nichetoolkit.rice.filter.IdFilter;
 import org.springframework.lang.NonNull;
 
@@ -51,14 +51,14 @@ public interface OptionalService<M extends RestId<I>, F extends IdFilter<I, K>, 
     /**
      * <code>existById</code>
      * <p>The exist by id method.</p>
-     * @param tablekey K <p>The tablekey parameter is <code>K</code> type.</p>
+     * @param tableKey K <p>The tableKey parameter is <code>K</code> type.</p>
      * @param id I <p>The id parameter is <code>I</code> type.</p>
      * @return boolean <p>The exist by id return object is <code>boolean</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see  io.github.nichetoolkit.rest.RestException
      */
-    default boolean existById(RestTablekey<K> tablekey, I id) throws RestException {
-        return Optional.ofNullable(this.queryById(tablekey, id)).isPresent();
+    default boolean existById(RestTableKey<K> tableKey, I id) throws RestException {
+        return Optional.ofNullable(this.queryById(tableKey, id)).isPresent();
     }
 
     /**

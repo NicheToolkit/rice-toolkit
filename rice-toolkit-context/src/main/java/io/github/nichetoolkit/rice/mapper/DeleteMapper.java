@@ -27,14 +27,14 @@ public interface DeleteMapper<I> {
     /**
      * <code>deleteDynamicById</code>
      * <p>The delete dynamic by id method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param id I <p>The id parameter is <code>I</code> type.</p>
      * @see  java.lang.String
      * @see  org.apache.ibatis.annotations.Param
      * @see  java.lang.Integer
      * @return  {@link java.lang.Integer} <p>The delete dynamic by id return object is <code>Integer</code> type.</p>
      */
-    Integer deleteDynamicById(@Param("tablename") String tablename, @Param("id") I id);
+    Integer deleteDynamicById(@Param("tableName") String tableName, @Param("id") I id);
 
     /**
      * <code>deleteAll</code>
@@ -50,7 +50,7 @@ public interface DeleteMapper<I> {
     /**
      * <code>deleteDynamicAll</code>
      * <p>The delete dynamic all method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @see  java.lang.String
      * @see  org.apache.ibatis.annotations.Param
@@ -58,7 +58,7 @@ public interface DeleteMapper<I> {
      * @see  java.lang.Integer
      * @return  {@link java.lang.Integer} <p>The delete dynamic all return object is <code>Integer</code> type.</p>
      */
-    Integer deleteDynamicAll(@Param("tablename") String tablename, @Param("idList") Collection<I> idList);
+    Integer deleteDynamicAll(@Param("tableName") String tableName, @Param("idList") Collection<I> idList);
 
     /**
      * <code>deleteAllByWhere</code>
@@ -74,12 +74,12 @@ public interface DeleteMapper<I> {
     /**
      * <code>deleteDynamicAllByWhere</code>
      * <p>The delete dynamic all by where method.</p>
-     * @param tablename {@link java.lang.String} <p>The tablename parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
      * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @see  java.lang.String
      * @see  org.apache.ibatis.annotations.Param
      * @see  java.lang.Integer
      * @return  {@link java.lang.Integer} <p>The delete dynamic all by where return object is <code>Integer</code> type.</p>
      */
-    Integer deleteDynamicAllByWhere(@Param("tablename") String tablename, @Param("whereSql") String whereSql);
+    Integer deleteDynamicAllByWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql);
 }
