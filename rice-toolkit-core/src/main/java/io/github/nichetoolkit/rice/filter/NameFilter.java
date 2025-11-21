@@ -151,9 +151,9 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
      */
     public NameFilter<I,K> toNameSql(@NonNull String alias) throws RestException {
         if (GeneralUtils.isNotEmpty(this.name)) {
-            SqlBuilders.like(SQL_BUILDER, alias, this.name);
+            SqlBuilders.like(sqlBuilder(), alias, this.name);
         } else if (GeneralUtils.isNotEmpty(this.names)) {
-            SqlBuilders.in(SQL_BUILDER, alias, this.names);
+            SqlBuilders.in(sqlBuilder(), alias, this.names);
         }
         return this;
     }

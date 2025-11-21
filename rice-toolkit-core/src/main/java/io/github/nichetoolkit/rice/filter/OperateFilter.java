@@ -18,12 +18,16 @@ import java.util.*;
  * <p>The operate filter class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.filter.SortFilter
+ * @see lombok.Setter
+ * @see lombok.Getter
  * @see lombok.experimental.SuperBuilder
  * @see java.lang.SuppressWarnings
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
+@Setter
+@Getter
 @SuperBuilder(builderMethodName = "ofOperateBuilder")
 @SuppressWarnings({"WeakerAccess", "MixedMutabilityReturnType"})
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
@@ -39,11 +43,7 @@ public class OperateFilter extends SortFilter {
      * <code>operate</code>
      * {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The <code>operate</code> field.</p>
      * @see io.github.nichetoolkit.rice.enums.OperateType
-     * @see lombok.Getter
-     * @see lombok.Setter
      */
-    @Getter
-    @Setter
     protected OperateType operate;
 
     /**
@@ -58,24 +58,6 @@ public class OperateFilter extends SortFilter {
      * <p>Instantiates a new operate filter.</p>
      */
     public OperateFilter() {
-    }
-
-    /**
-     * <code>isRemove</code>
-     * <p>The is remove method.</p>
-     * @return boolean <p>The is remove return object is <code>boolean</code> type.</p>
-     */
-    public boolean isRemove() {
-        return isRemove;
-    }
-
-    /**
-     * <code>setRemove</code>
-     * <p>The set remove setter method.</p>
-     * @param remove boolean <p>The remove parameter is <code>boolean</code> type.</p>
-     */
-    public void setRemove(boolean remove) {
-        isRemove = remove;
     }
 
     /**

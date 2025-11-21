@@ -60,6 +60,11 @@ public class IdFilter<I, K> extends TableFilter<K> {
                 IdFilter.class.getTypeParameters()[0], getClass(), IdFilter.class));
     }
 
+    @JsonIgnore
+    public SqlBuilder sqlBuilder() {
+        return SQL_BUILDER;
+    }
+
     public List<I> getIds() {
         if (GeneralUtils.isNotEmpty(ids)) {
             return new ArrayList<>(ids);
@@ -121,10 +126,10 @@ public class IdFilter<I, K> extends TableFilter<K> {
         }
         this.SQL_CACHE.remove();
         String sort = super.toSort();
-        sql = this.SQL_BUILDER.append(sort).toString();
+        sql = sqlBuilder().append(sort).toString();
         if (GeneralUtils.isNotEmpty(sql)) {
             this.SQL_CACHE.set(sql);
-            this.SQL_BUILDER.clear();
+            sqlBuilder().clear();
             return sql;
         }
         return null;
@@ -135,9 +140,9 @@ public class IdFilter<I, K> extends TableFilter<K> {
     }
 
     public String toNonsortSql() {
-        String sql = this.SQL_BUILDER.toString();
+        String sql = sqlBuilder().toString();
         if (GeneralUtils.isNotEmpty(sql)) {
-            this.SQL_BUILDER.clear();
+            sqlBuilder().clear();
             return sql;
         }
         return null;
@@ -167,12 +172,12 @@ public class IdFilter<I, K> extends TableFilter<K> {
 
     public IdFilter<I, K> toIdSql(@NonNull String alias) throws RestException {
         if (getIdType().isAnnotationPresent(RestIdentity.class)) {
-            toIdentitySql(SQL_BUILDER,alias);
+            toIdentitySql(sqlBuilder(),alias);
         } else {
             if (GeneralUtils.isNotEmpty(this.id)) {
-                SqlBuilders.equal(SQL_BUILDER, alias, this.id);
+                SqlBuilders.equal(sqlBuilder(), alias, this.id);
             } else if (GeneralUtils.isNotEmpty(this.ids)) {
-                SqlBuilders.in(SQL_BUILDER, alias, this.ids);
+                SqlBuilders.in(sqlBuilder(), alias, this.ids);
             }
         }
         return this;
@@ -189,13 +194,13 @@ public class IdFilter<I, K> extends TableFilter<K> {
 
     public IdFilter<I, K> toOperateSql(@NonNull String alias) throws RestException {
         if (this.isRemove) {
-            SqlBuilders.equal(SQL_BUILDER, alias, OperateType.REMOVE);
+            SqlBuilders.equal(sqlBuilder(), alias, OperateType.REMOVE);
         } else if (GeneralUtils.isNotEmpty(this.operate)) {
-            SqlBuilders.equal(SQL_BUILDER, alias, this.operate);
+            SqlBuilders.equal(sqlBuilder(), alias, this.operate);
         } else if (GeneralUtils.isNotEmpty(this.operates)) {
-            SqlBuilders.in(SQL_BUILDER, alias, this.operates);
+            SqlBuilders.in(sqlBuilder(), alias, this.operates);
         } else {
-            SqlBuilders.nin(SQL_BUILDER, alias, Arrays.asList(OperateType.REMOVE, OperateType.DELETE));
+            SqlBuilders.nin(sqlBuilder(), alias, Arrays.asList(OperateType.REMOVE, OperateType.DELETE));
         }
         return this;
     }

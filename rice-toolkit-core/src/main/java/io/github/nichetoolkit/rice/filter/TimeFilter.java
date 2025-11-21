@@ -97,9 +97,9 @@ public class TimeFilter<I, K> extends IdFilter<I, K> {
      */
     public TimeFilter<I, K> toTimeSql(@NonNull String alias) throws RestException {
         if (GeneralUtils.isNotEmpty(this.startTime) && GeneralUtils.isNotEmpty(this.endTime) && this.startTime == this.endTime) {
-            SqlBuilders.equal(SQL_BUILDER, alias, this.startTime);
+            SqlBuilders.equal(sqlBuilder(), alias, this.startTime);
         } else {
-            SqlBuilders.range(SQL_BUILDER, alias, this.startTime, this.endTime);
+            SqlBuilders.range(sqlBuilder(), alias, this.startTime, this.endTime);
         }
         return this;
     }

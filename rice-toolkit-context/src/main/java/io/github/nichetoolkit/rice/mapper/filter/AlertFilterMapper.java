@@ -2,6 +2,7 @@ package io.github.nichetoolkit.rice.mapper.filter;
 
 import io.github.nichetoolkit.rice.RestId;
 import io.github.nichetoolkit.rice.filter.IdFilter;
+import io.github.nichetoolkit.rice.mapper.AlertMapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -18,7 +19,7 @@ import org.apache.ibatis.annotations.Param;
  * @see io.github.nichetoolkit.rice.mapper.filter.FindFilterMapper
  * @since Jdk1.8
  */
-public interface AlertFilterMapper<E extends RestId<I>, F extends IdFilter<I, K>, S, I, K> extends FindFilterMapper<E, F, I, K> {
+public interface AlertFilterMapper<E extends RestId<I>, F extends IdFilter<I, K>, S, I, K> extends FindFilterMapper<E, F, I, K>, AlertMapper<S,I> {
 
     /**
      * <code>alertAllByFilterWhere</code>

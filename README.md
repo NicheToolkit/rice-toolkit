@@ -683,7 +683,6 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 </tr>
 </table>
 
-
 * link mapper
 
 <table style="text-align: center;">
@@ -754,7 +753,6 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 <td><code>alertDynamicAllByLinkIds(@Param("tableName") String tableName, @Param("linkIdList") Collection&lt;L&gt; linkIdList, @Param("status") S status)</code></td>
 </tr>
 </table>
-
 
 * native mapper
 
@@ -868,7 +866,6 @@ public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity
 <td><code>findDynamicAllByFieldWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("fieldParams") String... fieldParams)</code></td>
 </tr>
 </table>
-
 
 * examples
 
