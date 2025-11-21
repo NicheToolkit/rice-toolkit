@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.configure;
 
 import io.github.nichetoolkit.mybatis.enums.StyleType;
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rest.RestI18nResources;
+import io.github.nichetoolkit.rest.resource.RestI18nResources;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.DefaultColumnResolver;
 import io.github.nichetoolkit.rice.advice.LoginAdvice;
@@ -78,8 +78,8 @@ public class RiceStarterAutoConfigure {
     /**
      * <code>riceI18nResources</code>
      * <p>The rice i 18 n resources method.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestI18nResources} <p>The rice i 18 n resources return object is <code>RestI18nResources</code> type.</p>
-     * @see io.github.nichetoolkit.rest.RestI18nResources
+     * @return {@link io.github.nichetoolkit.rest.resource.RestI18nResources} <p>The rice i 18 n resources return object is <code>RestI18nResources</code> type.</p>
+     * @see io.github.nichetoolkit.rest.resource.RestI18nResources
      * @see org.springframework.context.annotation.Bean
      */
     @Bean
