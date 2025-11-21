@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.configure;
 
 import io.github.nichetoolkit.mybatis.enums.StyleType;
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rest.RestI18n;
+import io.github.nichetoolkit.rest.RestI18nResources;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.DefaultColumnResolver;
 import io.github.nichetoolkit.rice.advice.LoginAdvice;
@@ -21,7 +21,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +56,17 @@ public class RiceStarterAutoConfigure {
     }
 
 
+    /**
+     * <code>controllerAdvice</code>
+     * <p>The controller advice method.</p>
+     * @param loginAdvices {@link java.util.Optional} <p>The login advices parameter is <code>Optional</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.interceptor.DefaultResponseInterceptor} <p>The controller advice return object is <code>DefaultResponseInterceptor</code> type.</p>
+     * @see java.util.Optional
+     * @see io.github.nichetoolkit.rice.interceptor.DefaultResponseInterceptor
+     * @see org.springframework.context.annotation.Bean
+     * @see org.springframework.core.annotation.Order
+     * @see org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+     */
     @Bean
     @Order(AdviceConstants.RESPONSE_ORDER)
     @ConditionalOnMissingBean(DefaultResponseInterceptor.class)
@@ -66,15 +76,15 @@ public class RiceStarterAutoConfigure {
 
 
     /**
-     * <code>riceI18nBasename</code>
-     * <p>The rice i 18 n basename method.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestI18n} <p>The rice i 18 n basename return object is <code>RestI18n</code> type.</p>
-     * @see io.github.nichetoolkit.rest.RestI18n
+     * <code>riceI18nResources</code>
+     * <p>The rice i 18 n resources method.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestI18nResources} <p>The rice i 18 n resources return object is <code>RestI18nResources</code> type.</p>
+     * @see io.github.nichetoolkit.rest.RestI18nResources
      * @see org.springframework.context.annotation.Bean
      */
     @Bean
-    public RestI18n riceI18nBasename() {
-        return () -> Collections.singleton(RICE_I18N);
+    public RestI18nResources riceI18nResources() {
+        return RestI18nResources.of(RICE_I18N);
     }
 
     /**
