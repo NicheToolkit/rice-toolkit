@@ -2329,8 +2329,9 @@ public abstract class SuperService<M extends RestId<I>, E extends RestId<I>, F e
         OptionalUtils.ofFalse(isPresentFilter, messageOfFilter, "alertAllWithFilter", log, UnsupportedErrorException::new);
         assert filter instanceof AlertFilter;
         AlertFilter<S> alertFilter = (AlertFilter<S>) filter;
-        String messageOfStatus = "The 'alertAllWithFilter' method is invoked error, the value of 'getStatus' method must not null.";
-        OptionalUtils.ofEmpty(alertFilter.getStatus(), messageOfStatus, "alertAllWithFilter", log, UnsupportedErrorException::new);
+        if (GeneralUtils.isEmpty(alertFilter.getStatus())) {
+            return;
+        }
         String alertWhereSql = alertWhereSql(filter);
         RestTableKey<K> tableKey = tableKey(filter);
         String tableName = resolveTableName(tableKey);
