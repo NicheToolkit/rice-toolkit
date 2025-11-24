@@ -17,159 +17,159 @@ public interface AlertMapper<S,I> {
     /**
      * <code>alertById</code>
      * <p>The alert by id method.</p>
-     * @param id     I <p>The id parameter is <code>I</code> type.</p>
-     * @param status S <p>The status parameter is <code>S</code> type.</p>
+     * @param id    I <p>The id parameter is <code>I</code> type.</p>
+     * @param state S <p>The state parameter is <code>S</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert by id return object is <code>Integer</code> type.</p>
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer alertById(@Param("id") I id, @Param("status") S status);
+    Integer alertById(@Param("id") I id, @Param("state") S state);
 
     /**
      * <code>alertDynamicById</code>
      * <p>The alert dynamic by id method.</p>
-     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param id        I <p>The id parameter is <code>I</code> type.</p>
-     * @param status    S <p>The status parameter is <code>S</code> type.</p>
+     * @param state     S <p>The state parameter is <code>S</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert dynamic by id return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer alertDynamicById(@Param("tableName") String tableName, @Param("id") I id, @Param("status") S status);
+    Integer alertDynamicById(@Param("tableName") String tableName, @Param("id") I id, @Param("state") S state);
 
     /**
      * <code>alertAll</code>
      * <p>The alert all method.</p>
      * @param idList {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
-     * @param status S <p>The status parameter is <code>S</code> type.</p>
+     * @param state  S <p>The state parameter is <code>S</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert all return object is <code>Integer</code> type.</p>
      * @see java.util.Collection
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer alertAll(@Param("idList") Collection<I> idList, @Param("status") S status);
+    Integer alertAll(@Param("idList") Collection<I> idList, @Param("state") S state);
 
     /**
      * <code>alertDynamicAll</code>
      * <p>The alert dynamic all method.</p>
-     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param idList    {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
-     * @param status    S <p>The status parameter is <code>S</code> type.</p>
+     * @param state     S <p>The state parameter is <code>S</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert dynamic all return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.util.Collection
      * @see java.lang.Integer
      */
-    Integer alertDynamicAll(@Param("tableName") String tableName, @Param("idList") Collection<I> idList, @Param("status") S status);
+    Integer alertDynamicAll(@Param("tableName") String tableName, @Param("idList") Collection<I> idList, @Param("state") S state);
 
     /**
      * <code>alertAllByWhere</code>
      * <p>The alert all by where method.</p>
      * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
-     * @param status   S <p>The status parameter is <code>S</code> type.</p>
+     * @param state    S <p>The state parameter is <code>S</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert all by where return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer alertAllByWhere(@Param("whereSql") String whereSql, @Param("status") S status);
+    Integer alertAllByWhere(@Param("whereSql") String whereSql, @Param("state") S state);
 
     /**
      * <code>alertDynamicAllByWhere</code>
      * <p>The alert dynamic all by where method.</p>
-     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
-     * @param status    S <p>The status parameter is <code>S</code> type.</p>
+     * @param state     S <p>The state parameter is <code>S</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert dynamic all by where return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer alertDynamicAllByWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("status") S status);
+    Integer alertDynamicAllByWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("state") S state);
 
     /**
      * <code>alertById</code>
      * <p>The alert by id method.</p>
-     * @param id         I <p>The id parameter is <code>I</code> type.</p>
-     * @param status     S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusName {@link java.lang.String} <p>The status name parameter is <code>String</code> type.</p>
+     * @param id        I <p>The id parameter is <code>I</code> type.</p>
+     * @param state     S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateName {@link java.lang.String} <p>The state name parameter is <code>String</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert by id return object is <code>Integer</code> type.</p>
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.String
      * @see java.lang.Integer
      */
-    Integer alertById(@Param("id") I id, @Param("status") S status, @Param("statusName") String statusName);
+    Integer alertById(@Param("id") I id, @Param("state") S state, @Param("stateName") String stateName);
 
     /**
      * <code>alertDynamicById</code>
      * <p>The alert dynamic by id method.</p>
-     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
-     * @param id         I <p>The id parameter is <code>I</code> type.</p>
-     * @param status     S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusName {@link java.lang.String} <p>The status name parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
+     * @param id        I <p>The id parameter is <code>I</code> type.</p>
+     * @param state     S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateName {@link java.lang.String} <p>The state name parameter is <code>String</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert dynamic by id return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer alertDynamicById(@Param("tableName") String tableName, @Param("id") I id, @Param("status") S status, @Param("statusName") String statusName);
+    Integer alertDynamicById(@Param("tableName") String tableName, @Param("id") I id, @Param("state") S state, @Param("stateName") String stateName);
 
     /**
      * <code>alertAll</code>
      * <p>The alert all method.</p>
-     * @param idList     {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
-     * @param status     S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusName {@link java.lang.String} <p>The status name parameter is <code>String</code> type.</p>
+     * @param idList    {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @param state     S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateName {@link java.lang.String} <p>The state name parameter is <code>String</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert all return object is <code>Integer</code> type.</p>
      * @see java.util.Collection
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.String
      * @see java.lang.Integer
      */
-    Integer alertAll(@Param("idList") Collection<I> idList, @Param("status") S status, @Param("statusName") String statusName);
+    Integer alertAll(@Param("idList") Collection<I> idList, @Param("state") S state, @Param("stateName") String stateName);
 
     /**
      * <code>alertDynamicAll</code>
      * <p>The alert dynamic all method.</p>
-     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
-     * @param idList     {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
-     * @param status     S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusName {@link java.lang.String} <p>The status name parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
+     * @param idList    {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @param state     S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateName {@link java.lang.String} <p>The state name parameter is <code>String</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert dynamic all return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.util.Collection
      * @see java.lang.Integer
      */
-    Integer alertDynamicAll(@Param("tableName") String tableName, @Param("idList") Collection<I> idList, @Param("status") S status, @Param("statusName") String statusName);
+    Integer alertDynamicAll(@Param("tableName") String tableName, @Param("idList") Collection<I> idList, @Param("state") S state, @Param("stateName") String stateName);
 
     /**
      * <code>alertAllByWhere</code>
      * <p>The alert all by where method.</p>
-     * @param whereSql   {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
-     * @param status     S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusName {@link java.lang.String} <p>The status name parameter is <code>String</code> type.</p>
+     * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param state     S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateName {@link java.lang.String} <p>The state name parameter is <code>String</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert all by where return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer alertAllByWhere(@Param("whereSql") String whereSql, @Param("status") S status, @Param("statusName") String statusName);
+    Integer alertAllByWhere(@Param("whereSql") String whereSql, @Param("state") S state, @Param("stateName") String stateName);
 
     /**
      * <code>alertDynamicAllByWhere</code>
      * <p>The alert dynamic all by where method.</p>
-     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
-     * @param whereSql   {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
-     * @param status     S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusName {@link java.lang.String} <p>The status name parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
+     * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param state     S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateName {@link java.lang.String} <p>The state name parameter is <code>String</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert dynamic all by where return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer alertDynamicAllByWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("status") S status, @Param("statusName") String statusName);
+    Integer alertDynamicAllByWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("state") S state, @Param("stateName") String stateName);
 
 }

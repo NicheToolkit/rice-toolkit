@@ -8,7 +8,7 @@ import io.github.nichetoolkit.rest.stream.RestStream;
 import io.github.nichetoolkit.rest.util.BeanUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.OptionalUtils;
-import io.github.nichetoolkit.rice.filter.StatusFilter;
+import io.github.nichetoolkit.rice.filter.StateFilter;
 
 import java.io.Serializable;
 import java.util.List;
@@ -37,17 +37,17 @@ public abstract class DefaultAlertnessHandler<S> implements RestAlertnessHandler
     /**
      * <code>toSqlHandle</code>
      * <p>The to sql handle method.</p>
-     * @param <F>  {@link io.github.nichetoolkit.rice.filter.StatusFilter} <p>The generic parameter is <code>StatusFilter</code> type.</p>
+     * @param <F>  {@link StateFilter} <p>The generic parameter is <code>StatusFilter</code> type.</p>
      * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param prefix {@link java.lang.String} <p>The prefix parameter is <code>String</code> type.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.filter.StatusFilter
+     * @see  StateFilter
      * @see  java.lang.String
      * @see  io.github.nichetoolkit.rest.RestException
      * @return  {@link java.lang.String} <p>The to sql handle return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
-    public static <F extends StatusFilter<S>,S> String toSqlHandle(String prefix, F filter) throws RestException {
+    public static <F extends StateFilter<S>,S> String toSqlHandle(String prefix, F filter) throws RestException {
         Class<S> statusType = filter.getStatusType();
         List<RestAlertnessHandler> handlers = BeanUtils.beansOfType(RestAlertnessHandler.class);
         OptionalUtils.ofEmpty(handlers, "the bean of 'RestAlertnessHandler' type for <S> is not found!", ResourceNotFoundException::new);

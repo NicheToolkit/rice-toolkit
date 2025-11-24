@@ -17,6 +17,7 @@ import org.apache.ibatis.annotations.Param;
  * @see io.github.nichetoolkit.rice.RestId
  * @see io.github.nichetoolkit.rice.filter.IdFilter
  * @see io.github.nichetoolkit.rice.mapper.filter.FindFilterMapper
+ * @see io.github.nichetoolkit.rice.mapper.AlertMapper
  * @since Jdk1.8
  */
 public interface AlertFilterMapper<E extends RestId<I>, F extends IdFilter<I, K>, S, I, K> extends FindFilterMapper<E, F, I, K>, AlertMapper<S,I> {
@@ -26,13 +27,13 @@ public interface AlertFilterMapper<E extends RestId<I>, F extends IdFilter<I, K>
      * <p>The alert all by filter where method.</p>
      * @param whereSql {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param filter   F <p>The filter parameter is <code>F</code> type.</p>
-     * @param status   S <p>The status parameter is <code>S</code> type.</p>
+     * @param state    S <p>The state parameter is <code>S</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert all by filter where return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer alertAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("status") S status);
+    Integer alertAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("state") S state);
 
     /**
      * <code>alertDynamicAllByFilterWhere</code>
@@ -40,41 +41,41 @@ public interface AlertFilterMapper<E extends RestId<I>, F extends IdFilter<I, K>
      * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param filter    F <p>The filter parameter is <code>F</code> type.</p>
-     * @param status    S <p>The status parameter is <code>S</code> type.</p>
+     * @param state     S <p>The state parameter is <code>S</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert dynamic all by filter where return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer alertDynamicAllByFilterWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("status") S status);
+    Integer alertDynamicAllByFilterWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("state") S state);
 
 
     /**
      * <code>alertAllByFilterWhere</code>
      * <p>The alert all by filter where method.</p>
-     * @param whereSql   {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
-     * @param filter     F <p>The filter parameter is <code>F</code> type.</p>
-     * @param status     S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusName {@link java.lang.String} <p>The status name parameter is <code>String</code> type.</p>
+     * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param filter    F <p>The filter parameter is <code>F</code> type.</p>
+     * @param state     S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateName {@link java.lang.String} <p>The state name parameter is <code>String</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert all by filter where return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer alertAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("status") S status, @Param("statusName") String statusName);
+    Integer alertAllByFilterWhere(@Param("whereSql") String whereSql, @Param("filter") F filter, @Param("state") S state, @Param("stateName") String stateName);
 
     /**
      * <code>alertDynamicAllByFilterWhere</code>
      * <p>The alert dynamic all by filter where method.</p>
-     * @param tableName  {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
-     * @param whereSql   {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
-     * @param filter     F <p>The filter parameter is <code>F</code> type.</p>
-     * @param status     S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusName {@link java.lang.String} <p>The status name parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
+     * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
+     * @param filter    F <p>The filter parameter is <code>F</code> type.</p>
+     * @param state     S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateName {@link java.lang.String} <p>The state name parameter is <code>String</code> type.</p>
      * @return {@link java.lang.Integer} <p>The alert dynamic all by filter where return object is <code>Integer</code> type.</p>
      * @see java.lang.String
      * @see org.apache.ibatis.annotations.Param
      * @see java.lang.Integer
      */
-    Integer alertDynamicAllByFilterWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("status") S status, @Param("statusName") String statusName);
+    Integer alertDynamicAllByFilterWhere(@Param("tableName") String tableName, @Param("whereSql") String whereSql, @Param("filter") F filter, @Param("state") S state, @Param("stateName") String stateName);
 }

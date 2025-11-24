@@ -12,22 +12,22 @@ import org.springframework.lang.NonNull;
 import java.util.*;
 
 /**
- * <code>StatusFilter</code>
- * <p>The status filter interface.</p>
+ * <code>StateFilter</code>
+ * <p>The state filter interface.</p>
  * @param <S> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.filter.AlertFilter
  * @since Jdk1.8
  */
-public interface StatusFilter<S> extends AlertFilter<S> {
+public interface StateFilter<S> extends AlertFilter<S> {
 
     /**
-     * <code>getStatuses</code>
-     * <p>The get statuses getter method.</p>
-     * @return {@link java.util.List} <p>The get statuses return object is <code>List</code> type.</p>
+     * <code>getStates</code>
+     * <p>The get states getter method.</p>
+     * @return {@link java.util.List} <p>The get states return object is <code>List</code> type.</p>
      * @see java.util.List
      */
-    List<S> getStatuses();
+    List<S> getStates();
 
     /**
      * <code>sqlBuilder</code>
@@ -38,51 +38,51 @@ public interface StatusFilter<S> extends AlertFilter<S> {
     SqlBuilder sqlBuilder();
 
     /**
-     * <code>setStatuses</code>
-     * <p>The set statuses setter method.</p>
-     * @param statuses {@link java.util.Collection} <p>The statuses parameter is <code>Collection</code> type.</p>
+     * <code>setStates</code>
+     * <p>The set states setter method.</p>
+     * @param states {@link java.util.Collection} <p>The states parameter is <code>Collection</code> type.</p>
      * @see java.util.Collection
      * @see org.springframework.lang.NonNull
      * @see com.fasterxml.jackson.annotation.JsonSetter
      */
     @JsonSetter
-    void setStatuses(@NonNull Collection<S> statuses);
+    void setStates(@NonNull Collection<S> states);
 
     /**
-     * <code>toStatuses</code>
-     * <p>The to statuses method.</p>
-     * @return {@link java.util.List} <p>The to statuses return object is <code>List</code> type.</p>
+     * <code>toStates</code>
+     * <p>The to states method.</p>
+     * @return {@link java.util.List} <p>The to states return object is <code>List</code> type.</p>
      * @see java.util.List
      */
-    default List<S> toStatuses() {
-        Set<S> statusesSet = new HashSet<>();
-        if (GeneralUtils.isNotEmpty(getStatus())) {
-            statusesSet.add(getStatus());
+    default List<S> toStates() {
+        Set<S> stateesSet = new HashSet<>();
+        if (GeneralUtils.isNotEmpty(getState())) {
+            stateesSet.add(getState());
         }
-        if (GeneralUtils.isNotEmpty(getStatuses())) {
-            statusesSet.addAll(getStatuses());
+        if (GeneralUtils.isNotEmpty(getStates())) {
+            stateesSet.addAll(getStates());
         }
-        return new ArrayList<>(statusesSet);
+        return new ArrayList<>(stateesSet);
     }
 
     /**
-     * <code>toStatusSql</code>
-     * <p>The to status sql method.</p>
+     * <code>toStateSql</code>
+     * <p>The to state sql method.</p>
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.StatusFilter} <p>The to status sql return object is <code>StatusFilter</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.filter.StateFilter} <p>The to state sql return object is <code>StateFilter</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see org.springframework.lang.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default StatusFilter<S> toStatusSql(@NonNull String alias) throws RestException {
-        toStatusSql(sqlBuilder(), alias);
+    default StateFilter<S> toStateSql(@NonNull String alias) throws RestException {
+        toStateSql(sqlBuilder(), alias);
         return this;
     }
 
     /**
-     * <code>toStatusSql</code>
-     * <p>The to status sql method.</p>
+     * <code>toStateSql</code>
+     * <p>The to state sql method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @param alias      {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
@@ -91,14 +91,14 @@ public interface StatusFilter<S> extends AlertFilter<S> {
      * @see org.springframework.lang.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
-    default void toStatusSql(SqlBuilder sqlBuilder, @NonNull String alias) throws RestException {
-        if (getStatusType().isAnnotationPresent(RestAlertness.class)) {
+    default void toStateSql(SqlBuilder sqlBuilder, @NonNull String alias) throws RestException {
+        if (getStateType().isAnnotationPresent(RestAlertness.class)) {
             toAlertnessSql(sqlBuilder, alias);
         } else {
-            if (GeneralUtils.isNotEmpty(getStatus())) {
-                SqlBuilders.equal(sqlBuilder, alias, getStatus());
-            } else if (GeneralUtils.isNotEmpty(getStatuses())) {
-                SqlBuilders.in(sqlBuilder, alias, getStatuses());
+            if (GeneralUtils.isNotEmpty(getState())) {
+                SqlBuilders.equal(sqlBuilder, alias, getState());
+            } else if (GeneralUtils.isNotEmpty(getStates())) {
+                SqlBuilders.in(sqlBuilder, alias, getStates());
             }
         }
     }

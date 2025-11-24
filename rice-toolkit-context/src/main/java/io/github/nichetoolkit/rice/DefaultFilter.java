@@ -9,7 +9,7 @@ import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import io.github.nichetoolkit.rice.enums.DeleteMode;
 import io.github.nichetoolkit.rice.enums.LogicMode;
 import io.github.nichetoolkit.rice.filter.NameFilter;
-import io.github.nichetoolkit.rice.filter.StatusFilter;
+import io.github.nichetoolkit.rice.filter.StateFilter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.lang.NonNull;
 
@@ -69,8 +69,8 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     public void toAlertnessSql(SqlBuilder sqlBuilder, @NonNull String alias) throws RestException {
-        if (this instanceof StatusFilter) {
-            StatusFilter<?> statusFilter = (StatusFilter<?>) this;
+        if (this instanceof StateFilter) {
+            StateFilter<?> statusFilter = (StateFilter<?>) this;
             List<?> statusList = statusFilter.toStatuses();
             String prefix = null;
             if (GeneralUtils.isNotEmpty(alias) && alias.contains(SQLConstants.PERIOD)) {

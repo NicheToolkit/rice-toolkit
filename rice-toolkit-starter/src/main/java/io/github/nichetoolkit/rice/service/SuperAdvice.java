@@ -887,11 +887,11 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     /**
      * <code>alertId</code>
      * <p>The alert id method.</p>
-     * @param <S>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tableName  {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
-     * @param id         I <p>The id parameter is <code>I</code> type.</p>
-     * @param status     S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusName {@link io.github.nichetoolkit.rest.RestKey} <p>The status name parameter is <code>RestKey</code> type.</p>
+     * @param <S>       {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
+     * @param id        I <p>The id parameter is <code>I</code> type.</p>
+     * @param state     S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateName {@link io.github.nichetoolkit.rest.RestKey} <p>The state name parameter is <code>RestKey</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestKey
@@ -899,19 +899,19 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings("unchecked")
-    public <S> void alertId(String tableName, I id, S status, RestKey<String> statusName) throws RestException {
-        boolean statusNamePresent = GeneralUtils.isNotEmpty(statusName) && GeneralUtils.isNotEmpty(statusName.getKey());
+    public <S> void alertId(String tableName, I id, S state, RestKey<String> stateName) throws RestException {
+        boolean stateNamePresent = GeneralUtils.isNotEmpty(stateName) && GeneralUtils.isNotEmpty(stateName.getKey());
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
-            if (statusNamePresent) {
-                ((AlertMapper<S, I>) superMapper).alertDynamicById(tableName, id, status, statusName.getKey());
+            if (stateNamePresent) {
+                ((AlertMapper<S, I>) superMapper).alertDynamicById(tableName, id, state, stateName.getKey());
             } else {
-                ((AlertMapper<S, I>) superMapper).alertDynamicById(tableName, id, status);
+                ((AlertMapper<S, I>) superMapper).alertDynamicById(tableName, id, state);
             }
         } else {
-            if (statusNamePresent) {
-                ((AlertMapper<S, I>) superMapper).alertById(id, status, statusName.getKey());
+            if (stateNamePresent) {
+                ((AlertMapper<S, I>) superMapper).alertById(id, state, stateName.getKey());
             } else {
-                ((AlertMapper<S, I>) superMapper).alertById(id, status);
+                ((AlertMapper<S, I>) superMapper).alertById(id, state);
             }
         }
     }
@@ -919,13 +919,13 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     /**
      * <code>alertLinkId</code>
      * <p>The alert link id method.</p>
-     * @param <L>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param <S>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tableName  {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
-     * @param linkId     L <p>The link id parameter is <code>L</code> type.</p>
-     * @param linkName   {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param status     S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusName {@link io.github.nichetoolkit.rest.RestKey} <p>The status name parameter is <code>RestKey</code> type.</p>
+     * @param <L>       {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <S>       {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
+     * @param linkId    L <p>The link id parameter is <code>L</code> type.</p>
+     * @param linkName  {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
+     * @param state     S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateName {@link io.github.nichetoolkit.rest.RestKey} <p>The state name parameter is <code>RestKey</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestKey
@@ -933,35 +933,35 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings("unchecked")
-    protected <L, S> void alertLinkId(String tableName, L linkId, RestKey<String> linkName, S status, RestKey<String> statusName) throws RestException {
+    protected <L, S> void alertLinkId(String tableName, L linkId, RestKey<String> linkName, S state, RestKey<String> stateName) throws RestException {
         boolean linkNamePresent = GeneralUtils.isNotEmpty(linkName) && GeneralUtils.isNotEmpty(linkName.getKey());
-        boolean statusNamePresent = GeneralUtils.isNotEmpty(statusName) && GeneralUtils.isNotEmpty(statusName.getKey());
+        boolean stateNamePresent = GeneralUtils.isNotEmpty(stateName) && GeneralUtils.isNotEmpty(stateName.getKey());
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
             if (linkNamePresent) {
-                if (statusNamePresent) {
-                    ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicByLinkId(tableName, linkId, linkName.getKey(), status, statusName.getKey());
+                if (stateNamePresent) {
+                    ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicByLinkId(tableName, linkId, linkName.getKey(), state, stateName.getKey());
                 } else {
-                    ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicByLinkId(tableName, linkId, linkName.getKey(), status);
+                    ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicByLinkId(tableName, linkId, linkName.getKey(), state);
                 }
             } else {
-                if (statusNamePresent) {
-                    ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicByLinkId(tableName, linkId, status, statusName.getKey());
+                if (stateNamePresent) {
+                    ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicByLinkId(tableName, linkId, state, stateName.getKey());
                 } else {
-                    ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicByLinkId(tableName, linkId, status);
+                    ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicByLinkId(tableName, linkId, state);
                 }
             }
         } else {
             if (linkNamePresent) {
-                if (statusNamePresent) {
-                    ((AlertLinkMapper<L, S, I>) superMapper).alertByLinkId(linkId, linkName.getKey(), status, statusName.getKey());
+                if (stateNamePresent) {
+                    ((AlertLinkMapper<L, S, I>) superMapper).alertByLinkId(linkId, linkName.getKey(), state, stateName.getKey());
                 } else {
-                    ((AlertLinkMapper<L, S, I>) superMapper).alertByLinkId(linkId, linkName.getKey(), status);
+                    ((AlertLinkMapper<L, S, I>) superMapper).alertByLinkId(linkId, linkName.getKey(), state);
                 }
             } else {
-                if (statusNamePresent) {
-                    ((AlertLinkMapper<L, S, I>) superMapper).alertByLinkId(linkId, status, statusName.getKey());
+                if (stateNamePresent) {
+                    ((AlertLinkMapper<L, S, I>) superMapper).alertByLinkId(linkId, state, stateName.getKey());
                 } else {
-                    ((AlertLinkMapper<L, S, I>) superMapper).alertByLinkId(linkId, status);
+                    ((AlertLinkMapper<L, S, I>) superMapper).alertByLinkId(linkId, state);
                 }
             }
         }
@@ -971,11 +971,11 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     /**
      * <code>alertPartition</code>
      * <p>The alert partition method.</p>
-     * @param <S>        {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param tableName  {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
-     * @param idList     {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
-     * @param status     S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusName {@link io.github.nichetoolkit.rest.RestKey} <p>The status name parameter is <code>RestKey</code> type.</p>
+     * @param <S>       {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
+     * @param idList    {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
+     * @param state     S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateName {@link io.github.nichetoolkit.rest.RestKey} <p>The state name parameter is <code>RestKey</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see java.util.Collection
@@ -984,18 +984,18 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings({"unchecked", "Duplicates"})
-    protected <S> void alertPartition(String tableName, Collection<I> idList, S status, RestKey<String> statusName) throws RestException {
+    protected <S> void alertPartition(String tableName, Collection<I> idList, S state, RestKey<String> stateName) throws RestException {
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
-            if (GeneralUtils.isNotEmpty(statusName) && GeneralUtils.isNotEmpty(statusName.getKey())) {
-                PartitionHelper.partition(idList, this.partitionOfDelete(), ids -> ((AlertMapper<S, I>) superMapper).alertDynamicAll(tableName, ids, status, statusName.getKey()));
+            if (GeneralUtils.isNotEmpty(stateName) && GeneralUtils.isNotEmpty(stateName.getKey())) {
+                PartitionHelper.partition(idList, this.partitionOfDelete(), ids -> ((AlertMapper<S, I>) superMapper).alertDynamicAll(tableName, ids, state, stateName.getKey()));
             } else {
-                PartitionHelper.partition(idList, this.partitionOfDelete(), ids -> ((AlertMapper<S, I>) superMapper).alertDynamicAll(tableName, ids, status));
+                PartitionHelper.partition(idList, this.partitionOfDelete(), ids -> ((AlertMapper<S, I>) superMapper).alertDynamicAll(tableName, ids, state));
             }
         } else {
-            if (GeneralUtils.isNotEmpty(statusName) && GeneralUtils.isNotEmpty(statusName.getKey())) {
-                PartitionHelper.partition(idList, this.partitionOfDelete(), ids -> ((AlertMapper<S, I>) superMapper).alertAll(ids, status, statusName.getKey()));
+            if (GeneralUtils.isNotEmpty(stateName) && GeneralUtils.isNotEmpty(stateName.getKey())) {
+                PartitionHelper.partition(idList, this.partitionOfDelete(), ids -> ((AlertMapper<S, I>) superMapper).alertAll(ids, state, stateName.getKey()));
             } else {
-                PartitionHelper.partition(idList, this.partitionOfDelete(), ids -> ((AlertMapper<S, I>) superMapper).alertAll(ids, status));
+                PartitionHelper.partition(idList, this.partitionOfDelete(), ids -> ((AlertMapper<S, I>) superMapper).alertAll(ids, state));
             }
         }
     }
@@ -1008,8 +1008,8 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param tableName  {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName   {@link io.github.nichetoolkit.rest.RestKey} <p>The link name parameter is <code>RestKey</code> type.</p>
-     * @param status     S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusName {@link io.github.nichetoolkit.rest.RestKey} <p>The status name parameter is <code>RestKey</code> type.</p>
+     * @param state      S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateName  {@link io.github.nichetoolkit.rest.RestKey} <p>The state name parameter is <code>RestKey</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see java.util.Collection
@@ -1018,35 +1018,35 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings({"unchecked", "Duplicates"})
-    protected <L, S> void alertLinkIdPartition(String tableName, Collection<L> linkIdList, RestKey<String> linkName, S status, RestKey<String> statusName) throws RestException {
+    protected <L, S> void alertLinkIdPartition(String tableName, Collection<L> linkIdList, RestKey<String> linkName, S state, RestKey<String> stateName) throws RestException {
         boolean linkNamePresent = GeneralUtils.isNotEmpty(linkName) && GeneralUtils.isNotEmpty(linkName.getKey());
-        boolean statusNamePresent = GeneralUtils.isNotEmpty(statusName) && GeneralUtils.isNotEmpty(statusName.getKey());
+        boolean stateNamePresent = GeneralUtils.isNotEmpty(stateName) && GeneralUtils.isNotEmpty(stateName.getKey());
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
             if (linkNamePresent) {
-                if (statusNamePresent) {
-                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicAllByLinkIds(tableName, linkIds, linkName.getKey(), status, statusName.getKey()));
+                if (stateNamePresent) {
+                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicAllByLinkIds(tableName, linkIds, linkName.getKey(), state, stateName.getKey()));
                 } else {
-                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicAllByLinkIds(tableName, linkIds, linkName.getKey(), status));
+                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicAllByLinkIds(tableName, linkIds, linkName.getKey(), state));
                 }
             } else {
-                if (statusNamePresent) {
-                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicAllByLinkIds(tableName, linkIds, status, statusName.getKey()));
+                if (stateNamePresent) {
+                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicAllByLinkIds(tableName, linkIds, state, stateName.getKey()));
                 } else {
-                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicAllByLinkIds(tableName, linkIds, status));
+                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertDynamicAllByLinkIds(tableName, linkIds, state));
                 }
             }
         } else {
             if (linkNamePresent) {
-                if (statusNamePresent) {
-                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertAllByLinkIds(linkIds, linkName.getKey(), status, statusName.getKey()));
+                if (stateNamePresent) {
+                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertAllByLinkIds(linkIds, linkName.getKey(), state, stateName.getKey()));
                 } else {
-                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertAllByLinkIds(linkIds, linkName.getKey(), status));
+                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertAllByLinkIds(linkIds, linkName.getKey(), state));
                 }
             } else {
-                if (statusNamePresent) {
-                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertAllByLinkIds(linkIds, status, statusName.getKey()));
+                if (stateNamePresent) {
+                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertAllByLinkIds(linkIds, state, stateName.getKey()));
                 } else {
-                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertAllByLinkIds(linkIds, status));
+                    PartitionHelper.partition(linkIdList, this.partitionOfDelete(), linkIds -> ((AlertLinkMapper<L, S, I>) superMapper).alertAllByLinkIds(linkIds, state));
                 }
             }
         }
@@ -1055,20 +1055,20 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
     /**
      * <code>alertAdvice</code>
      * <p>The alert advice method.</p>
-     * @param <S>            {@link java.lang.Object} <p>The parameter can be of any type.</p>
-     * @param entityList     {@link java.util.List} <p>The entity list parameter is <code>List</code> type.</p>
-     * @param status         S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusActuator {@link io.github.nichetoolkit.rest.actuator.ConsumerActuator} <p>The status actuator parameter is <code>ConsumerActuator</code> type.</p>
+     * @param <S>           {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param entityList    {@link java.util.List} <p>The entity list parameter is <code>List</code> type.</p>
+     * @param state         S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateActuator {@link io.github.nichetoolkit.rest.actuator.ConsumerActuator} <p>The state actuator parameter is <code>ConsumerActuator</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.util.List
      * @see io.github.nichetoolkit.rest.actuator.ConsumerActuator
      * @see io.github.nichetoolkit.rest.RestException
      */
-    protected <S> void alertAdvice(List<E> entityList, S status, ConsumerActuator<S> statusActuator) throws RestException {
+    protected <S> void alertAdvice(List<E> entityList, S state, ConsumerActuator<S> stateActuator) throws RestException {
         if (!isBeforeSkip()) {
             this.beforeAlertAll(entityList);
         }
-        statusActuator.actuate(status);
+        stateActuator.actuate(state);
         if (!isAfterSkip()) {
             this.afterAlertAll(entityList);
         }
@@ -1082,8 +1082,8 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param tableName     {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param alertWhereSql {@link java.lang.String} <p>The alert where sql parameter is <code>String</code> type.</p>
      * @param filter        F <p>The filter parameter is <code>F</code> type.</p>
-     * @param status        S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusName    {@link io.github.nichetoolkit.rest.RestKey} <p>The status name parameter is <code>RestKey</code> type.</p>
+     * @param state         S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateName     {@link io.github.nichetoolkit.rest.RestKey} <p>The state name parameter is <code>RestKey</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestKey
@@ -1091,19 +1091,19 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings({"unchecked", "Duplicates"})
-    protected <S> void alertFilterWhere(String tableName, String alertWhereSql, F filter, S status, RestKey<String> statusName) throws RestException {
-        boolean statusNamePresent = GeneralUtils.isNotEmpty(statusName) && GeneralUtils.isNotEmpty(statusName.getKey());
+    protected <S> void alertFilterWhere(String tableName, String alertWhereSql, F filter, S state, RestKey<String> stateName) throws RestException {
+        boolean stateNamePresent = GeneralUtils.isNotEmpty(stateName) && GeneralUtils.isNotEmpty(stateName.getKey());
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
-            if (statusNamePresent) {
-                ((AlertFilterMapper<E, F, S, I, K>) superMapper).alertDynamicAllByFilterWhere(tableName, alertWhereSql, filter, status, statusName.getKey());
+            if (stateNamePresent) {
+                ((AlertFilterMapper<E, F, S, I, K>) superMapper).alertDynamicAllByFilterWhere(tableName, alertWhereSql, filter, state, stateName.getKey());
             } else {
-                ((AlertFilterMapper<E, F, S, I, K>) superMapper).alertDynamicAllByFilterWhere(tableName, alertWhereSql, filter, status);
+                ((AlertFilterMapper<E, F, S, I, K>) superMapper).alertDynamicAllByFilterWhere(tableName, alertWhereSql, filter, state);
             }
         } else {
-            if (statusNamePresent) {
-                ((AlertFilterMapper<E, F, S, I, K>) superMapper).alertAllByFilterWhere(alertWhereSql, filter, status, statusName.getKey());
+            if (stateNamePresent) {
+                ((AlertFilterMapper<E, F, S, I, K>) superMapper).alertAllByFilterWhere(alertWhereSql, filter, state, stateName.getKey());
             } else {
-                ((AlertFilterMapper<E, F, S, I, K>) superMapper).alertAllByFilterWhere(alertWhereSql, filter, status);
+                ((AlertFilterMapper<E, F, S, I, K>) superMapper).alertAllByFilterWhere(alertWhereSql, filter, state);
             }
         }
     }
@@ -1114,8 +1114,8 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param <S>           {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param tableName     {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param alertWhereSql {@link java.lang.String} <p>The alert where sql parameter is <code>String</code> type.</p>
-     * @param status        S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusName    {@link io.github.nichetoolkit.rest.RestKey} <p>The status name parameter is <code>RestKey</code> type.</p>
+     * @param state         S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateName     {@link io.github.nichetoolkit.rest.RestKey} <p>The state name parameter is <code>RestKey</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestKey
@@ -1123,19 +1123,19 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @see io.github.nichetoolkit.rest.RestException
      */
     @SuppressWarnings({"unchecked", "Duplicates"})
-    protected <S> void alertAllWhere(String tableName, String alertWhereSql, S status, RestKey<String> statusName) throws RestException {
-        boolean statusNamePresent = GeneralUtils.isNotEmpty(statusName) && GeneralUtils.isNotEmpty(statusName.getKey());
+    protected <S> void alertAllWhere(String tableName, String alertWhereSql, S state, RestKey<String> stateName) throws RestException {
+        boolean stateNamePresent = GeneralUtils.isNotEmpty(stateName) && GeneralUtils.isNotEmpty(stateName.getKey());
         if (isDynamicOfTable() && GeneralUtils.isNotEmpty(tableName)) {
-            if (statusNamePresent) {
-                ((AlertMapper<S, I>) superMapper).alertDynamicAllByWhere(tableName, alertWhereSql, status, statusName.getKey());
+            if (stateNamePresent) {
+                ((AlertMapper<S, I>) superMapper).alertDynamicAllByWhere(tableName, alertWhereSql, state, stateName.getKey());
             } else {
-                ((AlertMapper<S, I>) superMapper).alertDynamicAllByWhere(tableName, alertWhereSql, status);
+                ((AlertMapper<S, I>) superMapper).alertDynamicAllByWhere(tableName, alertWhereSql, state);
             }
         } else {
-            if (statusNamePresent) {
-                ((AlertMapper<S, I>) superMapper).alertAllByWhere(alertWhereSql, status, statusName.getKey());
+            if (stateNamePresent) {
+                ((AlertMapper<S, I>) superMapper).alertAllByWhere(alertWhereSql, state, stateName.getKey());
             } else {
-                ((AlertMapper<S, I>) superMapper).alertAllByWhere(alertWhereSql, status);
+                ((AlertMapper<S, I>) superMapper).alertAllByWhere(alertWhereSql, state);
             }
         }
     }
@@ -2176,21 +2176,21 @@ abstract class SuperAdvice<M extends RestId<I>, E extends RestId<I>, F extends I
      * @param alertWhereSql {@link java.lang.String} <p>The alert where sql parameter is <code>String</code> type.</p>
      * @param tableName     {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param filter        F <p>The filter parameter is <code>F</code> type.</p>
-     * @param status        S <p>The status parameter is <code>S</code> type.</p>
-     * @param statusName    {@link io.github.nichetoolkit.rest.RestKey} <p>The status name parameter is <code>RestKey</code> type.</p>
+     * @param state         S <p>The state parameter is <code>S</code> type.</p>
+     * @param stateName     {@link io.github.nichetoolkit.rest.RestKey} <p>The state name parameter is <code>RestKey</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestKey
      * @see io.github.nichetoolkit.rest.RestException
      */
-    protected <S> void alertAllByWhere(String alertWhereSql, String tableName, F filter,S status,RestKey<String> statusName) throws RestException {
+    protected <S> void alertAllByWhere(String alertWhereSql, String tableName, F filter,S state,RestKey<String> stateName) throws RestException {
         if (isBeforeSkip() && isAfterSkip()) {
-            alertAllWhere(tableName,alertWhereSql,status,statusName);
+            alertAllWhere(tableName,alertWhereSql,state,stateName);
         } else {
             String queryWhereSql = queryWhereSql(filter);
             List<E> entityList = superMapper.findAllByWhere(queryWhereSql);
             if (GeneralUtils.isNotEmpty(entityList)) {
-                alertAdvice(entityList, status, alertStatus -> alertAllWhere(tableName,alertWhereSql,alertStatus,statusName));
+                alertAdvice(entityList, state, alertState -> alertAllWhere(tableName,alertWhereSql,alertState,stateName));
             }
         }
     }

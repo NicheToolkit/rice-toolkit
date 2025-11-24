@@ -17,42 +17,42 @@ import java.io.Serializable;
 public interface AlertFilter<S> extends Serializable {
 
     /**
-     * <code>getStatus</code>
-     * <p>The get status getter method.</p>
-     * @return S <p>The get status return object is <code>S</code> type.</p>
+     * <code>getState</code>
+     * <p>The get state getter method.</p>
+     * @return S <p>The get state return object is <code>S</code> type.</p>
      */
-    S getStatus();
+    S getState();
 
     /**
-     * <code>getStatusType</code>
-     * <p>The get status type getter method.</p>
-     * @return {@link java.lang.Class} <p>The get status type return object is <code>Class</code> type.</p>
+     * <code>getStateType</code>
+     * <p>The get state type getter method.</p>
+     * @return {@link java.lang.Class} <p>The get state type return object is <code>Class</code> type.</p>
      * @see java.lang.Class
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      * @see java.lang.SuppressWarnings
      */
     @JsonIgnore
     @SuppressWarnings("unchecked")
-    default Class<S> getStatusType() {
+    default Class<S> getStateType() {
         return  (Class<S>) RestGenericTypes.resolveClass(RestGenericTypes.resolveType(
                 AlertFilter.class.getTypeParameters()[0], getClass(), AlertFilter.class));
     }
 
     /**
-     * <code>getStatusName</code>
-     * <p>The get status name getter method.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestKey} <p>The get status name return object is <code>RestKey</code> type.</p>
+     * <code>getStateName</code>
+     * <p>The get state name getter method.</p>
+     * @return {@link io.github.nichetoolkit.rest.RestKey} <p>The get state name return object is <code>RestKey</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestKey
      */
-    default RestKey<String> getStatusName() {
+    default RestKey<String> getStateName() {
         return null;
     }
 
     /**
-     * <code>setStatus</code>
-     * <p>The set status setter method.</p>
+     * <code>setState</code>
+     * <p>The set state setter method.</p>
      * @param status S <p>The status parameter is <code>S</code> type.</p>
      */
-    void setStatus(S status);
+    void setState(S status);
 
 }
