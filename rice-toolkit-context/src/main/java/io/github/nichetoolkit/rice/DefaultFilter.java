@@ -70,13 +70,13 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
      */
     public void toAlertnessSql(SqlBuilder sqlBuilder, @NonNull String alias) throws RestException {
         if (this instanceof StateFilter) {
-            StateFilter<?> statusFilter = (StateFilter<?>) this;
-            List<?> statusList = statusFilter.toStatuses();
+            StateFilter<?> stateFilter = (StateFilter<?>) this;
+            List<?> states = stateFilter.toStates();
             String prefix = null;
             if (GeneralUtils.isNotEmpty(alias) && alias.contains(SQLConstants.PERIOD)) {
                 prefix = alias.split("\\.")[0];
             }
-            String alertnessSql = DefaultAlertnessHandler.toSqlHandle(prefix, statusFilter);
+            String alertnessSql = DefaultAlertnessHandler.toSqlHandle(prefix, stateFilter);
             SqlBuilders.append(sqlBuilder, alertnessSql);
         } else {
             throw new UnsupportedErrorException("the method of 'toAlertnessSql()' is unsupported，it is must be 'StatusFilter' type.");

@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
 /**
  * <code>DefaultAlertnessHandler</code>
  * <p>The default alertness handler class.</p>
- * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @see  io.github.nichetoolkit.mybatis.handler.RestAlertnessHandler
- * @see  java.lang.SuppressWarnings
+ * @param <S> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.mybatis.handler.RestAlertnessHandler
+ * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
@@ -30,29 +30,29 @@ public abstract class DefaultAlertnessHandler<S> implements RestAlertnessHandler
     /**
      * <code>DEFAULT_ALERTNESS_TYPE</code>
      * {@link java.lang.Class} <p>The constant <code>DEFAULT_ALERTNESS_TYPE</code> field.</p>
-     * @see  java.lang.Class
+     * @see java.lang.Class
      */
     private static final Class<Serializable> DEFAULT_ALERTNESS_TYPE = Serializable.class;
 
     /**
      * <code>toSqlHandle</code>
      * <p>The to sql handle method.</p>
-     * @param <F>  {@link StateFilter} <p>The generic parameter is <code>StatusFilter</code> type.</p>
-     * @param <S>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <F>    {@link io.github.nichetoolkit.rice.filter.StateFilter} <p>The generic parameter is <code>StateFilter</code> type.</p>
+     * @param <S>    {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param prefix {@link java.lang.String} <p>The prefix parameter is <code>String</code> type.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @see  StateFilter
-     * @see  java.lang.String
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link java.lang.String} <p>The to sql handle return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The to sql handle return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.filter.StateFilter
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <F extends StateFilter<S>,S> String toSqlHandle(String prefix, F filter) throws RestException {
-        Class<S> statusType = filter.getStatusType();
+        Class<S> stateType = filter.getStateType();
         List<RestAlertnessHandler> handlers = BeanUtils.beansOfType(RestAlertnessHandler.class);
         OptionalUtils.ofEmpty(handlers, "the bean of 'RestAlertnessHandler' type for <S> is not found!", ResourceNotFoundException::new);
         Map<Class, List<RestAlertnessHandler>> handlerMap = handlers.stream().collect(Collectors.groupingBy(RestAlertnessHandler::alertnessType));
-        List<RestAlertnessHandler> alertnessHandlers = handlerMap.get(statusType);
+        List<RestAlertnessHandler> alertnessHandlers = handlerMap.get(stateType);
         if (GeneralUtils.isEmpty(alertnessHandlers)) {
             alertnessHandlers = handlerMap.get(DEFAULT_ALERTNESS_TYPE);
         }
@@ -60,6 +60,6 @@ public abstract class DefaultAlertnessHandler<S> implements RestAlertnessHandler
         RestOptional<RestAlertnessHandler> alertnessHandler= RestStream.stream(alertnessHandlers).findAny();
         OptionalUtils.ofNull(alertnessHandler, "the bean of 'RestAlertnessHandler' type for <S> is not found!", ResourceNotFoundException::new);
         RestAlertnessHandler<S> handler = (RestAlertnessHandler<S>) alertnessHandler.get();
-        return handler.handle(prefix, filter.toStatuses(), statusType);
+        return handler.handle(prefix, filter.toStates(), stateType);
     }
 }
