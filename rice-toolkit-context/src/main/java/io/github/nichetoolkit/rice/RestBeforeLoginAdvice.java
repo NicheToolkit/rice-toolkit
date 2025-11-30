@@ -6,7 +6,7 @@ import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import org.springframework.web.method.HandlerMethod;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.lang.annotation.Annotation;
 
 /**
@@ -16,7 +16,7 @@ import java.lang.annotation.Annotation;
  * @author Cyan (snow22314@outlook.com)
  * @see java.lang.annotation.Annotation
  * @see java.lang.Comparable
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface RestBeforeLoginAdvice<A extends Annotation> extends Comparable<RestBeforeLoginAdvice<A>>{
 
@@ -36,12 +36,12 @@ public interface RestBeforeLoginAdvice<A extends Annotation> extends Comparable<
      * <code>doAnnotationHandle</code>
      * <p>The do annotation handle method.</p>
      * @param request       {@link io.github.nichetoolkit.rest.RestHttpRequest} <p>The request parameter is <code>RestHttpRequest</code> type.</p>
-     * @param response      {@link javax.servlet.http.HttpServletResponse} <p>The response parameter is <code>HttpServletResponse</code> type.</p>
+     * @param response      {@link jakarta.servlet.http.HttpServletResponse} <p>The response parameter is <code>HttpServletResponse</code> type.</p>
      * @param handlerMethod {@link org.springframework.web.method.HandlerMethod} <p>The handler method parameter is <code>HandlerMethod</code> type.</p>
      * @param annotation    A <p>The annotation parameter is <code>A</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestHttpRequest
-     * @see javax.servlet.http.HttpServletResponse
+     * @see jakarta.servlet.http.HttpServletResponse
      * @see org.springframework.web.method.HandlerMethod
      * @see io.github.nichetoolkit.rest.RestException
      */

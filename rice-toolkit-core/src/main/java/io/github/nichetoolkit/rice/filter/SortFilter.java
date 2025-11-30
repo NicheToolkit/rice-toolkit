@@ -7,10 +7,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.mybatis.enums.SortType;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestSort;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.*;
 
@@ -25,7 +26,7 @@ import java.util.*;
  * @see java.lang.SuppressWarnings
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Getter
 @Setter
@@ -62,8 +63,10 @@ public class SortFilter extends PageFilter {
      * <code>isSort</code>
      * <p>The <code>isSort</code> field.</p>
      * @see com.fasterxml.jackson.annotation.JsonIgnore
+     * @see lombok.Builder.Default
      */
     @JsonIgnore
+    @Builder.Default
     protected boolean isSort = true;
 
     /**
@@ -78,7 +81,7 @@ public class SortFilter extends PageFilter {
      * <p>Instantiates a new sort filter.</p>
      * @param sorts {@link io.github.nichetoolkit.rice.RestSort} <p>The sorts parameter is <code>RestSort</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestSort
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public SortFilter(@NonNull RestSort<?>... sorts) {
         this.sorts = new LinkedHashSet<>(Arrays.asList(sorts));
@@ -89,7 +92,7 @@ public class SortFilter extends PageFilter {
      * <p>Instantiates a new sort filter.</p>
      * @param sorts {@link java.lang.String} <p>The sorts parameter is <code>String</code> type.</p>
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public SortFilter(@NonNull String... sorts) {
         this.sorts = new LinkedHashSet<>(RestSort.build(sorts));
@@ -100,7 +103,7 @@ public class SortFilter extends PageFilter {
      * <p>Instantiates a new sort filter.</p>
      * @param sorts {@link java.util.Collection} <p>The sorts parameter is <code>Collection</code> type.</p>
      * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public SortFilter(@NonNull Collection<String> sorts) {
         this.sorts = new LinkedHashSet<>(RestSort.build(sorts));
@@ -124,7 +127,7 @@ public class SortFilter extends PageFilter {
      * <p>The set sorts setter method.</p>
      * @param sorts {@link java.lang.String} <p>The sorts parameter is <code>String</code> type.</p>
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public void setSorts(@NonNull String... sorts) {
         this.setSorts(RestSort.build(sorts));
@@ -135,7 +138,7 @@ public class SortFilter extends PageFilter {
      * <p>The set sorts setter method.</p>
      * @param sorts {@link io.github.nichetoolkit.rice.RestSort} <p>The sorts parameter is <code>RestSort</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestSort
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public void setSorts(@NonNull RestSort<?>... sorts) {
         this.sorts = new LinkedHashSet<>(Arrays.asList(sorts));
@@ -146,7 +149,7 @@ public class SortFilter extends PageFilter {
      * <p>The set sorts setter method.</p>
      * @param sorts {@link java.util.Collection} <p>The sorts parameter is <code>Collection</code> type.</p>
      * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      * @see com.fasterxml.jackson.annotation.JsonSetter
      */
     @JsonSetter
@@ -160,7 +163,7 @@ public class SortFilter extends PageFilter {
      * @param sorts {@link java.lang.String} <p>The sorts parameter is <code>String</code> type.</p>
      * @return {@link io.github.nichetoolkit.rice.filter.SortFilter} <p>The add sorts return object is <code>SortFilter</code> type.</p>
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public SortFilter addSorts(@NonNull String... sorts) {
         if (GeneralUtils.isEmpty(this.sorts)) {
@@ -177,7 +180,7 @@ public class SortFilter extends PageFilter {
      * @param sorts {@link io.github.nichetoolkit.rice.RestSort} <p>The sorts parameter is <code>RestSort</code> type.</p>
      * @return {@link io.github.nichetoolkit.rice.filter.SortFilter} <p>The add sorts return object is <code>SortFilter</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestSort
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public SortFilter addSorts(@NonNull RestSort<?>... sorts) {
         if (GeneralUtils.isEmpty(this.sorts)) {
@@ -194,7 +197,7 @@ public class SortFilter extends PageFilter {
      * @param sorts {@link java.util.Collection} <p>The sorts parameter is <code>Collection</code> type.</p>
      * @return {@link io.github.nichetoolkit.rice.filter.SortFilter} <p>The add sorts return object is <code>SortFilter</code> type.</p>
      * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public SortFilter addSorts(@NonNull Collection<RestSort<?>> sorts) {
         if (GeneralUtils.isEmpty(this.sorts)) {

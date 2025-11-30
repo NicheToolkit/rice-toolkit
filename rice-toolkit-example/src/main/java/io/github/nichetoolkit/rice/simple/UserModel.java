@@ -21,9 +21,8 @@ import lombok.experimental.SuperBuilder;
  * @see lombok.experimental.SuperBuilder
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
-
 @SuperBuilder
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -67,6 +66,8 @@ public class UserModel extends RestInfoModel<UserModel, UserEntity> implements R
      * <code>purviewType</code>
      * {@link io.github.nichetoolkit.rice.purview.PurviewType} <p>The <code>purviewType</code> field.</p>
      * @see io.github.nichetoolkit.rice.purview.PurviewType
+     * @see lombok.Getter
+     * @see lombok.Setter
      */
     @Getter
     @Setter
@@ -99,6 +100,13 @@ public class UserModel extends RestInfoModel<UserModel, UserEntity> implements R
         this.username = username;
     }
 
+    /**
+     * <code>password</code>
+     * <p>The password method.</p>
+     * @return {@link java.lang.String} <p>The password return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     * @see com.fasterxml.jackson.annotation.JsonIgnore
+     */
     @JsonIgnore
     public String password() {
         return password;

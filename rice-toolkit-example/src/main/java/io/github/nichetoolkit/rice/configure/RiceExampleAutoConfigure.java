@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * @see org.mybatis.spring.annotation.MapperScan
  * @see org.springframework.boot.autoconfigure.AutoConfigureAfter
  * @see org.springframework.boot.autoconfigure.ImportAutoConfiguration
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Slf4j
 @Configuration

@@ -5,9 +5,9 @@ import io.github.nichetoolkit.rest.error.natives.TokenErrorException;
 /**
  * <code>TokenPermissionException</code>
  * <p>The token permission exception class.</p>
- * @see  io.github.nichetoolkit.rest.error.natives.TokenErrorException
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rest.error.natives.TokenErrorException
+ * @since Jdk17
  */
 public class TokenPermissionException extends TokenErrorException {
 
@@ -23,7 +23,7 @@ public class TokenPermissionException extends TokenErrorException {
      * <code>TokenPermissionException</code>
      * <p>Instantiates a new token permission exception.</p>
      * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     public TokenPermissionException(String error) {
         super(TokenErrorStatus.TOKEN_NO_PERMISSION, error);
@@ -33,8 +33,8 @@ public class TokenPermissionException extends TokenErrorException {
      * <code>TokenPermissionException</code>
      * <p>Instantiates a new token permission exception.</p>
      * @param permission {@link java.lang.String} <p>The permission parameter is <code>String</code> type.</p>
-     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @param error      {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
+     * @see java.lang.String
      */
     public TokenPermissionException(String permission, String error) {
         super(TokenErrorStatus.TOKEN_NO_PERMISSION, permission, error);

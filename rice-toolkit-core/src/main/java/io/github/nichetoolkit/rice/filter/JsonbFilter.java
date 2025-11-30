@@ -9,7 +9,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import io.github.nichetoolkit.rice.jsonb.*;
 import lombok.experimental.SuperBuilder;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.*;
 
@@ -24,7 +24,7 @@ import java.util.*;
  * @see java.lang.SuppressWarnings
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuperBuilder(builderMethodName = "ofJsonbBuilder")
 @SuppressWarnings({"WeakerAccess", "unchecked", "MixedMutabilityReturnType"})
@@ -342,7 +342,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * @return {@link io.github.nichetoolkit.rice.filter.JsonbFilter} <p>The to jsonb sql return object is <code>JsonbFilter</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
     public JsonbFilter<I, K> toJsonbSql(@NonNull String alias) throws RestException {
@@ -358,7 +358,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * @return {@link io.github.nichetoolkit.rice.filter.JsonbFilter} <p>The to jsonb sql return object is <code>JsonbFilter</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
     public JsonbFilter<I, K> toJsonbSql(@NonNull String alias, String variable) throws RestException {
@@ -381,7 +381,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
      * @see io.github.nichetoolkit.rice.jsonb.JsonbRule
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      * @see java.util.List
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
      */

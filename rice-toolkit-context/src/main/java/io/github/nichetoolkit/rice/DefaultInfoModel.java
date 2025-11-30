@@ -13,7 +13,7 @@ import lombok.experimental.SuperBuilder;
  * @see io.github.nichetoolkit.rice.InfoModel
  * @see io.github.nichetoolkit.rice.RestModel
  * @see lombok.experimental.SuperBuilder
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuperBuilder(builderMethodName = "ofDefaultInfoBuilder")
 public abstract class DefaultInfoModel<M extends DefaultInfoModel<M, E, I>, E extends DefaultInfoEntity<E, M, I>, I> extends InfoModel<I> implements RestModel<I, E> {

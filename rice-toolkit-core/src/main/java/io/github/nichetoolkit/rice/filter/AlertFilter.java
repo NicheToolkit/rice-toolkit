@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @param <S> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.io.Serializable
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface AlertFilter<S> extends Serializable {
 

@@ -15,7 +15,7 @@ import java.util.List;
  * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.IdModel
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface NameService<M extends IdModel<I>, I, K> {
 
@@ -36,7 +36,7 @@ public interface NameService<M extends IdModel<I>, I, K> {
     /**
      * <code>queryByName</code>
      * <p>The query by name method.</p>
-     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
+     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The table key parameter is <code>RestTableKey</code> type.</p>
      * @param name        {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The query by name return object is <code>List</code> type.</p>

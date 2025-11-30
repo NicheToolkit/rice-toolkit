@@ -11,18 +11,19 @@ import io.github.nichetoolkit.rice.enums.LogicMode;
 import io.github.nichetoolkit.rice.filter.NameFilter;
 import io.github.nichetoolkit.rice.filter.StateFilter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.*;
 
 /**
  * <code>DefaultFilter</code>
  * <p>The default filter class.</p>
- * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @see  io.github.nichetoolkit.rice.filter.NameFilter
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rice.filter.NameFilter
+ * @see lombok.experimental.SuperBuilder
+ * @since Jdk17
  */
 @SuperBuilder(builderMethodName = "ofDefaultBuilder")
 public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
@@ -38,7 +39,7 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
      * <code>DefaultFilter</code>
      * <p>Instantiates a new default filter.</p>
      * @param ids I <p>The ids parameter is <code>I</code> type.</p>
-     * @see  java.lang.SuppressWarnings
+     * @see java.lang.SuppressWarnings
      */
     @SuppressWarnings(value = "unchecked")
     public DefaultFilter(I... ids) {
@@ -61,12 +62,12 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
      * <code>toAlertnessSql</code>
      * <p>The to alertness sql method.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @see  io.github.nichetoolkit.mybatis.builder.SqlBuilder
-     * @see  java.lang.String
-     * @see  org.springframework.lang.NonNull
-     * @see  io.github.nichetoolkit.rest.RestException
+     * @param alias      {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
+     * @see java.lang.String
+     * @see org.jspecify.annotations.NonNull
+     * @see io.github.nichetoolkit.rest.RestException
      */
     public void toAlertnessSql(SqlBuilder sqlBuilder, @NonNull String alias) throws RestException {
         if (this instanceof StateFilter) {
@@ -86,19 +87,19 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
     /**
      * <code>toRemoveSql</code>
      * <p>The to remove sql method.</p>
-     * @param logicMode {@link io.github.nichetoolkit.rice.enums.LogicMode} <p>The logic mode parameter is <code>LogicMode</code> type.</p>
-     * @param markOfLogic {@link java.lang.Object} <p>The mark of logic parameter is <code>Object</code> type.</p>
+     * @param logicMode     {@link io.github.nichetoolkit.rice.enums.LogicMode} <p>The logic mode parameter is <code>LogicMode</code> type.</p>
+     * @param markOfLogic   {@link java.lang.Object} <p>The mark of logic parameter is <code>Object</code> type.</p>
      * @param accurateJudge {@link java.lang.Boolean} <p>The accurate judge parameter is <code>Boolean</code> type.</p>
      * @param unmarkOfLogic {@link java.lang.Object} <p>The unmark of logic parameter is <code>Object</code> type.</p>
-     * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.enums.LogicMode
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @see  java.lang.String
-     * @see  org.springframework.lang.NonNull
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link io.github.nichetoolkit.rice.DefaultFilter} <p>The to remove sql return object is <code>DefaultFilter</code> type.</p>
+     * @param alias         {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.DefaultFilter} <p>The to remove sql return object is <code>DefaultFilter</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.enums.LogicMode
+     * @see java.lang.Object
+     * @see java.lang.Boolean
+     * @see java.lang.String
+     * @see org.jspecify.annotations.NonNull
+     * @see io.github.nichetoolkit.rest.RestException
      */
     public DefaultFilter<I, K> toRemoveSql(LogicMode logicMode, Object markOfLogic, Boolean accurateJudge, Object unmarkOfLogic, @NonNull String alias) throws RestException {
         if (GeneralUtils.isNotEmpty(markOfLogic)) {
@@ -132,21 +133,21 @@ public abstract class DefaultFilter<I, K> extends NameFilter<I, K> {
     /**
      * <code>toQuerySql</code>
      * <p>The to query sql method.</p>
-     * @param deleteMode {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>The delete mode parameter is <code>DeleteMode</code> type.</p>
-     * @param logicMode {@link io.github.nichetoolkit.rice.enums.LogicMode} <p>The logic mode parameter is <code>LogicMode</code> type.</p>
-     * @param markOfLogic {@link java.lang.Object} <p>The mark of logic parameter is <code>Object</code> type.</p>
+     * @param deleteMode    {@link io.github.nichetoolkit.rice.enums.DeleteMode} <p>The delete mode parameter is <code>DeleteMode</code> type.</p>
+     * @param logicMode     {@link io.github.nichetoolkit.rice.enums.LogicMode} <p>The logic mode parameter is <code>LogicMode</code> type.</p>
+     * @param markOfLogic   {@link java.lang.Object} <p>The mark of logic parameter is <code>Object</code> type.</p>
      * @param accurateJudge {@link java.lang.Boolean} <p>The accurate judge parameter is <code>Boolean</code> type.</p>
      * @param unmarkOfLogic {@link java.lang.Object} <p>The unmark of logic parameter is <code>Object</code> type.</p>
-     * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.enums.DeleteMode
-     * @see  io.github.nichetoolkit.rice.enums.LogicMode
-     * @see  java.lang.Object
-     * @see  java.lang.Boolean
-     * @see  java.lang.String
-     * @see  org.springframework.lang.NonNull
-     * @see  io.github.nichetoolkit.rest.RestException
-     * @return  {@link io.github.nichetoolkit.rice.DefaultFilter} <p>The to query sql return object is <code>DefaultFilter</code> type.</p>
+     * @param alias         {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.DefaultFilter} <p>The to query sql return object is <code>DefaultFilter</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.enums.DeleteMode
+     * @see io.github.nichetoolkit.rice.enums.LogicMode
+     * @see java.lang.Object
+     * @see java.lang.Boolean
+     * @see java.lang.String
+     * @see org.jspecify.annotations.NonNull
+     * @see io.github.nichetoolkit.rest.RestException
      */
     public DefaultFilter<I, K> toQuerySql(DeleteMode deleteMode, LogicMode logicMode, Object markOfLogic, Boolean accurateJudge, Object unmarkOfLogic, @NonNull String alias) throws RestException {
         if (deleteMode == DeleteMode.OPERATE) {

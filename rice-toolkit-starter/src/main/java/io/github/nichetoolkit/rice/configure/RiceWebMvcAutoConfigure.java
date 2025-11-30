@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -24,7 +24,7 @@ import java.util.List;
  * @see org.springframework.boot.autoconfigure.AutoConfiguration
  * @see org.springframework.boot.autoconfigure.AutoConfigureAfter
  * @see org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
- * @since Jdk1.8
+ * @since Jdk17
  */
 @AutoConfiguration
 @AutoConfigureAfter(RiceLoginAutoConfigure.class)

@@ -9,10 +9,11 @@ import io.github.nichetoolkit.mybatis.load.RestLoad;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import java.util.List;
  * @see lombok.experimental.SuperBuilder
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Getter
 @Setter
@@ -84,19 +85,25 @@ public class PageFilter implements Serializable {
      * <code>pageNum</code>
      * {@link java.lang.Integer} <p>The <code>pageNum</code> field.</p>
      * @see java.lang.Integer
+     * @see lombok.Builder.Default
      */
+    @Builder.Default
     protected Integer pageNum = 1;
     /**
      * <code>pageSize</code>
      * {@link java.lang.Integer} <p>The <code>pageSize</code> field.</p>
      * @see java.lang.Integer
+     * @see lombok.Builder.Default
      */
+    @Builder.Default
     protected Integer pageSize = 0;
     /**
      * <code>loadLastPage</code>
      * {@link java.lang.Boolean} <p>The <code>loadLastPage</code> field.</p>
      * @see java.lang.Boolean
+     * @see lombok.Builder.Default
      */
+    @Builder.Default
     protected Boolean loadLastPage = false;
 
     /**
@@ -194,7 +201,7 @@ public class PageFilter implements Serializable {
      * @return {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The to load array return object is <code>RestLoad</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
     public RestLoad[] toLoadArray(@NonNull RestLoad... isLoads) throws RestException {
@@ -223,7 +230,7 @@ public class PageFilter implements Serializable {
      * @return {@link java.lang.String} <p>The to field array return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
     public String[] toFieldArray(@NonNull String... fields) throws RestException {
@@ -236,7 +243,7 @@ public class PageFilter implements Serializable {
      * <p>The add load array method.</p>
      * @param isLoads {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is loads parameter is <code>RestLoad</code> type.</p>
      * @see io.github.nichetoolkit.mybatis.load.RestLoad
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public void addLoadArray(@NonNull RestLoad... isLoads) {
         LOAD_ARRAY.addAll(Arrays.asList(isLoads));
@@ -247,7 +254,7 @@ public class PageFilter implements Serializable {
      * <p>The add field array method.</p>
      * @param fields {@link java.lang.String} <p>The fields parameter is <code>String</code> type.</p>
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public void addFieldArray(@NonNull String... fields) {
         FIELD_ARRAY.addAll(Arrays.asList(fields));

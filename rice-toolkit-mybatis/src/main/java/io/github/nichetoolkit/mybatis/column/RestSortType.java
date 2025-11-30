@@ -10,13 +10,13 @@ import java.lang.annotation.*;
 /**
  * <code>RestSortType</code>
  * <p>The rest sort type interface.</p>
- * @see  java.lang.annotation.Annotation
- * @see  java.lang.annotation.Retention
- * @see  java.lang.annotation.Target
- * @see  java.lang.annotation.Documented
- * @see  org.springframework.stereotype.Indexed
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see java.lang.annotation.Annotation
+ * @see java.lang.annotation.Retention
+ * @see java.lang.annotation.Target
+ * @see java.lang.annotation.Documented
+ * @see org.springframework.stereotype.Indexed
+ * @since Jdk17
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.ANNOTATION_TYPE})
@@ -26,9 +26,9 @@ public @interface RestSortType {
     /**
      * <code>value</code>
      * <p>The value method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The value return object is <code>SortType</code> type.</p>
-     * @see  io.github.nichetoolkit.mybatis.enums.SortType
-     * @see  org.springframework.core.annotation.AliasFor
+     * @return {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The value return object is <code>SortType</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.enums.SortType
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor("type")
     SortType value() default SortType.NONE;
@@ -36,9 +36,9 @@ public @interface RestSortType {
     /**
      * <code>type</code>
      * <p>The type method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The type return object is <code>SortType</code> type.</p>
-     * @see  io.github.nichetoolkit.mybatis.enums.SortType
-     * @see  org.springframework.core.annotation.AliasFor
+     * @return {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The type return object is <code>SortType</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.enums.SortType
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor("value")
     SortType type() default SortType.NONE;

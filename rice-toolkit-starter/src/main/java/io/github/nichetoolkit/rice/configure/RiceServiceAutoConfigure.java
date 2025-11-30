@@ -22,7 +22,7 @@ import java.util.List;
  * @see lombok.extern.slf4j.Slf4j
  * @see org.springframework.boot.autoconfigure.AutoConfiguration
  * @see org.springframework.boot.context.properties.EnableConfigurationProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Slf4j
 @AutoConfiguration
@@ -63,12 +63,31 @@ public class RiceServiceAutoConfigure {
         return new DefaultAutoLogicMark(this.serviceProperties);
     }
 
+    /**
+     * <code>tokenContextResolver</code>
+     * <p>The token context resolver method.</p>
+     * @return {@link io.github.nichetoolkit.rice.defaults.DefaultTokenContextResolver} <p>The token context resolver return object is <code>DefaultTokenContextResolver</code> type.</p>
+     * @see io.github.nichetoolkit.rice.defaults.DefaultTokenContextResolver
+     * @see org.springframework.context.annotation.Bean
+     * @see org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+     */
     @Bean
     @ConditionalOnMissingBean(DefaultTokenContextResolver.class)
     public DefaultTokenContextResolver tokenContextResolver() {
         return new DefaultTokenContextResolver();
     }
 
+    /**
+     * <code>userInfoResolver</code>
+     * <p>The user info resolver method.</p>
+     * @param userResolvers {@link java.util.List} <p>The user resolvers parameter is <code>List</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.defaults.DefaultUserInfoResolver} <p>The user info resolver return object is <code>DefaultUserInfoResolver</code> type.</p>
+     * @see java.util.List
+     * @see io.github.nichetoolkit.rice.defaults.DefaultUserInfoResolver
+     * @see org.springframework.context.annotation.Bean
+     * @see org.springframework.boot.autoconfigure.condition.ConditionalOnBean
+     * @see org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+     */
     @Bean
     @ConditionalOnBean(RestUserResolver.class)
     @ConditionalOnMissingBean(DefaultUserInfoResolver.class)
@@ -76,6 +95,14 @@ public class RiceServiceAutoConfigure {
         return new DefaultUserInfoResolver(userResolvers);
     }
 
+    /**
+     * <code>userInfoResolver</code>
+     * <p>The user info resolver method.</p>
+     * @return {@link io.github.nichetoolkit.rice.defaults.DefaultUserInfoResolver} <p>The user info resolver return object is <code>DefaultUserInfoResolver</code> type.</p>
+     * @see io.github.nichetoolkit.rice.defaults.DefaultUserInfoResolver
+     * @see org.springframework.context.annotation.Bean
+     * @see org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+     */
     @Bean
     @ConditionalOnMissingBean({DefaultUserInfoResolver.class,RestUserResolver.class})
     public DefaultUserInfoResolver userInfoResolver() {

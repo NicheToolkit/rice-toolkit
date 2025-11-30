@@ -12,7 +12,7 @@ import java.util.Collection;
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.mapper.AlertMapper
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface AlertLinkMapper<L, S, I> extends AlertMapper<S, I> {
 

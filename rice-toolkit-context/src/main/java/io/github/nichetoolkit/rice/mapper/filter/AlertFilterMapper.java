@@ -18,7 +18,7 @@ import org.apache.ibatis.annotations.Param;
  * @see io.github.nichetoolkit.rice.filter.IdFilter
  * @see io.github.nichetoolkit.rice.mapper.filter.FindFilterMapper
  * @see io.github.nichetoolkit.rice.mapper.AlertMapper
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface AlertFilterMapper<E extends RestId<I>, F extends IdFilter<I, K>, S, I, K> extends FindFilterMapper<E, F, I, K>, AlertMapper<S,I> {
 

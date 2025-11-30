@@ -14,7 +14,7 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestId
  * @see java.lang.SuppressWarnings
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuppressWarnings("UnusedReturnValue")
 public interface FindMapper<E extends RestId<I>,I> {
@@ -31,7 +31,7 @@ public interface FindMapper<E extends RestId<I>,I> {
     /**
      * <code>findDynamicById</code>
      * <p>The find dynamic by id method.</p>
-     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param id        I <p>The id parameter is <code>I</code> type.</p>
      * @return E <p>The find dynamic by id return object is <code>E</code> type.</p>
      * @see java.lang.String
@@ -53,7 +53,7 @@ public interface FindMapper<E extends RestId<I>,I> {
     /**
      * <code>findDynamicAll</code>
      * <p>The find dynamic all method.</p>
-     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param idList    {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @return {@link java.util.List} <p>The find dynamic all return object is <code>List</code> type.</p>
      * @see java.lang.String
@@ -77,7 +77,7 @@ public interface FindMapper<E extends RestId<I>,I> {
     /**
      * <code>findDynamicAllByWhere</code>
      * <p>The find dynamic all by where method.</p>
-     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @return {@link java.util.List} <p>The find dynamic all by where return object is <code>List</code> type.</p>
      * @see java.lang.String

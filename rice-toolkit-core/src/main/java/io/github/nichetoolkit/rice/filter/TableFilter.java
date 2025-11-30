@@ -19,7 +19,7 @@ import lombok.experimental.SuperBuilder;
  * @see lombok.experimental.SuperBuilder
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Setter
 @Getter
@@ -43,8 +43,8 @@ public class TableFilter<K> extends FickleFilter {
 
     /**
      * <code>toTableKey</code>
-     * <p>The to tableKey method.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestTableKey} <p>The to tableKey return object is <code>RestTableKey</code> type.</p>
+     * <p>The to table key method.</p>
+     * @return {@link io.github.nichetoolkit.rice.RestTableKey} <p>The to table key return object is <code>RestTableKey</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestTableKey
      */
     public RestTableKey<K> toTableKey() {

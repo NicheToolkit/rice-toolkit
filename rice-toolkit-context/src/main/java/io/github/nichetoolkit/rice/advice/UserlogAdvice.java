@@ -7,9 +7,9 @@ import io.github.nichetoolkit.rice.constant.AdviceConstants;
 /**
  * <code>UserlogAdvice</code>
  * <p>The userlog advice interface.</p>
- * @see  RestAfterLoginAdvice
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rice.RestAfterLoginAdvice
+ * @since Jdk17
  */
 public interface UserlogAdvice extends RestAfterLoginAdvice<RestUserlog> {
 

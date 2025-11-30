@@ -5,10 +5,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.github.pagehelper.PageInfo;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.filter.PageFilter;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import java.util.Collections;
  * @see lombok.experimental.SuperBuilder
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Setter
 @Getter
@@ -70,7 +71,9 @@ public class RestPage<T> implements Serializable {
      * <code>items</code>
      * {@link java.util.Collection} <p>The <code>items</code> field.</p>
      * @see java.util.Collection
+     * @see lombok.Builder.Default
      */
+    @Builder.Default
     protected Collection<T> items = Collections.emptyList();
     /**
      * <code>firstPage</code>
@@ -97,7 +100,7 @@ public class RestPage<T> implements Serializable {
      * <p>Instantiates a new rest page.</p>
      * @param items {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
      * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public RestPage(@NonNull Collection<T> items) {
         this.pages = 1L;
@@ -119,7 +122,7 @@ public class RestPage<T> implements Serializable {
      * @param items    {@link java.util.Collection} <p>The items parameter is <code>Collection</code> type.</p>
      * @see java.lang.Long
      * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public RestPage(Long totals, Long pageNum, Long pageSize, @NonNull Collection<T> items) {
         this.totals = totals;

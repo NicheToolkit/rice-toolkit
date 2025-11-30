@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 /**
  * <code>UsernoteService</code>
  * <p>The usernote service class.</p>
- * @see  io.github.nichetoolkit.rice.defaults.DefaultUsernoteService
- * @see  lombok.extern.slf4j.Slf4j
- * @see  org.springframework.stereotype.Service
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rice.defaults.DefaultUsernoteService
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.stereotype.Service
+ * @since Jdk17
  */
 @Slf4j
 @Service
@@ -26,7 +26,7 @@ public class UsernoteService extends DefaultUsernoteService<RestUsernoteModel<?,
     /**
      * <code>tokenService</code>
      * {@link io.github.nichetoolkit.rice.service.TokenService} <p>The <code>tokenService</code> field.</p>
-     * @see  io.github.nichetoolkit.rice.service.TokenService
+     * @see io.github.nichetoolkit.rice.service.TokenService
      */
     private final TokenService tokenService;
 
@@ -34,8 +34,8 @@ public class UsernoteService extends DefaultUsernoteService<RestUsernoteModel<?,
      * <code>UsernoteService</code>
      * <p>Instantiates a new usernote service.</p>
      * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>The token service parameter is <code>TokenService</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.service.TokenService
-     * @see  org.springframework.beans.factory.annotation.Autowired
+     * @see io.github.nichetoolkit.rice.service.TokenService
+     * @see org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired
     public UsernoteService(TokenService tokenService) {

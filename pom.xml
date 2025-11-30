@@ -5,7 +5,7 @@
 
     <groupId>io.github.nichetoolkit</groupId>
     <artifactId>rice-toolkit-parent</artifactId>
-    <version>1.1.2-SNAPSHOT</version>
+    <version>4.1.2-SNAPSHOT</version>
 
     <modules>
         <module>rice-toolkit-example</module>
@@ -49,7 +49,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.18</version>
+        <version>4.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -94,32 +94,30 @@
     </repositories>
 
     <properties>
-        <java.version>1.8</java.version>
-        <jdk.version>1.8</jdk.version>
+        <java.version>17</java.version>
+        <jdk.version>17</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
 
-        <spring-boot.version>2.7.18</spring-boot.version>
-        <!-- fix spring-core:5.3.31 CVE-2024-22233 7.5 vulnerability -->
-        <!-- fix spring-web:5.3.31 CVE-2016-1000027 9.8 vulnerability
-                                   CVE-2024-22243 8.1 Vulnerability
-                                   CVE-2024-22259 8.1 Vulnerability  -->
-        <springframework.version>5.3.39</springframework.version>
+        <spring-boot.version>4.0.0</spring-boot.version>
+        <springframework.version>7.0.1</springframework.version>
 
-        <spring-boot-maven-plugin.version>2.7.18</spring-boot-maven-plugin.version>
+        <spring-boot-maven-plugin.version>4.0.0</spring-boot-maven-plugin.version>
         <maven-gpg-plugin.version>3.2.5</maven-gpg-plugin.version>
-        <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
-        <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
+        <central-publishing-maven-plugin.version>0.9.0</central-publishing-maven-plugin.version>
+        <maven-release-plugin.version>3.2.0</maven-release-plugin.version>
 
-        <rest-toolkit.version>1.1.2-SNAPSHOT</rest-toolkit.version>
-        <rice-toolkit.version>1.1.2-SNAPSHOT</rice-toolkit.version>
+        <rest-toolkit.version>4.1.2-SNAPSHOT</rest-toolkit.version>
+        <rice-toolkit.version>4.1.2-SNAPSHOT</rice-toolkit.version>
 
-        <pagehelper.version>6.1.0</pagehelper.version>
-        <mybatis-plus.version>3.5.9</mybatis-plus.version>
-        <mybatis-mapper.version>2.2.4</mybatis-mapper.version>
+        <pagehelper.version>6.1.1</pagehelper.version>
+        <mybatis.version>3.5.19</mybatis.version>
+        <mybatis-plus.version>3.5.14</mybatis-plus.version>
+        <tk-mapper.version>5.0.1</tk-mapper.version>
+        <mybatis-mapper.version>2.2.6</mybatis-mapper.version>
 
     </properties>
 
@@ -173,6 +171,12 @@
             </dependency>
 
             <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-annotation</artifactId>
                 <version>${mybatis-plus.version}</version>
@@ -182,6 +186,12 @@
                 <groupId>io.mybatis</groupId>
                 <artifactId>mybatis-provider</artifactId>
                 <version>${mybatis-mapper.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper</artifactId>
+                <version>${tk-mapper.version}</version>
             </dependency>
 
         </dependencies>
@@ -312,9 +322,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>utf-8</encoding>
+                    <source>17</source>
+                    <target>17</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
         </plugins>

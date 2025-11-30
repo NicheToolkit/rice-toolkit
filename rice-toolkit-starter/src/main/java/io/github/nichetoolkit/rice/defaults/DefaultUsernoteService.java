@@ -17,10 +17,10 @@ import io.github.nichetoolkit.rice.RestUsernoteModel;
 import io.github.nichetoolkit.rice.helper.ModelTypeUtils;
 import io.github.nichetoolkit.rice.pack.UserInfoPack;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 import org.springframework.web.method.HandlerMethod;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.Set;
 
 /**
@@ -33,7 +33,7 @@ import java.util.Set;
  * @see io.github.nichetoolkit.rest.RestUsernoteAdvice
  * @see lombok.extern.slf4j.Slf4j
  * @see java.lang.SuppressWarnings
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Slf4j
 @SuppressWarnings({"WeakerAccess", "unchecked"})

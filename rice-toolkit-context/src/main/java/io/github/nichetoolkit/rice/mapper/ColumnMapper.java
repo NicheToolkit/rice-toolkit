@@ -9,7 +9,7 @@ import java.util.List;
  * <code>ColumnMapper</code>
  * <p>The column mapper interface.</p>
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface ColumnMapper {
     /**

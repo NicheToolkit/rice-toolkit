@@ -17,7 +17,7 @@ import java.lang.annotation.*;
  * @see java.lang.annotation.Target
  * @see org.springframework.stereotype.Component
  * @see org.apache.ibatis.annotations.Mapper
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Documented
 @Inherited

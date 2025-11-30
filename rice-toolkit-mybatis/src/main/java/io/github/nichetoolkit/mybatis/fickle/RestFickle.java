@@ -1,7 +1,7 @@
 package io.github.nichetoolkit.mybatis.fickle;
 
 import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.databind.JavaType;
+import tools.jackson.databind.JavaType;
 import io.github.nichetoolkit.mybatis.enums.MybatisType;
 import io.github.nichetoolkit.rest.RestEntry;
 import io.github.nichetoolkit.rest.RestField;
@@ -11,7 +11,7 @@ import io.github.nichetoolkit.rest.util.GeneralUtils;
 import lombok.Setter;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -25,7 +25,7 @@ import java.util.Objects;
  * @see java.io.Serializable
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -100,8 +100,8 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
     /**
      * <code>getJavaType</code>
      * <p>The get java type getter method.</p>
-     * @return {@link com.fasterxml.jackson.databind.JavaType} <p>The get java type return object is <code>JavaType</code> type.</p>
-     * @see com.fasterxml.jackson.databind.JavaType
+     * @return {@link tools.jackson.databind.JavaType} <p>The get java type return object is <code>JavaType</code> type.</p>
+     * @see tools.jackson.databind.JavaType
      * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
@@ -330,7 +330,7 @@ public interface RestFickle<F> extends RestField<F>, Serializable {
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rest.RestValue.OfRestValue
      * @see lombok.Setter
-     * @since Jdk1.8
+     * @since Jdk17
      */
     @Setter
     class OfRestFickle<F> extends RestValue.OfRestValue<String, F> implements RestFickle<F> {

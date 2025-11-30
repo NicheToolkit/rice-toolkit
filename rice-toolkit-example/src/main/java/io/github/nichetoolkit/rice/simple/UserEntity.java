@@ -16,7 +16,7 @@ import lombok.experimental.SuperBuilder;
  * @see lombok.Getter
  * @see lombok.experimental.SuperBuilder
  * @see io.mybatis.provider.Entity.Table
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Setter
 @Getter

@@ -1,22 +1,21 @@
 package io.github.nichetoolkit.rice.serialize;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import io.github.nichetoolkit.rice.time.TimeInterval;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 
 /**
  * <code>TimeIntervalDeserializer</code>
  * <p>The time interval deserializer class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see com.fasterxml.jackson.databind.JsonDeserializer
- * @since Jdk1.8
+ * @see tools.jackson.databind.ValueDeserializer
+ * @since Jdk17
  */
-public class TimeIntervalDeserializer extends JsonDeserializer<TimeInterval> {
+public class TimeIntervalDeserializer extends ValueDeserializer<TimeInterval> {
     @Override
-    public TimeInterval deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
-        return TimeInterval.parse(jsonParser.getText());
+    public TimeInterval deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws JacksonException {
+        return TimeInterval.parse(jsonParser.getString());
     }
 }

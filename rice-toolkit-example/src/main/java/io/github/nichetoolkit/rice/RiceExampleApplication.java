@@ -11,7 +11,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * @see org.springframework.boot.autoconfigure.SpringBootApplication
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SpringBootApplication
 public class RiceExampleApplication extends SpringBootServletInitializer {

@@ -8,9 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 /**
  * <code>RiceExampleApplicationTests</code>
  * <p>The rice example application tests class.</p>
- * @see  org.springframework.boot.test.context.SpringBootTest
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see org.springframework.boot.test.context.SpringBootTest
+ * @since Jdk17
  */
 @SpringBootTest
 public class RiceExampleApplicationTests {
@@ -18,7 +18,7 @@ public class RiceExampleApplicationTests {
     /**
      * <code>contextLoads</code>
      * <p>The context loads method.</p>
-     * @see  org.junit.jupiter.api.Test
+     * @see org.junit.jupiter.api.Test
      */
     @Test
     void contextLoads() {

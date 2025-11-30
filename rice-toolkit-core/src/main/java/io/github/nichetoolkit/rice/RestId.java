@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author Cyan (snow22314@outlook.com)
  * @see java.io.Serializable
  * @see java.lang.SuppressWarnings
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuppressWarnings("WeakerAccess")
 public interface RestId<I> extends Serializable {
@@ -35,6 +35,7 @@ public interface RestId<I> extends Serializable {
      * <code>isEmpty</code>
      * <p>The is empty method.</p>
      * @return boolean <p>The is empty return object is <code>boolean</code> type.</p>
+     * @see com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
     default boolean isEmpty() {

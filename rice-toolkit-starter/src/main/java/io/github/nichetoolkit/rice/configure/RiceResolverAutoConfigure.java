@@ -21,7 +21,7 @@ import java.util.List;
  * @see org.springframework.boot.autoconfigure.AutoConfiguration
  * @see org.springframework.boot.autoconfigure.AutoConfigureAfter
  * @see org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Slf4j
 @AutoConfiguration

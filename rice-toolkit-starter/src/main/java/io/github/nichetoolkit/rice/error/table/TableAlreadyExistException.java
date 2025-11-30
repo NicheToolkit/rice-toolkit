@@ -7,9 +7,9 @@ import io.github.nichetoolkit.rice.error.TableErrorStatus;
 /**
  * <code>TableAlreadyExistException</code>
  * <p>The table already exist exception class.</p>
- * @see  io.github.nichetoolkit.rest.error.natives.ServiceErrorException
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rest.error.natives.ServiceErrorException
+ * @since Jdk17
  */
 public class TableAlreadyExistException extends ServiceErrorException {
 
@@ -25,7 +25,7 @@ public class TableAlreadyExistException extends ServiceErrorException {
      * <code>TableAlreadyExistException</code>
      * <p>Instantiates a new table already exist exception.</p>
      * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     public TableAlreadyExistException(String error) {
         super(TableErrorStatus.TABLE_ALREADY_EXIST, error);
@@ -34,9 +34,9 @@ public class TableAlreadyExistException extends ServiceErrorException {
     /**
      * <code>TableAlreadyExistException</code>
      * <p>Instantiates a new table already exist exception.</p>
-     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
-     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
+     * @param error     {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
+     * @see java.lang.String
      */
     public TableAlreadyExistException(String tableName, String error) {
         super(TableErrorStatus.TABLE_ALREADY_EXIST, tableName, error);

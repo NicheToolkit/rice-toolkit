@@ -15,7 +15,7 @@ import io.github.nichetoolkit.rice.filter.IdFilter;
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.filter.IdFilter
  * @see java.lang.SuppressWarnings
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuppressWarnings("RedundantThrows")
 public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
@@ -139,9 +139,9 @@ public interface FilterAdvice<F extends IdFilter<I, K>, I, K> {
 
     /**
      * <code>tableKey</code>
-     * <p>The tableKey method.</p>
+     * <p>The table key method.</p>
      * @param filter F <p>The filter parameter is <code>F</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey return object is <code>RestTableKey</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.RestTableKey} <p>The table key return object is <code>RestTableKey</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.RestTableKey
      * @see io.github.nichetoolkit.rest.RestException

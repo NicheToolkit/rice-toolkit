@@ -19,7 +19,7 @@ import java.util.List;
  * @see io.github.nichetoolkit.rice.mapper.FindParamMapper
  * @see io.github.nichetoolkit.rice.mapper.ColumnMapper
  * @see java.lang.SuppressWarnings
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuppressWarnings("UnusedReturnValue")
 public interface SuperMapper<E extends RestId<I>, I> extends SaveMapper<E, I>, FindMapper<E, I>, DeleteMapper<I>, FindParamMapper<E, I>, ColumnMapper {

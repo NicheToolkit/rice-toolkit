@@ -8,12 +8,12 @@ import java.util.Collection;
 /**
  * <code>SaveMapper</code>
  * <p>The save mapper interface.</p>
- * @param <E>  {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
- * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @see  io.github.nichetoolkit.rice.RestId
- * @see  java.lang.SuppressWarnings
+ * @param <E> {@link io.github.nichetoolkit.rice.RestId} <p>The generic parameter is <code>RestId</code> type.</p>
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rice.RestId
+ * @see java.lang.SuppressWarnings
+ * @since Jdk17
  */
 @SuppressWarnings("UnusedReturnValue")
 public interface SaveMapper<E extends RestId<I>,I> {
@@ -22,21 +22,21 @@ public interface SaveMapper<E extends RestId<I>,I> {
      * <code>save</code>
      * <p>The save method.</p>
      * @param entity E <p>The entity parameter is <code>E</code> type.</p>
-     * @see  org.apache.ibatis.annotations.Param
-     * @see  java.lang.Integer
-     * @return  {@link java.lang.Integer} <p>The save return object is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The save return object is <code>Integer</code> type.</p>
+     * @see org.apache.ibatis.annotations.Param
+     * @see java.lang.Integer
      */
     Integer save(@Param("entity") E entity);
 
     /**
      * <code>saveDynamic</code>
      * <p>The save dynamic method.</p>
-     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
-     * @param entity E <p>The entity parameter is <code>E</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.apache.ibatis.annotations.Param
-     * @see  java.lang.Integer
-     * @return  {@link java.lang.Integer} <p>The save dynamic return object is <code>Integer</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
+     * @param entity    E <p>The entity parameter is <code>E</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The save dynamic return object is <code>Integer</code> type.</p>
+     * @see java.lang.String
+     * @see org.apache.ibatis.annotations.Param
+     * @see java.lang.Integer
      */
     Integer saveDynamic(@Param("tableName") String tableName, @Param("entity") E entity);
 
@@ -44,23 +44,23 @@ public interface SaveMapper<E extends RestId<I>,I> {
      * <code>saveAll</code>
      * <p>The save all method.</p>
      * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @see  java.util.Collection
-     * @see  org.apache.ibatis.annotations.Param
-     * @see  java.lang.Integer
-     * @return  {@link java.lang.Integer} <p>The save all return object is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The save all return object is <code>Integer</code> type.</p>
+     * @see java.util.Collection
+     * @see org.apache.ibatis.annotations.Param
+     * @see java.lang.Integer
      */
     Integer saveAll(@Param("entityList") Collection<E> entityList);
 
     /**
      * <code>saveDynamicAll</code>
      * <p>The save dynamic all method.</p>
-     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName  {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param entityList {@link java.util.Collection} <p>The entity list parameter is <code>Collection</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.apache.ibatis.annotations.Param
-     * @see  java.util.Collection
-     * @see  java.lang.Integer
-     * @return  {@link java.lang.Integer} <p>The save dynamic all return object is <code>Integer</code> type.</p>
+     * @return {@link java.lang.Integer} <p>The save dynamic all return object is <code>Integer</code> type.</p>
+     * @see java.lang.String
+     * @see org.apache.ibatis.annotations.Param
+     * @see java.util.Collection
+     * @see java.lang.Integer
      */
     Integer saveDynamicAll(@Param("tableName") String tableName, @Param("entityList") Collection<E> entityList);
 }

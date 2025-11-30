@@ -22,23 +22,23 @@ import org.springframework.http.MediaType;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.http.server.ServletServerHttpRequest;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * <code>DefaultResponseInterceptor</code>
  * <p>The default response interceptor class.</p>
- * @see  org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
- * @see  lombok.extern.slf4j.Slf4j
- * @see  org.springframework.web.bind.annotation.ControllerAdvice
- * @see  org.springframework.core.annotation.Order
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.web.bind.annotation.ControllerAdvice
+ * @see org.springframework.core.annotation.Order
+ * @since Jdk17
  */
 @Slf4j
 @ControllerAdvice
@@ -48,7 +48,7 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
     /**
      * <code>loginAdvices</code>
      * {@link java.util.List} <p>The <code>loginAdvices</code> field.</p>
-     * @see  java.util.List
+     * @see java.util.List
      */
     private final List<LoginAdvice> loginAdvices;
 
@@ -64,8 +64,8 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
      * <code>DefaultResponseInterceptor</code>
      * <p>Instantiates a new default response interceptor.</p>
      * @param loginAdvices {@link java.util.List} <p>The login advices parameter is <code>List</code> type.</p>
-     * @see  java.util.List
-     * @see  org.springframework.beans.factory.annotation.Autowired
+     * @see java.util.List
+     * @see org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired(required = false)
     public DefaultResponseInterceptor(List<LoginAdvice> loginAdvices) {

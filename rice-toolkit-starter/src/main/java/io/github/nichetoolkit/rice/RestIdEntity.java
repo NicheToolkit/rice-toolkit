@@ -12,7 +12,7 @@ import lombok.experimental.SuperBuilder;
  * @see io.github.nichetoolkit.rice.RestIdModel
  * @see io.github.nichetoolkit.rice.DefaultIdEntity
  * @see lombok.experimental.SuperBuilder
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuperBuilder(builderMethodName = "ofRestIdBuilder")
 public abstract class RestIdEntity<E extends RestIdEntity<E, M>, M extends RestIdModel<M, E>> extends DefaultIdEntity<E, M, String> {

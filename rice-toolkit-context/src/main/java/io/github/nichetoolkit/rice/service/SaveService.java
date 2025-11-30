@@ -16,7 +16,7 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestId
  * @see io.github.nichetoolkit.rice.service.QueryService
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface SaveService<M extends RestId<I>, I, K> extends QueryService<M, I, K> {
 
@@ -35,7 +35,7 @@ public interface SaveService<M extends RestId<I>, I, K> extends QueryService<M, 
     /**
      * <code>save</code>
      * <p>The save method.</p>
-     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
+     * @param tableKey {@link io.github.nichetoolkit.rice.RestTableKey} <p>The table key parameter is <code>RestTableKey</code> type.</p>
      * @param model    M <p>The model parameter is <code>M</code> type.</p>
      * @param idArray  {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
      * @return M <p>The save return object is <code>M</code> type.</p>
@@ -63,7 +63,7 @@ public interface SaveService<M extends RestId<I>, I, K> extends QueryService<M, 
     /**
      * <code>saveAll</code>
      * <p>The save all method.</p>
-     * @param tableKey  {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
+     * @param tableKey  {@link io.github.nichetoolkit.rice.RestTableKey} <p>The table key parameter is <code>RestTableKey</code> type.</p>
      * @param modelList {@link java.util.Collection} <p>The model list parameter is <code>Collection</code> type.</p>
      * @param idArray   {@link java.lang.Object} <p>The id array parameter is <code>Object</code> type.</p>
      * @return {@link java.util.List} <p>The save all return object is <code>List</code> type.</p>

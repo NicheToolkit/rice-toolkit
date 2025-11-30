@@ -5,18 +5,18 @@
     <parent>
         <groupId>io.github.nichetoolkit</groupId>
         <artifactId>rice-toolkit-parent</artifactId>
-        <version>1.1.2-SNAPSHOT</version>
+        <version>4.1.2-SNAPSHOT</version>
     </parent>
 
     <artifactId>rice-toolkit-mybatis</artifactId>
-    <version>1.1.2-SNAPSHOT</version>
+    <version>4.1.2-SNAPSHOT</version>
     <name>rice-toolkit-mybatis</name>
     <packaging>jar</packaging>
     <description>Rice toolkit mybatis project for Spring Boot</description>
     <url>https://github.com/NicheToolkit/rice-toolkit/tree/master/rice-toolkit-mybatis</url>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -91,15 +91,33 @@
             <groupId>io.github.nichetoolkit</groupId>
             <artifactId>rest-toolkit-utils</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+        </dependency>
+
         <!-- mybatis-plus 3.x -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-annotation</artifactId>
         </dependency>
+
         <!-- mybatis-mapper 2.x -->
         <dependency>
             <groupId>io.mybatis</groupId>
             <artifactId>mybatis-provider</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mybatis</groupId>
+                    <artifactId>mybatis</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
         </dependency>
     </dependencies>
 
@@ -198,7 +216,7 @@
                 <configuration>
                     <source>8</source>
                     <target>8</target>
-                    <encoding>utf-8</encoding>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
         </plugins>

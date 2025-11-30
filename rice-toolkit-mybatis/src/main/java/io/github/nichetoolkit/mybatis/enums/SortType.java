@@ -10,9 +10,9 @@ import java.util.Optional;
 /**
  * <code>SortType</code>
  * <p>The sort type enumeration.</p>
- * @see  io.github.nichetoolkit.rest.RestValue
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rest.RestValue
+ * @since Jdk17
  */
 public enum SortType implements RestValue<String,String> {
     /**
@@ -35,22 +35,22 @@ public enum SortType implements RestValue<String,String> {
     /**
      * <code>key</code>
      * {@link java.lang.String} <p>The <code>key</code> field.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     private final String key;
     /**
      * <code>value</code>
      * {@link java.lang.String} <p>The <code>value</code> field.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     private final String value;
 
     /**
      * <code>SortType</code>
      * <p>Instantiates a new sort type.</p>
-     * @param key {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
+     * @param key   {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
      * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     SortType(String key, String value) {
         this.key = key;
@@ -72,9 +72,9 @@ public enum SortType implements RestValue<String,String> {
      * <code>parseKey</code>
      * <p>The parse key method.</p>
      * @param key {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  com.fasterxml.jackson.annotation.JsonCreator
-     * @return  {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The parse key return object is <code>SortType</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The parse key return object is <code>SortType</code> type.</p>
+     * @see java.lang.String
+     * @see com.fasterxml.jackson.annotation.JsonCreator
      */
     @JsonCreator
     public static SortType parseKey(String key) {
@@ -86,8 +86,8 @@ public enum SortType implements RestValue<String,String> {
      * <code>parseValue</code>
      * <p>The parse value method.</p>
      * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The parse value return object is <code>SortType</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The parse value return object is <code>SortType</code> type.</p>
+     * @see java.lang.String
      */
     public static SortType parseValue(String value) {
         SortType typeEnum = RestValue.parseValue(SortType.class, value);

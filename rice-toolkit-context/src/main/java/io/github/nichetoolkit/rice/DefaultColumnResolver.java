@@ -15,7 +15,7 @@ import java.util.List;
  * <p>The default column resolver class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.resolver.RestColumnResolver
- * @since Jdk1.8
+ * @since Jdk17
  */
 public abstract class DefaultColumnResolver implements RestColumnResolver {
 

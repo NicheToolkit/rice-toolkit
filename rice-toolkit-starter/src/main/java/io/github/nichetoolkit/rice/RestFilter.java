@@ -5,7 +5,7 @@ import io.github.nichetoolkit.rice.enums.DeleteMode;
 import io.github.nichetoolkit.rice.enums.LogicMode;
 import io.github.nichetoolkit.rice.service.SuperService;
 import lombok.experimental.SuperBuilder;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * <code>RestFilter</code>
@@ -13,7 +13,7 @@ import org.springframework.lang.NonNull;
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.DefaultFilter
  * @see lombok.experimental.SuperBuilder
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuperBuilder(builderMethodName = "ofRestBuilder")
 public class RestFilter extends DefaultFilter<String, String> {
@@ -45,7 +45,7 @@ public class RestFilter extends DefaultFilter<String, String> {
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.SuperService
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
     public RestFilter toRemoveSql(SuperService<? extends IdModel<String>, ? extends IdEntity<String>, ? extends RestFilter, String, String> superService, @NonNull String alias) throws RestException {
@@ -66,7 +66,7 @@ public class RestFilter extends DefaultFilter<String, String> {
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.SuperService
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
     public RestFilter toQuerySql(SuperService<? extends IdModel<String>, ? extends IdEntity<String>, ? extends RestFilter, String, String> superService, @NonNull String alias) throws RestException {

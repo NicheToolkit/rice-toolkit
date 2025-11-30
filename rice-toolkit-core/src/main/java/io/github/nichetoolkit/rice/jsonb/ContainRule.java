@@ -6,10 +6,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.*;
 
@@ -24,7 +25,7 @@ import java.util.*;
  * @see lombok.experimental.SuperBuilder
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Getter
 @Setter
@@ -38,7 +39,9 @@ public class ContainRule extends JsonbRule<ContainRule> {
      * <code>type</code>
      * {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The <code>type</code> field.</p>
      * @see io.github.nichetoolkit.rice.jsonb.ValueType
+     * @see lombok.Builder.Default
      */
+    @Builder.Default
     protected ValueType type = ValueType.LONG;
     /**
      * <code>values</code>
@@ -63,7 +66,7 @@ public class ContainRule extends JsonbRule<ContainRule> {
      * @see java.lang.String
      * @see io.github.nichetoolkit.rice.jsonb.ValueType
      * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public ContainRule(String name, ValueType type, @NonNull Collection<Object> values) {
         super(name);
@@ -80,7 +83,7 @@ public class ContainRule extends JsonbRule<ContainRule> {
      * @see java.lang.String
      * @see io.github.nichetoolkit.rice.jsonb.ValueType
      * @see java.lang.Object
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public ContainRule(String name, ValueType type, @NonNull Object... values) {
         super(name);

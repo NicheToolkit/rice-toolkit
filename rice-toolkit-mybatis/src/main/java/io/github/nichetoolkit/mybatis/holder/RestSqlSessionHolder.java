@@ -10,7 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.type.TypeAliasRegistry;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 /**
  * <code>RestSqlSessionHolder</code>
@@ -19,7 +19,7 @@ import javax.annotation.Resource;
  * @see io.github.nichetoolkit.rest.fitter.RestFulfilledFitter
  * @see lombok.extern.slf4j.Slf4j
  * @see lombok.Setter
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Slf4j
 @Setter
@@ -29,7 +29,7 @@ public class RestSqlSessionHolder implements RestFulfilledFitter<RestSqlSessionH
      * <code>sqlSessionFactory</code>
      * {@link org.apache.ibatis.session.SqlSessionFactory} <p>The <code>sqlSessionFactory</code> field.</p>
      * @see org.apache.ibatis.session.SqlSessionFactory
-     * @see javax.annotation.Resource
+     * @see jakarta.annotation.Resource
      */
     @Resource
     private SqlSessionFactory sqlSessionFactory;

@@ -6,12 +6,12 @@ import io.github.nichetoolkit.rice.stereotype.RestLogout;
 import io.github.nichetoolkit.rice.stereotype.RestSkip;
 import io.github.nichetoolkit.rice.stereotype.RestLogin;
 import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.lang.annotation.Annotation;
 import java.util.Optional;
 
@@ -20,7 +20,7 @@ import java.util.Optional;
  * <p>The request handle interceptor interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.web.servlet.AsyncHandlerInterceptor
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface RequestHandleInterceptor extends AsyncHandlerInterceptor {
     /**
@@ -32,10 +32,9 @@ public interface RequestHandleInterceptor extends AsyncHandlerInterceptor {
 
     @Override
     default boolean preHandle(@NonNull HttpServletRequest httpServletRequest, @NonNull HttpServletResponse httpServletResponse, @NonNull Object handler) throws Exception {
-        if (!(handler instanceof HandlerMethod)) {
+        if (!(handler instanceof HandlerMethod handlerMethod)) {
             return true;
         }
-        HandlerMethod handlerMethod = (HandlerMethod) handler;
         if (handlerMethod.getBean().getClass().getName().contains(BASIC_ERROR)) {
             return false;
         }
@@ -57,13 +56,13 @@ public interface RequestHandleInterceptor extends AsyncHandlerInterceptor {
     /**
      * <code>logoutHandle</code>
      * <p>The logout handle method.</p>
-     * @param request       {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
-     * @param response      {@link javax.servlet.http.HttpServletResponse} <p>The response parameter is <code>HttpServletResponse</code> type.</p>
+     * @param request       {@link jakarta.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @param response      {@link jakarta.servlet.http.HttpServletResponse} <p>The response parameter is <code>HttpServletResponse</code> type.</p>
      * @param handlerMethod {@link org.springframework.web.method.HandlerMethod} <p>The handler method parameter is <code>HandlerMethod</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see javax.servlet.http.HttpServletRequest
-     * @see org.springframework.lang.NonNull
-     * @see javax.servlet.http.HttpServletResponse
+     * @see jakarta.servlet.http.HttpServletRequest
+     * @see org.jspecify.annotations.NonNull
+     * @see jakarta.servlet.http.HttpServletResponse
      * @see org.springframework.web.method.HandlerMethod
      * @see io.github.nichetoolkit.rest.RestException
      */
@@ -73,13 +72,13 @@ public interface RequestHandleInterceptor extends AsyncHandlerInterceptor {
     /**
      * <code>beforeHandle</code>
      * <p>The before handle method.</p>
-     * @param request       {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
-     * @param response      {@link javax.servlet.http.HttpServletResponse} <p>The response parameter is <code>HttpServletResponse</code> type.</p>
+     * @param request       {@link jakarta.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @param response      {@link jakarta.servlet.http.HttpServletResponse} <p>The response parameter is <code>HttpServletResponse</code> type.</p>
      * @param handlerMethod {@link org.springframework.web.method.HandlerMethod} <p>The handler method parameter is <code>HandlerMethod</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see javax.servlet.http.HttpServletRequest
-     * @see org.springframework.lang.NonNull
-     * @see javax.servlet.http.HttpServletResponse
+     * @see jakarta.servlet.http.HttpServletRequest
+     * @see org.jspecify.annotations.NonNull
+     * @see jakarta.servlet.http.HttpServletResponse
      * @see org.springframework.web.method.HandlerMethod
      * @see io.github.nichetoolkit.rest.RestException
      */
@@ -89,13 +88,13 @@ public interface RequestHandleInterceptor extends AsyncHandlerInterceptor {
     /**
      * <code>afterHandle</code>
      * <p>The after handle method.</p>
-     * @param request       {@link javax.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
-     * @param response      {@link javax.servlet.http.HttpServletResponse} <p>The response parameter is <code>HttpServletResponse</code> type.</p>
+     * @param request       {@link jakarta.servlet.http.HttpServletRequest} <p>The request parameter is <code>HttpServletRequest</code> type.</p>
+     * @param response      {@link jakarta.servlet.http.HttpServletResponse} <p>The response parameter is <code>HttpServletResponse</code> type.</p>
      * @param handlerMethod {@link org.springframework.web.method.HandlerMethod} <p>The handler method parameter is <code>HandlerMethod</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see javax.servlet.http.HttpServletRequest
-     * @see org.springframework.lang.NonNull
-     * @see javax.servlet.http.HttpServletResponse
+     * @see jakarta.servlet.http.HttpServletRequest
+     * @see org.jspecify.annotations.NonNull
+     * @see jakarta.servlet.http.HttpServletResponse
      * @see org.springframework.web.method.HandlerMethod
      * @see io.github.nichetoolkit.rest.RestException
      */

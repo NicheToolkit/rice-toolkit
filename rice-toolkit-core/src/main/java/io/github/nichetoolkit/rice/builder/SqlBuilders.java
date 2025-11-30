@@ -16,7 +16,7 @@ import java.util.Collection;
  * <p>The sql builders class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.lang.SuppressWarnings
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class SqlBuilders {

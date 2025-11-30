@@ -9,7 +9,7 @@ import io.github.nichetoolkit.rice.stereotype.RestOpen;
  * <p>The open advice interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestBeforeLoginAdvice
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface OpenAdvice extends RestBeforeLoginAdvice<RestOpen> {
 

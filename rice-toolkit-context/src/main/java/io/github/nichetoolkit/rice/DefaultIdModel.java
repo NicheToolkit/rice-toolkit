@@ -13,7 +13,7 @@ import lombok.experimental.SuperBuilder;
  * @see io.github.nichetoolkit.rice.IdModel
  * @see io.github.nichetoolkit.rice.RestModel
  * @see lombok.experimental.SuperBuilder
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuperBuilder(builderMethodName = "ofDefaultIdBuilder")
 public abstract class DefaultIdModel<M extends DefaultIdModel<M,E,I>,E extends DefaultIdEntity<E,M,I>,I> extends IdModel<I> implements RestModel<I,E> {

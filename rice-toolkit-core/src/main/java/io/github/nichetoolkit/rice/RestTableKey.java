@@ -7,18 +7,18 @@ import java.util.Objects;
 
 /**
  * <code>RestTableKey</code>
- * <p>The rest tableKey interface.</p>
+ * <p>The rest table key interface.</p>
  * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rest.RestKey
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface RestTableKey<K> extends RestKey<K> {
 
     /**
      * <code>getTableKey</code>
-     * <p>The get tableKey getter method.</p>
-     * @return K <p>The get tableKey return object is <code>K</code> type.</p>
+     * <p>The get table key getter method.</p>
+     * @return K <p>The get table key return object is <code>K</code> type.</p>
      */
     default K getTableKey() {
         return null;
@@ -64,11 +64,11 @@ public interface RestTableKey<K> extends RestKey<K> {
 
     /**
      * <code>OfRestTableKey</code>
-     * <p>The of rest tableKey class.</p>
+     * <p>The of rest table key class.</p>
      * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @author Cyan (snow22314@outlook.com)
      * @see lombok.Setter
-     * @since Jdk1.8
+     * @since Jdk17
      */
     @Setter
     class OfRestTableKey<K> implements RestTableKey<K> {
@@ -80,14 +80,14 @@ public interface RestTableKey<K> extends RestKey<K> {
 
         /**
          * <code>OfRestTableKey</code>
-         * <p>Instantiates a new of rest tableKey.</p>
+         * <p>Instantiates a new of rest table key.</p>
          */
         public OfRestTableKey() {
         }
 
         /**
          * <code>OfRestTableKey</code>
-         * <p>Instantiates a new of rest tableKey.</p>
+         * <p>Instantiates a new of rest table key.</p>
          * @param key {@link io.github.nichetoolkit.rest.RestKey} <p>The key parameter is <code>RestKey</code> type.</p>
          * @see io.github.nichetoolkit.rest.RestKey
          */
@@ -97,8 +97,8 @@ public interface RestTableKey<K> extends RestKey<K> {
 
         /**
          * <code>OfRestTableKey</code>
-         * <p>Instantiates a new of rest tableKey.</p>
-         * @param tableKey K <p>The tableKey parameter is <code>K</code> type.</p>
+         * <p>Instantiates a new of rest table key.</p>
+         * @param tableKey K <p>The table key parameter is <code>K</code> type.</p>
          */
         public OfRestTableKey(K tableKey) {
             this.tableKey = tableKey;

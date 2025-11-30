@@ -13,7 +13,7 @@ import java.util.List;
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestId
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface NameLoadMapper<E extends RestId<I>, I> {
     /**
@@ -34,7 +34,7 @@ public interface NameLoadMapper<E extends RestId<I>, I> {
     /**
      * <code>findDynamicByNameLoad</code>
      * <p>The find dynamic by name load method.</p>
-     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName  {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param name       {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @param logic      {@link java.lang.Object} <p>The logic parameter is <code>Object</code> type.</p>
      * @param loadParams {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load params parameter is <code>RestLoad</code> type.</p>

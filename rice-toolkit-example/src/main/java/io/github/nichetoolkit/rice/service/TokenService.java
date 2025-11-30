@@ -1,8 +1,8 @@
 package io.github.nichetoolkit.rice.service;
 
-import io.fusionauth.jwt.InvalidJWTException;
-import io.fusionauth.jwt.InvalidJWTSignatureException;
-import io.fusionauth.jwt.domain.JWT;
+import io.github.nichetoolkit.fusionauth.jwt.InvalidJWTException;
+import io.github.nichetoolkit.fusionauth.jwt.InvalidJWTSignatureException;
+import io.github.nichetoolkit.fusionauth.jwt.domain.JWT;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
@@ -24,17 +24,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
  * <code>TokenService</code>
  * <p>The token service class.</p>
- * @see  io.github.nichetoolkit.rice.RestTokenResolver
- * @see  lombok.extern.slf4j.Slf4j
- * @see  org.springframework.stereotype.Service
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rice.RestTokenResolver
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.stereotype.Service
+ * @since Jdk17
  */
 @Slf4j
 @Service
@@ -43,7 +43,7 @@ public class TokenService implements RestTokenResolver<UserModel, LoginResult> {
     /**
      * <code>redisTemplate</code>
      * {@link org.springframework.data.redis.core.StringRedisTemplate} <p>The <code>redisTemplate</code> field.</p>
-     * @see  org.springframework.data.redis.core.StringRedisTemplate
+     * @see org.springframework.data.redis.core.StringRedisTemplate
      */
     protected final StringRedisTemplate redisTemplate;
 
@@ -51,8 +51,8 @@ public class TokenService implements RestTokenResolver<UserModel, LoginResult> {
      * <code>TokenService</code>
      * <p>Instantiates a new token service.</p>
      * @param redisTemplate {@link org.springframework.data.redis.core.StringRedisTemplate} <p>The redis template parameter is <code>StringRedisTemplate</code> type.</p>
-     * @see  org.springframework.data.redis.core.StringRedisTemplate
-     * @see  org.springframework.beans.factory.annotation.Autowired
+     * @see org.springframework.data.redis.core.StringRedisTemplate
+     * @see org.springframework.beans.factory.annotation.Autowired
      */
     @Autowired
     public TokenService(StringRedisTemplate redisTemplate) {

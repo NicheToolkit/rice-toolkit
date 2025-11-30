@@ -1,22 +1,21 @@
 package io.github.nichetoolkit.rice.serialize;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
 import io.github.nichetoolkit.rice.time.TimeValue;
-
-import java.io.IOException;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
 /**
  * <code>TimeValueSerializer</code>
  * <p>The time value serializer class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @see com.fasterxml.jackson.databind.JsonSerializer
- * @since Jdk1.8
+ * @see tools.jackson.databind.ValueSerializer
+ * @since Jdk17
  */
-public class TimeValueSerializer extends JsonSerializer<TimeValue> {
+public class TimeValueSerializer extends ValueSerializer<TimeValue> {
     @Override
-    public void serialize(TimeValue timeValue, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+    public void serialize(TimeValue timeValue, JsonGenerator jsonGenerator, SerializationContext serializerProvider) throws JacksonException {
         jsonGenerator.writeString(timeValue.format());
     }
 }

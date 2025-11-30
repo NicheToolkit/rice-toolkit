@@ -44,7 +44,7 @@ import java.util.*;
  * @see org.springframework.beans.factory.InitializingBean
  * @see lombok.extern.slf4j.Slf4j
  * @see java.lang.SuppressWarnings
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Slf4j
 @SuppressWarnings("RedundantThrows")

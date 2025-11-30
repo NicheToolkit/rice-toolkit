@@ -9,11 +9,11 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * <code>RestIdResolver</code>
  * <p>The rest id resolver interface.</p>
- * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @see  org.springframework.beans.factory.InitializingBean
- * @see  java.lang.SuppressWarnings
+ * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see org.springframework.beans.factory.InitializingBean
+ * @see java.lang.SuppressWarnings
+ * @since Jdk17
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public interface RestIdResolver<I> extends InitializingBean {
@@ -26,8 +26,8 @@ public interface RestIdResolver<I> extends InitializingBean {
     /**
      * <code>idType</code>
      * <p>The id type method.</p>
-     * @return  {@link java.lang.Class} <p>The id type return object is <code>Class</code> type.</p>
-     * @see  java.lang.Class
+     * @return {@link java.lang.Class} <p>The id type return object is <code>Class</code> type.</p>
+     * @see java.lang.Class
      */
     default Class<I> idType() {
         return (Class<I>) Instance.idType(getClass());
@@ -38,7 +38,7 @@ public interface RestIdResolver<I> extends InitializingBean {
      * <p>The resolve method.</p>
      * @return I <p>The resolve return object is <code>I</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see  io.github.nichetoolkit.rest.RestException
+     * @see io.github.nichetoolkit.rest.RestException
      */
     I resolve() throws RestException;
 
@@ -46,13 +46,13 @@ public interface RestIdResolver<I> extends InitializingBean {
      * <code>Instance</code>
      * <p>The instance class.</p>
      * @author Cyan (snow22314@outlook.com)
-     * @since Jdk1.8
+     * @since Jdk17
      */
     class Instance {
         /**
          * <code>RESOLVERS</code>
          * {@link java.util.Map} <p>The <code>RESOLVERS</code> field.</p>
-         * @see  java.util.Map
+         * @see java.util.Map
          */
         static Map<Class<?>, Class<?>> RESOLVERS = new ConcurrentHashMap<>();
 
@@ -60,8 +60,8 @@ public interface RestIdResolver<I> extends InitializingBean {
          * <code>idType</code>
          * <p>The id type method.</p>
          * @param resolverType {@link java.lang.Class} <p>The resolver type parameter is <code>Class</code> type.</p>
-         * @see  java.lang.Class
-         * @return  {@link java.lang.Class} <p>The id type return object is <code>Class</code> type.</p>
+         * @return {@link java.lang.Class} <p>The id type return object is <code>Class</code> type.</p>
+         * @see java.lang.Class
          */
         private static Class<?> idType(Class<? extends RestIdResolver> resolverType) {
             return RESOLVERS.get(resolverType);
@@ -71,7 +71,7 @@ public interface RestIdResolver<I> extends InitializingBean {
          * <code>caching</code>
          * <p>The caching method.</p>
          * @param resolverType {@link java.lang.Class} <p>The resolver type parameter is <code>Class</code> type.</p>
-         * @see  java.lang.Class
+         * @see java.lang.Class
          */
         private static void caching(Class<? extends RestIdResolver> resolverType) {
             Class<?> clazzOfId = RestGenericTypes.resolveClass(RestGenericTypes.resolveType(

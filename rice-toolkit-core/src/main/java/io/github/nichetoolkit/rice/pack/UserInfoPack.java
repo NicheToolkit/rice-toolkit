@@ -22,7 +22,8 @@ import lombok.experimental.SuperBuilder;
  * @see lombok.EqualsAndHashCode
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @see lombok.NoArgsConstructor
+ * @since Jdk17
  */
 @Setter
 @Getter

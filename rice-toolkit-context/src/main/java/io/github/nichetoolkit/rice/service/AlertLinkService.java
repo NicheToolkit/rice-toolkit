@@ -13,7 +13,7 @@ import java.util.Collection;
  * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.service.AlertService
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface AlertLinkService<I, K> extends AlertService<I, K> {
 

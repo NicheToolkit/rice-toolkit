@@ -9,7 +9,7 @@ import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.*;
 
@@ -27,7 +27,7 @@ import java.util.*;
  * @see java.lang.SuppressWarnings
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Setter
 @Getter
@@ -146,7 +146,7 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
      * @return {@link io.github.nichetoolkit.rice.filter.NameFilter} <p>The to name sql return object is <code>NameFilter</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
     public NameFilter<I,K> toNameSql(@NonNull String alias) throws RestException {

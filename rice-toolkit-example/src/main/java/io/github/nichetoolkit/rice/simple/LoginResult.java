@@ -1,8 +1,8 @@
 package io.github.nichetoolkit.rice.simple;
 
 import io.github.nichetoolkit.rice.RestLoginResult;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
@@ -14,12 +14,14 @@ import lombok.experimental.SuperBuilder;
  * @see lombok.Setter
  * @see lombok.Getter
  * @see lombok.experimental.SuperBuilder
- * @since Jdk1.8
+ * @see lombok.EqualsAndHashCode
+ * @since Jdk17
  */
 @Setter
 @Getter
 @SuperBuilder
-public class LoginResult extends RestLoginResult<LoginResult> {
+@EqualsAndHashCode(callSuper = true)
+public class LoginResult extends RestLoginResult {
     /**
      * <code>userId</code>
      * {@link java.lang.String} <p>The <code>userId</code> field.</p>
@@ -43,11 +45,10 @@ public class LoginResult extends RestLoginResult<LoginResult> {
     /**
      * <code>LoginResult</code>
      * <p>Instantiates a new login result.</p>
-     * @param accessToken {@link java.lang.String} <p>The access token parameter is <code>String</code> type.</p>
+     * @param token {@link java.lang.String} <p>The token parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
-    public LoginResult(String accessToken) {
-        super(accessToken);
+    public LoginResult(String token) {
+        super(token);
     }
-
 }

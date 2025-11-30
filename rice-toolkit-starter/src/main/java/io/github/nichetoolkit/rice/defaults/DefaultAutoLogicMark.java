@@ -11,9 +11,10 @@ import java.util.Date;
 /**
  * <code>DefaultAutoLogicMark</code>
  * <p>The default auto logic mark class.</p>
- * @see  io.github.nichetoolkit.rice.DefaultLogicMark
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rice.DefaultLogicMark
+ * @see lombok.experimental.SuperBuilder
+ * @since Jdk17
  */
 @SuperBuilder
 public class DefaultAutoLogicMark extends DefaultLogicMark {
@@ -22,7 +23,7 @@ public class DefaultAutoLogicMark extends DefaultLogicMark {
      * <code>DefaultAutoLogicMark</code>
      * <p>Instantiates a new default auto logic mark.</p>
      * @param serviceProperties {@link io.github.nichetoolkit.rice.configure.RiceServiceProperties} <p>The service properties parameter is <code>RiceServiceProperties</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.configure.RiceServiceProperties
+     * @see io.github.nichetoolkit.rice.configure.RiceServiceProperties
      */
     public DefaultAutoLogicMark(RiceServiceProperties serviceProperties) {
         super(serviceProperties);

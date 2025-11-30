@@ -7,7 +7,7 @@ import io.github.nichetoolkit.rice.service.TokenService;
 import io.github.nichetoolkit.rice.simple.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestUserResolver
  * @see org.springframework.stereotype.Component
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Component
 public class UserResolver implements RestUserResolver {
@@ -33,7 +33,6 @@ public class UserResolver implements RestUserResolver {
      * <p>Instantiates a new user resolver.</p>
      * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>The token service parameter is <code>TokenService</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.TokenService
-     * @see org.springframework.beans.factory.annotation.Autowired
      */
     public UserResolver(TokenService tokenService) {
         this.tokenService = tokenService;

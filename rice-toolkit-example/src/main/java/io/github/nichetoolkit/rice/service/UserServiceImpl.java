@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 /**
  * <code>UserServiceImpl</code>
  * <p>The user service class.</p>
- * @see  io.github.nichetoolkit.rice.RestInfoService
- * @see  org.springframework.stereotype.Service
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rice.RestInfoService
+ * @see org.springframework.stereotype.Service
+ * @since Jdk17
  */
 @Service
 public class UserServiceImpl extends RestInfoService<UserModel, UserEntity, UserFilter> implements UserService {

@@ -4,8 +4,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.mybatis.column.RestIdentityKey;
-import io.github.nichetoolkit.rest.util.JsonPurityUtils;
+import io.github.nichetoolkit.rest.util.JacksonUtils;
 import io.mybatis.provider.Entity;
+import jakarta.persistence.Id;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Objects;
@@ -20,7 +21,7 @@ import java.util.Objects;
  * @see lombok.experimental.SuperBuilder
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuperBuilder(builderMethodName = "ofIdBuilder")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
@@ -31,12 +32,15 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
      * <p>The <code>id</code> field.</p>
      * @see com.baomidou.mybatisplus.annotation.TableId
      * @see io.mybatis.provider.Entity.Column
+     * @see jakarta.persistence.Id
      * @see io.github.nichetoolkit.mybatis.column.RestIdentityKey
      */
     /* 兼容mybatis-plus 3.x版本 */
     @TableId
     /* 兼容mybatis-mapper 2.x版本 */
     @Entity.Column(id = true)
+    /* 兼容mybatis-mapper 5.x版本 */
+    @Id
     @RestIdentityKey
     protected I id;
 
@@ -71,8 +75,7 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
-        if (!(o instanceof IdEntity)) return false;
-        IdEntity<?> idEntity = (IdEntity<?>) o;
+        if (!(o instanceof IdEntity<?> idEntity)) return false;
         return Objects.equals(id, idEntity.id);
     }
 
@@ -83,6 +86,6 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
 
     @Override
     public String toString() {
-        return JsonPurityUtils.parseJson(this);
+        return JacksonUtils.parseJson(this);
     }
 }

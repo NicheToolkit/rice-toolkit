@@ -8,13 +8,13 @@ import io.github.nichetoolkit.rice.RestUserResolver;
 import io.github.nichetoolkit.rice.stereotype.RestUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,7 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.web.method.support.HandlerMethodArgumentResolver
  * @see lombok.extern.slf4j.Slf4j
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Slf4j
 public class DefaultUserInfoResolver implements HandlerMethodArgumentResolver {

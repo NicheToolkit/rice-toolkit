@@ -11,11 +11,11 @@ import lombok.experimental.SuperBuilder;
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.SaveModel
  * @see io.github.nichetoolkit.rice.RestLogic
- * @see lombok.experimental.SuperBuilder
  * @see java.lang.SuppressWarnings
+ * @see lombok.experimental.SuperBuilder
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuppressWarnings("WeakerAccess")
 @SuperBuilder(builderMethodName = "ofLogicBuilder")

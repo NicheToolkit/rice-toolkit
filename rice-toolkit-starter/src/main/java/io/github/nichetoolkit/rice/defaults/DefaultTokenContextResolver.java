@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice.defaults;
 import io.github.nichetoolkit.rice.TokenContext;
 import io.github.nichetoolkit.rice.stereotype.RestUser;
 import org.springframework.core.MethodParameter;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.RequestAttributes;
@@ -15,7 +15,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * <p>The default token context resolver class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.web.method.support.HandlerMethodArgumentResolver
- * @since Jdk1.8
+ * @since Jdk17
  */
 public class DefaultTokenContextResolver implements HandlerMethodArgumentResolver {
 

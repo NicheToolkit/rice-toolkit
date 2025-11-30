@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.web.bind.annotation.RestController
  * @see org.springframework.web.bind.annotation.RequestMapping
- * @since Jdk1.8
+ * @since Jdk17
  */
 @RestController
 @RequestMapping("/rest")

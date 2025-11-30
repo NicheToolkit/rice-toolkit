@@ -15,7 +15,7 @@ import org.apache.ibatis.annotations.Param;
  * @see io.github.nichetoolkit.rice.RestId
  * @see io.github.nichetoolkit.rice.filter.IdFilter
  * @see io.github.nichetoolkit.rice.mapper.filter.FindFilterMapper
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface OperateFilterMapper<E extends RestId<I>, F extends IdFilter<I, K>, I, K> extends FindFilterMapper<E, F, I, K> {
 
@@ -35,7 +35,7 @@ public interface OperateFilterMapper<E extends RestId<I>, F extends IdFilter<I, 
     /**
      * <code>operateDynamicAllByFilterWhere</code>
      * <p>The operate dynamic all by filter where method.</p>
-     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param filter    F <p>The filter parameter is <code>F</code> type.</p>
      * @param operate   {@link java.lang.Integer} <p>The operate parameter is <code>Integer</code> type.</p>

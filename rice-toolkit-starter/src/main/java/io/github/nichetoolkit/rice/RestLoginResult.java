@@ -12,7 +12,6 @@ import java.util.Objects;
 /**
  * <code>RestLoginResult</code>
  * <p>The rest login result class.</p>
- * @param <R> {@link io.github.nichetoolkit.rice.RestLoginResult} <p>The generic parameter is <code>RestLoginResult</code> type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see java.io.Serializable
  * @see lombok.Setter
@@ -20,14 +19,14 @@ import java.util.Objects;
  * @see lombok.experimental.SuperBuilder
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Setter
 @Getter
 @SuperBuilder
-@JsonInclude(value= JsonInclude.Include.NON_NULL)
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RestLoginResult<R extends RestLoginResult<R>> implements Serializable {
+public class RestLoginResult implements Serializable {
     /**
      * <code>token</code>
      * {@link java.lang.String} <p>The <code>token</code> field.</p>
@@ -56,7 +55,7 @@ public class RestLoginResult<R extends RestLoginResult<R>> implements Serializab
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RestLoginResult<?> that = (RestLoginResult<?>) o;
+        RestLoginResult that = (RestLoginResult) o;
         return Objects.equals(token, that.token);
     }
 

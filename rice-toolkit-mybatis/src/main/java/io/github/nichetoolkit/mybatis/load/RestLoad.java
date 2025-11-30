@@ -22,7 +22,7 @@ import java.util.Map;
  * @see java.io.Serializable
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -135,7 +135,7 @@ public interface RestLoad extends RestValue<String, Boolean>, RestEntry<String, 
      * @author Cyan (snow22314@outlook.com)
      * @see io.github.nichetoolkit.rest.RestValue.OfRestValue
      * @see lombok.Setter
-     * @since Jdk1.8
+     * @since Jdk17
      */
     @Setter
     class OfRestLoad extends RestValue.OfRestValue<String, Boolean> implements RestLoad {

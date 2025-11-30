@@ -15,7 +15,7 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestId
  * @see java.lang.SuppressWarnings
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuppressWarnings("UnusedReturnValue")
 public interface FindLinkMapper<E extends RestId<I>, L, I> {
@@ -32,7 +32,7 @@ public interface FindLinkMapper<E extends RestId<I>, L, I> {
     /**
      * <code>findDynamicByLinkId</code>
      * <p>The find dynamic by link id method.</p>
-     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param linkId    L <p>The link id parameter is <code>L</code> type.</p>
      * @return {@link java.util.List} <p>The find dynamic by link id return object is <code>List</code> type.</p>
      * @see java.lang.String
@@ -55,7 +55,7 @@ public interface FindLinkMapper<E extends RestId<I>, L, I> {
     /**
      * <code>findDynamicAllByLinkIds</code>
      * <p>The find dynamic all by link ids method.</p>
-     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName  {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @return {@link java.util.List} <p>The find dynamic all by link ids return object is <code>List</code> type.</p>
      * @see java.lang.String
@@ -80,7 +80,7 @@ public interface FindLinkMapper<E extends RestId<I>, L, I> {
     /**
      * <code>findDynamicByLinkId</code>
      * <p>The find dynamic by link id method.</p>
-     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param linkId    L <p>The link id parameter is <code>L</code> type.</p>
      * @param linkName  {@link java.lang.String} <p>The link name parameter is <code>String</code> type.</p>
      * @return {@link java.util.List} <p>The find dynamic by link id return object is <code>List</code> type.</p>
@@ -106,7 +106,7 @@ public interface FindLinkMapper<E extends RestId<I>, L, I> {
     /**
      * <code>findDynamicAllByLinkIds</code>
      * <p>The find dynamic all by link ids method.</p>
-     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName  {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param linkIdList {@link java.util.Collection} <p>The link id list parameter is <code>Collection</code> type.</p>
      * @param linkName   {@link java.lang.String} <p>The link name parameter is <code>String</code> type.</p>
      * @return {@link java.util.List} <p>The find dynamic all by link ids return object is <code>List</code> type.</p>

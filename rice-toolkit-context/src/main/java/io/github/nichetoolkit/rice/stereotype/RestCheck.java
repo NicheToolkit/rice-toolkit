@@ -7,13 +7,13 @@ import java.lang.annotation.*;
 /**
  * <code>RestCheck</code>
  * <p>The rest check interface.</p>
- * @see  java.lang.annotation.Annotation
- * @see  java.lang.annotation.Target
- * @see  java.lang.annotation.Retention
- * @see  java.lang.annotation.Documented
- * @see  org.springframework.stereotype.Indexed
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see java.lang.annotation.Annotation
+ * @see java.lang.annotation.Target
+ * @see java.lang.annotation.Retention
+ * @see java.lang.annotation.Documented
+ * @see org.springframework.stereotype.Indexed
+ * @since Jdk17
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
@@ -23,8 +23,8 @@ public @interface RestCheck {
     /**
      * <code>prefixes</code>
      * <p>The prefixes method.</p>
-     * @return  {@link java.lang.String} <p>The prefixes return object is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @return {@link java.lang.String} <p>The prefixes return object is <code>String</code> type.</p>
+     * @see java.lang.String
      */
     String[] prefixes() default {};
 }

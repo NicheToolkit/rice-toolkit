@@ -8,9 +8,11 @@ import lombok.experimental.SuperBuilder;
 /**
  * <code>UserFilter</code>
  * <p>The user filter class.</p>
- * @see  io.github.nichetoolkit.rice.RestFilter
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rice.RestFilter
+ * @see lombok.experimental.SuperBuilder
+ * @see lombok.NoArgsConstructor
+ * @since Jdk17
  */
 @SuperBuilder
 @NoArgsConstructor

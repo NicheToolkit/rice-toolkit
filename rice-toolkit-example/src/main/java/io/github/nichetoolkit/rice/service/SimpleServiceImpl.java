@@ -5,7 +5,7 @@ import io.github.nichetoolkit.rice.RestInfoService;
 import io.github.nichetoolkit.rice.simple.SimpleEntity;
 import io.github.nichetoolkit.rice.simple.SimpleFilter;
 import io.github.nichetoolkit.rice.simple.SimpleModel;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -14,10 +14,10 @@ import java.util.Optional;
 /**
  * <code>SimpleServiceImpl</code>
  * <p>The simple service class.</p>
- * @see  io.github.nichetoolkit.rice.RestInfoService
- * @see  org.springframework.stereotype.Service
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rice.RestInfoService
+ * @see org.springframework.stereotype.Service
+ * @since Jdk17
  */
 @Service
 public class SimpleServiceImpl extends RestInfoService<SimpleModel, SimpleEntity, SimpleFilter> implements SimpleService {

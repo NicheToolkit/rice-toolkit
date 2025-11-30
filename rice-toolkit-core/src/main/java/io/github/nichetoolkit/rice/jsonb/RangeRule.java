@@ -5,10 +5,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * <code>RangeRule</code>
@@ -21,7 +22,7 @@ import org.springframework.lang.NonNull;
  * @see lombok.experimental.SuperBuilder
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Setter
 @Getter
@@ -35,7 +36,9 @@ public class RangeRule extends JsonbRule<RangeRule> {
      * <code>type</code>
      * {@link io.github.nichetoolkit.rice.jsonb.ValueType} <p>The <code>type</code> field.</p>
      * @see io.github.nichetoolkit.rice.jsonb.ValueType
+     * @see lombok.Builder.Default
      */
+    @Builder.Default
     protected ValueType type = ValueType.STRING;
     /**
      * <code>startValue</code>
@@ -53,7 +56,9 @@ public class RangeRule extends JsonbRule<RangeRule> {
      * <code>operation</code>
      * {@link io.github.nichetoolkit.rice.jsonb.RangeOperation} <p>The <code>operation</code> field.</p>
      * @see io.github.nichetoolkit.rice.jsonb.RangeOperation
+     * @see lombok.Builder.Default
      */
+    @Builder.Default
     protected RangeOperation operation = RangeOperation.GREATER_EQUAL_LESS_EQUAL_OPERATION;
 
 

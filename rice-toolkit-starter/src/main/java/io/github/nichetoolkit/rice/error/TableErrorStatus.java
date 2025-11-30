@@ -7,10 +7,10 @@ import lombok.Getter;
 /**
  * <code>TableErrorStatus</code>
  * <p>The table error status enumeration.</p>
- * @see  io.github.nichetoolkit.rest.RestStatus
- * @see  lombok.Getter
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rest.RestStatus
+ * @see lombok.Getter
+ * @since Jdk17
  */
 @Getter
 public enum TableErrorStatus implements RestStatus {
@@ -39,23 +39,23 @@ public enum TableErrorStatus implements RestStatus {
     /**
      * <code>status</code>
      * {@link java.lang.Integer} <p>The <code>status</code> field.</p>
-     * @see  java.lang.Integer
+     * @see java.lang.Integer
      */
     private final Integer status;
     /**
      * <code>message</code>
      * {@link java.lang.String} <p>The <code>message</code> field.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     private final String message;
 
     /**
      * <code>TableErrorStatus</code>
      * <p>Instantiates a new table error status.</p>
-     * @param status {@link java.lang.Integer} <p>The status parameter is <code>Integer</code> type.</p>
+     * @param status  {@link java.lang.Integer} <p>The status parameter is <code>Integer</code> type.</p>
      * @param message {@link java.lang.String} <p>The message parameter is <code>String</code> type.</p>
-     * @see  java.lang.Integer
-     * @see  java.lang.String
+     * @see java.lang.Integer
+     * @see java.lang.String
      */
     TableErrorStatus(Integer status, String message) {
         this.status = status;

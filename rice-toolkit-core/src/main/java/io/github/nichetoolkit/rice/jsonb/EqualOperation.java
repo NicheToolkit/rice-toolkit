@@ -11,10 +11,10 @@ import java.util.Optional;
 /**
  * <code>EqualOperation</code>
  * <p>The equal operation enumeration.</p>
- * @see  io.github.nichetoolkit.rest.RestStamp
- * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rest.RestStamp
+ * @see java.lang.SuppressWarnings
+ * @since Jdk17
  */
 @SuppressWarnings("WeakerAccess")
 public enum EqualOperation implements RestStamp {
@@ -48,43 +48,43 @@ public enum EqualOperation implements RestStamp {
     /**
      * <code>key</code>
      * {@link java.lang.Integer} <p>The <code>key</code> field.</p>
-     * @see  java.lang.Integer
+     * @see java.lang.Integer
      */
     private final Integer key;
     /**
      * <code>value</code>
      * {@link java.lang.String} <p>The <code>value</code> field.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     private final String value;
     /**
      * <code>stamp</code>
      * {@link java.lang.String} <p>The <code>stamp</code> field.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     private final String stamp;
 
     /**
      * <code>TARGET</code>
      * {@link java.lang.String} <p>The constant <code>TARGET</code> field.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     public static final String TARGET = "target";
     /**
      * <code>VALUE</code>
      * {@link java.lang.String} <p>The constant <code>VALUE</code> field.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     public static final String VALUE = "values";
 
     /**
      * <code>EqualOperation</code>
      * <p>Instantiates a new equal operation.</p>
-     * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
+     * @param key   {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
      * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
      * @param stamp {@link java.lang.String} <p>The stamp parameter is <code>String</code> type.</p>
-     * @see  java.lang.Integer
-     * @see  java.lang.String
+     * @see java.lang.Integer
+     * @see java.lang.String
      */
     EqualOperation(Integer key, String value, String stamp) {
         this.key = key;
@@ -112,10 +112,10 @@ public enum EqualOperation implements RestStamp {
      * <code>translateSql</code>
      * <p>The translate sql method.</p>
      * @param target {@link java.lang.String} <p>The target parameter is <code>String</code> type.</p>
-     * @param value {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
-     * @see  java.lang.String
-     * @see  java.lang.Object
-     * @return  {@link java.lang.String} <p>The translate sql return object is <code>String</code> type.</p>
+     * @param value  {@link java.lang.Object} <p>The value parameter is <code>Object</code> type.</p>
+     * @return {@link java.lang.String} <p>The translate sql return object is <code>String</code> type.</p>
+     * @see java.lang.String
+     * @see java.lang.Object
      */
     public String translateSql(String target, Object value) {
         return this.stamp.replace(TARGET, target).replace(VALUE, String.valueOf(value));
@@ -125,9 +125,9 @@ public enum EqualOperation implements RestStamp {
      * <code>parseKey</code>
      * <p>The parse key method.</p>
      * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
-     * @see  java.lang.Integer
-     * @see  com.fasterxml.jackson.annotation.JsonCreator
-     * @return  {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>The parse key return object is <code>EqualOperation</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>The parse key return object is <code>EqualOperation</code> type.</p>
+     * @see java.lang.Integer
+     * @see com.fasterxml.jackson.annotation.JsonCreator
      */
     @JsonCreator
     public static EqualOperation parseKey(Integer key) {
@@ -139,8 +139,8 @@ public enum EqualOperation implements RestStamp {
      * <code>parseValue</code>
      * <p>The parse value method.</p>
      * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>The parse value return object is <code>EqualOperation</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>The parse value return object is <code>EqualOperation</code> type.</p>
+     * @see java.lang.String
      */
     public static EqualOperation parseValue(String value) {
         EqualOperation typeEnum = RestValue.parseValue(EqualOperation.class, value);
@@ -151,8 +151,8 @@ public enum EqualOperation implements RestStamp {
      * <code>parseStamp</code>
      * <p>The parse stamp method.</p>
      * @param stamp {@link java.lang.String} <p>The stamp parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @return  {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>The parse stamp return object is <code>EqualOperation</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.jsonb.EqualOperation} <p>The parse stamp return object is <code>EqualOperation</code> type.</p>
+     * @see java.lang.String
      */
     public static EqualOperation parseStamp(String stamp) {
         EqualOperation typeEnum = RestStamp.parseStamp(EqualOperation.class, stamp);

@@ -5,9 +5,9 @@ import io.github.nichetoolkit.rest.error.natives.TokenErrorException;
 /**
  * <code>TokenAccessException</code>
  * <p>The token access exception class.</p>
- * @see  io.github.nichetoolkit.rest.error.natives.TokenErrorException
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rest.error.natives.TokenErrorException
+ * @since Jdk17
  */
 public class TokenAccessException extends TokenErrorException {
 
@@ -23,7 +23,7 @@ public class TokenAccessException extends TokenErrorException {
      * <code>TokenAccessException</code>
      * <p>Instantiates a new token access exception.</p>
      * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     public TokenAccessException(String error) {
         super(TokenErrorStatus.TOKEN_ACCESS_ERROR, error);
@@ -33,8 +33,8 @@ public class TokenAccessException extends TokenErrorException {
      * <code>TokenAccessException</code>
      * <p>Instantiates a new token access exception.</p>
      * @param service {@link java.lang.String} <p>The service parameter is <code>String</code> type.</p>
-     * @param error {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @param error   {@link java.lang.String} <p>The error parameter is <code>String</code> type.</p>
+     * @see java.lang.String
      */
     public TokenAccessException(String service, String error) {
         super(TokenErrorStatus.TOKEN_ACCESS_ERROR,service,  error);

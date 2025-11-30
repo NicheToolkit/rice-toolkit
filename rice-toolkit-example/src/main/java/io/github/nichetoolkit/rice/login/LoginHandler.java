@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import io.github.nichetoolkit.rice.error.TokenPermissionException;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 
 /**
@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  * @see io.github.nichetoolkit.rice.advice.LoginAdvice
  * @see lombok.extern.slf4j.Slf4j
  * @see org.springframework.stereotype.Component
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Slf4j
 @Component

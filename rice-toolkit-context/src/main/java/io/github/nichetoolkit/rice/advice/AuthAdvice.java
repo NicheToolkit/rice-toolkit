@@ -7,9 +7,9 @@ import io.github.nichetoolkit.rice.stereotype.RestAuth;
 /**
  * <code>AuthAdvice</code>
  * <p>The auth advice interface.</p>
- * @see  RestAfterLoginAdvice
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rice.RestAfterLoginAdvice
+ * @since Jdk17
  */
 public interface AuthAdvice extends RestAfterLoginAdvice<RestAuth> {
 

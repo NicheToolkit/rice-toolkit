@@ -7,14 +7,14 @@ import io.github.nichetoolkit.rice.constant.AdviceConstants;
 import io.github.nichetoolkit.rice.stereotype.RestLogout;
 import org.springframework.web.method.HandlerMethod;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * <code>LogoutAdvice</code>
  * <p>The logout advice interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestBeforeLogoutAdvice
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface LogoutAdvice extends RestBeforeLogoutAdvice<RestLogout> {
 

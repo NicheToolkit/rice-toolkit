@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.mybatis.enums.SortType;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
@@ -24,7 +25,7 @@ import java.util.stream.Collectors;
  * @see lombok.experimental.SuperBuilder
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Setter
 @Getter
@@ -43,7 +44,9 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
      * <code>type</code>
      * {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The <code>type</code> field.</p>
      * @see io.github.nichetoolkit.mybatis.enums.SortType
+     * @see lombok.Builder.Default
      */
+    @Builder.Default
     protected SortType type = SortType.DESC;
 
     /**

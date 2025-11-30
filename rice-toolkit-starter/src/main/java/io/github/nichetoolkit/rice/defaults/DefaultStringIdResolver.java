@@ -7,9 +7,9 @@ import io.github.nichetoolkit.rice.DefaultIdResolver;
 /**
  * <code>DefaultStringIdResolver</code>
  * <p>The default string id resolver class.</p>
- * @see  io.github.nichetoolkit.rice.DefaultIdResolver
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rice.DefaultIdResolver
+ * @since Jdk17
  */
 public class DefaultStringIdResolver extends DefaultIdResolver<String> {
 

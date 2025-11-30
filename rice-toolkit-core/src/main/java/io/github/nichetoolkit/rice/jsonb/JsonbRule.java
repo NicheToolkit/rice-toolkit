@@ -8,7 +8,7 @@ import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.io.Serializable;
 
@@ -23,7 +23,7 @@ import java.io.Serializable;
  * @see lombok.experimental.SuperBuilder
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Setter
 @Getter
@@ -61,7 +61,7 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
      * @return {@link java.lang.String} <p>The to sql return object is <code>String</code> type.</p>
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     abstract public String toSql(@NonNull String alias);
 
@@ -72,7 +72,7 @@ public abstract class JsonbRule<R extends JsonbRule<R>> implements Serializable 
      * @param variable {@link java.lang.String} <p>The variable parameter is <code>String</code> type.</p>
      * @return {@link java.lang.String} <p>The to sql return object is <code>String</code> type.</p>
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     abstract public String toSql(@NonNull String alias, @NonNull String variable);
 

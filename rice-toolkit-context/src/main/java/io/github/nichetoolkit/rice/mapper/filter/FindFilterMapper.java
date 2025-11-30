@@ -16,7 +16,7 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestId
  * @see io.github.nichetoolkit.rice.filter.IdFilter
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface FindFilterMapper<E extends RestId<I>, F extends IdFilter<I, K>, I, K> {
     /**
@@ -34,7 +34,7 @@ public interface FindFilterMapper<E extends RestId<I>, F extends IdFilter<I, K>,
     /**
      * <code>findDynamicAllByFilterWhere</code>
      * <p>The find dynamic all by filter where method.</p>
-     * @param tableName {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param whereSql  {@link java.lang.String} <p>The where sql parameter is <code>String</code> type.</p>
      * @param filter    F <p>The filter parameter is <code>F</code> type.</p>
      * @return {@link java.util.List} <p>The find dynamic all by filter where return object is <code>List</code> type.</p>

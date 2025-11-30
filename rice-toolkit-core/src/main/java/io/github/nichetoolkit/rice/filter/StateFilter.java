@@ -7,7 +7,7 @@ import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.*;
 
@@ -17,7 +17,7 @@ import java.util.*;
  * @param <S> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.filter.AlertFilter
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface StateFilter<S> extends AlertFilter<S> {
 
@@ -42,7 +42,7 @@ public interface StateFilter<S> extends AlertFilter<S> {
      * <p>The set states setter method.</p>
      * @param states {@link java.util.Collection} <p>The states parameter is <code>Collection</code> type.</p>
      * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      * @see com.fasterxml.jackson.annotation.JsonSetter
      */
     @JsonSetter
@@ -72,7 +72,7 @@ public interface StateFilter<S> extends AlertFilter<S> {
      * @return {@link io.github.nichetoolkit.rice.filter.StateFilter} <p>The to state sql return object is <code>StateFilter</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
     default StateFilter<S> toStateSql(@NonNull String alias) throws RestException {
@@ -88,7 +88,7 @@ public interface StateFilter<S> extends AlertFilter<S> {
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
     default void toStateSql(SqlBuilder sqlBuilder, @NonNull String alias) throws RestException {
@@ -111,7 +111,7 @@ public interface StateFilter<S> extends AlertFilter<S> {
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
      * @see java.lang.String
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      * @see io.github.nichetoolkit.rest.RestException
      */
     default void toAlertnessSql(SqlBuilder sqlBuilder,@NonNull String alias) throws RestException {

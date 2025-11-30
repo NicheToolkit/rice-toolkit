@@ -18,7 +18,7 @@ import java.util.List;
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestId
  * @see io.github.nichetoolkit.rice.service.DeleteService
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface QueryFickleService<M extends RestId<I>, I, K> extends DeleteService<I, K> {
 
@@ -40,7 +40,7 @@ public interface QueryFickleService<M extends RestId<I>, I, K> extends DeleteSer
     /**
      * <code>queryAll</code>
      * <p>The query all method.</p>
-     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
+     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The table key parameter is <code>RestTableKey</code> type.</p>
      * @param idList      {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
      * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>
@@ -71,7 +71,7 @@ public interface QueryFickleService<M extends RestId<I>, I, K> extends DeleteSer
     /**
      * <code>queryById</code>
      * <p>The query by id method.</p>
-     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The tableKey parameter is <code>RestTableKey</code> type.</p>
+     * @param tableKey    {@link io.github.nichetoolkit.rice.RestTableKey} <p>The table key parameter is <code>RestTableKey</code> type.</p>
      * @param id          I <p>The id parameter is <code>I</code> type.</p>
      * @param fickleList  {@link java.util.Collection} <p>The fickle list parameter is <code>Collection</code> type.</p>
      * @param isLoadArray {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The is load array parameter is <code>RestLoad</code> type.</p>

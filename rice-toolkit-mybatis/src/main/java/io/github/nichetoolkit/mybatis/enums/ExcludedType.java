@@ -10,9 +10,9 @@ import java.util.Optional;
 /**
  * <code>ExcludedType</code>
  * <p>The excluded type enumeration.</p>
- * @see  io.github.nichetoolkit.rest.RestKey
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rest.RestKey
+ * @since Jdk17
  */
 public enum ExcludedType implements RestKey<String> {
     /**
@@ -30,7 +30,7 @@ public enum ExcludedType implements RestKey<String> {
     /**
      * <code>key</code>
      * {@link java.lang.String} <p>The <code>key</code> field.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     private final String key;
 
@@ -38,7 +38,7 @@ public enum ExcludedType implements RestKey<String> {
      * <code>ExcludedType</code>
      * <p>Instantiates a new excluded type.</p>
      * @param key {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     ExcludedType(String key) {
         this.key = key;
@@ -54,9 +54,9 @@ public enum ExcludedType implements RestKey<String> {
      * <code>parseKey</code>
      * <p>The parse key method.</p>
      * @param key {@link java.lang.String} <p>The key parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  com.fasterxml.jackson.annotation.JsonCreator
-     * @return  {@link io.github.nichetoolkit.mybatis.enums.ExcludedType} <p>The parse key return object is <code>ExcludedType</code> type.</p>
+     * @return {@link io.github.nichetoolkit.mybatis.enums.ExcludedType} <p>The parse key return object is <code>ExcludedType</code> type.</p>
+     * @see java.lang.String
+     * @see com.fasterxml.jackson.annotation.JsonCreator
      */
     @JsonCreator
     public static ExcludedType parseKey(String key) {

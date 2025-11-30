@@ -14,7 +14,7 @@ import java.util.List;
  * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestId
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface FindLoadMapper<E extends RestId<I>, I> {
     /**
@@ -31,7 +31,7 @@ public interface FindLoadMapper<E extends RestId<I>, I> {
     /**
      * <code>findDynamicByIdLoad</code>
      * <p>The find dynamic by id load method.</p>
-     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName  {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param id         I <p>The id parameter is <code>I</code> type.</p>
      * @param loadParams {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load params parameter is <code>RestLoad</code> type.</p>
      * @return E <p>The find dynamic by id load return object is <code>E</code> type.</p>
@@ -57,7 +57,7 @@ public interface FindLoadMapper<E extends RestId<I>, I> {
     /**
      * <code>findDynamicAllLoad</code>
      * <p>The find dynamic all load method.</p>
-     * @param tableName  {@link java.lang.String} <p>The tableName parameter is <code>String</code> type.</p>
+     * @param tableName  {@link java.lang.String} <p>The table name parameter is <code>String</code> type.</p>
      * @param idList     {@link java.util.Collection} <p>The id list parameter is <code>Collection</code> type.</p>
      * @param loadParams {@link io.github.nichetoolkit.mybatis.load.RestLoad} <p>The load params parameter is <code>RestLoad</code> type.</p>
      * @return {@link java.util.List} <p>The find dynamic all load return object is <code>List</code> type.</p>

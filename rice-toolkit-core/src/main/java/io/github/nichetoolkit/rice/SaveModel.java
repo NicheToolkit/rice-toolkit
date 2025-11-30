@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.SaveType;
+import lombok.Builder;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -11,11 +12,11 @@ import lombok.experimental.SuperBuilder;
  * <p>The save model class.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestSave
- * @see lombok.experimental.SuperBuilder
  * @see java.lang.SuppressWarnings
+ * @see lombok.experimental.SuperBuilder
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuppressWarnings("WeakerAccess")
 @SuperBuilder(builderMethodName = "ofSaveBuilder")
@@ -28,8 +29,10 @@ public class SaveModel implements RestSave {
      * {@link io.github.nichetoolkit.rice.enums.SaveType} <p>The <code>save</code> field.</p>
      * @see io.github.nichetoolkit.rice.enums.SaveType
      * @see com.fasterxml.jackson.annotation.JsonIgnore
+     * @see lombok.Builder.Default
      */
     @JsonIgnore
+    @Builder.Default
     protected SaveType save = SaveType.NONE;
 
     /**

@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.mybatis.handler.RestAlertnessHandler
  * @see java.lang.SuppressWarnings
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class DefaultAlertnessHandler<S> implements RestAlertnessHandler<S> {

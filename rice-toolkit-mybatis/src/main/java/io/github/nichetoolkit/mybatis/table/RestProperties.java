@@ -8,13 +8,13 @@ import java.lang.annotation.*;
 /**
  * <code>RestProperties</code>
  * <p>The rest properties interface.</p>
- * @see  java.lang.annotation.Annotation
- * @see  java.lang.annotation.Retention
- * @see  java.lang.annotation.Target
- * @see  java.lang.annotation.Documented
- * @see  org.springframework.stereotype.Indexed
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see java.lang.annotation.Annotation
+ * @see java.lang.annotation.Retention
+ * @see java.lang.annotation.Target
+ * @see java.lang.annotation.Documented
+ * @see org.springframework.stereotype.Indexed
+ * @since Jdk17
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE,ElementType.FIELD,ElementType.METHOD})
@@ -24,9 +24,9 @@ public @interface RestProperties {
     /**
      * <code>value</code>
      * <p>The value method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.table.RestProperty} <p>The value return object is <code>RestProperty</code> type.</p>
-     * @see  io.github.nichetoolkit.mybatis.table.RestProperty
-     * @see  org.springframework.core.annotation.AliasFor
+     * @return {@link io.github.nichetoolkit.mybatis.table.RestProperty} <p>The value return object is <code>RestProperty</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.table.RestProperty
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor("properties")
     RestProperty[] value() default {};
@@ -34,9 +34,9 @@ public @interface RestProperties {
     /**
      * <code>properties</code>
      * <p>The properties method.</p>
-     * @return  {@link io.github.nichetoolkit.mybatis.table.RestProperty} <p>The properties return object is <code>RestProperty</code> type.</p>
-     * @see  io.github.nichetoolkit.mybatis.table.RestProperty
-     * @see  org.springframework.core.annotation.AliasFor
+     * @return {@link io.github.nichetoolkit.mybatis.table.RestProperty} <p>The properties return object is <code>RestProperty</code> type.</p>
+     * @see io.github.nichetoolkit.mybatis.table.RestProperty
+     * @see org.springframework.core.annotation.AliasFor
      */
     @AliasFor("value")
     RestProperty[] properties() default {};

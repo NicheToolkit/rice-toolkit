@@ -3,11 +3,8 @@ package io.github.nichetoolkit.rice.configure;
 import io.github.nichetoolkit.rice.serialize.BigDecimalSerializer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -17,7 +14,7 @@ import org.springframework.context.annotation.Bean;
  * @see lombok.extern.slf4j.Slf4j
  * @see org.springframework.boot.autoconfigure.AutoConfiguration
  * @see org.springframework.boot.context.properties.EnableConfigurationProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Slf4j
 @AutoConfiguration

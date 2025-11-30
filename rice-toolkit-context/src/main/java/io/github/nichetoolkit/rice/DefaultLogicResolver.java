@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 /**
  * <code>DefaultLogicResolver</code>
  * <p>The default logic resolver class.</p>
- * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @see  io.github.nichetoolkit.rice.resolver.RestLogicResolver
- * @see  java.lang.SuppressWarnings
+ * @param <L> {@link java.lang.Object} <p>The parameter can be of any type.</p>
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rice.resolver.RestLogicResolver
+ * @see java.lang.SuppressWarnings
+ * @since Jdk17
  */
 @SuppressWarnings({"rawtypes","unchecked"})
 public abstract class DefaultLogicResolver<L> implements RestLogicResolver<L> {
@@ -26,12 +26,12 @@ public abstract class DefaultLogicResolver<L> implements RestLogicResolver<L> {
     /**
      * <code>resolveLogic</code>
      * <p>The resolve logic method.</p>
-     * @param <L>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+     * @param <L>      {@link java.lang.Object} <p>The parameter can be of any type.</p>
      * @param autoMark {@link io.github.nichetoolkit.rice.enums.AutoMark} <p>The auto mark parameter is <code>AutoMark</code> type.</p>
-     * @see  io.github.nichetoolkit.rice.enums.AutoMark
-     * @see  io.github.nichetoolkit.rest.RestException
      * @return L <p>The resolve logic return object is <code>L</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.enums.AutoMark
+     * @see io.github.nichetoolkit.rest.RestException
      */
     public static <L> L resolveLogic(AutoMark autoMark) throws RestException {
         Class<?> logicType = autoMark.getKey();

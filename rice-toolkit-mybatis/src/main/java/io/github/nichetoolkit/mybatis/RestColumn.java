@@ -31,7 +31,7 @@ import java.lang.annotation.*;
  * @see io.github.nichetoolkit.mybatis.column.RestForceInsert
  * @see io.github.nichetoolkit.mybatis.column.RestForceUpdate
  * @see io.github.nichetoolkit.mybatis.table.RestProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})

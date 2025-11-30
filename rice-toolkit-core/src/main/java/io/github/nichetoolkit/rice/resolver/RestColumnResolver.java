@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * <p>The rest column resolver interface.</p>
  * @author Cyan (snow22314@outlook.com)
  * @see org.springframework.beans.factory.InitializingBean
- * @since Jdk1.8
+ * @since Jdk17
  */
 public interface RestColumnResolver extends InitializingBean {
 
@@ -63,7 +63,7 @@ public interface RestColumnResolver extends InitializingBean {
      * <code>Instance</code>
      * <p>The instance class.</p>
      * @author Cyan (snow22314@outlook.com)
-     * @since Jdk1.8
+     * @since Jdk17
      */
     class Instance {
         /**

@@ -9,7 +9,7 @@ import io.github.nichetoolkit.rice.enums.OperateType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.*;
 
@@ -24,7 +24,7 @@ import java.util.*;
  * @see java.lang.SuppressWarnings
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Setter
 @Getter
@@ -78,7 +78,7 @@ public class OperateFilter extends SortFilter {
      * <p>The set operates setter method.</p>
      * @param operates {@link java.lang.Integer} <p>The operates parameter is <code>Integer</code> type.</p>
      * @see java.lang.Integer
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public void setOperates(@NonNull Integer... operates) {
         this.setOperates(RestOperate.build(operates));
@@ -89,7 +89,7 @@ public class OperateFilter extends SortFilter {
      * <p>The set operates setter method.</p>
      * @param operates {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operates parameter is <code>OperateType</code> type.</p>
      * @see io.github.nichetoolkit.rice.enums.OperateType
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public void setOperates(@NonNull OperateType... operates) {
         this.operates = new HashSet<>(Arrays.asList(operates));
@@ -100,7 +100,7 @@ public class OperateFilter extends SortFilter {
      * <p>The set operates setter method.</p>
      * @param operates {@link java.util.Collection} <p>The operates parameter is <code>Collection</code> type.</p>
      * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      * @see com.fasterxml.jackson.annotation.JsonSetter
      */
     @JsonSetter
@@ -114,7 +114,7 @@ public class OperateFilter extends SortFilter {
      * @param operates {@link java.lang.Integer} <p>The operates parameter is <code>Integer</code> type.</p>
      * @return {@link io.github.nichetoolkit.rice.filter.OperateFilter} <p>The add operates return object is <code>OperateFilter</code> type.</p>
      * @see java.lang.Integer
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public OperateFilter addOperates(@NonNull Integer... operates) {
         if (GeneralUtils.isEmpty(this.operates)) {
@@ -131,7 +131,7 @@ public class OperateFilter extends SortFilter {
      * @param operates {@link io.github.nichetoolkit.rice.enums.OperateType} <p>The operates parameter is <code>OperateType</code> type.</p>
      * @return {@link io.github.nichetoolkit.rice.filter.OperateFilter} <p>The add operates return object is <code>OperateFilter</code> type.</p>
      * @see io.github.nichetoolkit.rice.enums.OperateType
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public OperateFilter addOperates(@NonNull OperateType... operates) {
         if (GeneralUtils.isEmpty(this.operates)) {
@@ -148,7 +148,7 @@ public class OperateFilter extends SortFilter {
      * @param operates {@link java.util.Collection} <p>The operates parameter is <code>Collection</code> type.</p>
      * @return {@link io.github.nichetoolkit.rice.filter.OperateFilter} <p>The add operates return object is <code>OperateFilter</code> type.</p>
      * @see java.util.Collection
-     * @see org.springframework.lang.NonNull
+     * @see org.jspecify.annotations.NonNull
      */
     public OperateFilter addOperates(@NonNull Collection<OperateType> operates) {
         if (GeneralUtils.isEmpty(this.operates)) {

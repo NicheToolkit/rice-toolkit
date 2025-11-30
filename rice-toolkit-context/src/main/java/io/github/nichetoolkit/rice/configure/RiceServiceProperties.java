@@ -16,7 +16,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @see lombok.Setter
  * @see lombok.Getter
  * @see org.springframework.boot.context.properties.ConfigurationProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Setter
 @Getter
@@ -156,7 +156,7 @@ public class RiceServiceProperties {
      * @author Cyan (snow22314@outlook.com)
      * @see lombok.Setter
      * @see lombok.Getter
-     * @since Jdk1.8
+     * @since Jdk17
      */
     @Setter
     @Getter
@@ -187,7 +187,7 @@ public class RiceServiceProperties {
      * @author Cyan (snow22314@outlook.com)
      * @see lombok.Setter
      * @see lombok.Getter
-     * @since Jdk1.8
+     * @since Jdk17
      */
     @Setter
     @Getter

@@ -6,8 +6,9 @@ import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.util.DateUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import lombok.Getter;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -20,7 +21,7 @@ import java.util.Date;
  * @see java.lang.CharSequence
  * @see lombok.Getter
  * @see java.lang.SuppressWarnings
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Getter
 @SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
@@ -36,7 +37,9 @@ public final class SqlBuilder implements Serializable, CharSequence {
     /**
      * <code>serialVersionUID</code>
      * <p>The constant <code>serialVersionUID</code> field.</p>
+     * @see java.io.Serial
      */
+    @Serial
     private static final long serialVersionUID = 4383685877147921098L;
 
     /**
