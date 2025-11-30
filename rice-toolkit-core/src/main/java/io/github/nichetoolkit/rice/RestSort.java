@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.mybatis.enums.SortType;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
@@ -23,6 +21,8 @@ import java.util.stream.Collectors;
  * @see lombok.Getter
  * @see java.lang.SuppressWarnings
  * @see lombok.experimental.SuperBuilder
+ * @see lombok.NoArgsConstructor
+ * @see lombok.AllArgsConstructor
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk17
@@ -31,6 +31,8 @@ import java.util.stream.Collectors;
 @Getter
 @SuppressWarnings("WeakerAccess")
 @SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RestSort<S extends RestSort<S>> implements Serializable {
@@ -52,13 +54,6 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
     /**
      * <code>RestSort</code>
      * <p>Instantiates a new rest sort.</p>
-     */
-    public RestSort() {
-    }
-
-    /**
-     * <code>RestSort</code>
-     * <p>Instantiates a new rest sort.</p>
      * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
      * @see java.lang.String
      */
@@ -66,24 +61,10 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
         this.name = name;
     }
 
-    /**
-     * <code>RestSort</code>
-     * <p>Instantiates a new rest sort.</p>
-     * @param name {@link java.lang.String} <p>The name parameter is <code>String</code> type.</p>
-     * @param type {@link io.github.nichetoolkit.mybatis.enums.SortType} <p>The type parameter is <code>SortType</code> type.</p>
-     * @see java.lang.String
-     * @see io.github.nichetoolkit.mybatis.enums.SortType
-     */
-    public RestSort(String name, SortType type) {
-        this.name = name;
-        this.type = type;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof RestSort)) return false;
-        RestSort<?> sort = (RestSort<?>) o;
+        if (!(o instanceof RestSort<?> sort)) return false;
         return Objects.equals(name, sort.name);
     }
 

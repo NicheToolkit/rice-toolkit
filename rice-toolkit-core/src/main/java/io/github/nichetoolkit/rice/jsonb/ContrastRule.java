@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.jspecify.annotations.NonNull;
 
@@ -20,6 +18,8 @@ import org.jspecify.annotations.NonNull;
  * @see lombok.Getter
  * @see java.lang.SuppressWarnings
  * @see lombok.experimental.SuperBuilder
+ * @see lombok.NoArgsConstructor
+ * @see lombok.AllArgsConstructor
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk17
@@ -28,6 +28,8 @@ import org.jspecify.annotations.NonNull;
 @Getter
 @SuppressWarnings("WeakerAccess")
 @SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ContrastRule extends JsonbRule<ContrastRule> {
@@ -53,13 +55,6 @@ public class ContrastRule extends JsonbRule<ContrastRule> {
      */
     @Builder.Default
     protected ContrastOperation operation = ContrastOperation.EQUAL_OPERATION;
-
-    /**
-     * <code>ContrastRule</code>
-     * <p>Instantiates a new contrast rule.</p>
-     */
-    public ContrastRule() {
-    }
 
     /**
      * <code>ContrastRule</code>

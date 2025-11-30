@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.github.pagehelper.PageInfo;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.filter.PageFilter;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.jspecify.annotations.NonNull;
 
@@ -26,6 +24,8 @@ import java.util.Collections;
  * @see lombok.Getter
  * @see java.lang.SuppressWarnings
  * @see lombok.experimental.SuperBuilder
+ * @see lombok.NoArgsConstructor
+ * @see lombok.AllArgsConstructor
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk17
@@ -34,6 +34,8 @@ import java.util.Collections;
 @Getter
 @SuppressWarnings("WeakerAccess")
 @SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RestPage<T> implements Serializable {
@@ -87,13 +89,6 @@ public class RestPage<T> implements Serializable {
      * @see java.lang.Boolean
      */
     protected Boolean lastPage;
-
-    /**
-     * <code>RestPage</code>
-     * <p>Instantiates a new rest page.</p>
-     */
-    public RestPage() {
-    }
 
     /**
      * <code>RestPage</code>

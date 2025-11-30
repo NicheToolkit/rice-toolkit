@@ -7,9 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.mybatis.enums.SortType;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestSort;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.jspecify.annotations.NonNull;
 
@@ -22,6 +20,8 @@ import java.util.*;
  * @see io.github.nichetoolkit.rice.filter.PageFilter
  * @see lombok.Getter
  * @see lombok.Setter
+ * @see lombok.NoArgsConstructor
+ * @see lombok.AllArgsConstructor
  * @see lombok.experimental.SuperBuilder
  * @see java.lang.SuppressWarnings
  * @see com.fasterxml.jackson.annotation.JsonInclude
@@ -30,6 +30,8 @@ import java.util.*;
  */
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @SuperBuilder(builderMethodName = "ofSortBuilder")
 @SuppressWarnings({"WeakerAccess", "UnusedReturnValue", "MixedMutabilityReturnType"})
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
@@ -68,13 +70,6 @@ public class SortFilter extends PageFilter {
     @JsonIgnore
     @Builder.Default
     protected boolean isSort = true;
-
-    /**
-     * <code>SortFilter</code>
-     * <p>Instantiates a new sort filter.</p>
-     */
-    public SortFilter() {
-    }
 
     /**
      * <code>SortFilter</code>

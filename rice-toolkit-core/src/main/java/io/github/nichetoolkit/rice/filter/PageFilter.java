@@ -9,9 +9,7 @@ import io.github.nichetoolkit.mybatis.load.RestLoad;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.jspecify.annotations.NonNull;
 
@@ -28,6 +26,8 @@ import java.util.List;
  * @see lombok.Getter
  * @see lombok.Setter
  * @see java.lang.SuppressWarnings
+ * @see lombok.NoArgsConstructor
+ * @see lombok.AllArgsConstructor
  * @see lombok.experimental.SuperBuilder
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
@@ -36,6 +36,8 @@ import java.util.List;
 @Getter
 @Setter
 @SuppressWarnings("WeakerAccess")
+@NoArgsConstructor
+@AllArgsConstructor
 @SuperBuilder(builderMethodName = "ofPageBuilder")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -105,13 +107,6 @@ public class PageFilter implements Serializable {
      */
     @Builder.Default
     protected Boolean loadLastPage = false;
-
-    /**
-     * <code>PageFilter</code>
-     * <p>Instantiates a new page filter.</p>
-     */
-    public PageFilter() {
-    }
 
     /**
      * <code>PageFilter</code>

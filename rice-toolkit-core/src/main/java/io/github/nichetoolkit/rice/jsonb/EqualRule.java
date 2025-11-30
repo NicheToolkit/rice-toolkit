@@ -1,15 +1,13 @@
 package io.github.nichetoolkit.rice.jsonb;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.jspecify.annotations.NonNull;
-
-import java.util.Optional;
 
 /**
  * <code>EqualRule</code>
@@ -20,12 +18,20 @@ import java.util.Optional;
  * @see lombok.Getter
  * @see java.lang.SuppressWarnings
  * @see lombok.experimental.SuperBuilder
+ * @see lombok.NoArgsConstructor
+ * @see lombok.AllArgsConstructor
+ * @see com.fasterxml.jackson.annotation.JsonInclude
+ * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk17
  */
 @Setter
 @Getter
 @SuppressWarnings("WeakerAccess")
 @SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EqualRule extends JsonbRule<EqualRule> {
     /**
      * <code>type</code>
@@ -49,13 +55,6 @@ public class EqualRule extends JsonbRule<EqualRule> {
      */
     @Builder.Default
     protected EqualOperation operation = EqualOperation.EQUAL_OPERATION;
-
-    /**
-     * <code>EqualRule</code>
-     * <p>Instantiates a new equal rule.</p>
-     */
-    public EqualRule() {
-    }
 
     /**
      * <code>EqualRule</code>

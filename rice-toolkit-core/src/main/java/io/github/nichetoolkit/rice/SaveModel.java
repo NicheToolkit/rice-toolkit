@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.rice.enums.SaveType;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -13,12 +15,16 @@ import lombok.experimental.SuperBuilder;
  * @author Cyan (snow22314@outlook.com)
  * @see io.github.nichetoolkit.rice.RestSave
  * @see java.lang.SuppressWarnings
+ * @see lombok.NoArgsConstructor
+ * @see lombok.AllArgsConstructor
  * @see lombok.experimental.SuperBuilder
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk17
  */
 @SuppressWarnings("WeakerAccess")
+@NoArgsConstructor
+@AllArgsConstructor
 @SuperBuilder(builderMethodName = "ofSaveBuilder")
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -34,13 +40,6 @@ public class SaveModel implements RestSave {
     @JsonIgnore
     @Builder.Default
     protected SaveType save = SaveType.NONE;
-
-    /**
-     * <code>SaveModel</code>
-     * <p>Instantiates a new save model.</p>
-     */
-    public SaveModel() {
-    }
 
     @Override
     public SaveType getSave() {

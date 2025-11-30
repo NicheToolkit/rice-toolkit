@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.jspecify.annotations.NonNull;
 
@@ -23,6 +21,8 @@ import java.util.*;
  * @see lombok.Setter
  * @see java.lang.SuppressWarnings
  * @see lombok.experimental.SuperBuilder
+ * @see lombok.NoArgsConstructor
+ * @see lombok.AllArgsConstructor
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk17
@@ -31,6 +31,8 @@ import java.util.*;
 @Setter
 @SuppressWarnings("WeakerAccess")
 @SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ContainRule extends JsonbRule<ContainRule> {
@@ -49,13 +51,6 @@ public class ContainRule extends JsonbRule<ContainRule> {
      * @see java.util.Set
      */
     protected Set<Object> values;
-
-    /**
-     * <code>ContainRule</code>
-     * <p>Instantiates a new contain rule.</p>
-     */
-    public ContainRule() {
-    }
 
     /**
      * <code>ContainRule</code>
