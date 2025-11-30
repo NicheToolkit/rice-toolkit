@@ -5,7 +5,6 @@ import io.github.nichetoolkit.rest.RestHttpRequest;
 import io.github.nichetoolkit.rice.RestUserResolver;
 import io.github.nichetoolkit.rice.service.TokenService;
 import io.github.nichetoolkit.rice.simple.UserModel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Component;

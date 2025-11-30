@@ -8,12 +8,12 @@
         <version>4.1.2-SNAPSHOT</version>
     </parent>
 
-    <artifactId>rice-toolkit-mybatis</artifactId>
+    <artifactId>rice-toolkit-pagehelper</artifactId>
     <version>4.1.2-SNAPSHOT</version>
-    <name>rice-toolkit-mybatis</name>
+    <name>rice-toolkit-pagehelper</name>
     <packaging>jar</packaging>
-    <description>Rice toolkit mybatis project for Spring Boot</description>
-    <url>https://github.com/NicheToolkit/rice-toolkit/tree/master/rice-toolkit-mybatis</url>
+    <description>Rice toolkit pagehelper project for Spring Boot</description>
+    <url>https://github.com/NicheToolkit/rice-toolkit/tree/master/rice-toolkit-pagehelper</url>
 
     <properties>
         <java.version>17</java.version>
@@ -88,39 +88,45 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.github.nichetoolkit</groupId>
-            <artifactId>rest-toolkit-utils</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
+            <optional>true</optional>
         </dependency>
-
-        <!-- mybatis-plus 3.x -->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-annotation</artifactId>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- mybatis-mapper 2.x -->
-        <dependency>
-            <groupId>io.mybatis</groupId>
-            <artifactId>mybatis-provider</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.mybatis</groupId>
-                    <artifactId>mybatis</artifactId>
-                </exclusion>
-            </exclusions>
-            <scope>compile</scope>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-            <scope>compile</scope>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-autoconfigure</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 

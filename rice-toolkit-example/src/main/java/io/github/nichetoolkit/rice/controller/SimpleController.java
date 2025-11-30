@@ -7,7 +7,6 @@ import io.github.nichetoolkit.rice.service.SimpleService;
 import io.github.nichetoolkit.rice.simple.SimpleFilter;
 import io.github.nichetoolkit.rice.simple.SimpleModel;
 import io.github.nichetoolkit.rice.stereotype.RestSkip;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -38,9 +37,7 @@ public class SimpleController {
      * <p>Instantiates a new simple controller.</p>
      * @param simpleService {@link io.github.nichetoolkit.rice.service.SimpleService} <p>The simple service parameter is <code>SimpleService</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.SimpleService
-     * @see org.springframework.beans.factory.annotation.Autowired
      */
-    @Autowired
     public SimpleController(SimpleService simpleService) {
         this.simpleService = simpleService;
     }

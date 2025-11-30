@@ -11,10 +11,8 @@ import io.github.nichetoolkit.rice.constant.AdviceConstants;
 import io.github.nichetoolkit.rice.defaults.DefaultTokenContextResolver;
 import io.github.nichetoolkit.rice.stereotype.RestAuth;
 import io.github.nichetoolkit.rice.stereotype.RestLogin;
-import io.github.nichetoolkit.rice.stereotype.RestLogout;
 import io.github.nichetoolkit.rice.stereotype.RestPended;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.annotation.Order;
@@ -65,9 +63,7 @@ public class DefaultResponseInterceptor implements ResponseBodyAdvice<Object> {
      * <p>Instantiates a new default response interceptor.</p>
      * @param loginAdvices {@link java.util.List} <p>The login advices parameter is <code>List</code> type.</p>
      * @see java.util.List
-     * @see org.springframework.beans.factory.annotation.Autowired
      */
-    @Autowired(required = false)
     public DefaultResponseInterceptor(List<LoginAdvice> loginAdvices) {
         this.loginAdvices = loginAdvices;
     }

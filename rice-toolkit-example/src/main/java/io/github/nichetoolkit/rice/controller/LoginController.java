@@ -14,7 +14,6 @@ import io.github.nichetoolkit.rice.stereotype.RestLogin;
 import io.github.nichetoolkit.rice.stereotype.RestLogout;
 import io.github.nichetoolkit.rice.stereotype.RestUser;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -47,9 +46,7 @@ public class LoginController {
      * <p>Instantiates a new login controller.</p>
      * @param loginService {@link io.github.nichetoolkit.rice.service.LoginService} <p>The login service parameter is <code>LoginService</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.LoginService
-     * @see org.springframework.beans.factory.annotation.Autowired
      */
-    @Autowired
     public LoginController(LoginService loginService) {
         this.loginService = loginService;
     }

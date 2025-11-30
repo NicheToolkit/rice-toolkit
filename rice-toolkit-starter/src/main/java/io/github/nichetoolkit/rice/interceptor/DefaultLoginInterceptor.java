@@ -10,7 +10,6 @@ import io.github.nichetoolkit.rice.advice.LoginAdvice;
 import io.github.nichetoolkit.rice.helper.HttpRequestHelper;
 import io.github.nichetoolkit.rice.stereotype.RestCheck;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.jspecify.annotations.NonNull;
 import org.springframework.web.method.HandlerMethod;
@@ -49,9 +48,7 @@ public class DefaultLoginInterceptor implements RequestHandleInterceptor {
      * <p>Instantiates a new default login interceptor.</p>
      * @param loginProperties {@link io.github.nichetoolkit.rice.configure.RiceLoginProperties} <p>The login properties parameter is <code>RiceLoginProperties</code> type.</p>
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
-     * @see org.springframework.beans.factory.annotation.Autowired
      */
-    @Autowired(required = false)
     public DefaultLoginInterceptor(RiceLoginProperties loginProperties) {
         this.loginProperties = loginProperties;
         this.loginAdvices = new ArrayList<>();
@@ -64,9 +61,7 @@ public class DefaultLoginInterceptor implements RequestHandleInterceptor {
      * @param loginAdvices    {@link java.util.List} <p>The login advices parameter is <code>List</code> type.</p>
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      * @see java.util.List
-     * @see org.springframework.beans.factory.annotation.Autowired
      */
-    @Autowired(required = false)
     public DefaultLoginInterceptor(RiceLoginProperties loginProperties, List<LoginAdvice> loginAdvices) {
         this.loginProperties = loginProperties;
         this.loginAdvices = loginAdvices;

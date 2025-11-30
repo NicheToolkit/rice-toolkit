@@ -11,7 +11,6 @@ import io.github.nichetoolkit.rice.error.TokenPermissionException;
 import io.github.nichetoolkit.rice.service.TokenService;
 import io.github.nichetoolkit.rice.simple.UserModel;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 
@@ -43,9 +42,7 @@ public class PurviewAdvice implements RestAfterLoginAdvice<RestPurview> {
      * <p>Instantiates a new purview advice.</p>
      * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>The token service parameter is <code>TokenService</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.TokenService
-     * @see org.springframework.beans.factory.annotation.Autowired
      */
-    @Autowired
     public PurviewAdvice(TokenService tokenService) {
         this.tokenService = tokenService;
     }

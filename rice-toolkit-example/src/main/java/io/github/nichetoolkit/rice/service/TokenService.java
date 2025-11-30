@@ -18,7 +18,6 @@ import io.github.nichetoolkit.rice.simple.UserModel;
 import io.github.nichetoolkit.rice.stereotype.RestLogin;
 import io.github.nichetoolkit.rice.stereotype.RestPended;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -52,9 +51,7 @@ public class TokenService implements RestTokenResolver<UserModel, LoginResult> {
      * <p>Instantiates a new token service.</p>
      * @param redisTemplate {@link org.springframework.data.redis.core.StringRedisTemplate} <p>The redis template parameter is <code>StringRedisTemplate</code> type.</p>
      * @see org.springframework.data.redis.core.StringRedisTemplate
-     * @see org.springframework.beans.factory.annotation.Autowired
      */
-    @Autowired
     public TokenService(StringRedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
     }

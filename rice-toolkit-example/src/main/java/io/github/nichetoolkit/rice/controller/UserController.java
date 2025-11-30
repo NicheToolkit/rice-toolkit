@@ -11,7 +11,6 @@ import io.github.nichetoolkit.rice.simple.UserFilter;
 import io.github.nichetoolkit.rice.simple.UserModel;
 import io.github.nichetoolkit.rice.stereotype.RestSkip;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -46,9 +45,7 @@ public class UserController {
      * <p>Instantiates a new user controller.</p>
      * @param userService {@link io.github.nichetoolkit.rice.service.UserService} <p>The user service parameter is <code>UserService</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.UserService
-     * @see org.springframework.beans.factory.annotation.Autowired
      */
-    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }

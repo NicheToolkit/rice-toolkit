@@ -84,10 +84,10 @@ public class RiceLoginAutoConfigure {
     }
 
     /**
-     * <code>accessTokenFilter</code>
-     * <p>The access token filter method.</p>
+     * <code>defaultAccessTokenFilter</code>
+     * <p>The default access token filter method.</p>
      * @param accessValue {@link io.github.nichetoolkit.rest.RestAccessValue} <p>The access value parameter is <code>RestAccessValue</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.defaults.DefaultAccessTokenFilter} <p>The access token filter return object is <code>DefaultAccessTokenFilter</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.defaults.DefaultAccessTokenFilter} <p>The default access token filter return object is <code>DefaultAccessTokenFilter</code> type.</p>
      * @see io.github.nichetoolkit.rest.RestAccessValue
      * @see io.github.nichetoolkit.rice.defaults.DefaultAccessTokenFilter
      * @see org.springframework.context.annotation.Bean
@@ -99,14 +99,14 @@ public class RiceLoginAutoConfigure {
     @Order(value = Ordered.HIGHEST_PRECEDENCE + 101)
     @ConditionalOnBean(RestAccessValue.class)
     @ConditionalOnMissingBean(DefaultAccessTokenFilter.class)
-    public DefaultAccessTokenFilter accessTokenFilter(RestAccessValue accessValue) {
+    public DefaultAccessTokenFilter defaultAccessTokenFilter(RestAccessValue accessValue) {
         return new DefaultAccessTokenFilter(this.loginProperties, accessValue);
     }
 
     /**
-     * <code>accessTokenFilter</code>
-     * <p>The access token filter method.</p>
-     * @return {@link io.github.nichetoolkit.rice.defaults.DefaultAccessTokenFilter} <p>The access token filter return object is <code>DefaultAccessTokenFilter</code> type.</p>
+     * <code>autoAccessTokenFilter</code>
+     * <p>The auto access token filter method.</p>
+     * @return {@link io.github.nichetoolkit.rice.defaults.DefaultAccessTokenFilter} <p>The auto access token filter return object is <code>DefaultAccessTokenFilter</code> type.</p>
      * @see io.github.nichetoolkit.rice.defaults.DefaultAccessTokenFilter
      * @see org.springframework.context.annotation.Bean
      * @see org.springframework.core.annotation.Order
@@ -115,15 +115,15 @@ public class RiceLoginAutoConfigure {
     @Bean
     @Order(value = Ordered.HIGHEST_PRECEDENCE + 101)
     @ConditionalOnMissingBean({DefaultAccessTokenFilter.class, RestAccessValue.class})
-    public DefaultAccessTokenFilter accessTokenFilter() {
+    public DefaultAccessTokenFilter autoAccessTokenFilter() {
         return new DefaultAccessTokenFilter(this.loginProperties);
     }
 
     /**
-     * <code>loginInterceptor</code>
-     * <p>The login interceptor method.</p>
+     * <code>defaultLoginInterceptor</code>
+     * <p>The default login interceptor method.</p>
      * @param loginAdvices {@link java.util.List} <p>The login advices parameter is <code>List</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.interceptor.DefaultLoginInterceptor} <p>The login interceptor return object is <code>DefaultLoginInterceptor</code> type.</p>
+     * @return {@link io.github.nichetoolkit.rice.interceptor.DefaultLoginInterceptor} <p>The default login interceptor return object is <code>DefaultLoginInterceptor</code> type.</p>
      * @see java.util.List
      * @see io.github.nichetoolkit.rice.interceptor.DefaultLoginInterceptor
      * @see org.springframework.context.annotation.Bean
@@ -135,14 +135,14 @@ public class RiceLoginAutoConfigure {
     @Order(AdviceConstants.LOGIN_ORDER)
     @ConditionalOnBean(LoginAdvice.class)
     @ConditionalOnMissingBean(DefaultLoginInterceptor.class)
-    public DefaultLoginInterceptor loginInterceptor(List<LoginAdvice> loginAdvices) {
+    public DefaultLoginInterceptor defaultLoginInterceptor(List<LoginAdvice> loginAdvices) {
         return new DefaultLoginInterceptor(this.loginProperties, loginAdvices);
     }
 
     /**
-     * <code>loginInterceptor</code>
-     * <p>The login interceptor method.</p>
-     * @return {@link io.github.nichetoolkit.rice.interceptor.DefaultLoginInterceptor} <p>The login interceptor return object is <code>DefaultLoginInterceptor</code> type.</p>
+     * <code>autoLoginInterceptor</code>
+     * <p>The auto login interceptor method.</p>
+     * @return {@link io.github.nichetoolkit.rice.interceptor.DefaultLoginInterceptor} <p>The auto login interceptor return object is <code>DefaultLoginInterceptor</code> type.</p>
      * @see io.github.nichetoolkit.rice.interceptor.DefaultLoginInterceptor
      * @see org.springframework.context.annotation.Bean
      * @see org.springframework.core.annotation.Order
@@ -151,7 +151,7 @@ public class RiceLoginAutoConfigure {
     @Bean
     @Order(AdviceConstants.LOGIN_ORDER)
     @ConditionalOnMissingBean({DefaultLoginInterceptor.class, LoginAdvice.class})
-    public DefaultLoginInterceptor loginInterceptor() {
+    public DefaultLoginInterceptor autoLoginInterceptor() {
         return new DefaultLoginInterceptor(this.loginProperties);
     }
 

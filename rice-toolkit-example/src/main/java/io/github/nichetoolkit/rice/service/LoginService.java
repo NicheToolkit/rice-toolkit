@@ -11,7 +11,6 @@ import io.github.nichetoolkit.rice.error.TokenInvalidException;
 import io.github.nichetoolkit.rice.simple.LoginRequest;
 import io.github.nichetoolkit.rice.simple.UserModel;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,9 +48,7 @@ public class LoginService {
      * @param tokenService {@link io.github.nichetoolkit.rice.service.TokenService} <p>The token service parameter is <code>TokenService</code> type.</p>
      * @see io.github.nichetoolkit.rice.service.UserService
      * @see io.github.nichetoolkit.rice.service.TokenService
-     * @see org.springframework.beans.factory.annotation.Autowired
      */
-    @Autowired
     public LoginService(UserService userService, TokenService tokenService) {
         this.userService = userService;
         this.tokenService = tokenService;

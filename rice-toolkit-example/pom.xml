@@ -62,7 +62,6 @@
         <skipTests>true</skipTests>
 
         <pagehelper-starter.version>2.1.1</pagehelper-starter.version>
-        <mybatis-spring.version>2.3.2</mybatis-spring.version>
         <postgresql.version>42.3.9</postgresql.version>
     </properties>
 
@@ -79,14 +78,13 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>${pagehelper-starter.version}</version>
+            <groupId>io.github.nichetoolkit</groupId>
+            <artifactId>rice-toolkit-pagehelper</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <artifactId>mybatis-plus-spring-boot4-starter</artifactId>
             <version>${mybatis-plus.version}</version>
         </dependency>
 

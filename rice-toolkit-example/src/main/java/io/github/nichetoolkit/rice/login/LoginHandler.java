@@ -13,7 +13,6 @@ import io.github.nichetoolkit.rice.simple.LoginResult;
 import io.github.nichetoolkit.rice.simple.UserModel;
 import io.github.nichetoolkit.rice.stereotype.RestLogin;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -66,9 +65,7 @@ public class LoginHandler implements LoginAdvice {
      * @see io.github.nichetoolkit.rice.configure.RiceLoginProperties
      * @see org.springframework.data.redis.core.StringRedisTemplate
      * @see io.github.nichetoolkit.rice.service.TokenService
-     * @see org.springframework.beans.factory.annotation.Autowired
      */
-    @Autowired
     public LoginHandler(RiceLoginProperties loginProperties, StringRedisTemplate redisTemplate, TokenService tokenService) {
         this.loginProperties = loginProperties;
         this.redisTemplate = redisTemplate;
