@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.mybatis.enums.SortType;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rest.util.JacksonUtils;
+import io.github.nichetoolkit.rice.jsonb.ContainRule;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -58,6 +60,7 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
      * @see java.lang.String
      */
     public RestSort(String name) {
+        this();
         this.name = name;
     }
 
@@ -75,7 +78,7 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
 
     @Override
     public String toString() {
-        if (this.type != SortType.NONE) {
+        if (this.type != SortType.NONE && GeneralUtils.isNotEmpty(this.name)) {
             return name.concat(" ").concat(type.getKey());
         }
         return "";
@@ -110,5 +113,4 @@ public class RestSort<S extends RestSort<S>> implements Serializable {
         }
         return sorts.stream().map(RestSort::new).collect(Collectors.toList());
     }
-
 }

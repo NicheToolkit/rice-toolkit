@@ -98,6 +98,7 @@ public class RestPage<T> implements Serializable {
      * @see org.jspecify.annotations.NonNull
      */
     public RestPage(@NonNull Collection<T> items) {
+        this();
         this.pages = 1L;
         this.pageNum = 1L;
         this.items = new ArrayList<>(items);
@@ -120,6 +121,7 @@ public class RestPage<T> implements Serializable {
      * @see org.jspecify.annotations.NonNull
      */
     public RestPage(Long totals, Long pageNum, Long pageSize, @NonNull Collection<T> items) {
+        this();
         this.totals = totals;
         this.pageNum = pageNum;
         this.pageSize = pageSize;

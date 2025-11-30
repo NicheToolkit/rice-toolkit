@@ -116,6 +116,7 @@ public class PageFilter implements Serializable {
      * @see java.lang.Integer
      */
     public PageFilter(Integer pageNum, Integer pageSize) {
+        this();
         this.pageNum = pageNum;
         this.pageSize = pageSize;
     }

@@ -79,6 +79,7 @@ public class SortFilter extends PageFilter {
      * @see org.jspecify.annotations.NonNull
      */
     public SortFilter(@NonNull RestSort<?>... sorts) {
+        this();
         this.sorts = new LinkedHashSet<>(Arrays.asList(sorts));
     }
 
@@ -90,6 +91,7 @@ public class SortFilter extends PageFilter {
      * @see org.jspecify.annotations.NonNull
      */
     public SortFilter(@NonNull String... sorts) {
+        this();
         this.sorts = new LinkedHashSet<>(RestSort.build(sorts));
     }
 
@@ -101,6 +103,7 @@ public class SortFilter extends PageFilter {
      * @see org.jspecify.annotations.NonNull
      */
     public SortFilter(@NonNull Collection<String> sorts) {
+        this();
         this.sorts = new LinkedHashSet<>(RestSort.build(sorts));
     }
 
