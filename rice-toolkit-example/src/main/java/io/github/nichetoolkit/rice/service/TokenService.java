@@ -64,28 +64,30 @@ public class TokenService implements RestTokenResolver<UserModel, LoginResult> {
         if ((login instanceof RestLogin)) {
             if (((RestLogin) login).update()) {
                 redisTemplate.delete(UserModel.LOGIN_TOKEN);
-                loginResult.setToken(null);
+                loginResult.setAccessToken(null);
+                loginResult.setRefreshToken(null);
             }
         }
         if ((login instanceof RestPended)) {
             if (((RestPended) login).update()) {
                 redisTemplate.delete(UserModel.LOGIN_TOKEN);
-                loginResult.setToken(null);
+                loginResult.setAccessToken(null);
+                loginResult.setRefreshToken(null);
             }
         }
-        if (GeneralUtils.isNotEmpty(loginResult.getToken())) {
-            return loginResult.getToken();
+        if (GeneralUtils.isNotEmpty(loginResult.getAccessToken())) {
+            return loginResult.getAccessToken();
         }
         String userId = String.valueOf(restMap.get(UserModel.LOGIN_USER_ID));
         return JwtWorker.token(userId, restMap);
     }
 
     @Override
-    public UserModel resolveUserInfo(String token) throws RestException {
-        OptionalUtils.ofEmpty(token, log,TokenInvalidException::new);
+    public UserModel resolveUserInfo(String accessToken) throws RestException {
+        OptionalUtils.ofEmpty(accessToken, log,TokenInvalidException::new);
         JWT jwt;
         try {
-            jwt = JwtWorker.parse(token);
+            jwt = JwtWorker.parse(accessToken);
         } catch (InvalidJWTSignatureException | InvalidJWTException ignored) {
             throw new TokenInvalidException();
         }
