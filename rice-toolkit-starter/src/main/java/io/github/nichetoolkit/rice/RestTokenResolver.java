@@ -17,19 +17,37 @@ import jakarta.servlet.http.HttpServletRequest;
 public interface RestTokenResolver<U extends RestUserInfo<?>, R extends RestLoginResult> {
 
     /**
-     * <code>resolveToken</code>
-     * <p>The resolve token method.</p>
+     * <code>resolveAccessToken</code>
+     * <p>The resolve access token method.</p>
      * @param context     {@link io.github.nichetoolkit.rice.TokenContext} <p>The context parameter is <code>TokenContext</code> type.</p>
      * @param login       {@link java.lang.Object} <p>The login parameter is <code>Object</code> type.</p>
      * @param loginResult R <p>The login result parameter is <code>R</code> type.</p>
-     * @return {@link java.lang.String} <p>The resolve token return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The resolve access token return object is <code>String</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      * @see io.github.nichetoolkit.rice.TokenContext
      * @see java.lang.Object
      * @see java.lang.String
      * @see io.github.nichetoolkit.rest.RestException
      */
-    String resolveToken(TokenContext context, Object login, R loginResult) throws RestException;
+    String resolveAccessToken(TokenContext context, Object login, R loginResult) throws RestException;
+
+
+    /**
+     * <code>resolveRefreshToken</code>
+     * <p>The resolve refresh token method.</p>
+     * @param context     {@link io.github.nichetoolkit.rice.TokenContext} <p>The context parameter is <code>TokenContext</code> type.</p>
+     * @param login       {@link java.lang.Object} <p>The login parameter is <code>Object</code> type.</p>
+     * @param loginResult R <p>The login result parameter is <code>R</code> type.</p>
+     * @return {@link java.lang.String} <p>The resolve refresh token return object is <code>String</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     * @see io.github.nichetoolkit.rice.TokenContext
+     * @see java.lang.Object
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.rest.RestException
+     */
+    default String resolveRefreshToken(TokenContext context, Object login, R loginResult) throws RestException {
+        return null;
+    }
 
     /**
      * <code>resolveUserInfo</code>

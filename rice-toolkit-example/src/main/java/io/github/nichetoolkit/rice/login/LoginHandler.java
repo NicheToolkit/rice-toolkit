@@ -97,7 +97,7 @@ public class LoginHandler implements LoginAdvice {
             UserModel user = JsonUtils.parseBean(userJson, UserModel.class);
 
             loginResult.setUser(user);
-            token = tokenService.resolveToken(context, restLogin, loginResult);
+            token = tokenService.resolveAccessToken(context, restLogin, loginResult);
             redisTemplate.opsForValue().set(UserModel.LOGIN_TOKEN + userId, userJson, loginProperties.getTokenExpiration(), loginProperties.getTokenTimeUnit());
             loginResult.setAccessToken(token);
         }
