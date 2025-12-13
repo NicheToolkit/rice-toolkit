@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import java.util.Objects;
+
 /**
  * <code>LoginResult</code>
  * <p>The login result class.</p>
@@ -19,6 +21,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @Getter
 @SuperBuilder
+@NoArgsConstructor
 public class LoginResult extends RestLoginResult<LoginResult> {
     /**
      * <code>userId</code>
@@ -33,21 +36,16 @@ public class LoginResult extends RestLoginResult<LoginResult> {
      */
     private UserModel user;
 
-    /**
-     * <code>LoginResult</code>
-     * <p>Instantiates a new login result.</p>
-     */
-    public LoginResult() {
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        LoginResult that = (LoginResult) o;
+        return Objects.equals(getUserId(), that.getUserId());
     }
 
-    /**
-     * <code>LoginResult</code>
-     * <p>Instantiates a new login result.</p>
-     * @param accessToken {@link java.lang.String} <p>The access token parameter is <code>String</code> type.</p>
-     * @see java.lang.String
-     */
-    public LoginResult(String accessToken) {
-        super(accessToken);
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getUserId());
     }
-
 }

@@ -60,24 +60,26 @@ public class TokenService implements RestTokenResolver<UserModel, LoginResult> {
     }
 
     @Override
-    public String resolveToken(TokenContext restMap, Object login, LoginResult loginResult) throws RestException {
+    public String resolveAccessToken(TokenContext restMap, Object login, LoginResult loginResult) throws RestException {
         if (!(login instanceof RestLogin) && !(login instanceof RestPended)) {
             return null;
         }
         if ((login instanceof RestLogin)) {
             if (((RestLogin) login).update()) {
                 redisTemplate.delete(UserModel.LOGIN_TOKEN);
-                loginResult.setToken(null);
+                loginResult.setAccessToken(null);
+                loginResult.setRefreshToken(null);
             }
         }
         if ((login instanceof RestPended)) {
             if (((RestPended) login).update()) {
                 redisTemplate.delete(UserModel.LOGIN_TOKEN);
-                loginResult.setToken(null);
+                loginResult.setAccessToken(null);
+                loginResult.setRefreshToken(null);
             }
         }
-        if (GeneralUtils.isNotEmpty(loginResult.getToken())) {
-            return loginResult.getToken();
+        if (GeneralUtils.isNotEmpty(loginResult.getAccessToken())) {
+            return loginResult.getAccessToken();
         }
         String userId = String.valueOf(restMap.get(UserModel.LOGIN_USER_ID));
         return JwtWorker.token(userId, restMap);
@@ -102,7 +104,6 @@ public class TokenService implements RestTokenResolver<UserModel, LoginResult> {
         context.put(UserModel.LOGIN_USER_INFO, userJson);
         return localUser;
     }
-
 
     @Override
     public UserModel resolveUserInfo() throws RestException {

@@ -3,11 +3,11 @@ package io.github.nichetoolkit.rice;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * <code>RestLoginResult</code>
@@ -18,50 +18,29 @@ import java.util.Objects;
  * @see lombok.Setter
  * @see lombok.Getter
  * @see lombok.experimental.SuperBuilder
+ * @see lombok.NoArgsConstructor
  * @see com.fasterxml.jackson.annotation.JsonInclude
  * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Setter
 @Getter
 @SuperBuilder
+@NoArgsConstructor
 @JsonInclude(value= JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RestLoginResult<R extends RestLoginResult<R>> implements Serializable {
     /**
-     * <code>token</code>
-     * {@link java.lang.String} <p>The <code>token</code> field.</p>
+     * <code>accessToken</code>
+     * {@link java.lang.String} <p>The <code>accessToken</code> field.</p>
      * @see java.lang.String
      */
-    private String token;
+    private String accessToken;
 
     /**
-     * <code>RestLoginResult</code>
-     * <p>Instantiates a new rest login result.</p>
-     */
-    public RestLoginResult() {
-    }
-
-    /**
-     * <code>RestLoginResult</code>
-     * <p>Instantiates a new rest login result.</p>
-     * @param token {@link java.lang.String} <p>The token parameter is <code>String</code> type.</p>
+     * <code>refreshToken</code>
+     * {@link java.lang.String} <p>The <code>refreshToken</code> field.</p>
      * @see java.lang.String
      */
-    public RestLoginResult(String token) {
-        this.token = token;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RestLoginResult<?> that = (RestLoginResult<?>) o;
-        return Objects.equals(token, that.token);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(token);
-    }
+    private String refreshToken;
 }
