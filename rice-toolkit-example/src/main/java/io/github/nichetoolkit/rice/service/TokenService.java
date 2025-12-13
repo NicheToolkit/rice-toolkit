@@ -26,12 +26,32 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Map;
 
+/**
+ * <code>TokenService</code>
+ * <p>The token service class.</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.rice.RestTokenResolver
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.stereotype.Service
+ * @since Jdk17
+ */
 @Slf4j
 @Service
 public class TokenService implements RestTokenResolver<UserModel, LoginResult> {
 
+    /**
+     * <code>redisTemplate</code>
+     * {@link org.springframework.data.redis.core.StringRedisTemplate} <p>The <code>redisTemplate</code> field.</p>
+     * @see org.springframework.data.redis.core.StringRedisTemplate
+     */
     protected final StringRedisTemplate redisTemplate;
 
+    /**
+     * <code>TokenService</code>
+     * <p>Instantiates a new token service.</p>
+     * @param redisTemplate {@link org.springframework.data.redis.core.StringRedisTemplate} <p>The redis template parameter is <code>StringRedisTemplate</code> type.</p>
+     * @see org.springframework.data.redis.core.StringRedisTemplate
+     */
     public TokenService(StringRedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
