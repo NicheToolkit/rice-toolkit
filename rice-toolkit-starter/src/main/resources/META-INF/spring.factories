@@ -1,6 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   io.github.nichetoolkit.rice.configure.RiceStarterAutoConfigure,\
   io.github.nichetoolkit.rice.configure.RiceLoginAutoConfigure,\
-  io.github.nichetoolkit.rice.configure.RiceServiceAutoConfigure,\
-  io.github.nichetoolkit.rice.configure.RiceWebMvcAutoConfigure,\
-  io.github.nichetoolkit.rice.configure.RiceResolverAutoConfigure
+  io.github.nichetoolkit.rice.configure.RiceServiceAutoConfigure

@@ -12,16 +12,16 @@ import java.io.Serializable;
 /**
  * <code>RestLoginResult</code>
  * <p>The rest login result class.</p>
- * @param <R> {@link io.github.nichetoolkit.rice.RestLoginResult} <p>The generic parameter is <code>RestLoginResult</code> type.</p>
+ * @param <R>  {@link io.github.nichetoolkit.rice.RestLoginResult} <p>The generic parameter is <code>RestLoginResult</code> type.</p>
+ * @see  java.io.Serializable
+ * @see  lombok.Setter
+ * @see  lombok.Getter
+ * @see  lombok.experimental.SuperBuilder
+ * @see  lombok.NoArgsConstructor
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see java.io.Serializable
- * @see lombok.Setter
- * @see lombok.Getter
- * @see lombok.experimental.SuperBuilder
- * @see lombok.NoArgsConstructor
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
- * @since Jdk17
+ * @since Jdk1.8
  */
 @Setter
 @Getter
@@ -33,14 +33,14 @@ public class RestLoginResult<R extends RestLoginResult<R>> implements Serializab
     /**
      * <code>accessToken</code>
      * {@link java.lang.String} <p>The <code>accessToken</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     private String accessToken;
 
     /**
      * <code>refreshToken</code>
      * {@link java.lang.String} <p>The <code>refreshToken</code> field.</p>
-     * @see java.lang.String
+     * @see  java.lang.String
      */
     private String refreshToken;
 }
