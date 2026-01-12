@@ -22,7 +22,7 @@ import java.util.Objects;
 @Getter
 @SuperBuilder
 @NoArgsConstructor
-public class LoginResult extends RestLoginResult<LoginResult> {
+public class LoginResult extends RestLoginResult {
     /**
      * <code>userId</code>
      * {@link java.lang.String} <p>The <code>userId</code> field.</p>

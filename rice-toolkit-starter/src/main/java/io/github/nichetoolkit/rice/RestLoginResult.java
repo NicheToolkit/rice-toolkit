@@ -12,7 +12,6 @@ import java.io.Serializable;
 /**
  * <code>RestLoginResult</code>
  * <p>The rest login result class.</p>
- * @param <R>  {@link io.github.nichetoolkit.rice.RestLoginResult} <p>The generic parameter is <code>RestLoginResult</code> type.</p>
  * @see  java.io.Serializable
  * @see  lombok.Setter
  * @see  lombok.Getter
@@ -29,7 +28,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @JsonInclude(value= JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RestLoginResult<R extends RestLoginResult<R>> implements Serializable {
+public class RestLoginResult implements Serializable {
     /**
      * <code>accessToken</code>
      * {@link java.lang.String} <p>The <code>accessToken</code> field.</p>

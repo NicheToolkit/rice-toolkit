@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
-public interface RestTokenResolver<U extends RestUserInfo<?>, R extends RestLoginResult<R>> {
+public interface RestTokenResolver<U extends RestUserInfo<?>, R extends RestLoginResult> {
 
     /**
      * <code>resolveAccessToken</code>
