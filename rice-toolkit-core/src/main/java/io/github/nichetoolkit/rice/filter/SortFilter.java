@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.mybatis.enums.SortType;
+import io.github.nichetoolkit.rest.parsing.JsonParsingIgnored;
+import io.github.nichetoolkit.rest.parsing.JsonParsingMultiField;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestSort;
 import lombok.Getter;
@@ -35,23 +37,29 @@ public class SortFilter extends PageFilter {
      * {@link java.lang.String} <p>The constant <code>SORT_REGEX</code> field.</p>
      * @see  java.lang.String
      * @see  com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingIgnored
      */
     @JsonIgnore
+    @JsonParsingIgnored
     public static final String SORT_REGEX = ",";
     /**
      * <code>SORT_ORDER</code>
      * {@link java.lang.String} <p>The constant <code>SORT_ORDER</code> field.</p>
      * @see  java.lang.String
      * @see  com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingIgnored
      */
     @JsonIgnore
+    @JsonParsingIgnored
     public static final String SORT_ORDER = " ORDER BY ";
 
     /**
      * <code>sorts</code>
      * {@link java.util.Set} <p>The <code>sorts</code> field.</p>
      * @see  java.util.Set
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingMultiField
      */
+    @JsonParsingMultiField
     protected Set<RestSort<?>> sorts;
 
     /**
@@ -60,10 +68,12 @@ public class SortFilter extends PageFilter {
      * @see  lombok.Getter
      * @see  lombok.Setter
      * @see  com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingIgnored
      */
     @Getter
     @Setter
     @JsonIgnore
+    @JsonParsingIgnored
     protected boolean isSort = true;
 
     /**

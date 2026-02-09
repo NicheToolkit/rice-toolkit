@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.parsing.JsonParsingMultiField;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import io.github.nichetoolkit.rice.jsonb.*;
@@ -16,14 +17,14 @@ import java.util.*;
 /**
  * <code>JsonbFilter</code>
  * <p>The jsonb filter class.</p>
- * @param <I> {@link java.lang.Object} <p>The parameter can be of any type.</p>
- * @param <K> {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <I>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @param <K>  {@link java.lang.Object} <p>The parameter can be of any type.</p>
+ * @see  io.github.nichetoolkit.rice.filter.TimeFilter
+ * @see  lombok.experimental.SuperBuilder
+ * @see  java.lang.SuppressWarnings
+ * @see  com.fasterxml.jackson.annotation.JsonInclude
+ * @see  com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @author Cyan (snow22314@outlook.com)
- * @see io.github.nichetoolkit.rice.filter.TimeFilter
- * @see lombok.experimental.SuperBuilder
- * @see java.lang.SuppressWarnings
- * @see com.fasterxml.jackson.annotation.JsonInclude
- * @see com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * @since Jdk1.8
  */
 @SuperBuilder(builderMethodName = "ofJsonbBuilder")
@@ -34,26 +35,34 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
     /**
      * <code>contrasts</code>
      * {@link java.util.Set} <p>The <code>contrasts</code> field.</p>
-     * @see java.util.Set
+     * @see  java.util.Set
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingMultiField
      */
+    @JsonParsingMultiField
     protected Set<ContrastRule> contrasts;
     /**
      * <code>ranges</code>
      * {@link java.util.Set} <p>The <code>ranges</code> field.</p>
-     * @see java.util.Set
+     * @see  java.util.Set
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingMultiField
      */
+    @JsonParsingMultiField
     protected Set<RangeRule> ranges;
     /**
      * <code>equals</code>
      * {@link java.util.Set} <p>The <code>equals</code> field.</p>
-     * @see java.util.Set
+     * @see  java.util.Set
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingMultiField
      */
+    @JsonParsingMultiField
     protected Set<EqualRule> equals;
     /**
      * <code>contains</code>
      * {@link java.util.Set} <p>The <code>contains</code> field.</p>
-     * @see java.util.Set
+     * @see  java.util.Set
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingMultiField
      */
+    @JsonParsingMultiField
     protected Set<ContainRule> contains;
 
     /**
@@ -76,7 +85,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>JsonbFilter</code>
      * <p>Instantiates a new jsonb filter.</p>
      * @param ids I <p>The ids parameter is <code>I</code> type.</p>
-     * @see java.lang.SuppressWarnings
+     * @see  java.lang.SuppressWarnings
      */
     @SuppressWarnings(value = "unchecked")
     public JsonbFilter(I... ids) {
@@ -87,7 +96,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>addContains</code>
      * <p>The add contains method.</p>
      * @param contains {@link io.github.nichetoolkit.rice.jsonb.ContainRule} <p>The contains parameter is <code>ContainRule</code> type.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.ContainRule
+     * @see  io.github.nichetoolkit.rice.jsonb.ContainRule
      */
     public void addContains(ContainRule... contains) {
         if (GeneralUtils.isEmpty(this.contains)) {
@@ -101,7 +110,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>addContains</code>
      * <p>The add contains method.</p>
      * @param contains {@link java.util.Collection} <p>The contains parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
+     * @see  java.util.Collection
      */
     public void addContains(Collection<ContainRule> contains) {
         if (GeneralUtils.isEmpty(this.contains)) {
@@ -114,8 +123,8 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
     /**
      * <code>getContains</code>
      * <p>The get contains getter method.</p>
-     * @return {@link java.util.List} <p>The get contains return object is <code>List</code> type.</p>
-     * @see java.util.List
+     * @return  {@link java.util.List} <p>The get contains return object is <code>List</code> type.</p>
+     * @see  java.util.List
      */
     public List<ContainRule> getContains() {
         if (GeneralUtils.isNotEmpty(this.contains)) {
@@ -128,7 +137,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>setContains</code>
      * <p>The set contains setter method.</p>
      * @param contains {@link io.github.nichetoolkit.rice.jsonb.ContainRule} <p>The contains parameter is <code>ContainRule</code> type.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.ContainRule
+     * @see  io.github.nichetoolkit.rice.jsonb.ContainRule
      */
     public void setContains(ContainRule... contains) {
         this.contains = Optional.ofNullable(contains).map(containList -> new HashSet<>(Arrays.asList(containList))).orElse(null);
@@ -138,8 +147,8 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>setContains</code>
      * <p>The set contains setter method.</p>
      * @param contains {@link java.util.Collection} <p>The contains parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
-     * @see com.fasterxml.jackson.annotation.JsonSetter
+     * @see  java.util.Collection
+     * @see  com.fasterxml.jackson.annotation.JsonSetter
      */
     @JsonSetter
     public void setContains(Collection<ContainRule> contains) {
@@ -150,7 +159,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>addContrasts</code>
      * <p>The add contrasts method.</p>
      * @param contrasts {@link io.github.nichetoolkit.rice.jsonb.ContrastRule} <p>The contrasts parameter is <code>ContrastRule</code> type.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.ContrastRule
+     * @see  io.github.nichetoolkit.rice.jsonb.ContrastRule
      */
     public void addContrasts(ContrastRule... contrasts) {
         if (GeneralUtils.isEmpty(this.contrasts)) {
@@ -164,7 +173,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>addContrasts</code>
      * <p>The add contrasts method.</p>
      * @param contrasts {@link java.util.Collection} <p>The contrasts parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
+     * @see  java.util.Collection
      */
     public void addContrasts(Collection<ContrastRule> contrasts) {
         if (GeneralUtils.isEmpty(this.contrasts)) {
@@ -177,8 +186,8 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
     /**
      * <code>getContrasts</code>
      * <p>The get contrasts getter method.</p>
-     * @return {@link java.util.List} <p>The get contrasts return object is <code>List</code> type.</p>
-     * @see java.util.List
+     * @return  {@link java.util.List} <p>The get contrasts return object is <code>List</code> type.</p>
+     * @see  java.util.List
      */
     public List<ContrastRule> getContrasts() {
         if (GeneralUtils.isNotEmpty(this.contrasts)) {
@@ -191,7 +200,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>setContrasts</code>
      * <p>The set contrasts setter method.</p>
      * @param contrasts {@link io.github.nichetoolkit.rice.jsonb.ContrastRule} <p>The contrasts parameter is <code>ContrastRule</code> type.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.ContrastRule
+     * @see  io.github.nichetoolkit.rice.jsonb.ContrastRule
      */
     public void setContrasts(ContrastRule... contrasts) {
         this.contrasts = Optional.ofNullable(contrasts).map(contrastsList -> new HashSet<>(Arrays.asList(contrastsList))).orElse(null);
@@ -201,8 +210,8 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>setContrasts</code>
      * <p>The set contrasts setter method.</p>
      * @param contrasts {@link java.util.Collection} <p>The contrasts parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
-     * @see com.fasterxml.jackson.annotation.JsonSetter
+     * @see  java.util.Collection
+     * @see  com.fasterxml.jackson.annotation.JsonSetter
      */
     @JsonSetter
     public void setContrasts(Collection<ContrastRule> contrasts) {
@@ -213,7 +222,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>addRanges</code>
      * <p>The add ranges method.</p>
      * @param ranges {@link io.github.nichetoolkit.rice.jsonb.RangeRule} <p>The ranges parameter is <code>RangeRule</code> type.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.RangeRule
+     * @see  io.github.nichetoolkit.rice.jsonb.RangeRule
      */
     public void addRanges(RangeRule... ranges) {
         if (GeneralUtils.isEmpty(this.ranges)) {
@@ -227,7 +236,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>addRanges</code>
      * <p>The add ranges method.</p>
      * @param ranges {@link java.util.Collection} <p>The ranges parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
+     * @see  java.util.Collection
      */
     public void addRanges(Collection<RangeRule> ranges) {
         if (GeneralUtils.isEmpty(this.ranges)) {
@@ -240,8 +249,8 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
     /**
      * <code>getRanges</code>
      * <p>The get ranges getter method.</p>
-     * @return {@link java.util.List} <p>The get ranges return object is <code>List</code> type.</p>
-     * @see java.util.List
+     * @return  {@link java.util.List} <p>The get ranges return object is <code>List</code> type.</p>
+     * @see  java.util.List
      */
     public List<RangeRule> getRanges() {
         if (GeneralUtils.isNotEmpty(this.ranges)) {
@@ -254,7 +263,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>setRanges</code>
      * <p>The set ranges setter method.</p>
      * @param ranges {@link io.github.nichetoolkit.rice.jsonb.RangeRule} <p>The ranges parameter is <code>RangeRule</code> type.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.RangeRule
+     * @see  io.github.nichetoolkit.rice.jsonb.RangeRule
      */
     public void setRanges(RangeRule... ranges) {
         this.ranges = Optional.ofNullable(ranges).map(rangeList -> new HashSet<>(Arrays.asList(rangeList))).orElse(null);
@@ -264,8 +273,8 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>setRanges</code>
      * <p>The set ranges setter method.</p>
      * @param ranges {@link java.util.Collection} <p>The ranges parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
-     * @see com.fasterxml.jackson.annotation.JsonSetter
+     * @see  java.util.Collection
+     * @see  com.fasterxml.jackson.annotation.JsonSetter
      */
     @JsonSetter
     public void setRanges(Collection<RangeRule> ranges) {
@@ -276,7 +285,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>addEquals</code>
      * <p>The add equals method.</p>
      * @param equals {@link io.github.nichetoolkit.rice.jsonb.EqualRule} <p>The equals parameter is <code>EqualRule</code> type.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.EqualRule
+     * @see  io.github.nichetoolkit.rice.jsonb.EqualRule
      */
     public void addEquals(EqualRule... equals) {
         if (GeneralUtils.isEmpty(this.equals)) {
@@ -290,7 +299,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>addEquals</code>
      * <p>The add equals method.</p>
      * @param equals {@link java.util.Collection} <p>The equals parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
+     * @see  java.util.Collection
      */
     public void addEquals(Collection<EqualRule> equals) {
         if (GeneralUtils.isEmpty(this.equals)) {
@@ -303,8 +312,8 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
     /**
      * <code>getEquals</code>
      * <p>The get equals getter method.</p>
-     * @return {@link java.util.List} <p>The get equals return object is <code>List</code> type.</p>
-     * @see java.util.List
+     * @return  {@link java.util.List} <p>The get equals return object is <code>List</code> type.</p>
+     * @see  java.util.List
      */
     public List<EqualRule> getEquals() {
         if (GeneralUtils.isNotEmpty(this.equals)) {
@@ -317,7 +326,7 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>setEquals</code>
      * <p>The set equals setter method.</p>
      * @param equals {@link io.github.nichetoolkit.rice.jsonb.EqualRule} <p>The equals parameter is <code>EqualRule</code> type.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.EqualRule
+     * @see  io.github.nichetoolkit.rice.jsonb.EqualRule
      */
     public void setEquals(EqualRule... equals) {
         this.equals = Optional.ofNullable(equals).map(equalList -> new HashSet<>(Arrays.asList(equalList))).orElse(null);
@@ -327,8 +336,8 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>setEquals</code>
      * <p>The set equals setter method.</p>
      * @param equals {@link java.util.Collection} <p>The equals parameter is <code>Collection</code> type.</p>
-     * @see java.util.Collection
-     * @see com.fasterxml.jackson.annotation.JsonSetter
+     * @see  java.util.Collection
+     * @see  com.fasterxml.jackson.annotation.JsonSetter
      */
     @JsonSetter
     public void setEquals(Collection<EqualRule> equals) {
@@ -339,11 +348,11 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
      * <code>toJsonbSql</code>
      * <p>The to jsonb sql method.</p>
      * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.JsonbFilter} <p>The to jsonb sql return object is <code>JsonbFilter</code> type.</p>
+     * @see  java.lang.String
+     * @see  org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link io.github.nichetoolkit.rice.filter.JsonbFilter} <p>The to jsonb sql return object is <code>JsonbFilter</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.String
-     * @see org.springframework.lang.NonNull
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public JsonbFilter<I, K> toJsonbSql(@NonNull String alias) throws RestException {
         this.toJsonbSql(alias, "value");
@@ -353,13 +362,13 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
     /**
      * <code>toJsonbSql</code>
      * <p>The to jsonb sql method.</p>
-     * @param alias    {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
+     * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
      * @param variable {@link java.lang.String} <p>The variable parameter is <code>String</code> type.</p>
-     * @return {@link io.github.nichetoolkit.rice.filter.JsonbFilter} <p>The to jsonb sql return object is <code>JsonbFilter</code> type.</p>
+     * @see  java.lang.String
+     * @see  org.springframework.lang.NonNull
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link io.github.nichetoolkit.rice.filter.JsonbFilter} <p>The to jsonb sql return object is <code>JsonbFilter</code> type.</p>
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
-     * @see java.lang.String
-     * @see org.springframework.lang.NonNull
-     * @see io.github.nichetoolkit.rest.RestException
      */
     public JsonbFilter<I, K> toJsonbSql(@NonNull String alias, String variable) throws RestException {
         SqlBuilder sqlBuilder = SqlBuilders.newSqlBuilder();
@@ -374,16 +383,16 @@ public class JsonbFilter<I, K> extends TimeFilter<I, K> {
     /**
      * <code>appendSql</code>
      * <p>The append sql method.</p>
-     * @param <R>        {@link io.github.nichetoolkit.rice.jsonb.JsonbRule} <p>The generic parameter is <code>JsonbRule</code> type.</p>
-     * @param alias      {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
-     * @param variable   {@link java.lang.String} <p>The variable parameter is <code>String</code> type.</p>
-     * @param rules      {@link java.util.List} <p>The rules parameter is <code>List</code> type.</p>
+     * @param <R>  {@link io.github.nichetoolkit.rice.jsonb.JsonbRule} <p>The generic parameter is <code>JsonbRule</code> type.</p>
+     * @param alias {@link java.lang.String} <p>The alias parameter is <code>String</code> type.</p>
+     * @param variable {@link java.lang.String} <p>The variable parameter is <code>String</code> type.</p>
+     * @param rules {@link java.util.List} <p>The rules parameter is <code>List</code> type.</p>
      * @param sqlBuilder {@link io.github.nichetoolkit.mybatis.builder.SqlBuilder} <p>The sql builder parameter is <code>SqlBuilder</code> type.</p>
-     * @see io.github.nichetoolkit.rice.jsonb.JsonbRule
-     * @see java.lang.String
-     * @see org.springframework.lang.NonNull
-     * @see java.util.List
-     * @see io.github.nichetoolkit.mybatis.builder.SqlBuilder
+     * @see  io.github.nichetoolkit.rice.jsonb.JsonbRule
+     * @see  java.lang.String
+     * @see  org.springframework.lang.NonNull
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.mybatis.builder.SqlBuilder
      */
     public <R extends JsonbRule<R>> void appendSql(@NonNull String alias, String variable, List<R> rules, SqlBuilder sqlBuilder) {
         if (GeneralUtils.isNotEmpty(rules)) {

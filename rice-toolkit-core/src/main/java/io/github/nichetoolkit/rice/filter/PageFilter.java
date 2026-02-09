@@ -7,6 +7,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import io.github.nichetoolkit.mybatis.load.RestLoad;
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.parsing.JsonParsingIgnored;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
 import lombok.Getter;
@@ -40,40 +41,50 @@ public class PageFilter implements Serializable {
      * {@link java.lang.String} <p>The constant <code>PAGE_REGEX</code> field.</p>
      * @see  java.lang.String
      * @see  com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingIgnored
      */
     @JsonIgnore
+    @JsonParsingIgnored
     public static final String PAGE_REGEX = "_";
     /**
      * <code>PAGE_LIMIT</code>
      * {@link java.lang.String} <p>The constant <code>PAGE_LIMIT</code> field.</p>
      * @see  java.lang.String
      * @see  com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingIgnored
      */
     @JsonIgnore
+    @JsonParsingIgnored
     public static final String PAGE_LIMIT = "LIMIT";
     /**
      * <code>PAGE_OFFSET</code>
      * {@link java.lang.String} <p>The constant <code>PAGE_OFFSET</code> field.</p>
      * @see  java.lang.String
      * @see  com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingIgnored
      */
     @JsonIgnore
+    @JsonParsingIgnored
     public static final String PAGE_OFFSET = "OFFSET";
     /**
      * <code>FIELD_ARRAY</code>
      * {@link java.util.List} <p>The <code>FIELD_ARRAY</code> field.</p>
      * @see  java.util.List
      * @see  com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingIgnored
      */
     @JsonIgnore
+    @JsonParsingIgnored
     protected final List<String> FIELD_ARRAY = new ArrayList<>();
     /**
      * <code>LOAD_ARRAY</code>
      * {@link java.util.List} <p>The <code>LOAD_ARRAY</code> field.</p>
      * @see  java.util.List
      * @see  com.fasterxml.jackson.annotation.JsonIgnore
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingIgnored
      */
     @JsonIgnore
+    @JsonParsingIgnored
     protected final List<RestLoad> LOAD_ARRAY = new ArrayList<>();
 
     /**

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rest.shadow.ShadowMutiField;
+import io.github.nichetoolkit.rest.parsing.JsonParsingMultiField;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
 import lombok.Getter;
@@ -47,9 +47,9 @@ public class NameFilter<I, K> extends JsonbFilter<I, K> {
      * <code>names</code>
      * {@link java.util.Set} <p>The <code>names</code> field.</p>
      * @see  java.util.Set
-     * @see  io.github.nichetoolkit.rest.shadow.ShadowMutiField
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingMultiField
      */
-    @ShadowMutiField
+    @JsonParsingMultiField
     protected Set<String> names;
 
     /**

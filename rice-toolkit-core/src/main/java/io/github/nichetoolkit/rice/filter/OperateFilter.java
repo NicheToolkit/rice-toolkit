@@ -3,7 +3,7 @@ package io.github.nichetoolkit.rice.filter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import io.github.nichetoolkit.rest.shadow.ShadowMutiField;
+import io.github.nichetoolkit.rest.parsing.JsonParsingMultiField;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestOperate;
 import io.github.nichetoolkit.rice.enums.OperateType;
@@ -51,9 +51,9 @@ public class OperateFilter extends SortFilter {
      * <code>operates</code>
      * {@link java.util.Set} <p>The <code>operates</code> field.</p>
      * @see  java.util.Set
-     * @see  io.github.nichetoolkit.rest.shadow.ShadowMutiField
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingMultiField
      */
-    @ShadowMutiField
+    @JsonParsingMultiField
     protected Set<OperateType> operates;
 
     /**

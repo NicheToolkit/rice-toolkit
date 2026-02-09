@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import io.github.nichetoolkit.mybatis.fickle.RestFickle;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestKey;
-import io.github.nichetoolkit.rest.shadow.ShadowMutiField;
+import io.github.nichetoolkit.rest.parsing.JsonParsingMultiField;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import lombok.experimental.SuperBuilder;
 import org.springframework.lang.NonNull;
@@ -34,9 +34,9 @@ public class FickleFilter extends OperateFilter {
      * <code>fickles</code>
      * {@link java.util.Set} <p>The <code>fickles</code> field.</p>
      * @see  java.util.Set
-     * @see  io.github.nichetoolkit.rest.shadow.ShadowMutiField
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingMultiField
      */
-    @ShadowMutiField
+    @JsonParsingMultiField
     protected Set<String> fickles;
 
     /**

@@ -8,8 +8,9 @@ import io.github.nichetoolkit.mybatis.builder.SqlBuilder;
 import io.github.nichetoolkit.mybatis.table.RestIdentity;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.error.natives.UnsupportedErrorException;
+import io.github.nichetoolkit.rest.parsing.JsonParsingIgnored;
+import io.github.nichetoolkit.rest.parsing.JsonParsingMultiField;
 import io.github.nichetoolkit.rest.reflect.RestGenericTypes;
-import io.github.nichetoolkit.rest.shadow.ShadowMutiField;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rice.RestSort;
 import io.github.nichetoolkit.rice.builder.SqlBuilders;
@@ -46,6 +47,7 @@ public class IdFilter<I, K> extends TableFilter<K> {
      * @see  com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
+    @JsonParsingIgnored
     protected final SqlBuilder SQL_BUILDER = new SqlBuilder();
 
     /**
@@ -55,6 +57,7 @@ public class IdFilter<I, K> extends TableFilter<K> {
      * @see  com.fasterxml.jackson.annotation.JsonIgnore
      */
     @JsonIgnore
+    @JsonParsingIgnored
     protected final ThreadLocal<String> SQL_CACHE = new ThreadLocal<>();
 
     /**
@@ -71,9 +74,9 @@ public class IdFilter<I, K> extends TableFilter<K> {
      * <code>ids</code>
      * {@link java.util.Set} <p>The <code>ids</code> field.</p>
      * @see  java.util.Set
-     * @see  io.github.nichetoolkit.rest.shadow.ShadowMutiField
+     * @see  io.github.nichetoolkit.rest.parsing.JsonParsingMultiField
      */
-    @ShadowMutiField
+    @JsonParsingMultiField
     protected Set<I> ids;
 
     /**

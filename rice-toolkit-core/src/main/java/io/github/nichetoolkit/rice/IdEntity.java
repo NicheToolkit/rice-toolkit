@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.nichetoolkit.mybatis.column.RestIdentityKey;
-import io.github.nichetoolkit.rest.util.JsonPurityUtils;
+import io.github.nichetoolkit.rest.util.JacksonUtils;
 import io.mybatis.provider.Entity;
 import lombok.experimental.SuperBuilder;
 
@@ -83,6 +83,6 @@ public class IdEntity<I> extends TimeEntity implements RestId<I> {
 
     @Override
     public String toString() {
-        return JsonPurityUtils.parseJson(this);
+        return JacksonUtils.parseJson(this);
     }
 }

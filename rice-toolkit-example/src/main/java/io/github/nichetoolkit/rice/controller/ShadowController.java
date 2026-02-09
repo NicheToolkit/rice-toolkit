@@ -2,7 +2,7 @@ package io.github.nichetoolkit.rice.controller;
 
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestResult;
-import io.github.nichetoolkit.rest.shadow.RequestShadow;
+import io.github.nichetoolkit.rest.parsing.RequestParsing;
 import io.github.nichetoolkit.rice.simple.TestFilter;
 import io.github.nichetoolkit.rice.stereotype.RestSkip;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +29,7 @@ public class ShadowController {
      * @param filter {@link io.github.nichetoolkit.rice.simple.TestFilter} <p>The filter parameter is <code>TestFilter</code> type.</p>
      * @param file {@link org.springframework.web.multipart.MultipartFile} <p>The file parameter is <code>MultipartFile</code> type.</p>
      * @see  io.github.nichetoolkit.rice.simple.TestFilter
-     * @see  io.github.nichetoolkit.rest.shadow.RequestShadow
+     * @see  io.github.nichetoolkit.rest.parsing.RequestParsing
      * @see  org.springframework.web.multipart.MultipartFile
      * @see  org.springframework.web.bind.annotation.RequestPart
      * @see  io.github.nichetoolkit.rest.RestResult
@@ -39,7 +39,7 @@ public class ShadowController {
      * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
      */
     @PostMapping("/test")
-    public RestResult<?> test(@RequestShadow TestFilter filter, @RequestPart("file") MultipartFile file) throws RestException {
+    public RestResult<?> test(@RequestParsing TestFilter filter, @RequestPart("file") MultipartFile file) throws RestException {
         return RestResult.success();
     }
 }
