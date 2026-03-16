@@ -5,7 +5,7 @@
 
     <groupId>io.github.nichetoolkit</groupId>
     <artifactId>rice-toolkit-parent</artifactId>
-    <version>1.1.2-SNAPSHOT</version>
+    <version>1.1.2</version>
 
     <modules>
         <module>rice-toolkit-example</module>
@@ -114,8 +114,8 @@
         <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
         <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
 
-        <rest-toolkit.version>1.1.2-SNAPSHOT</rest-toolkit.version>
-        <rice-toolkit.version>1.1.2-SNAPSHOT</rice-toolkit.version>
+        <rest-toolkit.version>1.1.2</rest-toolkit.version>
+        <rice-toolkit.version>1.1.2</rice-toolkit.version>
 
         <pagehelper.version>6.1.0</pagehelper.version>
         <mybatis-plus.version>3.5.9</mybatis-plus.version>
@@ -289,7 +289,7 @@
                 <artifactId>central-publishing-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <centralBaseUrl>https://central.sonatype.com/</centralBaseUrl>
+                    <centralBaseUrl>https://central.sonatype.com</centralBaseUrl>
                     <centralSnapshotsUrl>https://central.sonatype.com/repository/maven-snapshots/</centralSnapshotsUrl>
                     <publishingServerId>sonatype-nexus-release</publishingServerId>
                     <autoPublish>true</autoPublish>
