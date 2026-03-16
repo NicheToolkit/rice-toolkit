@@ -41,7 +41,7 @@
 <dependency>
     <groupId>io.github.nichetoolkit</groupId>
     <artifactId>rice-toolkit-mybatis</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 
@@ -54,7 +54,7 @@
 <dependency>
     <groupId>io.github.nichetoolkit</groupId>
     <artifactId>rice-toolkit-core</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 
@@ -67,7 +67,7 @@
 <dependency>
     <groupId>io.github.nichetoolkit</groupId>
     <artifactId>rice-toolkit-context</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 
@@ -80,7 +80,7 @@
 <dependency>
     <groupId>io.github.nichetoolkit</groupId>
     <artifactId>rice-toolkit-starter</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 
